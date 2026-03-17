@@ -97,6 +97,14 @@
   const deleteTaskName = document.getElementById('delete-task-name');
   const deleteConfirm = document.getElementById('delete-confirm');
 
+  const dispatchOverlay = document.getElementById('dispatch-overlay');
+  const dispatchClose = document.getElementById('dispatch-close');
+  const dispatchPrompt = document.getElementById('dispatch-prompt');
+  const dispatchCommand = document.getElementById('dispatch-command');
+  const copyPromptBtn = document.getElementById('copy-prompt');
+  const copyCommandBtn = document.getElementById('copy-command');
+  const dispatchDoneBtn = document.getElementById('dispatch-done-btn');
+
   const toastContainer = document.getElementById('toast-container');
   const refreshBtn = document.getElementById('btn-refresh');
 
@@ -480,12 +488,11 @@
             showToast('info', '⚡ Starting dispatch...');
             try {
               const forceParam = movedTask.dispatchStatus === 'dispatched' ? '?force=true' : '';
-              await fetchJSON(`${API}/tasks/${taskId}/dispatch${forceParam}`, {
+              const res = await fetchJSON(`${API}/tasks/${taskId}/dispatch${forceParam}`, {
                 method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}),
               });
               await loadAll(); renderBoard(); renderSidebar();
-              const agentLabel = AGENT_LABELS[movedTask.agent] || movedTask.agent;
-              showToast('success', `🚀 Dispatched to ${agentLabel}!`);
+              openDispatchModal(res);
             } catch (dispatchErr) {
               showToast('error', 'Dispatch failed: ' + dispatchErr.message);
             }
@@ -708,12 +715,39 @@
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}),
       });
       await loadAll(); renderBoard(); renderSidebar();
-      const agentLabel = AGENT_LABELS[task.agent] || task.agent;
-      showToast('success', `🚀 Dispatched to ${agentLabel}`);
+      openDispatchModal(result);
     } catch (err) {
       showToast('error', 'Dispatch failed: ' + err.message);
     }
   }
+
+  // ── Dispatch Modal Logic ───────────────────
+  function openDispatchModal(result) {
+    if (!result || !result.prompt) return;
+    dispatchPrompt.textContent = result.prompt;
+    dispatchCommand.textContent = result.cliCommand;
+    dispatchOverlay.classList.add('active');
+  }
+
+  function closeDispatchModal() {
+    dispatchOverlay.classList.remove('active');
+  }
+
+  // Event listeners for Dispatch Modal
+  if (dispatchClose) dispatchClose.addEventListener('click', closeDispatchModal);
+  if (dispatchDoneBtn) dispatchDoneBtn.addEventListener('click', closeDispatchModal);
+  
+  if (copyPromptBtn) copyPromptBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(dispatchPrompt.textContent)
+      .then(() => showToast('success', 'Prompt copied to clipboard!'))
+      .catch(err => showToast('error', 'Failed to copy: ' + err));
+  });
+
+  if (copyCommandBtn) copyCommandBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(dispatchCommand.textContent)
+      .then(() => showToast('success', 'CLI command copied!'))
+      .catch(err => showToast('error', 'Failed to copy: ' + err));
+  });
 
   // ── Init ───────────────────────────────────
   async function init() {

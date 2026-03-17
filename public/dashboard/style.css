@@ -90,6 +90,39 @@ body{display:flex;overflow:hidden}
 .tab-btn svg{opacity:.7}
 .tab-btn.active svg{opacity:1}
 
+/* ── Agent Dispatch Modal ──────────────────────────── */
+.modal-lg { max-width: 800px; width: 95%; }
+.dispatch-content { display: flex; flex-direction: column; gap: 20px; padding: 10px 0; }
+.dispatch-intro { color: var(--text-muted); font-size: 14px; margin-bottom: 5px; }
+.dispatch-section { display: flex; flex-direction: column; gap: 8px; }
+.dispatch-section-header { display: flex; justify-content: space-between; align-items: center; }
+.dispatch-section-header label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.dispatch-code-block { 
+  background: rgba(0,0,0,0.2) !important; 
+  border: 1px solid var(--border); 
+  border-radius: var(--radius); 
+  padding: 16px; 
+  font-family: 'JetBrains Mono', 'Fira Code', monospace; 
+  font-size: 13px; 
+  line-height: 1.5; 
+  max-height: 300px; 
+  overflow-y: auto; 
+  white-space: pre-wrap; 
+  word-break: break-all;
+  color: var(--text-main);
+}
+.dispatch-cli-block {
+  background: #111;
+  color: #5af78e;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  display: block;
+  border-left: 4px solid var(--accent);
+  overflow-x: auto;
+}
+
 /* ── Tab Panels ───────────────────── */
 .tab-panel{display:none;flex:1;overflow-y:auto}
 .tab-panel.active{display:flex;flex-direction:column}

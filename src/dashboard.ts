@@ -225,7 +225,7 @@ export function launchDashboard(port: number = DEFAULT_PORT) {
       });
       saveData(data);
 
-      res.json({ success: true, task, filePath: result.filePath });
+      res.json({ success: true, task, filePath: result.filePath, prompt: result.prompt, cliCommand: result.cliCommand });
     } else {
       // Mark as failed
       task.dispatchStatus = 'failed';

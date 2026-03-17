@@ -5,24 +5,27 @@ import chalk from 'chalk';
 import crypto from 'crypto';
 import fs from 'fs';
 import { exec } from 'child_process';
-import { loadData, saveData, logActivity, findProjectByNameOrId, findTaskByIdPrefix, shortId, DATA_FILE, PID_FILE, DEFAULT_PORT } from './data';
+import { loadData, saveData, logActivity, findProjectByNameOrId, findTaskByIdPrefix, shortId, DATA_FILE, DATA_DIR, PID_FILE, DEFAULT_PORT } from './data';
 import type { Project, Task, Deployment, ChangelogEntry } from './data';
 import { launchDashboard } from './dashboard';
 import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
 import { ensureCmDir, getContinuityStatus, getLearnings, getDecisions, resetContinuity, hasCmDir, readContinuityState } from './continuity';
+import { evaluateAllTasks, evaluateTaskState, suggestAgentsForSkill, suggestAgentsForTask, getSkillDomain } from './judge';
+import type { Learning } from './continuity';
+import path from 'path';
 
-const VERSION = '3.1.0';
+const VERSION = '3.2.0';
 
 // ─── Branding ───────────────────────────────────────────────────────────────
 
 function showBanner() {
   console.log(chalk.cyan(`
-  ██████╗ ███╗   ███╗
- ██╔════╝ ████╗ ████║   CodyMaster v${VERSION}
- ██║      ██╔████╔██║   Universal AI Agent Skills Platform
- ██║      ██║╚██╔╝██║   Dashboard: http://localhost:${DEFAULT_PORT}
-  ╚██████╗██║ ╚═╝ ██║
-   ╚═════╝╚═╝     ╚═╝
+   ██████╗ ██████╗  ██████╗  ██╗   ██╗
+  ██╔════╝██╔═══██╗██╔══██╗ ╚██╗ ██╔╝   Cody v${VERSION}
+  ██║     ██║   ██║██║  ██║  ╚████╔╝    Universal AI Agent Skills Platform
+  ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://localhost:${DEFAULT_PORT}
+  ╚██████╗╚██████╔╝██████╔╝    ██║
+   ╚═════╝ ╚═════╝ ╚═════╝     ╚═╝
 `));
 }
 
@@ -55,39 +58,55 @@ function openUrl(url: string) {
 const program = new Command();
 
 program
-  .name('codymaster')
-  .description('CodyMaster — Universal AI Agent Skills Platform')
+  .name('cody')
+  .description('Cody — Universal AI Agent Skills Platform')
   .version(VERSION, '-v, --version', 'Show version')
   .action(() => {
     showBanner();
-    console.log(chalk.white('Usage: codymaster <command> [options]\n'));
-    console.log(chalk.white('Commands:'));
+    console.log(chalk.white('Usage: cody <command> [options]\n'));
+    console.log(chalk.white('Core Commands:'));
     console.log(`  ${chalk.cyan('dashboard [cmd]')}     Dashboard server (start|stop|status|open)`);
-    console.log(`  ${chalk.cyan('task <cmd>')}          Task management (add|list|move|done|rm)`);
+    console.log(`  ${chalk.cyan('open')}                Open dashboard in browser (shortcut)`);
+    console.log(`  ${chalk.cyan('init')}                Initialize project from current directory`);
+    console.log(`  ${chalk.cyan('status')}              Show task & project summary`);
+    console.log();
+    console.log(chalk.white('Task & Project:'));
+    console.log(`  ${chalk.cyan('task <cmd>')}          Task management (add|list|move|done|rm|dispatch)`);
     console.log(`  ${chalk.cyan('project <cmd>')}       Project management (add|list|rm)`);
+    console.log(`  ${chalk.cyan('sync <file>')}         Bulk import tasks from JSON file`);
+    console.log();
+    console.log(chalk.white('Deploy & Release:'));
     console.log(`  ${chalk.cyan('deploy <cmd>')}        Deploy management (staging|production|list)`);
     console.log(`  ${chalk.cyan('rollback <id>')}       Rollback a deployment`);
-    console.log(`  ${chalk.cyan('history')}             Show activity history`);
     console.log(`  ${chalk.cyan('changelog <cmd>')}     Changelog (add|list)`);
-    console.log(`  ${chalk.cyan('status')}              Show summary`);
+    console.log(`  ${chalk.cyan('history')}             Show activity history`);
+    console.log();
+    console.log(chalk.white('AI & Skills:'));
+    console.log(`  ${chalk.cyan('skill <cmd>')}         Skill management (list|info|domains)`);
+    console.log(`  ${chalk.cyan('agents [skill]')}      List agents / suggest best for skill`);
+    console.log(`  ${chalk.cyan('judge [task-id]')}     Judge agent decisions for tasks`);
     console.log(`  ${chalk.cyan('install <skill>')}     Install an agent skill`);
+    console.log();
+    console.log(chalk.white('System:'));
+    console.log(`  ${chalk.cyan('continuity [cmd]')}    Working memory (init|status|reset|learnings)`);
+    console.log(`  ${chalk.cyan('config')}              Show configuration & data paths`);
     console.log(`  ${chalk.cyan('version')}             Show version`);
     console.log(`  ${chalk.cyan('help')}                Show this help`);
     console.log();
     console.log(chalk.white('Examples:'));
-    console.log(chalk.gray('  codymaster dashboard start                   # Start dashboard'));
-    console.log(chalk.gray('  codymaster deploy staging -m "Fix login"     # Record staging deploy'));
-    console.log(chalk.gray('  codymaster deploy production                 # Record production deploy'));
-    console.log(chalk.gray('  codymaster deploy list                       # Deploy history'));
-    console.log(chalk.gray('  codymaster rollback <deploy-id>              # Rollback deployment'));
-    console.log(chalk.gray('  codymaster history                           # Activity timeline'));
-    console.log(chalk.gray('  codymaster changelog add v1.2 "Bug fixes"   # Add changelog'));
-    console.log(chalk.gray('  codymaster changelog list                    # Show changelog'));
-    console.log(chalk.gray('  codymaster task add "Fix bug" --priority high'));
-    console.log(chalk.gray('  codymaster status                            # Overview'));
+    console.log(chalk.gray('  cody init                                    # Init project'));
+    console.log(chalk.gray('  cody task add "Fix bug" --priority high       # Add task'));
+    console.log(chalk.gray('  cody task dispatch <id>                      # Dispatch to agent'));
+    console.log(chalk.gray('  cody skill list                              # Browse skills'));
+    console.log(chalk.gray('  cody agents cm-tdd                           # Best agents for skill'));
+    console.log(chalk.gray('  cody judge                                   # Check task health'));
+    console.log(chalk.gray('  cody deploy staging -m "Fix login"           # Record deploy'));
+    console.log(chalk.gray('  cody open                                    # Open dashboard'));
+    console.log(chalk.gray('  cody status                                  # Overview'));
     console.log();
     console.log(chalk.gray(`Data: ${DATA_FILE}`));
-    console.log(chalk.gray(`Port: ${DEFAULT_PORT}\n`));
+    console.log(chalk.gray(`Port: ${DEFAULT_PORT}`));
+    console.log(chalk.gray(`Aliases: cody | cm | codymaster\n`));
   });
 
 // ─── Dashboard Command ─────────────────────────────────────────────────────
@@ -129,7 +148,7 @@ function dashboardStatus(port: number) {
   if (isDashboardRunning()) {
     const pid = fs.readFileSync(PID_FILE, 'utf-8').trim();
     console.log(chalk.green(`✅ Dashboard RUNNING`)); console.log(chalk.gray(`   PID: ${pid}`)); console.log(chalk.gray(`   URL: http://localhost:${port}`));
-  } else { console.log(chalk.yellow('⚫ Dashboard NOT running')); console.log(chalk.gray('   Start with: codymaster dashboard start')); }
+  } else { console.log(chalk.yellow('⚫ Dashboard NOT running')); console.log(chalk.gray('   Start with: cody dashboard start')); }
 }
 
 // ─── Task Command ───────────────────────────────────────────────────────────
@@ -158,7 +177,7 @@ program
   });
 
 function taskAdd(title: string, opts: any) {
-  if (!title) { console.log(chalk.red('❌ Title required. Usage: codymaster task add "My task"')); return; }
+  if (!title) { console.log(chalk.red('❌ Title required. Usage: cody task add "My task"')); return; }
   const data = loadData();
   let projectId: string | undefined;
   if (opts.project) {
@@ -207,7 +226,7 @@ function taskList(opts: any) {
 }
 
 function taskMove(idPrefix: string, targetColumn: string) {
-  if (!idPrefix || !targetColumn) { console.log(chalk.red('❌ Usage: codymaster task move <id> <column>')); return; }
+  if (!idPrefix || !targetColumn) { console.log(chalk.red('❌ Usage: cody task move <id> <column>')); return; }
   const vc = ['backlog', 'in-progress', 'review', 'done'];
   if (!vc.includes(targetColumn)) { console.log(chalk.red(`❌ Invalid column: ${targetColumn}`)); return; }
   const data = loadData();
@@ -223,12 +242,12 @@ function taskMove(idPrefix: string, targetColumn: string) {
 }
 
 function taskDone(idPrefix: string) {
-  if (!idPrefix) { console.log(chalk.red('❌ Usage: codymaster task done <id>')); return; }
+  if (!idPrefix) { console.log(chalk.red('❌ Usage: cody task done <id>')); return; }
   taskMove(idPrefix, 'done');
 }
 
 function taskRemove(idPrefix: string) {
-  if (!idPrefix) { console.log(chalk.red('❌ Usage: codymaster task rm <id>')); return; }
+  if (!idPrefix) { console.log(chalk.red('❌ Usage: cody task rm <id>')); return; }
   const data = loadData();
   const idx = data.tasks.findIndex(t => t.id === idPrefix || t.id.startsWith(idPrefix));
   if (idx === -1) { console.log(chalk.red(`❌ Task not found: ${idPrefix}`)); return; }
@@ -239,7 +258,7 @@ function taskRemove(idPrefix: string) {
 }
 
 function taskDispatch(idPrefix: string, opts: any) {
-  if (!idPrefix) { console.log(chalk.red('❌ Usage: codymaster task dispatch <id> [--force]')); return; }
+  if (!idPrefix) { console.log(chalk.red('❌ Usage: cody task dispatch <id> [--force]')); return; }
   const data = loadData();
   const task = findTaskByIdPrefix(data, idPrefix);
   if (!task) { console.log(chalk.red(`❌ Task not found: ${idPrefix}`)); return; }
@@ -288,7 +307,7 @@ program
   });
 
 function projectAdd(name: string, opts: any) {
-  if (!name) { console.log(chalk.red('❌ Usage: codymaster project add "my-project"')); return; }
+  if (!name) { console.log(chalk.red('❌ Usage: cody project add "my-project"')); return; }
   const data = loadData();
   const project: Project = { id: crypto.randomUUID(), name: name.trim(), path: opts.path || process.cwd(), agents: [], createdAt: new Date().toISOString() };
   data.projects.push(project);
@@ -314,7 +333,7 @@ function projectList() {
 }
 
 function projectRemove(query: string) {
-  if (!query) { console.log(chalk.red('❌ Usage: codymaster project rm <name-or-id>')); return; }
+  if (!query) { console.log(chalk.red('❌ Usage: cody project rm <name-or-id>')); return; }
   const data = loadData();
   const project = findProjectByNameOrId(data, query);
   if (!project) { console.log(chalk.red(`❌ Project not found: ${query}`)); return; }
@@ -354,7 +373,7 @@ function deployRecord(env: 'staging' | 'production', opts: any) {
     if (!p) { console.log(chalk.red(`❌ Project not found: ${opts.project}`)); return; }
     projectId = p.id;
   } else if (data.projects.length > 0) { projectId = data.projects[0].id; }
-  else { console.log(chalk.red('❌ No projects. Create one first: codymaster project add "my-project"')); return; }
+  else { console.log(chalk.red('❌ No projects. Create one first: cody project add "my-project"')); return; }
 
   const now = new Date().toISOString();
   const dep: Deployment = {
@@ -491,7 +510,7 @@ program
   });
 
 function changelogAdd(args: string[], opts: any) {
-  if (args.length < 2) { console.log(chalk.red('❌ Usage: codymaster changelog add <version> "<title>" [changes...]')); return; }
+  if (args.length < 2) { console.log(chalk.red('❌ Usage: cody changelog add <version> "<title>" [changes...]')); return; }
   const data = loadData();
   let projectId = '';
   if (opts.project) {
@@ -588,7 +607,7 @@ program
     // Dashboard
     console.log();
     if (isDashboardRunning()) { console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://localhost:${DEFAULT_PORT}`)); }
-    else { console.log(chalk.gray(`  ⚫ Dashboard: not running (start with: codymaster dashboard)`)); }
+    else { console.log(chalk.gray(`  ⚫ Dashboard: not running (start with: cody dashboard)`)); }
     console.log();
   });
 
@@ -683,7 +702,7 @@ function continuityStatus(projectPath: string) {
   const status = getContinuityStatus(projectPath);
   if (!status.initialized) {
     console.log(chalk.yellow('⚫ Working memory not initialized.'));
-    console.log(chalk.gray('   Run: codymaster continuity init'));
+    console.log(chalk.gray('   Run: cody continuity init'));
     return;
   }
 
@@ -726,7 +745,7 @@ function continuityReset(projectPath: string) {
 
 function continuityLearnings(projectPath: string) {
   if (!hasCmDir(projectPath)) {
-    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: codymaster continuity init'));
+    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cody continuity init'));
     return;
   }
   const learnings = getLearnings(projectPath);
@@ -745,7 +764,7 @@ function continuityLearnings(projectPath: string) {
 
 function continuityDecisions(projectPath: string) {
   if (!hasCmDir(projectPath)) {
-    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: codymaster continuity init'));
+    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cody continuity init'));
     return;
   }
   const decisions = getDecisions(projectPath);
@@ -760,6 +779,407 @@ function continuityDecisions(projectPath: string) {
     console.log(chalk.gray(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
   }
 }
+
+// ─── Skill Command ──────────────────────────────────────────────────────────
+
+const SKILL_CATALOG: Record<string, { skills: { name: string; desc: string }[] }> = {
+  engineering: {
+    skills: [
+      { name: 'cm-tdd', desc: 'Red-Green-Refactor cycle — test before code' },
+      { name: 'cm-debugging', desc: '5-phase root cause investigation' },
+      { name: 'cm-quality-gate', desc: '6-gate verification system' },
+      { name: 'cm-test-gate', desc: 'Setup 4-layer test infrastructure' },
+      { name: 'cm-code-review', desc: 'Professional PR review lifecycle' },
+    ],
+  },
+  operations: {
+    skills: [
+      { name: 'cm-safe-deploy', desc: 'Multi-gate deploy pipeline with rollback' },
+      { name: 'cm-identity-guard', desc: 'Prevent wrong-account deploys' },
+      { name: 'cm-git-worktrees', desc: 'Isolated feature branches' },
+      { name: 'cm-terminal', desc: 'Safe terminal execution with logging' },
+    ],
+  },
+  product: {
+    skills: [
+      { name: 'cm-planning', desc: 'Brainstorm intent → design → plan' },
+      { name: 'cm-ux-master', desc: '48 UX Laws + 37 Design Tests' },
+      { name: 'cm-dockit', desc: 'Complete knowledge base from codebase' },
+      { name: 'cm-project-bootstrap', desc: 'Full project setup: design → CI → deploy' },
+    ],
+  },
+  growth: {
+    skills: [
+      { name: 'cm-content-factory', desc: 'AI content engine: research → deploy' },
+      { name: 'cm-ads-tracker', desc: 'Facebook/TikTok/Google tracking setup' },
+      { name: 'cro-methodology', desc: 'Conversion audit + A/B test design' },
+      { name: 'booking-calendar', desc: 'Calendar CRO engine with .ics export' },
+    ],
+  },
+  orchestration: {
+    skills: [
+      { name: 'cm-execution', desc: 'Execute plans: batch, parallel, RARV' },
+      { name: 'cm-continuity', desc: 'Working memory: read/update per session' },
+      { name: 'cm-skill-index', desc: 'Progressive disclosure — scan skills fast' },
+      { name: 'cm-safe-i18n', desc: 'Multi-pass translation with 8 audit gates' },
+      { name: 'cm-skill-mastery', desc: 'Meta: when/how to invoke skills' },
+    ],
+  },
+};
+
+program
+  .command('skill [cmd] [name]')
+  .alias('sk')
+  .description('Skill management (list|info|domains)')
+  .action((cmd, name) => {
+    switch (cmd) {
+      case 'list': case 'ls': case undefined:
+        skillList();
+        break;
+      case 'info':
+        if (!name) { console.log(chalk.red('❌ Usage: cody skill info <skill-name>')); return; }
+        skillInfo(name);
+        break;
+      case 'domains':
+        skillDomains();
+        break;
+      default:
+        // Treat cmd as skill name for `cody skill cm-tdd`
+        skillInfo(cmd);
+    }
+  });
+
+function skillList() {
+  console.log(chalk.cyan('\n🧩 Skills Library\n'));
+  const DOMAIN_ICONS: Record<string, string> = {
+    engineering: '🔧', operations: '⚙️', product: '🎨', growth: '📈', orchestration: '🎯',
+  };
+  let total = 0;
+  for (const [domain, data] of Object.entries(SKILL_CATALOG)) {
+    const icon = DOMAIN_ICONS[domain] || '📦';
+    console.log(chalk.white(`  ${icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)} Swarm`));
+    for (const skill of data.skills) {
+      console.log(`    ${chalk.cyan(padRight(skill.name, 24))} ${chalk.gray(skill.desc)}`);
+      total++;
+    }
+    console.log();
+  }
+  console.log(chalk.gray(`  Total: ${total} skills across ${Object.keys(SKILL_CATALOG).length} domains\n`));
+}
+
+function skillInfo(name: string) {
+  for (const [domain, data] of Object.entries(SKILL_CATALOG)) {
+    const skill = data.skills.find(s => s.name === name);
+    if (skill) {
+      console.log(chalk.cyan(`\n🧩 Skill: ${skill.name}\n`));
+      console.log(`  ${chalk.white('Domain:')}      ${domain}`);
+      console.log(`  ${chalk.white('Description:')} ${skill.desc}`);
+      const agents = suggestAgentsForSkill(skill.name);
+      console.log(`  ${chalk.white('Best Agents:')} ${agents.join(', ')}`);
+      console.log(`  ${chalk.white('Invoke:')}      @[/${skill.name}]  (Antigravity/Gemini)`);
+      console.log(`               /${skill.name}  (Claude Code)`);
+      console.log(`               @${skill.name}  (Cursor/Windsurf/Cline)`);
+      console.log();
+      return;
+    }
+  }
+  console.log(chalk.red(`❌ Skill not found: ${name}`));
+  console.log(chalk.gray('   Use "cody skill list" to see all available skills.'));
+}
+
+function skillDomains() {
+  const DOMAIN_ICONS: Record<string, string> = {
+    engineering: '🔧', operations: '⚙️', product: '🎨', growth: '📈', orchestration: '🎯',
+  };
+  console.log(chalk.cyan('\n🎯 Skill Domains (Swarms)\n'));
+  for (const [domain, data] of Object.entries(SKILL_CATALOG)) {
+    const icon = DOMAIN_ICONS[domain] || '📦';
+    console.log(`  ${icon} ${chalk.white(padRight(domain.charAt(0).toUpperCase() + domain.slice(1), 16))} ${chalk.gray(`${data.skills.length} skills`)}`);
+  }
+  console.log();
+}
+
+// ─── Judge Command ──────────────────────────────────────────────────────────
+
+program
+  .command('judge [taskId]')
+  .alias('j')
+  .description('Judge agent decisions for tasks')
+  .option('-p, --project <name>', 'Filter by project')
+  .action((taskId, opts) => {
+    const data = loadData();
+    if (taskId) {
+      // Single task evaluation
+      const task = findTaskByIdPrefix(data, taskId);
+      if (!task) { console.log(chalk.red(`❌ Task not found: ${taskId}`)); return; }
+
+      const project = data.projects.find(p => p.id === task.projectId);
+      let learnings: Learning[] = [];
+      if (project?.path && hasCmDir(project.path)) {
+        learnings = getLearnings(project.path);
+      }
+
+      const decision = evaluateTaskState(task, data.tasks, learnings);
+      console.log(chalk.cyan(`\n🤖 Judge Decision\n`));
+      console.log(`  ${chalk.white('Task:')}       ${task.title}`);
+      console.log(`  ${chalk.white('Column:')}     ${task.column}`);
+      console.log(`  ${chalk.white('Action:')}     ${decision.badge} ${decision.action}`);
+      console.log(`  ${chalk.white('Reason:')}     ${decision.reason}`);
+      console.log(`  ${chalk.white('Confidence:')} ${Math.round(decision.confidence * 100)}%`);
+      if (decision.suggestedNextSkill) {
+        console.log(`  ${chalk.white('Suggested:')}  ${decision.suggestedNextSkill}`);
+      }
+      console.log();
+    } else {
+      // All active tasks
+      let tasks = data.tasks;
+      if (opts.project) {
+        const project = findProjectByNameOrId(data, opts.project);
+        if (!project) { console.log(chalk.red(`❌ Project not found: ${opts.project}`)); return; }
+        tasks = tasks.filter(t => t.projectId === project.id);
+      }
+
+      let allLearnings: Learning[] = [];
+      for (const project of data.projects) {
+        if (project.path && hasCmDir(project.path)) {
+          allLearnings = allLearnings.concat(getLearnings(project.path));
+        }
+      }
+
+      const decisions = evaluateAllTasks(tasks, allLearnings);
+      if (decisions.size === 0) {
+        console.log(chalk.gray('\n  No active tasks to evaluate.\n'));
+        return;
+      }
+
+      console.log(chalk.cyan(`\n🤖 Judge Decisions (${decisions.size} active tasks)\n`));
+      console.log(chalk.gray('  ' + padRight('Badge', 8) + padRight('Action', 12) + padRight('Confidence', 12) + 'Task'));
+      console.log(chalk.gray('  ' + '─'.repeat(70)));
+
+      for (const [tid, dec] of decisions) {
+        const task = tasks.find(t => t.id === tid);
+        const actionColor = dec.action === 'CONTINUE' ? chalk.green
+          : dec.action === 'COMPLETE' ? chalk.blue
+          : dec.action === 'ESCALATE' ? chalk.yellow
+          : chalk.magenta;
+        console.log('  ' + padRight(dec.badge, 8) + actionColor(padRight(dec.action, 12)) + chalk.gray(padRight(`${Math.round(dec.confidence * 100)}%`, 12)) + (task?.title || tid.substring(0, 8)));
+      }
+      console.log();
+    }
+  });
+
+// ─── Init Command ───────────────────────────────────────────────────────────
+
+program
+  .command('init')
+  .description('Initialize project from current directory')
+  .option('-n, --name <name>', 'Project name')
+  .option('--path <path>', 'Workspace path', process.cwd())
+  .action((opts) => {
+    const data = loadData();
+    const projectName = opts.name || path.basename(opts.path || process.cwd());
+    const projectPath = opts.path || process.cwd();
+
+    // Check if already exists
+    const existing = data.projects.find(p => p.path === projectPath || p.name === projectName);
+    if (existing) {
+      console.log(chalk.yellow(`⚠️  Project already exists: ${existing.name}`));
+      console.log(chalk.gray(`   ID: ${shortId(existing.id)} | Path: ${existing.path}`));
+      return;
+    }
+
+    const project: Project = {
+      id: crypto.randomUUID(),
+      name: projectName,
+      path: projectPath,
+      agents: [],
+      createdAt: new Date().toISOString(),
+    };
+    data.projects.push(project);
+    logActivity(data, 'project_created', `Project "${project.name}" initialized via CLI`, project.id);
+    saveData(data);
+
+    // Also init working memory
+    ensureCmDir(projectPath);
+
+    console.log(chalk.green(`\n✅ Project initialized: ${projectName}`));
+    console.log(chalk.gray(`   ID:   ${shortId(project.id)}`));
+    console.log(chalk.gray(`   Path: ${projectPath}`));
+    console.log(chalk.gray(`   .cm/  Working memory created`));
+    console.log();
+    console.log(chalk.cyan('💡 Next steps:'));
+    console.log(chalk.gray('   cody task add "My first task"'));
+    console.log(chalk.gray('   cody dashboard start'));
+    console.log(chalk.gray('   cody open'));
+    console.log();
+  });
+
+// ─── Open Command ───────────────────────────────────────────────────────────
+
+program
+  .command('open')
+  .alias('o')
+  .description('Open dashboard in browser')
+  .option('-p, --port <port>', 'Port number', String(DEFAULT_PORT))
+  .action((opts) => {
+    const port = parseInt(opts.port) || DEFAULT_PORT;
+    if (!isDashboardRunning()) {
+      console.log(chalk.yellow('⚠️  Dashboard not running. Starting it first...'));
+      launchDashboard(port);
+      setTimeout(() => openUrl(`http://localhost:${port}`), 1500);
+    } else {
+      console.log(chalk.blue(`🌐 Opening http://localhost:${port} ...`));
+      openUrl(`http://localhost:${port}`);
+    }
+  });
+
+// ─── Config Command ─────────────────────────────────────────────────────────
+
+program
+  .command('config')
+  .alias('cfg')
+  .description('Show configuration & data paths')
+  .action(() => {
+    console.log(chalk.cyan(`\n⚙️  Cody Configuration\n`));
+    console.log(`  ${chalk.white('Version:')}    ${VERSION}`);
+    console.log(`  ${chalk.white('Data Dir:')}   ${DATA_DIR}`);
+    console.log(`  ${chalk.white('Data File:')}  ${DATA_FILE}`);
+    console.log(`  ${chalk.white('PID File:')}   ${PID_FILE}`);
+    console.log(`  ${chalk.white('Port:')}       ${DEFAULT_PORT}`);
+    console.log(`  ${chalk.white('CLI Names:')}  cody | cm | codymaster`);
+    console.log();
+
+    // Show data stats
+    const data = loadData();
+    console.log(chalk.white('  Data Stats:'));
+    console.log(chalk.gray(`    Projects:    ${data.projects.length}`));
+    console.log(chalk.gray(`    Tasks:       ${data.tasks.length}`));
+    console.log(chalk.gray(`    Deploys:     ${data.deployments.length}`));
+    console.log(chalk.gray(`    Activities:  ${data.activities.length}`));
+    console.log(chalk.gray(`    Changelog:   ${data.changelog.length}`));
+    console.log();
+
+    // Dashboard status
+    if (isDashboardRunning()) {
+      console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://localhost:${DEFAULT_PORT}`));
+    } else {
+      console.log(chalk.gray(`  ⚫ Dashboard: not running`));
+    }
+    console.log();
+  });
+
+// ─── Agents Command ─────────────────────────────────────────────────────────
+
+const AGENT_LIST: { id: string; name: string; icon: string }[] = [
+  { id: 'antigravity', name: 'Google Antigravity', icon: '🟢' },
+  { id: 'claude-code', name: 'Claude Code', icon: '🟣' },
+  { id: 'cursor', name: 'Cursor', icon: '🔵' },
+  { id: 'gemini-cli', name: 'Gemini CLI', icon: '💻' },
+  { id: 'windsurf', name: 'Windsurf', icon: '🟠' },
+  { id: 'cline', name: 'Cline / RooCode', icon: '🟤' },
+  { id: 'copilot', name: 'GitHub Copilot', icon: '🐈' },
+];
+
+program
+  .command('agents [skill]')
+  .alias('ag')
+  .description('List agents or suggest best agent for a skill')
+  .action((skill) => {
+    if (skill) {
+      // Suggest best agents for skill
+      const domain = getSkillDomain(skill);
+      const agents = suggestAgentsForSkill(skill);
+      console.log(chalk.cyan(`\n🤖 Agent Suggestions for ${chalk.white(skill)}\n`));
+      console.log(chalk.gray(`   Domain: ${domain}\n`));
+      agents.forEach((agentId, index) => {
+        const agent = AGENT_LIST.find(a => a.id === agentId);
+        const affinity = index === 0 ? chalk.green('★ BEST') : index === 1 ? chalk.yellow('● GOOD') : chalk.gray('○ OK');
+        console.log(`  ${agent?.icon || '🤖'} ${padRight(agent?.name || agentId, 24)} ${affinity}`);
+      });
+      console.log();
+    } else {
+      // List all agents
+      console.log(chalk.cyan('\n🤖 Available Agents\n'));
+      for (const agent of AGENT_LIST) {
+        console.log(`  ${agent.icon} ${chalk.white(padRight(agent.name, 24))} ${chalk.gray(agent.id)}`);
+      }
+      console.log();
+      console.log(chalk.gray('  💡 Tip: cody agents <skill-name> to see best agents for a skill'));
+      console.log();
+    }
+  });
+
+// ─── Sync Command ───────────────────────────────────────────────────────────
+
+program
+  .command('sync <file>')
+  .description('Bulk import tasks from JSON file')
+  .option('-p, --project <name>', 'Target project')
+  .option('--agent <agent>', 'Agent name')
+  .option('--skill <skill>', 'Skill name')
+  .action((file, opts) => {
+    const filePath = path.resolve(file);
+    if (!fs.existsSync(filePath)) {
+      console.log(chalk.red(`❌ File not found: ${filePath}`));
+      return;
+    }
+
+    let tasks: any[];
+    try {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      const parsed = JSON.parse(content);
+      tasks = Array.isArray(parsed) ? parsed : parsed.tasks;
+      if (!Array.isArray(tasks)) throw new Error('Invalid format');
+    } catch (err: any) {
+      console.log(chalk.red(`❌ Invalid JSON file: ${err.message}`));
+      console.log(chalk.gray('   Expected format: [{"title": "...", "priority": "...", "column": "..."}]'));
+      return;
+    }
+
+    const data = loadData();
+    let projectId: string | undefined;
+    if (opts.project) {
+      const p = findProjectByNameOrId(data, opts.project);
+      if (!p) { console.log(chalk.red(`❌ Project not found: ${opts.project}`)); return; }
+      projectId = p.id;
+    } else if (data.projects.length > 0) {
+      projectId = data.projects[0].id;
+    } else {
+      const dp: Project = { id: crypto.randomUUID(), name: 'Default Project', path: process.cwd(), agents: [], createdAt: new Date().toISOString() };
+      data.projects.push(dp);
+      projectId = dp.id;
+    }
+
+    const now = new Date().toISOString();
+    let count = 0;
+    for (const t of tasks) {
+      const col = t.column || 'backlog';
+      const ct = data.tasks.filter(tk => tk.column === col && tk.projectId === projectId);
+      const mo = ct.length > 0 ? Math.max(...ct.map(tk => tk.order)) : -1;
+      const task: Task = {
+        id: crypto.randomUUID(), projectId: projectId!,
+        title: String(t.title || '').trim(),
+        description: String(t.description || '').trim(),
+        column: col, order: mo + 1,
+        priority: t.priority || 'medium',
+        agent: opts.agent || t.agent || '',
+        skill: opts.skill || t.skill || '',
+        createdAt: now, updatedAt: now,
+      };
+      data.tasks.push(task);
+      count++;
+    }
+
+    logActivity(data, 'task_created', `Synced ${count} tasks from ${path.basename(filePath)}`, projectId!, opts.agent || '', { count, file: filePath });
+    saveData(data);
+
+    const project = data.projects.find(p => p.id === projectId);
+    console.log(chalk.green(`\n✅ Synced ${count} tasks!`));
+    console.log(chalk.gray(`   Project: ${project?.name || 'Default'}`));
+    console.log(chalk.gray(`   Source:  ${filePath}`));
+    if (opts.agent) console.log(chalk.gray(`   Agent:   ${opts.agent}`));
+    console.log();
+  });
 
 // ─── Parse ──────────────────────────────────────────────────────────────────
 

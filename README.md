@@ -38,7 +38,7 @@ Your Idea → CodyMaster Skills → Production-Ready Code
 
 ```bash
 # Install globally
-npm install -g codymaster
+npm install -g cody-master
 
 # Or clone and build
 git clone https://github.com/omisocial/cody-master.git

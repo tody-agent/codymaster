@@ -7,6 +7,8 @@ import type { Task, Project } from './data';
 export interface DispatchResult {
   success: boolean;
   filePath?: string;
+  prompt?: string;
+  cliCommand?: string;
   error?: string;
   errorCode?: 'NO_AGENT' | 'MANUAL_AGENT' | 'NO_PROJECT_PATH' | 'PATH_NOT_FOUND' | 'ALREADY_DISPATCHED' | 'WRITE_ERROR' | 'TASK_NOT_FOUND' | 'PROJECT_NOT_FOUND';
 }
@@ -179,5 +181,9 @@ export function dispatchTaskToAgent(task: Task, project: Project, force: boolean
     } catch { /* non-critical */ }
   }
 
-  return { success: true, filePath };
+  // Generate CLI command
+  const relativePath = path.relative(project.path, filePath);
+  const cliCommand = `gemini run --task "${relativePath}"`;
+
+  return { success: true, filePath, prompt: content, cliCommand };
 }

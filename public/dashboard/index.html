@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodyMaster — Dashboard</title>
+  <title>Cody — Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <span class="logo">🧠</span>
-      <h1 class="sidebar-title">CodyMaster</h1>
+      <h1 class="sidebar-title">Cody</h1>
     </div>
 
     <div class="sidebar-section">
@@ -310,6 +310,38 @@
           <button type="submit" class="btn btn-primary">Add Entry</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- ── Modal: Agent Dispatch ──────────────────────────── -->
+  <div class="modal-overlay" id="dispatch-overlay">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h2 class="modal-title">🚀 Agent Dispatch</h2>
+        <button class="modal-close" id="dispatch-close">&times;</button>
+      </div>
+      <div class="dispatch-content">
+        <p class="dispatch-intro">Copy the prompt below to your Agent Manager or use the terminal command to start the task.</p>
+        
+        <div class="dispatch-section">
+          <div class="dispatch-section-header">
+            <label>Standard Prompt (Markdown)</label>
+            <button class="btn btn-sm btn-ghost" id="copy-prompt">📋 Copy Prompt</button>
+          </div>
+          <pre class="dispatch-code-block" id="dispatch-prompt"></pre>
+        </div>
+
+        <div class="dispatch-section">
+          <div class="dispatch-section-header">
+            <label>Terminal Command</label>
+            <button class="btn btn-sm btn-ghost" id="copy-command">📋 Copy Command</button>
+          </div>
+          <code class="dispatch-cli-block" id="dispatch-command"></code>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" id="dispatch-done-btn">Done</button>
+      </div>
     </div>
   </div>
 

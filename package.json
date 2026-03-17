@@ -1,9 +1,10 @@
 {
-  "name": "codymaster",
-  "version": "3.0.0",
+  "name": "cody-master",
+  "version": "3.2.0",
   "description": "Universal Agent Skills Platform",
   "main": "dist/index.js",
   "bin": {
+    "cody": "./dist/index.js",
     "cm": "./dist/index.js",
     "codymaster": "./dist/index.js"
   },

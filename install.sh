@@ -75,4 +75,4 @@ case $choice in
 esac
 
 echo -e "\n${GREEN}Successfully installed CodyMaster agent skills!${NC}"
-echo -e "Type 'npx cm' or 'cm help' to manage skills later."
+echo -e "Type 'cody help' or 'cm help' to manage skills later."
