@@ -11,7 +11,7 @@ Working across multiple projects, clients, and platforms means one wrong `git pu
 
 > [!CAUTION]
 > **Real incidents this skill prevents:**
-> - Pushed Boxme Employee Scoring code to personal GitHub repo (exposed client code)
+> - Pushed client code to personal GitHub repo
 > - Deployed to wrong Cloudflare account (different org's Pages project, billing confusion)
 > - Used personal Supabase `ANON_KEY` in a client project (wrong DB entirely)
 > - `git config user.email` was personal email → commits show wrong author in client repo
@@ -43,21 +43,21 @@ Maintain this table in your head (or in `.project-identity.json`):
 
 | Account | Purpose | Email | When to Use |
 |---------|---------|-------|-------------|
-| `todyle` | Personal projects, experiments | personal email | Personal repos, side projects |
-| `omisocial` | Boxme client work | `omisocial@users.noreply.github.com` | All Boxme projects |
+| `my-personal` | Personal projects, experiments | personal email | Personal repos, side projects |
+| `my-work-org` | Client work | `dev@workdomain.com` | All client projects |
 
 ### Cloudflare Accounts
 
 | Account ID | Purpose | Projects |
 |-----------|---------|---------|
-| `fa5ac755c5a60634abdecf0daacd23b5` | Boxme/OMISOCIAL | prms, forecast, scoring |
+| `abc123def456ghi789jkl012mno345pqr` | Client A / Org | project-1, project-2, app |
 | (personal) | Personal experiments | personal side projects |
 
 ### Database Accounts
 
 | Service | Account | Purpose |
 |---------|---------|---------|
-| Supabase (Boxme org) | org account | All Boxme apps |
+| Supabase (Org) | org account | All Client A apps |
 | Supabase (personal) | personal account | Experiments |
 | Neon | per project | If used |
 
@@ -69,25 +69,25 @@ Every project MUST have a `.project-identity.json` in the project root:
 
 ```json
 {
-  "name": "boxme-employee-scoring",
-  "description": "Employee performance scoring system for Boxme",
+  "name": "my-awesome-project",
+  "description": "An awesome internal tool",
   "github": {
-    "account": "omisocial",
-    "org": "omisocial",
-    "repo": "boxme_levelling",
-    "remoteUrl": "https://github.com/omisocial/boxme_levelling.git",
-    "userEmail": "omisocial@users.noreply.github.com"
+    "account": "my-work-org",
+    "org": "my-work-org",
+    "repo": "my_project_repo",
+    "remoteUrl": "https://github.com/my-work-org/my_project_repo.git",
+    "userEmail": "dev@workdomain.com"
   },
   "cloudflare": {
-    "accountId": "fa5ac755c5a60634abdecf0daacd23b5",
-    "projectName": "prms",
-    "stagingUrl": "https://prms-4pv.pages.dev",
-    "productionUrl": "https://scoring.boxme.tech",
+    "accountId": "abc123def456ghi789jkl012mno345pqr",
+    "projectName": "my-frontend-app",
+    "stagingUrl": "https://my-app-staging.pages.dev",
+    "productionUrl": "https://myapp.workdomain.com",
     "productionBranch": "production"
   },
   "database": {
     "provider": "supabase",
-    "projectName": "boxme-prms",
+    "projectName": "my-database-project",
     "urlVar": "SUPABASE_URL",
     "anonKeyVar": "SUPABASE_ANON_KEY",
     "serviceKeyVar": "SUPABASE_SERVICE_KEY",
@@ -145,14 +145,14 @@ gh auth status
 # Switch to work account
 gh auth logout
 gh auth login
-# → Login with web browser → select omisocial
+# → Login with web browser → select my-work-org
 
 # Fix git user for THIS repo (not global)
-git config user.name "omisocial"
-git config user.email "omisocial@users.noreply.github.com"
+git config user.name "my-work-org"
+git config user.email "dev@workdomain.com"
 
 # Fix remote URL
-git remote set-url origin https://github.com/omisocial/REPO_NAME.git
+git remote set-url origin https://github.com/my-work-org/REPO_NAME.git
 ```
 
 ### Wrong Cloudflare Account
@@ -164,7 +164,7 @@ wrangler whoami
 # Look for account_id in wrangler.jsonc
 grep account_id wrangler.jsonc
 
-# Expected for Boxme projects: fa5ac755c5a60634abdecf0daacd23b5
+# Expected for Your Project: abc123def456ghi789jkl012mno345pqr
 # Fix: update account_id in wrangler.jsonc
 ```
 
@@ -188,7 +188,7 @@ grep SUPABASE_URL .dev.vars
 git log --format="%h %an <%ae>" -5
 
 # If wrong — amend last commit's author (before push only!)
-git commit --amend --author="omisocial <omisocial@users.noreply.github.com>" --no-edit
+git commit --amend --author="my-work-org <dev@workdomain.com>" --no-edit
 
 # For multiple commits: rebase and re-author
 git rebase -i HEAD~N  # Then for each commit: edit → amend author → continue
@@ -203,7 +203,7 @@ When starting a new project, answer these questions FIRST:
 ```markdown
 Before writing any code or creating any repo, I need to lock identity:
 
-1. **GitHub account**: Personal (todyle) or Work (omisocial)?
+1. **GitHub account**: Personal (my-personal) or Work (my-work-org)?
 2. **Cloudflare account**: Which account ID?
 3. **Database**: Which Supabase org? New project or existing?
 4. **Languages**: Single locale or multi-language from day 1?
@@ -214,9 +214,9 @@ Then create `.project-identity.json` BEFORE the first commit:
 
 ```bash
 # Lock git identity to this project immediately
-git config user.name "omisocial"
-git config user.email "omisocial@users.noreply.github.com"
-git remote set-url origin https://github.com/omisocial/NEW_REPO.git
+git config user.name "my-work-org"
+git config user.email "dev@workdomain.com"
+git remote set-url origin https://github.com/my-work-org/NEW_REPO.git
 
 # Verify before first push
 git config user.email  # Must match expected
@@ -232,14 +232,14 @@ gh auth status  # Must show correct account
 
 ```bash
 # Generate separate keys for each account
-ssh-keygen -t ed25519 -C "omisocial@..." -f ~/.ssh/id_omisocial
+ssh-keygen -t ed25519 -C "dev@workdomain.com" -f ~/.ssh/id_my_work_org
 ssh-keygen -t ed25519 -C "personal@..." -f ~/.ssh/id_personal
 
 # ~/.ssh/config — route by host alias
-Host github-omisocial
+Host github-work
   HostName github.com
   User git
-  IdentityFile ~/.ssh/id_omisocial
+  IdentityFile ~/.ssh/id_my_work_org
 
 Host github-personal
   HostName github.com
@@ -251,35 +251,35 @@ Host github-personal
 
 ```bash
 # For work projects:
-git remote set-url origin git@github-omisocial:omisocial/REPO.git
+git remote set-url origin git@github-work:my-work-org/REPO.git
 
 # For personal projects:
-git remote set-url origin git@github-personal:todyle/REPO.git
+git remote set-url origin git@github-personal:my-personal/REPO.git
 ```
 
 ### Global vs Local git config
 
 ```bash
 # Global: personal (default for new repos)
-git config --global user.name "todyle"
+git config --global user.name "my-personal"
 git config --global user.email "personal@email.com"
 
 # Per-repo override for work projects (run inside each work repo):
-git config user.name "omisocial"
-git config user.email "omisocial@users.noreply.github.com"
+git config user.name "my-work-org"
+git config user.email "dev@workdomain.com"
 ```
 
 > [!TIP]
 > Use `includeIf` in `~/.gitconfig` to auto-apply work identity for repos in specific directories:
 > ```ini
-> [includeIf "gitdir:~/Builder/Boxme/"]
->     path = ~/.gitconfig-boxme
+> [includeIf "gitdir:~/Builder/ClientA/"]
+>     path = ~/.gitconfig-work
 > ```
-> `~/.gitconfig-boxme`:
+> `~/.gitconfig-work`:
 > ```ini
 > [user]
->     name = omisocial
->     email = omisocial@users.noreply.github.com
+>     name = my-work-org
+>     email = dev@workdomain.com
 > ```
 
 ---
@@ -357,7 +357,6 @@ npm run deploy
 | `cm-project-bootstrap` | Identity lock is Phase 0 of every new project |
 | `cm-safe-deploy` | Gate 0 secret hygiene checks wrangler.jsonc |
 | `cm-test-gate` | Phase 4 secret hygiene in test gate setup |
-| `boxme-git-config` | Project-specific config for Boxme repos |
 
 ## The Bottom Line
 

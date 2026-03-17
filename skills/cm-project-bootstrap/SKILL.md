@@ -54,11 +54,11 @@ If it does, load previous identities and **suggest** the most recently used valu
   "lastUsed": "2026-03-17",
   "identities": [
     {
-      "github": { "org": "omisocial" },
-      "cloudflare": { "accountId": "fa5ac755c5a60634abdecf0daacd23b5" },
-      "i18n": { "primary": "vi", "targets": ["en", "th", "ph"] },
+      "github": { "org": "my-work-org" },
+      "cloudflare": { "accountId": "abc123def456ghi789jkl012mno345pqr" },
+      "i18n": { "primary": "en", "targets": ["es", "fr", "de"] },
       "usedCount": 5,
-      "lastProject": "boxme-scoring",
+      "lastProject": "my-awesome-project",
       "lastUsed": "2026-03-17"
     }
   ]
@@ -75,11 +75,11 @@ User only needs to **confirm or change**:
 (Values from your last project shown as suggestions)
 
 1. Project name (kebab-case):       ___________
-2. GitHub org [omisocial]:           → Enter to keep, or type new
-3. Cloudflare ID [fa5ac...23b5]:     → Enter to keep, or type new
+2. GitHub org [my-work-org]:         → Enter to keep, or type new
+3. Cloudflare ID [abc12...5pqr]:     → Enter to keep, or type new
 4. Domain:                           ___________
-5. Primary language [vi]:            → Enter to keep, or type new
-6. Target languages [en, th, ph]:    → Enter to keep, or type new
+5. Primary language [en]:            → Enter to keep, or type new
+6. Target languages [es, fr, de]:    → Enter to keep, or type new
 ```
 
 > **RULE:** Never assume. Always show. Let user confirm.
@@ -320,10 +320,10 @@ If the user has a previous design profile, **reuse it** for brand consistency.
 // ~/.cm-design-profiles/{org-name}.json
 // Auto-saved after first project. Reused for all future projects.
 {
-  "orgName": "omisocial",
+  "orgName": "my-work-org",
   "brand": {
-    "name": "Boxme",
-    "industry": "logistics",
+    "name": "Acme Corp",
+    "industry": "technology",
     "style": "professional-modern"
   },
   "colors": {
@@ -343,7 +343,7 @@ If the user has a previous design profile, **reuse it** for brand consistency.
     "darkMode": true
   },
   "lastUpdated": "2026-03-17",
-  "usedInProjects": ["boxme-scoring", "boxme-docs"]
+  "usedInProjects": ["my-awesome-project", "my-frontend-app"]
 }
 ```
 
@@ -689,9 +689,9 @@ Every project MUST have this file at root:
 > This file helps AI agents understand and work with this project effectively.
 
 ## Project Overview
-- **Name**: boxme-docs
+- **Name**: my-awesome-docs
 - **Type**: Static Website (Cloudflare Pages)
-- **Primary Language**: Vietnamese (vi)
+- **Primary Language**: English (en)
 - **Tech Stack**: HTML, vanilla JS, CSS, Cloudflare Pages
 
 ## Commands

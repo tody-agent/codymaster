@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- ── Sidebar ────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="logo">🧠</span>
+      <h1 class="sidebar-title">CodyMaster</h1>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-header">
+        <span class="sidebar-section-title">Projects</span>
+        <button class="sidebar-action-btn" id="btn-add-project" title="New Project">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <nav class="project-list" id="project-list"></nav>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Active Agents</span>
+      <div class="agent-list" id="agent-list"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="sidebar-version">v3.0 — port 6969</span>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ───────────────────────────────────── -->
+  <div class="main-wrapper">
+    <!-- ── Header ───────────────────────────────────────── -->
+    <header class="header">
+      <div class="header-left">
+        <button class="btn-icon sidebar-toggle" id="sidebar-toggle" title="Toggle sidebar">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <h2 class="header-project-name" id="header-project-name">All Projects</h2>
+      </div>
+      <div class="header-right">
+        <div class="task-stats" id="task-stats"></div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme (Ctrl+Shift+T)">
+          <svg id="theme-icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 9.2A6.5 6.5 0 016.8 2 6 6 0 1014 9.2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn-icon" id="btn-refresh" title="Refresh (Ctrl+R)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 8A6 6 0 111.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 1v5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn btn-primary" id="btn-add-task">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          New Task
+        </button>
+      </div>
+    </header>
+
+    <!-- ── Tab Navigation ─────────────────────────────────── -->
+    <nav class="tab-nav" id="tab-nav">
+      <button class="tab-btn active" data-tab="kanban">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="4" height="14" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="6" y="1" width="4" height="10" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="11" y="1" width="4" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+        Kanban
+      </button>
+      <button class="tab-btn" data-tab="history">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M8 4v4l3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        History
+      </button>
+      <button class="tab-btn" data-tab="deploys">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v10M4 8l4 4 4-4M2 14h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Deploys
+      </button>
+      <button class="tab-btn" data-tab="changelog">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 1h10a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V2a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M5 5h6M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Changelog
+      </button>
+    </nav>
+
+    <!-- ── Tab: Kanban Board ──────────────────────────────── -->
+    <main class="tab-panel active" id="panel-kanban">
+      <div class="board" id="board">
+        <div class="column" data-column="backlog">
+          <div class="column-header"><div class="column-indicator backlog"></div><h2 class="column-title">Backlog</h2><span class="column-count" data-count="backlog">0</span></div>
+          <div class="card-list" data-column="backlog" id="list-backlog"></div>
+        </div>
+        <div class="column" data-column="in-progress">
+          <div class="column-header"><div class="column-indicator in-progress"></div><h2 class="column-title">In Progress</h2><span class="column-count" data-count="in-progress">0</span></div>
+          <div class="card-list" data-column="in-progress" id="list-in-progress"></div>
+        </div>
+        <div class="column" data-column="review">
+          <div class="column-header"><div class="column-indicator review"></div><h2 class="column-title">Review</h2><span class="column-count" data-count="review">0</span></div>
+          <div class="card-list" data-column="review" id="list-review"></div>
+        </div>
+        <div class="column" data-column="done">
+          <div class="column-header"><div class="column-indicator done"></div><h2 class="column-title">Done</h2><span class="column-count" data-count="done">0</span></div>
+          <div class="card-list" data-column="done" id="list-done"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ── Tab: History ───────────────────────────────────── -->
+    <div class="tab-panel" id="panel-history">
+      <div class="timeline-container">
+        <div class="timeline-header">
+          <h3>Activity History</h3>
+          <span class="timeline-count" id="activity-count">0 events</span>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+
+    <!-- ── Tab: Deploys ───────────────────────────────────── -->
+    <div class="tab-panel" id="panel-deploys">
+      <div class="deploys-container">
+        <div class="deploys-header">
+          <h3>Deployment History</h3>
+          <button class="btn btn-primary btn-sm" id="btn-new-deploy">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v10M4 8l4 4 4-4M2 14h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            New Deploy
+          </button>
+        </div>
+        <div class="deploy-list" id="deploy-list"></div>
+      </div>
+    </div>
+
+    <!-- ── Tab: Changelog ─────────────────────────────────── -->
+    <div class="tab-panel" id="panel-changelog">
+      <div class="changelog-container">
+        <div class="changelog-header">
+          <h3>Changelog</h3>
+          <button class="btn btn-primary btn-sm" id="btn-new-changelog">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add Entry
+          </button>
+        </div>
+        <div class="changelog-list" id="changelog-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Modal: Add / Edit Task ─────────────────────────── -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">New Task</h2>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <form id="task-form" autocomplete="off">
+        <input type="hidden" id="form-id">
+        <div class="form-group">
+          <label for="form-title">Title</label>
+          <input type="text" id="form-title" placeholder="What needs to be done?" required maxlength="120">
+        </div>
+        <div class="form-group">
+          <label for="form-description">Description</label>
+          <textarea id="form-description" rows="3" placeholder="Add details or notes…" maxlength="500"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-priority">Priority</label>
+            <select id="form-priority">
+              <option value="low">🟢 Low</option>
+              <option value="medium" selected>🟡 Medium</option>
+              <option value="high">🟠 High</option>
+              <option value="urgent">🔴 Urgent</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-column">Column</label>
+            <select id="form-column">
+              <option value="backlog">Backlog</option>
+              <option value="in-progress">In Progress</option>
+              <option value="review">Review</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-agent">Agent</label>
+            <select id="form-agent">
+              <option value="">— None —</option>
+              <option value="antigravity">🟢 Google Antigravity</option>
+              <option value="claude-code">🟣 Claude Code</option>
+              <option value="cursor">🔵 Cursor</option>
+              <option value="gemini-cli">🟡 Gemini CLI</option>
+              <option value="windsurf">🟠 Windsurf</option>
+              <option value="cline">🟤 Cline / RooCode</option>
+              <option value="copilot">⚫ GitHub Copilot</option>
+              <option value="manual">👤 Manual</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-skill">Skill</label>
+            <select id="form-skill">
+              <option value="">— None —</option>
+              <option value="cm-project-bootstrap">🏗️ cm-project-bootstrap</option>
+              <option value="cm-planning">📋 cm-planning</option>
+              <option value="cm-execution">⚡ cm-execution</option>
+              <option value="cm-tdd">🧪 cm-tdd</option>
+              <option value="cm-quality-gate">🛡️ cm-quality-gate</option>
+              <option value="cm-safe-deploy">🚀 cm-safe-deploy</option>
+              <option value="cm-debugging">🐛 cm-debugging</option>
+              <option value="cm-code-review">🔍 cm-code-review</option>
+              <option value="cm-safe-i18n">🌍 cm-safe-i18n</option>
+              <option value="other">📦 Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="btn-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit">Create Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Modal: Add Project ─────────────────────────────── -->
+  <div class="modal-overlay" id="project-modal-overlay">
+    <div class="modal modal-sm" id="project-modal">
+      <div class="modal-header">
+        <h2 class="modal-title">New Project</h2>
+        <button class="modal-close" id="project-modal-close">&times;</button>
+      </div>
+      <form id="project-form" autocomplete="off">
+        <div class="form-group">
+          <label for="project-name">Project Name</label>
+          <input type="text" id="project-name" placeholder="e.g., boxme-scoring" required maxlength="80">
+        </div>
+        <div class="form-group">
+          <label for="project-path">Workspace Path</label>
+          <input type="text" id="project-path" placeholder="/Users/you/Projects/my-app">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="project-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Modal: New Deploy ──────────────────────────────── -->
+  <div class="modal-overlay" id="deploy-modal-overlay">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h2 class="modal-title">New Deployment</h2>
+        <button class="modal-close" id="deploy-modal-close">&times;</button>
+      </div>
+      <form id="deploy-form" autocomplete="off">
+        <div class="form-group">
+          <label for="deploy-env">Environment</label>
+          <select id="deploy-env">
+            <option value="staging">🟡 Staging</option>
+            <option value="production">🟢 Production</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="deploy-message">Message</label>
+          <input type="text" id="deploy-message" placeholder="e.g., Fix login bug" maxlength="200">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deploy-commit">Commit</label>
+            <input type="text" id="deploy-commit" placeholder="abc1234" maxlength="40">
+          </div>
+          <div class="form-group">
+            <label for="deploy-branch">Branch</label>
+            <input type="text" id="deploy-branch" placeholder="main" value="main" maxlength="80">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="deploy-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Deploy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Modal: New Changelog ───────────────────────────── -->
+  <div class="modal-overlay" id="changelog-modal-overlay">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h2 class="modal-title">Add Changelog Entry</h2>
+        <button class="modal-close" id="changelog-modal-close">&times;</button>
+      </div>
+      <form id="changelog-form" autocomplete="off">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cl-version">Version</label>
+            <input type="text" id="cl-version" placeholder="v1.2.0" required maxlength="20">
+          </div>
+          <div class="form-group">
+            <label for="cl-title">Title</label>
+            <input type="text" id="cl-title" placeholder="Bug fixes & improvements" required maxlength="120">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cl-changes">Changes (one per line)</label>
+          <textarea id="cl-changes" rows="5" placeholder="Fix login redirect&#10;Add dark mode&#10;Update dependencies"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="cl-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Entry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Modal: Confirm Delete ──────────────────────────── -->
+  <div class="modal-overlay" id="delete-overlay">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h2 class="modal-title">Delete Task</h2>
+        <button class="modal-close" id="delete-close">&times;</button>
+      </div>
+      <p class="delete-message">Are you sure you want to delete <strong id="delete-task-name"></strong>?</p>
+      <div class="form-actions">
+        <button class="btn btn-ghost" id="delete-cancel">Cancel</button>
+        <button class="btn btn-danger" id="delete-confirm">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Toast Notification ─────────────────────────────── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

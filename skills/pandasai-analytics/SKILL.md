@@ -212,7 +212,7 @@ df.chat(
 
 ## Existing Implementation
 
-The Boxme Auto Forecast project already has this integration:
+An example of this integration can look like this:
 
 | File | Purpose |
 |------|---------|

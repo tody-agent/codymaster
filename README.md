@@ -1,71 +1,233 @@
-# 🧠 CodyMaster Universal Skills Platform
+<div align="center">
 
-A community-driven, open-source repository centralizing the best AI "Agent Skills" and "Workflows" into a **universal format**. This toolkit acts as a "Swiss Army Knife", empowering developers to deploy powerful AI capabilities consistently across leading platforms:
+# 🧠 CodyMaster
 
-*   🟢 **Google Antigravity (Gemini)**
-*   🟣 **Claude Code**
-*   🔵 **Cursor**
-*   🟠 **Windsurf**
-*   🟤 **Cline / RooCode**
-*   🐈 **GitHub Copilot**
-*   🐾 **OpenClaw / OpenFang**
+**The Universal AI Coding Automation & Skills Framework**
 
-## 🚀 Installation
+<p>
+  <img src="https://img.shields.io/badge/Version-3.1.0-brightgreen?style=for-the-badge" alt="Version" />
+  <img src="https://img.shields.io/badge/Skills-25+-blue?style=for-the-badge" alt="Skills" />
+  <img src="https://img.shields.io/badge/Providers-7-orange?style=for-the-badge" alt="Providers" />
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
+</p>
 
-Install the Universal CLI across your system or specifically in your current workspace using our interactive bash installer:
+*Transform any AI coding tool into a **disciplined Senior Engineer** with 25+ standardized skills,*  
+*real-time dashboard, autonomous RARV execution, and working memory.*
 
-```bash
-curl -sL https://raw.githubusercontent.com/username/codymaster/main/install.sh | bash
+</div>
+
+---
+
+## What is CodyMaster?
+
+CodyMaster is a **skills framework** that gives AI coding agents the discipline of a 10-year senior engineer. Instead of letting AI write spaghetti code, CodyMaster enforces:
+
+- 🔴 **TDD** (Test-Driven Development) — write tests before code
+- 🛡️ **6-Gate Quality System** — blind review, anti-sycophancy, security scan
+- 🧠 **Working Memory** — context persists across sessions via CONTINUITY.md
+- 🤖 **Judge Agent** — auto-detects stuck tasks, suggests pivots
+- 📊 **Real-time Dashboard** — Kanban board, agent logs, deployment tracking
+
+```
+Your Idea → CodyMaster Skills → Production-Ready Code
 ```
 
-Alternatively, install via NPM:
+---
+
+## Quick Start
+
 ```bash
+# Install globally
 npm install -g codymaster
+
+# Or clone and build
+git clone https://github.com/omisocial/cody-master.git
+cd cody-master && npm install && npm run build
+
+# Launch dashboard
+cm dashboard start
+
+# Initialize working memory for a project
+cm continuity init
 ```
 
-## 🛠️ CLI Help & Support
+---
 
-The `cm` CLI is fully documented. 
-Type `cm --help` in your terminal anytime.
+## 🎯 Supported AI Platforms
 
-```text
-Usage: cm [options] [command]
+| Platform | Status | Skill Prefix |
+|----------|--------|-------------|
+| 🟢 **Google Antigravity** (Gemini) | ✅ | `@[/skill-name]` |
+| 🟣 **Claude Code** | ✅ | `/skill-name` |
+| 🔵 **Cursor** | ✅ | `@skill-name` |
+| 🟠 **Windsurf** | ✅ | `@skill-name` |
+| 🟤 **Cline / RooCode** | ✅ | `@skill-name` |
+| 🐈 **GitHub Copilot** | ✅ | `skill-name` |
+| 💻 **Gemini CLI** | ✅ | `@[/skill-name]` |
 
-CodyMaster Universal Skills CLI
+---
 
-Options:
-  -V, --version                 output the version number
-  -h, --help                    display help for command
+## 🧩 Skills Library (25+ Skills in 5 Swarms)
 
-Commands:
-  install [options] <skill>     Install a new agent skill to the central registry
-  dashboard                     Launch the Universal Agent Skills Observatory Dashboard
-  status                        Show active installed skills in the current workspace
-  update                        Update all skills to the latest Universal format
-  help [command]                display help for command
-```
+Skills are organized into **5 swarms** for intelligent auto-selection:
 
-## 🏎️ Super Agent & Multi-Subagent Orchestration
+### 🔧 Engineering Swarm
 
-To maximize coding speed and parallelize complex tasks, the CodyMaster Universal Kit introduces the **Orchestrator Pattern**. 
+| Skill | Purpose |
+|-------|---------|
+| `cm-tdd` | Red-Green-Refactor cycle — test before code |
+| `cm-debugging` | 5-phase root cause investigation |
+| `cm-quality-gate` | 6-gate verification: static → blind review → security → ship |
+| `cm-test-gate` | Setup 4-layer test infrastructure for any project |
+| `cm-code-review` | Professional PR review lifecycle |
 
-Instead of sequential file edits, your primary LLM acts as the **Super Agent**, breaking down tasks from the `Task Breakdown` into parallelizable chunks and dispatching them to **Subagents**.
+### ⚙️ Operations Swarm
 
-**How to Use Multi-Subagents:**
-1. Configure your Universal Skill with a `<subagent>` block.
-2. The core adapter will compile this into platform-specific commands (e.g., Windsurf Cascade background tasks, or Gemini `browser_subagent` concurrent tools).
-3. The Super Agent pauses while Subagents tackle specific files independently, merging the results upon completion.
+| Skill | Purpose |
+|-------|---------|
+| `cm-safe-deploy` | Multi-gate deploy pipeline with rollback |
+| `cm-identity-guard` | Prevent wrong-account deploys |
+| `cm-git-worktrees` | Isolated feature branches |
+| `cm-terminal` | Safe terminal execution with output logging |
 
-## 📊 Visual Dashboard
+### 🎨 Product Swarm
 
-We provide a real-time web dashboard for visualizing agent operations, memory variables, and subagent parallel workflows.
+| Skill | Purpose |
+|-------|---------|
+| `cm-planning` | Brainstorm intent → design → implementation plan |
+| `cm-ux-master` | 48 UX Laws + 37 Design Tests + Figma/Stitch |
+| `cm-dockit` | Complete knowledge base from codebase |
+| `cm-project-bootstrap` | Full project setup: design system → CI → deploy |
 
-Start the dashboard locally:
+### 📈 Growth Swarm
+
+| Skill | Purpose |
+|-------|---------|
+| `cm-content-factory` | AI content engine: research → generate → deploy |
+| `cm-ads-tracker` | Facebook/TikTok/Google tracking setup |
+| `cro-methodology` | Conversion audit + A/B test design |
+| `booking-calendar` | Calendar CRO engine with .ics export |
+
+### 🎯 Orchestration Swarm
+
+| Skill | Purpose |
+|-------|---------|
+| `cm-execution` | Execute plans: batch, parallel, subagent, or RARV |
+| `cm-continuity` | Working memory: read at start, update at end |
+| `cm-skill-index` | Progressive disclosure — scan 25 skills in 100 tokens |
+| `cm-safe-i18n` | Multi-pass translation with 8 audit gates |
+| `cm-skill-mastery` | Meta: when to invoke skills, how to create new ones |
+
+---
+
+## 🧠 Working Memory (v3.1.0)
+
+CodyMaster maintains context across sessions through **CONTINUITY.md**:
+
 ```bash
-npx cm dashboard
+cm continuity init       # Create .cm/ working memory directory
+cm continuity status     # View current state
+cm continuity learnings  # View captured error patterns
+cm continuity decisions  # View architecture decisions
+cm continuity reset      # Clear state (preserves learnings)
 ```
-*Navigates to `http://localhost:3455` to view real-time task pipelines, agent logs, and codebase heatmaps.*
+
+The `.cm/` directory structure:
+```
+.cm/
+├── CONTINUITY.md          # Active goal, task, learnings
+├── config.yaml            # RARV cycle settings
+└── memory/
+    ├── learnings.json     # Error patterns (auto-captured)
+    └── decisions.json     # Architecture decisions
+```
+
+---
+
+## 🤖 Judge Agent
+
+The Judge Agent automatically evaluates task health:
+
+| Badge | Action | When |
+|-------|--------|------|
+| 🟢 | CONTINUE | Task progressing normally |
+| 🏁 | COMPLETE | All subtasks done |
+| ⚠️ | ESCALATE | Stuck >10 minutes without updates |
+| 🔄 | PIVOT | 3+ failures → suggests alternative approach |
+
+```bash
+# API endpoints
+curl http://localhost:6969/api/judge                    # All tasks
+curl http://localhost:6969/api/judge/:taskId             # Single task
+curl http://localhost:6969/api/agents/suggest?skill=cm-tdd  # Best agent for skill
+```
+
+---
+
+## 📊 Dashboard
+
+Real-time web dashboard at `http://localhost:6969`:
+
+- **Kanban Board** — drag tasks across backlog → in-progress → review → done
+- **Agent Activity** — see what each AI agent is doing
+- **Deployment Tracking** — staging/production with rollback
+- **Changelog** — version history and release notes
+- **Working Memory** — CONTINUITY.md state per project
+- **Judge Badges** — 🟢🏁⚠️🔄 on every active task
+
+```bash
+cm dashboard start           # Launch on port 6969
+cm dashboard start -p 8080   # Custom port
+```
+
+---
+
+## 🔄 RARV Cycle (Autonomous Execution)
+
+The enhanced RARV (Reason-Act-Reflect-Verify) cycle runs tasks autonomously:
+
+```
+ORIENT   → Read CONTINUITY.md + past learnings
+REASON   → Pick highest-priority task
+PRE-ACT  → 🛡️ Goal alignment check (prevents drift)
+ACT      → Execute with assigned skill
+REFLECT  → Update results + working memory
+VERIFY   → Quality gate check
+           ✅ Pass → next task
+           ❌ Fail → capture learning → retry (max 3)
+```
+
+**Key innovation:** PRE-ACT ATTENTION prevents goal drift — the #1 AI failure mode.
+
+---
+
+## 📚 Documentation
+
+| Doc | Description |
+|-----|-------------|
+| [How It Works](docs/how-it-work.md) | Mermaid workflow diagrams, use cases, exception handling |
+| [Showcase](docs/showcase.md) | Step-by-step examples with real commands |
+| [Skills Reference](skills/) | Full SKILL.md for each skill |
+
+---
 
 ## 🤝 Contributing
-Want to add a new skill to the community?
-Create a folder inside `/skills` following the `SKILL.md` Universal Spec, and submit a PR!
+
+1. Fork the repository
+2. Create a skill folder: `skills/your-skill-name/SKILL.md`
+3. Follow the structure in `cm-skill-mastery` and `skill-creator-ultra`
+4. Submit a Pull Request
+
+---
+
+## 📜 License
+
+MIT License — free to use, modify, and distribute for personal and commercial projects.
+
+<div align="center">
+<br/>
+
+*Built with ❤️ for the vibe coding community.*  
+*Focus on solving business problems, not chasing UI bugs.*
+
+</div>
