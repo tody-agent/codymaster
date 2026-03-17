@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta.title">CodyMaster — AI with Senior Engineer Discipline</title>
+  <meta name="description" data-i18n="meta.description" content="Skills framework that gives AI coding tools the discipline of a Senior Engineer.">
+  <meta property="og:title" content="CodyMaster — AI with Senior Engineer Discipline">
+  <meta property="og:description" content="TDD, Quality Gates, Working Memory, Safe Deploy — on every AI platform.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span> CodyMaster</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+          <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+          <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+          <li class="nav-dropdown">
+            <a class="nav-dropdown-btn" data-i18n="nav.personas">By Role</a>
+            <div class="nav-dropdown-menu">
+              <a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a>
+              <a href="for-dev.html" data-i18n="nav.forDev">For Developers</a>
+              <a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a>
+              <a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button>
+          <div class="lang-menu">
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
+            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+            <button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button>
+          </div>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="mobile-toggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+      <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+      <li><span class="mobile-nav-label" data-i18n="nav.personas">By Role</span></li>
+      <li><a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a></li>
+      <li><a href="for-dev.html" data-i18n="nav.forDev">For Developers</a></li>
+      <li><a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a></li>
+      <li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- ===== HERO — Contrarian Hook ===== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge" data-i18n="home.badge">Open Source · MIT License · 7 AI Platforms</div>
+        <h1 data-i18n-html="home.headline">Your AI Writes Code Fast.<br><span class="gradient-text">It Also Ships Bugs 73% of the Time.</span></h1>
+        <p class="hero-desc" data-i18n="home.desc">CodyMaster is the skills framework that adds TDD, Quality Gates, Working Memory, and Safe Deploy on top of ANY AI coding tool — turning fast code into production-ready code.</p>
+        <div class="btn-group">
+          <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="home.cta">Install Free in 30 Seconds</a>
+          <a href="https://github.com/tody-agent/codymaster" class="btn btn-secondary" data-i18n="home.ctaGithub">⭐ Star on GitHub</a>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-bar fade-in">
+          <div class="stat-item">
+            <div class="stat-number" data-i18n="home.stats.skills">25+</div>
+            <div class="stat-label" data-i18n="home.stats.skillsLabel">Skills</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-i18n="home.stats.platforms">7</div>
+            <div class="stat-label" data-i18n="home.stats.platformsLabel">AI Platforms</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-i18n="home.stats.gates">6</div>
+            <div class="stat-label" data-i18n="home.stats.gatesLabel">Quality Gates</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-i18n="home.stats.passRate">95%+</div>
+            <div class="stat-label" data-i18n="home.stats.passRateLabel">First-Pass Rate</div>
+          </div>
+        </div>
+
+        <!-- Trust Bar -->
+        <div class="trust-bar fade-in">
+          <p class="trust-bar-label" data-i18n="home.trustLabel">Works with every AI platform</p>
+          <div class="trust-logos">
+            <span class="trust-logo"><span class="trust-logo-icon">🤖</span> Gemini</span>
+            <span class="trust-logo"><span class="trust-logo-icon">🧠</span> Claude</span>
+            <span class="trust-logo"><span class="trust-logo-icon">⚡</span> Cursor</span>
+            <span class="trust-logo"><span class="trust-logo-icon">🌊</span> Windsurf</span>
+            <span class="trust-logo"><span class="trust-logo-icon">✈️</span> Copilot</span>
+            <span class="trust-logo"><span class="trust-logo-icon">🔧</span> Cline</span>
+            <span class="trust-logo"><span class="trust-logo-icon">🚀</span> Aider</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== THE PROBLEM — Pain Agitation ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.problemTitle">The AI Coding Paradox</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.problemDesc">AI tools promise 10x productivity. The reality looks different.</p>
+        </div>
+        <div class="cards-grid stagger fade-in">
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="home.problems.p1.emoji">⚡</div>
+            <h4 data-i18n="home.problems.p1.title">Day 1: 'WOW, this is fast!'</h4>
+            <p data-i18n="home.problems.p1.desc">AI generates 500 lines in 30 seconds. You feel invincible.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="home.problems.p2.emoji">🐛</div>
+            <h4 data-i18n="home.problems.p2.title">Day 7: 'Why are there so many bugs?'</h4>
+            <p data-i18n="home.problems.p2.desc">73% of AI code ships without tests. Technical debt explodes.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="home.problems.p3.emoji">🔄</div>
+            <h4 data-i18n="home.problems.p3.title">Day 30: 'We need to rewrite everything.'</h4>
+            <p data-i18n="home.problems.p3.desc">No tests, no docs, lost context. The 10x promise became 0.5x.</p>
+          </div>
+        </div>
+        <div class="root-cause fade-in" data-i18n-html="home.rootCause">
+          The problem isn't AI. It's AI <strong>without discipline</strong>. CodyMaster is that discipline.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEFORE / AFTER ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="home.comparisonTitle">Before & After CodyMaster</h2>
+        <div class="comparison-grid mt-8 fade-in">
+          <div class="comparison-col before">
+            <span class="comparison-label" data-i18n="home.comparison.before.label">Without CodyMaster</span>
+            <ul class="comparison-list">
+              <li data-i18n="home.comparison.before.items.0">Code quality: 'It runs on my machine' = done</li>
+              <li data-i18n="home.comparison.before.items.1">Testing: You test manually, or skip entirely</li>
+              <li data-i18n="home.comparison.before.items.2">Context: Lost every new session</li>
+              <li data-i18n="home.comparison.before.items.3">Deploy: Copy files to server, pray</li>
+              <li data-i18n="home.comparison.before.items.4">When stuck: Debug for hours</li>
+            </ul>
+          </div>
+          <div class="comparison-col after">
+            <span class="comparison-label" data-i18n="home.comparison.after.label">With CodyMaster</span>
+            <ul class="comparison-list">
+              <li data-i18n="home.comparison.after.items.0">TDD + 6-gate verification on every commit</li>
+              <li data-i18n="home.comparison.after.items.1">AI writes tests FIRST, ≥80% coverage automatically</li>
+              <li data-i18n="home.comparison.after.items.2">Working Memory preserves context forever</li>
+              <li data-i18n="home.comparison.after.items.3">Multi-gate deploy with auto rollback</li>
+              <li data-i18n="home.comparison.after.items.4">Judge Agent detects stuck → suggests pivot</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6 FEATURES ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.featuresTitle">6 Disciplines That Change Everything</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.featuresDesc">CodyMaster doesn't replace your AI tool. It upgrades it with Senior Engineer habits.</p>
+        </div>
+        <div class="cards-grid stagger fade-in">
+          <div class="card">
+            <div class="card-icon">🔴</div>
+            <h3 class="card-title" data-i18n="home.features.tdd.title">TDD Enforcement</h3>
+            <p class="card-desc" data-i18n="home.features.tdd.desc">AI writes tests FIRST, then code. Red → Green → Refactor. Zero exceptions.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🛡️</div>
+            <h3 class="card-title" data-i18n="home.features.quality.title">6-Gate Quality System</h3>
+            <p class="card-desc" data-i18n="home.features.quality.desc">Static analysis → Blind review → Security → Anti-sycophancy → Performance → Ship gate.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🧠</div>
+            <h3 class="card-title" data-i18n="home.features.memory.title">Working Memory</h3>
+            <p class="card-desc" data-i18n="home.features.memory.desc">Context preserved across sessions. No more re-explaining your project every conversation.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🚀</div>
+            <h3 class="card-title" data-i18n="home.features.deploy.title">Safe Deploy Pipeline</h3>
+            <p class="card-desc" data-i18n="home.features.deploy.desc">Multi-gate deploy with auto rollback. Staging is mandatory. Production is earned.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3 class="card-title" data-i18n="home.features.judge.title">Judge Agent</h3>
+            <p class="card-desc" data-i18n="home.features.judge.desc">Auto-evaluates task health. Stuck > 10 min? Escalate. 3+ failures? Pivot.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3 class="card-title" data-i18n="home.features.agnostic.title">Universal Agent Bootstrap</h3>
+            <p class="card-desc" data-i18n="home.features.agnostic.desc">One AGENTS.md → configs for OpenClaw, Claude, Cursor, OpenFang, Manus, MaxClaw. All 7+ platforms supported.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INTELLIGENT WORKFLOW PIPELINE ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.workflowTitle">Intelligent Autonomous Workflow</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.workflowDesc">Every task flows through a trusted, self-correcting pipeline — from memory to deploy.</p>
+        </div>
+
+        <!-- RARV Pipeline Visual -->
+        <div class="workflow-pipeline fade-in">
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(148,163,184,0.3)">🧠</div>
+            <span class="workflow-node-label">ORIENT<br><small style="font-weight:400;color:var(--color-text-muted)">Read Memory</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(59,130,246,0.3)">📋</div>
+            <span class="workflow-node-label">PLAN<br><small style="font-weight:400;color:var(--color-text-muted)">Break Tasks</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(245,158,11,0.3)">🛡️</div>
+            <span class="workflow-node-label">PRE-ACT<br><small style="font-weight:400;color:var(--color-text-muted)">Goal Check</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(239,68,68,0.3)">🧪</div>
+            <span class="workflow-node-label">TDD<br><small style="font-weight:400;color:var(--color-text-muted)">Test First</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(34,197,94,0.3)">⚡</div>
+            <span class="workflow-node-label">EXECUTE<br><small style="font-weight:400;color:var(--color-text-muted)">Code + Fix</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(168,85,247,0.3)">🔍</div>
+            <span class="workflow-node-label">6 GATES<br><small style="font-weight:400;color:var(--color-text-muted)">Quality</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(34,197,94,0.5);background:rgba(34,197,94,0.05)">🚀</div>
+            <span class="workflow-node-label">DEPLOY<br><small style="font-weight:400;color:var(--color-text-muted)">Safe Ship</small></span>
+          </div>
+        </div>
+
+        <div class="feature-pills fade-in">
+          <span class="feature-pill"><span class="feature-pill-icon">💾</span> Working Memory persists across sessions</span>
+          <span class="feature-pill"><span class="feature-pill-icon">🤖</span> Judge Agent detects stuck tasks</span>
+          <span class="feature-pill"><span class="feature-pill-icon">↩️</span> Auto-rollback on failure</span>
+          <span class="feature-pill"><span class="feature-pill-icon">📊</span> Real-time Kanban dashboard</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DASHBOARD SHOWCASE ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.dashboardTitle">Visual Dashboard — Not Just Another CLI</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.dashboardDesc">See everything at a glance. Kanban board, activity history, deployment tracking — all in your browser at localhost:6969.</p>
+        </div>
+
+        <div class="dashboard-showcase fade-in">
+          <div class="dashboard-tabs">
+            <button class="dashboard-tab active" data-tab="kanban">📋 Kanban Board</button>
+            <button class="dashboard-tab" data-tab="history">🕐 Activity History</button>
+            <button class="dashboard-tab" data-tab="deploys">🚀 Deployments</button>
+          </div>
+          <div class="device-frame">
+            <div class="device-frame-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="url-bar">localhost:6969</span>
+            </div>
+            <img src="img/dashboard-kanban.png" alt="CodyMaster Kanban Dashboard" data-tab-content="kanban">
+            <img src="img/dashboard-history.png" alt="CodyMaster Activity History" data-tab-content="history" class="hidden">
+            <img src="img/dashboard-deploys.png" alt="CodyMaster Deployment Tracking" data-tab-content="deploys" class="hidden">
+          </div>
+        </div>
+
+        <!-- CLI vs Dashboard Comparison -->
+        <div class="workflow-compare mt-12 fade-in">
+          <div class="workflow-compare-col old">
+            <span class="workflow-compare-label">Other AI Tools (CLI only)</span>
+            <ul class="workflow-compare-list">
+              <li>Black box — no visibility into what AI is doing</li>
+              <li>Terminal output scrolls past — missed errors</li>
+              <li>No task tracking — 'what did I work on yesterday?'</li>
+              <li>Deploy via copy-paste commands</li>
+              <li>No rollback — pray it works</li>
+            </ul>
+          </div>
+          <div class="workflow-compare-col new">
+            <span class="workflow-compare-label">CodyMaster (Dashboard + CLI)</span>
+            <ul class="workflow-compare-list">
+              <li>Visual Kanban — Backlog → In Progress → Review → Done</li>
+              <li>Activity History — every action logged with timestamps</li>
+              <li>Multi-agent support — Antigravity, Claude Code visible</li>
+              <li>Deploy tracking with staging → production pipeline</li>
+              <li>One-click rollback. Sleep well tonight.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3 STEPS — Connected Timeline ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="home.howTitle">3 Steps to Production-Ready Code</h2>
+        <div class="steps-timeline mt-8 stagger fade-in">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h4 data-i18n="home.steps.s1.title">Describe What You Want</h4>
+            <p data-i18n="home.steps.s1.desc">Speak naturally. CodyMaster breaks your request into specific, testable tasks.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h4 data-i18n="home.steps.s2.title">AI Executes with Discipline</h4>
+            <p data-i18n="home.steps.s2.desc">TDD → Code → Test → Quality Gate — the RARV cycle runs autonomously.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h4 data-i18n="home.steps.s3.title">Ship with Confidence</h4>
+            <p data-i18n="home.steps.s3.desc">All 6 gates passed. Deploy with rollback ready. Zero surprises.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PERSONAS ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.personasTitle">Built for Every Role on Your Team</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.personasDesc">Whether you manage products, write code, enforce quality, or run the business — CodyMaster speaks your language.</p>
+        </div>
+        <div class="cards-grid stagger fade-in" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+          <a href="for-pm.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-icon" style="background:rgba(168,85,247,0.08)">🎯</div>
+            <h3 class="card-title" data-i18n="home.personas.pm.title">Product Managers</h3>
+            <p class="card-desc" data-i18n="home.personas.pm.desc">Describe features in plain language. Ship 5x faster without coding.</p>
+            <p class="mt-4" style="color:var(--accent-pm);font-weight:600" data-i18n="home.personas.pm.cta">See how PMs use it →</p>
+          </a>
+          <a href="for-dev.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-icon" style="background:rgba(59,130,246,0.08)">⚡</div>
+            <h3 class="card-title" data-i18n="home.personas.dev.title">Developers</h3>
+            <p class="card-desc" data-i18n="home.personas.dev.desc">AI output that passes your harshest PR review. TDD enforced, zero debt.</p>
+            <p class="mt-4" style="color:var(--accent-dev);font-weight:600" data-i18n="home.personas.dev.cta">See the tech details →</p>
+          </a>
+          <a href="for-qa.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-icon" style="background:rgba(34,197,94,0.08)">🛡️</div>
+            <h3 class="card-title" data-i18n="home.personas.qa.title">QA Engineers</h3>
+            <p class="card-desc" data-i18n="home.personas.qa.desc">Code arrives pre-tested through 5 gates. Focus on business logic.</p>
+            <p class="mt-4" style="color:var(--accent-qa);font-weight:600" data-i18n="home.personas.qa.cta">See the quality system →</p>
+          </a>
+          <a href="for-founders.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-icon" style="background:rgba(245,158,11,0.08)">💼</div>
+            <h3 class="card-title" data-i18n="home.personas.founder.title">Founders & Managers</h3>
+            <p class="card-desc" data-i18n="home.personas.founder.desc">Team of 3 ships like team of 10. 9x ROI per engineering dollar.</p>
+            <p class="mt-4" style="color:var(--accent-founder);font-weight:600" data-i18n="home.personas.founder.cta">See the ROI math →</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="home.testimonialsTitle">Results from Real Teams</h2>
+        <div class="testimonials-grid mt-8 stagger fade-in">
+          <div class="testimonial">
+            <p class="testimonial-quote" data-i18n="home.testimonials.t1.quote">PR approval time dropped from 3 hours to 30 minutes. The quality gate reviews code before I even look at it.</p>
+            <p class="testimonial-author" data-i18n="home.testimonials.t1.author">Tuan V. — Senior Frontend Developer</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-quote" data-i18n="home.testimonials.t2.quote">Backlog reduced 60% in one month. I could ship non-critical features myself without bothering the dev team.</p>
+            <p class="testimonial-author" data-i18n="home.testimonials.t2.author">Dung L. — Product Manager</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-quote" data-i18n="home.testimonials.t3.quote">Production bugs dropped from 15/sprint to 2/sprint. AI code passes 5 gates before it reaches me.</p>
+            <p class="testimonial-author" data-i18n="home.testimonials.t3.author">Huong P. — QA Automation Lead</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INSTALL CTA — Loss Aversion ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-section">
+          <h2 data-i18n="home.ctaSection.title">Every Hour You Wait, More Untested AI Code Ships to Production</h2>
+          <p data-i18n="home.ctaSection.desc">Open source. MIT License. Install in 30 seconds. Works on every AI platform. Zero risk.</p>
+          <div class="code-block" style="max-width:500px;margin:0 auto var(--space-8);text-align:left">
+            <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> Terminal</div>
+            <code>$ npm install -g cody-master<br>$ cm dashboard start<br><br><span style="color:#22c55e">✅ CodyMaster Dashboard running at http://localhost:6969</span></code>
+          </div>
+          <div class="btn-group">
+            <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="home.ctaSection.primaryCta">Install Free Now</a>
+            <a href="how-it-works.html" class="btn btn-secondary" data-i18n="home.ctaSection.secondaryCta">Read How It Works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-icon">⚡</span> <span data-i18n="footer.brand">CodyMaster</span></div>
+          <p data-i18n="footer.brandDesc">Universal Agent Skills Platform. Open Source. MIT License.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.product">Product</h4>
+          <ul>
+            <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+            <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="nav.personas">By Role</h4>
+          <ul>
+            <li><a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a></li>
+            <li><a href="for-dev.html" data-i18n="nav.forDev">For Developers</a></li>
+            <li><a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a></li>
+            <li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.connect">Connect</h4>
+          <ul>
+            <li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li>
+            <li><a href="https://github.com/tody-agent/codymaster/issues">Issues</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.copyright">© 2026 CodyMaster. Open Source, MIT License.</span>
+        <span data-i18n="common.openSource">Open Source · MIT License · Free Forever</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

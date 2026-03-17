@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster — For QA Engineers</title>
+  <meta name="description" content="Mandatory TDD + 6 quality gates BEFORE code reaches your desk. Focus on strategy, not bug hunting.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="persona-page qa">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span> CodyMaster</a>
+      <nav><ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+        <li class="nav-dropdown"><a class="nav-dropdown-btn active" data-i18n="nav.personas">By Role</a><div class="nav-dropdown-menu"><a href="for-pm.html" data-i18n="nav.forPM">For PM</a><a href="for-dev.html" data-i18n="nav.forDev">For Dev</a><a href="for-qa.html" class="active" data-i18n="nav.forQA">For QA</a><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></div></li>
+      </ul></nav>
+      <div class="header-controls">
+        <div class="lang-switcher"><button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button><div class="lang-menu"><button class="lang-option" data-lang="en">🇬🇧 English</button><button class="lang-option" data-lang="ru">🇷🇺 Русский</button><button class="lang-option" data-lang="zh">🇨🇳 中文</button><button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button></div></div>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav"><ul class="mobile-nav-links"><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="showcase.html">Showcase</a></li><li><span class="mobile-nav-label">By Role</span></li><li><a href="for-pm.html">For PM</a></li><li><a href="for-dev.html">For Dev</a></li><li><a href="for-qa.html">For QA</a></li><li><a href="for-founders.html">For Founders</a></li></ul></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge" data-i18n="personas.qa.badge">For Testers, QA & QC Engineers</div>
+        <h1 data-i18n-html="personas.qa.headline">AI Writes 10x More Code.<br>You Catch <span class="gradient-text">10x More Bugs?</span></h1>
+        <p class="hero-desc" data-i18n="personas.qa.desc">73% of AI code ships without tests. CodyMaster changes the equation: mandatory TDD + 6 quality gates BEFORE code reaches your desk.</p>
+        <div class="btn-group">
+          <a href="how-it-works.html#gates" class="btn btn-primary" data-i18n="personas.qa.cta">See the Quality Gate System</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.qa.painTitle">The Real Villain: AI Code Without Tests</h2>
+        <div class="cards-grid mt-8 stagger fade-in">
+          <div class="pain-card"><div class="pain-emoji">📈</div><h4 data-i18n="personas.qa.pains.p1.title">Before AI: 50 lines/day → testable</h4><p data-i18n="personas.qa.pains.p1.desc">After AI: 500 lines/day → QA STILL alone → Bug count +300%</p></div>
+          <div class="pain-card"><div class="pain-emoji">🐛</div><h4 data-i18n="personas.qa.pains.p2.title">Bug density increased 2.5x</h4><p data-i18n="personas.qa.pains.p2.desc">AI tools are code factories WITHOUT quality stamps.</p></div>
+          <div class="pain-card"><div class="pain-emoji">💪</div><h4 data-i18n="personas.qa.pains.p3.title">'Will AI replace QA?'</h4><p data-i18n="personas.qa.pains.p3.desc">No — bugs only increase. QA is more important than ever.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6-Gate Defense -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.qa.gatesTitle">Your New Defense: 6-Gate Quality System</h2>
+        <div class="gate-pipeline mt-8 stagger fade-in" style="max-width:700px;margin:0 auto">
+          <div class="gate-item"><span class="gate-badge">G1</span><div><div class="gate-title">Gate 1</div><div class="gate-desc" data-i18n="personas.qa.gates.g1">Static Analysis — lint, type check, dead code</div></div></div>
+          <div class="gate-item"><span class="gate-badge">G2</span><div><div class="gate-title">Gate 2</div><div class="gate-desc" data-i18n="personas.qa.gates.g2">TDD Verification — tests BEFORE code</div></div></div>
+          <div class="gate-item"><span class="gate-badge">G3</span><div><div class="gate-title">Gate 3</div><div class="gate-desc" data-i18n="personas.qa.gates.g3">Blind Review — AI reviews without context</div></div></div>
+          <div class="gate-item"><span class="gate-badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--color-error)">G4</span><div><div class="gate-title">Gate 4</div><div class="gate-desc" data-i18n="personas.qa.gates.g4">Security Scan — OWASP, SQL injection, deps</div></div></div>
+          <div class="gate-item"><span class="gate-badge" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:var(--color-warning)">G5</span><div><div class="gate-title">Gate 5</div><div class="gate-desc" data-i18n="personas.qa.gates.g5">Performance — bundle size, complexity</div></div></div>
+          <div class="gate-item" style="border:2px solid rgba(34,197,94,0.3);background:rgba(34,197,94,0.03)"><span class="gate-badge" style="font-size:var(--text-sm)">👑 G6</span><div><div class="gate-title" style="color:var(--color-success)">Gate 6 — YOUR GATE</div><div class="gate-desc" data-i18n="personas.qa.gates.g6">Ship Gate — QA has final authority</div></div></div>
+        </div>
+        <div class="root-cause mt-8 fade-in" data-i18n="personas.qa.gatesSummary">Code reaches you after passing 5 automated gates. You own Gate 6: the strategic validation that machines can't do.</div>
+      </div>
+    </section>
+
+    <!-- Reframe: QA gets PROMOTED -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.qa.reframeTitle">Your New Title: Quality Engineer</h2>
+        <div class="comparison-grid mt-8 fade-in">
+          <div class="comparison-col before">
+            <span class="comparison-label">Old Day</span>
+            <p style="color:var(--color-text-secondary);font-size:var(--text-sm)" data-i18n="personas.qa.reframeBefore">15 Jira bugs → Regression #47 → 'Will AI replace me?' 😔</p>
+          </div>
+          <div class="comparison-col after">
+            <span class="comparison-label">New Day</span>
+            <p style="color:var(--color-text);font-size:var(--text-sm)" data-i18n="personas.qa.reframeAfter">Dashboard 0 bugs ✅ → Quality metrics 97% → Design edge cases → Define standards 💪</p>
+          </div>
+        </div>
+        <div class="root-cause mt-6 fade-in" data-i18n="personas.qa.reframeConclusion">QA doesn't lose jobs. QA gets PROMOTED.</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.qa.faqTitle">QA Questions</h2>
+        <div class="faq-list mt-8 fade-in">
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.qa.faqs.f1.q">Does CodyMaster replace testers?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.qa.faqs.f1.a">NO. It replaces low-level manual bug hunting. QA focuses on business logic.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.qa.faqs.f2.q">Compatible with our test framework?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.qa.faqs.f2.a">Jest, Vitest, Playwright, Pytest, and more.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.qa.faqs.f3.q">Can QA define custom quality rules?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.qa.faqs.f3.a">Absolutely. QA defines rules → AI MUST follow. Gate 6 gives QA ultimate authority.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.qa.faqs.f4.q">Can developers bypass quality gates?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.qa.faqs.f4.a">No. TDD is enforced at skill level. Gate 6 (QA approval) is non-negotiable.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section"><div class="container"><div class="cta-section">
+      <h2>Stop Hunting Bugs. Start <span class="gradient-text">Defining Quality Standards.</span></h2>
+      <p data-i18n="home.ctaSection.desc">Open source. MIT License. Install in 30 seconds. Zero risk.</p>
+      <div class="btn-group"><a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="common.getStarted">Install Free</a></div>
+    </div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span> CodyMaster</div><p data-i18n="footer.brandDesc">Universal Agent Skills Platform.</p></div>
+    <div class="footer-col"><h4>Product</h4><ul><li><a href="how-it-works.html">How It Works</a></li><li><a href="showcase.html">Showcase</a></li></ul></div>
+    <div class="footer-col"><h4>By Role</h4><ul><li><a href="for-pm.html">For PM</a></li><li><a href="for-dev.html">For Dev</a></li><li><a href="for-qa.html">For QA</a></li><li><a href="for-founders.html">For Founders</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li></ul></div>
+  </div><div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 CodyMaster.</span></div></div></footer>
+  <script src="js/i18n-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
