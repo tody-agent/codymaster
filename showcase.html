@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster — Showcase</title>
+  <meta name="description" content="Real examples showing CodyMaster in action — from first command to production deploy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span> CodyMaster</a>
+      <nav><ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="showcase.html" class="active" data-i18n="nav.showcase">Showcase</a></li>
+        <li class="nav-dropdown"><a class="nav-dropdown-btn" data-i18n="nav.personas">By Role</a><div class="nav-dropdown-menu"><a href="for-pm.html" data-i18n="nav.forPM">For PM</a><a href="for-dev.html" data-i18n="nav.forDev">For Dev</a><a href="for-qa.html" data-i18n="nav.forQA">For QA</a><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></div></li>
+      </ul></nav>
+      <div class="header-controls">
+        <div class="lang-switcher"><button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button><div class="lang-menu"><button class="lang-option" data-lang="en">🇬🇧 English</button><button class="lang-option" data-lang="ru">🇷🇺 Русский</button><button class="lang-option" data-lang="zh">🇨🇳 中文</button><button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button></div></div>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav"><ul class="mobile-nav-links"><li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li><li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li><li><span class="mobile-nav-label" data-i18n="nav.personas">By Role</span></li><li><a href="for-pm.html" data-i18n="nav.forPM">For PM</a></li><li><a href="for-dev.html" data-i18n="nav.forDev">For Dev</a></li><li><a href="for-qa.html" data-i18n="nav.forQA">For QA</a></li><li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li></ul></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge" data-i18n="showcase.badge">Real Examples</div>
+        <h1 data-i18n-html="showcase.headline">CodyMaster in <span class="gradient-text">Action</span></h1>
+        <p class="hero-desc" data-i18n="showcase.desc">Step-by-step examples showing exactly what happens when you use CodyMaster.</p>
+      </div>
+    </section>
+
+    <!-- Example 1: Dashboard Feature -->
+    <section class="section">
+      <div class="container">
+        <div class="feature-row fade-in">
+          <div class="feature-content">
+            <h2 class="section-title" data-i18n="showcase.ex1.title">Build a Dashboard Feature</h2>
+            <p data-i18n="showcase.ex1.desc">Revenue analytics with charts — built autonomously in one session.</p>
+            <div class="gate-pipeline mt-6">
+              <div class="gate-item"><span class="gate-badge">1</span><div class="gate-desc" data-i18n="showcase.ex1.steps.s1">Initialize Working Memory: cm continuity init</div></div>
+              <div class="gate-item"><span class="gate-badge">2</span><div class="gate-desc" data-i18n="showcase.ex1.steps.s2">Plan: @[/cm-planning] writes implementation plan</div></div>
+              <div class="gate-item"><span class="gate-badge">3</span><div class="gate-desc" data-i18n="showcase.ex1.steps.s3">Execute: RARV cycle — TDD → Code → Test → Gate</div></div>
+              <div class="gate-item"><span class="gate-badge">4</span><div class="gate-desc" data-i18n="showcase.ex1.steps.s4">Monitor on Dashboard at localhost:6969</div></div>
+              <div class="gate-item"><span class="gate-badge">5</span><div class="gate-desc" data-i18n="showcase.ex1.steps.s5">Deploy: 8-gate pipeline runs automatically</div></div>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="code-block">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> Terminal</div>
+              <code><span style="color:#64748b">$</span> cm continuity init<br><span style="color:#22c55e">✅ Working memory initialized</span><br><br><span style="color:#64748b">$</span> <span style="color:#7ee787">"Build revenue analytics dashboard"</span><br><br><span style="color:#fbbf24">📋 Planning...</span> 4 tasks identified<br><span style="color:#60a5fa">🧪 TDD...</span> 12 tests written first<br><span style="color:#22c55e">✅ All tests passing</span><br><span style="color:#a855f7">🛡️ Quality Gate...</span> 6/6 PASS<br><span style="color:#22c55e">🚀 Deployed to staging</span></code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example 2: Fix Bug -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="feature-row reverse fade-in">
+          <div class="feature-content">
+            <h2 class="section-title" data-i18n="showcase.ex2.title">Fix a Production Bug</h2>
+            <p data-i18n="showcase.ex2.desc">Login button unresponsive on mobile Safari — fixed in 20 minutes.</p>
+            <div class="gate-pipeline mt-6">
+              <div class="gate-item"><span class="gate-badge">1</span><div class="gate-desc" data-i18n="showcase.ex2.steps.s1">@[/cm-debugging] finds root cause</div></div>
+              <div class="gate-item"><span class="gate-badge">2</span><div class="gate-desc" data-i18n="showcase.ex2.steps.s2">TDD: RED → GREEN → REFACTOR</div></div>
+              <div class="gate-item"><span class="gate-badge">3</span><div class="gate-desc" data-i18n="showcase.ex2.steps.s3">Learning captured in CONTINUITY.md</div></div>
+              <div class="gate-item"><span class="gate-badge">4</span><div class="gate-desc" data-i18n="showcase.ex2.steps.s4">Hotfix deployed with auto-rollback</div></div>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="code-block">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> CONTINUITY.md</div>
+              <code><span style="color:#7ee787">## Bug #247 — iOS Safari login</span><br><br><span style="color:#ef4444">Root cause:</span> 'mousedown' not supported<br><span style="color:#22c55e">Fix:</span> Use 'pointerdown' event<br><br><span style="color:#7ee787">## Learning Added</span><br>⚠️ Always use pointer events for<br>cross-browser touch support<br>→ Applied to: all future click handlers</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example 3: Working Memory -->
+    <section class="section">
+      <div class="container">
+        <div class="feature-row fade-in">
+          <div class="feature-content">
+            <h2 class="section-title" data-i18n="showcase.ex3.title">Working Memory Across 3 Sessions</h2>
+            <p data-i18n="showcase.ex3.desc">AI picks up exactly where it left off — even 14 hours later.</p>
+            <div class="gate-pipeline mt-6">
+              <div class="gate-item"><span class="gate-badge" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.3);color:var(--color-primary-400)">S1</span><div class="gate-desc" data-i18n="showcase.ex3.steps.s1">Session 1: CONTINUITY.md auto-saves context</div></div>
+              <div class="gate-item"><span class="gate-badge" style="background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.3);color:#a855f7">S2</span><div class="gate-desc" data-i18n="showcase.ex3.steps.s2">Session 2: Restores context in 200 tokens (not 2000+)</div></div>
+              <div class="gate-item"><span class="gate-badge" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:var(--color-success)">S3</span><div class="gate-desc" data-i18n="showcase.ex3.steps.s3">Session 3: 14 hours later — instant resume</div></div>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="code-block">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> Session 3 — Token comparison</div>
+              <code><span style="color:#ef4444">Without CodyMaster:</span><br>"OK so we're building an e-commerce app,<br>with auth, products, cart, checkout..."<br><span style="color:#64748b">→ 2,400 tokens burned EVERY session</span><br><br><span style="color:#22c55e">With CodyMaster:</span><br>"Continue"<br><span style="color:#64748b">→ 200 tokens. Full context restored.</span><br><span style="color:#22c55e">→ Savings: 12x per session</span></code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example 4: 6-Gate -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="feature-row reverse fade-in">
+          <div class="feature-content">
+            <h2 class="section-title" data-i18n="showcase.ex4.title">6-Gate Quality Verification</h2>
+            <p data-i18n="showcase.ex4.desc">Blind review caught 2 hidden issues — auto-fixed before human review.</p>
+            <div class="gate-pipeline mt-6">
+              <div class="gate-item"><span class="gate-badge">1-2</span><div class="gate-desc" data-i18n="showcase.ex4.steps.s1">Static analysis + test coverage — PASS</div></div>
+              <div class="gate-item"><span class="gate-badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--color-error)">3</span><div class="gate-desc" data-i18n="showcase.ex4.steps.s2">Blind review finds null check + SQL issue</div></div>
+              <div class="gate-item"><span class="gate-badge">FIX</span><div class="gate-desc" data-i18n="showcase.ex4.steps.s3">Auto-fix → re-run → PASS</div></div>
+              <div class="gate-item"><span class="gate-badge">4-6</span><div class="gate-desc" data-i18n="showcase.ex4.steps.s4">Anti-sycophancy, security, i18n — ALL CLEAR</div></div>
+              <div class="gate-item"><span class="gate-badge">🚀</span><div class="gate-desc" data-i18n="showcase.ex4.steps.s5">🚀 ALL 6 GATES PASSED — safe to deploy</div></div>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="code-block">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> Quality Gate Output</div>
+              <code><span style="color:#22c55e">✅ Gate 1: Static Analysis</span> — 0 warnings<br><span style="color:#22c55e">✅ Gate 2: Test Coverage</span> — 87%<br><span style="color:#ef4444">❌ Gate 3: Blind Review</span><br>  → Missing null check: user.email<br>  → SQL not parameterized: line 42<br><span style="color:#fbbf24">🔧 Auto-fixing...</span><br><span style="color:#22c55e">✅ Gate 3: Blind Review</span> — PASS<br><span style="color:#22c55e">✅ Gate 4: Anti-Sycophancy</span> — Clear<br><span style="color:#22c55e">✅ Gate 5: Security</span> — Clear<br><span style="color:#22c55e">✅ Gate 6: i18n</span> — All synced<br><br><span style="color:#22c55e;font-weight:bold">🚀 ALL 6 GATES PASSED</span></code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLI Reference -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="showcase.cliTitle">CLI Quick Reference</h2>
+        <div class="cards-grid mt-8 fade-in" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+          <div class="card"><div class="code-block" style="margin-bottom:var(--space-3)"><code data-i18n="showcase.cliCommands.dashboard">cm dashboard start</code></div><p class="card-desc" data-i18n="showcase.cliCommands.dashboardDesc">Launch dashboard on port 6969</p></div>
+          <div class="card"><div class="code-block" style="margin-bottom:var(--space-3)"><code data-i18n="showcase.cliCommands.init">cm continuity init</code></div><p class="card-desc" data-i18n="showcase.cliCommands.initDesc">Create working memory directory</p></div>
+          <div class="card"><div class="code-block" style="margin-bottom:var(--space-3)"><code data-i18n="showcase.cliCommands.status">cm continuity status</code></div><p class="card-desc" data-i18n="showcase.cliCommands.statusDesc">View current working memory state</p></div>
+          <div class="card"><div class="code-block" style="margin-bottom:var(--space-3)"><code data-i18n="showcase.cliCommands.version">cm --version</code></div><p class="card-desc" data-i18n="showcase.cliCommands.versionDesc">Check installed version</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-section">
+          <h2 data-i18n="home.ctaSection.title">Every Hour You Wait, More Untested AI Code Ships to Production</h2>
+          <p data-i18n="home.ctaSection.desc">Open source. MIT License. Install in 30 seconds. Zero risk.</p>
+          <div class="btn-group">
+            <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="common.getStarted">Install Free — 30 Seconds</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span> CodyMaster</div><p data-i18n="footer.brandDesc">Universal Agent Skills Platform.</p></div>
+        <div class="footer-col"><h4 data-i18n="footer.product">Product</h4><ul><li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li><li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="nav.personas">By Role</h4><ul><li><a href="for-pm.html" data-i18n="nav.forPM">For PM</a></li><li><a href="for-dev.html" data-i18n="nav.forDev">For Dev</a></li><li><a href="for-qa.html" data-i18n="nav.forQA">For QA</a></li><li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="footer.connect">Connect</h4><ul><li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 CodyMaster.</span></div>
+    </div>
+  </footer>
+  <script src="js/i18n-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

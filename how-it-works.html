@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster — How It Works</title>
+  <meta name="description" content="RARV execution cycle, 6-gate quality system, working memory, and Judge Agent — the architecture behind CodyMaster.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span> CodyMaster</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="how-it-works.html" class="active" data-i18n="nav.howItWorks">How It Works</a></li>
+          <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+          <li class="nav-dropdown">
+            <a class="nav-dropdown-btn" data-i18n="nav.personas">By Role</a>
+            <div class="nav-dropdown-menu">
+              <a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a>
+              <a href="for-dev.html" data-i18n="nav.forDev">For Developers</a>
+              <a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a>
+              <a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button>
+          <div class="lang-menu">
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
+            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+            <button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button>
+          </div>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+      <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+      <li><span class="mobile-nav-label" data-i18n="nav.personas">By Role</span></li>
+      <li><a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a></li>
+      <li><a href="for-dev.html" data-i18n="nav.forDev">For Developers</a></li>
+      <li><a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a></li>
+      <li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge" data-i18n="howItWorks.badge">Architecture Deep-Dive</div>
+        <h1 data-i18n-html="howItWorks.headline">How CodyMaster <span class="gradient-text">Works</span></h1>
+        <p class="hero-desc" data-i18n="howItWorks.desc">A self-correcting autonomous execution loop with 6-gate quality verification and persistent working memory.</p>
+      </div>
+    </section>
+
+    <!-- RARV Cycle -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="howItWorks.rarvTitle">The RARV Execution Cycle</h2>
+          <p class="section-subtitle mx-auto" data-i18n="howItWorks.rarvDesc">The heart of CodyMaster — a self-correcting loop that prevents goal drift and ensures quality at every step.</p>
+        </div>
+        <div class="gate-pipeline stagger fade-in" style="max-width:700px;margin:0 auto">
+          <div class="gate-item">
+            <span class="gate-badge" style="background:rgba(148,163,184,0.1);border-color:rgba(148,163,184,0.3);color:var(--color-text-muted)">0</span>
+            <div><div class="gate-title" data-i18n="howItWorks.rarvSteps.orient.title">0. ORIENT</div><div class="gate-desc" data-i18n="howItWorks.rarvSteps.orient.desc">Read CONTINUITY.md — load past learnings and context</div></div>
+          </div>
+          <div class="gate-item">
+            <span class="gate-badge" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.3);color:var(--color-primary-400)">1</span>
+            <div><div class="gate-title" data-i18n="howItWorks.rarvSteps.reason.title">1. REASON</div><div class="gate-desc" data-i18n="howItWorks.rarvSteps.reason.desc">Pick highest-priority task, update working memory</div></div>
+          </div>
+          <div class="gate-item">
+            <span class="gate-badge" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:var(--color-accent-500)">2</span>
+            <div><div class="gate-title" data-i18n="howItWorks.rarvSteps.preact.title">2. PRE-ACT</div><div class="gate-desc" data-i18n="howItWorks.rarvSteps.preact.desc">🛡️ Goal alignment check — prevents drift</div></div>
+          </div>
+          <div class="gate-item">
+            <span class="gate-badge" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:var(--color-success)">3</span>
+            <div><div class="gate-title" data-i18n="howItWorks.rarvSteps.act.title">3. ACT</div><div class="gate-desc" data-i18n="howItWorks.rarvSteps.act.desc">Execute with assigned skill, create git checkpoint</div></div>
+          </div>
+          <div class="gate-item">
+            <span class="gate-badge" style="background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.3);color:#a855f7">4</span>
+            <div><div class="gate-title" data-i18n="howItWorks.rarvSteps.reflect.title">4. REFLECT</div><div class="gate-desc" data-i18n="howItWorks.rarvSteps.reflect.desc">Update task status, learnings, and CONTINUITY.md</div></div>
+          </div>
+          <div class="gate-item">
+            <span class="gate-badge">5</span>
+            <div><div class="gate-title" data-i18n="howItWorks.rarvSteps.verify.title">5. VERIFY</div><div class="gate-desc" data-i18n="howItWorks.rarvSteps.verify.desc">Run 6-gate quality check → pass or retry</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6-Gate System -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="howItWorks.gatesTitle">6-Gate Quality System</h2>
+          <p class="section-subtitle mx-auto" data-i18n="howItWorks.gatesDesc">Every piece of code must pass all 6 gates before being considered 'done'.</p>
+        </div>
+        <div class="cards-grid stagger fade-in" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="card"><div class="card-icon">🔍</div><h3 class="card-title" data-i18n="howItWorks.gates.g1.title">Static Analysis</h3><p class="card-desc" data-i18n="howItWorks.gates.g1.desc">Lint, type check, dead code — 0 warnings</p></div>
+          <div class="card"><div class="card-icon">🧪</div><h3 class="card-title" data-i18n="howItWorks.gates.g2.title">Test Coverage</h3><p class="card-desc" data-i18n="howItWorks.gates.g2.desc">≥80% coverage, TDD enforced</p></div>
+          <div class="card"><div class="card-icon">👁️</div><h3 class="card-title" data-i18n="howItWorks.gates.g3.title">Blind Review</h3><p class="card-desc" data-i18n="howItWorks.gates.g3.desc">AI reviews without context — genuine quality</p></div>
+          <div class="card"><div class="card-icon">😈</div><h3 class="card-title" data-i18n="howItWorks.gates.g4.title">Anti-Sycophancy</h3><p class="card-desc" data-i18n="howItWorks.gates.g4.desc">Devil's Advocate hunts hidden issues</p></div>
+          <div class="card"><div class="card-icon">🔐</div><h3 class="card-title" data-i18n="howItWorks.gates.g5.title">Security Scan</h3><p class="card-desc" data-i18n="howItWorks.gates.g5.desc">No secrets, OWASP compliance</p></div>
+          <div class="card"><div class="card-icon">🌐</div><h3 class="card-title" data-i18n="howItWorks.gates.g6.title">i18n Integrity</h3><p class="card-desc" data-i18n="howItWorks.gates.g6.desc">All keys synced across languages</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Working Memory -->
+    <section class="section">
+      <div class="container">
+        <div class="feature-row fade-in">
+          <div class="feature-content">
+            <h2 class="section-title" data-i18n="howItWorks.memoryTitle">Working Memory System</h2>
+            <p data-i18n="howItWorks.memoryDesc">Context is never lost. AI remembers across sessions — what was done, what failed, and what was decided.</p>
+            <div class="gate-pipeline mt-8">
+              <div class="gate-item"><span class="gate-badge">→</span><div class="gate-desc" data-i18n="howItWorks.memorySteps.start">Session Start → Read CONTINUITY.md + check learnings</div></div>
+              <div class="gate-item"><span class="gate-badge">⚙</span><div class="gate-desc" data-i18n="howItWorks.memorySteps.work">During Work → Update current task, add completed items</div></div>
+              <div class="gate-item"><span class="gate-badge">!</span><div class="gate-desc" data-i18n="howItWorks.memorySteps.error">On Error → Capture what failed + why + prevention</div></div>
+              <div class="gate-item"><span class="gate-badge">💾</span><div class="gate-desc" data-i18n="howItWorks.memorySteps.end">Session End → Save state for next session</div></div>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="code-block">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> .cm/CONTINUITY.md</div>
+              <code><span style="color:#7ee787">## Current Focus</span><br>Building authentication module<br><br><span style="color:#7ee787">## Completed (6/8)</span><br>✅ DB schema · ✅ API routes · ✅ JWT middleware<br>✅ Login page · ✅ Register · ✅ Password reset<br><br><span style="color:#7ee787">## Learnings</span><br>⚠️ bcrypt rounds=12 causes timeout on CI<br>→ Fix: Use rounds=10 for test env<br><br><span style="color:#7ee787">## Next Session</span><br>→ Email verification + rate limiting</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Judge Agent -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="howItWorks.judgeTitle">Judge Agent Protocol</h2>
+          <p class="section-subtitle mx-auto" data-i18n="howItWorks.judgeDesc">Auto-evaluates task health and takes action when things go wrong.</p>
+        </div>
+        <div class="cards-grid fade-in" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+          <div class="card" style="border-left:3px solid var(--color-success)"><div class="card-icon" style="background:rgba(34,197,94,0.08)">🟢</div><h3 class="card-title">CONTINUE</h3><p class="card-desc" data-i18n="howItWorks.judgeActions.continue">🟢 CONTINUE — task progressing normally</p></div>
+          <div class="card" style="border-left:3px solid var(--color-primary-500)"><div class="card-icon" style="background:rgba(59,130,246,0.08)">🏁</div><h3 class="card-title">COMPLETE</h3><p class="card-desc" data-i18n="howItWorks.judgeActions.complete">🏁 COMPLETE — ready for review</p></div>
+          <div class="card" style="border-left:3px solid var(--color-warning)"><div class="card-icon" style="background:rgba(245,158,11,0.08)">⚠️</div><h3 class="card-title">ESCALATE</h3><p class="card-desc" data-i18n="howItWorks.judgeActions.escalate">⚠️ ESCALATE — stuck >10min, needs intervention</p></div>
+          <div class="card" style="border-left:3px solid var(--color-error)"><div class="card-icon" style="background:rgba(239,68,68,0.08)">🔄</div><h3 class="card-title">PIVOT</h3><p class="card-desc" data-i18n="howItWorks.judgeActions.pivot">🔄 PIVOT — 3+ failures, alternative approach</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Golden Rules -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="howItWorks.goldenTitle">8 Golden Rules</h2>
+        <div class="cards-grid mt-8 stagger fade-in" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+          <div class="card"><p data-i18n="howItWorks.rules.r1">🔒 Identity First</p></div>
+          <div class="card"><p data-i18n="howItWorks.rules.r2">📐 Design Before Code</p></div>
+          <div class="card"><p data-i18n="howItWorks.rules.r3">🧪 Test Before Code</p></div>
+          <div class="card"><p data-i18n="howItWorks.rules.r4">🛡️ PRE-ACT check</p></div>
+          <div class="card"><p data-i18n="howItWorks.rules.r5">📊 Evidence Over Claims</p></div>
+          <div class="card"><p data-i18n="howItWorks.rules.r6">🚀 Deploy via Gates</p></div>
+          <div class="card"><p data-i18n="howItWorks.rules.r7">🧠 Read Memory First</p></div>
+          <div class="card"><p data-i18n="howItWorks.rules.r8">📚 Capture Learnings</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-section">
+          <h2 data-i18n="home.ctaSection.title">Every Hour You Wait, More Untested AI Code Ships to Production</h2>
+          <p data-i18n="home.ctaSection.desc">Open source. MIT License. Install in 30 seconds. Zero risk.</p>
+          <div class="btn-group">
+            <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="common.getStarted">Install Free — 30 Seconds</a>
+            <a href="showcase.html" class="btn btn-secondary" data-i18n="nav.showcase">Showcase</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span> CodyMaster</div><p data-i18n="footer.brandDesc">Universal Agent Skills Platform.</p></div>
+        <div class="footer-col"><h4 data-i18n="footer.product">Product</h4><ul><li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li><li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="nav.personas">By Role</h4><ul><li><a href="for-pm.html" data-i18n="nav.forPM">For PM</a></li><li><a href="for-dev.html" data-i18n="nav.forDev">For Dev</a></li><li><a href="for-qa.html" data-i18n="nav.forQA">For QA</a></li><li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="footer.connect">Connect</h4><ul><li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 CodyMaster.</span></div>
+    </div>
+  </footer>
+  <script src="js/i18n-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

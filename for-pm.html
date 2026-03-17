@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster — For Product Managers</title>
+  <meta name="description" content="Describe features in plain language. Ship production code 5x faster without writing a single line.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="persona-page pm">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span> CodyMaster</a>
+      <nav><ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+        <li class="nav-dropdown"><a class="nav-dropdown-btn active" data-i18n="nav.personas">By Role</a><div class="nav-dropdown-menu"><a href="for-pm.html" class="active" data-i18n="nav.forPM">For PM</a><a href="for-dev.html" data-i18n="nav.forDev">For Dev</a><a href="for-qa.html" data-i18n="nav.forQA">For QA</a><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></div></li>
+      </ul></nav>
+      <div class="header-controls">
+        <div class="lang-switcher"><button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button><div class="lang-menu"><button class="lang-option" data-lang="en">🇬🇧 English</button><button class="lang-option" data-lang="ru">🇷🇺 Русский</button><button class="lang-option" data-lang="zh">🇨🇳 中文</button><button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button></div></div>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav"><ul class="mobile-nav-links"><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="showcase.html">Showcase</a></li><li><span class="mobile-nav-label">By Role</span></li><li><a href="for-pm.html">For PM/PO/BA</a></li><li><a href="for-dev.html">For Developers</a></li><li><a href="for-qa.html">For QA/QC</a></li><li><a href="for-founders.html">For Founders</a></li></ul></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge" data-i18n="personas.pm.badge">For Product Managers, Product Owners & Business Analysts</div>
+        <h1 data-i18n-html="personas.pm.headline">You Describe the Feature.<br>CodyMaster Builds <span class="gradient-text">Production Code</span>.</h1>
+        <p class="hero-desc" data-i18n="personas.pm.desc">Before: Write spec → wait → review → fix → wait again. After: Describe → CodyMaster TDD → ship in 3 hours.</p>
+        <div class="btn-group">
+          <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="personas.pm.cta">Install Free — Ship Your First Feature Today</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.pm.painTitle">Sound Familiar?</h2>
+        <div class="cards-grid mt-8 stagger fade-in">
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="personas.pm.pains.p1.emoji">😤</div>
+            <h4 data-i18n="personas.pm.pains.p1.title">Dev builds the wrong thing</h4>
+            <p data-i18n="personas.pm.pains.p1.desc">You write detailed PRD, wireframes, even prototypes. Dev builds something different.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="personas.pm.pains.p2.emoji">🤯</div>
+            <h4 data-i18n="personas.pm.pains.p2.title">Vibe coding = vibe debugging</h4>
+            <p data-i18n="personas.pm.pains.p2.desc">First AI attempt: WOW! Second: bugs. Third: spaghetti. Fourth: dev team pities your PR.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="personas.pm.pains.p3.emoji">⏳</div>
+            <h4 data-i18n="personas.pm.pains.p3.title">Infinite backlog, drip-feed shipping</h4>
+            <p data-i18n="personas.pm.pains.p3.desc">Sprint planning, estimation, priority arguments. 2 weeks for 1 API endpoint.</p>
+          </div>
+        </div>
+        <div class="root-cause mt-8 fade-in" data-i18n-html="personas.pm.rootCause">The root cause isn't you. It's that current AI tools <strong>LACK DISCIPLINE</strong>.</div>
+      </div>
+    </section>
+
+    <!-- 3-Step Plan -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.pm.planTitle">3 Steps from Idea to Production</h2>
+        <div class="steps-timeline mt-8 stagger fade-in">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h4 data-i18n="personas.pm.plan.s1.title">Describe</h4>
+            <p data-i18n="personas.pm.plan.s1.desc">Tell AI what you want in your words. CodyMaster breaks it into tested tasks.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h4 data-i18n="personas.pm.plan.s2.title">CodyMaster Executes</h4>
+            <p data-i18n="personas.pm.plan.s2.desc">TDD → Code → Test → Quality Gate → Deploy Check. Automatic.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h4 data-i18n="personas.pm.plan.s3.title">Ship & Monitor</h4>
+            <p data-i18n="personas.pm.plan.s3.desc">Review progress on Dashboard. Approve. Deploy with rollback ready.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USP Before/After -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.pm.uspTitle">Other AI Tools vs CodyMaster</h2>
+        <div class="table-wrapper mt-8 fade-in" style="max-width:800px;margin-left:auto;margin-right:auto">
+          <div class="usp-header">
+            <div class="usp-header-cell before" data-i18n="home.comparison.before.label">Without CodyMaster</div>
+            <div class="usp-header-cell after" data-i18n="home.comparison.after.label">With CodyMaster</div>
+          </div>
+          <div class="usp-row"><div class="usp-cell before" data-i18n="personas.pm.usp.u1.before">Quality: 'It runs' = done</div><div class="usp-cell after" data-i18n="personas.pm.usp.u1.after">TDD + 6-Gate Quality System</div></div>
+          <div class="usp-row"><div class="usp-cell before" data-i18n="personas.pm.usp.u2.before">Testing: You test manually</div><div class="usp-cell after" data-i18n="personas.pm.usp.u2.after">AI writes tests FIRST, then codes</div></div>
+          <div class="usp-row"><div class="usp-cell before" data-i18n="personas.pm.usp.u3.before">When stuck: Debug or ask ChatGPT</div><div class="usp-cell after" data-i18n="personas.pm.usp.u3.after">Judge Agent auto-detects → suggests pivot</div></div>
+          <div class="usp-row"><div class="usp-cell before" data-i18n="personas.pm.usp.u4.before">Between sessions: Context gone</div><div class="usp-cell after" data-i18n="personas.pm.usp.u4.after">Working Memory preserves everything</div></div>
+          <div class="usp-row"><div class="usp-cell before" data-i18n="personas.pm.usp.u5.before">Deploy: Copy-paste to server</div><div class="usp-cell after" data-i18n="personas.pm.usp.u5.after">Multi-gate pipeline + auto rollback</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.pm.faqTitle">Questions PMs Always Ask</h2>
+        <div class="faq-list mt-8 fade-in">
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.pm.faqs.f1.q">I don't know how to code — can I use it?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.pm.faqs.f1.a">That's exactly who it's for!</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.pm.faqs.f2.q">Is the AI-generated code production-ready?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.pm.faqs.f2.a">CodyMaster enforces TDD + 6-Gate Quality System.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.pm.faqs.f3.q">How is this different from ChatGPT / Cursor / Copilot?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.pm.faqs.f3.a">Those write code. CodyMaster adds discipline ON TOP.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.pm.faqs.f4.q">Is it free?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.pm.faqs.f4.a">100% free and open-source (MIT License).</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.pm.faqs.f5.q">How long does setup take?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.pm.faqs.f5.a">5 minutes: npm install → cm dashboard start. Done.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section"><div class="container"><div class="cta-section">
+      <h2 data-i18n="home.ctaSection.title">Every Hour You Wait, More Untested AI Code Ships to Production</h2>
+      <p data-i18n="home.ctaSection.desc">Open source. MIT License. Install in 30 seconds. Zero risk.</p>
+      <div class="btn-group"><a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="common.getStarted">Install Free</a><a href="how-it-works.html" class="btn btn-secondary" data-i18n="nav.howItWorks">How It Works</a></div>
+    </div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span> CodyMaster</div><p data-i18n="footer.brandDesc">Universal Agent Skills Platform.</p></div>
+    <div class="footer-col"><h4 data-i18n="footer.product">Product</h4><ul><li><a href="how-it-works.html">How It Works</a></li><li><a href="showcase.html">Showcase</a></li></ul></div>
+    <div class="footer-col"><h4>By Role</h4><ul><li><a href="for-pm.html">For PM</a></li><li><a href="for-dev.html">For Dev</a></li><li><a href="for-qa.html">For QA</a></li><li><a href="for-founders.html">For Founders</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="footer.connect">Connect</h4><ul><li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li></ul></div>
+  </div><div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 CodyMaster.</span></div></div></footer>
+  <script src="js/i18n-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
