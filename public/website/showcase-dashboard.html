@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster — Interactive Dashboard Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* ════════════════════════════════════════════════════════════
+   CodyMaster Dashboard Showcase — Premium Interactive Demo
+   ════════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── Color System ──────────────────────── */
+:root{
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --font-mono:'JetBrains Mono','Fira Code',monospace;
+  --bg-body:#0a0e17;
+  --bg-sidebar:#0f1420;
+  --bg-card:rgba(255,255,255,.04);
+  --bg-card-hover:rgba(255,255,255,.07);
+  --bg-column:rgba(255,255,255,.025);
+  --bg-glass:rgba(15,20,35,.7);
+  --text-primary:#e8ecf4;
+  --text-secondary:#8892a4;
+  --text-muted:#4a5568;
+  --border:rgba(255,255,255,.06);
+  --border-hover:rgba(255,255,255,.12);
+  --accent:#6366f1;
+  --accent-glow:rgba(99,102,241,.15);
+  --col-backlog:#64748b;
+  --col-progress:#3b82f6;
+  --col-review:#f59e0b;
+  --col-done:#22c55e;
+  --danger:#ef4444;
+  --purple:#a855f7;
+  --radius:10px;
+  --radius-sm:6px;
+  --radius-lg:16px;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:0 4px 20px rgba(0,0,0,.4);
+  --shadow-glow:0 0 40px rgba(99,102,241,.08);
+  --transition-fast:.15s cubic-bezier(.4,0,.2,1);
+  --transition-spring:.4s cubic-bezier(.34,1.56,.64,1);
+}
+
+[data-theme="light"]{
+  --bg-body:#f0f2f5;
+  --bg-sidebar:#ffffff;
+  --bg-card:rgba(0,0,0,.025);
+  --bg-card-hover:rgba(0,0,0,.05);
+  --bg-column:rgba(0,0,0,.018);
+  --bg-glass:rgba(255,255,255,.85);
+  --text-primary:#1a202c;
+  --text-secondary:#64748b;
+  --text-muted:#94a3b8;
+  --border:rgba(0,0,0,.08);
+  --border-hover:rgba(0,0,0,.15);
+  --shadow-md:0 4px 20px rgba(0,0,0,.08);
+  --shadow-glow:0 0 40px rgba(99,102,241,.06);
+}
+
+html,body{height:100%;font-family:var(--font);background:var(--bg-body);color:var(--text-primary);transition:background .3s,color .3s;overflow:hidden}
+body{display:flex}
+
+/* ── Subtle Grid Background ──────────── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(ellipse 600px 400px at 20% 40%,rgba(99,102,241,.06),transparent),
+    radial-gradient(ellipse 500px 350px at 80% 60%,rgba(34,197,94,.04),transparent),
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:100% 100%,100% 100%,60px 60px,60px 60px;
+}
+
+/* ── Sidebar ─────────────────────────── */
+.sidebar{
+  width:220px;min-width:220px;background:var(--bg-sidebar);
+  border-right:1px solid var(--border);display:flex;flex-direction:column;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  transition:width .3s,min-width .3s,opacity .3s;z-index:10;position:relative;
+}
+.sidebar.collapsed{width:0;min-width:0;overflow:hidden;border:none;opacity:0}
+.sidebar-header{display:flex;align-items:center;gap:10px;padding:20px 16px 16px}
+.sidebar-logo{display:flex;align-items:center;gap:8px}
+.sidebar-logo svg{width:28px;height:28px}
+.sidebar-title{font-size:15px;font-weight:700;letter-spacing:-.3px}
+
+.sidebar-section{padding:0 12px 20px}
+.sidebar-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-muted);padding:0 6px 8px}
+
+.project-nav{display:flex;flex-direction:column;gap:2px}
+.project-item{
+  display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--radius-sm);
+  cursor:pointer;transition:all var(--transition-fast);font-size:13px;color:var(--text-secondary);
+}
+.project-item:hover{background:var(--bg-card-hover);color:var(--text-primary)}
+.project-item.active{background:var(--accent-glow);color:var(--accent)}
+.project-item svg{width:16px;height:16px;opacity:.6;flex-shrink:0}
+.project-item.active svg{opacity:1}
+.project-count{margin-left:auto;font-size:11px;background:var(--bg-card);padding:1px 7px;border-radius:10px;color:var(--text-muted)}
+
+.agent-section{padding:0 12px 20px}
+.agent-item{display:flex;align-items:center;gap:8px;padding:5px 10px;font-size:12px;color:var(--text-secondary)}
+.agent-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.agent-count{margin-left:auto;font-size:11px;color:var(--text-muted)}
+
+.sidebar-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--border)}
+.sidebar-version{font-size:10px;color:var(--text-muted);letter-spacing:.5px}
+
+/* ── Main ────────────────────────────── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;z-index:1}
+
+/* ── Header ──────────────────────────── */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 24px;border-bottom:1px solid var(--border);
+  background:var(--bg-glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  flex-shrink:0;gap:12px;
+}
+.header-left{display:flex;align-items:center;gap:10px}
+.btn-sidebar{
+  background:none;border:1px solid var(--border);color:var(--text-secondary);
+  cursor:pointer;padding:6px 8px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;transition:all var(--transition-fast);
+}
+.btn-sidebar:hover{border-color:var(--border-hover);color:var(--text-primary);background:var(--bg-card)}
+.header-title{font-size:15px;font-weight:600}
+.header-right{display:flex;align-items:center;gap:10px}
+.stat-chips{display:flex;gap:10px}
+.stat-chip{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text-secondary)}
+.stat-chip-dot{width:6px;height:6px;border-radius:50%}
+
+/* ── Progress Ring SVG ──────────────── */
+.progress-ring-wrap{position:relative;width:32px;height:32px}
+.progress-ring{transform:rotate(-90deg)}
+.progress-ring-bg{fill:none;stroke:var(--border);stroke-width:3}
+.progress-ring-fg{fill:none;stroke:var(--col-done);stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)}
+.progress-ring-text{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:var(--col-done);
+}
+
+/* ── Theme Toggle ────────────────────── */
+.theme-toggle{
+  background:none;border:1px solid var(--border);color:var(--text-secondary);
+  cursor:pointer;padding:5px 8px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;gap:4px;font-size:12px;font-family:var(--font);
+  transition:all var(--transition-fast);
+}
+.theme-toggle:hover{border-color:var(--border-hover);color:var(--text-primary);background:var(--bg-card)}
+.theme-toggle svg{width:14px;height:14px;transition:transform .3s}
+.theme-toggle:active svg{transform:rotate(30deg)}
+
+/* ── New Task Button ─────────────────── */
+.btn-new{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 14px;
+  background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);
+  font-size:12px;font-weight:600;font-family:var(--font);cursor:pointer;
+  transition:all var(--transition-fast);box-shadow:0 2px 8px rgba(99,102,241,.3);
+}
+.btn-new:hover{background:#5558e6;transform:translateY(-1px);box-shadow:0 4px 16px rgba(99,102,241,.4)}
+.btn-new svg{width:14px;height:14px}
+
+/* ── Tab Navigation ──────────────────── */
+.tab-nav{
+  display:flex;gap:2px;padding:8px 24px 0;
+  border-bottom:1px solid var(--border);flex-shrink:0;
+  background:var(--bg-glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+}
+.tab-btn{
+  display:flex;align-items:center;gap:6px;padding:8px 16px;font-size:12px;
+  font-weight:500;color:var(--text-muted);background:none;border:none;
+  border-bottom:2px solid transparent;cursor:pointer;
+  transition:all var(--transition-fast);font-family:var(--font);
+  border-radius:var(--radius-sm) var(--radius-sm) 0 0;
+}
+.tab-btn:hover{color:var(--text-secondary);background:var(--bg-card)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn svg{width:14px;height:14px;opacity:.5}
+.tab-btn.active svg{opacity:1}
+
+/* ── Tab Panels ──────────────────────── */
+.tab-panel{display:none;flex:1;overflow:hidden}
+.tab-panel.active{display:flex;flex-direction:column}
+
+/* ── Kanban Board ────────────────────── */
+.board{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+  padding:20px 24px;flex:1;overflow-y:auto;align-content:start;
+}
+.column{
+  background:var(--bg-column);border:1px solid var(--border);
+  border-radius:var(--radius-lg);display:flex;flex-direction:column;
+  max-height:calc(100vh - 150px);position:relative;overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.column.drag-over{
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent),var(--shadow-glow);
+}
+.column-header{
+  display:flex;align-items:center;gap:8px;padding:14px 16px 10px;flex-shrink:0;
+  position:relative;
+}
+/* Gradient line under column header */
+.column-header::after{
+  content:'';position:absolute;bottom:0;left:16px;right:16px;height:1px;
+  border-radius:1px;opacity:.5;
+}
+.column[data-col="backlog"] .column-header::after{background:linear-gradient(90deg,var(--col-backlog),transparent)}
+.column[data-col="progress"] .column-header::after{background:linear-gradient(90deg,var(--col-progress),transparent)}
+.column[data-col="review"] .column-header::after{background:linear-gradient(90deg,var(--col-review),transparent)}
+.column[data-col="done"] .column-header::after{background:linear-gradient(90deg,var(--col-done),transparent)}
+
+.col-indicator{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.col-indicator.backlog{background:var(--col-backlog)}
+.col-indicator.progress{background:var(--col-progress)}
+.col-indicator.review{background:var(--col-review)}
+.col-indicator.done{background:var(--col-done)}
+.col-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.col-count{
+  margin-left:auto;font-size:10px;font-weight:600;
+  background:var(--bg-card);padding:2px 8px;border-radius:10px;
+  color:var(--text-muted);min-width:20px;text-align:center;
+}
+.card-list{
+  flex:1;overflow-y:auto;padding:8px 10px 12px;
+  display:flex;flex-direction:column;gap:8px;min-height:60px;
+}
+
+/* Custom Scrollbar */
+.card-list::-webkit-scrollbar{width:4px}
+.card-list::-webkit-scrollbar-track{background:transparent}
+.card-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.card-list::-webkit-scrollbar-thumb:hover{background:var(--border-hover)}
+
+/* ── Task Card ───────────────────────── */
+.task-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:12px 14px;cursor:grab;
+  transition:all var(--transition-fast);position:relative;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.task-card:hover{
+  background:var(--bg-card-hover);border-color:var(--border-hover);
+  transform:translateY(-1px);box-shadow:var(--shadow-md);
+}
+.task-card.dragging{opacity:.3;cursor:grabbing;transform:scale(.95)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card-title{font-size:13px;font-weight:600;line-height:1.4;flex:1}
+.card-actions{display:none;gap:4px;flex-shrink:0}
+.task-card:hover .card-actions{display:flex}
+.card-action{
+  background:none;border:none;color:var(--text-muted);cursor:pointer;
+  padding:3px;border-radius:4px;display:flex;transition:all var(--transition-fast);
+}
+.card-action:hover{color:var(--text-primary);background:var(--bg-card)}
+.card-action svg{width:14px;height:14px}
+.card-desc{font-size:11px;color:var(--text-secondary);margin-top:5px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.card-agent{
+  display:inline-flex;align-items:center;gap:4px;font-size:10px;
+  color:var(--text-secondary);background:var(--bg-card);
+  padding:2px 8px;border-radius:10px;
+}
+.card-agent-dot{width:5px;height:5px;border-radius:50%}
+.card-skill{
+  font-size:9px;font-weight:600;color:var(--accent);
+  background:var(--accent-glow);padding:2px 8px;border-radius:10px;
+}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.card-time{font-size:10px;color:var(--text-muted)}
+
+/* Priority badges with SVG shapes */
+.priority-badge{
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:2px 8px;border-radius:4px;
+}
+.priority-badge svg{width:8px;height:8px}
+.priority-low{background:rgba(34,197,94,.1);color:#22c55e}
+.priority-medium{background:rgba(245,158,11,.1);color:#f59e0b}
+.priority-high{background:rgba(239,68,68,.1);color:#ef4444}
+.priority-urgent{background:rgba(168,85,247,.12);color:#a855f7}
+
+/* Dispatch badge */
+.dispatch-badge{
+  font-size:9px;font-weight:600;padding:2px 7px;border-radius:8px;
+  display:inline-flex;align-items:center;gap:3px;
+}
+.dispatch-badge.dispatched{background:rgba(34,197,94,.12);color:#22c55e}
+
+/* Drop placeholder */
+.drop-placeholder{
+  height:38px;border:2px dashed var(--accent);border-radius:var(--radius);
+  background:var(--accent-glow);margin:4px 0;
+  animation:placeholderPulse 1.5s ease-in-out infinite;
+}
+@keyframes placeholderPulse{0%,100%{opacity:.4}50%{opacity:.8}}
+
+/* ── Quick Transition Buttons ────────── */
+.card-transitions{display:none;gap:4px;margin-top:8px;flex-wrap:wrap}
+.task-card:hover .card-transitions{display:flex}
+.transition-btn{
+  font-size:9px;font-weight:600;padding:3px 8px;border-radius:4px;
+  border:1px solid transparent;cursor:pointer;font-family:var(--font);
+  transition:all var(--transition-fast);display:inline-flex;align-items:center;gap:3px;
+}
+.transition-btn.fwd{background:rgba(59,130,246,.08);color:var(--col-progress);border-color:rgba(59,130,246,.2)}
+.transition-btn.fwd:hover{background:rgba(59,130,246,.15)}
+.transition-btn.done{background:rgba(34,197,94,.08);color:var(--col-done);border-color:rgba(34,197,94,.2)}
+.transition-btn.done:hover{background:rgba(34,197,94,.15)}
+.transition-btn.back{background:rgba(100,116,139,.08);color:var(--text-secondary);border-color:rgba(100,116,139,.2)}
+.transition-btn.back:hover{background:rgba(100,116,139,.15)}
+
+/* ── Empty State ─────────────────────── */
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;
+  padding:24px 16px;color:var(--text-muted);gap:6px;
+}
+.empty-state svg{width:28px;height:28px;opacity:.3}
+.empty-state-text{font-size:11px;font-style:italic}
+
+/* ── Stuck indicator ─────────────────── */
+@keyframes stuckPulse{0%,100%{border-color:rgba(245,158,11,.3)}50%{border-color:rgba(245,158,11,.7)}}
+.task-card.stuck{border-color:rgba(245,158,11,.4);animation:stuckPulse 2s ease-in-out infinite}
+
+/* ── History Tab ─────────────────────── */
+.timeline-wrap{padding:24px;max-width:700px;overflow-y:auto;flex:1}
+.timeline-header-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.timeline-header-bar h3{font-size:15px;font-weight:600}
+.timeline-count{font-size:11px;color:var(--text-muted)}
+.timeline{display:flex;flex-direction:column}
+.timeline-item{
+  display:flex;gap:12px;padding:10px 0;border-left:2px solid var(--border);
+  margin-left:14px;padding-left:18px;position:relative;
+}
+.timeline-item::before{
+  content:'';position:absolute;left:-5px;top:14px;
+  width:8px;height:8px;border-radius:50%;background:var(--border);
+}
+.timeline-item.t-created::before{background:var(--col-done)}
+.timeline-item.t-moved::before{background:var(--col-progress)}
+.timeline-item.t-deploy::before{background:var(--col-done)}
+.timeline-item.t-dispatch::before{background:var(--accent)}
+.timeline-icon{font-size:15px;flex-shrink:0;width:22px;text-align:center}
+.timeline-content{flex:1}
+.timeline-msg{font-size:12px;line-height:1.5}
+.timeline-meta{font-size:10px;color:var(--text-muted);margin-top:3px;display:flex;gap:10px}
+.timeline-agent-inline{display:inline-flex;align-items:center;gap:4px}
+.timeline-agent-dot{width:5px;height:5px;border-radius:50%}
+
+/* ── Deploy Tab ──────────────────────── */
+.deploy-wrap{padding:24px;max-width:800px;overflow-y:auto;flex:1}
+.deploy-header-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.deploy-header-bar h3{font-size:15px;font-weight:600}
+.deploy-list{display:flex;flex-direction:column;gap:10px}
+.deploy-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  transition:border-color var(--transition-fast);
+}
+.deploy-card:hover{border-color:var(--border-hover)}
+.deploy-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.deploy-dot.success{background:var(--col-done)}
+.deploy-dot.failed{background:var(--danger)}
+.deploy-dot.pending{background:var(--col-review)}
+.deploy-info{flex:1;min-width:0}
+.deploy-msg{font-size:13px;font-weight:600}
+.deploy-detail{font-size:11px;color:var(--text-secondary);margin-top:3px;display:flex;gap:10px;flex-wrap:wrap}
+.deploy-env{
+  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:2px 8px;border-radius:4px;
+}
+.deploy-env.staging{background:rgba(245,158,11,.12);color:#f59e0b}
+.deploy-env.production{background:rgba(34,197,94,.12);color:#22c55e}
+.deploy-status{
+  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:2px 8px;border-radius:4px;
+}
+.deploy-status.success{background:rgba(34,197,94,.12);color:#22c55e}
+.deploy-status.failed{background:rgba(239,68,68,.12);color:#ef4444}
+.deploy-status.pending{background:rgba(245,158,11,.12);color:#f59e0b}
+
+/* ── Toast ────────────────────────────── */
+.toast-container{position:fixed;bottom:20px;right:20px;z-index:200;display:flex;flex-direction:column-reverse;gap:8px}
+.toast{
+  display:flex;align-items:center;gap:8px;padding:10px 16px;
+  background:var(--bg-glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:var(--radius);
+  font-size:12px;box-shadow:var(--shadow-md);animation:toastIn .3s;
+}
+@keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.toast-out{animation:toastOut .3s forwards}
+@keyframes toastOut{to{opacity:0;transform:translateY(10px)}}
+.toast-success{border-color:rgba(34,197,94,.3)}
+.toast-info{border-color:rgba(99,102,241,.3)}
+
+/* ── Card entrance animation ─────────── */
+@keyframes cardSlideIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.task-card.animate-in{animation:cardSlideIn .4s cubic-bezier(.34,1.56,.64,1) forwards}
+
+/* ── Workflow Connector SVG ──────────── */
+.workflow-svg{
+  position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;
+}
+
+/* ── Responsive ──────────────────────── */
+@media(max-width:900px){
+  .sidebar{display:none}
+  .board{grid-template-columns:repeat(2,1fr);padding:12px}
+}
+@media(max-width:600px){
+  .board{grid-template-columns:1fr;padding:8px}
+  .header{padding:10px 12px}
+  .stat-chips{display:none}
+}
+  </style>
+</head>
+<body>
+  <!-- ── Sidebar ──────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+          <path d="M10 16L14 20L22 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+        </svg>
+        <span class="sidebar-title">Cody</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Projects</div>
+      <nav class="project-nav">
+        <div class="project-item active">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M2 3h12v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3z" stroke="currentColor" stroke-width="1.3"/><path d="M2 3l2-2h8l2 2" stroke="currentColor" stroke-width="1.3"/></svg>
+          <span>omni-channel-crm</span>
+          <span class="project-count">10</span>
+        </div>
+        <div class="project-item">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M2 3h12v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3z" stroke="currentColor" stroke-width="1.3"/><path d="M2 3l2-2h8l2 2" stroke="currentColor" stroke-width="1.3"/></svg>
+          <span>next-gen-ai-platform</span>
+          <span class="project-count">14</span>
+        </div>
+        <div class="project-item">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M2 3h12v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3z" stroke="currentColor" stroke-width="1.3"/><path d="M2 3l2-2h8l2 2" stroke="currentColor" stroke-width="1.3"/></svg>
+          <span>landing-page-v4</span>
+          <span class="project-count">3</span>
+        </div>
+      </nav>
+    </div>
+
+    <div class="agent-section">
+      <div class="sidebar-label">Active Agents</div>
+      <div class="agent-item"><span class="agent-dot" style="background:#22c55e"></span>Antigravity<span class="agent-count">3</span></div>
+      <div class="agent-item"><span class="agent-dot" style="background:#a855f7"></span>Claude Code<span class="agent-count">2</span></div>
+      <div class="agent-item"><span class="agent-dot" style="background:#3b82f6"></span>Cursor<span class="agent-count">1</span></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="sidebar-version">v3.0 — localhost:6969</span>
+    </div>
+  </aside>
+
+  <!-- ── Main ─────────────────────────── -->
+  <div class="main">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <button class="btn-sidebar" id="toggle-sidebar" title="Toggle sidebar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <span class="header-title">omni-channel-crm</span>
+      </div>
+      <div class="header-right">
+        <div class="stat-chips">
+          <span class="stat-chip"><span class="stat-chip-dot" style="background:var(--col-progress)"></span><span id="stat-active">3</span> active</span>
+          <span class="stat-chip"><span class="stat-chip-dot" style="background:var(--col-done)"></span><span id="stat-done">3</span>/8 done</span>
+          <!-- Progress Ring -->
+          <div class="progress-ring-wrap">
+            <svg class="progress-ring" width="32" height="32" viewBox="0 0 32 32">
+              <circle class="progress-ring-bg" cx="16" cy="16" r="13"/>
+              <circle class="progress-ring-fg" cx="16" cy="16" r="13" stroke-dasharray="81.68" stroke-dashoffset="51" id="progress-circle"/>
+            </svg>
+            <span class="progress-ring-text" id="progress-text">38%</span>
+          </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+          <svg viewBox="0 0 16 16" fill="none" id="theme-icon">
+            <path d="M14 9.2A6.5 6.5 0 016.8 2 6 6 0 1014 9.2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="btn-new" id="btn-new-task">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          New Task
+        </button>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="kanban">
+        <svg viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="4" height="14" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="6" y="1" width="4" height="10" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="11" y="1" width="4" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+        Kanban
+      </button>
+      <button class="tab-btn" data-tab="history">
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M8 4v4l3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        History
+      </button>
+      <button class="tab-btn" data-tab="deploys">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 1v10M4 8l4 4 4-4M2 14h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Deploys
+      </button>
+    </nav>
+
+    <!-- ── Tab: Kanban Board ──────────── -->
+    <main class="tab-panel active" id="panel-kanban">
+      <div class="board" id="board">
+        <!-- Columns are rendered by JS -->
+      </div>
+    </main>
+
+    <!-- ── Tab: History ──────────────── -->
+    <div class="tab-panel" id="panel-history">
+      <div class="timeline-wrap">
+        <div class="timeline-header-bar">
+          <h3>Activity History</h3>
+          <span class="timeline-count">12 events</span>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+
+    <!-- ── Tab: Deploys ──────────────── -->
+    <div class="tab-panel" id="panel-deploys">
+      <div class="deploy-wrap">
+        <div class="deploy-header-bar">
+          <h3>Deployment History</h3>
+        </div>
+        <div class="deploy-list" id="deploy-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   CodyMaster Dashboard Showcase — Interactive Demo Engine
+   ════════════════════════════════════════════════════════════ */
+(function(){
+'use strict';
+
+// ── Agent Config ─────────────────────────
+const AGENTS = {
+  antigravity: { label:'Antigravity', color:'#22c55e' },
+  'claude-code': { label:'Claude Code', color:'#a855f7' },
+  cursor: { label:'Cursor', color:'#3b82f6' },
+  'gemini-cli': { label:'Gemini CLI', color:'#f59e0b' },
+  manual: { label:'Manual', color:'#64748b' },
+};
+
+// ── Demo Data ────────────────────────────
+const TASKS = [
+  { id:'t1', title:'Multi-region DB replication with CRDTs', desc:'Setup globally distributed database with conflict-free replicated data types', column:'backlog', priority:'urgent', agent:'antigravity', skill:'cm-safe-deploy', time:'2h ago' },
+  { id:'t2', title:'Refactor legacy Redux to Zustand', desc:'Migrate global state management for better performance and DX', column:'backlog', priority:'medium', agent:'claude-code', skill:'cm-planning', time:'5h ago' },
+  { id:'t3', title:'Agent completion rate analytics', desc:'Interactive dashboard visualizing AI agent performance and bottlenecks', column:'backlog', priority:'high', agent:'cursor', skill:'cm-planning', time:'12m ago' },
+  { id:'t4', title:'RAG pipeline for query auto-resolution', desc:'Vectorize customer histories to suggest instant support replies', column:'progress', priority:'urgent', agent:'claude-code', skill:'cm-tdd', time:'28m ago', dispatched:true, stuck:true },
+  { id:'t5', title:'Train custom embedding model', desc:'Fine-tune sentence-transformers for domain-specific semantic search', column:'progress', priority:'high', agent:'antigravity', skill:'cm-execution', time:'1h ago', dispatched:true },
+  { id:'t6', title:'WhatsApp Business API webhook handlers', desc:'Bi-directional message syncing with media attachment support', column:'review', priority:'medium', agent:'antigravity', skill:'cm-quality-gate', time:'45m ago' },
+  { id:'t7', title:'Audit EU data privacy laws compliance', desc:'Ensure GDPR compliance for cross-border data transfer', column:'review', priority:'low', agent:'cursor', skill:'cm-quality-gate', time:'3h ago' },
+  { id:'t8', title:'Edge functions for real-time WebSockets', desc:'Deploy serverless WebSocket handlers via Cloudflare Workers', column:'done', priority:'high', agent:'claude-code', skill:'cm-safe-deploy', time:'1d ago' },
+  { id:'t9', title:'Unified CRM component system', desc:'Build and document 40+ accessible UI components in Storybook', column:'done', priority:'medium', agent:'antigravity', skill:'cm-ux-master', time:'2d ago' },
+  { id:'t10', title:'Generic event bus for channel sync', desc:'Pub/Sub architecture for cross-channel message distribution', column:'done', priority:'urgent', agent:'cursor', skill:'cm-execution', time:'3d ago' },
+];
+
+const HISTORY = [
+  { type:'t-dispatch', icon:'🚀', msg:'Task "RAG pipeline for query auto-resolution" dispatched to Claude Code', agent:'claude-code', time:'12m ago' },
+  { type:'t-moved', icon:'↔️', msg:'Task "WhatsApp Business API webhook handlers" moved from In Progress → Review', agent:'antigravity', time:'45m ago' },
+  { type:'t-dispatch', icon:'🚀', msg:'Task "Train custom embedding model" dispatched to Antigravity', agent:'antigravity', time:'1h ago' },
+  { type:'t-created', icon:'✨', msg:'Task "Multi-region DB replication with CRDTs" created with Urgent priority', agent:'claude-code', time:'5h ago' },
+  { type:'t-deploy', icon:'🚀', msg:'Deployed to production — v3.1.2 (commit e4a9b2c)', agent:'antigravity', time:'1d ago' },
+  { type:'t-moved', icon:'✅', msg:'Task "Edge functions for real-time WebSockets" moved to Done', agent:'claude-code', time:'1d ago' },
+  { type:'t-created', icon:'✨', msg:'Task "Generic event bus for channel sync" created', agent:'', time:'2d ago' },
+  { type:'t-moved', icon:'✅', msg:'Task "Unified CRM component system" completed', agent:'antigravity', time:'2d ago' },
+  { type:'t-deploy', icon:'🟡', msg:'Deployed to staging — v3.1.0-rc.1 (commit 7df21a9)', agent:'cursor', time:'2d ago' },
+  { type:'t-moved', icon:'✅', msg:'Task "Generic event bus for channel sync" completed', agent:'cursor', time:'3d ago' },
+  { type:'t-created', icon:'📦', msg:'Project "omni-channel-crm" created', agent:'', time:'5d ago' },
+  { type:'t-created', icon:'✨', msg:'Task "Refactor legacy Redux to Zustand" created', agent:'claude-code', time:'5d ago' },
+];
+
+const DEPLOYS = [
+  { msg:'Production deploy — v3.1.2', env:'production', status:'success', commit:'e4a9b2c', branch:'main', time:'1d ago' },
+  { msg:'Staging deploy — v3.1.0-rc.1', env:'staging', status:'success', commit:'7df21a9', branch:'develop', time:'2d ago' },
+  { msg:'Hotfix deploy — websocket disconnect payload', env:'production', status:'success', commit:'b83f1cd', branch:'hotfix/ws-payload', time:'4d ago' },
+  { msg:'Staging deploy — storybook integration', env:'staging', status:'failed', commit:'a22c90e', branch:'feature/storybook', time:'5d ago' },
+  { msg:'Staging deploy — initial CRM skeleton', env:'staging', status:'success', commit:'0001a1b', branch:'main', time:'7d ago' },
+];
+
+// ── Column Mapping ───────────────────────
+const COL_MAP = {
+  backlog: { label:'Backlog', cls:'backlog', color:'var(--col-backlog)' },
+  progress: { label:'In Progress', cls:'progress', color:'var(--col-progress)' },
+  review: { label:'Review', cls:'review', color:'var(--col-review)' },
+  done: { label:'Done', cls:'done', color:'var(--col-done)' },
+};
+
+const TRANSITIONS = {
+  backlog: ['progress'],
+  progress: ['review','done','backlog'],
+  review: ['done','progress'],
+  done: ['backlog'],
+};
+const TRANS_INFO = {
+  progress: { label:'▶ Start', cls:'fwd' },
+  review: { label:'→ Review', cls:'fwd' },
+  done: { label:'✓ Done', cls:'done' },
+  backlog: { label:'← Back', cls:'back' },
+};
+
+// ── Theme ────────────────────────────────
+const themeBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+let currentTheme = 'dark';
+
+themeBtn.addEventListener('click', () => {
+  currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  themeIcon.innerHTML = currentTheme === 'dark'
+    ? '<path d="M14 9.2A6.5 6.5 0 016.8 2 6 6 0 1014 9.2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>'
+    : '<circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>';
+});
+
+// ── Sidebar Toggle ───────────────────────
+document.getElementById('toggle-sidebar').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('collapsed');
+});
+
+// ── Tab Navigation ───────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + btn.dataset.tab));
+  });
+});
+
+// ── Render Board ─────────────────────────
+const board = document.getElementById('board');
+let draggedId = null;
+
+function renderBoard() {
+  board.innerHTML = '';
+  Object.keys(COL_MAP).forEach(colKey => {
+    const info = COL_MAP[colKey];
+    const colTasks = TASKS.filter(t => t.column === colKey);
+    const col = document.createElement('div');
+    col.className = 'column';
+    col.dataset.col = colKey;
+
+    col.innerHTML = `
+      <div class="column-header">
+        <span class="col-indicator ${info.cls}"></span>
+        <span class="col-title">${info.label}</span>
+        <span class="col-count">${colTasks.length}</span>
+      </div>
+      <div class="card-list" data-col="${colKey}"></div>`;
+
+    const list = col.querySelector('.card-list');
+    if (colTasks.length === 0) {
+      list.innerHTML = `<div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="empty-state-text">Drop tasks here</span>
+      </div>`;
+    } else {
+      colTasks.forEach((task, i) => {
+        const card = createCard(task);
+        card.style.animationDelay = `${i * 60}ms`;
+        card.classList.add('animate-in');
+        list.appendChild(card);
+      });
+    }
+
+    // ── Drag & Drop ──────────────────────
+    list.addEventListener('dragover', e => {
+      e.preventDefault();
+      const src = TASKS.find(t => t.id === draggedId);
+      if (!src) return;
+      const allowed = src.column === colKey || (TRANSITIONS[src.column] || []).includes(colKey);
+      if (allowed) {
+        e.dataTransfer.dropEffect = 'move';
+        col.classList.add('drag-over');
+        if (!list.querySelector('.drop-placeholder')) {
+          const ph = document.createElement('div');
+          ph.className = 'drop-placeholder';
+          list.appendChild(ph);
+        }
+      }
+    });
+    list.addEventListener('dragleave', e => {
+      if (!col.contains(e.relatedTarget)) {
+        col.classList.remove('drag-over');
+        const ph = list.querySelector('.drop-placeholder');
+        if (ph) ph.remove();
+      }
+    });
+    list.addEventListener('drop', e => {
+      e.preventDefault();
+      col.classList.remove('drag-over');
+      const ph = list.querySelector('.drop-placeholder');
+      if (ph) ph.remove();
+      const task = TASKS.find(t => t.id === draggedId);
+      if (!task) return;
+      const allowed = task.column === colKey || (TRANSITIONS[task.column] || []).includes(colKey);
+      if (!allowed) { showToast('error', `Cannot move from ${COL_MAP[task.column].label} → ${info.label}`); return; }
+      const from = task.column;
+      task.column = colKey;
+      renderBoard();
+      showToast('success', `Moved: ${COL_MAP[from].label} → ${info.label}`);
+    });
+
+    board.appendChild(col);
+  });
+  updateStats();
+}
+
+function createCard(task) {
+  const card = document.createElement('div');
+  card.className = 'task-card';
+  card.draggable = true;
+  card.dataset.id = task.id;
+  if (task.stuck) card.classList.add('stuck');
+
+  const agent = AGENTS[task.agent];
+  const agentHtml = agent
+    ? `<span class="card-agent"><span class="card-agent-dot" style="background:${agent.color}"></span>${agent.label}</span>`
+    : '';
+  const skillHtml = task.skill ? `<span class="card-skill">${esc(task.skill)}</span>` : '';
+  const dispatchHtml = task.dispatched ? `<span class="dispatch-badge dispatched">🚀 Dispatched</span>` : '';
+
+  const priSvg = {
+    low: '<svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="3" fill="#22c55e"/></svg>',
+    medium: '<svg viewBox="0 0 8 8"><rect x="1" y="1" width="6" height="6" rx="1" fill="#f59e0b" transform="rotate(45 4 4)"/></svg>',
+    high: '<svg viewBox="0 0 8 8"><polygon points="4,0 8,8 0,8" fill="#ef4444"/></svg>',
+    urgent: '<svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="none" stroke="#a855f7" stroke-width="1.5"/><circle cx="4" cy="4" r="1.5" fill="#a855f7"/></svg>',
+  };
+
+  // Quick transitions
+  const transitions = TRANSITIONS[task.column] || [];
+  let transBtns = '';
+  if (transitions.length) {
+    transBtns = '<div class="card-transitions">';
+    transitions.forEach(t => {
+      const i = TRANS_INFO[t];
+      transBtns += `<button class="transition-btn ${i.cls}" data-task="${task.id}" data-target="${t}">${i.label}</button>`;
+    });
+    transBtns += '</div>';
+  }
+
+  card.innerHTML = `
+    <div class="card-top">
+      <span class="card-title">${esc(task.title)}</span>
+      <div class="card-actions">
+        <button class="card-action" title="Edit"><svg viewBox="0 0 16 16" fill="none"><path d="M11.5 1.5l3 3L5 14H2v-3L11.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="card-action" title="Delete"><svg viewBox="0 0 16 16" fill="none"><path d="M2 4h12M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m2 0v9.33a1.33 1.33 0 01-1.34 1.34H4.67a1.33 1.33 0 01-1.34-1.34V4h9.34z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    ${task.desc ? `<p class="card-desc">${esc(task.desc)}</p>` : ''}
+    <div class="card-meta">${agentHtml}${skillHtml}${dispatchHtml}</div>
+    <div class="card-footer">
+      <span class="priority-badge priority-${task.priority}">${priSvg[task.priority] || ''} ${task.priority}</span>
+      <span class="card-time">${task.time}</span>
+    </div>
+    ${transBtns}`;
+
+  // Drag events
+  card.addEventListener('dragstart', e => {
+    draggedId = task.id;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', task.id);
+  });
+  card.addEventListener('dragend', () => {
+    card.classList.remove('dragging');
+    draggedId = null;
+    document.querySelectorAll('.column').forEach(c => c.classList.remove('drag-over'));
+    document.querySelectorAll('.drop-placeholder').forEach(el => el.remove());
+  });
+
+  // Transition buttons
+  card.querySelectorAll('.transition-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const target = btn.dataset.target;
+      const from = task.column;
+      task.column = target;
+      renderBoard();
+      showToast('success', `Moved: ${COL_MAP[from].label} → ${COL_MAP[target].label}`);
+    });
+  });
+
+  return card;
+}
+
+function updateStats() {
+  const total = TASKS.length;
+  const done = TASKS.filter(t => t.column === 'done').length;
+  const active = TASKS.filter(t => t.column === 'progress').length;
+  document.getElementById('stat-active').textContent = active;
+  document.getElementById('stat-done').textContent = `${done}/${total}`;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progress-text').textContent = `${pct}%`;
+  const circle = document.getElementById('progress-circle');
+  const circumference = 2 * Math.PI * 13; // r=13
+  circle.style.strokeDashoffset = circumference - (pct / 100) * circumference;
+}
+
+// ── Render History ───────────────────────
+function renderHistory() {
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = HISTORY.map(h => {
+    const agent = AGENTS[h.agent];
+    const agentHtml = agent
+      ? `<span class="timeline-agent-inline"><span class="timeline-agent-dot" style="background:${agent.color}"></span>${agent.label}</span>`
+      : '';
+    return `<div class="timeline-item ${h.type}">
+      <span class="timeline-icon">${h.icon}</span>
+      <div class="timeline-content">
+        <div class="timeline-msg">${esc(h.msg)}</div>
+        <div class="timeline-meta"><span>${h.time}</span>${agentHtml}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Render Deploys ───────────────────────
+function renderDeploys() {
+  const dl = document.getElementById('deploy-list');
+  dl.innerHTML = DEPLOYS.map(d => `
+    <div class="deploy-card">
+      <span class="deploy-dot ${d.status}"></span>
+      <div class="deploy-info">
+        <div class="deploy-msg">${esc(d.msg)}</div>
+        <div class="deploy-detail">
+          <span class="deploy-env ${d.env}">${d.env}</span>
+          <span class="deploy-status ${d.status}">${d.status}</span>
+          <span>🔗 ${d.commit}</span>
+          <span>🌿 ${d.branch}</span>
+          <span>${d.time}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ── Toast ────────────────────────────────
+function showToast(type, message) {
+  const icons = { success:'✅', error:'❌', info:'ℹ️' };
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `<span>${icons[type]||'📌'}</span><span>${esc(message)}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.classList.add('toast-out'); toast.addEventListener('animationend', () => toast.remove()); }, 2500);
+}
+
+// ── Utility ──────────────────────────────
+function esc(s) { if (!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// ── New Task Button (demo) ───────────────
+document.getElementById('btn-new-task').addEventListener('click', () => {
+  showToast('info', 'Demo mode — use the real dashboard at localhost:6969');
+});
+
+// ── Init ─────────────────────────────────
+renderBoard();
+renderHistory();
+renderDeploys();
+
+})();
+</script>
+</body>
+</html>

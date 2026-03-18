@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta.title">CodyMaster — AI with Senior Engineer Discipline</title>
+  <meta name="description" data-i18n="meta.description" content="Skills framework that gives AI coding tools the discipline of a Senior Engineer.">
+  <meta property="og:title" content="CodyMaster — AI with Senior Engineer Discipline">
+  <meta property="og:description" content="TDD, Quality Gates, Working Memory, Safe Deploy — on every AI platform.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span> CodyMaster</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+          <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+          <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+          <li><a href="agent-support.html" data-i18n="nav.claw">Claw</a></li>
+          <li class="nav-dropdown">
+            <a class="nav-dropdown-btn" data-i18n="nav.personas">By Role</a>
+            <div class="nav-dropdown-menu">
+              <a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a>
+              <a href="for-dev.html" data-i18n="nav.forDev">For Developers</a>
+              <a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a>
+              <a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button>
+          <div class="lang-menu">
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
+            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+            <button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button>
+          </div>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="mobile-toggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+      <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+      <li><a href="agent-support.html" data-i18n="nav.claw">Claw</a></li>
+      <li><span class="mobile-nav-label" data-i18n="nav.personas">By Role</span></li>
+      <li><a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a></li>
+      <li><a href="for-dev.html" data-i18n="nav.forDev">For Developers</a></li>
+      <li><a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a></li>
+      <li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- ===== HERO — Contrarian Hook ===== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge" data-i18n="home.badge">Open Source · MIT License · 7 AI Platforms</div>
+        <h1 data-i18n-html="home.headline">Your AI Writes Code Fast.<br><span class="gradient-text">It Also Ships Bugs 73% of the Time.</span></h1>
+        <p class="hero-desc" data-i18n="home.desc">CodyMaster is the skills framework that adds TDD, Quality Gates, Working Memory, and Safe Deploy on top of ANY AI coding tool — turning fast code into production-ready code.</p>
+        <div class="btn-group">
+          <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="home.cta">Install Free in 30 Seconds</a>
+          <a href="https://github.com/tody-agent/codymaster" class="btn btn-secondary" data-i18n="home.ctaGithub">⭐ Star on GitHub</a>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-bar fade-in">
+          <div class="stat-item">
+            <div class="stat-number" data-i18n="home.stats.skills">25+</div>
+            <div class="stat-label" data-i18n="home.stats.skillsLabel">Skills</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-i18n="home.stats.platforms">7</div>
+            <div class="stat-label" data-i18n="home.stats.platformsLabel">AI Platforms</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-i18n="home.stats.gates">6</div>
+            <div class="stat-label" data-i18n="home.stats.gatesLabel">Quality Gates</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-i18n="home.stats.passRate">95%+</div>
+            <div class="stat-label" data-i18n="home.stats.passRateLabel">First-Pass Rate</div>
+          </div>
+        </div>
+
+        <!-- Trust Bar -->
+        <div class="trust-bar fade-in">
+          <p class="trust-bar-label" data-i18n="home.trustLabel">Works with every AI platform</p>
+          <div class="trust-logos">
+            <span class="trust-logo"><span class="trust-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span> Gemini</span>
+            <span class="trust-logo"><span class="trust-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></span> Claude</span>
+            <span class="trust-logo"><span class="trust-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 4 7.07 17 2.51-7.39L21 11.07z"/></svg></span> Cursor</span>
+            <span class="trust-logo"><span class="trust-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.6 2 5.2 2 2.5 0 2.5-2 5.2-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5.2-2 2.6 0 2.6 2 5.2 2 2.5 0 2.5-2 5.2-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5.2-2 2.6 0 2.6 2 5.2 2 2.5 0 2.5-2 5.2-2 1.3 0 1.9.5 2.5 1"/></svg></span> Windsurf</span>
+            <span class="trust-logo"><span class="trust-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 4-2 2-4-1-1 1 2 4 4 2 1-1-1-4 2-2 4 6l1.2-.7c.4-.2.7-.6.6-1.1z"/></svg></span> Copilot</span>
+            <span class="trust-logo"><span class="trust-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span> Cline</span>
+            <span class="trust-logo"><span class="trust-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span> Aider</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== THE PROBLEM — Pain Agitation ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.problemTitle">The AI Coding Paradox</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.problemDesc">AI tools promise 10x productivity. The reality looks different.</p>
+        </div>
+        <div class="cards-grid stagger fade-in">
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="home.problems.p1.emoji"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
+            <h4 data-i18n="home.problems.p1.title">Day 1: 'WOW, this is fast!'</h4>
+            <p data-i18n="home.problems.p1.desc">AI generates 500 lines in 30 seconds. You feel invincible.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="home.problems.p2.emoji"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 2 1.88 1.88"/><path d="M14.12 3.88 16 2"/><path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"/><path d="M12 20v-9"/><path d="M6.53 9C4.6 8.8 3 7.1 3 5"/><path d="M6 13H2"/><path d="M3 21c0-2.1 1.7-3.9 3.8-4"/><path d="M20.97 5c0 2.1-1.6 3.8-3.5 4"/><path d="M22 13h-4"/><path d="M17.2 17c2.1.1 3.8 1.9 3.8 4"/></svg></div>
+            <h4 data-i18n="home.problems.p2.title">Day 7: 'Why are there so many bugs?'</h4>
+            <p data-i18n="home.problems.p2.desc">73% of AI code ships without tests. Technical debt explodes.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-emoji" data-i18n="home.problems.p3.emoji"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></div>
+            <h4 data-i18n="home.problems.p3.title">Day 30: 'We need to rewrite everything.'</h4>
+            <p data-i18n="home.problems.p3.desc">No tests, no docs, lost context. The 10x promise became 0.5x.</p>
+          </div>
+        </div>
+        <div class="root-cause fade-in" data-i18n-html="home.rootCause">
+          The problem isn't AI. It's AI <strong>without discipline</strong>. CodyMaster is that discipline.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEFORE / AFTER ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="home.comparisonTitle">Before & After CodyMaster</h2>
+        <div class="comparison-grid mt-8 fade-in">
+          <div class="comparison-col before">
+            <span class="comparison-label" data-i18n="home.comparison.before.label">Without CodyMaster</span>
+            <ul class="comparison-list">
+              <li data-i18n="home.comparison.before.items.0">Code quality: 'It runs on my machine' = done</li>
+              <li data-i18n="home.comparison.before.items.1">Testing: You test manually, or skip entirely</li>
+              <li data-i18n="home.comparison.before.items.2">Context: Lost every new session</li>
+              <li data-i18n="home.comparison.before.items.3">Deploy: Copy files to server, pray</li>
+              <li data-i18n="home.comparison.before.items.4">When stuck: Debug for hours</li>
+            </ul>
+          </div>
+          <div class="comparison-col after">
+            <span class="comparison-label" data-i18n="home.comparison.after.label">With CodyMaster</span>
+            <ul class="comparison-list">
+              <li data-i18n="home.comparison.after.items.0">TDD + 6-gate verification on every commit</li>
+              <li data-i18n="home.comparison.after.items.1">AI writes tests FIRST, ≥80% coverage automatically</li>
+              <li data-i18n="home.comparison.after.items.2">Working Memory preserves context forever</li>
+              <li data-i18n="home.comparison.after.items.3">Multi-gate deploy with auto rollback</li>
+              <li data-i18n="home.comparison.after.items.4">Judge Agent detects stuck → suggests pivot</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6 FEATURES ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.featuresTitle">6 Disciplines That Change Everything</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.featuresDesc">CodyMaster doesn't replace your AI tool. It upgrades it with Senior Engineer habits.</p>
+        </div>
+        <div class="cards-grid stagger fade-in">
+          <div class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 2L15 2" stroke-linecap="round"/><path d="M12 14L12 22" stroke-linecap="round"/><path d="M9 22L15 22" stroke-linecap="round"/><path d="M7 10C7 7.23858 9.23858 5 12 5C14.7614 5 17 7.23858 17 10V14H7V10Z"/><path d="M5 14H19" stroke-linecap="round"/></svg></div>
+            <h3 class="card-title" data-i18n="home.features.tdd.title">TDD Enforcement</h3>
+            <p class="card-desc" data-i18n="home.features.tdd.desc">AI writes tests FIRST, then code. Red → Green → Refactor. Zero exceptions.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(139,92,246,0.06);color:var(--color-purple-400)"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z"/><path d="M9 12L11 14L15 10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 class="card-title" data-i18n="home.features.quality.title">6-Gate Quality System</h3>
+            <p class="card-desc" data-i18n="home.features.quality.desc">Static analysis → Blind review → Security → Anti-sycophancy → Performance → Ship gate.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(245,158,11,0.06);color:var(--color-accent-500)"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12"/><path d="M12 16V12" stroke-linecap="round"/><path d="M12 8H12.01" stroke-linecap="round"/><path d="M17 3L21 3L21 7" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8L21 3" stroke-linecap="round"/></svg></div>
+            <h3 class="card-title" data-i18n="home.features.memory.title">Working Memory</h3>
+            <p class="card-desc" data-i18n="home.features.memory.desc">Context preserved across sessions. No more re-explaining your project every conversation.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(34,197,94,0.06);color:var(--color-success)"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 16.5C3 18 3 20.5 3 20.5C3 20.5 5.5 20.5 7 19" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 4C14.5 4 17 2 21 2C21 6 19 8.5 19 8.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 3L21 3L21 9" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 12.5L11 15" stroke-linecap="round"/><path d="M6 16.5C6 16.5 8 15 9.5 13.5C11.3 11.7 14 9 15.5 7.5C17 6 19.5 3.5 19.5 3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 class="card-title" data-i18n="home.features.deploy.title">Safe Deploy Pipeline</h3>
+            <p class="card-desc" data-i18n="home.features.deploy.desc">Multi-gate deploy with auto rollback. Staging is mandatory. Production is earned.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(239,68,68,0.06);color:var(--color-error)"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9H9.01" stroke-linecap="round"/><path d="M15 9H15.01" stroke-linecap="round"/><path d="M9 15C9 15 10.5 13 12 13C13.5 13 15 15 15 15" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 class="card-title" data-i18n="home.features.judge.title">Judge Agent</h3>
+            <p class="card-desc" data-i18n="home.features.judge.desc">Auto-evaluates task health. Stuck > 10 min? Escalate. 3+ failures? Pivot.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(52,112,247,0.06);color:var(--color-primary-400)"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M2 12H22" stroke-linecap="round"/><path d="M12 2C14.5 4.5 16 8 16 12C16 16 14.5 19.5 12 22" stroke-linecap="round"/><path d="M12 2C9.5 4.5 8 8 8 12C8 16 9.5 19.5 12 22" stroke-linecap="round"/></svg></div>
+            <h3 class="card-title" data-i18n="home.features.agnostic.title">Universal Agent Bootstrap</h3>
+            <p class="card-desc" data-i18n="home.features.agnostic.desc">One AGENTS.md → configs for OpenClaw, Claude, Cursor, OpenFang, Manus, MaxClaw. All 7+ platforms supported.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== UNIVERSAL AGENTS ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.agentsTitle">One Standard. Every AI Agent.</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.agentsDesc">CodyMaster's Open Standard is fully compatible with the AI agent ecosystem. OpenClaw, OpenFang, Manus, Claude Desktop, Cursor, MaxClaw, and more.</p>
+        </div>
+        
+        <div class="comparison-grid mt-8 fade-in">
+          <div class="comparison-col before" style="background:rgba(52,112,247,0.03); border:1px solid rgba(52,112,247,0.1);">
+             <span class="comparison-label" style="background:#0b0f19; color:var(--color-primary-400); border:1px solid rgba(52,112,247,0.2);" data-i18n="home.agents.compatible">Out-of-the-Box Compatible</span>
+             <ul class="comparison-list">
+               <li data-i18n="home.agents.list.0">OpenClaw & OpenFang</li>
+               <li data-i18n="home.agents.list.1">Claude Desktop & Cursor</li>
+               <li data-i18n="home.agents.list.2">Manus & MaxClaw</li>
+               <li data-i18n="home.agents.list.3">Gemini Antigravity</li>
+             </ul>
+          </div>
+          <div class="comparison-col after" style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; background:none; border:none; padding-left: 2rem;">
+             <h3 style="font-size:1.5rem; margin-bottom:1rem; color:var(--text-primary)" data-i18n="home.agents.whyTitle">Why cm-project-bootstrap?</h3>
+             <p style="color:var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;" data-i18n="home.agents.whyDesc">Stop setting up your project separately for each AI. Run <code>cm-project-bootstrap</code> once, and it generates the <code>AGENTS.md</code> manifest and configuration files that all popular AI platforms understand natively.</p>
+             <a href="agent-support.html" class="btn btn-secondary" data-i18n="home.agents.cta">Explore Claw →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INTELLIGENT WORKFLOW PIPELINE ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.workflowTitle">Intelligent Autonomous Workflow</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.workflowDesc">Every task flows through a trusted, self-correcting pipeline — from memory to deploy.</p>
+        </div>
+
+        <!-- RARV Pipeline Visual -->
+        <div class="workflow-pipeline fade-in">
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(148,163,184,0.3)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/></svg></div>
+            <span class="workflow-node-label">ORIENT<br><small style="font-weight:400;color:var(--color-text-muted)">Read Memory</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(59,130,246,0.3)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
+            <span class="workflow-node-label">PLAN<br><small style="font-weight:400;color:var(--color-text-muted)">Break Tasks</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(245,158,11,0.3)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 2z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <span class="workflow-node-label">PRE-ACT<br><small style="font-weight:400;color:var(--color-text-muted)">Goal Check</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(239,68,68,0.3)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></div>
+            <span class="workflow-node-label">TDD<br><small style="font-weight:400;color:var(--color-text-muted)">Test First</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(34,197,94,0.3)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
+            <span class="workflow-node-label">EXECUTE<br><small style="font-weight:400;color:var(--color-text-muted)">Code + Fix</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(168,85,247,0.3)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+            <span class="workflow-node-label">6 GATES<br><small style="font-weight:400;color:var(--color-text-muted)">Quality</small></span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-node">
+            <div class="workflow-node-icon" style="border-color:rgba(34,197,94,0.5);background:rgba(34,197,94,0.05)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+            <span class="workflow-node-label">DEPLOY<br><small style="font-weight:400;color:var(--color-text-muted)">Safe Ship</small></span>
+          </div>
+        </div>
+
+        <div class="feature-pills fade-in">
+          <span class="feature-pill"><span class="feature-pill-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/></svg></span> Working Memory persists across sessions</span>
+          <span class="feature-pill"><span class="feature-pill-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span> Judge Agent detects stuck tasks</span>
+          <span class="feature-pill"><span class="feature-pill-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg></span> Auto-rollback on failure</span>
+          <span class="feature-pill"><span class="feature-pill-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span> Real-time Kanban dashboard</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DASHBOARD SHOWCASE ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.dashboardTitle">Visual Dashboard — Not Just Another CLI</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.dashboardDesc">See everything at a glance. Kanban board, activity history, deployment tracking — all in your browser at localhost:6969.</p>
+        </div>
+
+        <div class="dashboard-showcase fade-in">
+          <div class="dashboard-tabs">
+            <button class="dashboard-tab active" data-tab="kanban">
+              <svg style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom;margin-right:6px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+              <span data-i18n="home.dashboardTabs.kanban">Kanban Board</span>
+            </button>
+            <button class="dashboard-tab" data-tab="history">
+              <svg style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom;margin-right:6px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span data-i18n="home.dashboardTabs.history">Activity History</span>
+            </button>
+            <button class="dashboard-tab" data-tab="deploys">
+              <svg style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom;margin-right:6px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              <span data-i18n="home.dashboardTabs.deploys">Deployments</span>
+            </button>
+          </div>
+
+          <div class="device-frame" style="background:#0b0f19; border:1px solid rgba(255,255,255,0.08); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+            <div class="device-frame-header" style="background:rgba(15,23,42,0.9); border-bottom:1px solid rgba(255,255,255,0.05); padding: 12px 16px;">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="url-bar" style="color:#64748b; font-family:monospace; font-size:12px; margin-left:16px;">localhost:6969 — Workspace</span>
+            </div>
+            
+            <div class="mock-dashboard" style="display:flex; height: 500px; overflow:hidden;">
+              <!-- Sidebar mockup -->
+              <div class="mock-sidebar" style="width: 220px; background:rgba(15,23,42,0.4); border-right:1px solid rgba(255,255,255,0.05); padding: 20px 16px; display:flex; flex-direction:column; gap:24px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="width:24px; height:24px; background:linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius:6px;"></div>
+                  <span style="font-weight:600; font-size:14px; color:#f8fafc;">Cody</span>
+                </div>
+                <div>
+                  <div style="font-size:11px; font-weight:600; color:#64748b; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">Projects</div>
+                  <div style="display:flex; align-items:center; gap:8px; padding:6px 8px; background:rgba(59,130,246,0.1); border-radius:6px; color:#3b82f6; font-size:13px; font-weight:500;">
+                    <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                    omni-channel-crm
+                  </div>
+                  <div style="display:flex; align-items:center; gap:8px; padding:6px 8px; color:#94a3b8; font-size:13px; margin-top:4px;">
+                    <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                    next-gen-ai-platform
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Main board mockup -->
+              <div class="mock-main" style="flex:1; display:flex; flex-direction:column; background:#0b0f19;">
+                <!-- Header mockup -->
+                <div style="height:56px; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; padding:0 24px; justify-content:space-between;">
+                  <div style="font-weight:600; color:#f8fafc; font-size:15px; display:flex; align-items:center; gap:8px;">
+                    <svg style="width:16px;height:16px;color:#94a3b8;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+                    omni-channel-crm
+                  </div>
+                  <div style="background:#3b82f6; color:white; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:500; display:flex; align-items:center; gap:4px;">
+                    <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    New Task
+                  </div>
+                </div>
+                
+                <!-- Columns -->
+                <div style="flex:1; display:flex; gap:16px; padding:24px; overflow-x:auto;">
+                  <!-- In Progress Column -->
+                  <div style="width:280px; flex-shrink:0; display:flex; flex-direction:column; gap:12px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                      <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#cbd5e1;">
+                        <div style="width:8px; height:8px; background:#3b82f6; border-radius:50%;"></div> In Progress
+                      </div>
+                      <span style="background:rgba(255,255,255,0.1); color:#94a3b8; font-size:11px; padding:2px 8px; border-radius:12px; font-weight:600;">2</span>
+                    </div>
+                    
+                    <!-- Card 1 -->
+                    <div style="background:#1e293b; border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:16px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
+                      <h4 style="color:#f8fafc; font-size:14px; font-weight:600; margin-bottom:6px; line-height:1.4;">Multi-region DB replication with CRDTs</h4>
+                      <p style="color:#94a3b8; font-size:12px; line-height:1.5; margin-bottom:12px;">Implement conflict-free replicated data types for real-time sync across regions.</p>
+                      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                        <span style="display:flex; align-items:center; gap:6px; font-size:11px; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:4px;">
+                          <div style="width:6px; height:6px; background:#22c55e; border-radius:50%; box-shadow:0 0 4px #22c55e;"></div> Antigravity
+                        </span>
+                        <span style="font-size:10px; color:#3b82f6; background:rgba(59,130,246,0.1); padding:2px 6px; border-radius:4px; font-weight:600;">cm-execution</span>
+                      </div>
+                      <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <span style="font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; color:#ef4444; background:rgba(239,68,68,0.1);">HIGH</span>
+                        <span style="font-size:11px; color:#64748b;">In progress...</span>
+                      </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div style="background:#1e293b; border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:16px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); opacity:0.8;">
+                      <h4 style="color:#e2e8f0; font-size:14px; font-weight:600; margin-bottom:6px; line-height:1.4;">Edge functions cho real-time WebSockets</h4>
+                      <p style="color:#64748b; font-size:12px; line-height:1.5; margin-bottom:12px;">Replace legacy polling with Cloudflare Workers WebSocket hibernation API.</p>
+                      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                        <span style="display:flex; align-items:center; gap:6px; font-size:11px; color:#94a3b8; background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:4px;">
+                          <div style="width:6px; height:6px; background:#8b5cf6; border-radius:50%;"></div> Claude Code
+                        </span>
+                      </div>
+                      <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <span style="font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; color:#f59e0b; background:rgba(245,158,11,0.1);">MEDIUM</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Review Column -->
+                  <div style="width:280px; flex-shrink:0; display:flex; flex-direction:column; gap:12px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                      <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#cbd5e1;">
+                        <div style="width:8px; height:8px; background:#eab308; border-radius:50%;"></div> Review
+                      </div>
+                      <span style="background:rgba(255,255,255,0.1); color:#94a3b8; font-size:11px; padding:2px 8px; border-radius:12px; font-weight:600;">1</span>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div style="background:#1e293b; border:1px solid rgba(234,179,8,0.3); border-radius:8px; padding:16px; box-shadow:0 4px 12px rgba(234,179,8,0.05);">
+                      <div style="display:flex; justify-content:flex-end; margin-bottom:-10px; position:relative; z-index:2;">
+                        <span style="background:#eab308; color:#0f172a; font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; text-transform:uppercase;">Needs Action</span>
+                      </div>
+                      <h4 style="color:#f8fafc; font-size:14px; font-weight:600; margin-bottom:6px; line-height:1.4;">RAG pipeline cho query auto-resolution</h4>
+                      <p style="color:#94a3b8; font-size:12px; line-height:1.5; margin-bottom:12px;">Agent is stuck during chunking large PDF files. Context window exceeded on step 4.</p>
+                      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                        <span style="display:flex; align-items:center; gap:6px; font-size:11px; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:4px;">
+                          <div style="width:6px; height:6px; background:#eab308; border-radius:50%; box-shadow:0 0 4px #eab308; animation: pulse 2s infinite;"></div> Antigravity
+                        </span>
+                      </div>
+                      <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <span style="font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; color:#ef4444; background:rgba(239,68,68,0.1);">CRITICAL</span>
+                        <div style="display:flex; gap:4px;">
+                          <div style="width:24px; height:24px; background:rgba(255,255,255,0.1); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#cbd5e1;"><svg style="width:12px;height:12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></div>
+                          <div style="width:24px; height:24px; background:#3b82f6; border-radius:4px; display:flex; align-items:center; justify-content:center; color:#fff;"><svg style="width:12px;height:12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Done Column -->
+                  <div style="width:280px; flex-shrink:0; display:flex; flex-direction:column; gap:12px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                      <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#cbd5e1;">
+                        <div style="width:8px; height:8px; background:#22c55e; border-radius:50%;"></div> Done
+                      </div>
+                      <span style="background:rgba(255,255,255,0.1); color:#94a3b8; font-size:11px; padding:2px 8px; border-radius:12px; font-weight:600;">1</span>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:16px;">
+                      <h4 style="color:#94a3b8; font-size:14px; font-weight:500; margin-bottom:6px; line-height:1.4; text-decoration:line-through;">Train custom embedding model</h4>
+                      <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <span style="font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; color:#64748b; background:rgba(255,255,255,0.05);">HIGH</span>
+                        <span style="font-size:11px; color:#22c55e; display:flex; align-items:center; gap:4px;">
+                          <svg style="width:12px;height:12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Done
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <style>
+            @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+          </style>
+        </div>
+
+        <!-- CLI vs Dashboard Comparison -->
+        <div class="workflow-compare mt-12 fade-in">
+          <div class="workflow-compare-col old">
+            <span class="workflow-compare-label" data-i18n="home.comparison2.old.title">Other AI Tools (CLI only)</span>
+            <ul class="workflow-compare-list">
+              <li data-i18n="home.comparison2.old.items.0">Black box — no visibility into what AI is doing</li>
+              <li data-i18n="home.comparison2.old.items.1">Terminal output scrolls past — missed errors</li>
+              <li data-i18n="home.comparison2.old.items.2">No task tracking — 'what did I work on yesterday?'</li>
+              <li data-i18n="home.comparison2.old.items.3">Deploy via copy-paste commands</li>
+              <li data-i18n="home.comparison2.old.items.4">No rollback — pray it works</li>
+            </ul>
+          </div>
+          <div class="workflow-compare-col new">
+            <span class="workflow-compare-label" data-i18n="home.comparison2.new.title">CodyMaster (Dashboard + CLI)</span>
+            <ul class="workflow-compare-list">
+              <li data-i18n="home.comparison2.new.items.0">Visual Kanban — Backlog → In Progress → Review → Done</li>
+              <li data-i18n="home.comparison2.new.items.1">Activity History — every action logged with timestamps</li>
+              <li data-i18n="home.comparison2.new.items.2">Multi-agent support — Antigravity, Claude Code visible</li>
+              <li data-i18n="home.comparison2.new.items.3">Deploy tracking with staging → production pipeline</li>
+              <li data-i18n="home.comparison2.new.items.4">One-click rollback. Sleep well tonight.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3 STEPS — Connected Timeline ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="home.howTitle">3 Steps to Production-Ready Code</h2>
+        <div class="steps-timeline mt-8 stagger fade-in">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h4 data-i18n="home.steps.s1.title">Describe What You Want</h4>
+            <p data-i18n="home.steps.s1.desc">Speak naturally. CodyMaster breaks your request into specific, testable tasks.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h4 data-i18n="home.steps.s2.title">AI Executes with Discipline</h4>
+            <p data-i18n="home.steps.s2.desc">TDD → Code → Test → Quality Gate — the RARV cycle runs autonomously.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h4 data-i18n="home.steps.s3.title">Ship with Confidence</h4>
+            <p data-i18n="home.steps.s3.desc">All 6 gates passed. Deploy with rollback ready. Zero surprises.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PERSONAS ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="home.personasTitle">Built for Every Role on Your Team</h2>
+          <p class="section-subtitle mx-auto" data-i18n="home.personasDesc">Whether you manage products, write code, enforce quality, or run the business — CodyMaster speaks your language.</p>
+        </div>
+        <div class="cards-grid stagger fade-in" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+          <a href="for-pm.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-icon" style="background:rgba(168,85,247,0.08);color:var(--color-purple-400)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+            <h3 class="card-title" data-i18n="home.personas.pm.title">Product Managers</h3>
+            <p class="card-desc" data-i18n="home.personas.pm.desc">Describe features in plain language. Ship 5x faster without coding.</p>
+            <p class="mt-4" style="color:var(--accent-pm);font-weight:600" data-i18n="home.personas.pm.cta">See how PMs use it →</p>
+          </a>
+          <a href="for-dev.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-icon" style="background:rgba(59,130,246,0.08);color:var(--color-primary-400)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
+            <h3 class="card-title" data-i18n="home.personas.dev.title">Developers</h3>
+            <p class="card-desc" data-i18n="home.personas.dev.desc">AI output that passes your harshest PR review. TDD enforced, zero debt.</p>
+            <p class="mt-4" style="color:var(--accent-dev);font-weight:600" data-i18n="home.personas.dev.cta">See the tech details →</p>
+          </a>
+          <a href="for-qa.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-icon" style="background:rgba(34,197,94,0.08);color:var(--color-success)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 2z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <h3 class="card-title" data-i18n="home.personas.qa.title">QA Engineers</h3>
+            <p class="card-desc" data-i18n="home.personas.qa.desc">Code arrives pre-tested through 5 gates. Focus on business logic.</p>
+            <p class="mt-4" style="color:var(--accent-qa);font-weight:600" data-i18n="home.personas.qa.cta">See the quality system →</p>
+          </a>
+          <a href="for-founders.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-icon" style="background:rgba(245,158,11,0.08);color:var(--color-accent-500)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <h3 class="card-title" data-i18n="home.personas.founder.title">Founders & Managers</h3>
+            <p class="card-desc" data-i18n="home.personas.founder.desc">Team of 3 ships like team of 10. 9x ROI per engineering dollar.</p>
+            <p class="mt-4" style="color:var(--accent-founder);font-weight:600" data-i18n="home.personas.founder.cta">See the ROI math →</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="home.testimonialsTitle">Results from Real Teams</h2>
+        <div class="testimonials-grid mt-8 stagger fade-in">
+          <div class="testimonial">
+            <p class="testimonial-quote" data-i18n="home.testimonials.t1.quote">PR approval time dropped from 3 hours to 30 minutes. The quality gate reviews code before I even look at it.</p>
+            <p class="testimonial-author" data-i18n="home.testimonials.t1.author">Tuan V. — Senior Frontend Developer</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-quote" data-i18n="home.testimonials.t2.quote">Backlog reduced 60% in one month. I could ship non-critical features myself without bothering the dev team.</p>
+            <p class="testimonial-author" data-i18n="home.testimonials.t2.author">Dung L. — Product Manager</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-quote" data-i18n="home.testimonials.t3.quote">Production bugs dropped from 15/sprint to 2/sprint. AI code passes 5 gates before it reaches me.</p>
+            <p class="testimonial-author" data-i18n="home.testimonials.t3.author">Huong P. — QA Automation Lead</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INSTALL CTA — Loss Aversion ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-section">
+          <h2 data-i18n="home.ctaSection.title">Every Hour You Wait, More Untested AI Code Ships to Production</h2>
+          <p data-i18n="home.ctaSection.desc">Open source. MIT License. Install in 30 seconds. Works on every AI platform. Zero risk.</p>
+          <div class="code-block" style="max-width:500px;margin:0 auto var(--space-8);text-align:left">
+            <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> <span>Terminal</span></div>
+            <style>@keyframes revealMsg { to { opacity: 1; } }</style>
+            <code><span class="typewriter-text">$ npm install -g cody-master &amp;&amp; cm dashboard start</span><br><br><span style="color:var(--terminal-green); opacity:0; animation: revealMsg 0s ease 2s forwards">✅ CodyMaster Dashboard running at http://localhost:6969</span></code>
+          </div>
+          <div class="btn-group">
+            <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="home.ctaSection.primaryCta">Install Free Now</a>
+            <a href="how-it-works.html" class="btn btn-secondary" data-i18n="home.ctaSection.secondaryCta">Read How It Works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-icon">⚡</span> <span data-i18n="footer.brand">CodyMaster</span></div>
+          <p data-i18n="footer.brandDesc">Universal Agent Skills Platform. Open Source. MIT License.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.product">Product</h4>
+          <ul>
+            <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+            <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="nav.personas">By Role</h4>
+          <ul>
+            <li><a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a></li>
+            <li><a href="for-dev.html" data-i18n="nav.forDev">For Developers</a></li>
+            <li><a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a></li>
+            <li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.connect">Connect</h4>
+          <ul>
+            <li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li>
+            <li><a href="https://github.com/tody-agent/codymaster/issues">Issues</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.copyright">© 2026 CodyMaster. Open Source, MIT License.</span>
+        <span data-i18n="common.openSource">Open Source · MIT License · Free Forever</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

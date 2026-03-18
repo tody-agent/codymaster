@@ -1,0 +1,498 @@
+/* ============================================================
+   Doc-Kit Premium — UX Master Edition
+   Design System CSS for Docusaurus 3
+   
+   Principles applied:
+   - Fitts's Law: Touch targets ≥ 44px on mobile
+   - Doherty Threshold: Smooth 200ms transitions
+   - WCAG 2.1 AA: Contrast ratios, focus-visible rings
+   - Miller's Law: Visual chunking via spacing & borders
+   ============================================================ */
+
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============================================================
+   1. DESIGN TOKENS — Light Mode
+   ============================================================ */
+:root {
+  /* Primary palette */
+  --ifm-color-primary: #6d5dfc;
+  --ifm-color-primary-dark: #5a48fb;
+  --ifm-color-primary-darker: #503cfb;
+  --ifm-color-primary-darkest: #3520fa;
+  --ifm-color-primary-light: #8072fd;
+  --ifm-color-primary-lighter: #8a7efd;
+  --ifm-color-primary-lightest: #a99dfe;
+
+  /* Typography */
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --ifm-code-font-size: 90%;
+  --ifm-heading-font-weight: 700;
+  --ifm-font-weight-semibold: 600;
+  --ifm-line-height-base: 1.75;
+
+  /* Spacing — 8px grid (Miller's Law: visual chunking) */
+  --doc-spacing-xs: 0.25rem;
+  /* 4px */
+  --doc-spacing-sm: 0.5rem;
+  /* 8px */
+  --doc-spacing-md: 1rem;
+  /* 16px */
+  --doc-spacing-lg: 1.5rem;
+  /* 24px */
+  --doc-spacing-xl: 2rem;
+  /* 32px */
+  --doc-spacing-2xl: 3rem;
+  /* 48px */
+
+  /* Borders & Radius */
+  --doc-radius-sm: 6px;
+  --doc-radius-md: 10px;
+  --doc-radius-lg: 16px;
+
+  /* Shadows */
+  --doc-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --doc-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --doc-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --doc-shadow-glow: 0 0 20px rgba(109, 93, 252, 0.15);
+
+  /* Code highlight */
+  --docusaurus-highlighted-code-line-bg: rgba(109, 93, 252, 0.08);
+}
+
+/* ============================================================
+   2. DESIGN TOKENS — Dark Mode
+   ============================================================ */
+[data-theme='dark'] {
+  --ifm-background-color: #0d1117;
+  --ifm-background-surface-color: #161b22;
+  --ifm-navbar-background-color: rgba(22, 27, 34, 0.85);
+  --ifm-footer-background-color: #0d1117;
+  --ifm-toc-border-color: #21262d;
+  --ifm-color-emphasis-300: #8b949e;
+
+  --ifm-color-primary: #8a7efd;
+  --ifm-color-primary-dark: #7268fc;
+  --ifm-color-primary-darker: #665dfb;
+  --ifm-color-primary-darkest: #4036fa;
+  --ifm-color-primary-light: #a294fe;
+  --ifm-color-primary-lighter: #ae9efe;
+  --ifm-color-primary-lightest: #d0c9ff;
+
+  --ifm-menu-color-active: #8a7efd;
+  --ifm-menu-color-background-active: rgba(138, 126, 253, 0.08);
+
+  --doc-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --doc-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --doc-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --doc-shadow-glow: 0 0 24px rgba(138, 126, 253, 0.2);
+
+  --docusaurus-highlighted-code-line-bg: rgba(138, 126, 253, 0.15);
+}
+
+/* ============================================================
+   3. NAVBAR — Glassmorphism
+   ============================================================ */
+.navbar {
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  box-shadow: var(--doc-shadow-sm);
+  transition: background-color 200ms ease;
+}
+
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* UX: Fitts's Law — touch targets ≥ 44px */
+.navbar__link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--doc-spacing-md);
+  border-radius: var(--doc-radius-sm);
+  transition: color 200ms ease, background-color 200ms ease;
+}
+
+.navbar__link:hover {
+  background-color: var(--ifm-menu-color-background-active);
+}
+
+/* ============================================================
+   4. SIDEBAR — Clean & Smooth
+   ============================================================ */
+.menu__link {
+  border-radius: var(--doc-radius-sm);
+  transition: all 200ms ease;
+  font-size: 0.9rem;
+  min-height: 36px;
+}
+
+.menu__link--active {
+  font-weight: var(--ifm-font-weight-semibold);
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: calc(var(--doc-spacing-md) - 3px);
+}
+
+.menu__list-item-collapsible:hover {
+  background-color: var(--ifm-menu-color-background-active);
+  border-radius: var(--doc-radius-sm);
+}
+
+/* ============================================================
+   5. CONTENT — Reading Optimized
+   ============================================================ */
+
+/* Headings */
+.markdown h1 {
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--doc-spacing-xl);
+  padding-bottom: var(--doc-spacing-md);
+  border-bottom: 2px solid var(--ifm-toc-border-color);
+}
+
+.markdown h2 {
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  margin-top: var(--doc-spacing-2xl);
+  margin-bottom: var(--doc-spacing-lg);
+}
+
+.markdown h3 {
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  margin-top: var(--doc-spacing-xl);
+}
+
+/* Paragraphs — optimal reading width */
+.markdown p {
+  max-width: 72ch;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   6. TABLES — Striped, Hover, Responsive
+   ============================================================ */
+.markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--doc-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--ifm-toc-border-color);
+  font-size: 0.92rem;
+}
+
+.markdown th {
+  background-color: var(--ifm-background-surface-color);
+  font-weight: var(--ifm-font-weight-semibold);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  padding: var(--doc-spacing-sm) var(--doc-spacing-md);
+}
+
+.markdown td {
+  padding: var(--doc-spacing-sm) var(--doc-spacing-md);
+  border-top: 1px solid var(--ifm-toc-border-color);
+}
+
+/* Doherty Threshold — 200ms hover feedback */
+.markdown tr {
+  transition: background-color 200ms ease;
+}
+
+.markdown tbody tr:hover {
+  background-color: var(--ifm-menu-color-background-active);
+}
+
+/* ============================================================
+   7. CODE BLOCKS — JetBrains Mono, Rounded
+   ============================================================ */
+.prism-code {
+  border-radius: var(--doc-radius-md) !important;
+  border: 1px solid var(--ifm-toc-border-color);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+code {
+  border-radius: var(--doc-radius-sm);
+  padding: 0.15em 0.4em;
+  font-size: var(--ifm-code-font-size);
+}
+
+/* ============================================================
+   8. ADMONITIONS — Styled Tips/Warnings
+   ============================================================ */
+.alert {
+  border-radius: var(--doc-radius-md);
+  border-left-width: 4px;
+  box-shadow: var(--doc-shadow-sm);
+}
+
+.alert .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+/* ============================================================
+   9. CARDS — Premium Hover Effect
+   ============================================================ */
+.card {
+  border-radius: var(--doc-radius-lg);
+  border: 1px solid var(--ifm-toc-border-color);
+  background: var(--ifm-background-surface-color);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--doc-shadow-glow);
+}
+
+/* ============================================================
+   10. TOC — Right Sidebar
+   ============================================================ */
+.table-of-contents__link {
+  font-size: 0.85rem;
+  transition: color 200ms ease;
+}
+
+.table-of-contents__link--active {
+  font-weight: var(--ifm-font-weight-semibold);
+  color: var(--ifm-color-primary);
+}
+
+/* ============================================================
+   11. FOOTER — Clean Dark
+   ============================================================ */
+.footer {
+  border-top: 1px solid var(--ifm-toc-border-color);
+}
+
+.footer__title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   12. MERMAID — Dark Mode Compatible
+   ============================================================ */
+.mermaid {
+  background: var(--ifm-background-surface-color);
+  border-radius: var(--doc-radius-md);
+  padding: var(--doc-spacing-lg);
+  border: 1px solid var(--ifm-toc-border-color);
+}
+
+[data-theme='dark'] .mermaid .node rect,
+[data-theme='dark'] .mermaid .node circle,
+[data-theme='dark'] .mermaid .node polygon {
+  fill: #2d333b !important;
+  stroke: #6d5dfc !important;
+}
+
+[data-theme='dark'] .mermaid text {
+  fill: #e6edf3 !important;
+}
+
+[data-theme='dark'] .mermaid .edgeLabel {
+  background-color: #161b22 !important;
+  color: #e6edf3 !important;
+}
+
+[data-theme='dark'] .mermaid .flowchart-link {
+  stroke: #8b949e !important;
+}
+
+/* ============================================================
+   13. ACCESSIBILITY — WCAG 2.1 AA
+   ============================================================ */
+
+/* UX: Poka-Yoke — focus-visible for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--doc-radius-sm);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   14. RESPONSIVE — Mobile Optimized
+   ============================================================ */
+
+/* --- Mobile Sidebar Fix ---
+   ROOT CAUSE: --ifm-navbar-background-color uses rgba() for glassmorphism
+   transparency on the desktop navbar. Docusaurus reads this same variable
+   for .navbar-sidebar background, making the mobile sidebar transparent.
+   
+   FIX: Override the variable on .navbar-sidebar to be fully opaque.
+   DO NOT override transform — Docusaurus handles the slide animation.
+   DO NOT set overflow on __items — it clips the horizontal panel slide. */
+
+/* Override the translucent navbar bg on the sidebar */
+.navbar-sidebar {
+  --ifm-navbar-background-color: #ffffff;
+  height: 100vh !important;
+  height: 100dvh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: var(--doc-shadow-lg) !important;
+}
+
+[data-theme='dark'] .navbar-sidebar {
+  --ifm-navbar-background-color: #161b22;
+}
+
+/* Ensure the sidebar and ALL child containers use opaque background */
+.navbar-sidebar,
+.navbar-sidebar .navbar-sidebar__brand,
+.navbar-sidebar .navbar-sidebar__items,
+.navbar-sidebar .navbar-sidebar__item {
+  background-color: var(--ifm-navbar-background-color) !important;
+}
+
+/* Items wrapper fills remaining space below brand bar */
+.navbar-sidebar .navbar-sidebar__items {
+  flex: 1 1 auto !important;
+}
+
+/* Scrollable individual panels */
+.navbar-sidebar .navbar-sidebar__item {
+  overflow-y: auto;
+}
+
+/* Brand bar styling */
+.navbar-sidebar .navbar-sidebar__brand {
+  min-height: 60px;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  flex-shrink: 0;
+}
+
+/* Menu links — Fitts's Law, 44px touch targets */
+.navbar-sidebar .menu__link {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 44px !important;
+  padding: var(--doc-spacing-sm) var(--doc-spacing-lg) !important;
+  font-size: 0.95rem !important;
+  border-radius: var(--doc-radius-sm);
+  transition: background-color 150ms ease;
+}
+
+.navbar-sidebar .menu__link:hover {
+  background-color: var(--ifm-menu-color-background-active) !important;
+}
+
+.navbar-sidebar .menu__link--active {
+  font-weight: var(--ifm-font-weight-semibold) !important;
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Hamburger toggle — touch-friendly */
+.navbar__toggle {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 996px) {
+  .markdown h1 {
+    font-size: 1.6rem;
+  }
+
+  .markdown h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Table scroll on mobile */
+  .markdown table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent navbar links from interfering on mobile */
+  .navbar__link {
+    min-height: 40px;
+  }
+}
+
+/* ============================================================
+   15. CUSTOM UTILITY CLASSES
+   ============================================================ */
+
+/* Badge */
+.badge--premium {
+  background-color: rgba(109, 93, 252, 0.1);
+  color: var(--ifm-color-primary);
+  border: 1px solid rgba(138, 126, 253, 0.3);
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+/* Quick Reference Box */
+.quick-ref {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-toc-border-color);
+  border-left: 4px solid var(--ifm-color-primary);
+  border-radius: var(--doc-radius-md);
+  padding: var(--doc-spacing-lg);
+  margin-bottom: var(--doc-spacing-xl);
+}
+
+/* Details/Accordion — Progressive Disclosure (Hick's Law) */
+details {
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: var(--doc-radius-md);
+  padding: var(--doc-spacing-md);
+  margin-bottom: var(--doc-spacing-md);
+  transition: all 200ms ease;
+}
+
+details[open] {
+  border-color: var(--ifm-color-primary-lighter);
+  box-shadow: var(--doc-shadow-sm);
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: var(--ifm-font-weight-semibold);
+  padding: var(--doc-spacing-xs) 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+details summary:hover {
+  color: var(--ifm-color-primary);
+}

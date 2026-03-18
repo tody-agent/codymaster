@@ -1,0 +1,11 @@
+{
+  "name": "codymaster",
+  "description": "Universal Agent Skills Platform",
+  "github": {
+    "account": "tody-agent",
+    "org": "tody-agent",
+    "repo": "codymaster",
+    "remoteUrl": "https://github.com/tody-agent/codymaster.git",
+    "userEmail": "tody-agent@users.noreply.github.com"
+  }
+}

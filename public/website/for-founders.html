@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster — For Founders & Managers</title>
+  <meta name="description" content="Team of 3 ships faster than team of 10. 9x ROI per engineering dollar. Dashboard visibility without standups.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="persona-page founder">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span> CodyMaster</a>
+      <nav><ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+        <li><a href="agent-support.html" data-i18n="nav.claw">Claw</a></li>
+        <li class="nav-dropdown"><a class="nav-dropdown-btn active" data-i18n="nav.personas">By Role</a><div class="nav-dropdown-menu"><a href="for-pm.html" data-i18n="nav.forPM">For PM</a><a href="for-dev.html" data-i18n="nav.forDev">For Dev</a><a href="for-qa.html" data-i18n="nav.forQA">For QA</a><a href="for-founders.html" class="active" data-i18n="nav.forFounders">For Founders</a></div></li>
+      </ul></nav>
+      <div class="header-controls">
+        <div class="lang-switcher"><button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button><div class="lang-menu"><button class="lang-option" data-lang="en">🇬🇧 English</button><button class="lang-option" data-lang="ru">🇷🇺 Русский</button><button class="lang-option" data-lang="zh">🇨🇳 中文</button><button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button></div></div>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav"><ul class="mobile-nav-links"><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="showcase.html">Showcase</a></li><li><span class="mobile-nav-label">By Role</span></li><li><a href="for-pm.html">For PM</a></li><li><a href="for-dev.html">For Dev</a></li><li><a href="for-qa.html">For QA</a></li><li><a href="for-founders.html">For Founders</a></li></ul></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge" data-i18n="personas.founder.badge">For Founders & Engineering Managers</div>
+        <h1 data-i18n-html="personas.founder.headline">Team of 3 Ships Faster Than Team of 10.<br>The Secret Isn't AI — It's AI with <span class="gradient-text">DISCIPLINE</span>.</h1>
+        <p class="hero-desc" data-i18n="personas.founder.desc">AI tools promise '10x productivity'. Reality? Faster code, more bugs. CodyMaster adds the missing ingredient: Senior Engineer discipline.</p>
+        <div class="btn-group">
+          <a href="#roi" class="btn btn-primary" data-i18n="personas.founder.cta">See the ROI Math</a>
+          <a href="https://github.com/tody-agent/codymaster" class="btn btn-secondary" data-i18n="home.ctaGithub">⭐ Star on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Paradox -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.founder.painTitle">The Engineering Productivity Paradox</h2>
+        <div class="cards-grid mt-8 stagger fade-in" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+          <div class="card" style="border-left:3px solid var(--color-error)">
+            <h3 class="card-title" data-i18n="personas.founder.pains.p1.metric">AI Adoption</h3>
+            <p class="card-desc" style="color:var(--color-success)" data-i18n="personas.founder.pains.p1.promise">Promise: '10x faster'</p>
+            <p class="card-desc" style="color:var(--color-error)" data-i18n="personas.founder.pains.p1.reality">Reality: Code fast, debug faster. Net: 2x.</p>
+          </div>
+          <div class="card" style="border-left:3px solid var(--color-error)">
+            <h3 class="card-title" data-i18n="personas.founder.pains.p2.metric">Bug Rate</h3>
+            <p class="card-desc" style="color:var(--color-success)" data-i18n="personas.founder.pains.p2.promise">'More accurate'</p>
+            <p class="card-desc" style="color:var(--color-error)" data-i18n="personas.founder.pains.p2.reality">Bug density up 2.5x.</p>
+          </div>
+          <div class="card" style="border-left:3px solid var(--color-error)">
+            <h3 class="card-title" data-i18n="personas.founder.pains.p3.metric">Ship Speed</h3>
+            <p class="card-desc" style="color:var(--color-success)" data-i18n="personas.founder.pains.p3.promise">'Features in 1 day'</p>
+            <p class="card-desc" style="color:var(--color-error)" data-i18n="personas.founder.pains.p3.reality">Feature in 1 day. Fix bugs for 2 weeks.</p>
+          </div>
+          <div class="card" style="border-left:3px solid var(--color-error)">
+            <h3 class="card-title" data-i18n="personas.founder.pains.p4.metric">Engineering Cost</h3>
+            <p class="card-desc" style="color:var(--color-success)" data-i18n="personas.founder.pains.p4.promise">'Reduce headcount'</p>
+            <p class="card-desc" style="color:var(--color-error)" data-i18n="personas.founder.pains.p4.reality">Same salaries. Lower quality.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROI Math -->
+    <section class="section" id="roi">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.founder.roiTitle">The Math That Sells Itself</h2>
+        <div class="table-wrapper mt-8 fade-in" style="max-width:850px;margin:0 auto">
+          <table class="comparison-table">
+            <thead><tr><th>Factor</th><th>Before</th><th>After</th><th>Saving</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="personas.founder.roi.r1.factor">Bug fix time</td><td data-i18n="personas.founder.roi.r1.before">40% of sprint</td><td data-i18n="personas.founder.roi.r1.after">8% of sprint</td><td data-i18n="personas.founder.roi.r1.saving">-80%</td></tr>
+              <tr><td data-i18n="personas.founder.roi.r2.factor">Code review</td><td data-i18n="personas.founder.roi.r2.before">3 hrs/PR</td><td data-i18n="personas.founder.roi.r2.after">30 min/PR</td><td data-i18n="personas.founder.roi.r2.saving">-83%</td></tr>
+              <tr><td data-i18n="personas.founder.roi.r3.factor">Regression</td><td data-i18n="personas.founder.roi.r3.before">2 days/sprint</td><td data-i18n="personas.founder.roi.r3.after">4 hrs (auto)</td><td data-i18n="personas.founder.roi.r3.saving">-80%</td></tr>
+              <tr><td data-i18n="personas.founder.roi.r4.factor">Context rebuild</td><td data-i18n="personas.founder.roi.r4.before">1 hr/session</td><td data-i18n="personas.founder.roi.r4.after">0 (Memory)</td><td data-i18n="personas.founder.roi.r4.saving">-100%</td></tr>
+              <tr><td data-i18n="personas.founder.roi.r5.factor">Dev onboarding</td><td data-i18n="personas.founder.roi.r5.before">2 weeks</td><td data-i18n="personas.founder.roi.r5.after">3 days</td><td data-i18n="personas.founder.roi.r5.saving">-78%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="root-cause mt-8 fade-in" data-i18n-html="personas.founder.roiSummary">Team of 5 + CodyMaster = 90% productivity. Team of 15 without = 40%. <strong>9x ROI per dollar.</strong></div>
+      </div>
+    </section>
+
+    <!-- Dashboard LIVE Showcase -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.founder.dashboardTitle">Manager Dashboard — Ship Without Standups</h2>
+        <p class="section-subtitle text-center mx-auto">Real dashboard. Real data. Running on localhost:6969 right now.</p>
+
+        <div class="dashboard-showcase mt-8 fade-in">
+          <div class="dashboard-tabs">
+            <button class="dashboard-tab active" data-tab="kanban">📋 Kanban Board</button>
+            <button class="dashboard-tab" data-tab="history">🕐 Activity History</button>
+            <button class="dashboard-tab" data-tab="deploys">🚀 Deployments</button>
+          </div>
+          <div class="device-frame">
+            <div class="device-frame-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="url-bar">localhost:6969</span>
+            </div>
+            <img src="img/dashboard-kanban.png" alt="CodyMaster Kanban Dashboard" data-tab-content="kanban">
+            <img src="img/dashboard-history.png" alt="CodyMaster Activity History" data-tab-content="history" class="hidden">
+            <img src="img/dashboard-deploys.png" alt="CodyMaster Deployment Tracking" data-tab-content="deploys" class="hidden">
+          </div>
+        </div>
+
+        <div class="feature-pills mt-8 fade-in">
+          <span class="feature-pill"><span class="feature-pill-icon">📊</span> Kanban Board</span>
+          <span class="feature-pill"><span class="feature-pill-icon">🤖</span> Multi-Agent Tracking</span>
+          <span class="feature-pill"><span class="feature-pill-icon">🕐</span> Activity Timeline</span>
+          <span class="feature-pill"><span class="feature-pill-icon">🚀</span> Deploy + Rollback</span>
+          <span class="feature-pill"><span class="feature-pill-icon">📝</span> Changelog</span>
+          <span class="feature-pill"><span class="feature-pill-icon">🔔</span> Dispatch to Agent</span>
+        </div>
+
+        <!-- Why Dashboard > CLI -->
+        <div class="workflow-compare mt-12 fade-in">
+          <div class="workflow-compare-col old">
+            <span class="workflow-compare-label">Competitors (CLI only)</span>
+            <ul class="workflow-compare-list">
+              <li>No visibility — 'what is AI doing right now?'</li>
+              <li>Terminal logs scroll past — missed errors</li>
+              <li>No task history — context lost between sessions</li>
+              <li>Deploy = manual scripts</li>
+            </ul>
+          </div>
+          <div class="workflow-compare-col new">
+            <span class="workflow-compare-label">CodyMaster Dashboard</span>
+            <ul class="workflow-compare-list">
+              <li>Visual Kanban — Backlog → Progress → Review → Done</li>
+              <li>Activity log — every action timestamped</li>
+              <li>Multi-agent — see which agent handles which task</li>
+              <li>One-click deploy tracking + rollback</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="personas.founder.faqTitle">Founder Questions</h2>
+        <div class="faq-list mt-8 fade-in">
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.founder.faqs.f1.q">How fast do I see ROI?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.founder.faqs.f1.a">Week 1: Quality gates active. Month 1: 2-3x velocity. Quarter 1: Cost per feature drops 60%.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.founder.faqs.f2.q">Will devs push back?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.founder.faqs.f2.a">Developers usually LOVE it. 80% faster code review, Working Memory, open-source.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.founder.faqs.f3.q">Per-seat pricing?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.founder.faqs.f3.a">No pricing. MIT License, free forever. CodyMaster = $0.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.founder.faqs.f4.q">Data security?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.founder.faqs.f4.a">100% local execution. Nothing sent to CodyMaster servers.</div></div></div>
+          <div class="faq-item"><button class="faq-question" data-i18n="personas.founder.faqs.f5.q">vs hiring senior engineers?</button><div class="faq-answer"><div class="faq-answer-inner" data-i18n="personas.founder.faqs.f5.a">1 senior ≈ $8K/month. CodyMaster = $0/month + senior-level output for every dev.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section"><div class="container"><div class="cta-section">
+      <h2>Your Competitors Are Already Using AI With Discipline.<br><span class="gradient-text">Are You?</span></h2>
+      <p data-i18n="home.ctaSection.desc">Open source. MIT License. Install in 30 seconds. Zero risk.</p>
+      <div class="btn-group"><a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="common.getStarted">Install Free</a><a href="how-it-works.html" class="btn btn-secondary">How It Works →</a></div>
+    </div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span> CodyMaster</div><p data-i18n="footer.brandDesc">Universal Agent Skills Platform.</p></div>
+    <div class="footer-col"><h4>Product</h4><ul><li><a href="how-it-works.html">How It Works</a></li><li><a href="showcase.html">Showcase</a></li></ul></div>
+    <div class="footer-col"><h4>By Role</h4><ul><li><a href="for-pm.html">For PM</a></li><li><a href="for-dev.html">For Dev</a></li><li><a href="for-qa.html">For QA</a></li><li><a href="for-founders.html">For Founders</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li></ul></div>
+  </div><div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 CodyMaster.</span></div></div></footer>
+  <script src="js/i18n-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

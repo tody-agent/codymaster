@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc-Kit | Codebase to Beautiful Docs in Seconds</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-hover: #1f252e;
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
+            --primary: #6d5dfc;
+            --primary-hover: #8a7efd;
+            --accent: #2ea043;
+            --border-color: #30363d;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(109, 93, 252, 0.15) 0%, transparent 50%);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(109, 93, 252, 0.1);
+            color: var(--primary-hover);
+            border: 1px solid rgba(109, 93, 252, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            background: linear-gradient(180deg, #fff, #8b949e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #6d5dfc, #a99dfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 14px 0 rgba(109, 93, 252, 0.39);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(109, 93, 252, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+            border-color: var(--text-muted);
+        }
+
+        /* Interactive Terminal */
+        .preview-section {
+            margin-top: 4rem;
+            perspective: 1000px;
+        }
+
+        .terminal {
+            background: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            transform: rotateX(5deg) scale(0.95);
+            transition: transform 0.5s ease;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .preview-section:hover .terminal {
+            transform: rotateX(0) scale(1);
+        }
+
+        .terminal-header {
+            background: var(--bg-card);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #a5d6ff;
+            line-height: 1.5;
+            background: #0d1117;
+        }
+
+        .terminal-prompt { color: #2ea043; }
+        .terminal-cmd { color: #e6edf3; }
+        .terminal-output { color: #8b949e; margin-top: 0.5rem; }
+        .terminal-highlight { color: #d2a8ff; }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 0;
+            background: var(--bg-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(109, 93, 252, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* How it works */
+        .workflow {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, #161b22, #0d1117);
+        }
+
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: rgba(255,255,255,0.02);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .step-num {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .cta-group { flex-direction: column; }
+            .step { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="container">
+            <div class="badge">Google Antigravity Toolkit</div>
+            <h1>Documentation that <br><span>Writes Itself</span></h1>
+            <p>Unleash your AI agent. Automatically scan your codebase, trace logic, and deploy beautiful Technical Docs, SOPs, and API references in seconds.</p>
+            
+            <div class="cta-group">
+                <a href="#install" class="btn btn-primary">
+                    <svg style="width:20px;height:20px;margin-right:8px" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Installation Guide
+                </a>
+                <a href="https://github.com/your-repo/doc-kit" class="btn btn-secondary">
+                    View on GitHub
+                </a>
+            </div>
+
+            <div class="preview-section">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="dots">
+                            <div class="dot dot-red"></div>
+                            <div class="dot dot-yellow"></div>
+                            <div class="dot dot-green"></div>
+                        </div>
+                    </div>
+                    <div class="terminal-body">
+                        <span class="terminal-prompt">$</span> <span class="terminal-cmd">bash doc-gen.sh</span><br><br>
+                        <span style="color:#6d5dfc;font-weight:bold;">📚 Doc-Kit — Documentation Generator</span><br>
+                        <span class="terminal-output">
+                        📑 Step 1: Document Type<br>
+                        1) tech — Technical docs (Architecture, DB, Deployment)<br>
+                        2) sop  — SOP User Guides (step-by-step)<br>
+                        3) api  — API Reference (endpoints, schemas)<br>
+                        4) all  — Full documentation suite<br><br>
+                        </span>
+                        <span style="color:#3fb950;font-weight:bold;">Select [1-4]:</span> <span class="terminal-highlight">4</span><br>
+                        <span class="terminal-output">🎨 Output Format: docusaurus<br>📂 Source Path: /src/app<br>🌏 Language: English</span><br><br>
+                        <span style="color:#d2a8ff;font-weight:bold;">✅ Prompt successfully generated! Snippet copied to clipboard.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why use Doc-Kit?</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Deep Code Analysis</h3>
+                    <p>No more guessing. Doc-Kit traces actual code paths, inspects your database ORMs, and maps API routes automatically.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📐</div>
+                    <h3>Intelligent Diagrams</h3>
+                    <p>Beautiful, dark-mode ready Mermaid diagrams generated instantly for Data Flows, ER Diagrams, and System Architecture.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Dual Output Formats</h3>
+                    <p>Want it simple? Export as cleanly structured Markdown. Want it professional? Instantly scaffold a Docusaurus static site.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>For Techs & Users</h3>
+                    <p>Generates detailed API references for developers, alongside step-by-step SOP visual guides for your product users.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Zero Shallow Analysis</h3>
+                    <p>Strict prompt engineering forces the AI to cite <code>(file_path:line_number)</code> for every technical claim made.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>Bilingual Output</h3>
+                    <p>Write docs for your local team or global product. Native prompt support for writing documentation in both English and Vietnamese.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="workflow" id="install">
+        <div class="container">
+            <h2 class="section-title">How it Works</h2>
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h3>Install the Toolkit</h3>
+                        <p>Copy the Doc-Kit folder into your Antigravity skills repository. <code>cp -r doc-kit ~/.gemini/antigravity/skills/</code></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h3>Generate Prompt</h3>
+                        <p>Run the interactive CLI script to pick your documentation type (API, SOP, Tech) and output format (Markdown or Docusaurus).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h3>Let Antigravity Work</h3>
+                        <p>Paste the generated prompt into your Google Antigravity session. The agent orchestrates 4 sub-skills to analyze, map, and write.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h3>Deploy</h3>
+                        <p>You now have a folder of structured markdowns, or a fully functional Docusaurus site ready to deploy to Vercel/Netlify.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>Doc-Kit</strong> toolkit for Google Antigravity.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Designed and engineered by the Antigravity community.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

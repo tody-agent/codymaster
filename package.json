@@ -1,0 +1,33 @@
+{
+  "name": "cody-master",
+  "version": "3.2.0",
+  "description": "Universal Agent Skills Platform",
+  "main": "dist/index.js",
+  "bin": {
+    "cody": "./dist/index.js",
+    "cm": "./dist/index.js",
+    "codymaster": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@types/node": "^25.5.0",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
+    "express": "^5.2.1",
+    "prompts": "^2.4.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/prompts": "^2.4.9"
+  }
+}
