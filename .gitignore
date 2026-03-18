@@ -4,3 +4,8 @@ dist
 
 # CodyMaster working memory
 .cm/
+
+# Secrets
+.env
+.env.*
+!.env.example
