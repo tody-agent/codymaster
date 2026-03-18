@@ -12,7 +12,8 @@
     "forQA": "Cho QA/QC",
     "forFounders": "Cho Leaders",
     "personas": "Giải Pháp",
-    "github": "GitHub"
+    "github": "GitHub",
+    "claw": "Claw"
   },
   "home": {
     "badge": "Open Source · MIT License · Hỗ trợ 7 nền tảng AI",
@@ -20,6 +21,7 @@
     "desc": "CodyMaster rèn luyện AI của bạn theo kỷ luật của một Senior thực thụ: Viết test trước, kiểm định 6 lớp, ghi nhớ ngữ cảnh và tự động hóa an toàn. Đừng chỉ code nhanh, hãy code chuẩn Production.",
     "cta": "Trải Nghiệm Miễn Phí (30s)",
     "ctaGithub": "⭐ Star trên GitHub",
+    "trustLabel": "Tích hợp mượt mà với mọi nền tảng AI hàng đầu",
     "stats": {
       "skills": "25+",
       "skillsLabel": "Kỹ Năng Senior",
@@ -137,7 +139,69 @@
         "desc": "Mất ngữ cảnh, code rối rắm. Năng suất thực tế còn thấp hơn khi chưa dùng AI."
       }
     },
-    "rootCause": "Vấn đề không nằm ở AI, mà ở **Sự Thiếu Kỷ Luật**. CodyMaster mang kỷ luật thép vào từng dòng code AI sinh ra."
+    "rootCause": "Vấn đề không nằm ở AI, mà ở **Sự Thiếu Kỷ Luật**. CodyMaster mang kỷ luật thép vào từng dòng code AI sinh ra.",
+    "comparisonTitle": "Trước & Sau Khi Có CodyMaster",
+    "comparison": {
+      "before": {
+        "label": "Không có CodyMaster",
+        "items": [
+          "Chất lượng: 'Chạy được' là xong",
+          "Testing: Thủ công hoặc bỏ qua hoàn toàn",
+          "Ngữ cảnh: Mất trắng sau mỗi phiên",
+          "Deploy: Copy file và cầu nguyện",
+          "Khi bế tắc: Vòng lặp debug vô tận"
+        ]
+      },
+      "after": {
+        "label": "Có CodyMaster",
+        "items": [
+          "TDD + 6 tầng kiểm định cho mọi commit",
+          "AI viết test TRƯỚC, đảm bảo ≥80% coverage",
+          "Trí nhớ dự án lưu trữ ngữ cảnh vĩnh viễn",
+          "Pipeline deploy đa tầng với auto-rollback",
+          "Judge Agent phát hiện bế tắc và gợi ý hướng mới"
+        ]
+      }
+    },
+    "dashboardTabs": {
+      "kanban": "Bảng Kanban",
+      "history": "Lịch Sử Hoạt Động",
+      "deploys": "Quản Lý Deploy"
+    },
+    "comparison2": {
+      "old": {
+        "title": "Các Công Cụ AI Khác (Chỉ CLI)",
+        "items": [
+          "Hộp đen — không thể nhìn thấy AI đang làm gì",
+          "Đầu ra Terminal trôi vèo vèo — dễ bỏ sót lỗi",
+          "Không quản lý task — 'hôm qua mình vừa làm tới đâu rồi?'",
+          "Deploy bằng cách copy-paste lệnh thủ công",
+          "Không có auto-rollback — hi vọng là code chạy được"
+        ]
+      },
+      "new": {
+        "title": "CodyMaster (Dashboard + CLI)",
+        "items": [
+          "Kanban trực quan — Backlog → In Progress → Review → Done",
+          "Lịch sử hoạt động — mọi thao tác được ghi log kèm timestamp",
+          "Hỗ trợ đa agent — hiển thị Antigravity, Claude Code rõ ràng",
+          "Theo dõi deploy với pipeline phân lớp staging → production",
+          "Rollback chỉ 1 chạm. Hãy ngủ ngon đêm nay."
+        ]
+      }
+    },
+    "agents": {
+      "compatible": "Tương Thích Ngay Lập Tức",
+      "list": [
+        "OpenClaw & OpenFang",
+        "Claude Desktop & Cursor",
+        "Manus & MaxClaw",
+        "Gemini Antigravity"
+      ],
+      "whyTitle": "Tại sao dùng cm-project-bootstrap?",
+      "whyDesc": "Ngừng cấu hình riêng cho từng AI. Chạy <code>cm-project-bootstrap</code> một lần, tự động sinh file <code>AGENTS.md</code> và cấu hình cho tất cả nền tảng AI phổ biến.",
+      "cta": "Khám phá Claw →"
+    }
   },
   "howItWorks": {
     "badge": "Kiến Trúc Chuyên Sâu",
@@ -255,7 +319,7 @@
         "s1": "Dùng `@[/cm-debugging]` tìm nguyên nhân: Lỗi sự kiện mousedown trên iOS",
         "s2": "Sửa lỗi bằng `@[/cm-tdd]` — Viết test lỗi trước khi fix",
         "s3": "Bài học được lưu vào bộ nhớ — đảm bảo lỗi này không bao giờ lặp lại",
-        "s4": "Đẩy bản fix lên với kịch bản auto-rollback"
+        "s4": "Deploy với kịch bản auto-rollback"
       }
     },
     "ex3": {
@@ -275,20 +339,27 @@
         "s2": "Cổng 3: Blind review phát hiện thiếu check null và lỗi SQL Injection",
         "s3": "AI tự động fix và chạy lại quy trình kiểm duyệt",
         "s4": "Cổng 4-6: Vượt qua Security và i18n",
-        "s5": "🚀 ĐỦ ĐIỀU KIỆN — Sẵn sàng ra mắt"
+        "s5": "🚀 Tất cả 6 cổng đều vượt qua — An toàn để triển khai"
       }
     },
-    "cliTitle": "Lệnh CLI Thường Dùng",
-    "cliCommands": {
-      "dashboard": "cm dashboard start",
-      "dashboardDesc": "Bật Dashboard quản trị tại port 6969",
-      "init": "cm continuity init",
-      "initDesc": "Khởi tạo thư mục trí nhớ cho dự án",
-      "status": "cm continuity status",
-      "statusDesc": "Kiểm tra trạng thái bộ nhớ hiện tại",
-      "version": "cm --version",
-      "versionDesc": "Kiểm tra phiên bản cài đặt"
-    }
+    "startTitle": "Ngày Đầu Tiên Với CodyMaster",
+    "startDesc": "Dễ hơn bạn nghĩ. 3 bước, 5 phút, và bạn sẵn sàng.",
+    "start": {
+      "s1": {
+        "title": "Cài đặt trong 30 giây",
+        "desc": "Một lệnh duy nhất. Hỗ trợ Mac, Windows và Linux. Không cần cấu hình."
+      },
+      "s2": {
+        "title": "Mô tả ý tưởng",
+        "desc": "Dùng ngôn ngữ tự nhiên. 'Tạo form liên hệ' hoặc 'Sửa trang đăng nhập'. CodyMaster hiểu bạn."
+      },
+      "s3": {
+        "title": "Xem kết quả",
+        "desc": "Mở Dashboard và theo dõi tiến độ thời gian thực. Duyệt và deploy tự tin."
+      }
+    },
+    "ctaTitle": "Bạn Sẵn Sàng Thử Chưa?",
+    "ctaDesc": "Miễn phí, mã nguồn mở, cài đặt trong 1 phút. Không cần thẻ tín dụng."
   },
   "personas": {
     "pm": {
@@ -520,6 +591,10 @@
         "f3": {
           "q": "QA có được tùy chỉnh luật không?",
           "a": "Có! QA định nghĩa luật → AI buộc phải tuân thủ. Quyền sinh sát tại Cổng 6 nằm trong tay bạn."
+        },
+        "f4": {
+          "q": "Dev có thể bỏ qua các cổng kiểm duyệt không?",
+          "a": "Hoàn toàn KHÔNG. CodyMaster ép buộc AI phải tuân thủ các cổng ở tầng Agent. Cổng 6 khóa chặt nếu không có QA phê duyệt."
         }
       }
     },
@@ -621,6 +696,10 @@
         "f4": {
           "q": "So với việc thuê thêm Senior?",
           "a": "1 Senior chi phí ~$5,000/tháng. CodyMaster là $0/tháng nhưng giúp mọi dev hiện tại đạt đầu ra chuẩn Senior."
+        },
+        "f5": {
+          "q": "Tại sao không dùng CodyMaster thay vì tuyển Senior Developer?",
+          "a": "Một Senior tốn ~$120k/năm. CodyMaster nhân rộng 'tư duy Senior' cho mọi junior trong team với chi phí $0."
         }
       }
     }
@@ -640,5 +719,129 @@
     "backHome": "← Trang chủ",
     "install": "npm install -g cody-master",
     "openSource": "Open Source · MIT License · Miễn Phí Mãi Mãi"
+  },
+  "claw": {
+    "badge": "🦀 Chuẩn AI Agent Toàn Cầu",
+    "headline": "Một File Cấu Hình.<br><span class='gradient-text'>Mọi AI Agent Tuân Lệnh.</span>",
+    "desc": "CodyMaster Claw cho phép bạn viết một AGENTS.md duy nhất và tự động sinh cấu hình cho OpenClaw, OpenFang, Claude Desktop, Cursor, Manus, MaxClaw, và Gemini Antigravity. Không cần setup từng tool. Một nguồn sự thật cho tất cả AI agents.",
+    "ctaInstall": "Cài Đặt Trong 30 Giây",
+    "ctaUseCases": "Xem Use Cases ↓",
+    "installTitle": "Bắt Đầu Chỉ Với 3 Lệnh",
+    "installDesc": "Từ zero đến workspace AI hoàn chỉnh trong chưa đầy 60 giây. Hoạt động với mọi dự án, mọi stack.",
+    "install": {
+      "s1": {
+        "title": "Bước 1: Cài CodyMaster"
+      },
+      "s2": {
+        "title": "Bước 2: Bootstrap Dự Án"
+      },
+      "s3": {
+        "title": "Bước 3: Khởi Chạy Agent"
+      }
+    },
+    "installNote": "Xong! AGENTS.md + cấu hình từng tool tự động được tạo. Mọi agent đọc cùng luật chơi.",
+    "platformsTitle": "Nền Tảng Hỗ Trợ",
+    "platformsDesc": "CodyMaster tự động sinh file cấu hình cho từng nền tảng. AGENTS.md là nguồn sự thật duy nhất.",
+    "platforms": {
+      "openclaw": "OpenClaw",
+      "openclawDesc": "Tự sinh .clawrc + MCP config",
+      "openfang": "OpenFang",
+      "openfangDesc": "RULES.md + guardrail mapping",
+      "claude": "Claude Desktop",
+      "claudeDesc": "CLAUDE.md + hướng dẫn dự án",
+      "cursor": "Cursor",
+      "cursorDesc": ".cursor/rules + .cursorrules đồng bộ",
+      "manus": "Manus",
+      "manusDesc": "Sẵn sàng cho đa agent orchestration",
+      "gemini": "Gemini Antigravity",
+      "geminiDesc": ".gemini/settings.json tự ánh xạ",
+      "maxclaw": "MaxClaw & Kimi Claw",
+      "maxclawDesc": "Giao thức agent mở rộng được ánh xạ"
+    },
+    "useCasesTitle": "Use Cases Thực Tế",
+    "useCasesDesc": "Xem Claw giúp phát triển phần mềm khác biệt như thế nào.",
+    "useCase1": {
+      "title": "🚀 Solo Dev — Đa Agent Workflow",
+      "desc": "Dùng Claude Desktop để lập kế hoạch, OpenClaw để thực thi, và Cursor để chỉnh sửa nhanh — tất cả đọc cùng AGENTS.md. Không cần nhập lại context. Chuyển tool giữa chừng mà không mất tiến độ."
+    },
+    "useCase2": {
+      "title": "👥 Team 5 Người — Chuẩn Mực Thống Nhất",
+      "desc": "Mỗi dev dùng một tool AI khác nhau? Không vấn đề. AGENTS.md ép buộc cùng guardrails, yêu cầu TDD, và pipeline deploy bất kể mỗi người dùng agent nào.",
+      "items": [
+        "Dev A dùng Claude → cùng luật TDD",
+        "Dev B dùng Cursor → cùng cổng chất lượng",
+        "Dev C dùng OpenClaw → cùng pipeline deploy",
+        "Cả 3 → chất lượng đầu ra giống hệt"
+      ]
+    },
+    "useCase3": {
+      "title": "🏢 Doanh Nghiệp — Quản Trị & Tuân Thủ",
+      "desc": "Định nghĩa chính sách bảo mật một lần trong AGENTS.md: \"Không commit secrets\", \"Luôn chạy OWASP scan\", \"i18n tất cả strings\". Mọi AI agent trong tổ chức tự động kế thừa luật này."
+    },
+    "useCase4": {
+      "title": "🔄 Migration — Đổi Agent Không Đau",
+      "desc": "Muốn thử tool AI mới? Chỉ cần chạy lại <code>cody bootstrap</code>. Nó sinh lại config cho tool mới trong khi giữ nguyên AGENTS.md. Zero overhead migration."
+    },
+    "manifestTitle": "Chuẩn Mở AGENTS.md",
+    "manifestDesc": "Dựa trên đặc tả Microsoft Build 2025, AGENTS.md là file duy nhất cho mọi AI agent biết project hoạt động ra sao — stack công nghệ, luật chơi, lệnh và danh tính.",
+    "manifestList": [
+      "<strong>Danh Tính & Context:</strong> Stack, mục tiêu deploy, brand guidelines — agent nào cũng đọc được ngay.",
+      "<strong>Lệnh Chung:</strong> Chuẩn hóa dev, build, test, deploy cho tất cả tools.",
+      "<strong>Rào Cản:</strong> \"Không deploy nếu chưa qua gate\", \"Luôn dịch strings\", \"TDD bắt buộc\".",
+      "<strong>Ánh Xạ Per-Agent:</strong> Tự sinh .clawrc, CLAUDE.md, .cursorrules, .gemini/settings.json từ một manifest."
+    ],
+    "bestPracticesTitle": "Best Practices",
+    "bestPracticesDesc": "Tuân theo các mẫu này để tận dụng tối đa CodyMaster Claw.",
+    "bp1": {
+      "title": "Version AGENTS.md",
+      "desc": "Commit vào Git. Mọi thành viên và AI agent đọc cùng phiên bản. Coi nó như .eslintrc — định nghĩa luật chung."
+    },
+    "bp2": {
+      "title": "Guardrails Trước Tiên",
+      "desc": "Định nghĩa luật trước tính năng. \"TDD bắt buộc\", \"Không deploy khi chưa qua gate\", \"i18n tất cả strings\"."
+    },
+    "bp3": {
+      "title": "Override Theo Agent",
+      "desc": "Mỗi tool có thế mạnh riêng. Dùng AGENTS.md cho luật chung, và config riêng (CLAUDE.md, .cursorrules) cho tối ưu mỗi agent."
+    },
+    "bp4": {
+      "title": "Bootstrap Trên CI",
+      "desc": "Thêm cody bootstrap --check vào pipeline CI để kiểm tra AGENTS.md luôn đồng bộ với config đã sinh."
+    },
+    "bp5": {
+      "title": "Danh Tính Nghiêm Ngặt",
+      "desc": "Khai báo Git account, Cloudflare account, và Supabase project trong AGENTS.md. cm-identity-guard chặn deploy nhầm account."
+    },
+    "bp6": {
+      "title": "Tài Liệu Custom Skills",
+      "desc": "Liệt kê custom skills trong AGENTS.md để mọi agent biết có hành vi chuyên biệt nào. Skills portable trên mọi platform."
+    },
+    "comparisonTitle": "Trước & Sau Claw",
+    "comparison": {
+      "before": {
+        "label": "Không có Claw",
+        "items": [
+          "Cấu hình riêng từng tool AI",
+          "Luật khác nhau giữa Claude, Cursor, OpenClaw",
+          "Thành viên mới → setup thủ công từng tool",
+          "Đổi tool AI → bắt đầu lại từ đầu",
+          "Guardrails? Guardrails là gì?"
+        ]
+      },
+      "after": {
+        "label": "Có Claw",
+        "items": [
+          "Một AGENTS.md → cấu hình tất cả tools",
+          "Cùng luật, cùng chất lượng đầu ra",
+          "git clone + cody bootstrap → sẵn sàng",
+          "Đổi tool trong vài giây, giữ nguyên context",
+          "TDD + 6-gate + identity lock tích hợp sẵn"
+        ]
+      }
+    },
+    "ctaSection": {
+      "title": "Ngừng Cấu Hình. Bắt Đầu Ship Code.",
+      "desc": "Một manifest. Mọi AI agent. Zero overhead per-tool. Open source, MIT License, miễn phí mãi mãi."
+    }
   }
 }

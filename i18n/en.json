@@ -12,7 +12,8 @@
     "forQA": "For QA/QC",
     "forFounders": "For Founders",
     "personas": "By Role",
-    "github": "GitHub"
+    "github": "GitHub",
+    "claw": "Claw"
   },
   "home": {
     "badge": "Open Source · MIT License · 7 AI Platforms",
@@ -34,9 +35,21 @@
     "problemTitle": "The AI Coding Paradox",
     "problemDesc": "AI tools promise 10x productivity. The reality looks much different.",
     "problems": {
-      "p1": { "emoji": "⚡", "title": "Day 1: 'WOW, this is fast!'", "desc": "AI generates 500 lines in 30 seconds. You feel invincible." },
-      "p2": { "emoji": "🐛", "title": "Day 7: 'Why so many bugs?'", "desc": "73% of AI code ships without tests. Bugs compound. Tech debt explodes." },
-      "p3": { "emoji": "🔄", "title": "Day 30: 'Let's rewrite it.'", "desc": "No tests, no docs, lost context. Your 10x promise became a 0.5x reality." }
+      "p1": {
+        "emoji": "⚡",
+        "title": "Day 1: 'WOW, this is fast!'",
+        "desc": "AI generates 500 lines in 30 seconds. You feel invincible."
+      },
+      "p2": {
+        "emoji": "🐛",
+        "title": "Day 7: 'Why so many bugs?'",
+        "desc": "73% of AI code ships without tests. Bugs compound. Tech debt explodes."
+      },
+      "p3": {
+        "emoji": "🔄",
+        "title": "Day 30: 'Let's rewrite it.'",
+        "desc": "No tests, no docs, lost context. Your 10x promise became a 0.5x reality."
+      }
     },
     "rootCause": "The problem isn't AI. It's AI <strong>without discipline</strong>. CodyMaster fixes that.",
     "featuresTitle": "6 Disciplines For Production-Grade Code",
@@ -87,6 +100,33 @@
           "Working Memory preserves context permanently",
           "Multi-gate deploy pipeline with auto-rollback",
           "Judge Agent detects loops and suggests pivots"
+        ]
+      }
+    },
+    "dashboardTabs": {
+      "kanban": "Kanban Board",
+      "history": "Activity History",
+      "deploys": "Deployments"
+    },
+    "comparison2": {
+      "old": {
+        "title": "Other AI Tools (CLI only)",
+        "items": [
+          "Black box — no visibility into what AI is doing",
+          "Terminal output scrolls past — missed errors",
+          "No task tracking — 'what did I work on yesterday?'",
+          "Deploy via copy-paste commands",
+          "No rollback — pray it works"
+        ]
+      },
+      "new": {
+        "title": "CodyMaster (Dashboard + CLI)",
+        "items": [
+          "Visual Kanban — Backlog → In Progress → Review → Done",
+          "Activity History — every action logged with timestamps",
+          "Multi-agent support — Antigravity, Claude Code visible",
+          "Deploy tracking with staging → production pipeline",
+          "One-click rollback. Sleep well tonight."
         ]
       }
     },
@@ -149,6 +189,18 @@
       "desc": "Open source. MIT License. Install in 30 seconds. Elevate every AI platform you already use.",
       "primaryCta": "Install Free Now",
       "secondaryCta": "Read How It Works"
+    },
+    "agents": {
+      "compatible": "Out-of-the-Box Compatible",
+      "list": [
+        "OpenClaw & OpenFang",
+        "Claude Desktop & Cursor",
+        "Manus & MaxClaw",
+        "Gemini Antigravity"
+      ],
+      "whyTitle": "Why cm-project-bootstrap?",
+      "whyDesc": "Stop setting up your project separately for each AI. Run <code>cm-project-bootstrap</code> once, and it generates the <code>AGENTS.md</code> manifest and configuration files that all popular AI platforms understand natively.",
+      "cta": "Explore Claw →"
     }
   },
   "howItWorks": {
@@ -158,22 +210,64 @@
     "rarvTitle": "The RARV Execution Cycle",
     "rarvDesc": "The core of CodyMaster: preventing goal drift and guaranteeing quality at every single step.",
     "rarvSteps": {
-      "orient": { "title": "0. ORIENT", "desc": "Read CONTINUITY.md — load historical learnings and context" },
-      "reason": { "title": "1. REASON", "desc": "Select highest-priority task, update working memory" },
-      "preact": { "title": "2. PRE-ACT", "desc": "🛡️ Goal alignment check — zero drift authorized" },
-      "act": { "title": "3. ACT", "desc": "Execute specialized skill, secure git checkpoint" },
-      "reflect": { "title": "4. REFLECT", "desc": "Update task status, capture learnings, save CONTINUITY.md" },
-      "verify": { "title": "5. VERIFY", "desc": "Execute 6-gate quality sweep → pass or auto-retry" }
+      "orient": {
+        "title": "0. ORIENT",
+        "desc": "Read CONTINUITY.md — load historical learnings and context"
+      },
+      "reason": {
+        "title": "1. REASON",
+        "desc": "Select highest-priority task, update working memory"
+      },
+      "preact": {
+        "title": "2. PRE-ACT",
+        "desc": "🛡️ Goal alignment check — zero drift authorized"
+      },
+      "act": {
+        "title": "3. ACT",
+        "desc": "Execute specialized skill, secure git checkpoint"
+      },
+      "reflect": {
+        "title": "4. REFLECT",
+        "desc": "Update task status, capture learnings, save CONTINUITY.md"
+      },
+      "verify": {
+        "title": "5. VERIFY",
+        "desc": "Execute 6-gate quality sweep → pass or auto-retry"
+      }
     },
     "gatesTitle": "The 6-Gate Quality System",
     "gatesDesc": "Every piece of code must pass all 6 gates before 'done' is ever spoken.",
     "gates": {
-      "g1": { "label": "G1", "title": "Static Analysis", "desc": "Lint, type check, dead code — absolutely 0 warnings allowed" },
-      "g2": { "label": "G2", "title": "Test Coverage", "desc": "≥80% coverage with strictly enforced TDD" },
-      "g3": { "label": "G3", "title": "Blind Review", "desc": "AI rigorously reviews code without context to verify purely logical quality" },
-      "g4": { "label": "G4", "title": "Anti-Sycophancy", "desc": "Devil's Advocate pass specifically hunting for hidden flaws" },
-      "g5": { "label": "G5", "title": "Security Scan", "desc": "Complete secrets check and OWASP vulnerability compliance" },
-      "g6": { "label": "G6", "title": "i18n Integrity", "desc": "All localization keys perfectly synced across languages" }
+      "g1": {
+        "label": "G1",
+        "title": "Static Analysis",
+        "desc": "Lint, type check, dead code — absolutely 0 warnings allowed"
+      },
+      "g2": {
+        "label": "G2",
+        "title": "Test Coverage",
+        "desc": "≥80% coverage with strictly enforced TDD"
+      },
+      "g3": {
+        "label": "G3",
+        "title": "Blind Review",
+        "desc": "AI rigorously reviews code without context to verify purely logical quality"
+      },
+      "g4": {
+        "label": "G4",
+        "title": "Anti-Sycophancy",
+        "desc": "Devil's Advocate pass specifically hunting for hidden flaws"
+      },
+      "g5": {
+        "label": "G5",
+        "title": "Security Scan",
+        "desc": "Complete secrets check and OWASP vulnerability compliance"
+      },
+      "g6": {
+        "label": "G6",
+        "title": "i18n Integrity",
+        "desc": "All localization keys perfectly synced across languages"
+      }
     },
     "memoryTitle": "Persistent Working Memory",
     "memoryDesc": "AI never forgets. Context survives across sessions — documenting actions, failures, and architectural decisions.",
@@ -204,61 +298,67 @@
     }
   },
   "showcase": {
-    "badge": "Real Examples",
-    "headline": "CodyMaster in <span class='gradient-text'>Action</span>",
-    "desc": "Step-by-step unvarnished reality: what it looks like from the first prompt to a production deploy.",
+    "badge": "Real Stories",
+    "headline": "A Day of Coding with <span class='gradient-text'>CodyMaster</span>",
+    "desc": "No jargon. No code. Just real stories of people who turned an idea into a working product — with an AI assistant that actually gets things right.",
     "ex1": {
-      "title": "Build a Dashboard Feature",
-      "desc": "Revenue analytics with charts and exports — autonomously built in one session.",
+      "title": "💡 \"I just described what I wanted…\"",
+      "desc": "Mai is a Product Manager. She doesn't write code. One morning, she typed what she needed — a revenue analytics dashboard — and went to grab coffee.",
       "steps": {
-        "s1": "Initialize Working Memory: `cm continuity init`",
-        "s2": "Describe feature: `@[/cm-planning]` drafts implementation plan",
-        "s3": "Execute: `@[/cm-execution]` runs TDD → Code → Test → Quality",
-        "s4": "Monitor: View real-time progress on localhost:6969 dashboard",
-        "s5": "Deploy: `@[/cm-safe-deploy]` fires the 8-gate automated pipeline"
+        "s1": "Mai described her idea in plain words: \"I need a revenue dashboard with charts\"",
+        "s2": "CodyMaster broke it into small tasks and started building — tests first, then code",
+        "s3": "It ran 6 quality checks automatically — like having a senior engineer review everything",
+        "s4": "Mai came back from coffee to a working dashboard — tested, reviewed, and ready"
       }
     },
     "ex2": {
-      "title": "Diagnose & Fix a Bug",
-      "desc": "Unresponsive iOS button — triaged, patched, and safely shipped in 20 minutes.",
+      "title": "🐛 \"Users can't log in on iPhone!\"",
+      "desc": "A customer reported the login button wasn't working on iPhones. Normally this would mean hours of detective work. With CodyMaster, it took 20 minutes.",
       "steps": {
-        "s1": "Investigate: `@[/cm-debugging]` isolates root cause immediately",
-        "s2": "Fix via TDD: establish failing test → write patch → refactor",
-        "s3": "Memory Update: CONTINUITY.md learns the patch to prevent recurrence",
-        "s4": "Deploy hotfix with confident auto-rollback safeguards active"
+        "s1": "Bug reported: \"Login doesn't work on Safari.\" CodyMaster started investigating",
+        "s2": "It found the root cause in 3 minutes — a compatibility issue with touch events",
+        "s3": "Fixed it, tested it, and made sure the same mistake never happens again",
+        "s4": "Deployed the fix safely — with automatic rollback if anything goes wrong"
       }
     },
     "ex3": {
-      "title": "Shattering Session Amnesia",
-      "desc": "AI flawlessly resumes complex work — even 14 hours later.",
+      "title": "🧠 \"Wait… it remembered everything?\"",
+      "desc": "Imagine explaining your entire project from scratch every single morning. That's what normal AI tools force you to do. CodyMaster is different.",
       "steps": {
-        "s1": "Session 1: Agent plans architecture and logs to CONTINUITY.md",
-        "s2": "Session 2: Agent revives context instantly for 200 tokens (not 2000)",
-        "s3": "Session 3: 14 hours later, previous 8 completed tasks are seamlessly recalled"
+        "s1": "Monday: You worked on a shopping cart feature. CodyMaster saved every detail",
+        "s2": "Tuesday: You said \"Continue.\" CodyMaster picked up exactly where you left off",
+        "s3": "Thursday: After 2 days off — you said \"Continue.\" Everything was still there"
       }
     },
     "ex4": {
-      "title": "Deploying the 6-Gate System",
-      "desc": "Blind review spots 2 critical blind spots — automatically remediated.",
+      "title": "🛡️ \"It caught a mistake I would never have seen\"",
+      "desc": "Before any code goes live, CodyMaster runs it through 6 automatic checkpoints — like having 6 expert reviewers working for free.",
       "steps": {
-        "s1": "Gates 1 & 2: Static analysis & test coverage PASS flawlessy",
-        "s2": "Gate 3: Blind review detects unparameterized SQL query",
-        "s3": "Auto-Correction: Refactor executes, re-runs Gate 3 → PASS",
-        "s4": "Gates 4 through 6: Anti-sycophancy, security, i18n ALL CLEAR",
-        "s5": "🚀 AUTHORIZED: Code safely greenlit for deployment"
+        "s1": "Check 1 & 2: Is the code clean? Are there enough tests? ✅ Passed",
+        "s2": "Check 3: A second AI reviewed the code \"blind\" and found 2 hidden problems",
+        "s3": "CodyMaster fixed both problems automatically and re-checked — now it's clean",
+        "s4": "Checks 4-6: Security review, honesty check, language sync — all clear",
+        "s5": "All 6 checkpoints passed — safe to go live with full confidence"
       }
     },
-    "cliTitle": "CLI Operations Manual",
-    "cliCommands": {
-      "dashboard": "cm dashboard start",
-      "dashboardDesc": "Mount control dashboard on port 6969",
-      "init": "cm continuity init",
-      "initDesc": "Bootstrap contextual working memory",
-      "status": "cm continuity status",
-      "statusDesc": "Audit current memory state metrics",
-      "version": "cm --version",
-      "versionDesc": "Verify framework version"
-    }
+    "startTitle": "Your First Day with CodyMaster",
+    "startDesc": "It's easier than you think. Three steps, five minutes, and you're ready.",
+    "start": {
+      "s1": {
+        "title": "Install in 30 Seconds",
+        "desc": "One simple command. Works on Mac, Windows, and Linux. No configuration needed."
+      },
+      "s2": {
+        "title": "Describe What You Want",
+        "desc": "Use everyday language. \"Build me a contact form\" or \"Fix the login page.\" CodyMaster understands you."
+      },
+      "s3": {
+        "title": "Watch It Work",
+        "desc": "Open the dashboard and watch real-time progress. Review when it's done. Deploy with confidence."
+      }
+    },
+    "ctaTitle": "Ready to Try It Yourself?",
+    "ctaDesc": "Free, open source, and takes less than a minute to set up. No credit card. No catch."
   },
   "personas": {
     "pm": {
@@ -268,32 +368,83 @@
       "cta": "Install Free — Ship Today",
       "painTitle": "Stuck in the Old Loop?",
       "pains": {
-        "p1": { "emoji": "😤", "title": "Lost in translation", "desc": "You author flawless PRDs; the output still misses the mark. Sprint wasted." },
-        "p2": { "emoji": "🤯", "title": "AI 'Vibe' Coding", "desc": "Attempt 1 is magic. Attempt 2 is buggy. Attempt 3 is utter spaghetti." },
-        "p3": { "emoji": "⏳", "title": "The Drip-Feed", "desc": "Endless planning, arguing priority. Weeks spent on a single API." }
+        "p1": {
+          "emoji": "😤",
+          "title": "Lost in translation",
+          "desc": "You author flawless PRDs; the output still misses the mark. Sprint wasted."
+        },
+        "p2": {
+          "emoji": "🤯",
+          "title": "AI 'Vibe' Coding",
+          "desc": "Attempt 1 is magic. Attempt 2 is buggy. Attempt 3 is utter spaghetti."
+        },
+        "p3": {
+          "emoji": "⏳",
+          "title": "The Drip-Feed",
+          "desc": "Endless planning, arguing priority. Weeks spent on a single API."
+        }
       },
       "rootCause": "The root cause isn't your devs or AI. It's that current AI tools <strong>have zero discipline</strong>.",
       "planTitle": "Requirements to Reality in 3 Steps",
       "plan": {
-        "s1": { "title": "Dictate Vision", "desc": "Detail your idea in plain words. CodyMaster structures the pipeline." },
-        "s2": { "title": "Regimented Execution", "desc": "TDD → Code → Test → Gate → Check. Completely unassisted." },
-        "s3": { "title": "Final Review", "desc": "Inspect dashboard, hit approve, and deploy with fallback armor." }
+        "s1": {
+          "title": "Dictate Vision",
+          "desc": "Detail your idea in plain words. CodyMaster structures the pipeline."
+        },
+        "s2": {
+          "title": "Regimented Execution",
+          "desc": "TDD → Code → Test → Gate → Check. Completely unassisted."
+        },
+        "s3": {
+          "title": "Final Review",
+          "desc": "Inspect dashboard, hit approve, and deploy with fallback armor."
+        }
       },
       "uspTitle": "Why CodyMaster Stands Alone",
       "usp": {
-        "u1": { "before": "Code reality: 'It runs' = deploy", "after": "Strict TDD + 6 Quality Gates" },
-        "u2": { "before": "Testing: Manual clicking", "after": "AI physically writes tests first" },
-        "u3": { "before": "When stuck: Ask ChatGPT", "after": "Judge Agent autonomously pivots" },
-        "u4": { "before": "Across sessions: AI amnesia", "after": "Working Memory retains everything" },
-        "u5": { "before": "Deploy: Pray to the server gods", "after": "Multi-gate pipeline with auto-undo" }
+        "u1": {
+          "before": "Code reality: 'It runs' = deploy",
+          "after": "Strict TDD + 6 Quality Gates"
+        },
+        "u2": {
+          "before": "Testing: Manual clicking",
+          "after": "AI physically writes tests first"
+        },
+        "u3": {
+          "before": "When stuck: Ask ChatGPT",
+          "after": "Judge Agent autonomously pivots"
+        },
+        "u4": {
+          "before": "Across sessions: AI amnesia",
+          "after": "Working Memory retains everything"
+        },
+        "u5": {
+          "before": "Deploy: Pray to the server gods",
+          "after": "Multi-gate pipeline with auto-undo"
+        }
       },
       "faqTitle": "Critical Questions for PMs",
       "faqs": {
-        "f1": { "q": "I'm not a dev. Can I actually use this?", "a": "Yes! You handle the 'what', CodyMaster handles the 'how' — writing tests, code, and enforcing quality. You just approve the result." },
-        "f2": { "q": "Is the generated code reliable?", "a": "Absolutely. Code must pass Static Analysis, Blind Review, Security Scans, and rigorous automated tests before it ever considers 'deploy'." },
-        "f3": { "q": "Why not just use Copilot or Cursor directly?", "a": "Those tools generate code. CodyMaster applies Senior Engineer boundaries ON TOP of them to ensure the code they generate isn't garbage." },
-        "f4": { "q": "How much does it cost?", "a": "Zero dollars. CodyMaster is fully open-source (MIT License). You only pay your underlying AI provider (like Anthropic or OpenAI)." },
-        "f5": { "q": "Setup time?", "a": "Under 5 minutes via npm. Immediate dashboard access. Agnostic across 7 top platforms." }
+        "f1": {
+          "q": "I'm not a dev. Can I actually use this?",
+          "a": "Yes! You handle the 'what', CodyMaster handles the 'how' — writing tests, code, and enforcing quality. You just approve the result."
+        },
+        "f2": {
+          "q": "Is the generated code reliable?",
+          "a": "Absolutely. Code must pass Static Analysis, Blind Review, Security Scans, and rigorous automated tests before it ever considers 'deploy'."
+        },
+        "f3": {
+          "q": "Why not just use Copilot or Cursor directly?",
+          "a": "Those tools generate code. CodyMaster applies Senior Engineer boundaries ON TOP of them to ensure the code they generate isn't garbage."
+        },
+        "f4": {
+          "q": "How much does it cost?",
+          "a": "Zero dollars. CodyMaster is fully open-source (MIT License). You only pay your underlying AI provider (like Anthropic or OpenAI)."
+        },
+        "f5": {
+          "q": "Setup time?",
+          "a": "Under 5 minutes via npm. Immediate dashboard access. Agnostic across 7 top platforms."
+        }
       }
     },
     "dev": {
@@ -303,33 +454,90 @@
       "cta": "⭐ Audit the Source on GitHub",
       "painTitle": "The Fast-Food AI Trap",
       "pains": {
-        "p1": { "emoji": "💀", "title": "The 'WOW' to 'WHY' Pipeline", "desc": "Day 1 is magical speed. Day 30 is tightly-coupled tech debt requiring a rewrite." },
-        "p2": { "emoji": "📉", "title": "73% Without Tests", "desc": "Current tools optimize for typing speed, not logic. Fast and wrong is slower than doing it right." },
-        "p3": { "emoji": "🧠", "title": "Total Context Amnesia", "desc": "Sinking 1000 tokens just to re-explain your data models every morning." }
+        "p1": {
+          "emoji": "💀",
+          "title": "The 'WOW' to 'WHY' Pipeline",
+          "desc": "Day 1 is magical speed. Day 30 is tightly-coupled tech debt requiring a rewrite."
+        },
+        "p2": {
+          "emoji": "📉",
+          "title": "73% Without Tests",
+          "desc": "Current tools optimize for typing speed, not logic. Fast and wrong is slower than doing it right."
+        },
+        "p3": {
+          "emoji": "🧠",
+          "title": "Total Context Amnesia",
+          "desc": "Sinking 1000 tokens just to re-explain your data models every morning."
+        }
       },
       "deepDiveTitle": "Architectural Enforcement",
       "deepDive": {
-        "tdd": { "title": "🔴 Strict TDD Lock", "desc": "AI cannot code without testing first. Red → Green → Refactor. No negotiations." },
-        "gates": { "title": "🛡️ 6-Gate Funnel", "desc": "Lint → Blind Review → Secret Scan → Anti-Sycophancy → UX/Perf → Ship. A true gauntlet." },
-        "memory": { "title": "🧠 Continuity Protocol", "desc": "It saves granular decisions locally. Next week, 'Continue' drops it right back in the zone." },
-        "judge": { "title": "🤖 Judge Escrow", "desc": "🟢 CONTINUE | 🏁 COMPLETE | ⚠️ ESCALATE | 🔄 PIVOT. Prevents infinite looping." }
+        "tdd": {
+          "title": "🔴 Strict TDD Lock",
+          "desc": "AI cannot code without testing first. Red → Green → Refactor. No negotiations."
+        },
+        "gates": {
+          "title": "🛡️ 6-Gate Funnel",
+          "desc": "Lint → Blind Review → Secret Scan → Anti-Sycophancy → UX/Perf → Ship. A true gauntlet."
+        },
+        "memory": {
+          "title": "🧠 Continuity Protocol",
+          "desc": "It saves granular decisions locally. Next week, 'Continue' drops it right back in the zone."
+        },
+        "judge": {
+          "title": "🤖 Judge Escrow",
+          "desc": "🟢 CONTINUE | 🏁 COMPLETE | ⚠️ ESCALATE | 🔄 PIVOT. Prevents infinite looping."
+        }
       },
       "uspTitle": "Your AI Code Enforcer",
       "usp": {
-        "u1": { "problem": "AI vomits untested code", "solution": "cm-tdd enforces test-first logic" },
-        "u2": { "problem": "Chat history amnesia", "solution": ".cm/CONTINUITY.md retains state" },
-        "u3": { "problem": "AI stuck in a hallucination loop", "solution": "Judge Agent intercepts and pivots" },
-        "u4": { "problem": "Committed secrets to main", "solution": "cm-identity-guard blocks bad pushes" },
-        "u5": { "problem": "Deploys break production", "solution": "cm-safe-deploy multi-gate + rollback" },
-        "u6": { "problem": "AI ignores architectural guidelines", "solution": "PRE-ACT verification stops goal drift" }
+        "u1": {
+          "problem": "AI vomits untested code",
+          "solution": "cm-tdd enforces test-first logic"
+        },
+        "u2": {
+          "problem": "Chat history amnesia",
+          "solution": ".cm/CONTINUITY.md retains state"
+        },
+        "u3": {
+          "problem": "AI stuck in a hallucination loop",
+          "solution": "Judge Agent intercepts and pivots"
+        },
+        "u4": {
+          "problem": "Committed secrets to main",
+          "solution": "cm-identity-guard blocks bad pushes"
+        },
+        "u5": {
+          "problem": "Deploys break production",
+          "solution": "cm-safe-deploy multi-gate + rollback"
+        },
+        "u6": {
+          "problem": "AI ignores architectural guidelines",
+          "solution": "PRE-ACT verification stops goal drift"
+        }
       },
       "faqTitle": "Dev FAQ",
       "faqs": {
-        "f1": { "q": "Is this a slow wrapper API?", "a": "No, overhead is zero. Skills are native markdown instructions for your agent, not proxy servers." },
-        "f2": { "q": "Which languages?", "a": "All of them. CodyMaster dictates *how* the AI operates (testing, verifying) rather than syntax." },
-        "f3": { "q": "Does this fight Cursor/Copilot?", "a": "Not at all. It runs alongside them as an operational scaffold, injecting much-needed rigor." },
-        "f4": { "q": "Privacy and memory storage?", "a": "100% locally resident in `.cm/CONTINUITY.md`. No external servers. Ignorable via .gitignore." },
-        "f5": { "q": "Custom skill integration?", "a": "Extremely simple. Write a Markdown file in your `skills/` folder and the AI inherently understands it." }
+        "f1": {
+          "q": "Is this a slow wrapper API?",
+          "a": "No, overhead is zero. Skills are native markdown instructions for your agent, not proxy servers."
+        },
+        "f2": {
+          "q": "Which languages?",
+          "a": "All of them. CodyMaster dictates *how* the AI operates (testing, verifying) rather than syntax."
+        },
+        "f3": {
+          "q": "Does this fight Cursor/Copilot?",
+          "a": "Not at all. It runs alongside them as an operational scaffold, injecting much-needed rigor."
+        },
+        "f4": {
+          "q": "Privacy and memory storage?",
+          "a": "100% locally resident in `.cm/CONTINUITY.md`. No external servers. Ignorable via .gitignore."
+        },
+        "f5": {
+          "q": "Custom skill integration?",
+          "a": "Extremely simple. Write a Markdown file in your `skills/` folder and the AI inherently understands it."
+        }
       }
     },
     "qa": {
@@ -339,9 +547,21 @@
       "cta": "Explore the Quality Gates",
       "painTitle": "The QA Nightmare Scenario",
       "pains": {
-        "p1": { "emoji": "📈", "title": "Floodgate Open", "desc": "Devs use AI to ship 500 lines/day. But QA headcount is the same. Burnout ensures." },
-        "p2": { "emoji": "🐛", "title": "Unpredictable Code", "desc": "AI is a code factory lacking a QA stamp. It's fast, chaotic, and bug-dense." },
-        "p3": { "emoji": "💪", "title": "The True Job of QA", "desc": "You aren't here to find missing commas. You are the architect of business logic integrity." }
+        "p1": {
+          "emoji": "📈",
+          "title": "Floodgate Open",
+          "desc": "Devs use AI to ship 500 lines/day. But QA headcount is the same. Burnout ensures."
+        },
+        "p2": {
+          "emoji": "🐛",
+          "title": "Unpredictable Code",
+          "desc": "AI is a code factory lacking a QA stamp. It's fast, chaotic, and bug-dense."
+        },
+        "p3": {
+          "emoji": "💪",
+          "title": "The True Job of QA",
+          "desc": "You aren't here to find missing commas. You are the architect of business logic integrity."
+        }
       },
       "gatesTitle": "Your 6 Automated Bodyguards",
       "gates": {
@@ -359,10 +579,22 @@
       "reframeConclusion": "AI doesn't erase QA. AI elevates QA to Engineering status.",
       "faqTitle": "Questions for Quality",
       "faqs": {
-        "f1": { "q": "Will this replace my role?", "a": "It replaces manual drudgery. You graduate to managing systemic quality, UX, and advanced architectural validation." },
-        "f2": { "q": "Test framework compatibility?", "a": "Agnostic. Playwright, Cypress, Jest, Pytest. `cm-test-gate` structures it." },
-        "f3": { "q": "Can I enforce my own rules?", "a": "Yes. Outline your QA mandates in the core instruction set, and the AI is bound to execute them flawlessly." },
-        "f4": { "q": "Can developers skip these gates?", "a": "Absolutely not. CodyMaster's structure enforces the gates on the agent level. Gate 6 locks the door without you." }
+        "f1": {
+          "q": "Will this replace my role?",
+          "a": "It replaces manual drudgery. You graduate to managing systemic quality, UX, and advanced architectural validation."
+        },
+        "f2": {
+          "q": "Test framework compatibility?",
+          "a": "Agnostic. Playwright, Cypress, Jest, Pytest. `cm-test-gate` structures it."
+        },
+        "f3": {
+          "q": "Can I enforce my own rules?",
+          "a": "Yes. Outline your QA mandates in the core instruction set, and the AI is bound to execute them flawlessly."
+        },
+        "f4": {
+          "q": "Can developers skip these gates?",
+          "a": "Absolutely not. CodyMaster's structure enforces the gates on the agent level. Gate 6 locks the door without you."
+        }
       }
     },
     "founder": {
@@ -372,34 +604,102 @@
       "cta": "Break Down the ROI",
       "painTitle": "The Great AI Illusion",
       "pains": {
-        "p1": { "metric": "Delivery Promise", "promise": "10x rapid prototyping", "reality": "2x speed + 5x debugging time" },
-        "p2": { "metric": "Code Quality", "promise": "Machine perfection", "reality": "Spaghetti logic and 2.5x dense bug-rates" },
-        "p3": { "metric": "Velocity", "promise": "Features daily", "reality": "Endless regressions blocking the next sprint" },
-        "p4": { "metric": "Cost Center", "promise": "Save on engineering talent", "reality": "Same headcount, unmaintainable codebase" }
+        "p1": {
+          "metric": "Delivery Promise",
+          "promise": "10x rapid prototyping",
+          "reality": "2x speed + 5x debugging time"
+        },
+        "p2": {
+          "metric": "Code Quality",
+          "promise": "Machine perfection",
+          "reality": "Spaghetti logic and 2.5x dense bug-rates"
+        },
+        "p3": {
+          "metric": "Velocity",
+          "promise": "Features daily",
+          "reality": "Endless regressions blocking the next sprint"
+        },
+        "p4": {
+          "metric": "Cost Center",
+          "promise": "Save on engineering talent",
+          "reality": "Same headcount, unmaintainable codebase"
+        }
       },
       "roiTitle": "Hard Numbers and Direct Value",
       "roi": {
-        "r1": { "factor": "Debugging Overhead", "before": "40% dev cycle", "after": "8% dev cycle", "saving": "-80%" },
-        "r2": { "factor": "Code Reviews", "before": "3 hrs/PR", "after": "30 mins/PR", "saving": "-83%" },
-        "r3": { "factor": "Regressions", "before": "2 days/sprint", "after": "4 hrs (autonomous)", "saving": "-80%" },
-        "r4": { "factor": "Context Recovery", "before": "1 hr/morning", "after": "0 hrs", "saving": "-100%" },
-        "r5": { "factor": "Onboarding", "before": "2 weeks", "after": "3 Days", "saving": "-78%" }
+        "r1": {
+          "factor": "Debugging Overhead",
+          "before": "40% dev cycle",
+          "after": "8% dev cycle",
+          "saving": "-80%"
+        },
+        "r2": {
+          "factor": "Code Reviews",
+          "before": "3 hrs/PR",
+          "after": "30 mins/PR",
+          "saving": "-83%"
+        },
+        "r3": {
+          "factor": "Regressions",
+          "before": "2 days/sprint",
+          "after": "4 hrs (autonomous)",
+          "saving": "-80%"
+        },
+        "r4": {
+          "factor": "Context Recovery",
+          "before": "1 hr/morning",
+          "after": "0 hrs",
+          "saving": "-100%"
+        },
+        "r5": {
+          "factor": "Onboarding",
+          "before": "2 weeks",
+          "after": "3 Days",
+          "saving": "-78%"
+        }
       },
       "roiSummary": "Your team amplified by CodyMaster reaches 90% peak productive capacity, yielding an undeniable <strong>9x return on every engineering dollar</strong>.",
       "dashboardTitle": "Management Dashboard — Data, Not Guesses",
       "dashboard": {
-        "d1": { "feature": "📊 Granular Kanban", "value": "Continuous real-time visibility — end the intrusive status updates." },
-        "d2": { "feature": "🤖 Judge Agent Alerts", "value": "Pinpoints stuck execution in real-time before deadlines slip." },
-        "d3": { "feature": "🛡️ Quality Telemetry", "value": "Quantifiable QA gating and pass-rates ready for the board deck." },
-        "d4": { "feature": "🚀 Deployment Auditable", "value": "Track staging to production pushes with 1-click auto-rollback assurance." }
+        "d1": {
+          "feature": "📊 Granular Kanban",
+          "value": "Continuous real-time visibility — end the intrusive status updates."
+        },
+        "d2": {
+          "feature": "🤖 Judge Agent Alerts",
+          "value": "Pinpoints stuck execution in real-time before deadlines slip."
+        },
+        "d3": {
+          "feature": "🛡️ Quality Telemetry",
+          "value": "Quantifiable QA gating and pass-rates ready for the board deck."
+        },
+        "d4": {
+          "feature": "🚀 Deployment Auditable",
+          "value": "Track staging to production pushes with 1-click auto-rollback assurance."
+        }
       },
       "faqTitle": "Leadership Questions",
       "faqs": {
-        "f1": { "q": "When do the metrics shift?", "a": "Week 1: Quality gates stabilize code. Month 1: Velocity effectively doubles. Quarter 1: Cost to ship a feature plummets by 60%." },
-        "f2": { "q": "Will engineers reject this?", "a": "Engineers violently defend CodyMaster. It obliterates tedious code review disputes and repetitive manual testing." },
-        "f3": { "q": "Is there an enterprise tier?", "a": "No. MIT Licensed. Completely free. Your only cost is your Anthropic/OpenAI API keys." },
-        "f4": { "q": "Does your platform scrape my codebase?", "a": "Absolutely not. Zero data leaves your VPC. CodyMaster acts as a local operational logic layer on the developers' hardware." },
-        "f5": { "q": "Why use this instead of hiring a Senior Dev?", "a": "A senior engineer is $120k+ a year. CodyMaster scales Senior DNA to every junior dev on your team for $0." }
+        "f1": {
+          "q": "When do the metrics shift?",
+          "a": "Week 1: Quality gates stabilize code. Month 1: Velocity effectively doubles. Quarter 1: Cost to ship a feature plummets by 60%."
+        },
+        "f2": {
+          "q": "Will engineers reject this?",
+          "a": "Engineers violently defend CodyMaster. It obliterates tedious code review disputes and repetitive manual testing."
+        },
+        "f3": {
+          "q": "Is there an enterprise tier?",
+          "a": "No. MIT Licensed. Completely free. Your only cost is your Anthropic/OpenAI API keys."
+        },
+        "f4": {
+          "q": "Does your platform scrape my codebase?",
+          "a": "Absolutely not. Zero data leaves your VPC. CodyMaster acts as a local operational logic layer on the developers' hardware."
+        },
+        "f5": {
+          "q": "Why use this instead of hiring a Senior Dev?",
+          "a": "A senior engineer is $120k+ a year. CodyMaster scales Senior DNA to every junior dev on your team for $0."
+        }
       }
     }
   },
@@ -418,5 +718,129 @@
     "backHome": "← Return to Home",
     "install": "npm install -g cody-master",
     "openSource": "Open Source · MIT License · Free Forever"
+  },
+  "claw": {
+    "badge": "🦀 Universal AI Agent Standard",
+    "headline": "One Config.<br><span class='gradient-text'>Every AI Agent Obeys.</span>",
+    "desc": "CodyMaster Claw lets you write one AGENTS.md manifest and auto-generate configs for OpenClaw, OpenFang, Claude Desktop, Cursor, Manus, MaxClaw, and Gemini Antigravity. No more per-tool setup. One source of truth for all your AI coding agents.",
+    "ctaInstall": "Install in 30 Seconds",
+    "ctaUseCases": "See Use Cases ↓",
+    "installTitle": "Get Started in 3 Commands",
+    "installDesc": "From zero to fully-configured AI workspace in under 60 seconds. Works with any project, any stack.",
+    "install": {
+      "s1": {
+        "title": "Step 1: Install CodyMaster"
+      },
+      "s2": {
+        "title": "Step 2: Bootstrap Your Project"
+      },
+      "s3": {
+        "title": "Step 3: Start Any Agent"
+      }
+    },
+    "installNote": "That's it. AGENTS.md + per-tool configs are auto-generated. Every agent reads the same rules.",
+    "platformsTitle": "Supported Platforms",
+    "platformsDesc": "CodyMaster auto-generates config files for each platform. Your AGENTS.md is the single source of truth.",
+    "platforms": {
+      "openclaw": "OpenClaw",
+      "openclawDesc": "Auto-generates .clawrc + MCP config",
+      "openfang": "OpenFang",
+      "openfangDesc": "RULES.md + guardrail mapping",
+      "claude": "Claude Desktop",
+      "claudeDesc": "CLAUDE.md + project instructions",
+      "cursor": "Cursor",
+      "cursorDesc": ".cursor/rules + .cursorrules synced",
+      "manus": "Manus",
+      "manusDesc": "Multi-agent orchestration ready",
+      "gemini": "Gemini Antigravity",
+      "geminiDesc": ".gemini/settings.json auto-mapped",
+      "maxclaw": "MaxClaw & Kimi Claw",
+      "maxclawDesc": "Extended agent protocol mapped"
+    },
+    "useCasesTitle": "Real-World Use Cases",
+    "useCasesDesc": "See how Claw transforms AI-assisted development across different team setups.",
+    "useCase1": {
+      "title": "🚀 Solo Developer — Multi-Agent Workflow",
+      "desc": "Use Claude Desktop for planning, OpenClaw for execution, and Cursor for quick edits — all reading the same AGENTS.md. No context re-entry. Switch tools mid-task without losing progress."
+    },
+    "useCase2": {
+      "title": "👥 Team of 5 — Consistent Standards",
+      "desc": "Every developer on your team uses a different AI tool? No problem. AGENTS.md enforces the same guardrails, TDD requirements, and deploy pipeline regardless of which agent each person prefers.",
+      "items": [
+        "Dev A uses Claude → same TDD rules",
+        "Dev B uses Cursor → same quality gates",
+        "Dev C uses OpenClaw → same deploy pipeline",
+        "All 3 → identical output quality"
+      ]
+    },
+    "useCase3": {
+      "title": "🏢 Enterprise — Governance & Compliance",
+      "desc": "Define security policies once in AGENTS.md: \"Never commit secrets\", \"Always run OWASP scan\", \"Enforce i18n for all user-facing strings\". Every AI agent in your org automatically inherits these rules."
+    },
+    "useCase4": {
+      "title": "🔄 Migration — Switch Agents Without Pain",
+      "desc": "Testing a new AI tool? Just run <code>cody bootstrap</code> again. It regenerates configs for the new tool while keeping your AGENTS.md intact. Zero migration overhead. Compare tools with the same codebase rules."
+    },
+    "manifestTitle": "The AGENTS.md Open Standard",
+    "manifestDesc": "Based on the Microsoft Build 2025 specification, AGENTS.md is the single file that tells every AI agent how your project works — its tech stack, rules, commands, and identity.",
+    "manifestList": [
+      "<strong>Identity & Context:</strong> Tech stack, deploy targets, brand guidelines — loaded instantly by any agent.",
+      "<strong>Universal Commands:</strong> Standardizes dev, build, test, and deploy across all tools.",
+      "<strong>Guardrails:</strong> \"Never deploy without gates\", \"Always translate strings\", \"TDD is mandatory\".",
+      "<strong>Per-Agent Mapping:</strong> Auto-generates .clawrc, CLAUDE.md, .cursorrules, .gemini/settings.json from one manifest."
+    ],
+    "bestPracticesTitle": "Best Practices",
+    "bestPracticesDesc": "Follow these patterns to get the most out of CodyMaster Claw.",
+    "bp1": {
+      "title": "Version Your AGENTS.md",
+      "desc": "Check it into Git. Every team member and AI agent reads the same version. Treat it like your .eslintrc — it defines the law of the land."
+    },
+    "bp2": {
+      "title": "Start with Guardrails",
+      "desc": "Define rules before features. \"TDD mandatory\", \"No deploy without gates\", \"i18n all strings\". These constraints paradoxically make AI faster by eliminating rework."
+    },
+    "bp3": {
+      "title": "Use Per-Agent Overrides",
+      "desc": "Each tool has its own strengths. Use AGENTS.md for shared rules, but let per-tool configs (CLAUDE.md, .cursorrules) handle agent-specific optimizations."
+    },
+    "bp4": {
+      "title": "Run Bootstrap on CI",
+      "desc": "Add cody bootstrap --check to your CI pipeline to verify AGENTS.md stays in sync with generated configs. Catch drift before it causes confusion."
+    },
+    "bp5": {
+      "title": "Keep Identity Strict",
+      "desc": "Define Git account, Cloudflare account, and Supabase project in AGENTS.md. CodyMaster's cm-identity-guard blocks wrong-account deploys before they happen."
+    },
+    "bp6": {
+      "title": "Document Custom Skills",
+      "desc": "List your custom skills in AGENTS.md so any agent knows what specialized behaviors are available. Skills are portable across all supported platforms."
+    },
+    "comparisonTitle": "Before & After Claw",
+    "comparison": {
+      "before": {
+        "label": "Without Claw",
+        "items": [
+          "Configure each AI tool separately",
+          "Rules differ between Claude, Cursor, OpenClaw",
+          "New team member → manual setup for each tool",
+          "Switch AI tool → start from scratch",
+          "Guardrails? What guardrails?"
+        ]
+      },
+      "after": {
+        "label": "With Claw",
+        "items": [
+          "One AGENTS.md → all tools configured",
+          "Identical rules, identical output quality",
+          "git clone + cody bootstrap → ready",
+          "Switch tools in seconds, keep context",
+          "TDD + 6-gate + identity lock baked in"
+        ]
+      }
+    },
+    "ctaSection": {
+      "title": "Stop Configuring. Start Shipping.",
+      "desc": "One manifest. Every AI agent. Zero per-tool overhead. Open source, MIT License, forever free."
+    }
   }
 }

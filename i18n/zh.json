@@ -12,7 +12,8 @@
     "forQA": "测试/质量保障",
     "forFounders": "管理者",
     "personas": "解决方案",
-    "github": "GitHub"
+    "github": "GitHub",
+    "claw": "Claw"
   },
   "home": {
     "badge": "开源项目 · MIT 协议 · 支持 7 大 AI 平台",
@@ -20,6 +21,7 @@
     "desc": "CodyMaster 彻底升级你的 AI 工具：强制执行 TDD、六重质量关卡、永久上下文记忆与安全部署。速度固然重要，但交付生产级的代码才是硬道理。",
     "cta": "免费安装 (30秒)",
     "ctaGithub": "⭐ GitHub 点赞",
+    "trustLabel": "无缝集成所有主流 AI 平台",
     "stats": {
       "skills": "25+",
       "skillsLabel": "资深级技能",
@@ -137,7 +139,69 @@
         "desc": "无测试、无文档、失去上下文。10 倍效能沦为 0.5 倍。"
       }
     },
-    "rootCause": "问题不在于 AI，而在于 AI <strong>缺乏纪律</strong>。CodyMaster 为纪律而生。"
+    "rootCause": "问题不在于 AI，而在于 AI <strong>缺乏纪律</strong>。CodyMaster 为纪律而生。",
+    "comparisonTitle": "使用 CodyMaster 前后对比",
+    "comparison": {
+      "before": {
+        "label": "未使用 CodyMaster",
+        "items": [
+          "代码质量：'能跑'就行",
+          "测试：手动点点点或直接跳过",
+          "上下文：每次新 session 从零开始",
+          "部署：手动复制粘贴，听天由命",
+          "遇到问题：陷入无限 debug 循环"
+        ]
+      },
+      "after": {
+        "label": "使用 CodyMaster 后",
+        "items": [
+          "TDD + 6 重质量校验保护每次提交",
+          "AI 先写测试，保证 ≥80% 覆盖率",
+          "工作记忆永久保存项目上下文",
+          "多门槛部署流程 + 自动回滚",
+          "判官 Agent 检测停滞并建议新方案"
+        ]
+      }
+    },
+    "dashboardTabs": {
+      "kanban": "看板视图",
+      "history": "活动历史",
+      "deploys": "部署管理"
+    },
+    "comparison2": {
+      "old": {
+        "title": "其他 AI 工具 (仅 CLI)",
+        "items": [
+          "黑盒化 — 完全看不见 AI 具体在干什么",
+          "终端日志刷屏 — 容易漏掉关键报错",
+          "无任务追踪 — '我昨天做到哪儿了？'",
+          "通过复制粘贴命令手动部署",
+          "无自动回滚 — 听天由命"
+        ]
+      },
+      "new": {
+        "title": "CodyMaster (工作台 + CLI)",
+        "items": [
+          "可视化看板 — Backlog → In Progress → Review → Done",
+          "活动历史 — 每个动作都有时间戳记录",
+          "多 Agent 支持 — 清晰可见 Antigravity, Claude Code 等协作",
+          "追踪从 staging 到 production 的部署流水线",
+          "一键自动回滚。今夜安睡。"
+        ]
+      }
+    },
+    "agents": {
+      "compatible": "开箱即用",
+      "list": [
+        "OpenClaw & OpenFang",
+        "Claude Desktop & Cursor",
+        "Manus & MaxClaw",
+        "Gemini Antigravity"
+      ],
+      "whyTitle": "为什么选 cm-project-bootstrap?",
+      "whyDesc": "不再为每个 AI 工具单独配置。运行 <code>cm-project-bootstrap</code> 一次，即可生成所有主流平台 AI 都能识别的 <code>AGENTS.md</code> 清单和配置文件。",
+      "cta": "探索 Claw →"
+    }
   },
   "howItWorks": {
     "badge": "架构深度解读",
@@ -278,17 +342,24 @@
         "s5": "🚀 质量达标 — 准予上线"
       }
     },
-    "cliTitle": "CLI 命令快速索引",
-    "cliCommands": {
-      "dashboard": "cm dashboard start",
-      "dashboardDesc": "启动 6969 端口管理看板",
-      "init": "cm continuity init",
-      "initDesc": "初始化项目工作记忆目录",
-      "status": "cm continuity status",
-      "statusDesc": "查看当前任务记忆状态",
-      "version": "cm --version",
-      "versionDesc": "查看已安装版本"
-    }
+    "startTitle": "你的 CodyMaster 第一天",
+    "startDesc": "比你想的还简单。三步，五分钟，就绪。",
+    "start": {
+      "s1": {
+        "title": "30 秒安装",
+        "desc": "一条命令即可。支持 Mac、Windows 和 Linux。无需配置。"
+      },
+      "s2": {
+        "title": "描述你的需求",
+        "desc": "用日常语言表达。'建个联系表单'或'修复登录页'。CodyMaster 能理解你。"
+      },
+      "s3": {
+        "title": "观看它工作",
+        "desc": "打开看板实时查看进度。完成后审查，自信部署。"
+      }
+    },
+    "ctaTitle": "准备好亲自体验了吗？",
+    "ctaDesc": "免费、开源，1 分钟内安装完毕。无需信用卡，无隐藏费用。"
   },
   "personas": {
     "pm": {
@@ -365,7 +436,15 @@
         },
         "f3": {
           "q": "它和 ChatGPT / Cursor 有什么区别？",
-          "a": "那些是'写代码'的工具。CodyMaster 是在这些工具之上增加了一层'资深工程师纪律'。它不是替代品，而是强力升级包。"
+          "a": "那些是‘写代码’的工具。CodyMaster 是在这些工具之上增加了一层‘资深工程师纪律’。它不是替代品，而是强力升级包。"
+        },
+        "f4": {
+          "q": "这个工具免费吗？",
+          "a": "CodyMaster 是完全开源的 (MIT 协议)。你只需支付底层 AI 提供商费用 (Anthropic/OpenAI)，框架本身完全免费。"
+        },
+        "f5": {
+          "q": "安装需要多长时间？",
+          "a": "5 分钟内完成：通过 npm 安装并启动 Dashboard。支持 7 大主流 AI 平台。"
         }
       }
     },
@@ -432,6 +511,10 @@
         "u5": {
           "problem": "部署导致生产崩溃",
           "solution": "cm-safe-deploy 多重校验 + 自动回滚。"
+        },
+        "u6": {
+          "problem": "AI 偶离架构规范",
+          "solution": "PRE-ACT 目标对齐檢查防止偏离。"
         }
       },
       "faqTitle": "开发者 FAQ",
@@ -445,8 +528,16 @@
           "a": "与语言无关。只要你的 AI 支持，CodyMaster 就能在流程层面赋予其纪律性。"
         },
         "f3": {
+          "q": "会和 Cursor/Copilot 冲突吗？",
+          "a": "不会。它在这些工具之上运行，相当于给项目加上 ESLint 一样的纪律层。"
+        },
+        "f4": {
           "q": "工作记忆存放在哪？",
           "a": "100% 本地。`.cm/CONTINUITY.md` 就在你的项目根目录。安全、透明。"
+        },
+        "f5": {
+          "q": "能自定义 Skill 吗？",
+          "a": "当然可以。只需在 `skills/` 目录写一个 Markdown 文件，AI 就能自动学习并执行你的规范。"
         }
       }
     },
@@ -496,6 +587,14 @@
         "f2": {
           "q": "兼容现有测试框架吗？",
           "a": "完美支持 Jest, Playwright, Pytest 等。它只是让 AI 更智能地使用这些工具。"
+        },
+        "f3": {
+          "q": "QA 能自定义规则吗？",
+          "a": "当然！你定义规则，AI 必须遵守。Gate 6 的决定权始终在你手中。"
+        },
+        "f4": {
+          "q": "开发人员能跳过这些关卡吗？",
+          "a": "绝对不行。CodyMaster 在 Agent 层级强制执行这些关卡。Gate 6 没有你的批准绝不放行。"
         }
       }
     },
@@ -520,6 +619,11 @@
           "metric": "上线速度",
           "promise": "1 天交付功能",
           "reality": "1 天写完，2 周修 Bug"
+        },
+        "p4": {
+          "metric": "人力成本",
+          "promise": "“减少团队规模”",
+          "reality": "薄资不变，代码质量下降"
         }
       },
       "roiTitle": "数据证明一切",
@@ -541,6 +645,18 @@
           "before": "每个 Sprint 2 天",
           "after": "4 小时 (全自动)",
           "saving": "降低 80%"
+        },
+        "r4": {
+          "factor": "上下文恢复",
+          "before": "每天 1 小时",
+          "after": "0 小时",
+          "saving": "降低 100%"
+        },
+        "r5": {
+          "factor": "新人上手",
+          "before": "2 周",
+          "after": "3 天",
+          "saving": "降低 78%"
         }
       },
       "roiSummary": "集成 CodyMaster 的团队将实现真正的 10 倍提效，将研发投资回报率 (ROI) 推向极致。",
@@ -557,6 +673,10 @@
         "d3": {
           "feature": "🛡️ 质量度量",
           "value": "通过通过率、Bug 密度等数据驱动决策"
+        },
+        "d4": {
+          "feature": "🚀 部署跟踪",
+          "value": "从 Staging 到 Production 的发布路径完全可控，一键回滚"
         }
       },
       "faqTitle": "管理者 FAQ",
@@ -568,6 +688,18 @@
         "f2": {
           "q": "研发团队会抵触吗？",
           "a": "开发人员通常很爱它。因为它减轻了枯燥的 Code Review 压力，且开源透明，支持自定义。"
+        },
+        "f3": {
+          "q": "有企业版吗？",
+          "a": "没有。MIT 协议，完全免费。你只需承担 AI 提供商 (Anthropic/OpenAI) 的 API 费用。"
+        },
+        "f4": {
+          "q": "数据安全吗？",
+          "a": "100% 本地存储。代码和上下文始终留在你的机器上，绝不泄漏到 CodyMaster 云端。"
+        },
+        "f5": {
+          "q": "为什么不直接招一个 Senior？",
+          "a": "Senior 年薪 $120k+。CodyMaster 以 $0 成本将 Senior 级纪律扩展到团队每一个成员。"
         }
       }
     }
@@ -587,5 +719,129 @@
     "backHome": "← 返回首页",
     "install": "npm install -g cody-master",
     "openSource": "开源项目 · MIT 协议 · 永久免费"
+  },
+  "claw": {
+    "badge": "🦀 通用 AI Agent 标准",
+    "headline": "一份配置。<br><span class='gradient-text'>所有 AI Agent 听令。</span>",
+    "desc": "CodyMaster Claw 让你只写一份 AGENTS.md 清单，即可自动为 OpenClaw、OpenFang、Claude Desktop、Cursor、Manus、MaxClaw 和 Gemini Antigravity 生成配置。告别逐个工具设置，一份真相源。",
+    "ctaInstall": "30 秒安装",
+    "ctaUseCases": "查看用例 ↓",
+    "installTitle": "3 条指令即刻开始",
+    "installDesc": "从零到全配 AI 工作区，不到60 秒。适用于任何项目、任何技术栈。",
+    "install": {
+      "s1": {
+        "title": "步骤 1：安装 CodyMaster"
+      },
+      "s2": {
+        "title": "步骤 2：Bootstrap 项目"
+      },
+      "s3": {
+        "title": "步骤 3：启动任意 Agent"
+      }
+    },
+    "installNote": "完成！AGENTS.md + 各工具配置自动生成。所有 Agent 读同一套规则。",
+    "platformsTitle": "支持的平台",
+    "platformsDesc": "CodyMaster 为每个平台自动生成配置文件。AGENTS.md 是唯一的真相源。",
+    "platforms": {
+      "openclaw": "OpenClaw",
+      "openclawDesc": "自动生成 .clawrc + MCP 配置",
+      "openfang": "OpenFang",
+      "openfangDesc": "RULES.md + 护栏规则映射",
+      "claude": "Claude Desktop",
+      "claudeDesc": "CLAUDE.md + 项目指令",
+      "cursor": "Cursor",
+      "cursorDesc": ".cursor/rules + .cursorrules 同步",
+      "manus": "Manus",
+      "manusDesc": "多 Agent 编排就绪",
+      "gemini": "Gemini Antigravity",
+      "geminiDesc": ".gemini/settings.json 自动映射",
+      "maxclaw": "MaxClaw & Kimi Claw",
+      "maxclawDesc": "扩展 Agent 协议映射"
+    },
+    "useCasesTitle": "真实使用场景",
+    "useCasesDesc": "看 Claw 如何改变不同团队的 AI 辅助开发。",
+    "useCase1": {
+      "title": "🚀 个人开发者 — 多 Agent 工作流",
+      "desc": "用 Claude Desktop 做规划、OpenClaw 做执行、Cursor 做快捷编辑 — 全部读取同一份 AGENTS.md。无需重新输入上下文，随时切换工具。"
+    },
+    "useCase2": {
+      "title": "👥 5 人团队 — 统一标准",
+      "desc": "团队成员使用不同 AI 工具？没关系。AGENTS.md 确保统一的护栏、TDD 要求和部署流程。",
+      "items": [
+        "Dev A 用 Claude → 同样的 TDD 规则",
+        "Dev B 用 Cursor → 同样的质量关卡",
+        "Dev C 用 OpenClaw → 同样的部署流水线",
+        "三人 → 产出质量一致"
+      ]
+    },
+    "useCase3": {
+      "title": "🏢 企业 — 治理与合规",
+      "desc": "在 AGENTS.md 中一次性定义安全策略：'禁止提交密钥'、'必须运行 OWASP 扫描'、'所有面向用户的字符串必须 i18n'。组织内每个 AI Agent 自动继承这些规则。"
+    },
+    "useCase4": {
+      "title": "🔄 迁移 — 无痛切换 Agent",
+      "desc": "想测试新的 AI 工具？只需重新运行 <code>cody bootstrap</code>，它会为新工具重新生成配置，同时保持 AGENTS.md 不变。零迁移成本。"
+    },
+    "manifestTitle": "AGENTS.md 开放标准",
+    "manifestDesc": "基于 Microsoft Build 2025 规范，AGENTS.md 是唯一告诉所有 AI Agent 你项目如何运作的文件 — 技术栈、规则、指令和身份。",
+    "manifestList": [
+      "<strong>身份与上下文：</strong>技术栈、部署目标、品牌规范 — 任何 Agent 即刻加载。",
+      "<strong>通用命令：</strong>跨工具标准化 dev、build、test、deploy。",
+      "<strong>护栏：</strong>'不过关不部署'、'必须翻译字符串'、'TDD 是强制的'。",
+      "<strong>单 Agent 映射：</strong>从一份清单自动生成 .clawrc、CLAUDE.md、.cursorrules、.gemini/settings.json。"
+    ],
+    "bestPracticesTitle": "最佳实践",
+    "bestPracticesDesc": "遵循这些模式，充分发挥 CodyMaster Claw 的价值。",
+    "bp1": {
+      "title": "版本管理你的 AGENTS.md",
+      "desc": "提交到 Git。所有团队成员和 AI Agent 读取同一版本。把它当作 .eslintrc。"
+    },
+    "bp2": {
+      "title": "护栏先行",
+      "desc": "先定规则，后定功能。'TDD 强制'、'不过关不部署'、'所有字符串 i18n'。约束反而让 AI 更快。"
+    },
+    "bp3": {
+      "title": "使用单 Agent 覆盖",
+      "desc": "每个工具有自己的优势。AGENTS.md 定义共享规则，专属配置 (CLAUDE.md, .cursorrules) 处理特定优化。"
+    },
+    "bp4": {
+      "title": "CI 上运行 Bootstrap",
+      "desc": "在 CI 流水线中添加 cody bootstrap --check，确保 AGENTS.md 与生成的配置同步。"
+    },
+    "bp5": {
+      "title": "身份严格管控",
+      "desc": "在 AGENTS.md 中声明 Git 账户、Cloudflare 账户和 Supabase 项目。cm-identity-guard 阻止误操作。"
+    },
+    "bp6": {
+      "title": "记录自定义 Skill",
+      "desc": "在 AGENTS.md 中列出自定义 Skill，让所有 Agent 知道可用的专业行为。Skill 跨平台通用。"
+    },
+    "comparisonTitle": "Claw 使用前后对比",
+    "comparison": {
+      "before": {
+        "label": "没有 Claw",
+        "items": [
+          "每个 AI 工具单独配置",
+          "Claude、Cursor、OpenClaw 的规则各不相同",
+          "新成员 → 每个工具手动设置",
+          "切换 AI 工具 → 从头开始",
+          "护栏？什么护栏？"
+        ]
+      },
+      "after": {
+        "label": "使用 Claw 后",
+        "items": [
+          "一份 AGENTS.md → 所有工具已配置",
+          "统一规则，统一产出质量",
+          "git clone + cody bootstrap → 就绪",
+          "秒切工具，保留上下文",
+          "TDD + 6 关卡 + 身份锁内置"
+        ]
+      }
+    },
+    "ctaSection": {
+      "title": "停止配置，开始交付。",
+      "desc": "一份清单。所有 AI Agent。零工具开销。开源、MIT 协议、永久免费。"
+    }
   }
 }
