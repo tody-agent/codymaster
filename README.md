@@ -173,16 +173,16 @@ The Judge Agent automatically evaluates task health:
 
 ```bash
 # API endpoints
-curl http://localhost:6969/api/judge                    # All tasks
-curl http://localhost:6969/api/judge/:taskId             # Single task
-curl http://localhost:6969/api/agents/suggest?skill=cm-tdd  # Best agent for skill
+curl http://codymaster.localhost:6969/api/judge                    # All tasks
+curl http://codymaster.localhost:6969/api/judge/:taskId             # Single task
+curl http://codymaster.localhost:6969/api/agents/suggest?skill=cm-tdd  # Best agent for skill
 ```
 
 ---
 
 ## 📊 Dashboard
 
-Real-time web dashboard at `http://localhost:6969`:
+Real-time web dashboard at `http://codymaster.localhost:6969`:
 
 - **Kanban Board** — drag tasks across backlog → in-progress → review → done
 - **Agent Activity** — see what each AI agent is doing

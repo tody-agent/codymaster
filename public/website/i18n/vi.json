@@ -308,7 +308,7 @@
         "s1": "Khởi tạo bộ nhớ bằng `cm continuity init`",
         "s2": "Mô tả tính năng qua `@[/cm-planning]` — AI lập kế hoạch chi tiết",
         "s3": "Chạy `@[/cm-execution]` — Vòng lặp TDD và 6 cổng kiểm duyệt kích hoạt",
-        "s4": "Theo dõi tiến độ tại `localhost:6969` qua bảng Kanban",
+        "s4": "Theo dõi tiến độ tại `codymaster.localhost:6969` qua bảng Kanban",
         "s5": "Deploy với `@[/cm-safe-deploy]` — Pipeline an toàn tự chạy"
       }
     },

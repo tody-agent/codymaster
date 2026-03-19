@@ -23,7 +23,7 @@ function showBanner() {
    ██████╗ ██████╗  ██████╗  ██╗   ██╗
   ██╔════╝██╔═══██╗██╔══██╗ ╚██╗ ██╔╝   Cody v${VERSION}
   ██║     ██║   ██║██║  ██║  ╚████╔╝    Universal AI Agent Skills Platform
-  ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://localhost:${DEFAULT_PORT}
+  ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://codymaster.localhost:${DEFAULT_PORT}
   ╚██████╗╚██████╔╝██████╔╝    ██║
    ╚═════╝ ╚═════╝ ╚═════╝     ╚═╝
 `));
@@ -120,12 +120,12 @@ program
     const port = parseInt(opts.port) || DEFAULT_PORT;
     switch (cmd) {
       case 'start': case undefined:
-        if (isDashboardRunning()) { console.log(chalk.yellow('⚠️  Dashboard already running.')); console.log(chalk.gray(`   URL: http://localhost:${port}`)); return; }
+        if (isDashboardRunning()) { console.log(chalk.yellow('⚠️  Dashboard already running.')); console.log(chalk.gray(`   URL: http://codymaster.localhost:${port}`)); return; }
         launchDashboard(port); break;
       case 'stop': stopDashboard(); break;
       case 'status': dashboardStatus(port); break;
-      case 'open': console.log(chalk.blue(`🌐 Opening http://localhost:${port} ...`)); openUrl(`http://localhost:${port}`); break;
-      case 'url': console.log(`http://localhost:${port}`); break;
+      case 'open': console.log(chalk.blue(`🌐 Opening http://codymaster.localhost:${port} ...`)); openUrl(`http://codymaster.localhost:${port}`); break;
+      case 'url': console.log(`http://codymaster.localhost:${port}`); break;
       default: console.log(chalk.red(`Unknown: ${cmd}`)); console.log(chalk.gray('Available: start, stop, status, open, url'));
     }
   });
@@ -147,7 +147,7 @@ function stopDashboard() {
 function dashboardStatus(port: number) {
   if (isDashboardRunning()) {
     const pid = fs.readFileSync(PID_FILE, 'utf-8').trim();
-    console.log(chalk.green(`✅ Dashboard RUNNING`)); console.log(chalk.gray(`   PID: ${pid}`)); console.log(chalk.gray(`   URL: http://localhost:${port}`));
+    console.log(chalk.green(`✅ Dashboard RUNNING`)); console.log(chalk.gray(`   PID: ${pid}`)); console.log(chalk.gray(`   URL: http://codymaster.localhost:${port}`));
   } else { console.log(chalk.yellow('⚫ Dashboard NOT running')); console.log(chalk.gray('   Start with: cody dashboard start')); }
 }
 
@@ -663,7 +663,7 @@ program
 
     // Dashboard
     console.log();
-    if (isDashboardRunning()) { console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://localhost:${DEFAULT_PORT}`)); }
+    if (isDashboardRunning()) { console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${DEFAULT_PORT}`)); }
     else { console.log(chalk.gray(`  ⚫ Dashboard: not running (start with: cody dashboard)`)); }
     console.log();
   });
@@ -1064,9 +1064,14 @@ program
     console.log(chalk.gray(`   Path: ${projectPath}`));
     console.log(chalk.gray(`   .cm/  Working memory created`));
     console.log();
+
+    if (!isDashboardRunning()) {
+      launchDashboard(DEFAULT_PORT);
+      console.log(chalk.green(`   🚀 Dashboard auto-started! You can track progress at http://codymaster.localhost:${DEFAULT_PORT}`));
+    }
+
     console.log(chalk.cyan('💡 Next steps:'));
     console.log(chalk.gray('   cody task add "My first task"'));
-    console.log(chalk.gray('   cody dashboard start'));
     console.log(chalk.gray('   cody open'));
     console.log();
   });
@@ -1083,10 +1088,10 @@ program
     if (!isDashboardRunning()) {
       console.log(chalk.yellow('⚠️  Dashboard not running. Starting it first...'));
       launchDashboard(port);
-      setTimeout(() => openUrl(`http://localhost:${port}`), 1500);
+      setTimeout(() => openUrl(`http://codymaster.localhost:${port}`), 1500);
     } else {
-      console.log(chalk.blue(`🌐 Opening http://localhost:${port} ...`));
-      openUrl(`http://localhost:${port}`);
+      console.log(chalk.blue(`🌐 Opening http://codymaster.localhost:${port} ...`));
+      openUrl(`http://codymaster.localhost:${port}`);
     }
   });
 
@@ -1118,7 +1123,7 @@ program
 
     // Dashboard status
     if (isDashboardRunning()) {
-      console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://localhost:${DEFAULT_PORT}`));
+      console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${DEFAULT_PORT}`));
     } else {
       console.log(chalk.gray(`  ⚫ Dashboard: not running`));
     }

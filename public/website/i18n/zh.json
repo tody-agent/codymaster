@@ -308,7 +308,7 @@
         "s1": "使用 `cm continuity init` 初始化工作记忆",
         "s2": "通过 `@[/cm-planning]` 描述需求 — Agent 生成实现方案",
         "s3": "调用 `@[/cm-execution]` 执行 — RARV 循环开启 TDD 流程",
-        "s4": "访问 `localhost:6969` 看板实时监控进度",
+        "s4": "访问 `codymaster.localhost:6969` 看板实时监控进度",
         "s5": "通过 `@[/cm-safe-deploy]` 自动完成 8 重流水线部署"
       }
     },

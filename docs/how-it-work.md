@@ -311,7 +311,7 @@ The dashboard tracks all deployments with rollback history. Use `POST /api/deplo
 The **Judge Agent** detects stuck tasks and the **Dynamic Agent Selection** API suggests the best agent:
 
 ```bash
-curl http://localhost:6969/api/agents/suggest?skill=cm-tdd
+curl http://codymaster.localhost:6969/api/agents/suggest?skill=cm-tdd
 # → { "domain": "engineering", "agents": ["claude-code", "cursor", "antigravity"] }
 ```
 

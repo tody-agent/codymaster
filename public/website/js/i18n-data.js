@@ -1155,7 +1155,7 @@ window.__I18N_DATA__ = {
           "s1": "Khởi tạo bộ nhớ bằng `cm continuity init`",
           "s2": "Mô tả tính năng qua `@[/cm-planning]` — AI lập kế hoạch chi tiết",
           "s3": "Chạy `@[/cm-execution]` — Vòng lặp TDD và 6 cổng kiểm duyệt kích hoạt",
-          "s4": "Theo dõi tiến độ tại `localhost:6969` qua bảng Kanban",
+          "s4": "Theo dõi tiến độ tại `codymaster.localhost:6969` qua bảng Kanban",
           "s5": "Deploy với `@[/cm-safe-deploy]` — Pipeline an toàn tự chạy"
         }
       },
@@ -2002,7 +2002,7 @@ window.__I18N_DATA__ = {
           "s1": "使用 `cm continuity init` 初始化工作记忆",
           "s2": "通过 `@[/cm-planning]` 描述需求 — Agent 生成实现方案",
           "s3": "调用 `@[/cm-execution]` 执行 — RARV 循环开启 TDD 流程",
-          "s4": "访问 `localhost:6969` 看板实时监控进度",
+          "s4": "访问 `codymaster.localhost:6969` 看板实时监控进度",
           "s5": "通过 `@[/cm-safe-deploy]` 自动完成 8 重流水线部署"
         }
       },
@@ -2849,7 +2849,7 @@ window.__I18N_DATA__ = {
           "s1": "Инициализация памяти: `cm continuity init`",
           "s2": "Описание фичи через `@[/cm-planning]` — план готов",
           "s3": "Исполнение: `@[/cm-execution]` — цикл TDD в работе",
-          "s4": "Мониторинг на `localhost:6969` — канбан-доска прогресса",
+          "s4": "Мониторинг на `codymaster.localhost:6969` — канбан-доска прогресса",
           "s5": "Деплой: `@[/cm-safe-deploy]` — 8 уровней защиты пройдены"
         }
       },

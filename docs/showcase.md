@@ -68,7 +68,7 @@ After approving the plan:
 ```bash
 $ cm dashboard start
 
-🚀 CodyMaster Dashboard v3 at http://localhost:6969
+🚀 CodyMaster Dashboard v3 at http://codymaster.localhost:6969
 ```
 
 Open browser → see Kanban board with tasks moving from backlog → in-progress → done.
@@ -76,7 +76,7 @@ Open browser → see Kanban board with tasks moving from backlog → in-progress
 ### Step 5: Check Judge Agent
 
 ```bash
-$ curl -s http://localhost:6969/api/judge | python3 -m json.tool
+$ curl -s http://codymaster.localhost:6969/api/judge | python3 -m json.tool
 
 {
     "task-1": { "action": "COMPLETE", "badge": "🏁" },
@@ -254,7 +254,7 @@ Agent picks up exactly where Session 2 left off.
 
 ```bash
 # Ask CodyMaster which agent is best for TDD work
-$ curl -s "http://localhost:6969/api/agents/suggest?skill=cm-tdd"
+$ curl -s "http://codymaster.localhost:6969/api/agents/suggest?skill=cm-tdd"
 
 {
   "skill": "cm-tdd",
@@ -265,7 +265,7 @@ $ curl -s "http://localhost:6969/api/agents/suggest?skill=cm-tdd"
 
 ```bash
 # For UX design work
-$ curl -s "http://localhost:6969/api/agents/suggest?skill=cm-ux-master"
+$ curl -s "http://codymaster.localhost:6969/api/agents/suggest?skill=cm-ux-master"
 
 {
   "skill": "cm-ux-master",
