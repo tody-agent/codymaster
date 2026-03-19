@@ -28,10 +28,11 @@ export interface Task {
   dispatchStatus?: 'pending' | 'dispatched' | 'failed';
   dispatchedAt?: string;
   dispatchError?: string;
+  stuckSince?: string;
 }
 
 export type ActivityType =
-  | 'task_created' | 'task_moved' | 'task_done' | 'task_deleted' | 'task_updated' | 'task_dispatched'
+  | 'task_created' | 'task_moved' | 'task_done' | 'task_deleted' | 'task_updated' | 'task_dispatched' | 'task_transitioned'
   | 'project_created' | 'project_deleted'
   | 'deploy_staging' | 'deploy_production' | 'deploy_failed' | 'rollback'
   | 'git_push' | 'changelog_added';

@@ -175,6 +175,7 @@ After EVERY phase, you MUST:
 | `cm-code-review` | Complete development after all tasks |
 | `cm-tdd` | Subagents follow TDD for each task |
 | `cm-quality-gate` | VERIFY phase uses this for validation |
+| `cm-ui-preview` | RECOMMENDED: Preview UI on Google Stitch before implementing frontend tasks |
 
 ### Workflows
 | Command | Purpose |

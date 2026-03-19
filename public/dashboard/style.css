@@ -300,3 +300,35 @@ body{display:flex;overflow:hidden}
 /* Theme transitions for containers */
 .sidebar,.header,.tab-nav,.column,.task-card,.modal,.toast,.deploy-card,.changelog-entry,.timeline-item{transition:background-color .2s ease,border-color .2s ease,color .2s ease}
 
+/* ── Quick Transition Buttons ───── */
+.card-transitions{display:none;gap:4px;margin-top:8px;flex-wrap:wrap}
+.task-card:hover .card-transitions{display:flex}
+.transition-btn{font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;border:none;cursor:pointer;font-family:var(--font);transition:all .15s;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.transition-btn.transition-forward{background:color-mix(in srgb,var(--col-in-progress) 12%,transparent);color:var(--col-in-progress);border:1px solid color-mix(in srgb,var(--col-in-progress) 25%,transparent)}
+.transition-btn.transition-forward:hover{background:color-mix(in srgb,var(--col-in-progress) 22%,transparent)}
+.transition-btn.transition-done{background:color-mix(in srgb,var(--col-done) 12%,transparent);color:var(--col-done);border:1px solid color-mix(in srgb,var(--col-done) 25%,transparent)}
+.transition-btn.transition-done:hover{background:color-mix(in srgb,var(--col-done) 22%,transparent)}
+.transition-btn.transition-back{background:color-mix(in srgb,var(--col-backlog) 12%,transparent);color:var(--text-secondary);border:1px solid color-mix(in srgb,var(--col-backlog) 25%,transparent)}
+.transition-btn.transition-back:hover{background:color-mix(in srgb,var(--col-backlog) 22%,transparent)}
+
+/* ── Stuck Task Indicator ────────── */
+@keyframes stuckPulse{0%,100%{border-color:rgba(210,153,34,.4)}50%{border-color:rgba(210,153,34,.8)}}
+.task-card.stuck{border-color:rgba(210,153,34,.5);animation:stuckPulse 2s ease-in-out infinite;background:color-mix(in srgb,var(--col-review) 5%,var(--bg-card))}
+
+/* ── Stuck Banner ────────────────── */
+#stuck-banner{margin:12px 20px 0;padding:12px 16px;background:color-mix(in srgb,var(--col-review) 10%,var(--bg-card));border:1px solid color-mix(in srgb,var(--col-review) 30%,var(--border));border-radius:var(--radius);border-left:4px solid var(--col-review)}
+.stuck-banner-content{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stuck-banner-icon{font-size:16px;flex-shrink:0}
+.stuck-banner-text{font-size:12px;color:var(--text-secondary);flex:1;min-width:200px}
+.stuck-banner-text strong{color:var(--col-review)}
+.stuck-banner-actions{display:flex;gap:6px}
+.stuck-btn{font-size:11px;font-weight:600;padding:4px 10px;border-radius:4px;border:none;cursor:pointer;font-family:var(--font);transition:all .15s}
+.stuck-btn.review{background:color-mix(in srgb,var(--col-review) 15%,transparent);color:var(--col-review);border:1px solid color-mix(in srgb,var(--col-review) 30%,transparent)}
+.stuck-btn.review:hover{background:color-mix(in srgb,var(--col-review) 25%,transparent)}
+.stuck-btn.done{background:color-mix(in srgb,var(--col-done) 15%,transparent);color:var(--col-done);border:1px solid color-mix(in srgb,var(--col-done) 30%,transparent)}
+.stuck-btn.done:hover{background:color-mix(in srgb,var(--col-done) 25%,transparent)}
+.stuck-btn.backlog{background:color-mix(in srgb,var(--col-backlog) 15%,transparent);color:var(--text-secondary);border:1px solid color-mix(in srgb,var(--col-backlog) 30%,transparent)}
+.stuck-btn.backlog:hover{background:color-mix(in srgb,var(--col-backlog) 25%,transparent)}
+
+/* ── Timeline extension ──────────── */
+.timeline-item.type-task_transitioned::before{background:var(--col-review)}

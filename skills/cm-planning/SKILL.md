@@ -38,6 +38,7 @@ description: "You MUST use this before any creative work or multi-step task. Exp
    - Data flow
    - Component boundaries
    - API contracts (if applicable)
+   - **If building UI:** Use `cm-ui-preview` to preview on Google Stitch before coding
 
 ### Red Flags — STOP
 
@@ -96,6 +97,7 @@ How to verify it works.
 | Need isolated workspace | `cm-git-worktrees` |
 | Execute the plan (same session) | `cm-execution` |
 | Write tests first | `cm-tdd` |
+| Building UI/frontend | `cm-ui-preview` |
 
 ## The Bottom Line
 

@@ -45,10 +45,25 @@
   };
   const ACTIVITY_ICONS = {
     'task_created': '✨', 'task_moved': '↔️', 'task_done': '✅', 'task_deleted': '🗑️', 'task_updated': '✏️',
-    'task_dispatched': '🚀',
+    'task_dispatched': '🚀', 'task_transitioned': '🔀',
     'project_created': '📦', 'project_deleted': '🗑️',
     'deploy_staging': '🟡', 'deploy_production': '🚀', 'deploy_failed': '❌', 'rollback': '⏪',
     'git_push': '📤', 'changelog_added': '📝',
+  };
+
+  // ── Valid Transition Map ──────────────────
+  const VALID_TRANSITIONS = {
+    'backlog':      ['in-progress'],
+    'in-progress':  ['review', 'done', 'backlog'],
+    'review':       ['done', 'in-progress'],
+    'done':         ['backlog'],
+  };
+
+  const TRANSITION_LABELS = {
+    'in-progress': { label: '▶ Start', icon: '▶' },
+    'review':      { label: '→ Review', icon: '🔍' },
+    'done':        { label: '✓ Done', icon: '✅' },
+    'backlog':     { label: '← Backlog', icon: '📋' },
   };
 
   // ── State ──────────────────────────────────
@@ -236,6 +251,7 @@
       if (ce) ce.textContent = colTasks.length;
     });
     renderStats();
+    renderStuckBanner();
   }
 
   function createCard(task) {
@@ -244,6 +260,11 @@
     const ac = AGENT_COLORS[task.agent] || '#8b949e';
     const al = AGENT_LABELS[task.agent] || task.agent;
     const priLabels = { low: 'Low', medium: 'Medium', high: 'High', urgent: 'Urgent' };
+
+    // Stuck indicator
+    const elapsed = Date.now() - new Date(task.updatedAt).getTime();
+    const isStuck = task.column === 'in-progress' && elapsed > 30 * 60 * 1000;
+    if (isStuck) card.classList.add('stuck');
 
     // Dispatch status badge
     let dispatchBadge = '';
@@ -269,6 +290,20 @@
       if (dispatchBadge) meta += dispatchBadge;
       meta += '</div>';
     }
+
+    // Quick transition buttons
+    const transitions = VALID_TRANSITIONS[task.column] || [];
+    let transitionBtns = '';
+    if (transitions.length > 0) {
+      transitionBtns = '<div class="card-transitions">';
+      transitions.forEach(target => {
+        const info = TRANSITION_LABELS[target] || { label: target, icon: '→' };
+        const cls = target === 'done' ? 'transition-done' : target === 'backlog' ? 'transition-back' : 'transition-forward';
+        transitionBtns += `<button class="transition-btn ${cls}" data-task-id="${task.id}" data-target="${target}" title="Move to ${target}">${info.icon} ${info.label}</button>`;
+      });
+      transitionBtns += '</div>';
+    }
+
     card.innerHTML = `<div class="card-top"><span class="card-title">${esc(task.title)}</span>
       <div class="card-actions">
         ${dispatchBtn}
@@ -277,7 +312,8 @@
       </div></div>
       ${task.description ? `<p class="card-description">${esc(task.description)}</p>` : ''}
       ${meta}
-      <div class="card-footer"><span class="priority-badge priority-${task.priority}">${priLabels[task.priority] || task.priority}</span><span class="card-time">${formatTimeAgo(task.updatedAt)}</span></div>`;
+      <div class="card-footer"><span class="priority-badge priority-${task.priority}">${priLabels[task.priority] || task.priority}</span><span class="card-time">${formatTimeAgo(task.updatedAt)}</span></div>
+      ${transitionBtns}`;
     card.addEventListener('dragstart', handleDragStart);
     card.addEventListener('dragend', handleDragEnd);
     card.querySelector('.edit').addEventListener('click', e => { e.stopPropagation(); openEditModal(task); });
@@ -286,6 +322,10 @@
     if (dispatchEl) {
       dispatchEl.addEventListener('click', e => { e.stopPropagation(); handleDispatch(task); });
     }
+    // Bind transition buttons
+    card.querySelectorAll('.transition-btn').forEach(btn => {
+      btn.addEventListener('click', e => { e.stopPropagation(); handleTransition(btn.dataset.taskId, btn.dataset.target); });
+    });
     return card;
   }
 
@@ -413,11 +453,11 @@
     document.querySelectorAll('.drop-placeholder').forEach(el => el.remove());
   }
 
-  // Only allow: Backlog → In Progress
+  // Allow all valid transitions
   function isDropAllowed(sourceColumn, targetColumn) {
     if (sourceColumn === targetColumn) return true; // Reorder within same column
-    if (sourceColumn === 'backlog' && targetColumn === 'in-progress') return true;
-    return false;
+    const allowed = VALID_TRANSITIONS[sourceColumn] || [];
+    return allowed.includes(targetColumn);
   }
 
   Object.keys(columns).forEach(colName => {
@@ -465,7 +505,8 @@
       const sourceCol = sourceTask ? sourceTask.column : '';
       if (!isDropAllowed(sourceCol, colName)) {
         if (ph) ph.remove();
-        showToast('error', 'Chỉ cho phép kéo từ Backlog → In Progress');
+        const allowed = (VALID_TRANSITIONS[sourceCol] || []).join(', ');
+        showToast('error', `Cannot move from ${sourceCol} → ${colName}. Allowed: ${allowed}`);
         return;
       }
 
@@ -476,9 +517,16 @@
       }
 
       const isMovingToInProgress = sourceCol === 'backlog' && colName === 'in-progress';
+      const isCrossColumn = sourceCol !== colName;
 
       try {
-        await fetchJSON(`${API}/tasks/${taskId}/move`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ column: colName, order: newOrder }) });
+        if (isCrossColumn) {
+          // Use transition API for cross-column moves (validated)
+          await fetchJSON(`${API}/tasks/${taskId}/transition`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ column: colName }) });
+        } else {
+          // Use move API for reorder within same column
+          await fetchJSON(`${API}/tasks/${taskId}/move`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ column: colName, order: newOrder }) });
+        }
         await loadAll(); renderBoard(); renderSidebar();
 
         if (isMovingToInProgress) {
@@ -501,6 +549,8 @@
           } else {
             showToast('success', 'Task moved to In Progress');
           }
+        } else if (isCrossColumn) {
+          showToast('success', `Task moved: ${sourceCol} → ${colName}`);
         } else {
           showToast('success', 'Task reordered');
         }
@@ -701,6 +751,84 @@
     if (m < 1) return 'just now'; if (m < 60) return `${m}m ago`; if (h < 24) return `${h}h ago`;
     if (d < 7) return `${d}d ago`;
     return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  // ── Quick Transition Handler ────────────────
+  async function handleTransition(taskId, targetColumn) {
+    try {
+      await fetchJSON(`${API}/tasks/${taskId}/transition`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ column: targetColumn }),
+      });
+      await loadAll(); renderBoard(); renderSidebar();
+
+      // Auto-dispatch when moving to in-progress
+      if (targetColumn === 'in-progress') {
+        const movedTask = tasks.find(t => t.id === taskId);
+        if (movedTask && movedTask.agent && movedTask.agent !== 'manual') {
+          showToast('info', '⚡ Starting dispatch...');
+          try {
+            const forceParam = movedTask.dispatchStatus === 'dispatched' ? '?force=true' : '';
+            const res = await fetchJSON(`${API}/tasks/${taskId}/dispatch${forceParam}`, {
+              method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}),
+            });
+            await loadAll(); renderBoard(); renderSidebar();
+            openDispatchModal(res);
+          } catch (dispatchErr) {
+            showToast('error', 'Dispatch failed: ' + dispatchErr.message);
+          }
+          return;
+        }
+      }
+      showToast('success', `Task moved to ${targetColumn}`);
+    } catch (err) { showToast('error', err.message); }
+  }
+
+  // ── Stuck Tasks Banner ─────────────────────
+  async function renderStuckBanner() {
+    let bannerEl = document.getElementById('stuck-banner');
+    try {
+      const pq = selectedProjectId ? `?projectId=${selectedProjectId}` : '';
+      const stuckTasks = await fetchJSON(`${API}/tasks/stuck${pq}`);
+      if (!stuckTasks || stuckTasks.length === 0) {
+        if (bannerEl) bannerEl.remove();
+        return;
+      }
+
+      if (!bannerEl) {
+        bannerEl = document.createElement('div');
+        bannerEl.id = 'stuck-banner';
+        const kanbanPanel = document.getElementById('panel-kanban');
+        if (kanbanPanel) kanbanPanel.insertBefore(bannerEl, kanbanPanel.querySelector('.board'));
+      }
+
+      const taskNames = stuckTasks.slice(0, 3).map(t => `"${esc(t.title)}"`).join(', ');
+      const extra = stuckTasks.length > 3 ? ` +${stuckTasks.length - 3} more` : '';
+      bannerEl.innerHTML = `<div class="stuck-banner-content">
+        <span class="stuck-banner-icon">⚠️</span>
+        <span class="stuck-banner-text"><strong>${stuckTasks.length} task${stuckTasks.length > 1 ? 's' : ''} stuck</strong> in progress: ${taskNames}${extra}</span>
+        <div class="stuck-banner-actions">
+          <button class="stuck-btn review" data-action="review">→ Move to Review</button>
+          <button class="stuck-btn done" data-action="done">✓ Mark Done</button>
+          <button class="stuck-btn backlog" data-action="backlog">← Back to Backlog</button>
+        </div>
+      </div>`;
+
+      bannerEl.querySelectorAll('.stuck-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const targetCol = btn.dataset.action;
+          const ids = stuckTasks.map(t => t.id);
+          try {
+            await fetchJSON(`${API}/tasks/bulk-transition`, {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ taskIds: ids, column: targetCol, reason: 'Bulk action from stuck banner' }),
+            });
+            await loadAll(); renderBoard(); renderSidebar();
+            showToast('success', `${ids.length} tasks moved to ${targetCol}`);
+          } catch (err) { showToast('error', err.message); }
+        });
+      });
+    } catch { /* silently fail */ }
   }
 
   // ── Dispatch Handler ────────────────────────

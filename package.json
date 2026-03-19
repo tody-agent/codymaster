@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "export $(grep -v '^#' .env | xargs) && wrangler pages deploy public"
   },
   "keywords": [],
   "author": "",

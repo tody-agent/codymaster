@@ -68,7 +68,7 @@ After approving the plan:
 ```bash
 $ cm dashboard start
 
-🚀 CodyMaster Dashboard v3 at http://localhost:6969
+🚀 CodyMaster Dashboard v3 at http://codymaster.localhost:6969
 ```
 
 Open browser → see Kanban board with tasks moving from backlog → in-progress → done.
@@ -76,7 +76,7 @@ Open browser → see Kanban board with tasks moving from backlog → in-progress
 ### Step 5: Check Judge Agent
 
 ```bash
-$ curl -s http://localhost:6969/api/judge | python3 -m json.tool
+$ curl -s http://codymaster.localhost:6969/api/judge | python3 -m json.tool
 
 {
     "task-1": { "action": "COMPLETE", "badge": "🏁" },
@@ -254,7 +254,7 @@ Agent picks up exactly where Session 2 left off.
 
 ```bash
 # Ask CodyMaster which agent is best for TDD work
-$ curl -s "http://localhost:6969/api/agents/suggest?skill=cm-tdd"
+$ curl -s "http://codymaster.localhost:6969/api/agents/suggest?skill=cm-tdd"
 
 {
   "skill": "cm-tdd",
@@ -265,7 +265,7 @@ $ curl -s "http://localhost:6969/api/agents/suggest?skill=cm-tdd"
 
 ```bash
 # For UX design work
-$ curl -s "http://localhost:6969/api/agents/suggest?skill=cm-ux-master"
+$ curl -s "http://codymaster.localhost:6969/api/agents/suggest?skill=cm-ux-master"
 
 {
   "skill": "cm-ux-master",
@@ -361,6 +361,123 @@ Checking locale file parity...
 | GTM | All above via container | Tags + Triggers + Variables |
 
 Plus: UTM conventions, attribution model, deduplication strategy.
+
+---
+
+## Example 7: Self-Enhancing Skill Discovery
+
+**Scenario:** You need to set up Prisma ORM, but CodyMaster has no built-in Prisma skill.
+
+### Step 1: Agent Detects the Gap
+
+```
+@[/cm-planning] Setup Prisma ORM with PostgreSQL for our user management
+```
+
+The agent realizes it doesn't have a Prisma-specific skill:
+
+```
+🧠 DETECT: "I need Prisma expertise but don't have a matching cm-* skill"
+🔍 SEARCH: npx skills find "prisma"
+```
+
+### Step 2: Search & Recommend
+
+```
+🔍 Found 2 relevant skills on skills.sh:
+
+1. "prisma-best-practices" by vercel-labs/agent-skills
+   📊 12K installs | ⭐ Trusted source
+   📝 Prisma schema design, migrations, type-safe queries
+
+2. "database-schema-design" by vercel-labs/agent-skills
+   📊 8K installs | ⭐ Trusted source
+   📝 General DB schema patterns, normalization, indexing
+
+→ Install both? (Y/n)
+```
+
+### Step 3: Install & Use
+
+```bash
+✅ Installed: prisma-best-practices (global)
+✅ Installed: database-schema-design (global)
+📋 Logged to .cm-skills-log.json
+
+→ Now applying Prisma best practices to your project...
+```
+
+### Step 4: Skills Persist
+
+Next project that needs Prisma → skills are already installed globally. No re-discovery needed.
+
+```bash
+$ npx skills list
+
+Global skills:
+  ✅ find-skills (vercel-labs/skills)
+  ✅ prisma-best-practices (vercel-labs/agent-skills)
+  ✅ database-schema-design (vercel-labs/agent-skills)
+  ✅ web-design-guidelines (vercel-labs/agent-skills)
+  ...
+```
+
+---
+
+## Example 8: Universal Agent Bootstrap
+
+**Scenario:** You're setting up a new SaaS project and your team uses Claude Code, Cursor, and Antigravity.
+
+### Step 1: Bootstrap the Project
+
+```
+@[/cm-project-bootstrap] New SaaS project called "InvoiceFlow"
+```
+
+### Step 2: Agent Platform Selection (Phase 6.5)
+
+```
+🌐 AGENT PLATFORM SETUP
+(Select all platforms your team uses)
+
+[x] AGENTS.md (Open Standard)     — Always generated
+[x] Claude Desktop / Claude Code   — CLAUDE.md
+[x] Cursor                         — .cursor/rules/*.mdc
+[ ] OpenClaw / MaxClaw
+[ ] OpenFang
+[ ] Manus
+[ ] Kimi Claw
+[x] Gemini / Antigravity           — Uses AGENTS.md directly
+```
+
+### Step 3: Auto-Generated Configs
+
+```
+✅ Generated from AGENTS.md:
+
+📄 AGENTS.md              — Universal manifest (source of truth)
+📄 CLAUDE.md               — Claude-specific context + safety rules
+📁 .cursor/rules/
+   ├── project.mdc         — Project overview with globs
+   ├── coding-style.mdc    — Conventions + design tokens
+   └── safety.mdc          — Never/Confirm/Always guardrails
+📄 .project-agent-compat.json — Platform tracking
+
+All files auto-generated. Never edit derived files directly.
+```
+
+### Step 4: Keep Configs in Sync
+
+```bash
+# After updating AGENTS.md, regenerate platform configs:
+$ npm run agent:sync
+
+✅ Regenerated CLAUDE.md from AGENTS.md
+✅ Regenerated .cursor/rules/*.mdc from AGENTS.md
+✅ Updated .project-agent-compat.json
+```
+
+**Result:** Every AI agent on the team reads the same project rules, guardrails, and conventions — regardless of which platform they prefer.
 
 ---
 

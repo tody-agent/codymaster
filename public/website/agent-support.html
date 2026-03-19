@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster Claw — Universal AI Agent Compatibility</title>
+  <meta name="description" content="CodyMaster Claw: One AGENTS.md, every AI coding agent. Installation guide, use cases, and best practices for OpenClaw, OpenFang, Claude Desktop, Cursor, Manus and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span> CodyMaster</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+          <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+          <li><a href="agent-support.html" class="active" data-i18n="nav.claw">Claw</a></li>
+          <li class="nav-dropdown">
+            <a class="nav-dropdown-btn" data-i18n="nav.personas">By Role</a>
+            <div class="nav-dropdown-menu">
+              <a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a>
+              <a href="for-dev.html" data-i18n="nav.forDev">For Developers</a>
+              <a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a>
+              <a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button>
+          <div class="lang-menu">
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
+            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+            <button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button>
+          </div>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li>
+      <li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li>
+      <li><a href="agent-support.html" data-i18n="nav.claw">Claw</a></li>
+      <li><span class="mobile-nav-label" data-i18n="nav.personas">By Role</span></li>
+      <li><a href="for-pm.html" data-i18n="nav.forPM">For PM/PO/BA</a></li>
+      <li><a href="for-dev.html" data-i18n="nav.forDev">For Developers</a></li>
+      <li><a href="for-qa.html" data-i18n="nav.forQA">For QA/QC</a></li>
+      <li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge" data-i18n="claw.badge">🦀 Universal AI Agent Standard</div>
+        <h1 data-i18n-html="claw.headline">One Config.<br><span class="gradient-text">Every AI Agent Obeys.</span></h1>
+        <p class="hero-desc" data-i18n="claw.desc">CodyMaster Claw lets you write one AGENTS.md manifest and auto-generate configs for OpenClaw, OpenFang, Claude Desktop, Cursor, Manus, MaxClaw, and Gemini Antigravity. No more per-tool setup. One source of truth for all your AI coding agents.</p>
+        <div class="btn-group">
+          <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="claw.ctaInstall">Install in 30 Seconds</a>
+          <a href="#use-cases" class="btn btn-secondary" data-i18n="claw.ctaUseCases">See Use Cases ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Install -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="claw.installTitle">Get Started in 3 Commands</h2>
+          <p class="section-subtitle mx-auto" data-i18n="claw.installDesc">From zero to fully-configured AI workspace in under 60 seconds. Works with any project, any stack.</p>
+        </div>
+
+        <div class="cards-grid stagger fade-in" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+          <div class="card">
+            <div class="card-icon" style="background:rgba(59,130,246,0.08);color:var(--color-primary-400)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8l4 4-4 4"/><path d="M13 16h4"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.install.s1.title">Step 1: Install CodyMaster</h3>
+            <div class="code-block" style="text-align:left;margin-top:1rem">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> Terminal</div>
+              <code>npm install -g cody-master</code>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" style="background:rgba(139,92,246,0.08);color:var(--color-purple-400)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838.838-2.872a2 2 0 0 1 .506-.855z"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.install.s2.title">Step 2: Bootstrap Your Project</h3>
+            <div class="code-block" style="text-align:left;margin-top:1rem">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> Terminal</div>
+              <code>cody bootstrap</code>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" style="background:rgba(34,197,94,0.08);color:var(--color-success)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.install.s3.title">Step 3: Start Any Agent</h3>
+            <div class="code-block" style="text-align:left;margin-top:1rem">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> Terminal</div>
+              <code>openclaw .  <span style="color:#6e7681"># or cursor . / claude .</span></code>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center mt-8" style="color:var(--text-secondary)" data-i18n="claw.installNote">That's it. AGENTS.md + per-tool configs are auto-generated. Every agent reads the same rules.</p>
+      </div>
+    </section>
+
+    <!-- Supported Platforms -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="claw.platformsTitle">Supported Platforms</h2>
+          <p class="section-subtitle mx-auto" data-i18n="claw.platformsDesc">CodyMaster auto-generates config files for each platform. Your AGENTS.md is the single source of truth.</p>
+        </div>
+        <div class="cards-grid stagger fade-in" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+
+          <div class="card" style="text-align:center">
+            <div class="card-icon" style="background:rgba(59,130,246,0.08);color:var(--color-primary-400);margin:0 auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.platforms.openclaw">OpenClaw</h3>
+            <p class="card-desc" style="font-size:0.85rem" data-i18n="claw.platforms.openclawDesc">Auto-generates .clawrc + MCP config</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div class="card-icon" style="background:rgba(239,68,68,0.08);color:var(--color-error);margin:0 auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M15 9l-6 6m0-6l6 6"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.platforms.openfang">OpenFang</h3>
+            <p class="card-desc" style="font-size:0.85rem" data-i18n="claw.platforms.openfangDesc">RULES.md + guardrail mapping</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div class="card-icon" style="background:rgba(168,85,247,0.08);color:var(--color-purple-400);margin:0 auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.platforms.claude">Claude Desktop</h3>
+            <p class="card-desc" style="font-size:0.85rem" data-i18n="claw.platforms.claudeDesc">CLAUDE.md + project instructions</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div class="card-icon" style="background:rgba(52,211,153,0.08);color:#34d399;margin:0 auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.platforms.cursor">Cursor</h3>
+            <p class="card-desc" style="font-size:0.85rem" data-i18n="claw.platforms.cursorDesc">.cursor/rules + .cursorrules synced</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div class="card-icon" style="background:rgba(34,197,94,0.08);color:var(--color-success);margin:0 auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 4 7.07 17 2.51-7.39L21 11.07z"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.platforms.manus">Manus</h3>
+            <p class="card-desc" style="font-size:0.85rem" data-i18n="claw.platforms.manusDesc">Multi-agent orchestration ready</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div class="card-icon" style="background:rgba(245,158,11,0.08);color:var(--color-accent-500);margin:0 auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2m16 0h2m-9-1v2m-6-2v2"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.platforms.gemini">Gemini Antigravity</h3>
+            <p class="card-desc" style="font-size:0.85rem" data-i18n="claw.platforms.geminiDesc">.gemini/settings.json auto-mapped</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div class="card-icon" style="background:rgba(251,191,36,0.08);color:#fbbf24;margin:0 auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.platforms.maxclaw">MaxClaw & Kimi Claw</h3>
+            <p class="card-desc" style="font-size:0.85rem" data-i18n="claw.platforms.maxclawDesc">Extended agent protocol mapped</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="section section-alt" id="use-cases">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="claw.useCasesTitle">Real-World Use Cases</h2>
+          <p class="section-subtitle mx-auto" data-i18n="claw.useCasesDesc">See how Claw transforms AI-assisted development across different team setups.</p>
+        </div>
+
+        <div class="cards-grid stagger fade-in" style="grid-template-columns:1fr 1fr; gap:2rem;">
+
+          <div class="card">
+            <h3 class="card-title" data-i18n="claw.useCase1.title">🚀 Solo Developer — Multi-Agent Workflow</h3>
+            <p class="card-desc" data-i18n="claw.useCase1.desc">Use Claude Desktop for planning, OpenClaw for execution, and Cursor for quick edits — all reading the same AGENTS.md. No context re-entry. Switch tools mid-task without losing progress.</p>
+            <div class="code-block" style="text-align:left;margin-top:1rem">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> workflow</div>
+              <code><span style="color:#7ee787"># Morning: Plan with Claude</span><br>claude "Plan the auth module"<br><br><span style="color:#7ee787"># Afternoon: Build with OpenClaw</span><br>openclaw "Execute the auth plan"<br><br><span style="color:#7ee787"># Quick fix: Cursor picks up context</span><br>cursor .  <span style="color:#6e7681"># reads same AGENTS.md</span></code>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title" data-i18n="claw.useCase2.title">👥 Team of 5 — Consistent Standards</h3>
+            <p class="card-desc" data-i18n="claw.useCase2.desc">Every developer on your team uses a different AI tool? No problem. AGENTS.md enforces the same guardrails, TDD requirements, and deploy pipeline regardless of which agent each person prefers.</p>
+            <div class="comparison-list mt-4">
+              <ul>
+                <li data-i18n="claw.useCase2.items.0">Dev A uses Claude → same TDD rules</li>
+                <li data-i18n="claw.useCase2.items.1">Dev B uses Cursor → same quality gates</li>
+                <li data-i18n="claw.useCase2.items.2">Dev C uses OpenClaw → same deploy pipeline</li>
+                <li data-i18n="claw.useCase2.items.3">All 3 → identical output quality</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title" data-i18n="claw.useCase3.title">🏢 Enterprise — Governance & Compliance</h3>
+            <p class="card-desc" data-i18n="claw.useCase3.desc">Define security policies once in AGENTS.md: "Never commit secrets", "Always run OWASP scan", "Enforce i18n for all user-facing strings". Every AI agent in your org automatically inherits these rules.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title" data-i18n="claw.useCase4.title">🔄 Migration — Switch Agents Without Pain</h3>
+            <p class="card-desc" data-i18n-html="claw.useCase4.desc">Testing a new AI tool? Just run <code>cody bootstrap</code> again. It regenerates configs for the new tool while keeping your AGENTS.md intact. Zero migration overhead. Compare tools with the same codebase rules.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGENTS.md Deep Dive -->
+    <section class="section">
+      <div class="container">
+        <div class="feature-row fade-in">
+          <div class="feature-content">
+            <h2 class="section-title" data-i18n="claw.manifestTitle">The AGENTS.md Open Standard</h2>
+            <p data-i18n="claw.manifestDesc">Based on the Microsoft Build 2025 specification, AGENTS.md is the single file that tells every AI agent how your project works — its tech stack, rules, commands, and identity.</p>
+            <ul class="comparison-list mt-6">
+              <li data-i18n-html="claw.manifestList.0"><strong>Identity & Context:</strong> Tech stack, deploy targets, brand guidelines — loaded instantly by any agent.</li>
+              <li data-i18n-html="claw.manifestList.1"><strong>Universal Commands:</strong> Standardizes dev, build, test, and deploy across all tools.</li>
+              <li data-i18n-html="claw.manifestList.2"><strong>Guardrails:</strong> "Never deploy without gates", "Always translate strings", "TDD is mandatory".</li>
+              <li data-i18n-html="claw.manifestList.3"><strong>Per-Agent Mapping:</strong> Auto-generates .clawrc, CLAUDE.md, .cursorrules, .gemini/settings.json from one manifest.</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            <div class="code-block" style="text-align: left;">
+              <div class="code-header"><span class="code-dot code-dot-red"></span><span class="code-dot code-dot-yellow"></span><span class="code-dot code-dot-green"></span> AGENTS.md</div>
+              <code><span style="color:#7ee787"># Project Manifest</span><br><br><span style="color:#79c0ff">## Identity</span><br>- <b>Name:</b> my-saas-app<br>- <b>Stack:</b> Next.js + Supabase<br>- <b>Deploy:</b> Cloudflare Pages<br><br><span style="color:#79c0ff">## Guardrails</span><br>1. TDD mandatory (cm-tdd)<br>2. 6-gate check before deploy<br>3. Never hardcode i18n strings<br>4. Identity verification on push<br><br><span style="color:#79c0ff">## Commands</span><br>| Action | Command |<br>|--------|---------|<br>| Dev    | npm run dev |<br>| Test   | npm run test |<br>| Gate   | npm run test:gate |<br>| Deploy | npm run deploy |</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title" data-i18n="claw.bestPracticesTitle">Best Practices</h2>
+          <p class="section-subtitle mx-auto" data-i18n="claw.bestPracticesDesc">Follow these patterns to get the most out of CodyMaster Claw.</p>
+        </div>
+
+        <div class="cards-grid stagger fade-in" style="grid-template-columns:1fr 1fr 1fr; gap:1.5rem;">
+
+          <div class="card">
+            <div class="card-icon" style="background:rgba(59,130,246,0.08);color:var(--color-primary-400)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.bp1.title">Version Your AGENTS.md</h3>
+            <p class="card-desc" data-i18n="claw.bp1.desc">Check it into Git. Every team member and every AI agent reads the same version. Treat it like your .eslintrc — it defines the law of the land.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" style="background:rgba(34,197,94,0.08);color:var(--color-success)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z"/><path d="M9 12L11 14L15 10"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.bp2.title">Start with Guardrails</h3>
+            <p class="card-desc" data-i18n="claw.bp2.desc">Define rules before features. "TDD mandatory", "No deploy without gates", "i18n all strings". These constraints paradoxically make AI faster by eliminating rework.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" style="background:rgba(139,92,246,0.08);color:var(--color-purple-400)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2c2.5 2.5 4 6 4 10s-1.5 7.5-4 10"/><path d="M12 2c-2.5 2.5-4 6-4 10s1.5 7.5 4 10"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.bp3.title">Use Per-Agent Overrides</h3>
+            <p class="card-desc" data-i18n="claw.bp3.desc">Each tool has its own strengths. Use AGENTS.md for shared rules, but let per-tool configs (CLAUDE.md, .cursorrules) handle agent-specific optimizations.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" style="background:rgba(245,158,11,0.08);color:var(--color-accent-500)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="m16 6-4-4-4 4"/><path d="M12 2v13"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.bp4.title">Run Bootstrap on CI</h3>
+            <p class="card-desc" data-i18n="claw.bp4.desc">Add <code>cody bootstrap --check</code> to your CI pipeline to verify AGENTS.md stays in sync with generated configs. Catch drift before it causes confusion.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" style="background:rgba(239,68,68,0.08);color:var(--color-error)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.bp5.title">Keep Identity Strict</h3>
+            <p class="card-desc" data-i18n="claw.bp5.desc">Define Git account, Cloudflare account, and Supabase project in AGENTS.md. CodyMaster's cm-identity-guard blocks wrong-account deploys before they happen.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" style="background:rgba(168,85,247,0.08);color:var(--color-purple-400)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 class="card-title" data-i18n="claw.bp6.title">Document Custom Skills</h3>
+            <p class="card-desc" data-i18n="claw.bp6.desc">List your custom skills in AGENTS.md so any agent knows what specialized behaviors are available. Skills are portable across all supported platforms.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Before/After Comparison -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center" data-i18n="claw.comparisonTitle">Before & After Claw</h2>
+        <div class="comparison-grid mt-8 fade-in">
+          <div class="comparison-col before">
+            <span class="comparison-label" data-i18n="claw.comparison.before.label">Without Claw</span>
+            <ul class="comparison-list">
+              <li data-i18n="claw.comparison.before.items.0">Configure each AI tool separately</li>
+              <li data-i18n="claw.comparison.before.items.1">Rules differ between Claude, Cursor, OpenClaw</li>
+              <li data-i18n="claw.comparison.before.items.2">New team member → manual setup for each tool</li>
+              <li data-i18n="claw.comparison.before.items.3">Switch AI tool → start from scratch</li>
+              <li data-i18n="claw.comparison.before.items.4">Guardrails? What guardrails?</li>
+            </ul>
+          </div>
+          <div class="comparison-col after">
+            <span class="comparison-label" data-i18n="claw.comparison.after.label">With Claw</span>
+            <ul class="comparison-list">
+              <li data-i18n="claw.comparison.after.items.0">One AGENTS.md → all tools configured</li>
+              <li data-i18n="claw.comparison.after.items.1">Identical rules, identical output quality</li>
+              <li data-i18n-html="claw.comparison.after.items.2"><code>git clone</code> + <code>cody bootstrap</code> → ready</li>
+              <li data-i18n="claw.comparison.after.items.3">Switch tools in seconds, keep context</li>
+              <li data-i18n="claw.comparison.after.items.4">TDD + 6-gate + identity lock baked in</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="cta-section">
+          <h2 data-i18n="claw.ctaSection.title">Stop Configuring. Start Shipping.</h2>
+          <p data-i18n="claw.ctaSection.desc">One manifest. Every AI agent. Zero per-tool overhead. Open source, MIT License, forever free.</p>
+          <div class="btn-group">
+            <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary" data-i18n="common.getStarted">Install CodyMaster (Free)</a>
+            <a href="how-it-works.html" class="btn btn-secondary" data-i18n="nav.howItWorks">How It Works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span> CodyMaster</div><p data-i18n="footer.brandDesc">Universal Agent Skills Platform.</p></div>
+        <div class="footer-col"><h4 data-i18n="footer.product">Product</h4><ul><li><a href="how-it-works.html" data-i18n="nav.howItWorks">How It Works</a></li><li><a href="showcase.html" data-i18n="nav.showcase">Showcase</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="nav.personas">By Role</h4><ul><li><a href="for-pm.html" data-i18n="nav.forPM">For PM</a></li><li><a href="for-dev.html" data-i18n="nav.forDev">For Dev</a></li><li><a href="for-qa.html" data-i18n="nav.forQA">For QA</a></li><li><a href="for-founders.html" data-i18n="nav.forFounders">For Founders</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="footer.connect">Connect</h4><ul><li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 CodyMaster.</span></div>
+    </div>
+  </footer>
+  <script src="js/i18n-data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

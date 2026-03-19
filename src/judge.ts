@@ -232,3 +232,57 @@ function guessdomainFromTitle(title: string): string {
   if (/i18n|translate|review|docs/.test(fTitle)) return 'orchestration';
   return 'engineering'; // default
 }
+
+// ─── Transition Suggestions ─────────────────────────────────────────────────
+
+export interface TransitionSuggestion {
+  taskId: string;
+  from: string;
+  to: string;
+  reason: string;
+  confidence: number;
+  stuckMinutes: number;
+}
+
+/**
+ * Suggest transitions for stuck tasks based on heuristics:
+ * - in-progress > 60 min + dispatched → suggest "review"
+ * - in-progress > 120 min → suggest "review" even without dispatch
+ * - review > 30 min → suggest "done"
+ */
+export function suggestTransitions(tasks: Task[]): TransitionSuggestion[] {
+  const now = Date.now();
+  const suggestions: TransitionSuggestion[] = [];
+
+  for (const task of tasks) {
+    const elapsed = now - new Date(task.updatedAt).getTime();
+    const minutes = Math.round(elapsed / 60000);
+
+    if (task.column === 'in-progress') {
+      if (task.dispatchStatus === 'dispatched' && elapsed > 60 * 60 * 1000) {
+        suggestions.push({
+          taskId: task.id, from: 'in-progress', to: 'review',
+          reason: `Dispatched ${minutes}m ago, likely completed. Move to review?`,
+          confidence: 0.7, stuckMinutes: minutes,
+        });
+      } else if (elapsed > 120 * 60 * 1000) {
+        suggestions.push({
+          taskId: task.id, from: 'in-progress', to: 'review',
+          reason: `Stuck for ${minutes}m. Consider moving to review or back to backlog.`,
+          confidence: 0.6, stuckMinutes: minutes,
+        });
+      }
+    }
+
+    if (task.column === 'review' && elapsed > 30 * 60 * 1000) {
+      suggestions.push({
+        taskId: task.id, from: 'review', to: 'done',
+        reason: `In review for ${minutes}m. Ready to mark as done?`,
+        confidence: 0.5, stuckMinutes: minutes,
+      });
+    }
+  }
+
+  return suggestions.sort((a, b) => b.stuckMinutes - a.stuckMinutes);
+}
+

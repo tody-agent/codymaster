@@ -2,10 +2,10 @@
   "name": "codymaster",
   "description": "Universal Agent Skills Platform",
   "github": {
-    "account": "omisocial",
-    "org": "omisocial",
+    "account": "tody-agent",
+    "org": "tody-agent",
     "repo": "codymaster",
-    "remoteUrl": "https://github.com/omisocial/codymaster.git",
-    "userEmail": "omisocial@users.noreply.github.com"
+    "remoteUrl": "https://github.com/tody-agent/codymaster.git",
+    "userEmail": "tody-agent@users.noreply.github.com"
   }
 }

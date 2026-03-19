@@ -3,16 +3,22 @@
 # 🧠 CodyMaster
 
 **The Universal AI Coding Automation & Skills Framework**
+**One Bootstrap → Configs for 7+ AI Agent Platforms**
 
 <p>
   <img src="https://img.shields.io/badge/Version-3.1.0-brightgreen?style=for-the-badge" alt="Version" />
   <img src="https://img.shields.io/badge/Skills-25+-blue?style=for-the-badge" alt="Skills" />
+  <img src="https://img.shields.io/badge/Self--Enhancing-✓-purple?style=for-the-badge" alt="Self-Enhancing" />
   <img src="https://img.shields.io/badge/Providers-7-orange?style=for-the-badge" alt="Providers" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
 </p>
 
-*Transform any AI coding tool into a **disciplined Senior Engineer** with 25+ standardized skills,*  
-*real-time dashboard, autonomous RARV execution, and working memory.*
+*Transform any AI coding tool into a **self-enhancing Senior Engineer** with 25+ built-in skills,*  
+*auto-discovery of new skills via [skills.sh](https://skills.sh), real-time dashboard, and working memory.*
+
+<br/>
+<img src="./public/website/img/dashboard-kanban.png" alt="CodyMaster Interactive Dashboard" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
+<br/>
 
 </div>
 
@@ -27,6 +33,8 @@ CodyMaster is a **skills framework** that gives AI coding agents the discipline 
 - 🧠 **Working Memory** — context persists across sessions via CONTINUITY.md
 - 🤖 **Judge Agent** — auto-detects stuck tasks, suggests pivots
 - 📊 **Real-time Dashboard** — Kanban board, agent logs, deployment tracking
+- 🔍 **Self-Enhancing** — auto-discovers & installs new skills from [skills.sh](https://skills.sh)
+- 🌐 **Universal Agent Bootstrap** — one AGENTS.md → configs for OpenClaw, Claude, Cursor, OpenFang, Manus, MaxClaw
 
 ```
 Your Idea → CodyMaster Skills → Production-Ready Code
@@ -35,6 +43,10 @@ Your Idea → CodyMaster Skills → Production-Ready Code
 ---
 
 ## Quick Start
+
+<br/>
+<img src="./public/website/img/cli-view.png" alt="CodyMaster CLI Execution" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
+<br/>
 
 ```bash
 # Install globally
@@ -58,11 +70,14 @@ cm continuity init
 | Platform | Status | Skill Prefix |
 |----------|--------|-------------|
 | 🟢 **Google Antigravity** (Gemini) | ✅ | `@[/skill-name]` |
-| 🟣 **Claude Code** | ✅ | `/skill-name` |
+| 🟣 **Claude Code / Desktop** | ✅ | `/skill-name` |
 | 🔵 **Cursor** | ✅ | `@skill-name` |
 | 🟠 **Windsurf** | ✅ | `@skill-name` |
 | 🟤 **Cline / RooCode** | ✅ | `@skill-name` |
 | 🐈 **GitHub Copilot** | ✅ | `skill-name` |
+| 🐾 **OpenClaw / MaxClaw** | ✅ | `@skill-name` |
+| 🦷 **OpenFang** | ✅ | `@skill-name` |
+| 🤖 **Manus** | ✅ | `@skill-name` |
 | 💻 **Gemini CLI** | ✅ | `@[/skill-name]` |
 
 ---
@@ -97,7 +112,7 @@ Skills are organized into **5 swarms** for intelligent auto-selection:
 | `cm-planning` | Brainstorm intent → design → implementation plan |
 | `cm-ux-master` | 48 UX Laws + 37 Design Tests + Figma/Stitch |
 | `cm-dockit` | Complete knowledge base from codebase |
-| `cm-project-bootstrap` | Full project setup: design system → CI → deploy |
+| `cm-project-bootstrap` | Full project setup: design system → CI → deploy + **universal agent configs** |
 
 ### 📈 Growth Swarm
 
@@ -117,6 +132,7 @@ Skills are organized into **5 swarms** for intelligent auto-selection:
 | `cm-skill-index` | Progressive disclosure — scan 25 skills in 100 tokens |
 | `cm-safe-i18n` | Multi-pass translation with 8 audit gates |
 | `cm-skill-mastery` | Meta: when to invoke skills, how to create new ones |
+| `find-skills` ⭐ | Auto-discover & install skills from [skills.sh](https://skills.sh) — `npx skills find` |
 
 ---
 
@@ -157,16 +173,16 @@ The Judge Agent automatically evaluates task health:
 
 ```bash
 # API endpoints
-curl http://localhost:6969/api/judge                    # All tasks
-curl http://localhost:6969/api/judge/:taskId             # Single task
-curl http://localhost:6969/api/agents/suggest?skill=cm-tdd  # Best agent for skill
+curl http://codymaster.localhost:6969/api/judge                    # All tasks
+curl http://codymaster.localhost:6969/api/judge/:taskId             # Single task
+curl http://codymaster.localhost:6969/api/agents/suggest?skill=cm-tdd  # Best agent for skill
 ```
 
 ---
 
 ## 📊 Dashboard
 
-Real-time web dashboard at `http://localhost:6969`:
+Real-time web dashboard at `http://codymaster.localhost:6969`:
 
 - **Kanban Board** — drag tasks across backlog → in-progress → review → done
 - **Agent Activity** — see what each AI agent is doing
@@ -186,15 +202,25 @@ cm dashboard start -p 8080   # Custom port
 
 The enhanced RARV (Reason-Act-Reflect-Verify) cycle runs tasks autonomously:
 
-```
-ORIENT   → Read CONTINUITY.md + past learnings
-REASON   → Pick highest-priority task
-PRE-ACT  → 🛡️ Goal alignment check (prevents drift)
-ACT      → Execute with assigned skill
-REFLECT  → Update results + working memory
-VERIFY   → Quality gate check
-           ✅ Pass → next task
-           ❌ Fail → capture learning → retry (max 3)
+```mermaid
+graph TD
+    O["0. ORIENT<br/>Read CONTINUITY.md<br/>Load past learnings"]
+    R["1. REASON<br/>Pick highest-priority task<br/>Update working memory"]
+    P["2. PRE-ACT ATTENTION<br/>🛡️ Goal alignment check<br/>3 questions"]
+    A["3. ACT<br/>Execute with assigned skill<br/>Git checkpoint"]
+    RE["4. REFLECT<br/>Update cm-tasks.json<br/>Update CONTINUITY.md"]
+    V["5. VERIFY<br/>Run quality gate<br/>6-gate check"]
+    D["✅ DONE<br/>Next task"]
+    F["❌ FAIL<br/>Self-correction loop"]
+    B["🚫 BLOCKED<br/>3+ failures → escalate"]
+
+    O --> R --> P
+    P -->|"Goal aligned"| A
+    P -->|"Drift detected ⚠️"| R
+    A --> RE --> V
+    V -->|"Pass"| D --> O
+    V -->|"Fail (attempt < 3)"| F --> O
+    V -->|"Fail (attempt ≥ 3)"| B
 ```
 
 **Key innovation:** PRE-ACT ATTENTION prevents goal drift — the #1 AI failure mode.
@@ -208,6 +234,20 @@ VERIFY   → Quality gate check
 | [How It Works](docs/how-it-work.md) | Mermaid workflow diagrams, use cases, exception handling |
 | [Showcase](docs/showcase.md) | Step-by-step examples with real commands |
 | [Skills Reference](skills/) | Full SKILL.md for each skill |
+
+### 🌐 Universal Agent Bootstrap (NEW in v3.0)
+
+`cm-project-bootstrap` now auto-generates platform-specific configs from a single `AGENTS.md`:
+
+| Platform | Generated Config |
+|----------|------------------|
+| AGENTS.md (Open Standard) | `AGENTS.md` — always generated, source of truth |
+| Claude Desktop / Claude Code | `CLAUDE.md` |
+| Cursor | `.cursor/rules/*.mdc` |
+| OpenClaw / MaxClaw | `IDENTITY.md`, `MEMORY.md`, `TOOLS.md`, `SHIELD.md` |
+| OpenFang | `HAND.toml` |
+| Manus | Project instructions |
+| Gemini / Antigravity | Uses `AGENTS.md` directly |
 
 ---
 

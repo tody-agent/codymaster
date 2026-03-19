@@ -14,6 +14,7 @@ graph TB
         Skills["🧩 25+ Skills"]
         Memory["🧠 Working Memory"]
         Judge["🤖 Judge Agent"]
+        AgentConfig["🌐 Universal Agent Config"]
     end
 
     subgraph "AI Providers"
@@ -41,6 +42,9 @@ graph TB
     WS --> Skills
     CL --> Skills
     Code --> Tests --> Deploy
+    AgentConfig -->|"AGENTS.md"| AG
+    AgentConfig -->|"CLAUDE.md"| CC
+    AgentConfig -->|".cursor/rules"| CU
 ```
 
 ---
@@ -68,12 +72,6 @@ graph TD
     V -->|"Pass"| D --> O
     V -->|"Fail (attempt < 3)"| F --> O
     V -->|"Fail (attempt ≥ 3)"| B
-
-    style O fill:#3b82f6,color:#fff
-    style P fill:#f59e0b,color:#fff
-    style D fill:#22c55e,color:#fff
-    style F fill:#ef4444,color:#fff
-    style B fill:#6b7280,color:#fff
 ```
 
 ### PRE-ACT ATTENTION — The Drift Preventer
@@ -103,11 +101,6 @@ graph LR
     SHIP["🚀 SHIP"]
 
     G1 --> G2 --> G3 --> G4 --> G5 --> G6 --> SHIP
-
-    style G3 fill:#8b5cf6,color:#fff
-    style G4 fill:#ec4899,color:#fff
-    style G5 fill:#ef4444,color:#fff
-    style SHIP fill:#22c55e,color:#fff
 ```
 
 **G3 (Blind Review):** Reviewer only sees the diff — no task description, no implementation context. Forces genuine code review.
@@ -130,11 +123,6 @@ graph TD
     C3 -->|No| C4{"Dispatch failed?"}
     C4 -->|Yes| ESCALATE
     C4 -->|No| CONTINUE["🟢 CONTINUE"]
-
-    style COMPLETE fill:#22c55e,color:#fff
-    style ESCALATE fill:#f59e0b,color:#fff
-    style PIVOT fill:#3b82f6,color:#fff
-    style CONTINUE fill:#22c55e,color:#fff
 ```
 
 ---
@@ -229,13 +217,27 @@ graph LR
 @[/cm-safe-deploy]  # 8-gate pipeline with rollback strategy
 ```
 
-### 3. Setup New Project
+### 3: Setup New Project (Universal Agent Bootstrap)
 
 ```bash
 # Verify identity first, then bootstrap
 @[/cm-identity-guard]       # Ensure right GitHub/Cloudflare account
 @[/cm-project-bootstrap]    # Full setup: design system, CI, staging, deploy
+                              # + auto-generates configs for selected AI agent platforms
 ```
+
+**Phase 6.5 asks which platforms your team uses:**
+
+```
+🌐 AGENT PLATFORM SETUP
+[x] AGENTS.md (Open Standard)     — Always generated
+[x] Claude Desktop / Claude Code   → CLAUDE.md
+[x] Cursor                         → .cursor/rules/*.mdc
+[ ] OpenClaw / MaxClaw              → IDENTITY.md, MEMORY.md, TOOLS.md, SHIELD.md
+[ ] OpenFang                        → HAND.toml
+```
+
+**One `AGENTS.md` → all platform configs derived automatically.** Never edit derived files directly.
 
 ### 4. Mass Translation (i18n)
 
@@ -309,7 +311,7 @@ The dashboard tracks all deployments with rollback history. Use `POST /api/deplo
 The **Judge Agent** detects stuck tasks and the **Dynamic Agent Selection** API suggests the best agent:
 
 ```bash
-curl http://localhost:6969/api/agents/suggest?skill=cm-tdd
+curl http://codymaster.localhost:6969/api/agents/suggest?skill=cm-tdd
 # → { "domain": "engineering", "agents": ["claude-code", "cursor", "antigravity"] }
 ```
 
@@ -357,3 +359,4 @@ Gates 1-2 (static analysis + tests) are **mandatory**. Gates 3-6 can be adjusted
 6. 🚀 **Deploy via Gates** — all 6 gates must pass
 7. 🧠 **Read Memory First** — CONTINUITY.md at session start
 8. 📚 **Capture Learnings** — every failure becomes wisdom
+9. 🌐 **One Source of Truth** — AGENTS.md is the master, platform configs are derived

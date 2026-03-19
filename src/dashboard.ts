@@ -8,7 +8,7 @@ import type { Project, Task, Deployment, ChangelogEntry } from './data';
 import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
 import { ensureCmDir, readContinuityState, writeContinuityMd, getContinuityStatus, addLearning, getLearnings, addDecision, getDecisions, hasCmDir } from './continuity';
 import type { ContinuityState, Learning, Decision } from './continuity';
-import { evaluateAllTasks, evaluateTaskState, suggestAgentsForTask, suggestAgentsForSkill, getSkillDomain } from './judge';
+import { evaluateAllTasks, evaluateTaskState, suggestAgentsForTask, suggestAgentsForSkill, getSkillDomain, suggestTransitions } from './judge';
 
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 
@@ -178,6 +178,124 @@ export function launchDashboard(port: number = DEFAULT_PORT) {
     logActivity(data, actType, `Task "${task.title}" moved: ${oldCol} → ${column}`, task.projectId, task.agent, { from: oldCol, to: column });
     saveData(data);
     res.json(task);
+  });
+
+  // ─── Valid Transition Map ─────────────────────────────────────────────
+
+  const VALID_TRANSITIONS: Record<string, string[]> = {
+    'backlog':      ['in-progress'],
+    'in-progress':  ['review', 'done', 'backlog'],
+    'review':       ['done', 'in-progress'],
+    'done':         ['backlog'],
+  };
+
+  app.post('/api/tasks/:id/transition', (req, res) => {
+    const data = loadData();
+    const idx = data.tasks.findIndex(t => t.id === req.params.id);
+    if (idx === -1) { res.status(404).json({ error: 'Task not found' }); return; }
+
+    const { column, reason } = req.body;
+    const vc = ['backlog', 'in-progress', 'review', 'done'];
+    if (!column || !vc.includes(column)) { res.status(400).json({ error: 'Valid column required' }); return; }
+
+    const task = data.tasks[idx];
+    const oldCol = task.column;
+
+    // Validate transition
+    const allowed = VALID_TRANSITIONS[oldCol] || [];
+    if (oldCol !== column && !allowed.includes(column)) {
+      res.status(400).json({
+        error: `Invalid transition: ${oldCol} → ${column}. Allowed: ${allowed.join(', ')}`,
+        errorCode: 'INVALID_TRANSITION',
+        allowed,
+      });
+      return;
+    }
+
+    if (oldCol === column) { res.json(task); return; } // No-op
+
+    // Execute transition
+    const now = new Date().toISOString();
+    task.column = column;
+    task.updatedAt = now;
+    task.stuckSince = undefined; // Reset stuck tracker
+
+    // Reorder in target column
+    const targetTasks = data.tasks.filter(t => t.column === column && t.id !== task.id && t.projectId === task.projectId).sort((a, b) => a.order - b.order);
+    task.order = targetTasks.length;
+
+    // Reorder old column
+    data.tasks.filter(t => t.column === oldCol && t.projectId === task.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
+
+    const actType = column === 'done' ? 'task_done' : 'task_transitioned';
+    const msg = reason
+      ? `Task "${task.title}" transitioned: ${oldCol} → ${column} — ${reason}`
+      : `Task "${task.title}" transitioned: ${oldCol} → ${column}`;
+    logActivity(data, actType, msg, task.projectId, task.agent, { from: oldCol, to: column, reason: reason || '' });
+    saveData(data);
+    res.json(task);
+  });
+
+  app.post('/api/tasks/bulk-transition', (req, res) => {
+    const data = loadData();
+    const { taskIds, column, reason } = req.body;
+    if (!Array.isArray(taskIds) || taskIds.length === 0) { res.status(400).json({ error: 'taskIds array required' }); return; }
+    const vc = ['backlog', 'in-progress', 'review', 'done'];
+    if (!column || !vc.includes(column)) { res.status(400).json({ error: 'Valid column required' }); return; }
+
+    const results: { id: string; success: boolean; error?: string }[] = [];
+    const now = new Date().toISOString();
+
+    for (const tid of taskIds) {
+      const idx = data.tasks.findIndex(t => t.id === tid);
+      if (idx === -1) { results.push({ id: tid, success: false, error: 'Not found' }); continue; }
+
+      const task = data.tasks[idx];
+      const oldCol = task.column;
+      const allowed = VALID_TRANSITIONS[oldCol] || [];
+      if (oldCol !== column && !allowed.includes(column)) {
+        results.push({ id: tid, success: false, error: `Invalid: ${oldCol} → ${column}` });
+        continue;
+      }
+      if (oldCol === column) { results.push({ id: tid, success: true }); continue; }
+
+      task.column = column;
+      task.updatedAt = now;
+      task.stuckSince = undefined;
+
+      const targetTasks = data.tasks.filter(t => t.column === column && t.id !== task.id && t.projectId === task.projectId).sort((a, b) => a.order - b.order);
+      task.order = targetTasks.length;
+
+      const actType = column === 'done' ? 'task_done' : 'task_transitioned';
+      logActivity(data, actType, `Task "${task.title}" bulk-transitioned: ${oldCol} → ${column}`, task.projectId, task.agent, { from: oldCol, to: column, reason: reason || '', bulk: true });
+      results.push({ id: tid, success: true });
+    }
+
+    // Reorder all affected columns
+    const affectedCols = new Set(results.filter(r => r.success).map(r => data.tasks.find(t => t.id === r.id)?.column).filter(Boolean) as string[]);
+    for (const col of affectedCols) {
+      data.tasks.filter(t => t.column === col).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
+    }
+
+    saveData(data);
+    const successCount = results.filter(r => r.success).length;
+    res.json({ results, summary: `${successCount}/${taskIds.length} tasks transitioned to ${column}` });
+  });
+
+  app.get('/api/tasks/stuck', (req, res) => {
+    const data = loadData();
+    const thresholdMs = parseInt(String(req.query.threshold)) || 30 * 60 * 1000; // default 30 min
+    const now = Date.now();
+    let tasks = data.tasks.filter(t => t.column === 'in-progress');
+    if (req.query.projectId) tasks = tasks.filter(t => t.projectId === req.query.projectId);
+    const stuck = tasks.filter(t => {
+      const elapsed = now - new Date(t.updatedAt).getTime();
+      return elapsed > thresholdMs;
+    }).map(t => ({
+      ...t,
+      stuckMinutes: Math.round((now - new Date(t.updatedAt).getTime()) / 60000),
+    }));
+    res.json(stuck);
   });
 
   app.delete('/api/tasks/:id', (req, res) => {
@@ -441,6 +559,16 @@ export function launchDashboard(port: number = DEFAULT_PORT) {
     res.json(result);
   });
 
+  // ─── Transition Suggestion API (must be before :taskId) ────────────────
+
+  app.get('/api/judge/suggestions', (req, res) => {
+    const data = loadData();
+    let tasks = data.tasks;
+    if (req.query.projectId) tasks = tasks.filter(t => t.projectId === req.query.projectId);
+    const suggestions = suggestTransitions(tasks);
+    res.json(suggestions);
+  });
+
   app.get('/api/judge/:taskId', (req, res) => {
     const data = loadData();
     const task = data.tasks.find(t => t.id === req.params.taskId);
@@ -487,7 +615,7 @@ export function launchDashboard(port: number = DEFAULT_PORT) {
 
   const server = app.listen(port, () => {
     try { fs.writeFileSync(PID_FILE, String(process.pid)); } catch {}
-    console.log(chalk.cyan(`\n🚀 CodyMaster Dashboard v3 at http://localhost:${port}`));
+    console.log(chalk.cyan(`\n🚀 CodyMaster Dashboard v3 at http://codymaster.localhost:${port}`));
     console.log(chalk.gray(`   Data: ${DATA_FILE}`));
     console.log(chalk.gray(`   Press Ctrl+C to stop.\n`));
   });

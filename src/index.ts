@@ -23,7 +23,7 @@ function showBanner() {
    ██████╗ ██████╗  ██████╗  ██╗   ██╗
   ██╔════╝██╔═══██╗██╔══██╗ ╚██╗ ██╔╝   Cody v${VERSION}
   ██║     ██║   ██║██║  ██║  ╚████╔╝    Universal AI Agent Skills Platform
-  ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://localhost:${DEFAULT_PORT}
+  ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://codymaster.localhost:${DEFAULT_PORT}
   ╚██████╗╚██████╔╝██████╔╝    ██║
    ╚═════╝ ╚═════╝ ╚═════╝     ╚═╝
 `));
@@ -120,12 +120,12 @@ program
     const port = parseInt(opts.port) || DEFAULT_PORT;
     switch (cmd) {
       case 'start': case undefined:
-        if (isDashboardRunning()) { console.log(chalk.yellow('⚠️  Dashboard already running.')); console.log(chalk.gray(`   URL: http://localhost:${port}`)); return; }
+        if (isDashboardRunning()) { console.log(chalk.yellow('⚠️  Dashboard already running.')); console.log(chalk.gray(`   URL: http://codymaster.localhost:${port}`)); return; }
         launchDashboard(port); break;
       case 'stop': stopDashboard(); break;
       case 'status': dashboardStatus(port); break;
-      case 'open': console.log(chalk.blue(`🌐 Opening http://localhost:${port} ...`)); openUrl(`http://localhost:${port}`); break;
-      case 'url': console.log(`http://localhost:${port}`); break;
+      case 'open': console.log(chalk.blue(`🌐 Opening http://codymaster.localhost:${port} ...`)); openUrl(`http://codymaster.localhost:${port}`); break;
+      case 'url': console.log(`http://codymaster.localhost:${port}`); break;
       default: console.log(chalk.red(`Unknown: ${cmd}`)); console.log(chalk.gray('Available: start, stop, status, open, url'));
     }
   });
@@ -147,7 +147,7 @@ function stopDashboard() {
 function dashboardStatus(port: number) {
   if (isDashboardRunning()) {
     const pid = fs.readFileSync(PID_FILE, 'utf-8').trim();
-    console.log(chalk.green(`✅ Dashboard RUNNING`)); console.log(chalk.gray(`   PID: ${pid}`)); console.log(chalk.gray(`   URL: http://localhost:${port}`));
+    console.log(chalk.green(`✅ Dashboard RUNNING`)); console.log(chalk.gray(`   PID: ${pid}`)); console.log(chalk.gray(`   URL: http://codymaster.localhost:${port}`));
   } else { console.log(chalk.yellow('⚫ Dashboard NOT running')); console.log(chalk.gray('   Start with: cody dashboard start')); }
 }
 
@@ -172,7 +172,8 @@ program
       case 'done': taskDone(args[0]); break;
       case 'rm': case 'delete': taskRemove(args[0]); break;
       case 'dispatch': taskDispatch(args[0], opts); break;
-      default: console.log(chalk.red(`Unknown: ${cmd}`)); console.log(chalk.gray('Available: add, list, move, done, rm, dispatch'));
+      case 'stuck': taskStuck(opts); break;
+      default: console.log(chalk.red(`Unknown: ${cmd}`)); console.log(chalk.gray('Available: add, list, move, done, rm, dispatch, stuck'));
     }
   });
 
@@ -228,17 +229,73 @@ function taskList(opts: any) {
 function taskMove(idPrefix: string, targetColumn: string) {
   if (!idPrefix || !targetColumn) { console.log(chalk.red('❌ Usage: cody task move <id> <column>')); return; }
   const vc = ['backlog', 'in-progress', 'review', 'done'];
-  if (!vc.includes(targetColumn)) { console.log(chalk.red(`❌ Invalid column: ${targetColumn}`)); return; }
+  if (!vc.includes(targetColumn)) { console.log(chalk.red(`❌ Invalid column: ${targetColumn}. Valid: ${vc.join(', ')}`)); return; }
   const data = loadData();
   const task = findTaskByIdPrefix(data, idPrefix);
   if (!task) { console.log(chalk.red(`❌ Task not found: ${idPrefix}`)); return; }
   const oldCol = task.column;
+
+  // Validate transition
+  const VALID_TRANSITIONS: Record<string, string[]> = {
+    'backlog': ['in-progress'],
+    'in-progress': ['review', 'done', 'backlog'],
+    'review': ['done', 'in-progress'],
+    'done': ['backlog'],
+  };
+  const allowed = VALID_TRANSITIONS[oldCol] || [];
+  if (oldCol !== targetColumn && !allowed.includes(targetColumn)) {
+    console.log(chalk.red(`❌ Invalid transition: ${oldCol} → ${targetColumn}`));
+    console.log(chalk.gray(`   Allowed transitions: ${allowed.join(', ')}`));
+    return;
+  }
+  if (oldCol === targetColumn) {
+    console.log(chalk.gray(`  Task already in ${targetColumn}.`));
+    return;
+  }
+
   task.column = targetColumn as Task['column'];
   task.updatedAt = new Date().toISOString();
-  logActivity(data, targetColumn === 'done' ? 'task_done' : 'task_moved', `Task "${task.title}" moved: ${oldCol} → ${targetColumn}`, task.projectId, task.agent, { from: oldCol, to: targetColumn });
+  task.stuckSince = undefined;
+  logActivity(data, targetColumn === 'done' ? 'task_done' : 'task_transitioned', `Task "${task.title}" moved: ${oldCol} → ${targetColumn} (CLI)`, task.projectId, task.agent, { from: oldCol, to: targetColumn });
   saveData(data);
   console.log(chalk.green(`✅ Moved "${task.title}"`));
   console.log(chalk.gray(`   ${oldCol} → `) + (COL_COLORS[targetColumn] || chalk.white)(targetColumn));
+}
+
+function taskStuck(opts: any) {
+  const data = loadData();
+  const thresholdMin = 30;
+  const now = Date.now();
+  let tasks = data.tasks.filter(t => t.column === 'in-progress');
+  if (opts.project) {
+    const project = findProjectByNameOrId(data, opts.project);
+    if (!project) { console.log(chalk.red(`❌ Project not found: ${opts.project}`)); return; }
+    tasks = tasks.filter(t => t.projectId === project.id);
+  }
+  const stuck = tasks.filter(t => {
+    const elapsed = now - new Date(t.updatedAt).getTime();
+    return elapsed > thresholdMin * 60 * 1000;
+  }).sort((a, b) => new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime());
+
+  if (stuck.length === 0) {
+    console.log(chalk.green(`\n  ✅ No stuck tasks! All in-progress tasks updated within ${thresholdMin}m.\n`));
+    return;
+  }
+
+  console.log(chalk.yellow(`\n⚠️  ${stuck.length} Stuck Tasks (>${thresholdMin}m in progress)\n`));
+  console.log(chalk.gray('  ' + padRight('ID', 10) + padRight('Title', 36) + padRight('Stuck For', 12) + padRight('Agent', 14) + 'Priority'));
+  console.log(chalk.gray('  ' + '─'.repeat(86)));
+  for (const task of stuck) {
+    const elapsed = now - new Date(task.updatedAt).getTime();
+    const minutes = Math.round(elapsed / 60000);
+    const timeStr = minutes < 60 ? `${minutes}m` : `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+    const project = data.projects.find(p => p.id === task.projectId);
+    const pc = PRIORITY_COLORS[task.priority] || chalk.white;
+    console.log('  ' + chalk.gray(padRight(shortId(task.id), 10)) + padRight(task.title.substring(0, 34), 36) + chalk.yellow(padRight(timeStr, 12)) + chalk.gray(padRight(task.agent || '—', 14)) + pc(task.priority));
+  }
+  console.log();
+  console.log(chalk.gray('  Tip: Move tasks with: cody task move <id> review|done|backlog'));
+  console.log();
 }
 
 function taskDone(idPrefix: string) {
@@ -606,7 +663,7 @@ program
 
     // Dashboard
     console.log();
-    if (isDashboardRunning()) { console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://localhost:${DEFAULT_PORT}`)); }
+    if (isDashboardRunning()) { console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${DEFAULT_PORT}`)); }
     else { console.log(chalk.gray(`  ⚫ Dashboard: not running (start with: cody dashboard)`)); }
     console.log();
   });
@@ -1007,9 +1064,14 @@ program
     console.log(chalk.gray(`   Path: ${projectPath}`));
     console.log(chalk.gray(`   .cm/  Working memory created`));
     console.log();
+
+    if (!isDashboardRunning()) {
+      launchDashboard(DEFAULT_PORT);
+      console.log(chalk.green(`   🚀 Dashboard auto-started! You can track progress at http://codymaster.localhost:${DEFAULT_PORT}`));
+    }
+
     console.log(chalk.cyan('💡 Next steps:'));
     console.log(chalk.gray('   cody task add "My first task"'));
-    console.log(chalk.gray('   cody dashboard start'));
     console.log(chalk.gray('   cody open'));
     console.log();
   });
@@ -1026,10 +1088,10 @@ program
     if (!isDashboardRunning()) {
       console.log(chalk.yellow('⚠️  Dashboard not running. Starting it first...'));
       launchDashboard(port);
-      setTimeout(() => openUrl(`http://localhost:${port}`), 1500);
+      setTimeout(() => openUrl(`http://codymaster.localhost:${port}`), 1500);
     } else {
-      console.log(chalk.blue(`🌐 Opening http://localhost:${port} ...`));
-      openUrl(`http://localhost:${port}`);
+      console.log(chalk.blue(`🌐 Opening http://codymaster.localhost:${port} ...`));
+      openUrl(`http://codymaster.localhost:${port}`);
     }
   });
 
@@ -1061,7 +1123,7 @@ program
 
     // Dashboard status
     if (isDashboardRunning()) {
-      console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://localhost:${DEFAULT_PORT}`));
+      console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${DEFAULT_PORT}`));
     } else {
       console.log(chalk.gray(`  ⚫ Dashboard: not running`));
     }
