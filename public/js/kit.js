@@ -83,8 +83,12 @@
       document.documentElement.setAttribute('lang', this.currentLang);
       document.documentElement.setAttribute('data-lang', this.currentLang);
 
-      // Rebuild dynamic content (skills tabs & cards)
+      // Rebuild dynamic content (skills tabs & cards, personas grid)
       Skills.render(t);
+      PersonasGrid.render(t);
+      if (typeof Typewriter !== 'undefined' && Typewriter.element) {
+        Typewriter.updatePhrases();
+      }
 
       // Update active button state
       document.querySelectorAll('.lang-option').forEach(btn => {
@@ -97,6 +101,8 @@
       if (toggleText && codeMap[this.currentLang]) {
         toggleText.textContent = codeMap[this.currentLang];
       }
+
+      document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: this.currentLang, translations: t } }));
     },
 
     async switchTo(lang) {
@@ -214,6 +220,58 @@
     }
   };
 
+  // ─── Personas Grid (Homepage) ──────────────────────
+  const PersonasGrid = {
+    accentColors: {
+      founder: '#22d3ee',
+      cmo: '#a78bfa',
+      pm: '#34d399',
+      dev: '#60a5fa',
+      designer: '#f472b6',
+      claw: '#fb923c'
+    },
+
+    render(t) {
+      const container = document.getElementById('personasGrid');
+      if (!container || !t?.personas?.cards) return;
+
+      const en = I18n.translations['en'];
+      const learnMore = t.personas?.learnMore || en?.personas?.learnMore || 'Learn more →';
+      const cards = t.personas.cards;
+
+      container.innerHTML = '';
+      cards.forEach((card, i) => {
+        const accent = this.accentColors[card.id] || '#22d3ee';
+        const delay = i + 1;
+
+        const el = document.createElement('a');
+        el.href = `persona.html?p=${card.id}`;
+        el.className = `persona-home-card reveal reveal-delay-${delay}`;
+        el.style.setProperty('--card-accent', accent);
+        el.innerHTML = `
+          <div class="persona-home-card__header">
+            <span class="persona-home-card__emoji">${card.emoji}</span>
+            <h3 class="persona-home-card__title">${card.title}</h3>
+            <p class="persona-home-card__tagline">${card.tagline}</p>
+          </div>
+          <ul class="persona-home-card__pains">
+            ${card.pains.map(p => `<li>😤 ${p}</li>`).join('')}
+          </ul>
+          <p class="persona-home-card__dream">✨ ${card.dream}</p>
+          <span class="persona-home-card__link">${learnMore}</span>
+        `;
+        container.appendChild(el);
+      });
+
+      // Re-initialize ScrollReveal for new elements
+      if (ScrollReveal.observer) {
+        container.querySelectorAll('.reveal').forEach(el => {
+          ScrollReveal.observer.observe(el);
+        });
+      }
+    }
+  };
+
   // ─── Scroll Reveal ──────────────────────────────
   const ScrollReveal = {
     observer: null,
@@ -288,6 +346,87 @@
       };
 
       requestAnimationFrame(step);
+    }
+  };
+
+  // ─── Typewriter Effect ──────────────────────────
+  const Typewriter = {
+    element: null,
+    phrases: [],
+    phraseIndex: 0,
+    charIndex: 0,
+    isDeleting: false,
+    timer: null,
+    typingSpeed: 100,
+    deletingSpeed: 50,
+    delayBetweenPhrases: 2000,
+
+    init() {
+      this.element = document.getElementById('hero-typing');
+      if (!this.element) return;
+      this.updatePhrases();
+    },
+
+    updatePhrases() {
+      const t = I18n.translations[I18n.currentLang];
+      const en = I18n.translations['en'];
+      
+      let phrases = I18n.resolve(t, 'hero.typingPhrases');
+      if (!phrases && en) {
+        phrases = I18n.resolve(en, 'hero.typingPhrases');
+      }
+      
+      this.phrases = phrases || ['products'];
+      this.phraseIndex = 0;
+      this.charIndex = 0;
+      this.isDeleting = false;
+      if (this.element) this.element.textContent = '';
+      
+      const hiddenSpan = document.getElementById('hero-hidden');
+      if (hiddenSpan && this.phrases.length > 0) {
+        hiddenSpan.textContent = this.phrases[0];
+      }
+
+      clearTimeout(this.timer);
+      this.type();
+    },
+
+    type() {
+      if (!this.element || !this.phrases.length) return;
+
+      const currentPhrase = this.phrases[this.phraseIndex % this.phrases.length];
+      
+      if (!this.isDeleting && this.charIndex === 0) {
+        const hiddenSpan = document.getElementById('hero-hidden');
+        if (hiddenSpan) {
+          hiddenSpan.textContent = currentPhrase;
+        }
+      }
+
+      if (this.isDeleting) {
+        this.charIndex--;
+      } else {
+        this.charIndex++;
+      }
+
+      this.element.textContent = currentPhrase.substring(0, this.charIndex);
+
+      let typeSpeed = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
+
+      if (!this.isDeleting) {
+        typeSpeed += Math.random() * 50;
+      }
+
+      if (!this.isDeleting && this.charIndex === currentPhrase.length) {
+        typeSpeed = this.delayBetweenPhrases;
+        this.isDeleting = true;
+      } else if (this.isDeleting && this.charIndex === 0) {
+        this.isDeleting = false;
+        this.phraseIndex++;
+        typeSpeed = 500;
+      }
+
+      this.timer = setTimeout(() => this.type(), typeSpeed);
     }
   };
 
@@ -383,11 +522,15 @@
     }
 
     // Init all modules
+    Typewriter.init();
     Navigation.init();
     ScrollReveal.init();
     CounterAnimation.init();
     Parallax.init();
     CardTilt.init();
   });
+
+  // Expose I18n globally for page-specific scripts
+  window.I18n = I18n;
 
 })();

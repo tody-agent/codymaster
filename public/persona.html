@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cody Master Kit — For You</title>
+  <meta name="description" content="See how Cody Master Kit solves YOUR specific challenges. Find your role, explore your pain points, and discover the skills built for you.">
+  <meta property="og:title" content="Cody Master Kit — Built for Your Role">
+  <meta property="og:description" content="Persona-specific AI toolkit. See how Cody Master addresses your unique challenges.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/kit.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ═══════════╗ NAVIGATION ╔═══════════ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-icon">⚡</span>
+      <span>Cody Master</span>
+    </a>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
+      <li><a href="demo.html" class="nav__link" data-i18n="nav.demo">Demo</a></li>
+    </ul>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+      <button id="lang-toggle" class="lang-toggle" aria-haspopup="true" aria-expanded="false">
+        <i data-lucide="globe" style="width:16px;height:16px"></i>
+        <span id="lang-btn-text">EN</span>
+        <i data-lucide="chevron-down" style="width:14px;height:14px"></i>
+      </button>
+      <div id="lang-menu" class="lang-menu" role="menu">
+        <button class="lang-option active" data-lang="en" role="menuitem">🇬🇧 English</button>
+        <button class="lang-option" data-lang="vi" role="menuitem">🇻🇳 Tiếng Việt</button>
+      </div>
+    </div>
+
+    <a href="start.html" class="nav__cta" data-i18n="nav.cta">Get Started</a>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════╗ PERSONA HERO ╔═══════════ -->
+  <section class="persona-hero" id="personaHero">
+    <div class="persona-hero__content">
+      <h1 class="persona-hero__title" id="personaHeroTitle">Loading...</h1>
+      <p class="persona-hero__subtitle" id="personaHeroSub"></p>
+    </div>
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+  </section>
+
+  <!-- ═══════════╗ PAIN POINTS ╔═══════════ -->
+  <section class="section persona-pains" id="personaPains">
+    <div class="section__header reveal">
+      <p class="section__label" id="personaPainLabel"></p>
+      <h2 class="section__title" id="personaPainTitle"></h2>
+    </div>
+    <div class="persona-pains__grid" id="personaPainsGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════════╗ SOLUTIONS ╔═══════════ -->
+  <section class="section section-alt persona-solutions" id="personaSolutions">
+    <div class="section__header reveal">
+      <p class="section__label" id="personaSolutionLabel"></p>
+      <h2 class="section__title" id="personaSolutionTitle"></h2>
+    </div>
+    <div class="persona-solutions__grid" id="personaSolutionsGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════════╗ BEFORE / AFTER ╔═══════════ -->
+  <section class="section persona-ba" id="personaBA">
+    <div class="section__header reveal">
+      <p class="section__label">TRANSFORMATION</p>
+      <h2 class="section__title">Before vs After</h2>
+    </div>
+    <div class="persona-ba__container reveal">
+      <div class="persona-ba__col persona-ba__col--before">
+        <h3 class="persona-ba__heading">❌ Before</h3>
+        <ul id="personaBefore"></ul>
+      </div>
+      <div class="persona-ba__col persona-ba__col--after">
+        <h3 class="persona-ba__heading">✅ After Cody Master</h3>
+        <ul id="personaAfter"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ OBJECTIONS ╔═══════════ -->
+  <section class="section section-alt persona-objections" id="personaObjections">
+    <div class="section__header reveal">
+      <p class="section__label">STILL NOT SURE?</p>
+      <h2 class="section__title">Common Questions</h2>
+    </div>
+    <div class="persona-objections__list" id="personaObjectionsList">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════════╗ CTA ╔═══════════ -->
+  <section class="section persona-cta" id="personaCta">
+    <div class="persona-cta__content reveal">
+      <h2 class="persona-cta__title" id="personaCtaTitle"></h2>
+      <p class="persona-cta__sub" id="personaCtaSub"></p>
+      <a href="start.html" class="btn btn--primary btn--lg" id="personaCtaButton">Get Started →</a>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ FOOTER ╔═══════════ -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo">⚡ Cody Master Kit</span>
+        <p class="footer__tagline" data-i18n="footer.tagline">Turn Ideas into Products 10x Faster</p>
+      </div>
+      <div class="footer__links">
+        <a href="index.html" data-i18n="footer.home">Home</a>
+        <a href="skills.html" data-i18n="footer.skills">Skills</a>
+        <a href="start.html" data-i18n="footer.start">Get Started</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p data-i18n="footer.copy">© 2025 Cody Master Kit. Free & Open Source.</p>
+    </div>
+  </footer>
+
+  <script src="js/persona-page.js"></script>
+</body>
+</html>

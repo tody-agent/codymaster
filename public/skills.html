@@ -18,10 +18,9 @@
       <span>Cody Master</span>
     </a>
     <ul class="nav__links" id="navLinks">
-      <li><a href="index.html#features" class="nav__link" data-i18n="nav.features">Features</a></li>
-      <li><a href="index.html#how" class="nav__link" data-i18n="nav.howItWorks">How It Works</a></li>
       <li><a href="skills.html" class="nav__link nav__link--active" data-i18n="nav.skills">Skills</a></li>
       <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
+      <li><a href="demo.html" class="nav__link" data-i18n="nav.demo">Demo</a></li>
       <li>
         <div class="lang-switcher" id="lang-switcher">
           <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
@@ -92,7 +91,26 @@
           <span class="skill-modal__tagline" id="modalTagline"></span>
         </div>
       </div>
-      <p class="skill-modal__desc" id="modalDesc"></p>
+      
+      <div class="skill-modal__story">
+        <div class="story-section">
+          <h3>📖 <span data-i18n="skillsPage.modalWhat">What is it?</span></h3>
+          <p id="modalWhat"></p>
+        </div>
+        <div class="story-section">
+          <h3>🎯 <span data-i18n="skillsPage.modalWhen">When to use?</span></h3>
+          <p id="modalWhen"></p>
+        </div>
+        <div class="story-section">
+          <h3>💡 <span data-i18n="skillsPage.modalWhy">Why use it?</span></h3>
+          <p id="modalWhy"></p>
+        </div>
+        <div class="story-section">
+          <h3>⭐ <span data-i18n="skillsPage.modalBest">Best Practice</span></h3>
+          <p id="modalBest"></p>
+        </div>
+      </div>
+
       <div class="skill-modal__prompt-block">
         <span class="skill-modal__prompt-label" data-i18n="skillsPage.modalTryPrompt">Try saying:</span>
         <div class="skill-modal__prompt" id="modalPrompt"></div>
