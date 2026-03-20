@@ -696,7 +696,7 @@ export function launchDashboard(port: number = DEFAULT_PORT) {
 
   const server = app.listen(port, () => {
     try { fs.writeFileSync(PID_FILE, String(process.pid)); } catch {}
-    console.log(chalk.cyan(`\n🚀 CodyMaster Dashboard v4 at http://codymaster.localhost:${port}`));
+    console.log(chalk.cyan(`\n🚀 Mission Control v4 at http://codymaster.localhost:${port}`));
     console.log(chalk.gray(`   Data: ${DATA_FILE}`));
     console.log(chalk.gray(`   Press Ctrl+C to stop.\n`));
   });

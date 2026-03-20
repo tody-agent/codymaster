@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:gate": "vitest run --reporter=verbose",
     "deploy": "export $(grep -v '^#' .env | xargs) && wrangler pages deploy public"
   },
   "keywords": [],
@@ -29,6 +29,9 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "@types/prompts": "^2.4.9"
+    "@types/prompts": "^2.4.9",
+    "acorn": "^8.16.0",
+    "jsdom": "^29.0.1",
+    "vitest": "^4.1.0"
   }
 }

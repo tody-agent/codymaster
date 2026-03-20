@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cody — Dashboard</title>
+  <title>Cody — Mission Control</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,13 +15,14 @@
     <div class="sidebar-header">
       <span class="logo">🧠</span>
       <h1 class="sidebar-title">Cody</h1>
+      <span class="sidebar-subtitle">Mission Control</span>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-section-header">
         <span class="sidebar-section-title">Projects</span>
-        <button class="sidebar-action-btn" id="btn-add-project" title="New Project">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <button class="sidebar-action-btn" id="btn-sidebar-refresh" title="Refresh Projects">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 8A6 6 0 111.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 1v5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
       <nav class="project-list" id="project-list"></nav>
@@ -49,12 +50,19 @@
       </div>
       <div class="header-right">
         <div class="task-stats" id="task-stats"></div>
+        <div class="sync-status" id="sync-status" title="Auto-refresh active">
+          <span class="sync-dot synced" id="sync-dot"></span>
+          <span class="sync-label" id="sync-label">Synced</span>
+        </div>
         <button class="theme-toggle" id="theme-toggle" title="Toggle theme (Ctrl+Shift+T)">
           <svg id="theme-icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
           <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 9.2A6.5 6.5 0 016.8 2 6 6 0 1014 9.2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <button class="btn-icon" id="btn-refresh" title="Refresh (Ctrl+R)">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 8A6 6 0 111.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 1v5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn-icon auto-refresh-toggle" id="btn-auto-refresh" title="Toggle auto-refresh">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 8A6 6 0 111.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 1v5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
         </button>
         <button class="btn btn-primary" id="btn-add-task">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -222,29 +230,6 @@
     </div>
   </div>
 
-  <!-- ── Modal: Add Project ─────────────────────────────── -->
-  <div class="modal-overlay" id="project-modal-overlay">
-    <div class="modal modal-sm" id="project-modal">
-      <div class="modal-header">
-        <h2 class="modal-title">New Project</h2>
-        <button class="modal-close" id="project-modal-close">&times;</button>
-      </div>
-      <form id="project-form" autocomplete="off">
-        <div class="form-group">
-          <label for="project-name">Project Name</label>
-          <input type="text" id="project-name" placeholder="e.g., boxme-scoring" required maxlength="80">
-        </div>
-        <div class="form-group">
-          <label for="project-path">Workspace Path</label>
-          <input type="text" id="project-path" placeholder="/Users/you/Projects/my-app">
-        </div>
-        <div class="form-actions">
-          <button type="button" class="btn btn-ghost" id="project-cancel">Cancel</button>
-          <button type="submit" class="btn btn-primary">Create Project</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- ── Modal: New Deploy ──────────────────────────────── -->
   <div class="modal-overlay" id="deploy-modal-overlay">

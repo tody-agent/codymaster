@@ -1,847 +1,414 @@
 {
   "meta": {
-    "title": "CodyMaster — AI 资深工程师纪律化身",
-    "description": "赋予 AI 资深工程师的严苛纪律：强制 TDD、6 重质量门槛、长效项目记忆及安全发布机制。"
+    "title": "Cody Master Kit — 10倍速将创意转化为产品",
+    "description": "30+ AI代理技能带您从创意、设计、编码到部署——无需编程，只需聊天。"
   },
   "nav": {
-    "home": "首页",
-    "howItWorks": "核心机制",
-    "showcase": "实战案例",
-    "forPM": "产品/需求方",
-    "forDev": "开发者",
-    "forQA": "测试/质量保障",
-    "forFounders": "管理者",
-    "personas": "解决方案",
-    "github": "GitHub",
-    "claw": "Claw"
+    "features": "特性",
+    "howItWorks": "运作方式",
+    "deepDive": "深入解析",
+    "personas": "适用人群",
+    "skills": "技能",
+    "story": "我们的故事",
+    "getStarted": "开始使用",
+    "demo": "演示"
   },
-  "home": {
-    "badge": "开源项目 · MIT 协议 · 支持 7 大 AI 平台",
-    "headline": "AI 写代码快如闪电，<br><span class='gradient-text'>但也留下了 73% 的 Bug。</span>",
-    "desc": "CodyMaster 彻底升级你的 AI 工具：强制执行 TDD、六重质量关卡、永久上下文记忆与安全部署。速度固然重要，但交付生产级的代码才是硬道理。",
-    "cta": "免费安装 (30秒)",
-    "ctaGithub": "⭐ GitHub 点赞",
-    "trustLabel": "无缝集成所有主流 AI 平台",
-    "stats": {
-      "skills": "30+",
-      "skillsLabel": "资深级技能",
-      "platforms": "7",
-      "platformsLabel": "支持 AI 型号",
-      "gates": "6",
-      "gatesLabel": "质量校验门槛",
-      "passRate": "95%+",
-      "passRateLabel": "首轮通过率"
-    },
-    "featuresTitle": "用资深纪律定义生产级质量",
-    "featuresDesc": "CodyMaster 并非要取代 AI，而是将 Senior 的工程习惯深度植入 AI 的大脑。",
-    "features": {
-      "tdd": {
-        "title": "铁律：测试驱动开发",
-        "desc": "强制 AI 先写测试再写代码。红灯 (Red) → 绿灯 (Green) → 重构 (Refactor)，没有例外。"
+  "hero": {
+    "badge": "30+ AI技能 · 开源 · 免费",
+    "headline": "10倍速将创意\n转化为产品",
+    "subtitle": "一个AI代理技能套件，带您从创意 → 设计 → 编码 → 部署，\n零代码需求。只需用自然语言交流。",
+    "ctaPrimary": "免费试用",
+    "ctaSecondary": "观看演示",
+    "trustNoCreditCard": "✓ 无需信用卡",
+    "trust30Seconds": "✓ 30秒内完成配置",
+    "trustMultilingual": "✓ 多语言支持"
+  },
+  "features": {
+    "label": "为什么选择 CODY MASTER",
+    "title": "您所需的一切，\n尽在一个套件中",
+    "subtitle": "无需编程。无需雇佣开发者。AI为您处理从A到Z的所有工作。",
+    "cards": [
+      {
+        "title": "10倍速",
+        "description": "从创意到完整网站只需几分钟。AI自动完成编码、设计和部署——您只需说出需求。"
       },
-      "quality": {
-        "title": "6 重质量守卫 (6-Gate)",
-        "desc": "涵盖静态分析、盲审、安全扫描、反谄媚校验、性能监测。必须 100% 通过。"
+      {
+        "title": "专业级质量",
+        "description": "生产级代码——绝非一次性原型。30+技能保障从安全到SEO的全面质量。"
       },
-      "memory": {
-        "title": "长效项目记忆 (Memory)",
-        "desc": "AI 永不遗忘跨 session 的业务逻辑。告别重复输入千行 token 只为对齐背景的窘境。"
+      {
+        "title": "节省 90%",
+        "description": "与外包或自由职业者相比，既省时又省钱。一个套件抵得上整个团队。"
       },
-      "deploy": {
-        "title": "绝对安全发布",
-        "desc": "多门槛部署流程配合自动回滚机制。Staging 是必经之路，严禁任何通往 Production 的捷径。"
-      },
-      "judge": {
-        "title": "判官 Agent (Judge)",
-        "desc": "实时监控 AI 状态。卡顿超过 10 分钟？立即预警。连续失败？自动切换技术路径。"
-      },
-      "agnostic": {
-        "title": "跨平台统一受控",
-        "desc": "通过唯一的 AGENTS.md 管理所有 AI：Claude, Cursor, GPT。简单高效，告别冗余。"
+      {
+        "title": "极致简单",
+        "description": "自然聊天，AI理解并交付。没有复杂的界面，没有学习曲线。"
       }
-    },
-    "howTitle": "3 步直达生产环境",
-    "steps": {
-      "s1": {
-        "title": "1. 需求描述",
-        "desc": "只需描述功能需求，CodyMaster 会将其拆解为清晰、可测试的技术任务。"
+    ]
+  },
+  "usp": {
+    "label": "我们有何不同",
+    "title": "不仅是另一个AI工具。\n这是一个以设计为先的引擎。",
+    "subtitle": "Cody Master不仅写代码——它还会设计、预览，并尊重您现有的设计系统。",
+    "cards": [
+      {
+        "icon": "kanban",
+        "title": "看板工作台",
+        "description": "可视化管理整个项目。在一个控制中心实时追踪任务、技能管道和部署状态。",
+        "visual": "kanban"
       },
-      "s2": {
-        "title": "2. 自动执行",
-        "desc": "RARV 闭环：代码 → 测试 → 6 重质检 → 准备就绪。"
+      {
+        "icon": "eye",
+        "title": "先预览后编码",
+        "description": "在写下一行代码之前，精确查看UI的模样。与AI迭代设计——没有任何意外。",
+        "visual": "preview"
       },
-      "s3": {
-        "title": "3. 一键发布",
-        "desc": "看板全绿即可自信发布，预设回滚脚本确保万无一失。"
+      {
+        "icon": "sliders-horizontal",
+        "title": "完全的设计控制权",
+        "description": "选择您的美学风格——排版、颜色、间距、动画。AI遵循您的设计方向，而非随机默认值。",
+        "visual": "controls"
+      },
+      {
+        "icon": "component",
+        "title": "兼容您的设计系统",
+        "description": "已经有设计系统了？Cody Master会读取您现有的设计Token、组件和品牌指南——然后使用它们进行构建。",
+        "visual": "system"
       }
-    },
-    "personasTitle": "为每个岗位量身打造",
-    "personasDesc": "无论你是产品、开发、测试还是老板，CodyMaster 都能解决你的痛点。",
-    "personas": {
-      "pm": {
-        "title": "产品经理 (PM)",
-        "desc": "无需等待 Sprint 排期，描述即交付。功能实现速度提升 5 倍。",
-        "cta": "了解 PM 版 →"
-      },
-      "dev": {
-        "title": "开发者 (Dev)",
-        "desc": "告别技术债。AI 输出即精品，自动通过 PR，强制执行高标准 TDD。",
-        "cta": "了解 Dev 版 →"
-      },
-      "qa": {
-        "title": "质量保证 (QA)",
-        "desc": "远离低级 Bug。代码到手前已过 5 重关卡，让你专注于核心业务逻辑测试。",
-        "cta": "了解 QA 版 →"
-      },
-      "founder": {
-        "title": "管理者 & 创始人",
-        "desc": "3 人团队产出 10 人价值。用数据说话，让每一行代码都具备高 ROI。",
-        "cta": "即刻计算 ROI →"
-      }
-    },
-    "testimonialsTitle": "来自研发团队的评价",
-    "testimonials": {
-      "t1": {
-        "quote": "PR 审批时间减少了 80%。质量门槛在人工审查前就过滤了所有垃圾代码。",
-        "author": "阿俊 — 资深前端开发"
-      },
-      "t2": {
-        "quote": "一个月内需求积压减少了 60%。我甚至能独立发布非核心模块。",
-        "author": "老邓 — 产品经理"
-      },
-      "t3": {
-        "quote": "生产环境 Bug 降低了 85%。AI 已经帮我做了所有的苦差事。",
-        "author": "小芳 — QA 自动化负责人"
-      }
-    },
-    "ctaSection": {
-      "title": "准备好交付更高质量的代码了吗？",
-      "desc": "开源、免费、30 秒安装。适配所有主流 AI 平台。",
-      "primaryCta": "立即免费开始",
-      "secondaryCta": "查看文档"
-    },
-    "problemTitle": "AI 编程悖论",
-    "problemDesc": "AI 工具承诺 10 倍效能，但现实往往令人沮丧。",
-    "problems": {
-      "p1": {
-        "emoji": "⚡",
-        "title": "第 1 天：'哇，写得真快'",
-        "desc": "30 秒生成 500 行代码，你觉得自己成了超人。"
-      },
-      "p2": {
-        "emoji": "🐛",
-        "title": "第 7 天：'怎么 Bug 这么多？'",
-        "desc": "73% 的 AI 代码未经测试便混入主分支，技术债全面爆发。"
-      },
-      "p3": {
-        "emoji": "🔄",
-        "title": "第 30 天：'推倒重来'",
-        "desc": "无测试、无文档、失去上下文。10 倍效能沦为 0.5 倍。"
-      }
-    },
-    "rootCause": "问题不在于 AI，而在于 AI <strong>缺乏纪律</strong>。CodyMaster 为纪律而生。",
-    "comparisonTitle": "使用 CodyMaster 前后对比",
-    "comparison": {
-      "before": {
-        "label": "未使用 CodyMaster",
-        "items": [
-          "代码质量：'能跑'就行",
-          "测试：手动点点点或直接跳过",
-          "上下文：每次新 session 从零开始",
-          "部署：手动复制粘贴，听天由命",
-          "遇到问题：陷入无限 debug 循环"
-        ]
-      },
-      "after": {
-        "label": "使用 CodyMaster 后",
-        "items": [
-          "TDD + 6 重质量校验保护每次提交",
-          "AI 先写测试，保证 ≥80% 覆盖率",
-          "工作记忆永久保存项目上下文",
-          "多门槛部署流程 + 自动回滚",
-          "判官 Agent 检测停滞并建议新方案"
-        ]
-      }
-    },
-    "dashboardTabs": {
-      "kanban": "看板视图",
-      "history": "活动历史",
-      "deploys": "部署管理"
-    },
-    "comparison2": {
-      "old": {
-        "title": "其他 AI 工具 (仅 CLI)",
-        "items": [
-          "黑盒化 — 完全看不见 AI 具体在干什么",
-          "终端日志刷屏 — 容易漏掉关键报错",
-          "无任务追踪 — '我昨天做到哪儿了？'",
-          "通过复制粘贴命令手动部署",
-          "无自动回滚 — 听天由命"
-        ]
-      },
-      "new": {
-        "title": "CodyMaster (工作台 + CLI)",
-        "items": [
-          "可视化看板 — Backlog → In Progress → Review → Done",
-          "活动历史 — 每个动作都有时间戳记录",
-          "多 Agent 支持 — 清晰可见 Antigravity, Claude Code 等协作",
-          "追踪从 staging 到 production 的部署流水线",
-          "一键自动回滚。今夜安睡。"
-        ]
-      }
-    },
-    "agents": {
-      "compatible": "开箱即用",
-      "list": [
-        "OpenClaw & OpenFang",
-        "Claude Desktop & Cursor",
-        "Manus & MaxClaw",
-        "Gemini Antigravity"
-      ],
-      "whyTitle": "为什么选 cm-project-bootstrap?",
-      "whyDesc": "不再为每个 AI 工具单独配置。运行 <code>cm-project-bootstrap</code> 一次，即可生成所有主流平台 AI 都能识别的 <code>AGENTS.md</code> 清单和配置文件。",
-      "cta": "探索 Claw →"
-    }
+    ]
   },
   "howItWorks": {
-    "badge": "架构深度解读",
-    "headline": "CodyMaster 如何<span class='gradient-text'>运作</span>",
-    "desc": "具备自我修复能力的自主执行环，配合 6 重质量校验与持久化工作记忆。",
-    "rarvTitle": "RARV 执行周期",
-    "rarvDesc": "CodyMaster 的核心 — 确保 AI 目标不偏离、质量不滑坡的自校正环路。",
-    "rarvSteps": {
-      "orient": {
-        "title": "0. 定位 (Orient)",
-        "desc": "读取 CONTINUITY.md — 加载过往经验与项目全景。"
+    "label": "工作原理",
+    "title": "从零到英雄，\n只需简单的3步",
+    "steps": [
+      {
+        "title": "安装",
+        "description": "复制一条命令到终端。\n30秒内完成。",
+        "code": "$ npx codymaster init"
       },
-      "reason": {
-        "title": "1. 推理 (Reason)",
-        "desc": "选取高优先级任务，实时更新工作记忆。"
+      {
+        "title": "聊天",
+        "description": "告诉AI您想要什么。\n使用简单的日常语言，就像和朋友聊天一样。",
+        "code": "\"为我的咖啡店\n创建一个落地页\""
       },
-      "preact": {
-        "title": "2. 预判 (Pre-act)",
-        "desc": "🛡️ 目标对齐检查 — 严防 AI “跑偏”。"
-      },
-      "act": {
-        "title": "3. 执行 (Act)",
-        "desc": "调用专业技能库，自动创建 Git 检查点。"
-      },
-      "reflect": {
-        "title": "4. 反思 (Reflect)",
-        "desc": "总结任务状态与教训，更新 CONTINUITY.md。"
-      },
-      "verify": {
-        "title": "5. 验证 (Verify)",
-        "desc": "运行 6 重质量质检 → 通过或重新迭代。"
+      {
+        "title": "上线",
+        "description": "完整的网站，自动部署到互联网。\n立即分享链接。",
+        "code": "✓ yoursite.com 已上线！"
       }
-    },
-    "gatesTitle": "6 重质量守卫系统",
-    "gatesDesc": "任何代码在标记为“完成”前，必须连续通过六项严苛挑战。",
-    "gates": {
-      "g1": {
-        "label": "G1",
-        "title": "静态分析",
-        "desc": "Lint、类型检查、死代码检测 — 0 警告，0 错误。"
-      },
-      "g2": {
-        "label": "G2",
-        "title": "测试覆盖率",
-        "desc": "全量测试通过，覆盖率 ≥80% — TDD 铁律。"
-      },
-      "g3": {
-        "label": "G3",
-        "title": "盲审 (Blind Review)",
-        "desc": "AI 在无背景情况下审查代码 — 倒逼代码具备真正的自解释性。"
-      },
-      "g4": {
-        "label": "G4",
-        "title": "反谄媚校验",
-        "desc": "扮演“杠精”角色，主动挖掘代码中隐藏的逻辑漏洞。"
-      },
-      "g5": {
-        "label": "G5",
-        "title": "安全扫描",
-        "desc": "严禁明文密钥，依赖项审计，符合 OWASP 标准。"
-      },
-      "g6": {
-        "label": "G6",
-        "title": "国际化完整性",
-        "desc": "确保所有多语言 key 在各版本间完全同步。"
-      }
-    },
-    "memoryTitle": "工作记忆系统",
-    "memoryDesc": "上下文永不丢失。AI 记得每一处改动、每一次失败和每一项决策。",
-    "memorySteps": {
-      "start": "Session 开启 → 读取历史记忆与避坑指南",
-      "work": "执行中 → 实时更新任务进度与已完成事项",
-      "error": "遇错时 → 捕获失败成因，沉淀预防策略",
-      "end": "Session 结束 → 保存完整状态，无缝衔接下次任务"
-    },
-    "judgeTitle": "判官 Agent 协议",
-    "judgeDesc": "自动评估任务健康度，在风险冒头时果断介入。",
-    "judgeActions": {
-      "continue": "🟢 继续 — 任务进度正常",
-      "complete": "🏁 完成 — 交付评审",
-      "escalate": "⚠️ 预警 — 任务卡死超过 10 分钟，请求介入",
-      "pivot": "🔄 调头 — 连续失败 3 次，建议切换技术方案"
-    },
-    "goldenTitle": "资深黄金准则",
-    "rules": {
-      "r1": "🔒 身份先行 — Push/Deploy 前强制校验账户",
-      "r2": "📐 架构先于编码 — 规划永远是第一步",
-      "r3": "🧪 测试先于编码 — RED → GREEN → REFACTOR",
-      "r4": "🛡️ 执行前对齐 — 每一步行动前确认目标一致性",
-      "r5": "📊 事实重于承诺 — 只相信终端输出的真实结果",
-      "r6": "🚀 发布必经守卫 — 六重关卡全过方可上线",
-      "r7": "🧠 记忆优先 — 开启任务前必读 CONTINUITY.md",
-      "r8": "📚 沉淀智慧 — 每一个错误都要转化为团队的避坑指南"
-    }
-  },
-  "showcase": {
-    "badge": "实战演示",
-    "headline": "CodyMaster <span class='gradient-text'>实战表现</span>",
-    "desc": "步进式演示：看 CodyMaster 如何在真实场景中大显身手。",
-    "ex1": {
-      "title": "开发仪表盘功能",
-      "desc": "具备图表、过滤和导出功能的营收分析模块 — 全自主构建。",
-      "steps": {
-        "s1": "使用 `cm continuity init` 初始化工作记忆",
-        "s2": "通过 `@[/cm-planning]` 描述需求 — Agent 生成实现方案",
-        "s3": "调用 `@[/cm-execution]` 执行 — RARV 循环开启 TDD 流程",
-        "s4": "访问 `codymaster.localhost:6969` 看板实时监控进度",
-        "s5": "通过 `@[/cm-safe-deploy]` 自动完成 8 重流水线部署"
-      }
-    },
-    "ex2": {
-      "title": "修复生产环境 Bug",
-      "desc": "解决移动端 Safari 登录按钮无响应问题 — 调查、修复、上线。",
-      "steps": {
-        "s1": "使用 `@[/cm-debugging]` 调查 — 发现 iOS 不支持 mousedown 事件",
-        "s2": "调用 `@[/cm-tdd]` 修复 — 编写失败用例 → 修复 → 重构",
-        "s3": "经验自动同步至 CONTINUITY.md — 严防此类错误复发",
-        "s4": "热修复上线，预置自动回滚保障"
-      }
-    },
-    "ex3": {
-      "title": "跨 Session 连续协作",
-      "desc": "横跨两天的 3 次会话 — AI 精准接手进度。",
-      "steps": {
-        "s1": "Session 1: 开启规划，背景自动存入 CONTINUITY.md",
-        "s2": "Session 2: AI 读取记忆，仅用 200 token 即可满血恢复上下文",
-        "s3": "Session 3: 14 小时后，AI 无缝接手并完成剩余 8 项任务"
-      }
-    },
-    "ex4": {
-      "title": "6 重质量守卫校验",
-      "desc": "发布前全量校验 — 盲审环节成功拦截并自动修复 2 处潜在风险。",
-      "steps": {
-        "s1": "G1-G2: 静态分析与测试覆盖率通过",
-        "s2": "G3: 盲审发现缺失 null 检查及非参数化 SQL 风险",
-        "s3": "自动修复 → 重新校验 → G3 顺利过关",
-        "s4": "G4-G6: 安全、反谄媚、国际化全部绿灯",
-        "s5": "🚀 质量达标 — 准予上线"
-      }
-    },
-    "startTitle": "你的 CodyMaster 第一天",
-    "startDesc": "比你想的还简单。三步，五分钟，就绪。",
-    "start": {
-      "s1": {
-        "title": "30 秒安装",
-        "desc": "一条命令即可。支持 Mac、Windows 和 Linux。无需配置。"
-      },
-      "s2": {
-        "title": "描述你的需求",
-        "desc": "用日常语言表达。'建个联系表单'或'修复登录页'。CodyMaster 能理解你。"
-      },
-      "s3": {
-        "title": "观看它工作",
-        "desc": "打开看板实时查看进度。完成后审查，自信部署。"
-      }
-    },
-    "ctaTitle": "准备好亲自体验了吗？",
-    "ctaDesc": "免费、开源，1 分钟内安装完毕。无需信用卡，无隐藏费用。"
+    ],
+    "deepLabel": "底层原理",
+    "deepTitle": "RARV 执行周期与六关质量体系",
+    "deepSubtitle": "分配给 Cody Master 的每项任务都会经过一个自动化循环，确保代码符合生产环境标准。"
   },
   "personas": {
-    "pm": {
-      "badge": "赋能产品经理、PO 与 业务分析师",
-      "headline": "你只需定义功能，<br>CodyMaster <span class='gradient-text'>交付代码</span>。",
-      "desc": "告别 3 周的冗长排期。直接描述需求，CodyMaster 以 TDD 标准和 6 重质量守卫自动执行。功能上线只需 3 小时。",
-      "cta": "观看 PM 演示",
-      "painTitle": "还在陷入这种死循环？",
-      "pains": {
-        "p1": {
-          "emoji": "😤",
-          "title": "交付与需求错位",
-          "desc": "PRD 写得再细，开发出来的东西还是不一样。整个 Sprint 徒劳无功。"
-        },
-        "p2": {
-          "emoji": "🤯",
-          "title": "AI 编程 = 盲目修 Bug",
-          "desc": "第一次用 AI：奇迹！第二次：Bug 满天飞。第三次：一堆难以维护的意大利面代码。"
-        },
-        "p3": {
-          "emoji": "⏳",
-          "title": "交付效率低下",
-          "desc": "反复争论优先级，却连一个简单的 API 接口都要开 5 次会才能敲定。"
-        }
-      },
-      "rootCause": "问题不在于开发或 AI，而在于 AI <strong>极度缺乏纪律</strong>。CodyMaster 为 AI 注入 Senior 的灵魂。",
-      "planTitle": "从创意到上线的 3 个阶段",
-      "plan": {
-        "s1": {
-          "title": "描述需求",
-          "desc": "通过对话告知 AI 需求，CodyMaster 将其拆解为具体、可验证的任务"
-        },
-        "s2": {
-          "title": "自动执行",
-          "desc": "TDD → 编码 → 测试 → 质检 → 发布校验 — 全程自动化"
-        },
-        "s3": {
-          "title": "审批发布",
-          "desc": "在看板上审查结果 → 点击通过 → 带着回滚保障上线"
-        }
-      },
-      "uspTitle": "为什么选择 CodyMaster？",
-      "usp": {
-        "u1": {
-          "before": "质量控制：'跑得通'就行",
-          "after": "资深级：TDD + 6 重质检体系"
-        },
-        "u2": {
-          "before": "测试：依赖人工手动点点点",
-          "after": "先测后码：AI 强制先写用例再编码"
-        },
-        "u3": {
-          "before": "卡壳时：陷入死循环或等开发救场",
-          "after": "智能判官：自动检测瓶颈并切换方案"
-        },
-        "u4": {
-          "before": "跨会话：背景丢失，从零解释",
-          "after": "工作记忆：永久留存项目上下文"
-        },
-        "u5": {
-          "before": "部署：手动复制粘贴，风险自担",
-          "after": "安全部署：多门槛校验 + 自动回滚"
-        }
-      },
-      "faqTitle": "常见问题解答",
-      "faqs": {
-        "f1": {
-          "q": "我不懂技术也能用吗？",
-          "a": "正是为你设计的！你只需描述业务逻辑，AI 会负责 TDD 和质量关卡。你只需在看板上确认最终效果。"
-        },
-        "f2": {
-          "q": "AI 生成的代码能直接用在生产环境吗？",
-          "a": "CodyMaster 强制执行 6 重质量门槛。代码必须通过安全扫描、盲审和性能校验，其质量甚至超过普通开发者。"
-        },
-        "f3": {
-          "q": "它和 ChatGPT / Cursor 有什么区别？",
-          "a": "那些是‘写代码’的工具。CodyMaster 是在这些工具之上增加了一层‘资深工程师纪律’。它不是替代品，而是强力升级包。"
-        },
-        "f4": {
-          "q": "这个工具免费吗？",
-          "a": "CodyMaster 是完全开源的 (MIT 协议)。你只需支付底层 AI 提供商费用 (Anthropic/OpenAI)，框架本身完全免费。"
-        },
-        "f5": {
-          "q": "安装需要多长时间？",
-          "a": "5 分钟内完成：通过 npm 安装并启动 Dashboard。支持 7 大主流 AI 平台。"
-        }
-      }
-    },
+    "label": "适用人群",
+    "title": "为团队中的每个角色打造",
     "dev": {
-      "badge": "赋能开发者",
-      "headline": "快代码未必好代码。<br><span class='gradient-text'>稳代码</span>才是王道。",
-      "desc": "CodyMaster 不是要取代你，它是 AI 行为的“ESLint”。强制 TDD、6 轮评审、长效记忆，让 AI 真正像 Senior 一样思考。",
-      "cta": "GitHub 点赞",
-      "painTitle": "这种场景熟悉吗？",
-      "pains": {
-        "p1": {
-          "emoji": "💀",
-          "title": "30 天的技术债崩盘",
-          "desc": "第 1 天：哇 AI 好快！第 30 天：没有测试、没有文档、逻辑耦合。全盘重写。"
-        },
-        "p2": {
-          "emoji": "📉",
-          "title": "73% 的 AI 代码裸奔上线",
-          "desc": "AI 工具追求速度而非质量。没有质量的速度只是在加速毁灭。"
-        },
-        "p3": {
-          "emoji": "🧠",
-          "title": "碎片化的上下文",
-          "desc": "每次新 session 都要重新解释项目。消耗数千 token 却只在做基础对齐。"
-        }
-      },
-      "deepDiveTitle": "核心技术剖析",
-      "deepDive": {
-        "tdd": {
-          "title": "🔴 强制 TDD",
-          "desc": "AI 必须先写测试。红灯 → 绿灯 → 重构。无测试，不代码。"
-        },
-        "gates": {
-          "title": "🛡️ 6 重质量门",
-          "desc": "静态检查 → 盲审 → 安全 → 性能 → 文档。全绿方可交付。"
-        },
-        "memory": {
-          "title": "🧠 持续记忆",
-          "desc": "Session 1 开发 Auth → 自动保存。Session 2 即可精准接续，无需重述。"
-        },
-        "judge": {
-          "title": "🤖 判官 Agent",
-          "desc": "🟢 继续 | 🏁 完成 | ⚠️ 预警 (卡死 >10min) | 🔄 调头 (连续失败)"
-        }
-      },
-      "uspTitle": "CodyMaster = AI 行为规范器",
-      "usp": {
-        "u1": {
-          "problem": "AI 写出一堆无测试的代码",
-          "solution": "cm-tdd 强制先写用例。绝无例外。"
-        },
-        "u2": {
-          "problem": "会话间背景丢失",
-          "solution": "cm-continuity 永久保存上下文至 .cm 目录。"
-        },
-        "u3": {
-          "problem": "AI 陷入逻辑死循环",
-          "solution": "判官 Agent 检测卡顿并建议调头。"
-        },
-        "u4": {
-          "problem": "误用 Git 账户提交",
-          "solution": "cm-identity-guard 身份校验拦截。"
-        },
-        "u5": {
-          "problem": "部署导致生产崩溃",
-          "solution": "cm-safe-deploy 多重校验 + 自动回滚。"
-        },
-        "u6": {
-          "problem": "AI 偶离架构规范",
-          "solution": "PRE-ACT 目标对齐檢查防止偏离。"
-        }
-      },
-      "faqTitle": "开发者 FAQ",
-      "faqs": {
-        "f1": {
-          "q": "会拖慢开发速度吗？",
-          "a": "零额外开销。这些技能是给 AI 的指令集，不增加 API 调用延迟。"
-        },
-        "f2": {
-          "q": "支持哪些语言？",
-          "a": "与语言无关。只要你的 AI 支持，CodyMaster 就能在流程层面赋予其纪律性。"
-        },
-        "f3": {
-          "q": "会和 Cursor/Copilot 冲突吗？",
-          "a": "不会。它在这些工具之上运行，相当于给项目加上 ESLint 一样的纪律层。"
-        },
-        "f4": {
-          "q": "工作记忆存放在哪？",
-          "a": "100% 本地。`.cm/CONTINUITY.md` 就在你的项目根目录。安全、透明。"
-        },
-        "f5": {
-          "q": "能自定义 Skill 吗？",
-          "a": "当然可以。只需在 `skills/` 目录写一个 Markdown 文件，AI 就能自动学习并执行你的规范。"
-        }
-      }
+      "title": "为开发人员",
+      "desc": "告别重复繁琐的代码。让 AI 处理 80% 的工作，让您专注架构。强制进行的 TDD 确保代码运行无误。"
+    },
+    "pm": {
+      "title": "为产品经理 & 业务负责人",
+      "desc": "功能交付速度提升 5 倍。用通俗语言描述需求，Cody Master 将其拆解为任务并自动执行。"
     },
     "qa": {
-      "badge": "赋能测试与质量工程师",
-      "headline": "AI 正在以 10 倍速产生代码。<br>别让它同时产生 <span class='gradient-text'>10 倍速的 Bug</span>。",
-      "desc": "在代码触达 QA 前，通过 TDD 和 5 重前置校验拦截 73% 的低级错误。让你从手动点点点中解放，专注于深层业务逻辑。",
-      "cta": "查看质检演示",
-      "painTitle": "反派角色：无测试的 AI 代码",
-      "pains": {
-        "p1": {
-          "emoji": "📈",
-          "title": "QA 压力爆炸",
-          "desc": "AI 每天产出 500 行代码，QA 依然靠肉眼和手工。Bug 率飙升 300%，濒临崩溃。"
-        },
-        "p2": {
-          "emoji": "🐛",
-          "title": "Bug 密度翻倍",
-          "desc": "目前的 AI 编程工具就是没有质检标签的代码工厂。"
-        },
-        "p3": {
-          "emoji": "😔",
-          "title": "职业危机感",
-          "desc": "不，AI 不会取代你。Bug 只会变多，你只是需要更强大的工具来驾驭 AI。"
-        }
-      },
-      "gatesTitle": "6 重质量守卫系统",
-      "gates": {
-        "g1": "G1: 静态分析 → 语法、类型、冗余检查",
-        "g2": "G2: TDD 校验 → 先有测试，后有代码",
-        "g3": "G3: 盲审 → 模拟黑盒代码评审",
-        "g4": "G4: 安全扫描 → OWASP 标准与注入检查",
-        "g5": "G5: 性能监测 → 复杂度与包体积分析",
-        "g6": "G6: 发布门槛 → 最终决定权（QA 审批）"
-      },
-      "gatesSummary": "代码在通过前 5 关后才会触达 QA。你只需把关第 6 关：高层业务逻辑验证。",
-      "reframeTitle": "从“捉虫工”变身“质量工程师”",
-      "reframeBefore": "QA 日常 = 打开 Jira 处理 15 个低级 Bug → 回归测试 → 担心被取代 😔",
-      "reframeAfter": "质量工程师日常 = 看板全绿 ✅ → 专注于核心指标 → 挖掘边缘逻辑 → 定义团队标准 💪",
-      "reframeConclusion": "QA 不会丢掉工作，QA 会得到晋升。",
-      "faqTitle": "QA FAQ",
-      "faqs": {
-        "f1": {
-          "q": "它会取代测试人员吗？",
-          "a": "绝不。它取代的是低水平的手工劳动。QA 将被释放去处理更具价值的业务逻辑和用户体验。"
-        },
-        "f2": {
-          "q": "兼容现有测试框架吗？",
-          "a": "完美支持 Jest, Playwright, Pytest 等。它只是让 AI 更智能地使用这些工具。"
-        },
-        "f3": {
-          "q": "QA 能自定义规则吗？",
-          "a": "当然！你定义规则，AI 必须遵守。Gate 6 的决定权始终在你手中。"
-        },
-        "f4": {
-          "q": "开发人员能跳过这些关卡吗？",
-          "a": "绝对不行。CodyMaster 在 Agent 层级强制执行这些关卡。Gate 6 没有你的批准绝不放行。"
-        }
-      }
+      "title": "为 QA 测试工程师",
+      "desc": "在合并前捕获错误。六关质量体系确保每次提交都通过测试、静态检查和安全扫描。"
     },
-    "founder": {
-      "badge": "赋能创始人与研发经理",
-      "headline": "3 人团队跑赢 10 人团队。<br>秘密武器就是 <span class='gradient-text'>纪律</span>。",
-      "desc": "当你买下“AI 提效 10 倍”的梦想时，往往收到的是“Bug 增加 10 倍”的噩梦。请直接为公司 AI 植入资深工程师的纪律内核。",
-      "cta": "查看 ROI 计算器",
-      "painTitle": "研发效能悖论",
-      "pains": {
-        "p1": {
-          "metric": "AI 采纳度",
-          "promise": "开发快 10 倍",
-          "reality": "写得快，崩得更快"
-        },
-        "p2": {
-          "metric": "Bug 发生率",
-          "promise": "AI 更精准",
-          "reality": "Bug 密度增加 2.5 倍"
-        },
-        "p3": {
-          "metric": "上线速度",
-          "promise": "1 天交付功能",
-          "reality": "1 天写完，2 周修 Bug"
-        },
-        "p4": {
-          "metric": "人力成本",
-          "promise": "“减少团队规模”",
-          "reality": "薄资不变，代码质量下降"
-        }
-      },
-      "roiTitle": "数据证明一切",
-      "roi": {
-        "r1": {
-          "factor": "Bug 修复耗时",
-          "before": "40% 研发周期",
-          "after": "8% 研发周期",
-          "saving": "降低 80%"
-        },
-        "r2": {
-          "factor": "代码评审 (PR)",
-          "before": "3 小时/PR",
-          "after": "30 分钟/PR",
-          "saving": "降低 83%"
-        },
-        "r3": {
-          "factor": "回归测试",
-          "before": "每个 Sprint 2 天",
-          "after": "4 小时 (全自动)",
-          "saving": "降低 80%"
-        },
-        "r4": {
-          "factor": "上下文恢复",
-          "before": "每天 1 小时",
-          "after": "0 小时",
-          "saving": "降低 100%"
-        },
-        "r5": {
-          "factor": "新人上手",
-          "before": "2 周",
-          "after": "3 天",
-          "saving": "降低 78%"
-        }
-      },
-      "roiSummary": "集成 CodyMaster 的团队将实现真正的 10 倍提效，将研发投资回报率 (ROI) 推向极致。",
-      "dashboardTitle": "管理者看板",
-      "dashboard": {
-        "d1": {
-          "feature": "📊 看板系统",
-          "value": "无需开会即可实时掌控研发进度"
-        },
-        "d2": {
-          "feature": "🤖 判官 Agent",
-          "value": "在项目延期前自动检测并预警"
-        },
-        "d3": {
-          "feature": "🛡️ 质量度量",
-          "value": "通过通过率、Bug 密度等数据驱动决策"
-        },
-        "d4": {
-          "feature": "🚀 部署跟踪",
-          "value": "从 Staging 到 Production 的发布路径完全可控，一键回滚"
-        }
-      },
-      "faqTitle": "管理者 FAQ",
-      "faqs": {
-        "f1": {
-          "q": "多久能看到效果？",
-          "a": "第 1 周：Bug 率大幅下降。第 1 月：交付速度提升 2-3 倍。第 1 季度：单个功能的研发成本降低 60%。"
-        },
-        "f2": {
-          "q": "研发团队会抵触吗？",
-          "a": "开发人员通常很爱它。因为它减轻了枯燥的 Code Review 压力，且开源透明，支持自定义。"
-        },
-        "f3": {
-          "q": "有企业版吗？",
-          "a": "没有。MIT 协议，完全免费。你只需承担 AI 提供商 (Anthropic/OpenAI) 的 API 费用。"
-        },
-        "f4": {
-          "q": "数据安全吗？",
-          "a": "100% 本地存储。代码和上下文始终留在你的机器上，绝不泄漏到 CodyMaster 云端。"
-        },
-        "f5": {
-          "q": "为什么不直接招一个 Senior？",
-          "a": "Senior 年薪 $120k+。CodyMaster 以 $0 成本将 Senior 级纪律扩展到团队每一个成员。"
-        }
-      }
+    "founders": {
+      "title": "为创始人",
+      "desc": "即使没有技术合伙人也能构建 MVP。省去 90% 的外包成本，几天内即可发布，而不是几个月。"
     }
-  },
-  "footer": {
-    "brand": "CodyMaster",
-    "brandDesc": "通用 Agent 技能平台。开源、MIT 协议。",
-    "product": "产品",
-    "resources": "资源",
-    "connect": "联系我们",
-    "copyright": "© 2026 CodyMaster. 开源项目, 遵循 MIT 协议。"
-  },
-  "common": {
-    "getStarted": "立即免费开始",
-    "learnMore": "了解更多",
-    "viewDocs": "查看文档",
-    "backHome": "← 返回首页",
-    "install": "npm install -g cody-master",
-    "openSource": "开源项目 · MIT 协议 · 永久免费"
   },
   "claw": {
-    "badge": "🦀 通用 AI Agent 标准",
-    "headline": "一份配置。<br><span class='gradient-text'>所有 AI Agent 听令。</span>",
-    "desc": "CodyMaster Claw 让你只写一份 AGENTS.md 清单，即可自动为 OpenClaw、OpenFang、Claude Desktop、Cursor、Manus、MaxClaw 和 Gemini Antigravity 生成配置。告别逐个工具设置，一份真相源。",
-    "ctaInstall": "30 秒安装",
-    "ctaUseCases": "查看用例 ↓",
-    "installTitle": "3 条指令即刻开始",
-    "installDesc": "从零到全配 AI 工作区，不到60 秒。适用于任何项目、任何技术栈。",
-    "install": {
-      "s1": {
-        "title": "步骤 1：安装 CodyMaster"
+    "label": "全局兼容",
+    "title": "一份配置，所有 AI 代理皆遵循。",
+    "subtitle": "由 CodyMaster Claw 驱动。一次编写指令，随处运行。"
+  },
+  "skills": {
+    "label": "技能库",
+    "title": "30+ 专业技能\n覆盖每个阶段",
+    "subtitle": "每个技能都是一位AI专家——从创意构思、设计、内容文案到安全和部署。",
+    "categories": ["创意构思", "设计", "内容", "编码与部署", "安全"],
+    "cards": [
+      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "description": "多维度的创意分析，在开始构建之前验证可行性" },
+      { "icon": "file-text", "name": "cm-planning", "description": "编码前的详细规划——不再把时间浪费在无休止的修改上" },
+      { "icon": "palette", "name": "cm-ux-master", "description": "符合UX标准的界面设计——美观、易用，且为转化率优化" },
+      { "icon": "pen-tool", "name": "cm-content-factory", "description": "SEO优化的内容创作——从博客到落地页，AI像专家一样写作" }
+    ]
+  },
+  "stats": {
+    "items": [
+      { "number": "30+", "label": "AI技能" },
+      { "number": "17", "label": "框架支持" },
+      { "number": "48", "label": "UX法则" },
+      { "number": "1032+", "label": "设计模式" }
+    ]
+  },
+  "cta": {
+    "title": "您与首个产品之间，\n只差一次聊天",
+    "subtitle": "免费。无需信用卡。30秒即可开始。",
+    "button": "立即开始"
+  },
+  "footer": {
+    "links": ["GitHub", "文档", "Discord社区"],
+    "copyright": "© 2026 Cody Master · AI驱动"
+  },
+  "skillsPage": {
+    "meta": {
+      "title": "技能库 — Cody Master Kit",
+      "description": "探索30多个涵盖创意、设计、内容、代码、安全和部署的专属AI代理技能。"
+    },
+    "hero": "探索完整的技能库",
+    "heroSub": "每个技能都是专属的AI专家。搜索、过滤，为您的任务找到合适的技能。",
+    "searchPlaceholder": "搜索技能...",
+    "categories": ["全部", "创意构思", "设计", "内容", "编码与部署", "安全", "质量把控", "DevOps运维"],
+    "modalTryPrompt": "试着输入：",
+    "modalRelated": "相关技能",
+    "modalCta": "开始使用此技能",
+    "catalog": [
+      { "id": "cm-brainstorm-idea", "name": "cm-brainstorm-idea", "category": "创意构思", "icon": "lightbulb", "tagline": "策略性创意分析", "description": "使用设计思维 + TRIZ 9窗格 + 双钻模型进行多维度评估。输出2-3个方案。", "prompt": "分析我的电商平台并提出改进建议", "related": ["cm-planning", "cm-ux-master"] },
+      { "id": "cm-planning", "name": "cm-planning", "category": "创意构思", "icon": "map", "tagline": "实施规划", "description": "在实施前探索意图和需求。记录完整计划——节省数小时重工。", "prompt": "规划用户认证功能的实施方案", "related": ["cm-brainstorm-idea", "cm-execution"] },
+      { "id": "cm-content-factory", "name": "cm-content-factory", "category": "内容", "icon": "pen-tool", "tagline": "AI 内容引擎", "description": "采用StoryBrand框架的自学习内容引擎。生成SEO优化内容。", "prompt": "写一篇关于远程工作的博客文章", "related": ["cm-readit", "cm-ux-master"] },
+      { "id": "cm-ux-master", "name": "cm-ux-master", "category": "设计", "icon": "palette", "tagline": "UI/UX 设计智能", "description": "48条UX法则，37项设计测试，1032+设计模式。生成完整的设计系统。", "prompt": "设计一个仪表盘", "related": ["cm-ui-preview", "cm-content-factory"] },
+      { "id": "cm-ui-preview", "name": "cm-ui-preview", "category": "设计", "icon": "monitor", "tagline": "可视化UI预览", "description": "使用Google Stitch生成生产级UI预览。在写代码前即可查看设计效果。", "prompt": "预览移动应用的登录界面", "related": ["cm-ux-master", "cm-planning"] },
+      { "id": "cm-execution", "name": "cm-execution", "category": "编码与部署", "icon": "play", "tagline": "智能代码执行", "description": "带检查点的批量执行，独立任务并行调度。以最少返工高效执行计划。", "prompt": "执行结账功能的实施计划", "related": ["cm-planning", "cm-tdd"] },
+      { "id": "cm-tdd", "name": "cm-tdd", "category": "质量把控", "icon": "check-square", "tagline": "测试驱动开发", "description": "代码未动，测试先行。确保每个功能从一开始就有完善的测试覆盖率。", "prompt": "为付款处理模块编写测试", "related": ["cm-execution", "cm-quality-gate"] },
+      { "id": "cm-debugging", "name": "cm-debugging", "category": "质量把控", "icon": "bug", "tagline": "根因调试", "description": "系统化Bug分析——找出真正原因，不仅是修复表象。防止问题反复出现。", "prompt": "调试为什么登录页在手机端会崩溃", "related": ["cm-tdd", "cm-terminal"] }
+    ]
+  },
+  "startPage": {
+    "meta": {
+      "title": "开始使用 — Cody Master Kit",
+      "description": "30秒内安装并开始使用Cody Master。"
+    },
+    "hero": "30秒快速上手",
+    "heroSub": "从零开始到打造您的首个AI产品 —— 请遵循以下步骤。",
+    "steps": [
+      {
+        "title": "先决条件",
+        "description": "请确保您的电脑上已安装以下各项。",
+        "items": ["VS Code 或 Cursor 编辑器", "Node.js 18 或更高版本", "终端命令行工具"],
+        "note": "没有安装Node.js？可前往 nodejs.org 免费下载安装。"
       },
-      "s2": {
-        "title": "步骤 2：Bootstrap 项目"
+      {
+        "title": "安装 Cody Master",
+        "description": "打开您的终端，将以下单行命令粘贴进去。",
+        "code": "npx codymaster init",
+        "output": "✓ 初始化 Cody Master Kit 完成\n✓ 成功加载 30 个技能\n✓ 准备就绪！"
       },
-      "s3": {
-        "title": "步骤 3：启动任意 Agent"
+      {
+        "title": "验证安装",
+        "description": "检查一切是否工作正常。",
+        "code": "codymaster status",
+        "output": "⚡ Cody Master v2.0\n📦 30 技能已激活\n✅ 全部系统运行正常"
+      },
+      {
+        "title": "完成您的首次对话",
+        "description": "告诉AI您想构建什么。自然输入即可。",
+        "code": "codymaster chat \"为我的咖啡店创建一个带在线点单功能的落地页\"",
+        "output": "🧠 调用技能...\n🎨 正在设计布局...\n💻 开始生成代码...\n✓ 落地页构建完成！"
+      },
+      {
+        "title": "部署与分享",
+        "description": "您的作品已就绪。一键部署到互联网。",
+        "code": "codymaster deploy",
+        "output": "🚀 正在部署到 Cloudflare Pages...\n✓ https://my-coffee-shop.pages.dev 已上线运行！"
       }
+    ],
+    "copyButton": "复制",
+    "copiedButton": "已复制!",
+    "nextStep": "下一步",
+    "prevStep": "上一步",
+    "finalCta": "准备就绪！开始构建令人惊叹的创作吧。",
+    "finalButton": "打开 Cody Master"
+  },
+  "demoPage": {
+    "meta": {
+      "title": "试用 Cody Master — 交互演示",
+      "description": "亲身体验 Cody Master 的实战威力。"
     },
-    "installNote": "完成！AGENTS.md + 各工具配置自动生成。所有 Agent 读同一套规则。",
-    "platformsTitle": "支持的平台",
-    "platformsDesc": "CodyMaster 为每个平台自动生成配置文件。AGENTS.md 是唯一的真相源。",
-    "platforms": {
-      "openclaw": "OpenClaw",
-      "openclawDesc": "自动生成 .clawrc + MCP 配置",
-      "openfang": "OpenFang",
-      "openfangDesc": "RULES.md + 护栏规则映射",
-      "claude": "Claude Desktop",
-      "claudeDesc": "CLAUDE.md + 项目指令",
-      "cursor": "Cursor",
-      "cursorDesc": ".cursor/rules + .cursorrules 同步",
-      "manus": "Manus",
-      "manusDesc": "多 Agent 编排就绪",
-      "gemini": "Gemini Antigravity",
-      "geminiDesc": ".gemini/settings.json 自动映射",
-      "maxclaw": "MaxClaw & Kimi Claw",
-      "maxclawDesc": "扩展 Agent 协议映射"
+    "topBar": "⚡ Cody Master 演示版",
+    "exitDemo": "← 返回首页",
+    "aiName": "Cody Master AI",
+    "welcomeMessage": "你好！我是 Cody Master。告诉我您想构建什么，我会向您展示我是如何工作的。",
+    "inputPlaceholder": "输入您想构建的内容...",
+    "sendButton": "发送",
+    "suggestions": [
+      "为我的咖啡店建立一个落地页",
+      "创建一个个人作品集网站",
+      "设计一个SaaS数据仪表盘",
+      "为我的博客编写SEO适配文章"
+    ],
+    "phases": {
+      "thinking": "正在分析您的需求...",
+      "planning": "正在策划最佳方案...",
+      "designing": "正在设计界面原型...",
+      "coding": "正在编写生产级代码...",
+      "deploying": "正在部署至互联网...",
+      "done": "您的项目已上线运行！🎉"
     },
-    "useCasesTitle": "真实使用场景",
-    "useCasesDesc": "看 Claw 如何改变不同团队的 AI 辅助开发。",
-    "useCase1": {
-      "title": "🚀 个人开发者 — 多 Agent 工作流",
-      "desc": "用 Claude Desktop 做规划、OpenClaw 做执行、Cursor 做快捷编辑 — 全部读取同一份 AGENTS.md。无需重新输入上下文，随时切换工具。"
-    },
-    "useCase2": {
-      "title": "👥 5 人团队 — 统一标准",
-      "desc": "团队成员使用不同 AI 工具？没关系。AGENTS.md 确保统一的护栏、TDD 要求和部署流程。",
+    "skillsUsed": "已激活的技能：",
+    "resultTitle": "您的项目已准备就绪！",
+    "resultCta": "感到惊喜吗？立刻真正安装它吧 →",
+    "tryAnother": "尝试其他"
+  },
+  "bornFromPain": {
+    "label": "我们的初衷",
+    "title": "诞生于真实的痛点",
+    "subtitle": "这个套件里的技能之所以存在，是因为真正让我们浪费了大量时间的现实痛点。",
+    "quote": "\"我不懂写代码。AI给了我100双手——但如果没有约束，这只有灾难。\"",
+    "cards": [
+      {
+        "icon": "palette",
+        "title": "设计灾难",
+        "pain": "AI把项目设计得五花八门，毫无一致性。",
+        "solution": "cm-ux-master + cm-ui-preview"
+      },
+      {
+        "icon": "trash-2",
+        "title": "AI删光代码的那一周",
+        "pain": "AI丢失了上下文，删掉了一整周的代码。我不得不重做了4次。",
+        "solution": "cm-safe-i18n + cm-tdd + cm-quality-gate"
+      },
+      {
+        "icon": "file-question",
+        "title": "产品很棒，可惜没人用",
+        "pain": "打造出了应用，却没有文档和指南。",
+        "solution": "cm-dockit + cm-content-factory"
+      }
+    ],
+    "readStory": "阅读完整故事 →"
+  },
+  "useCases": {
+    "label": "您能构建的内容",
+    "title": "创意孵化成产品",
+    "subtitle": "看看人们每天都在用 Cody Master 构建些什么。",
+    "cases": [
+      {
+        "icon": "globe",
+        "title": "高转化落地页",
+        "description": "内置CRO优化策略。数分钟内上线部署。",
+        "skills": ["cm-ux-master", "cm-content-factory"],
+        "metric": "< 15 分钟",
+        "metricLabel": "完成上线"
+      },
+      {
+        "icon": "layout-dashboard",
+        "title": "SaaS云端应用",
+        "description": "自带用户认证、管理看板等全栈应用。第一天即可达到生产界别。",
+        "skills": ["cm-planning", "cm-execution"],
+        "metric": "全栈技术",
+        "metricLabel": "端到端开发"
+      },
+      {
+        "icon": "book-open",
+        "title": "文档知识库集群",
+        "description": "多语言技术文档、API参考、流程。基于您的代码全自动生成。",
+        "skills": ["cm-dockit", "cm-safe-i18n"],
+        "metric": "30+ 语言",
+        "metricLabel": "获得支持"
+      },
+      {
+        "icon": "megaphone",
+        "title": "内容运营增长",
+        "description": "SEO优化的文章、社交帖子和电子邮件全家桶。",
+        "skills": ["cm-content-factory", "cm-readit"],
+        "metric": "7 种框架",
+        "metricLabel": "开箱即用"
+      }
+    ]
+  },
+  "beforeAfter": {
+    "label": "变革与转型",
+    "title": "使用前 vs 使用后",
+    "before": {
+      "title": "没有 Cody Master",
       "items": [
-        "Dev A 用 Claude → 同样的 TDD 规则",
-        "Dev B 用 Cursor → 同样的质量关卡",
-        "Dev C 用 OpenClaw → 同样的部署流水线",
-        "三人 → 产出质量一致"
+        "UI设计不可控其风格",
+        "AI极易把代码写挂",
+        "敏感凭据易泄漏",
+        "没有说明文档",
+        "耗费数周的繁冗手工劳作"
       ]
     },
-    "useCase3": {
-      "title": "🏢 企业 — 治理与合规",
-      "desc": "在 AGENTS.md 中一次性定义安全策略：'禁止提交密钥'、'必须运行 OWASP 扫描'、'所有面向用户的字符串必须 i18n'。组织内每个 AI Agent 自动继承这些规则。"
-    },
-    "useCase4": {
-      "title": "🔄 迁移 — 无痛切换 Agent",
-      "desc": "想测试新的 AI 工具？只需重新运行 <code>cody bootstrap</code>，它会为新工具重新生成配置，同时保持 AGENTS.md 不变。零迁移成本。"
-    },
-    "manifestTitle": "AGENTS.md 开放标准",
-    "manifestDesc": "基于 Microsoft Build 2025 规范，AGENTS.md 是唯一告诉所有 AI Agent 你项目如何运作的文件 — 技术栈、规则、指令和身份。",
-    "manifestList": [
-      "<strong>身份与上下文：</strong>技术栈、部署目标、品牌规范 — 任何 Agent 即刻加载。",
-      "<strong>通用命令：</strong>跨工具标准化 dev、build、test、deploy。",
-      "<strong>护栏：</strong>'不过关不部署'、'必须翻译字符串'、'TDD 是强制的'。",
-      "<strong>单 Agent 映射：</strong>从一份清单自动生成 .clawrc、CLAUDE.md、.cursorrules、.gemini/settings.json。"
-    ],
-    "bestPracticesTitle": "最佳实践",
-    "bestPracticesDesc": "遵循这些模式，充分发挥 CodyMaster Claw 的价值。",
-    "bp1": {
-      "title": "版本管理你的 AGENTS.md",
-      "desc": "提交到 Git。所有团队成员和 AI Agent 读取同一版本。把它当作 .eslintrc。"
-    },
-    "bp2": {
-      "title": "护栏先行",
-      "desc": "先定规则，后定功能。'TDD 强制'、'不过关不部署'、'所有字符串 i18n'。约束反而让 AI 更快。"
-    },
-    "bp3": {
-      "title": "使用单 Agent 覆盖",
-      "desc": "每个工具有自己的优势。AGENTS.md 定义共享规则，专属配置 (CLAUDE.md, .cursorrules) 处理特定优化。"
-    },
-    "bp4": {
-      "title": "CI 上运行 Bootstrap",
-      "desc": "在 CI 流水线中添加 cody bootstrap --check，确保 AGENTS.md 与生成的配置同步。"
-    },
-    "bp5": {
-      "title": "身份严格管控",
-      "desc": "在 AGENTS.md 中声明 Git 账户、Cloudflare 账户和 Supabase 项目。cm-identity-guard 阻止误操作。"
-    },
-    "bp6": {
-      "title": "记录自定义 Skill",
-      "desc": "在 AGENTS.md 中列出自定义 Skill，让所有 Agent 知道可用的专业行为。Skill 跨平台通用。"
-    },
-    "comparisonTitle": "Claw 使用前后对比",
-    "comparison": {
-      "before": {
-        "label": "没有 Claw",
-        "items": [
-          "每个 AI 工具单独配置",
-          "Claude、Cursor、OpenClaw 的规则各不相同",
-          "新成员 → 每个工具手动设置",
-          "切换 AI 工具 → 从头开始",
-          "护栏？什么护栏？"
-        ]
-      },
-      "after": {
-        "label": "使用 Claw 后",
-        "items": [
-          "一份 AGENTS.md → 所有工具已配置",
-          "统一规则，统一产出质量",
-          "git clone + cody bootstrap → 就绪",
-          "秒切工具，保留上下文",
-          "TDD + 6 关卡 + 身份锁内置"
-        ]
-      }
-    },
-    "ctaSection": {
-      "title": "停止配置，开始交付。",
-      "desc": "一份清单。所有 AI Agent。零工具开销。开源、MIT 协议、永久免费。"
+    "after": {
+      "title": "拥有 Cody Master",
+      "items": [
+        "统一的设计准则",
+        "多重验证防线",
+        "自动阻拦凭证泄漏隐患",
+        "全自动生成文档",
+        "产品上线仅在弹指之间"
+      ]
     }
+  },
+  "storyPage": {
+    "meta": {
+      "title": "品牌故事 — Cody Master Kit",
+      "description": "Cody Master 背后的真实故事。"
+    },
+    "hero": "Cody Master 幕后的故事",
+    "heroSub": "这不是营销。这是所有发生过的真相。",
+    "founderIntro": "我并非一名开发者。我是一名有着10年经验的产品经理。编写代码曾经是我把创意转化为现实之间的绝望高墙。",
+    "chapters": [
+      {
+        "number": "01",
+        "title": "当AI赐予我一百双手",
+        "content": "AI出现了。它给了我100双手。一瞬间，像我这样甚至写不出一个最简单的JavaScript函数的人，竟然能把整个全栈跑起来了。这仿佛一个这辈子都在骑自行车的人突然学会了开火箭。然而，一艘没有约束控制系统的火箭其实跟一颗飞行的炸弹毫无分别。",
+        "skills": []
+      },
+      {
+        "number": "02",
+        "title": "设计地狱：永远在改变",
+        "content": "每一次生成设计必然走样，毫无一致性可言。这几乎令人发疯。AI真的很懂设计，但它在牢记遵守规范方面真的是惨绝人寰。",
+        "skills": ["cm-ux-master", "cm-ui-preview"],
+        "quote": "AI很懂设计。但在恪守死规矩上确很糟糕。"
+      },
+      {
+        "number": "03",
+        "title": "AI删光代码的那一周",
+        "content": "在一次重构中，当上下文过载时，AI开始了无休止的“迷失自我”。它修好一个错又搞砸下一个。最要命的是AI直接删除了所有的现存代码。整整一周的心血努力全毁了。我只能重来，修修补补。在凌晨两点，我决定立下毒誓：绝不能再上演一次。",
+        "skills": ["cm-tdd", "cm-safe-i18n"],
+        "quote": "重作4次。白费了一周心血。于是我亲手搭建了多层防卫系统。"
+      },
+      {
+        "number": "04",
+        "title": "懒人的处世哲学",
+        "content": "任何重复坑害过我两次的事情，走到第三次时必须变成纯粹的自动化。于是我把坑变成了一项项随时调用的独立技能。",
+        "skills": ["cm-project-bootstrap", "cm-execution"],
+        "quote": "绊倒你两次的错误不应出现第三次。"
+      },
+      {
+        "number": "05",
+        "title": "伟大的产品和无人知晓",
+        "content": "惊艳的产品，没人懂得用也是废品。撰写文档折寿且令人枯竭。在绝望中，cm-dockit 诞生了。它能自动阅读源代码并编写详尽的API和指南。终于不用再多码下一个字了。",
+        "skills": ["cm-dockit", "cm-content-factory"],
+        "quote": "最好的产品没人懂用也是废品。"
+      },
+      {
+        "number": "06",
+        "title": "统领百手的指挥阵线",
+        "content": "放任多位AI代理并行工作，神经很快就失控。哪个项目卡在哪里？Token消耗多少？我开发了能对工作流和项目全景做到一览无余的看板工具。",
+        "skills": ["cm-dashboard", "cm-status"],
+        "quote": "看不清全景就谈不上掌控。"
+      },
+      {
+        "number": "07",
+        "title": "写给社区无尽的感恩",
+        "content": "一切并非我闭门造车。Superpower、Loki Mode、UX Max Pro……这些都是社区天才们的精华，我将其融入Cody Master系统，这是全球共鸣与智慧的结晶。",
+        "skills": ["cm-skill-mastery", "cm-continuity"],
+        "quote": "站立在此是因为众多先锋巨人的慷慨。"
+      }
+    ],
+    "closing": {
+      "title": "Cody Master 是什么？",
+      "content": "这不是小型辅助代码或大杂烩指令。它是用成百上千次失败和痛悟换来的答卷。回答外行人如何用AI缔造殿堂级作品的问题。",
+      "question": "“外行该怎么完美交付惊人的全栈杰作？”",
+      "punchline": "这就三十多个技能构成的屏障武器库。每门学问皆是鲜血痛楚总结。以后你无须重蹈黑夜覆辙，这副套件把往后的路都铺好了。"
+    },
+    "cta": "这就启程，揭开不凡之路的序幕 →",
+    "backHome": "← 返回首页"
   }
 }

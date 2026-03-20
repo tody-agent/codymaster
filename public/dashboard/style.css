@@ -1,4 +1,4 @@
-/* CodyMaster Dashboard v3 — Light/Dark Theme */
+/* CodyMaster Mission Control v4 — Light/Dark Theme */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 /* ── Light Mode (default) ─────────── */
@@ -44,8 +44,9 @@ body{display:flex;overflow:hidden}
 /* ── Sidebar ──────────────────────── */
 .sidebar{width:240px;min-width:240px;background:var(--bg-sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;transition:width .2s,min-width .2s;overflow:hidden}
 .sidebar.collapsed{width:0;min-width:0;border:none}
-.sidebar-header{display:flex;align-items:center;gap:10px;padding:16px 16px 12px}
+.sidebar-header{display:flex;align-items:center;gap:10px;padding:16px 16px 12px;flex-wrap:wrap}
 .sidebar-title{font-size:16px;font-weight:700;white-space:nowrap}
+.sidebar-subtitle{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--accent);opacity:.8;width:100%;padding-left:32px;margin-top:-4px}
 .logo{font-size:22px}
 .sidebar-section{padding:0 12px 16px}
 .sidebar-section-header{display:flex;align-items:center;justify-content:space-between;padding:0 4px 8px}
@@ -259,6 +260,21 @@ body{display:flex;overflow:hidden}
 /* ── Refresh spin ─────────────────── */
 @keyframes spin{to{transform:rotate(360deg)}}
 .refreshing svg{animation:spin .6s linear}
+
+/* ── Sync Status Indicator ────────── */
+.sync-status{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:color-mix(in srgb,var(--col-done) 8%,transparent);border:1px solid color-mix(in srgb,var(--col-done) 15%,transparent);transition:all .3s ease}
+.sync-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:background .3s ease}
+.sync-dot.synced{background:var(--col-done);box-shadow:0 0 4px color-mix(in srgb,var(--col-done) 40%,transparent)}
+.sync-dot.syncing{background:var(--col-in-progress);animation:syncPulse 1s ease-in-out infinite}
+.sync-dot.error{background:var(--danger);box-shadow:0 0 4px color-mix(in srgb,var(--danger) 40%,transparent)}
+.sync-label{font-size:11px;font-weight:500;color:var(--text-secondary);white-space:nowrap}
+@keyframes syncPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+
+/* ── Auto-Refresh Toggle ──────────── */
+.auto-refresh-toggle{position:relative;transition:all .2s ease}
+.auto-refresh-toggle.active{color:var(--col-done)!important;background:color-mix(in srgb,var(--col-done) 12%,transparent)}
+.auto-refresh-toggle.active:hover{background:color-mix(in srgb,var(--col-done) 20%,transparent)}
+.auto-refresh-toggle:not(.active){opacity:.5}
 
 /* ── Modal ────────────────────────── */
 .modal-overlay{display:none;position:fixed;inset:0;background:var(--modal-backdrop);backdrop-filter:blur(4px);z-index:100;align-items:center;justify-content:center}

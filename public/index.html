@@ -1,610 +1,663 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="meta.title">CodyMaster — The Machine That Learns From Every Mistake</title>
-  <meta name="description" content="Born from sleepless nights and 47 rebuilds. A Product Manager's obsession turned into an AI skills framework that never repeats the same mistake twice.">
-  <meta property="og:title" content="CodyMaster — 100 Arms. One Mind. Zero Repeated Mistakes.">
-  <meta property="og:description" content="The skills framework born from a PM's obsession with never repeating the same mistake twice.">
+  <title>Cody Master Kit — Turn Ideas into Products 10x Faster</title>
+  <meta name="description" content="30+ AI Agent Skills that take you from idea to design to code to deploy — no coding required. Just chat.">
+  <meta property="og:title" content="Cody Master Kit — Turn Ideas into Products 10x Faster">
+  <meta property="og:description" content="30+ AI Agent Skills that take you from idea to design to code to deploy — no coding required.">
   <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/design-tokens.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/story.css">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/kit.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <!-- Scroll Progress Bar -->
-  <div class="scroll-progress" id="scroll-progress"></div>
 
-  <!-- Canvas for ocean particles -->
-  <canvas id="ocean-particles" aria-hidden="true"></canvas>
+  <!-- ═══════════╗ NAVIGATION ╔═══════════ -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo">
+      <span class="nav__logo-icon">⚡</span>
+      <span>Cody Master</span>
+    </a>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo"><span class="logo-icon">🌊</span> CodyMaster</a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="how-it-works.html">How It Works</a></li>
-          <li><a href="showcase.html">Showcase</a></li>
-          <li><a href="agent-support.html">Claw</a></li>
-          <li class="nav-dropdown">
-            <a class="nav-dropdown-btn">By Role</a>
-            <div class="nav-dropdown-menu">
-              <a href="for-pm.html">For PM/PO/BA</a>
-              <a href="for-dev.html">For Developers</a>
-              <a href="for-qa.html">For QA/QC</a>
-              <a href="for-founders.html">For Founders</a>
-            </div>
-          </li>
-        </ul>
-      </nav>
-      <div class="header-controls">
-        <div class="lang-switcher">
-          <button class="lang-btn"><span class="lang-btn-text">🇬🇧 EN</span></button>
-          <div class="lang-menu">
-            <button class="lang-option" data-lang="en">🇬🇧 English</button>
-            <button class="lang-option" data-lang="vi">🇻🇳 Tiếng Việt</button>
-            <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#features" class="nav__link" data-i18n="nav.features">Features</a></li>
+      <li><a href="#how" class="nav__link" data-i18n="nav.howItWorks">How It Works</a></li>
+      <li><a href="#rarv" class="nav__link" data-i18n="nav.deepDive">Deep Dive</a></li>
+      <li><a href="#personas" class="nav__link" data-i18n="nav.personas">For You</a></li>
+      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
+      <li>
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
+            <span class="lang-btn-icon">🌍</span>
+            <span class="lang-btn-text" id="lang-btn-text">EN</span>
+            <span class="lang-btn-caret">▾</span>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
           </div>
         </div>
-        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
-        <button class="mobile-toggle" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Nav -->
-  <div class="mobile-nav">
-    <ul class="mobile-nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="how-it-works.html">How It Works</a></li>
-      <li><a href="showcase.html">Showcase</a></li>
-      <li><a href="agent-support.html">Claw</a></li>
-      <li><span class="mobile-nav-label">By Role</span></li>
-      <li><a href="for-pm.html">For PM/PO/BA</a></li>
-      <li><a href="for-dev.html">For Developers</a></li>
-      <li><a href="for-qa.html">For QA/QC</a></li>
-      <li><a href="for-founders.html">For Founders</a></li>
+      </li>
+      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
     </ul>
-  </div>
 
-  <main>
-    <!-- ═══════════════════════════════════════════
-         CHAPTER 1: THE CRISIS (Hero)
-         ═══════════════════════════════════════════ -->
-    <section class="hero story-hero">
-      <div class="container">
-        <div class="hero-badge">Open Source · MIT License · 7 AI Platforms</div>
-        <div class="story-time">
-          <span class="story-time-label">Chapter 1</span>
-        </div>
-        <h1 class="story-headline">
-          <span class="story-line story-line-dim">Midnight. The 47th rebuild.</span><br>
-          <span class="story-line story-line-dim">The AI just destroyed everything.</span><br>
-          <span class="gradient-text story-line-hero" id="typed-headline">Again.</span>
-        </h1>
-        <p class="hero-desc story-voice">
-          I'm a Product Manager with 10 years of experience. I've shipped products used by millions.
-          But when AI coding tools arrived, I couldn't sleep. Not from excitement — from <strong>frustration</strong>.
-        </p>
+    <div class="nav__hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
 
-        <!-- Emotional Stats -->
-        <div class="crisis-stats fade-in">
-          <div class="crisis-stat">
-            <div class="crisis-stat-number" data-count="47">0</div>
-            <div class="crisis-stat-label">Rebuilds<br><small>in one project</small></div>
-          </div>
-          <div class="crisis-stat">
-            <div class="crisis-stat-number" data-count="23">0</div>
-            <div class="crisis-stat-label">Sleepless<br><small>nights</small></div>
-          </div>
-          <div class="crisis-stat">
-            <div class="crisis-stat-number" data-count="12">0</div>
-            <div class="crisis-stat-label">Designs<br><small>thrown away</small></div>
-          </div>
-          <div class="crisis-stat">
-            <div class="crisis-stat-number" data-count="0">∞</div>
-            <div class="crisis-stat-label">Times<br><small>same mistake repeated</small></div>
-          </div>
-        </div>
+  <!-- ═══════════╗ HERO ╔═══════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__orbs">
+      <div class="hero__orb hero__orb--purple"></div>
+      <div class="hero__orb hero__orb--lime"></div>
+    </div>
 
-        <div class="trust-bar fade-in">
-          <p class="trust-bar-label">Works with every AI platform</p>
-          <div class="trust-logos">
-            <span class="trust-logo"><span class="trust-logo-icon">⚡</span> Gemini</span>
-            <span class="trust-logo"><span class="trust-logo-icon">✦</span> Claude</span>
-            <span class="trust-logo"><span class="trust-logo-icon">▸</span> Cursor</span>
-            <span class="trust-logo"><span class="trust-logo-icon">〰</span> Windsurf</span>
-            <span class="trust-logo"><span class="trust-logo-icon">✈</span> Copilot</span>
-            <span class="trust-logo"><span class="trust-logo-icon">🔧</span> Cline</span>
-            <span class="trust-logo"><span class="trust-logo-icon">🚀</span> Aider</span>
-          </div>
-        </div>
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        <span class="hero__badge-text" data-i18n="hero.badge">30+ AI Skills · Open Source · Free</span>
       </div>
-      <!-- Wave divider -->
-      <div class="wave-divider">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,40 C360,120 720,0 1080,80 C1260,110 1380,60 1440,40 L1440,120 L0,120 Z" fill="var(--color-bg-secondary)"/></svg>
+
+      <h1 class="hero__headline" data-i18n="hero.headline">Turn Ideas into Products
+10x Faster</h1>
+
+      <p class="hero__subtitle" data-i18n="hero.subtitle">An AI Agent Skills kit that takes you from idea → design → code → deploy,
+no coding required. Just chat in plain English.</p>
+
+      <div class="hero__ctas">
+        <a href="#cta" class="btn btn--primary">
+          <span data-i18n="hero.ctaPrimary">Try It Free</span>
+          <span>→</span>
+        </a>
+        <a href="demo.html" class="btn btn--secondary">
+          <span data-i18n="hero.ctaSecondary">Watch Demo</span>
+          <i data-lucide="play" style="width:18px;height:18px"></i>
+        </a>
       </div>
-    </section>
 
-    <!-- ═══════════════════════════════════════════
-         CHAPTER 2: THE 5 NIGHTMARES
-         ═══════════════════════════════════════════ -->
-    <section class="section section-alt story-chapter" id="nightmares">
-      <div class="container">
-        <div class="story-time"><span class="story-time-label">Chapter 2</span></div>
-        <h2 class="section-title text-center">The 5 Nightmares That Keep Builders Awake</h2>
-        <p class="section-subtitle mx-auto text-center">Every one of these kept me up at night. Every one now has a cure.</p>
-
-        <div class="nightmare-grid stagger fade-in">
-          <!-- Nightmare 1 -->
-          <div class="nightmare-card" data-nightmare="1">
-            <div class="nightmare-front">
-              <div class="nightmare-number">01</div>
-              <h3>Design Chaos</h3>
-              <p>AI designs something <strong>different every single time</strong>. No consistency. No brand. Each conversation starts from zero.</p>
-              <span class="nightmare-hint">Hover to see the cure →</span>
-            </div>
-            <div class="nightmare-back">
-              <div class="nightmare-cure-icon">💊</div>
-              <h3>cm-ux-master + Design Profiles</h3>
-              <p>Extract any design system in one command. Persist brand tokens across all projects. AI follows YOUR style guide.</p>
-            </div>
-          </div>
-          <!-- Nightmare 2 -->
-          <div class="nightmare-card" data-nightmare="2">
-            <div class="nightmare-front">
-              <div class="nightmare-number">02</div>
-              <h3>Amnesia</h3>
-              <p>Code works today, <strong>breaks tomorrow</strong>. AI forgets everything between sessions. You re-explain the same context 100 times.</p>
-              <span class="nightmare-hint">Hover to see the cure →</span>
-            </div>
-            <div class="nightmare-back">
-              <div class="nightmare-cure-icon">🧠</div>
-              <h3>cm-continuity (Working Memory)</h3>
-              <p>CONTINUITY.md preserves context forever. Mistakes are captured. AI never forgets what it learned — across sessions, across projects.</p>
-            </div>
-          </div>
-          <!-- Nightmare 3 -->
-          <div class="nightmare-card" data-nightmare="3">
-            <div class="nightmare-front">
-              <div class="nightmare-number">03</div>
-              <h3>Deploy Roulette</h3>
-              <p>Push to production. <strong>Pray it works.</strong> No tests, no gates, no rollback. "It works on my machine" is the only QA.</p>
-              <span class="nightmare-hint">Hover to see the cure →</span>
-            </div>
-            <div class="nightmare-back">
-              <div class="nightmare-cure-icon">🛡️</div>
-              <h3>cm-safe-deploy (8-Gate Pipeline)</h3>
-              <p>Staging is mandatory. Production is earned. 8 quality gates. Auto rollback on failure. Sleep well tonight.</p>
-            </div>
-          </div>
-          <!-- Nightmare 4 -->
-          <div class="nightmare-card" data-nightmare="4">
-            <div class="nightmare-front">
-              <div class="nightmare-number">04</div>
-              <h3>Zero Documentation</h3>
-              <p>Product ships. <strong>No docs. No guides.</strong> Users bounce. Onboarding takes weeks. The PM's worst nightmare.</p>
-              <span class="nightmare-hint">Hover to see the cure →</span>
-            </div>
-            <div class="nightmare-back">
-              <div class="nightmare-cure-icon">📚</div>
-              <h3>cm-dockit (Auto Documentation)</h3>
-              <p>One scan = complete knowledge base. Personas, JTBD, Process Flows, API refs, SOP user guides. SEO-optimized, AI-readable.</p>
-            </div>
-          </div>
-          <!-- Nightmare 5 -->
-          <div class="nightmare-card" data-nightmare="5">
-            <div class="nightmare-front">
-              <div class="nightmare-number">05</div>
-              <h3>Groundhog Day</h3>
-              <p>Same bug. Same mistake. <strong>Over and over again.</strong> AI doesn't learn. You don't either because there's no system.</p>
-              <span class="nightmare-hint">Hover to see the cure →</span>
-            </div>
-            <div class="nightmare-back">
-              <div class="nightmare-cure-icon">⚡</div>
-              <h3>Skill Creator Ultra</h3>
-              <p>Every problem solved becomes a skill. Every skill can be cloned, improved, shared. Your AI gets smarter with every use.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         CHAPTER 3: THE INSIGHT
-         ═══════════════════════════════════════════ -->
-    <section class="section story-chapter" id="insight">
-      <div class="container">
-        <div class="story-time"><span class="story-time-label">Chapter 3</span></div>
-        <h2 class="section-title text-center">
-          What If Every Problem Only Needs<br>
-          <span class="gradient-text">To Be Solved Once?</span>
-        </h2>
-
-        <div class="insight-timeline fade-in">
-          <div class="insight-step">
-            <div class="insight-dot"></div>
-            <div class="insight-content">
-              <h4>The Frustrated PM</h4>
-              <p>"AI is fast but dumb. It keeps making the same mistakes. I spend more time fixing than building."</p>
-            </div>
-          </div>
-          <div class="insight-step">
-            <div class="insight-dot active"></div>
-            <div class="insight-content">
-              <h4>The Obsessive Tinkerer</h4>
-              <p>"What if I could teach AI to never repeat a mistake? What if every bug becomes a permanent lesson?"</p>
-            </div>
-          </div>
-          <div class="insight-step">
-            <div class="insight-dot final"></div>
-            <div class="insight-content">
-              <h4>The Skill Builder</h4>
-              <p>"Every problem I solve becomes a <strong>skill</strong>. Every skill can be duplicated, improved, and shared. The machine gets smarter with every use."</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="insight-quote fade-in">
-          <blockquote>
-            "I'm not a developer. I'm a Product Manager who was tired of asking for help.<br>
-            AI didn't give me 2 extra hands — it gave me <span class="gradient-text">100 arms</span>.<br>
-            Not just to do what I couldn't before, but to do it faster than an entire team."
-          </blockquote>
-        </div>
-
-        <div class="gratitude-banner fade-in">
-          <p>🙏 Standing on the shoulders of giants — inspired by <strong>Superpower</strong>, <strong>Loki Mode</strong>, <strong>UX Max Pro</strong>, and the entire open-source AI community. Thank you.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         CHAPTER 4: THE MACHINE
-         ═══════════════════════════════════════════ -->
-    <section class="section section-alt story-chapter" id="machine">
-      <div class="container">
-        <div class="story-time"><span class="story-time-label">Chapter 4</span></div>
-        <h2 class="section-title text-center">
-          100 Arms. One Mind.<br>
-          <span class="gradient-text">Zero Repeated Mistakes.</span>
-        </h2>
-        <p class="section-subtitle mx-auto text-center">A comprehensive machine — from landing pages to full-stack apps to documentation to self-healing deploys.</p>
-
-        <!-- Pipeline Visualization -->
-        <div class="machine-pipeline fade-in">
-          <div class="machine-node">
-            <div class="machine-node-ring">💡</div>
-            <span>Idea</span>
-          </div>
-          <div class="machine-arrow">→</div>
-          <div class="machine-node">
-            <div class="machine-node-ring">🎨</div>
-            <span>Design</span>
-          </div>
-          <div class="machine-arrow">→</div>
-          <div class="machine-node">
-            <div class="machine-node-ring">⚡</div>
-            <span>Build</span>
-          </div>
-          <div class="machine-arrow">→</div>
-          <div class="machine-node">
-            <div class="machine-node-ring">🧪</div>
-            <span>Test</span>
-          </div>
-          <div class="machine-arrow">→</div>
-          <div class="machine-node">
-            <div class="machine-node-ring">📚</div>
-            <span>Document</span>
-          </div>
-          <div class="machine-arrow">→</div>
-          <div class="machine-node final">
-            <div class="machine-node-ring">🚀</div>
-            <span>Ship</span>
-          </div>
-        </div>
-
-        <!-- Skills Grid -->
-        <h3 class="skills-label">30+ Skills Across 7 Domains</h3>
-        <div class="skills-domain-grid fade-in stagger">
-          <div class="skill-domain-card" data-domain="planning">
-            <h4>🎯 Planning</h4>
-            <ul><li>cm-planning</li><li>cm-project-bootstrap</li><li>cm-skill-mastery</li></ul>
-          </div>
-          <div class="skill-domain-card" data-domain="design">
-            <h4>🎨 Design</h4>
-            <ul><li>cm-ux-master</li><li>cm-ui-preview</li><li>web-design-guidelines</li></ul>
-          </div>
-          <div class="skill-domain-card" data-domain="build">
-            <h4>⚡ Build</h4>
-            <ul><li>cm-execution</li><li>cm-tdd</li><li>frappe-fullstack</li></ul>
-          </div>
-          <div class="skill-domain-card" data-domain="quality">
-            <h4>🛡️ Quality</h4>
-            <ul><li>cm-quality-gate</li><li>cm-test-gate</li><li>cm-debugging</li></ul>
-          </div>
-          <div class="skill-domain-card" data-domain="deploy">
-            <h4>🚀 Deploy</h4>
-            <ul><li>cm-safe-deploy</li><li>cm-identity-guard</li><li>cm-git-worktrees</li></ul>
-          </div>
-          <div class="skill-domain-card" data-domain="content">
-            <h4>📚 Content</h4>
-            <ul><li>cm-content-factory</li><li>cm-dockit</li><li>cm-readit</li></ul>
-          </div>
-          <div class="skill-domain-card" data-domain="analysis">
-            <h4>🔍 Analysis</h4>
-            <ul><li>cm-brainstorm-idea</li><li>cm-skill-chain</li><li>cm-dashboard</li></ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         CHAPTER 5: USE CASES
-         ═══════════════════════════════════════════ -->
-    <section class="section story-chapter" id="usecases">
-      <div class="container">
-        <div class="story-time"><span class="story-time-label">Chapter 5</span></div>
-        <h2 class="section-title text-center">From Idea → Production<br><span class="gradient-text">In One Conversation</span></h2>
-        <p class="section-subtitle mx-auto text-center">These aren't demos. These are real scenarios I use every day.</p>
-
-        <div class="usecase-grid fade-in stagger">
-          <!-- Use Case 1 -->
-          <div class="usecase-card">
-            <div class="usecase-header">
-              <span class="usecase-tag">Landing Page</span>
-              <span class="usecase-time">~15 min</span>
-            </div>
-            <h3>"Build me a landing page for my dental clinic"</h3>
-            <div class="usecase-flow">
-              <div class="usecase-step done">cm-ux-master → extract design system</div>
-              <div class="usecase-step done">cm-content-factory → write copy with CRO</div>
-              <div class="usecase-step done">cm-project-bootstrap → scaffold + deploy</div>
-              <div class="usecase-step done">cm-safe-deploy → staging → production</div>
-            </div>
-            <div class="usecase-result">
-              <span class="usecase-result-label">Result:</span>
-              SEO-optimized, conversion-focused, deployed. In 15 minutes.
-            </div>
-          </div>
-
-          <!-- Use Case 2 -->
-          <div class="usecase-card">
-            <div class="usecase-header">
-              <span class="usecase-tag">Full-Stack App</span>
-              <span class="usecase-time">~2 hours</span>
-            </div>
-            <h3>"Build a warehouse scoring system with Frappe"</h3>
-            <div class="usecase-flow">
-              <div class="usecase-step done">cm-planning → JTBD + requirements</div>
-              <div class="usecase-step done">frappe-app-builder → DocTypes + APIs</div>
-              <div class="usecase-step done">cm-tdd → tests before code</div>
-              <div class="usecase-step done">cm-quality-gate → 6-gate verification</div>
-            </div>
-            <div class="usecase-result">
-              <span class="usecase-result-label">Result:</span>
-              Production-ready Frappe app. Tested. Deployed to cloud.
-            </div>
-          </div>
-
-          <!-- Use Case 3 -->
-          <div class="usecase-card">
-            <div class="usecase-header">
-              <span class="usecase-tag">Auto Documentation</span>
-              <span class="usecase-time">~30 min</span>
-            </div>
-            <h3>"Generate user guides from my codebase"</h3>
-            <div class="usecase-flow">
-              <div class="usecase-step done">cm-dockit → scan codebase</div>
-              <div class="usecase-step done">Auto-generate personas + JTBD</div>
-              <div class="usecase-step done">Process flows + SOP guides</div>
-              <div class="usecase-step done">Astro Starlight docs site</div>
-            </div>
-            <div class="usecase-result">
-              <span class="usecase-result-label">Result:</span>
-              Complete knowledge base. SEO-optimized. Self-onboarding.
-            </div>
-          </div>
-
-          <!-- Use Case 4 -->
-          <div class="usecase-card">
-            <div class="usecase-header">
-              <span class="usecase-tag">Self-Healing Deploy</span>
-              <span class="usecase-time">Automatic</span>
-            </div>
-            <h3>"Deploy broke? AI fixes and redeploys."</h3>
-            <div class="usecase-flow">
-              <div class="usecase-step done">cm-safe-deploy → detect failure</div>
-              <div class="usecase-step done">cm-debugging → root cause analysis</div>
-              <div class="usecase-step done">cm-execution → auto-fix</div>
-              <div class="usecase-step done">cm-quality-gate → re-verify → ship</div>
-            </div>
-            <div class="usecase-result">
-              <span class="usecase-result-label">Result:</span>
-              Broken → Fixed → Deployed. No human intervention needed.
-            </div>
-          </div>
-
-          <!-- Use Case 5 -->
-          <div class="usecase-card">
-            <div class="usecase-header">
-              <span class="usecase-tag">Multi-Agent Army</span>
-              <span class="usecase-time">Parallel</span>
-            </div>
-            <h3>"3 AI agents building in parallel"</h3>
-            <div class="usecase-flow">
-              <div class="usecase-step done">Agent 1: Frontend (Gemini Antigravity)</div>
-              <div class="usecase-step done">Agent 2: Backend (Claude Code)</div>
-              <div class="usecase-step done">Agent 3: Docs + Tests (Cursor)</div>
-              <div class="usecase-step done">cm-continuity → shared memory</div>
-            </div>
-            <div class="usecase-result">
-              <span class="usecase-result-label">Result:</span>
-              Team of 1 ships like team of 10. All agents share memory.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         CHAPTER 6: BEFORE / AFTER
-         ═══════════════════════════════════════════ -->
-    <section class="section section-alt story-chapter" id="transformation">
-      <div class="container">
-        <div class="story-time"><span class="story-time-label">Chapter 6</span></div>
-        <h2 class="section-title text-center">The Transformation</h2>
-        <div class="comparison-grid mt-8 fade-in" style="position:relative">
-          <div class="comparison-col before">
-            <span class="comparison-label">Before CodyMaster</span>
-            <ul class="comparison-list">
-              <li><span class="comparison-icon">❌</span> Design: different every time, no consistency</li>
-              <li><span class="comparison-icon">❌</span> Memory: lost every session, re-explain forever</li>
-              <li><span class="comparison-icon">❌</span> Deploy: push and pray, zero safety</li>
-              <li><span class="comparison-icon">❌</span> Docs: "we'll write them later" (never)</li>
-              <li><span class="comparison-icon">❌</span> Mistakes: same bug, same fix, infinite loop</li>
-            </ul>
-          </div>
-          <div class="comparison-arrow">→</div>
-          <div class="comparison-col after">
-            <span class="comparison-label">With CodyMaster</span>
-            <ul class="comparison-list">
-              <li><span class="comparison-icon">✅</span> Design: persistent brand tokens, pixel-perfect</li>
-              <li><span class="comparison-icon">✅</span> Memory: CONTINUITY.md preserves context forever</li>
-              <li><span class="comparison-icon">✅</span> Deploy: 8-gate pipeline, auto rollback</li>
-              <li><span class="comparison-icon">✅</span> Docs: auto-generated from codebase</li>
-              <li><span class="comparison-icon">✅</span> Mistakes: solved once → skill forever</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         CHAPTER 7: PERSONAS
-         ═══════════════════════════════════════════ -->
-    <section class="section story-chapter" id="roles">
-      <div class="container">
-        <div class="story-time"><span class="story-time-label">Chapter 7</span></div>
-        <h2 class="section-title text-center">Every Role. Every Platform.<br><span class="gradient-text">One Machine.</span></h2>
-        <p class="section-subtitle mx-auto text-center">Whether you manage products, write code, enforce quality, or run the business — CodyMaster speaks your language.</p>
-        <div class="cards-grid stagger fade-in" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-          <a href="for-pm.html" class="card persona-card" style="text-decoration:none;color:inherit">
-            <div class="card-icon" style="background:rgba(192,132,252,0.08);color:var(--color-purple-400)">🎯</div>
-            <h3 class="card-title">Product Managers</h3>
-            <p class="card-desc">Describe features in plain language. Ship 5x faster without coding. Auto-generate requirements and docs.</p>
-            <span class="persona-link" style="color:var(--accent-pm)">See how PMs use it →</span>
-          </a>
-          <a href="for-dev.html" class="card persona-card" style="text-decoration:none;color:inherit">
-            <div class="card-icon" style="background:rgba(34,211,238,0.08);color:var(--color-primary-400)">⚡</div>
-            <h3 class="card-title">Developers</h3>
-            <p class="card-desc">AI output that passes your harshest PR review. TDD enforced, zero technical debt.</p>
-            <span class="persona-link" style="color:var(--accent-dev)">See the tech details →</span>
-          </a>
-          <a href="for-qa.html" class="card persona-card" style="text-decoration:none;color:inherit">
-            <div class="card-icon" style="background:rgba(34,197,94,0.08);color:var(--color-success)">🛡️</div>
-            <h3 class="card-title">QA Engineers</h3>
-            <p class="card-desc">Code arrives pre-tested through 6 quality gates. Focus on what matters.</p>
-            <span class="persona-link" style="color:var(--accent-qa)">See the quality system →</span>
-          </a>
-          <a href="for-founders.html" class="card persona-card" style="text-decoration:none;color:inherit">
-            <div class="card-icon" style="background:rgba(245,158,11,0.08);color:var(--color-warning)">💼</div>
-            <h3 class="card-title">Founders & Managers</h3>
-            <p class="card-desc">Team of 3 ships like team of 10. 9x ROI per engineering dollar.</p>
-            <span class="persona-link" style="color:var(--accent-founder)">See the ROI math →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         CHAPTER 8: THE CALL
-         ═══════════════════════════════════════════ -->
-    <section class="section section-alt story-chapter" id="call">
-      <div class="container">
-        <div class="story-time"><span class="story-time-label">Final Chapter</span></div>
-        <div class="cta-section story-cta">
-          <h2>Your Next 100 Hours of Repeated Work...<br><span class="gradient-text">Or Your Next 100 Skills That Work Forever.</span></h2>
-          <p class="story-voice">Open source. MIT License. Install in 30 seconds. Works on every AI platform. Zero risk.</p>
-
-          <div class="terminal-block" id="terminal-block">
-            <button class="terminal-copy-btn" id="copy-btn" data-command="curl -sL codymaster.dev/install | bash">Copy</button>
-            <div class="terminal-header">
-              <span class="terminal-dot red"></span>
-              <span class="terminal-dot yellow"></span>
-              <span class="terminal-dot green"></span>
-              <span class="terminal-title">Terminal</span>
-            </div>
-            <div class="terminal-body">
-              <div><span class="terminal-prompt">$ </span><span class="terminal-command" id="terminal-text"></span><span class="terminal-cursor" id="terminal-cursor"></span></div>
-              <div class="terminal-output" id="terminal-output"><br>✅ 30+ skills installed. Your AI just got 100 arms.</div>
-            </div>
-          </div>
-
-          <div class="btn-group">
-            <a href="https://github.com/tody-agent/codymaster" class="btn btn-primary">Install Free Now</a>
-            <a href="https://github.com/tody-agent/codymaster" class="btn btn-secondary">⭐ Star on GitHub</a>
-          </div>
-
-          <p class="story-closing">
-            Built by a Product Manager who was tired of asking developers for help.<br>
-            <span style="color:var(--color-primary-400)">Now the developers ask me how I ship so fast.</span>
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo"><span class="logo-icon">🌊</span> CodyMaster</div>
-          <p>Universal Agent Skills Platform. Open Source. MIT License.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <ul>
-            <li><a href="how-it-works.html">How It Works</a></li>
-            <li><a href="showcase.html">Showcase</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>By Role</h4>
-          <ul>
-            <li><a href="for-pm.html">For PM/PO/BA</a></li>
-            <li><a href="for-dev.html">For Developers</a></li>
-            <li><a href="for-qa.html">For QA/QC</a></li>
-            <li><a href="for-founders.html">For Founders</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <ul>
-            <li><a href="https://github.com/tody-agent/codymaster">GitHub</a></li>
-            <li><a href="https://github.com/tody-agent/codymaster/issues">Issues</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 CodyMaster. Open Source, MIT License.</span>
-        <span>Built with 🌊 and sleepless nights</span>
+      <div class="hero__trust">
+        <span class="hero__trust-item" data-i18n="hero.trustNoCreditCard">✓ No credit card needed</span>
+        <span class="hero__trust-item" data-i18n="hero.trust30Seconds">✓ Setup in 30 seconds</span>
+        <span class="hero__trust-item" data-i18n="hero.trustMultilingual">✓ Multi-language support</span>
       </div>
     </div>
+  </section>
+
+  <!-- ═══════════╗ FEATURES ╔═══════════ -->
+  <section class="section" id="features">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="features.label">WHY CODY MASTER</p>
+      <h2 class="section__title" data-i18n="features.title">Everything you need,
+in a single kit</h2>
+      <p class="section__subtitle" data-i18n="features.subtitle">No coding required. No need to hire developers. AI handles everything from A to Z.</p>
+    </div>
+
+    <div class="features__grid" id="featuresGrid">
+      <!-- Card 1: Speed -->
+      <div class="feature-card reveal reveal-delay-1" data-feature-index="0">
+        <div class="feature-card__icon feature-card__icon--speed">
+          <i data-lucide="zap" style="stroke:white"></i>
+        </div>
+        <h3 class="feature-card__title" data-i18n="features.cards.0.title">10x Faster</h3>
+        <p class="feature-card__desc" data-i18n="features.cards.0.description">From idea to a complete website in minutes. AI codes, designs, and deploys automatically — you just say what you want.</p>
+      </div>
+
+      <!-- Card 2: Quality -->
+      <div class="feature-card reveal reveal-delay-2" data-feature-index="1">
+        <div class="feature-card__icon feature-card__icon--quality">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <h3 class="feature-card__title" data-i18n="features.cards.1.title">Pro Quality</h3>
+        <p class="feature-card__desc" data-i18n="features.cards.1.description">Production-ready code — not throwaway prototypes. 30+ skills ensure quality from security to SEO.</p>
+      </div>
+
+      <!-- Card 3: Save -->
+      <div class="feature-card reveal reveal-delay-3" data-feature-index="2">
+        <div class="feature-card__icon feature-card__icon--save">
+          <i data-lucide="piggy-bank" style="stroke:white"></i>
+        </div>
+        <h3 class="feature-card__title" data-i18n="features.cards.2.title">Save 90%</h3>
+        <p class="feature-card__desc" data-i18n="features.cards.2.description">Compared to hiring agencies or freelancers, you save both time and money. One kit replaces an entire team.</p>
+      </div>
+
+      <!-- Card 4: Simple -->
+      <div class="feature-card reveal reveal-delay-4" data-feature-index="3">
+        <div class="feature-card__icon feature-card__icon--simple">
+          <i data-lucide="message-circle" style="stroke:white"></i>
+        </div>
+        <h3 class="feature-card__title" data-i18n="features.cards.3.title">Dead Simple</h3>
+        <p class="feature-card__desc" data-i18n="features.cards.3.description">Chat naturally, AI understands and delivers. No complex interfaces, no learning curve.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ USP — WHAT MAKES US DIFFERENT ╔═══════════ -->
+  <section class="section usp" id="usp">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="usp.label">WHAT MAKES US DIFFERENT</p>
+      <h2 class="section__title" data-i18n="usp.title">Not just another AI tool.
+This is a design-first engine.</h2>
+      <p class="section__subtitle" data-i18n="usp.subtitle">Cody Master doesn't just write code — it designs, previews, and respects your existing design system.</p>
+    </div>
+
+    <div class="usp__grid">
+      <!-- USP 1: Kanban Dashboard -->
+      <div class="usp-card reveal reveal-delay-1" data-usp-index="0">
+        <div class="usp-card__content">
+          <div class="usp-card__icon usp-card__icon--kanban">
+            <i data-lucide="kanban" style="stroke:white"></i>
+          </div>
+          <h3 class="usp-card__title" data-i18n="usp.cards.0.title">Kanban Dashboard</h3>
+          <p class="usp-card__desc" data-i18n="usp.cards.0.description">Manage your entire project visually. Track tasks, skill pipelines, and deployments in real-time — all from one command center.</p>
+        </div>
+        <div class="usp-card__visual usp-visual--kanban">
+          <div class="kanban-mock">
+            <div class="kanban-col">
+              <div class="kanban-col__header">To Do</div>
+              <div class="kanban-item kanban-item--purple">Design UI</div>
+              <div class="kanban-item kanban-item--blue">Write API</div>
+            </div>
+            <div class="kanban-col">
+              <div class="kanban-col__header">In Progress</div>
+              <div class="kanban-item kanban-item--lime">Auth Flow</div>
+            </div>
+            <div class="kanban-col">
+              <div class="kanban-col__header">Done ✓</div>
+              <div class="kanban-item kanban-item--green">Deploy v1</div>
+              <div class="kanban-item kanban-item--green">SEO Audit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USP 2: Preview Design Before Code -->
+      <div class="usp-card reveal reveal-delay-2" data-usp-index="1">
+        <div class="usp-card__content">
+          <div class="usp-card__icon usp-card__icon--preview">
+            <i data-lucide="eye" style="stroke:white"></i>
+          </div>
+          <h3 class="usp-card__title" data-i18n="usp.cards.1.title">Preview Design Before Code</h3>
+          <p class="usp-card__desc" data-i18n="usp.cards.1.description">See exactly what your UI will look like before a single line of code is written. Iterate on design with AI — no surprises.</p>
+        </div>
+        <div class="usp-card__visual usp-visual--preview">
+          <div class="preview-mock">
+            <div class="preview-mock__toolbar">
+              <div class="preview-dot preview-dot--red"></div>
+              <div class="preview-dot preview-dot--yellow"></div>
+              <div class="preview-dot preview-dot--green"></div>
+              <span class="preview-mock__url">preview.localhost</span>
+            </div>
+            <div class="preview-mock__body">
+              <div class="preview-nav-mock"></div>
+              <div class="preview-hero-mock">
+                <div class="preview-text-mock preview-text-mock--title"></div>
+                <div class="preview-text-mock preview-text-mock--subtitle"></div>
+                <div class="preview-btn-mock"></div>
+              </div>
+              <div class="preview-cards-mock">
+                <div class="preview-card-mock"></div>
+                <div class="preview-card-mock"></div>
+                <div class="preview-card-mock"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USP 3: Full Design Control -->
+      <div class="usp-card reveal reveal-delay-3" data-usp-index="2">
+        <div class="usp-card__content">
+          <div class="usp-card__icon usp-card__icon--controls">
+            <i data-lucide="sliders-horizontal" style="stroke:white"></i>
+          </div>
+          <h3 class="usp-card__title" data-i18n="usp.cards.2.title">Full Design Control</h3>
+          <p class="usp-card__desc" data-i18n="usp.cards.2.description">Choose your aesthetic — typography, colors, spacing, animations. AI follows YOUR design direction, not random defaults.</p>
+        </div>
+        <div class="usp-card__visual usp-visual--controls">
+          <div class="controls-mock">
+            <div class="control-row">
+              <span class="control-label">Font</span>
+              <span class="control-value">Space Grotesk</span>
+            </div>
+            <div class="control-row">
+              <span class="control-label">Primary</span>
+              <div class="control-colors">
+                <span class="control-swatch" style="background:#C4F82A"></span>
+                <span class="control-swatch" style="background:#7C3AED"></span>
+                <span class="control-swatch control-swatch--active" style="background:#2563EB"></span>
+                <span class="control-swatch" style="background:#F97316"></span>
+              </div>
+            </div>
+            <div class="control-row">
+              <span class="control-label">Radius</span>
+              <div class="control-slider">
+                <div class="control-slider__track">
+                  <div class="control-slider__fill"></div>
+                  <div class="control-slider__thumb"></div>
+                </div>
+                <span class="control-value">12px</span>
+              </div>
+            </div>
+            <div class="control-row">
+              <span class="control-label">Style</span>
+              <span class="control-badge">Modern Dark</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USP 4: Works with Your Design System -->
+      <div class="usp-card reveal reveal-delay-4" data-usp-index="3">
+        <div class="usp-card__content">
+          <div class="usp-card__icon usp-card__icon--system">
+            <i data-lucide="component" style="stroke:white"></i>
+          </div>
+          <h3 class="usp-card__title" data-i18n="usp.cards.3.title">Works with Your Design System</h3>
+          <p class="usp-card__desc" data-i18n="usp.cards.3.description">Already have a design system? Cody Master reads your existing tokens, components, and brand guidelines — then builds with them.</p>
+        </div>
+        <div class="usp-card__visual usp-visual--system">
+          <div class="system-mock">
+            <div class="system-tree">
+              <div class="system-node system-node--root">
+                <span class="system-node__icon">📐</span>
+                <span>Design System</span>
+              </div>
+              <div class="system-node system-node--child">
+                <span class="system-node__icon">🎨</span>
+                <span>Tokens</span>
+                <span class="system-node__badge">24</span>
+              </div>
+              <div class="system-node system-node--child">
+                <span class="system-node__icon">🧩</span>
+                <span>Components</span>
+                <span class="system-node__badge">18</span>
+              </div>
+              <div class="system-node system-node--child system-node--active">
+                <span class="system-node__icon">✅</span>
+                <span>Compatible</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ BORN FROM PAIN ╔═══════════ -->
+  <section class="section born-pain" id="bornFromPain">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="bornFromPain.label">WHY WE BUILT THIS</p>
+      <h2 class="section__title" data-i18n="bornFromPain.title">Born from real pain,\nnot a business plan</h2>
+      <p class="section__subtitle" data-i18n="bornFromPain.subtitle">Every skill in this kit exists because of a real problem that cost real time and real tears.</p>
+    </div>
+
+    <div class="born-pain__quote reveal">
+      <p class="born-pain__quote-text" data-i18n="bornFromPain.quote">"I'm a Product Manager with 10+ years of experience. I can't code. AI gave me 100 hands — but without discipline, those hands created chaos."</p>
+    </div>
+
+    <div class="born-pain__grid">
+      <!-- Pain Card 1 -->
+      <div class="pain-card reveal reveal-delay-1" data-pain-index="0">
+        <div class="pain-card__icon"><i data-lucide="palette"></i></div>
+        <h3 class="pain-card__title" data-i18n="bornFromPain.cards.0.title">Design Chaos</h3>
+        <p class="pain-card__pain" data-i18n="bornFromPain.cards.0.pain">AI designed every project differently. Same brand, 3 different styles.</p>
+        <span class="pain-card__solution" data-i18n="bornFromPain.cards.0.solution">cm-ux-master + cm-ui-preview</span>
+      </div>
+
+      <!-- Pain Card 2 -->
+      <div class="pain-card reveal reveal-delay-2" data-pain-index="1">
+        <div class="pain-card__icon"><i data-lucide="trash-2"></i></div>
+        <h3 class="pain-card__title" data-i18n="bornFromPain.cards.1.title">The Week AI Deleted Everything</h3>
+        <p class="pain-card__pain" data-i18n="bornFromPain.cards.1.pain">During an i18n refactor, AI lost context and deleted a week's worth of code.</p>
+        <span class="pain-card__solution" data-i18n="bornFromPain.cards.1.solution">cm-safe-i18n + cm-tdd + cm-quality-gate</span>
+      </div>
+
+      <!-- Pain Card 3 -->
+      <div class="pain-card reveal reveal-delay-3" data-pain-index="2">
+        <div class="pain-card__icon"><i data-lucide="file-question"></i></div>
+        <h3 class="pain-card__title" data-i18n="bornFromPain.cards.2.title">Great Product, Zero Users</h3>
+        <p class="pain-card__pain" data-i18n="bornFromPain.cards.2.pain">Built amazing apps but nobody knew how to use them.</p>
+        <span class="pain-card__solution" data-i18n="bornFromPain.cards.2.solution">cm-dockit + cm-content-factory</span>
+      </div>
+    </div>
+
+    <div class="born-pain__cta reveal">
+      <a href="story.html" class="born-pain__link" data-i18n="bornFromPain.readStory">Read the full story →</a>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ HOW IT WORKS ╔═══════════ -->
+  <section class="section how" id="how">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="howItWorks.label">HOW IT WORKS</p>
+      <h2 class="section__title" data-i18n="howItWorks.title">3 simple steps,
+from zero to hero</h2>
+    </div>
+
+    <div class="how__steps">
+      <!-- Step 1 -->
+      <div class="step-card reveal reveal-delay-1" data-step-index="0">
+        <div class="step-card__number step-card__number--1">1</div>
+        <h3 class="step-card__title" data-i18n="howItWorks.steps.0.title">Install</h3>
+        <p class="step-card__desc" data-i18n="howItWorks.steps.0.description">Copy one command into your terminal.
+Done in 30 seconds.</p>
+        <div class="step-card__code step-card__code--command" data-i18n="howItWorks.steps.0.code">$ npx codymaster init</div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card reveal reveal-delay-2" data-step-index="1">
+        <div class="step-card__number step-card__number--2">2</div>
+        <h3 class="step-card__title" data-i18n="howItWorks.steps.1.title">Chat</h3>
+        <p class="step-card__desc" data-i18n="howItWorks.steps.1.description">Tell AI what you want.
+In plain English, like chatting with a friend.</p>
+        <div class="step-card__code step-card__code--chat" data-i18n="howItWorks.steps.1.code">"Create a landing page
+for my coffee shop"</div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card reveal reveal-delay-3" data-step-index="2">
+        <div class="step-card__number step-card__number--3">3</div>
+        <h3 class="step-card__title" data-i18n="howItWorks.steps.2.title">Launch</h3>
+        <p class="step-card__desc" data-i18n="howItWorks.steps.2.description">Complete website, auto-deployed
+to the internet. Share the link instantly.</p>
+        <div class="step-card__code step-card__code--live" data-i18n="howItWorks.steps.2.code">✓ yoursite.com is live!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ THE RARV CYCLE ╔═══════════ -->
+  <section class="section section-alt rarv" id="rarv">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="howItWorks.deepLabel">UNDER THE HOOD</p>
+      <h2 class="section__title" data-i18n="howItWorks.deepTitle">The RARV Execution Cycle + 6-Gate Quality</h2>
+      <p class="section__subtitle" data-i18n="howItWorks.deepSubtitle">Every task assigned to Cody Master goes through an autonomous loop ensuring production-ready code.</p>
+    </div>
+    <div class="features__grid">
+      <!-- Read -->
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-card__icon"><i data-lucide="book-open"></i></div>
+        <h3 class="feature-card__title">1. Read (Context)</h3>
+        <p class="feature-card__desc">Agent reads instructions, design specs, APIs, and project guidelines to build Working Memory.</p>
+      </div>
+      <!-- Act -->
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-card__icon"><i data-lucide="code"></i></div>
+        <h3 class="feature-card__title">2. Act (Execute)</h3>
+        <p class="feature-card__desc">Agent writes tests FIRST, then writes the implementation code ensuring zero regressions.</p>
+      </div>
+      <!-- Review -->
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-card__icon"><i data-lucide="search"></i></div>
+        <h3 class="feature-card__title">3. Review (Gate)</h3>
+        <p class="feature-card__desc">Runs tests, linter, type checks, and security scans. If it fails, auto-loops back to Act.</p>
+      </div>
+      <!-- Verify -->
+      <div class="feature-card reveal reveal-delay-4">
+        <div class="feature-card__icon"><i data-lucide="check-circle"></i></div>
+        <h3 class="feature-card__title">4. Verify (Human)</h3>
+        <p class="feature-card__desc">Agent presents a walkthrough and UI screenshot for your final human approval.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ SKILLS SHOWCASE ╔═══════════ -->
+  <section class="section" id="skills">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="skills.label">SKILL LIBRARY</p>
+      <h2 class="section__title" data-i18n="skills.title">30+ Specialized Skills
+for every stage</h2>
+      <p class="section__subtitle" data-i18n="skills.subtitle">Each skill is an AI expert — from ideation, design, content writing, to security and deployment.</p>
+    </div>
+
+    <div class="skills__tabs reveal" id="skillsTabs">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="skills__grid reveal" id="skillsGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════════╗ BUILT FOR EVERY ROLE ╔═══════════ -->
+  <section class="section section-alt personas" id="personas">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="personas.label">WHO IS IT FOR?</p>
+      <h2 class="section__title" data-i18n="personas.title">Built for every role on the team</h2>
+    </div>
+    <div class="use-cases__grid">
+      <!-- Dev -->
+      <div class="usecase-card reveal reveal-delay-1">
+        <div class="usecase-card__header">
+          <div class="usecase-card__icon"><i data-lucide="terminal" style="stroke:white"></i></div>
+        </div>
+        <h3 class="usecase-card__title" data-i18n="personas.dev.title">For Developers</h3>
+        <p class="usecase-card__desc" data-i18n="personas.dev.desc">Stop writing boilerplate. Let AI handle the 80% while you focus on architecture. Enforced TDD means code actually works.</p>
+      </div>
+      <!-- PM -->
+      <div class="usecase-card reveal reveal-delay-2">
+        <div class="usecase-card__header">
+          <div class="usecase-card__icon"><i data-lucide="line-chart" style="stroke:white"></i></div>
+        </div>
+        <h3 class="usecase-card__title" data-i18n="personas.pm.title">For PMs & BOs</h3>
+        <p class="usecase-card__desc" data-i18n="personas.pm.desc">Ship features 5x faster. Describe what you want in plain English, Cody Master breaks it into tasks and executes them.</p>
+      </div>
+      <!-- QA -->
+      <div class="usecase-card reveal reveal-delay-3">
+        <div class="usecase-card__header">
+          <div class="usecase-card__icon"><i data-lucide="shield" style="stroke:white"></i></div>
+        </div>
+        <h3 class="usecase-card__title" data-i18n="personas.qa.title">For QA Engineers</h3>
+        <p class="usecase-card__desc" data-i18n="personas.qa.desc">Catch bugs before they merge. The 6-Gate Quality System ensures every commit passes tests, linting, and security scans.</p>
+      </div>
+      <!-- Founders -->
+      <div class="usecase-card reveal reveal-delay-4">
+        <div class="usecase-card__header">
+          <div class="usecase-card__icon"><i data-lucide="rocket" style="stroke:white"></i></div>
+        </div>
+        <h3 class="usecase-card__title" data-i18n="personas.founders.title">For Founders</h3>
+        <p class="usecase-card__desc" data-i18n="personas.founders.desc">Build your MVP without a technical co-founder. Save 90% on agency costs and launch in days, not months.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ USE CASES ╔═══════════ -->
+  <section class="section use-cases" id="useCases">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="useCases.label">WHAT YOU CAN BUILD</p>
+      <h2 class="section__title" data-i18n="useCases.title">From ideas to products,\nin every category</h2>
+      <p class="section__subtitle" data-i18n="useCases.subtitle">Real scenarios, real results.</p>
+    </div>
+
+    <div class="use-cases__grid">
+      <!-- Case 1: Landing Pages -->
+      <div class="usecase-card reveal reveal-delay-1" data-case-index="0">
+        <div class="usecase-card__header">
+          <div class="usecase-card__icon"><i data-lucide="globe" style="stroke:white"></i></div>
+          <div class="usecase-card__metric">
+            <span class="usecase-card__metric-value" data-i18n="useCases.cases.0.metric">< 15 min</span>
+            <span class="usecase-card__metric-label" data-i18n="useCases.cases.0.metricLabel">to launch</span>
+          </div>
+        </div>
+        <h3 class="usecase-card__title" data-i18n="useCases.cases.0.title">Landing Pages</h3>
+        <p class="usecase-card__desc" data-i18n="useCases.cases.0.description">High-converting pages with CRO optimization.</p>
+        <div class="usecase-card__skills">
+          <span class="usecase-card__skill">cm-ux-master</span>
+          <span class="usecase-card__skill">cm-content-factory</span>
+          <span class="usecase-card__skill">cm-safe-deploy</span>
+        </div>
+      </div>
+
+      <!-- Case 2: SaaS Applications -->
+      <div class="usecase-card reveal reveal-delay-2" data-case-index="1">
+        <div class="usecase-card__header">
+          <div class="usecase-card__icon"><i data-lucide="layout-dashboard" style="stroke:white"></i></div>
+          <div class="usecase-card__metric">
+            <span class="usecase-card__metric-value" data-i18n="useCases.cases.1.metric">Full stack</span>
+            <span class="usecase-card__metric-label" data-i18n="useCases.cases.1.metricLabel">end to end</span>
+          </div>
+        </div>
+        <h3 class="usecase-card__title" data-i18n="useCases.cases.1.title">SaaS Applications</h3>
+        <p class="usecase-card__desc" data-i18n="useCases.cases.1.description">Full-stack apps with auth, dashboards, and API.</p>
+        <div class="usecase-card__skills">
+          <span class="usecase-card__skill">cm-planning</span>
+          <span class="usecase-card__skill">cm-execution</span>
+          <span class="usecase-card__skill">cm-tdd</span>
+        </div>
+      </div>
+
+      <!-- Case 3: Documentation Sites -->
+      <div class="usecase-card reveal reveal-delay-3" data-case-index="2">
+        <div class="usecase-card__header">
+          <div class="usecase-card__icon"><i data-lucide="book-open" style="stroke:white"></i></div>
+          <div class="usecase-card__metric">
+            <span class="usecase-card__metric-value" data-i18n="useCases.cases.2.metric">30+ langs</span>
+            <span class="usecase-card__metric-label" data-i18n="useCases.cases.2.metricLabel">supported</span>
+          </div>
+        </div>
+        <h3 class="usecase-card__title" data-i18n="useCases.cases.2.title">Documentation Sites</h3>
+        <p class="usecase-card__desc" data-i18n="useCases.cases.2.description">Multi-language docs auto-generated from your codebase.</p>
+        <div class="usecase-card__skills">
+          <span class="usecase-card__skill">cm-dockit</span>
+          <span class="usecase-card__skill">cm-safe-i18n</span>
+          <span class="usecase-card__skill">cm-content-factory</span>
+        </div>
+      </div>
+
+      <!-- Case 4: Content Marketing -->
+      <div class="usecase-card reveal reveal-delay-4" data-case-index="3">
+        <div class="usecase-card__header">
+          <div class="usecase-card__icon"><i data-lucide="megaphone" style="stroke:white"></i></div>
+          <div class="usecase-card__metric">
+            <span class="usecase-card__metric-value" data-i18n="useCases.cases.3.metric">7 frameworks</span>
+            <span class="usecase-card__metric-label" data-i18n="useCases.cases.3.metricLabel">built in</span>
+          </div>
+        </div>
+        <h3 class="usecase-card__title" data-i18n="useCases.cases.3.title">Content Marketing</h3>
+        <p class="usecase-card__desc" data-i18n="useCases.cases.3.description">SEO-optimized content powered by StoryBrand + Cialdini.</p>
+        <div class="usecase-card__skills">
+          <span class="usecase-card__skill">cm-content-factory</span>
+          <span class="usecase-card__skill">cm-ads-tracker</span>
+          <span class="usecase-card__skill">cm-readit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ AGENT SUPPORT ╔═══════════ -->
+  <section class="section claw-support" id="claw">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="claw.label">UNIVERSAL COMPATIBILITY</p>
+      <h2 class="section__title" data-i18n="claw.title">One Config. Every AI Agent Obeys.</h2>
+      <p class="section__subtitle" data-i18n="claw.subtitle">Powered by CodyMaster Claw. Write your instructions once, run them anywhere.</p>
+    </div>
+    <div class="stats reveal" style="margin-top:2rem">
+      <div class="stat"><h3 style="color:var(--text);font-size:1.5rem">Cursor</h3><p class="stat__label">Rules & MCP</p></div>
+      <div class="stat"><h3 style="color:var(--text);font-size:1.5rem">Claude Desktop</h3><p class="stat__label">Full Integration</p></div>
+      <div class="stat"><h3 style="color:var(--text);font-size:1.5rem">OpenClaw</h3><p class="stat__label">Native Engine</p></div>
+      <div class="stat"><h3 style="color:var(--text);font-size:1.5rem">Windsurf / Roo</h3><p class="stat__label">Supported</p></div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ BEFORE / AFTER ╔═══════════ -->
+  <section class="section before-after" id="beforeAfter">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="beforeAfter.label">THE TRANSFORMATION</p>
+      <h2 class="section__title" data-i18n="beforeAfter.title">Before vs After</h2>
+    </div>
+
+    <div class="before-after__grid">
+      <!-- Before -->
+      <div class="ba-column ba-column--before reveal reveal-delay-1">
+        <h3 class="ba-column__title" data-i18n="beforeAfter.before.title">❌ Without Cody Master</h3>
+        <ul class="ba-column__list">
+          <li class="ba-column__item" data-i18n="beforeAfter.before.items.0">Design inconsistent every time</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.before.items.1">AI breaks code when context is lost</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.before.items.2">Secrets leaked to GitHub</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.before.items.3">No docs, no onboarding</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.before.items.4">Weeks of manual work</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.before.items.5">Deploy and pray</li>
+        </ul>
+      </div>
+
+      <!-- After -->
+      <div class="ba-column ba-column--after reveal reveal-delay-2">
+        <h3 class="ba-column__title" data-i18n="beforeAfter.after.title">✅ With Cody Master</h3>
+        <ul class="ba-column__list">
+          <li class="ba-column__item" data-i18n="beforeAfter.after.items.0">Design system enforced by AI</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.after.items.1">Multi-layer protection prevents breakage</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.after.items.2">Secret scanning on every commit</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.after.items.3">Auto-generated world-class docs</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.after.items.4">Minutes from idea to production</li>
+          <li class="ba-column__item" data-i18n="beforeAfter.after.items.5">8-gate deploy pipeline + rollback</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ STATS ╔═══════════ -->
+  <section class="stats reveal" id="stats">
+    <div class="stat">
+      <span class="stat__number stat__number--lime" data-count="30" data-suffix="+">0</span>
+      <span class="stat__label" data-i18n="stats.items.0.label">AI Skills</span>
+    </div>
+    <div class="stat">
+      <span class="stat__number stat__number--purple" data-count="17" data-suffix="">0</span>
+      <span class="stat__label" data-i18n="stats.items.1.label">Frameworks</span>
+    </div>
+    <div class="stat">
+      <span class="stat__number stat__number--blue" data-count="48" data-suffix="">0</span>
+      <span class="stat__label" data-i18n="stats.items.2.label">UX Laws</span>
+    </div>
+    <div class="stat">
+      <span class="stat__number stat__number--orange" data-count="1032" data-suffix="+">0</span>
+      <span class="stat__label" data-i18n="stats.items.3.label">Design Patterns</span>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ FINAL CTA ╔═══════════ -->
+  <section class="final-cta reveal" id="cta">
+    <h2 class="final-cta__title" data-i18n="cta.title">You're just one chat away
+from your first product</h2>
+    <p class="final-cta__subtitle" data-i18n="cta.subtitle">Free. No credit card. Start in 30 seconds.</p>
+    <a href="#" class="btn btn--primary btn--large">
+      <span data-i18n="cta.button">Get Started Now</span>
+      <i data-lucide="arrow-right" style="width:20px;height:20px"></i>
+    </a>
+  </section>
+
+  <!-- ═══════════╗ FOOTER ╔═══════════ -->
+  <footer class="footer">
+    <span class="footer__logo">⚡ Cody Master</span>
+    <ul class="footer__links" id="footerLinks">
+      <li><a href="https://github.com/omisocial/codymaster" class="footer__link" target="_blank">GitHub</a></li>
+      <li><a href="#" class="footer__link">Docs</a></li>
+      <li><a href="#" class="footer__link">Discord</a></li>
+    </ul>
+    <span class="footer__copy" data-i18n="footer.copyright">© 2026 Cody Master · Made with AI</span>
   </footer>
 
-  <script src="js/i18n-data.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/story.js"></script>
+  <script src="js/kit.js"></script>
 </body>
 </html>

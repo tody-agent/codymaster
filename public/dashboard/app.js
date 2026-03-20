@@ -1,4 +1,4 @@
-/* CodyMaster Dashboard v3 — Multi-Project, History, Deploy, Changelog */
+/* CodyMaster Mission Control v4 — Multi-Project, History, Deploy, Changelog, Auto-Sync */
 
 (function () {
   'use strict';
@@ -66,11 +66,21 @@
     'backlog':     { label: '← Backlog', icon: '📋' },
   };
 
-  // ── State ──────────────────────────────────
+  // ── State ──────────────────────────────────────────
   let projects = [], tasks = [], activities = [], deployments = [], changelog = [];
   let selectedProjectId = null;
   let draggedTaskId = null;
   let currentTab = 'kanban';
+
+  // ── Auto-Refresh State ───────────────────────
+  const AUTO_REFRESH_KEY = 'cm-auto-refresh';
+  const AUTO_REFRESH_INTERVAL = 15000; // 15 seconds
+  let autoRefreshEnabled = localStorage.getItem(AUTO_REFRESH_KEY) !== 'false'; // default ON
+  let autoRefreshTimer = null;
+  let lastSyncTime = Date.now();
+  let isModalOpen = false;
+  let isDragging = false;
+  let syncTickTimer = null;
 
   // ── DOM Refs ───────────────────────────────
   const columns = {
@@ -98,10 +108,6 @@
   const formSkill = document.getElementById('form-skill');
   const btnSubmit = document.getElementById('btn-submit');
 
-  const projectModalOverlay = document.getElementById('project-modal-overlay');
-  const projectForm = document.getElementById('project-form');
-  const projectNameInput = document.getElementById('project-name');
-  const projectPathInput = document.getElementById('project-path');
 
   const deployModalOverlay = document.getElementById('deploy-modal-overlay');
   const deployForm = document.getElementById('deploy-form');
@@ -122,6 +128,10 @@
 
   const toastContainer = document.getElementById('toast-container');
   const refreshBtn = document.getElementById('btn-refresh');
+  const autoRefreshBtn = document.getElementById('btn-auto-refresh');
+  const syncDot = document.getElementById('sync-dot');
+  const syncLabel = document.getElementById('sync-label');
+  const syncStatus = document.getElementById('sync-status');
 
   // ── API Helpers ────────────────────────────
   async function fetchJSON(url, opts) {
@@ -147,15 +157,94 @@
     activities = a || []; deployments = d || []; changelog = c || [];
   }
 
-  async function refreshData() {
+  async function refreshData(silent = false) {
     refreshBtn.classList.add('refreshing');
+    updateSyncStatus('syncing');
     try {
       await loadAll();
       renderSidebar();
       renderCurrentTab();
-      showToast('info', 'Refreshed');
-    } catch (err) { showToast('error', 'Refresh failed: ' + err.message); }
+      lastSyncTime = Date.now();
+      updateSyncStatus('synced');
+      if (!silent) showToast('info', 'Refreshed');
+    } catch (err) {
+      updateSyncStatus('error');
+      if (!silent) showToast('error', 'Refresh failed: ' + err.message);
+    }
     setTimeout(() => refreshBtn.classList.remove('refreshing'), 600);
+  }
+
+  // ── Sync Status Indicator ───────────────────
+  function updateSyncStatus(state) {
+    if (!syncDot || !syncLabel) return;
+    syncDot.className = 'sync-dot ' + state;
+    if (state === 'syncing') {
+      syncLabel.textContent = 'Syncing…';
+    } else if (state === 'synced') {
+      syncLabel.textContent = 'Synced';
+    } else if (state === 'error') {
+      syncLabel.textContent = 'Error';
+    }
+  }
+
+  function updateSyncTimeTick() {
+    if (!syncLabel || !syncDot) return;
+    if (syncDot.classList.contains('syncing')) return;
+    const elapsed = Math.floor((Date.now() - lastSyncTime) / 1000);
+    if (elapsed < 5) {
+      syncLabel.textContent = 'Synced';
+    } else if (elapsed < 60) {
+      syncLabel.textContent = `${elapsed}s ago`;
+    } else {
+      syncLabel.textContent = `${Math.floor(elapsed / 60)}m ago`;
+    }
+  }
+
+  // ── Auto-Refresh Engine ─────────────────────
+  function startAutoRefresh() {
+    stopAutoRefresh();
+    if (!autoRefreshEnabled) return;
+    autoRefreshTimer = setInterval(() => {
+      // Skip if modal open or dragging
+      if (isModalOpen || isDragging) return;
+      refreshData(true); // silent refresh
+    }, AUTO_REFRESH_INTERVAL);
+    // Update time tick every 5s
+    syncTickTimer = setInterval(updateSyncTimeTick, 5000);
+    updateAutoRefreshUI();
+  }
+
+  function stopAutoRefresh() {
+    if (autoRefreshTimer) { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
+    if (syncTickTimer) { clearInterval(syncTickTimer); syncTickTimer = null; }
+  }
+
+  function toggleAutoRefresh() {
+    autoRefreshEnabled = !autoRefreshEnabled;
+    localStorage.setItem(AUTO_REFRESH_KEY, autoRefreshEnabled ? 'true' : 'false');
+    if (autoRefreshEnabled) {
+      startAutoRefresh();
+      showToast('info', '⚡ Auto-refresh ON (every 15s)');
+    } else {
+      stopAutoRefresh();
+      showToast('info', '⏸ Auto-refresh OFF');
+    }
+    updateAutoRefreshUI();
+  }
+
+  function updateAutoRefreshUI() {
+    if (!autoRefreshBtn) return;
+    autoRefreshBtn.classList.toggle('active', autoRefreshEnabled);
+    autoRefreshBtn.title = autoRefreshEnabled ? 'Auto-refresh ON (click to disable)' : 'Auto-refresh OFF (click to enable)';
+    if (syncStatus) {
+      syncStatus.style.opacity = autoRefreshEnabled ? '1' : '0.4';
+      syncStatus.title = autoRefreshEnabled ? 'Auto-refresh active' : 'Auto-refresh paused';
+    }
+  }
+
+  // Track modal state for smart pause
+  function setModalOpen(open) {
+    isModalOpen = open;
   }
 
   // ── Tab Navigation ─────────────────────────
@@ -436,6 +525,7 @@
 
   // ── Drag & Drop ────────────────────────────
   function handleDragStart(e) {
+    isDragging = true;
     draggedTaskId = e.currentTarget.dataset.taskId;
     // Store the source column for validation
     const sourceTask = tasks.find(t => t.id === draggedTaskId);
@@ -447,6 +537,7 @@
     requestAnimationFrame(() => { e.currentTarget.style.opacity = '0.4'; });
   }
   function handleDragEnd(e) {
+    isDragging = false;
     e.currentTarget.classList.remove('dragging'); e.currentTarget.style.opacity = '';
     draggedTaskId = null;
     document.querySelectorAll('.column').forEach(c => c.classList.remove('drag-over', 'drag-blocked'));
@@ -571,6 +662,7 @@
     formId.value = ''; taskForm.reset();
     formPriority.value = 'medium'; formColumn.value = 'backlog'; formAgent.value = ''; formSkill.value = '';
     modalOverlay.classList.add('active');
+    setModalOpen(true);
     setTimeout(() => formTitle.focus(), 200);
   }
   function openEditModal(task) {
@@ -581,19 +673,18 @@
     modalOverlay.classList.add('active');
     setTimeout(() => formTitle.focus(), 200);
   }
-  function closeModal() { modalOverlay.classList.remove('active'); }
+  function closeModal() { modalOverlay.classList.remove('active'); setModalOpen(false); }
 
   // ── Project Modal ──────────────────────────
-  function openProjectModal() { projectForm.reset(); projectModalOverlay.classList.add('active'); setTimeout(() => projectNameInput.focus(), 200); }
-  function closeProjectModal() { projectModalOverlay.classList.remove('active'); }
+
 
   // ── Deploy Modal ───────────────────────────
-  function openDeployModal() { deployForm.reset(); document.getElementById('deploy-branch').value = 'main'; deployModalOverlay.classList.add('active'); }
-  function closeDeployModal() { deployModalOverlay.classList.remove('active'); }
+  function openDeployModal() { deployForm.reset(); document.getElementById('deploy-branch').value = 'main'; deployModalOverlay.classList.add('active'); setModalOpen(true); }
+  function closeDeployModal() { deployModalOverlay.classList.remove('active'); setModalOpen(false); }
 
   // ── Changelog Modal ────────────────────────
-  function openChangelogModal() { changelogForm.reset(); changelogModalOverlay.classList.add('active'); }
-  function closeChangelogModal() { changelogModalOverlay.classList.remove('active'); }
+  function openChangelogModal() { changelogForm.reset(); changelogModalOverlay.classList.add('active'); setModalOpen(true); }
+  function closeChangelogModal() { changelogModalOverlay.classList.remove('active'); setModalOpen(false); }
 
   // ── Delete Modal ───────────────────────────
   let deleteTaskId = null;
@@ -602,10 +693,11 @@
 
   // ── Event Handlers ─────────────────────────
   document.getElementById('btn-add-task').addEventListener('click', openAddModal);
-  document.getElementById('btn-add-project').addEventListener('click', openProjectModal);
+  document.getElementById('btn-sidebar-refresh').addEventListener('click', () => refreshData(false));
   document.getElementById('btn-new-deploy').addEventListener('click', openDeployModal);
   document.getElementById('btn-new-changelog').addEventListener('click', openChangelogModal);
-  refreshBtn.addEventListener('click', refreshData);
+  refreshBtn.addEventListener('click', () => refreshData(false));
+  if (autoRefreshBtn) autoRefreshBtn.addEventListener('click', toggleAutoRefresh);
   document.getElementById('sidebar-toggle').addEventListener('click', () => sidebar.classList.toggle('collapsed'));
 
   // Theme toggle
@@ -620,9 +712,7 @@
   document.getElementById('modal-close').addEventListener('click', closeModal);
   document.getElementById('btn-cancel').addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
-  document.getElementById('project-modal-close').addEventListener('click', closeProjectModal);
-  document.getElementById('project-cancel').addEventListener('click', closeProjectModal);
-  projectModalOverlay.addEventListener('click', e => { if (e.target === projectModalOverlay) closeProjectModal(); });
+
   document.getElementById('deploy-modal-close').addEventListener('click', closeDeployModal);
   document.getElementById('deploy-cancel').addEventListener('click', closeDeployModal);
   deployModalOverlay.addEventListener('click', e => { if (e.target === deployModalOverlay) closeDeployModal(); });
@@ -670,16 +760,6 @@
     } catch (err) { showToast('error', err.message); }
   });
 
-  // Project form submit
-  projectForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const name = projectNameInput.value.trim(); if (!name) return;
-    try {
-      await fetchJSON(`${API}/projects`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, path: projectPathInput.value.trim() }) });
-      await loadAll(); renderSidebar(); closeProjectModal();
-      showToast('success', 'Project created');
-    } catch (err) { showToast('error', err.message); }
-  });
 
   // Deploy form submit
   deployForm.addEventListener('submit', async e => {
@@ -721,7 +801,7 @@
 
   // Keyboard shortcuts
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); closeProjectModal(); closeDeployModal(); closeChangelogModal(); closeDeleteModal(); }
+    if (e.key === 'Escape') { closeModal(); closeDeployModal(); closeChangelogModal(); closeDeleteModal(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'n') { e.preventDefault(); openAddModal(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'r' && !e.shiftKey) { e.preventDefault(); refreshData(); }
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 't' || e.key === 'T')) {
@@ -877,10 +957,20 @@
       .catch(err => showToast('error', 'Failed to copy: ' + err));
   });
 
-  // ── Init ───────────────────────────────────
+  // ── Init ───────────────────────────────────────
   async function init() {
-    try { await loadAll(); renderSidebar(); renderCurrentTab(); }
-    catch (err) { showToast('error', 'Failed to load: ' + err.message); }
+    try {
+      await loadAll();
+      renderSidebar();
+      renderCurrentTab();
+      lastSyncTime = Date.now();
+      updateSyncStatus('synced');
+      updateAutoRefreshUI();
+      startAutoRefresh();
+    } catch (err) {
+      showToast('error', 'Failed to load: ' + err.message);
+      updateSyncStatus('error');
+    }
   }
   init();
 })();

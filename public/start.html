@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started — Cody Master Kit</title>
+  <meta name="description" content="Install and start using Cody Master in 30 seconds. Step-by-step guide from zero to your first AI-built product.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/kit.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ═══════ NAV ═══════ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-icon">⚡</span>
+      <span>Cody Master</span>
+    </a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="index.html#features" class="nav__link" data-i18n="nav.features">Features</a></li>
+      <li><a href="index.html#how" class="nav__link" data-i18n="nav.howItWorks">How It Works</a></li>
+      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
+      <li>
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
+            <span class="lang-btn-icon">🌍</span>
+            <span class="lang-btn-text" id="lang-btn-text">EN</span>
+            <span class="lang-btn-caret">▾</span>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
+          </div>
+        </div>
+      </li>
+      <li><a href="start.html" class="nav__cta nav__link--active" data-i18n="nav.getStarted">Get Started</a></li>
+    </ul>
+    <div class="nav__hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="start-hero">
+    <h1 class="start-hero__title" data-i18n="startPage.hero">Get Started in 30 Seconds</h1>
+    <p class="start-hero__sub" data-i18n="startPage.heroSub">From zero to your first AI-built product — follow these steps.</p>
+  </section>
+
+  <!-- ═══════ STEPS FLOW ═══════ -->
+  <div class="start-flow" id="startFlow">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- ═══════ FINAL CTA ═══════ -->
+  <section class="start-final">
+    <p class="start-final__text" data-i18n="startPage.finalCta">You're ready! Start building something amazing.</p>
+    <a href="#" class="btn btn--primary btn--large">
+      <span data-i18n="startPage.finalButton">Open Cody Master</span>
+      <i data-lucide="arrow-right" style="width:20px;height:20px"></i>
+    </a>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    <span class="footer__logo">⚡ Cody Master</span>
+    <ul class="footer__links">
+      <li><a href="https://github.com/omisocial/codymaster" class="footer__link" target="_blank">GitHub</a></li>
+      <li><a href="#" class="footer__link">Docs</a></li>
+      <li><a href="#" class="footer__link">Discord</a></li>
+    </ul>
+    <span class="footer__copy" data-i18n="footer.copyright">© 2026 Cody Master · Made with AI</span>
+  </footer>
+
+  <script src="js/kit.js"></script>
+  <script src="js/start-page.js"></script>
+</body>
+</html>
