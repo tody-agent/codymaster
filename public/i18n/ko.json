@@ -1148,18 +1148,36 @@
         "name": "cm-continuity",
         "category": "DevOps",
         "icon": "refresh-cw",
-        "tagline": "Session Memory",
-        "prompt": "Load context from the previous session",
+        "tagline": "4계층 작업 메모리",
+        "prompt": "이전 세션의 컨텍스트 로드",
         "related": [
-          "cm-skill-mastery",
+          "cm-deep-search",
           "cm-planning"
         ],
-        "problem": "Terminating a workflow session completely erases situational AI memory invoking aggressive context reloading friction tomorrow morning?",
-        "solution": "Implement temporal State Save Persistence bridging comprehensive historical memory traversing asynchronous dev sessions indefinitely.",
-        "whatIsIt": "The definitive `CONTINUITY.md` memory tracking engine. Accumulating continuously: the exact architectural suspension point, historic glitches conquered, thwarting persistent episodic amnesia completely.",
-        "whenToUse": "Crucial debriefing protocol initializing previous to pausing aggressive development streams, or rebooting awareness inside an entirely pristine blank chat matrix.",
-        "whyToUse": "Utterly circumvents LLM context displacement. Synthesizes an atmosphere where your AI companion perpetually operates resembling a solo, hyper-aware Senior Architect that never slumbers natively.",
-        "bestPractice": "Forcefully commission it explicitly to 'Generate Continuity Report array' right before you decisively shut down the operational session."
+        "problem": "작업 세션을 종료하면 AI의 기억이 완전히 지워져 다음 날 아침 고통스러운 컨텍스트 재로딩이 필요한 문제?",
+        "solution": "뇌에서 영감을 받은 4계층 메모리 시스템으로 에빙하우스 감쇠, 범위 지정 학습, 자동 메모리 감사를 통해 세션을 영구적으로 연결합니다.",
+        "whatIsIt": "궁극의 메모리 엔진. 1계층: 감각(세션 내 변수). 2계층: 작업 메모리(CONTINUITY.md). 3계층: 장기 기억(TTL과 scope가 있는 learnings.json + decisions.json). 4계층: 외부 시맨틱(대규모 코드베이스용 선택적 qmd 통합).",
+        "whenToUse": "항상 백그라운드 프로토콜로 활성화. 세션 시작 시 읽기, 세션 종료 시 업데이트. 오류 발생 시 — scope 태그와 함께 Mistakes & Learnings에 기록. 중요한 결정 시 — 근거와 함께 기록.",
+        "whyToUse": "LLM 컨텍스트 손실을 완전히 해결합니다. Memory Audit Protocol이 오래된 학습을 자동 감쇠(에빙하우스 기반)하고, 충돌을 감지하며, 모듈 scope별로 필터링하여 AI가 관련 내용만 읽습니다.",
+        "bestPractice": "모든 학습에 scope 태그를 지정하세요(global/module/file). 중복 생성 대신 기존 패턴을 강화하세요. CONTINUITY.md를 500단어 이내로 유지하세요. 50개 이상의 문서가 있는 프로젝트에는 cm-deep-search와 함께 사용하세요."
+      },
+      {
+        "id": "cm-deep-search",
+        "name": "cm-deep-search",
+        "category": "DevOps",
+        "icon": "search",
+        "tagline": "시맨틱 메모리 검색",
+        "prompt": "docs 폴더를 시맨틱 검색용으로 인덱싱",
+        "related": [
+          "cm-continuity",
+          "cm-brainstorm-idea"
+        ],
+        "problem": "프로젝트 문서와 소스 파일이 AI의 컨텍스트 윈도우를 초과해 수백 개의 파일에서 관련 정보를 찾는 것이 불가능해지는 문제?",
+        "solution": "과대한 코드베이스를 자동 감지하고 qmd를 비침습적으로 제안 — BM25 + 벡터 + LLM 재순위를 갖춘 100% 로컬 시맨틱 검색 엔진.",
+        "whatIsIt": "4계층 메모리 파워업. tobi/qmd를 통합하여 docs/, src/, 회의 노트에 대한 로컬 시맨틱 검색을 제공합니다. MCP 서버를 통해 인덱싱하여 AI가 `qmd query 'topic'`으로 관련 스니펫을 즉시 받을 수 있습니다.",
+        "whenToUse": "프로젝트가 50개 마크다운 문서 또는 200개 소스 파일을 초과할 때 자동 트리거됩니다. cm-dockit이 30개 이상의 문서 파일을 생성한 후 또는 사용자가 과거 스펙을 찾을 때도 트리거됩니다.",
+        "whyToUse": "cm-continuity를 완벽하게 보완합니다 — continuity = RAM (지금 무엇을 하고 있는가?), deep-search = SSD (이전에 작성한 것을 찾기). 함께 사용하면 부패 방지 기능이 있는 완전한 AI 메모리를 형성합니다.",
+        "bestPractice": "큰 작업 후 `qmd embed`를 실행하여 인덱스를 최신 상태로 유지하세요. Git post-commit hook을 설정하여 자동 백그라운드 재인덱싱을 하세요. 항상 `qmd context add`로 컨텍스트를 추가하세요 — 이것이 qmd의 킬러 기능입니다."
       },
       {
         "id": "cm-dockit",
@@ -1493,23 +1511,25 @@
     "before": {
       "title": "코디 마스터 부재 시",
       "items": [
-        "Design inconsistent every time",
-        "AI breaks code when context is lost",
-        "Secrets leaked to GitHub",
-        "No docs, no onboarding",
-        "Weeks of manual work",
-        "Deploy and pray"
+        "매번 다른 디자인",
+        "AI가 세션 사이에 모든 것을 잊어버림",
+        "시크릿이 GitHub에 유출",
+        "문서 없음, 온보딩 없음",
+        "수주간의 수동 작업",
+        "배포하고 기도",
+        "200+개 파일에서 이전 스펙을 찾을 수 없음"
       ]
     },
     "after": {
       "title": "코디 마스터 보유의 이점",
       "items": [
-        "Design system enforced by AI",
-        "Multi-layer protection prevents breakage",
-        "Secret scanning on every commit",
-        "Auto-generated world-class docs",
-        "Minutes from idea to production",
-        "8-gate deploy pipeline + rollback"
+        "AI가 디자인 시스템을 강제 적용",
+        "4계층 메모리 — 컨텍스트를 잃지 않음",
+        "매 커밋마다 시크릿 스캔",
+        "세계적 수준의 문서 자동 생성",
+        "아이디어에서 프로덕션까지 몇 분",
+        "8단계 배포 파이프라인 + 롤백",
+        "전체 코드베이스에 대한 시맨틱 검색"
       ]
     }
   },

@@ -1148,18 +1148,36 @@
         "name": "cm-continuity",
         "category": "DevOps",
         "icon": "refresh-cw",
-        "tagline": "Session Memory",
-        "prompt": "Load context from the previous session",
+        "tagline": "四层工作记忆",
+        "prompt": "从上一会话加载上下文",
         "related": [
-          "cm-skill-mastery",
+          "cm-deep-search",
           "cm-planning"
         ],
-        "problem": "Terminating a workflow session completely erases situational AI memory invoking aggressive context reloading friction tomorrow morning?",
-        "solution": "Implement temporal State Save Persistence bridging comprehensive historical memory traversing asynchronous dev sessions indefinitely.",
-        "whatIsIt": "The definitive `CONTINUITY.md` memory tracking engine. Accumulating continuously: the exact architectural suspension point, historic glitches conquered, thwarting persistent episodic amnesia completely.",
-        "whenToUse": "Crucial debriefing protocol initializing previous to pausing aggressive development streams, or rebooting awareness inside an entirely pristine blank chat matrix.",
-        "whyToUse": "Utterly circumvents LLM context displacement. Synthesizes an atmosphere where your AI companion perpetually operates resembling a solo, hyper-aware Senior Architect that never slumbers natively.",
-        "bestPractice": "Forcefully commission it explicitly to 'Generate Continuity Report array' right before you decisively shut down the operational session."
+        "problem": "关闭工作会话后AI完全失去记忆，第二天早上从头开始的挫败感？",
+        "solution": "受大脑启发的四层记忆系统，具备艾宾浩斯衰减机制、作用域化学习记录和自动记忆审计——永久桥接工作会话。",
+        "whatIsIt": "终极记忆引擎。第一层：感觉记忆（会话内变量）。第二层：工作记忆（CONTINUITY.md）。第三层：长期记忆（带TTL和作用域的learnings.json + decisions.json）。第四层：外部语义（可选的qmd集成用于大型代码库）。",
+        "whenToUse": "始终作为后台协议运行。会话开始时读取，会话结束时更新。遇到错误——记录到Mistakes & Learnings并标注作用域标签。重要决策——记录并附上理由。",
+        "whyToUse": "彻底解决LLM上下文丢失问题。Memory Audit Protocol自动衰减过时的学习记录（受艾宾浩斯启发），检测冲突，按模块作用域过滤——AI只读取相关内容。",
+        "bestPractice": "为每条学习记录标注作用域（global/module/file）。强化现有模式而非创建副本。保持CONTINUITY.md在500字以内。对于超过50个文档的项目搭配cm-deep-search使用。"
+      },
+      {
+        "id": "cm-deep-search",
+        "name": "cm-deep-search",
+        "category": "DevOps",
+        "icon": "search",
+        "tagline": "语义记忆搜索",
+        "prompt": "为docs文件夹建立语义搜索索引",
+        "related": [
+          "cm-continuity",
+          "cm-brainstorm-idea"
+        ],
+        "problem": "项目文档和源文件超出AI的上下文窗口——在数百个文件中查找相关信息变得不可能？",
+        "solution": "自动检测过大的代码库并非侵入性地建议使用qmd——具备BM25 + 向量 + LLM重排序的100%本地语义搜索引擎。",
+        "whatIsIt": "第四层记忆增强。集成tobi/qmd用于docs/、src/、会议笔记的本地语义搜索。通过MCP服务器建立索引，AI可以查询`qmd query 'topic'`并即时获取相关代码片段。",
+        "whenToUse": "当项目超过50个markdown文档或200个源文件时自动触发。也在cm-dockit生成超过30个文档文件后触发，或当用户需要查找历史规格说明时触发。",
+        "whyToUse": "完美补充cm-continuity——continuity = RAM（我现在在做什么？），deep-search = SSD（查找之前写过的内容）。两者结合形成完整的AI记忆系统，并具备防过时机制。",
+        "bestPractice": "每完成大型任务后运行`qmd embed`保持索引最新。设置Git post-commit hook实现自动后台重建索引。始终使用`qmd context add`添加上下文——这是qmd的杀手级功能。"
       },
       {
         "id": "cm-dockit",
@@ -1493,23 +1511,25 @@
     "before": {
       "title": "没有 Cody Master",
       "items": [
-        "Design inconsistent every time",
-        "AI breaks code when context is lost",
-        "Secrets leaked to GitHub",
-        "No docs, no onboarding",
-        "Weeks of manual work",
-        "Deploy and pray"
+        "每次设计都不一致",
+        "AI在会话间完全失忆",
+        "密钥泄露到GitHub",
+        "没有文档，没有入职培训",
+        "数周的手工工作",
+        "部署然后祈祷",
+        "在200+文件中找不到旧的规格说明"
       ]
     },
     "after": {
       "title": "拥有 Cody Master",
       "items": [
-        "Design system enforced by AI",
-        "Multi-layer protection prevents breakage",
-        "Secret scanning on every commit",
-        "Auto-generated world-class docs",
-        "Minutes from idea to production",
-        "8-gate deploy pipeline + rollback"
+        "AI强制执行设计系统",
+        "四层记忆——永不丢失上下文",
+        "每次提交都进行密钥扫描",
+        "自动生成世界级文档",
+        "从想法到上线只需几分钟",
+        "8道关口部署流水线+回滚",
+        "跨整个代码库的语义搜索"
       ]
     }
   },

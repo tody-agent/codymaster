@@ -9,3 +9,9 @@ dist
 .env
 .env.*
 !.env.example
+
+# Docs build output (generated from docs/.vitepress)
+public/docs/
+docs/node_modules/
+docs/.vitepress/dist/
+docs/.vitepress/cache/

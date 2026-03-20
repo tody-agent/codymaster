@@ -1148,18 +1148,36 @@
         "name": "cm-continuity",
         "category": "DevOps",
         "icon": "refresh-cw",
-        "tagline": "Bộ nhớ Phiên làm việc",
+        "tagline": "Bộ nhớ 4 Tầng",
         "prompt": "Tải ngữ cảnh từ phiên trước",
         "related": [
-          "cm-skill-mastery",
+          "cm-deep-search",
           "cm-planning"
         ],
         "problem": "Tắt lap ngủ mai dậy AI mất trắng trí nhớ, quên luôn ngày qua đã viết đến đoạn nào?",
-        "solution": "State Machine vĩnh cửu. Phục hồi ngữ cảnh cho bất kì luồng đàm thoại mới nào.",
-        "whatIsIt": "Trình quản lý `CONTINUITY.md`. Lưu tiến độ, bài học xương máu, và checklist tổng đã qua.",
-        "whenToUse": "Cuối ngày làm việc, và mở ra nhắc bài vào sáng tinh mơ hôm sau.",
-        "whyToUse": "Vượt rào cản Token của AI. CodyMaster sẽ mãi như một developer không bao giờ bị quên lãng nhiệm vụ dở dang.",
-        "bestPractice": "Lệnh cho nó 'Viết báo cáo Continuity' trước khi Close tab."
+        "solution": "Hệ thống Bộ nhớ 4 Tầng lấy cảm hứng từ não bộ với cơ chế suy giảm Ebbinghaus, learnings có scope, và kiểm tra bộ nhớ tự động — kết nối các phiên làm việc vĩnh viễn.",
+        "whatIsIt": "Engine bộ nhớ tối thượng. Tầng 1: Cảm giác (biến trong phiên). Tầng 2: Bộ nhớ Làm việc (CONTINUITY.md). Tầng 3: Dài hạn (learnings.json + decisions.json với TTL và scope). Tầng 4: Ngữ nghĩa Ngoại vi (tích hợp qmd tùy chọn cho codebase lớn).",
+        "whenToUse": "LUÔN hoạt động như một protocol nền. Đọc khi bắt đầu phiên, cập nhật khi kết thúc phiên. Khi gặp lỗi — ghi vào Mistakes & Learnings với scope tags. Khi quyết định quan trọng — ghi kèm lý do.",
+        "whyToUse": "Hoàn toàn khắc phục vấn đề mất ngữ cảnh của LLM. Memory Audit Protocol tự suy giảm learnings cũ (theo Ebbinghaus), phát hiện xung đột, và lọc theo scope module — AI chỉ đọc phần liên quan.",
+        "bestPractice": "Gắn scope cho mọi learning (global/module/file). Củng cố pattern hiện có thay vì tạo bản sao. Giữ CONTINUITY.md dưới 500 từ. Kết hợp với cm-deep-search cho dự án >50 docs."
+      },
+      {
+        "id": "cm-deep-search",
+        "name": "cm-deep-search",
+        "category": "DevOps",
+        "icon": "search",
+        "tagline": "Tìm kiếm Ngữ nghĩa",
+        "prompt": "Đánh index thư mục docs cho tìm kiếm ngữ nghĩa",
+        "related": [
+          "cm-continuity",
+          "cm-brainstorm-idea"
+        ],
+        "problem": "Docs dự án và source files vượt quá cửa sổ ngữ cảnh của AI — tìm thông tin liên quan trong hàng trăm file trở nên bất khả thi?",
+        "solution": "Tự động phát hiện codebase quá lớn và gợi ý qmd — công cụ tìm kiếm ngữ nghĩa 100% local với BM25 + Vector + LLM re-ranking.",
+        "whatIsIt": "Power-up bộ nhớ Tầng 4. Tích hợp tobi/qmd cho tìm kiếm ngữ nghĩa local trên docs/, src/, ghi chú cuộc họp. Index qua MCP server để AI có thể truy vấn `qmd query 'topic'` và nhận snippets liên quan ngay lập tức.",
+        "whenToUse": "Tự kích hoạt khi dự án vượt 50 markdown docs hoặc 200 source files. Cũng kích hoạt sau khi cm-dockit tạo >30 file docs, hoặc khi user muốn tìm specs cũ.",
+        "whyToUse": "Bổ sung hoàn hảo cho cm-continuity — continuity = RAM (đang làm gì BÂY GIỜ?), deep-search = SSD (tìm những gì đã viết TRƯỚC ĐÓ). Kết hợp tạo thành bộ nhớ AI hoàn chỉnh với cơ chế chống stale.",
+        "bestPractice": "Chạy `qmd embed` sau mỗi task lớn để giữ index mới. Thiết lập Git post-commit hook để tự động re-index nền. Luôn thêm context với `qmd context add` — đó là tính năng killer của qmd."
       },
       {
         "id": "cm-dockit",
@@ -1494,22 +1512,24 @@
       "title": "Không có Cody Master",
       "items": [
         "Design mỗi lần một kiểu",
-        "AI phá code khi mất context",
+        "AI quên sạch giữa các phiên làm việc",
         "Rò rỉ secrets lên GitHub",
         "Không docs, không onboarding",
         "Hàng tuần làm thủ công",
-        "Deploy rồi... cầu trời"
+        "Deploy rồi... cầu trời",
+        "Không tìm nổi specs cũ trong 200+ files"
       ]
     },
     "after": {
       "title": "Với Cody Master",
       "items": [
         "Design system được AI tuân thủ",
-        "Hệ thống bảo vệ nhiều tầng",
+        "Bộ nhớ 4 Tầng — không bao giờ mất context",
         "Quét secrets mỗi commit",
         "Tự tạo docs world-class",
         "Vài phút từ ý tưởng đến production",
-        "Pipeline 8 cổng + rollback"
+        "Pipeline 8 cổng + rollback",
+        "Tìm kiếm ngữ nghĩa xuyên suốt codebase"
       ]
     }
   },

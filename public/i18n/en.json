@@ -1148,18 +1148,36 @@
         "name": "cm-continuity",
         "category": "DevOps",
         "icon": "refresh-cw",
-        "tagline": "Session Memory",
+        "tagline": "4-Tier Working Memory",
         "prompt": "Load context from the previous session",
         "related": [
-          "cm-skill-mastery",
+          "cm-deep-search",
           "cm-planning"
         ],
         "problem": "Terminating a workflow session completely erases situational AI memory invoking aggressive context reloading friction tomorrow morning?",
-        "solution": "Implement temporal State Save Persistence bridging comprehensive historical memory traversing asynchronous dev sessions indefinitely.",
-        "whatIsIt": "The definitive `CONTINUITY.md` memory tracking engine. Accumulating continuously: the exact architectural suspension point, historic glitches conquered, thwarting persistent episodic amnesia completely.",
-        "whenToUse": "Crucial debriefing protocol initializing previous to pausing aggressive development streams, or rebooting awareness inside an entirely pristine blank chat matrix.",
-        "whyToUse": "Utterly circumvents LLM context displacement. Synthesizes an atmosphere where your AI companion perpetually operates resembling a solo, hyper-aware Senior Architect that never slumbers natively.",
-        "bestPractice": "Forcefully commission it explicitly to 'Generate Continuity Report array' right before you decisively shut down the operational session."
+        "solution": "A brain-inspired 4-Tier Memory System with Ebbinghaus decay, scoped learnings, and automatic memory audit — bridging sessions indefinitely.",
+        "whatIsIt": "The definitive memory engine. Tier 1: Sensory (in-session variables). Tier 2: Working Memory (CONTINUITY.md). Tier 3: Long-Term (learnings.json + decisions.json with TTL and scope). Tier 4: External Semantic (optional qmd integration for large codebases).",
+        "whenToUse": "ALWAYS active as a background protocol. Read at session start, update at session end. On error — record in Mistakes & Learnings with scope tags. On key decision — record with rationale.",
+        "whyToUse": "Utterly circumvents LLM context displacement. Memory Audit Protocol auto-decays stale learnings (Ebbinghaus-inspired), detects conflicts, and filters by module scope — so AI only reads what's relevant.",
+        "bestPractice": "Tag every learning with scope (global/module/file). Reinforce existing patterns instead of creating duplicates. Keep CONTINUITY.md under 500 words. Pair with cm-deep-search for projects >50 docs."
+      },
+      {
+        "id": "cm-deep-search",
+        "name": "cm-deep-search",
+        "category": "DevOps",
+        "icon": "search",
+        "tagline": "Semantic Memory Search",
+        "prompt": "Index my docs folder for semantic search",
+        "related": [
+          "cm-continuity",
+          "cm-brainstorm-idea"
+        ],
+        "problem": "Project docs and source files outgrow AI's context window — finding relevant information across hundreds of files becomes impossible?",
+        "solution": "Automatic detection of oversized codebases and non-intrusive suggestion of qmd — a 100% local semantic search engine with BM25 + Vector + LLM re-ranking.",
+        "whatIsIt": "The Tier 4 memory power-up. Integrates tobi/qmd for local semantic search across docs/, src/, meeting notes. Indexes via MCP server so AI can query `qmd query 'topic'` and get relevant snippets instantly.",
+        "whenToUse": "Auto-triggered when project exceeds 50 markdown docs or 200 source files. Also triggered after cm-dockit generates >30 doc files, or when user asks to find historical specs.",
+        "whyToUse": "Complements cm-continuity perfectly — continuity = RAM (what am I doing NOW?), deep-search = SSD (find what was written BEFORE). Together they form complete AI memory with staleness prevention.",
+        "bestPractice": "Run `qmd embed` after every big task to keep the index fresh. Set up a Git post-commit hook for automatic background re-indexing. Always add context with `qmd context add` — it's qmd's killer feature."
       },
       {
         "id": "cm-dockit",
@@ -1494,22 +1512,24 @@
       "title": "Without Cody Master",
       "items": [
         "Design inconsistent every time",
-        "AI breaks code when context is lost",
+        "AI forgets everything between sessions",
         "Secrets leaked to GitHub",
         "No docs, no onboarding",
         "Weeks of manual work",
-        "Deploy and pray"
+        "Deploy and pray",
+        "Can't find old specs in 200+ files"
       ]
     },
     "after": {
       "title": "With Cody Master",
       "items": [
         "Design system enforced by AI",
-        "Multi-layer protection prevents breakage",
+        "4-Tier Memory — never loses context",
         "Secret scanning on every commit",
         "Auto-generated world-class docs",
         "Minutes from idea to production",
-        "8-gate deploy pipeline + rollback"
+        "8-gate deploy pipeline + rollback",
+        "Semantic search across entire codebase"
       ]
     }
   },

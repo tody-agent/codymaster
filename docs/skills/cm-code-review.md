@@ -1,0 +1,139 @@
+---
+title: "cm-code-review"
+description: "Full review lifecycle — request reviews, handle feedback with technical rigor, and complete branch integration. Use when completing tasks, receiving feedback, o"
+keywords: ["cm-code-review", "cody master", "ai skill"]
+robots: "index, follow"
+---
+
+> **📋 Full Skill Source** — This is the complete, unedited SKILL.md file. Nothing is hidden or summarized.
+
+[← Back to Skills Library](./index.md)
+
+# Code Review — Request + Receive + Complete
+
+> **Full review lifecycle in one skill:** Request → Receive → Integrate.
+
+## Part A: Requesting Code Review
+
+### When to Request
+
+**Mandatory:**
+- After each task in `cm-execution`
+- After completing major features
+- Before merge to main
+
+**Optional but valuable:**
+- When stuck (fresh perspective)
+- Before refactoring (baseline check)
+- After fixing complex bugs
+
+### How to Request
+
+1. **Get git SHAs:**
+   ```bash
+   BASE_SHA=$(git rev-parse HEAD~1)
+   HEAD_SHA=$(git rev-parse HEAD)
+   ```
+
+2. **Dispatch reviewer subagent** with:
+   - What was implemented
+   - Plan/requirements reference
+   - Base and head SHAs
+   - Brief description
+
+3. **Act on feedback:**
+   - Fix Critical issues immediately
+   - Fix Important issues before proceeding
+   - Note Minor issues for later
+   - Push back if reviewer is wrong (with reasoning)
+
+---
+
+## Part B: Receiving Code Review
+
+### When to Use
+When receiving feedback — whether from human reviewers, AI reviewers, or code review subagents.
+
+### The Protocol
+
+```
+1. READ feedback completely before responding
+2. UNDERSTAND the technical reasoning
+3. VERIFY if the feedback is technically correct
+4. RESPOND with evidence, not agreement
+```
+
+### Response Framework
+
+| Feedback Type | Response |
+|--------------|----------|
+| **Technically correct** | Fix it. Thank reviewer. |
+| **Unclear intent** | Ask for clarification with specific questions |
+| **Technically questionable** | Challenge with evidence (code, tests, docs) |
+| **Stylistic preference** | Discuss trade-offs, defer to team convention |
+
+### Red Flags — STOP
+
+- Blindly implementing all suggestions without verification
+- "Performative agreement" — saying yes without understanding
+- Implementing a suggestion that breaks existing tests
+- Making changes you can't justify technically
+
+### Anti-Pattern: Performative Agreement
+
+```
+❌ "Good catch! Fixed."  (without verifying it's actually a problem)
+✅ "I verified this: [evidence]. The suggestion is correct because [reason]. Fixed."
+✅ "I investigated this: [evidence]. The current code is correct because [reason]."
+```
+
+---
+
+## Part C: Finishing a Development Branch
+
+### When to Use
+When implementation is complete and all tests pass.
+
+### The Process
+
+1. **Verify current state:**
+   ```bash
+   npm run test:gate  # All tests must pass
+   git status          # Working tree should be clean
+   ```
+
+2. **Present options to user:**
+
+   | Option | When | Command |
+   |--------|------|---------|
+   | **Merge to main** | Feature ready | `git checkout main && git merge feature-branch` |
+   | **Create PR** | Needs team review | `git push origin feature-branch` |
+   | **Keep working** | More tasks remain | Continue on branch |
+   | **Cleanup only** | Abandoned/merged | `git worktree remove path` |
+
+3. **Execute chosen option**
+
+4. **Cleanup:**
+   - Remove worktree if using `cm-git-worktrees`
+   - Delete feature branch if merged
+   - Update task tracking
+
+### Rules
+- Never merge with failing tests
+- Never force push main/production
+- Always use `cm-identity-guard` before git push
+
+---
+
+## Integration
+
+| Skill | Relationship |
+|-------|-------------|
+| `cm-execution` | Reviews after each task in execution |
+| `cm-quality-gate` | Tests must pass before finishing branch |
+| `cm-identity-guard` | Before git push |
+| `cm-git-worktrees` | Cleanup worktree after completion |
+
+## The Bottom Line
+
+**Review early. Verify feedback. Ship with evidence, not hope.**

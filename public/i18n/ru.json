@@ -1148,18 +1148,36 @@
         "name": "cm-continuity",
         "category": "DevOps",
         "icon": "refresh-cw",
-        "tagline": "Session Memory",
-        "prompt": "Load context from the previous session",
+        "tagline": "4-уровневая рабочая память",
+        "prompt": "Загрузить контекст из предыдущей сессии",
         "related": [
-          "cm-skill-mastery",
+          "cm-deep-search",
           "cm-planning"
         ],
-        "problem": "Terminating a workflow session completely erases situational AI memory invoking aggressive context reloading friction tomorrow morning?",
-        "solution": "Implement temporal State Save Persistence bridging comprehensive historical memory traversing asynchronous dev sessions indefinitely.",
-        "whatIsIt": "The definitive `CONTINUITY.md` memory tracking engine. Accumulating continuously: the exact architectural suspension point, historic glitches conquered, thwarting persistent episodic amnesia completely.",
-        "whenToUse": "Crucial debriefing protocol initializing previous to pausing aggressive development streams, or rebooting awareness inside an entirely pristine blank chat matrix.",
-        "whyToUse": "Utterly circumvents LLM context displacement. Synthesizes an atmosphere where your AI companion perpetually operates resembling a solo, hyper-aware Senior Architect that never slumbers natively.",
-        "bestPractice": "Forcefully commission it explicitly to 'Generate Continuity Report array' right before you decisively shut down the operational session."
+        "problem": "Завершение рабочей сессии полностью стирает память AI, вызывая болезненную перезагрузку контекста на следующее утро?",
+        "solution": "Вдохновлённая мозгом 4-уровневая система памяти с затуханием по Эббингаузу, скопированными знаниями и автоматическим аудитом памяти — связывает сессии навсегда.",
+        "whatIsIt": "Абсолютный движок памяти. Уровень 1: Сенсорный (переменные в сессии). Уровень 2: Рабочая память (CONTINUITY.md). Уровень 3: Долгосрочная (learnings.json + decisions.json с TTL и scope). Уровень 4: Внешний семантический (опциональная интеграция qmd для больших кодовых баз).",
+        "whenToUse": "ВСЕГДА активен как фоновый протокол. Чтение при начале сессии, обновление при завершении. При ошибке — запись в Mistakes & Learnings с тегами scope. При важном решении — запись с обоснованием.",
+        "whyToUse": "Полностью устраняет потерю контекста LLM. Memory Audit Protocol автоматически ослабляет устаревшие знания (по Эббингаузу), обнаруживает конфликты и фильтрует по scope модуля — AI читает только релевантное.",
+        "bestPractice": "Помечайте каждое знание scope (global/module/file). Укрепляйте существующие паттерны вместо создания дубликатов. Держите CONTINUITY.md до 500 слов. Используйте вместе с cm-deep-search для проектов с >50 документами."
+      },
+      {
+        "id": "cm-deep-search",
+        "name": "cm-deep-search",
+        "category": "DevOps",
+        "icon": "search",
+        "tagline": "Семантический поиск памяти",
+        "prompt": "Проиндексировать папку docs для семантического поиска",
+        "related": [
+          "cm-continuity",
+          "cm-brainstorm-idea"
+        ],
+        "problem": "Документация проекта и исходные файлы выходят за пределы контекстного окна AI — поиск релевантной информации среди сотен файлов становится невозможным?",
+        "solution": "Автоматическое обнаружение чрезмерно больших кодовых баз и ненавязчивое предложение qmd — 100% локальный семантический поисковый движок с BM25 + вектором + LLM перерейтингом.",
+        "whatIsIt": "Power-up памяти 4 уровня. Интегрирует tobi/qmd для локального семантического поиска по docs/, src/, заметкам совещаний. Индексирует через MCP-сервер, чтобы AI мог запросить `qmd query 'topic'` и мгновенно получить релевантные сниппеты.",
+        "whenToUse": "Автоматически срабатывает при превышении 50 markdown-документов или 200 исходных файлов в проекте. Также срабатывает после генерации cm-dockit >30 файлов документации или при поиске исторических спецификаций.",
+        "whyToUse": "Идеально дополняет cm-continuity — continuity = RAM (что я делаю СЕЙЧАС?), deep-search = SSD (найти то, что было написано РАНЬШЕ). Вместе они формируют полную память AI с предотвращением устаревания.",
+        "bestPractice": "Запускайте `qmd embed` после каждой крупной задачи для обновления индекса. Настройте Git post-commit hook для автоматической фоновой переиндексации. Всегда добавляйте контекст через `qmd context add` — это киллер-фича qmd."
       },
       {
         "id": "cm-dockit",
@@ -1493,23 +1511,25 @@
     "before": {
       "title": "Без Cody Master ИИ",
       "items": [
-        "Design inconsistent every time",
-        "AI breaks code when context is lost",
-        "Secrets leaked to GitHub",
-        "No docs, no onboarding",
-        "Weeks of manual work",
-        "Deploy and pray"
+        "Дизайн каждый раз разный",
+        "AI забывает всё между сессиями",
+        "Секреты утекают на GitHub",
+        "Нет документации, нет онбординга",
+        "Недели ручной работы",
+        "Деплой и молитва",
+        "Невозможно найти старые спеки в 200+ файлах"
       ]
     },
     "after": {
       "title": "С Cody Master ИИ",
       "items": [
-        "Design system enforced by AI",
-        "Multi-layer protection prevents breakage",
-        "Secret scanning on every commit",
-        "Auto-generated world-class docs",
-        "Minutes from idea to production",
-        "8-gate deploy pipeline + rollback"
+        "Дизайн-система контролируется AI",
+        "4-уровневая память — никогда не теряет контекст",
+        "Сканирование секретов при каждом коммите",
+        "Автоматически сгенерированная документация мирового класса",
+        "От идеи до продакшена за минуты",
+        "8-уровневый пайплайн деплоя + откат",
+        "Семантический поиск по всей кодовой базе"
       ]
     }
   },

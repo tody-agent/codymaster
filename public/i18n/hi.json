@@ -1148,18 +1148,36 @@
         "name": "cm-continuity",
         "category": "DevOps",
         "icon": "refresh-cw",
-        "tagline": "Session Memory",
-        "prompt": "Load context from the previous session",
+        "tagline": "4-स्तरीय कार्य स्मृति",
+        "prompt": "पिछले सत्र से संदर्भ लोड करें",
         "related": [
-          "cm-skill-mastery",
+          "cm-deep-search",
           "cm-planning"
         ],
-        "problem": "Terminating a workflow session completely erases situational AI memory invoking aggressive context reloading friction tomorrow morning?",
-        "solution": "Implement temporal State Save Persistence bridging comprehensive historical memory traversing asynchronous dev sessions indefinitely.",
-        "whatIsIt": "The definitive `CONTINUITY.md` memory tracking engine. Accumulating continuously: the exact architectural suspension point, historic glitches conquered, thwarting persistent episodic amnesia completely.",
-        "whenToUse": "Crucial debriefing protocol initializing previous to pausing aggressive development streams, or rebooting awareness inside an entirely pristine blank chat matrix.",
-        "whyToUse": "Utterly circumvents LLM context displacement. Synthesizes an atmosphere where your AI companion perpetually operates resembling a solo, hyper-aware Senior Architect that never slumbers natively.",
-        "bestPractice": "Forcefully commission it explicitly to 'Generate Continuity Report array' right before you decisively shut down the operational session."
+        "problem": "कार्य सत्र समाप्त करने पर AI की स्मृति पूरी तरह मिट जाती है, जिससे अगली सुबह दर्दनाक संदर्भ पुनर्लोडिंग होता है?",
+        "solution": "मस्तिष्क से प्रेरित 4-स्तरीय स्मृति प्रणाली जिसमें एबिंगहॉस क्षय, स्कोप्ड लर्निंग्स और स्वचालित मेमोरी ऑडिट — सत्रों को स्थायी रूप से जोड़ता है।",
+        "whatIsIt": "अंतिम मेमोरी इंजन। स्तर 1: संवेदी (सत्र-अंतर्गत चर)। स्तर 2: कार्य स्मृति (CONTINUITY.md)। स्तर 3: दीर्घकालिक (TTL और scope के साथ learnings.json + decisions.json)। स्तर 4: बाहरी सिमेंटिक (बड़े कोडबेस के लिए वैकल्पिक qmd एकीकरण)।",
+        "whenToUse": "हमेशा पृष्ठभूमि प्रोटोकॉल के रूप में सक्रिय। सत्र शुरू होने पर पढ़ें, सत्र समाप्त होने पर अपडेट करें। त्रुटि पर — scope टैग के साथ Mistakes & Learnings में रिकॉर्ड करें। महत्वपूर्ण निर्णय पर — तर्क के साथ रिकॉर्ड करें।",
+        "whyToUse": "LLM संदर्भ हानि को पूरी तरह समाप्त करता है। Memory Audit Protocol स्वचालित रूप से पुरानी लर्निंग्स को क्षय करता है (एबिंगहॉस प्रेरित), टकराव का पता लगाता है, और मॉड्यूल scope से फ़िल्टर करता है — AI केवल प्रासंगिक सामग्री पढ़ता है।",
+        "bestPractice": "हर लर्निंग को scope टैग करें (global/module/file)। डुप्लिकेट बनाने के बजाय मौजूदा पैटर्न को मजबूत करें। CONTINUITY.md को 500 शब्दों के अंदर रखें। 50 से अधिक दस्तावेजों वाली परियोजनाओं के लिए cm-deep-search के साथ जोड़ें।"
+      },
+      {
+        "id": "cm-deep-search",
+        "name": "cm-deep-search",
+        "category": "DevOps",
+        "icon": "search",
+        "tagline": "सिमेंटिक मेमोरी खोज",
+        "prompt": "docs फ़ोल्डर को सिमेंटिक खोज के लिए इंडेक्स करें",
+        "related": [
+          "cm-continuity",
+          "cm-brainstorm-idea"
+        ],
+        "problem": "प्रोजेक्ट डॉक्स और सोर्स फाइलें AI की संदर्भ विंडो से बड़ी हो जाती हैं — सैकड़ों फाइलों में प्रासंगिक जानकारी खोजना असंभव हो जाता है?",
+        "solution": "अत्यधिक बड़े कोडबेस का स्वचालित पता लगाना और qmd का गैर-दखलदारी सुझाव — BM25 + वेक्टर + LLM री-रैंकिंग वाला 100% लोकल सिमेंटिक सर्च इंजन।",
+        "whatIsIt": "स्तर 4 मेमोरी पावर-अप। docs/, src/, मीटिंग नोट्स पर लोकल सिमेंटिक सर्च के लिए tobi/qmd को एकीकृत करता है। MCP सर्वर के माध्यम से इंडेक्स करता है ताकि AI `qmd query 'topic'` क्वेरी कर सके और तुरंत प्रासंगिक स्निपेट प्राप्त कर सके।",
+        "whenToUse": "प्रोजेक्ट में 50 मार्कडाउन डॉक्स या 200 सोर्स फाइलें होने पर स्वचालित रूप से ट्रिगर होता है। cm-dockit द्वारा 30 से अधिक डॉक फाइलें जनरेट करने के बाद या जब यूजर ऐतिहासिक स्पेक्स खोजना चाहता है तब भी ट्रिगर होता है।",
+        "whyToUse": "cm-continuity का सही पूरक — continuity = RAM (अभी क्या कर रहा हूं?), deep-search = SSD (पहले जो लिखा गया था उसे खोजो)। दोनों मिलकर स्टेलनेस प्रिवेंशन के साथ पूर्ण AI मेमोरी बनाते हैं।",
+        "bestPractice": "हर बड़े टास्क के बाद `qmd embed` चलाएं ताकि इंडेक्स ताज़ा रहे। स्वचालित बैकग्राउंड री-इंडेक्सिंग के लिए Git post-commit hook सेट करें। हमेशा `qmd context add` से संदर्भ जोड़ें — यह qmd की किलर फीचर है।"
       },
       {
         "id": "cm-dockit",
@@ -1493,23 +1511,25 @@
     "before": {
       "title": "कोडी मास्टर के बिना",
       "items": [
-        "Design inconsistent every time",
-        "AI breaks code when context is lost",
-        "Secrets leaked to GitHub",
-        "No docs, no onboarding",
-        "Weeks of manual work",
-        "Deploy and pray"
+        "हर बार अलग डिज़ाइन",
+        "AI सत्रों के बीच सब भूल जाता है",
+        "GitHub पर सीक्रेट्स लीक",
+        "कोई डॉक्स नहीं, कोई ऑनबोर्डिंग नहीं",
+        "हफ्तों का मैनुअल काम",
+        "डिप्लॉय करो और भगवान से प्रार्थना करो",
+        "200+ फाइलों में पुराने स्पेक्स नहीं मिलते"
       ]
     },
     "after": {
       "title": "कोडी मास्टर के साथ",
       "items": [
-        "Design system enforced by AI",
-        "Multi-layer protection prevents breakage",
-        "Secret scanning on every commit",
-        "Auto-generated world-class docs",
-        "Minutes from idea to production",
-        "8-gate deploy pipeline + rollback"
+        "AI द्वारा डिज़ाइन सिस्टम लागू",
+        "4-स्तरीय मेमोरी — कभी संदर्भ नहीं खोता",
+        "हर कमिट पर सीक्रेट स्कैनिंग",
+        "विश्व स्तरीय डॉक्स स्वचालित रूप से बनाए गए",
+        "आइडिया से प्रोडक्शन तक मिनटों में",
+        "8-गेट डिप्लॉय पाइपलाइन + रोलबैक",
+        "पूरे कोडबेस में सिमेंटिक खोज"
       ]
     }
   },
