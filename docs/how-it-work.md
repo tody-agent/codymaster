@@ -11,7 +11,7 @@ graph TB
     subgraph "CodyMaster Framework"
         CLI["🖥️ CLI (cm)"]
         Dashboard["📊 Dashboard"]
-        Skills["🧩 25+ Skills"]
+        Skills["🧩 35+ Skills"]
         Memory["🧠 Working Memory"]
         Judge["🤖 Judge Agent"]
         AgentConfig["🌐 Universal Agent Config"]
@@ -179,8 +179,8 @@ graph TB
 
 | Approach | Tokens Used | Efficiency |
 |----------|-------------|------------|
-| Load all 25 skills | 100,000 | 0% saved |
-| Progressive Disclosure | 6,300 | **93.7% saved** |
+| Load all 35 skills | 140,000 | 0% saved |
+| Progressive Disclosure | 7,350 | **94.7% saved** |
 
 ---
 

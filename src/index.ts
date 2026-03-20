@@ -10,11 +10,13 @@ import type { Project, Task, Deployment, ChangelogEntry } from './data';
 import { launchDashboard } from './dashboard';
 import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
 import { ensureCmDir, getContinuityStatus, getLearnings, getDecisions, resetContinuity, hasCmDir, readContinuityState } from './continuity';
-import { evaluateAllTasks, evaluateTaskState, suggestAgentsForSkill, suggestAgentsForTask, getSkillDomain } from './judge';
+import { evaluateAllTasks, evaluateTaskState, suggestAgentsForSkill, suggestAgentsForTask, getSkillDomain, suggestChain } from './judge';
 import type { Learning } from './continuity';
+import { listChains, findChain, matchChain, createChainExecution, advanceChain as advanceChainStep, skipChainStep, abortChain, formatChainProgress, formatChainProgressBar, getCurrentSkill } from './skill-chain';
+import type { ChainExecution } from './skill-chain';
 import path from 'path';
 
-const VERSION = '3.2.0';
+const VERSION = '3.3.0';
 
 // ─── Branding ───────────────────────────────────────────────────────────────
 
@@ -83,6 +85,7 @@ program
     console.log();
     console.log(chalk.white('AI & Skills:'));
     console.log(`  ${chalk.cyan('skill <cmd>')}         Skill management (list|info|domains)`);
+    console.log(`  ${chalk.cyan('chain <cmd>')}         Skill chain pipelines (list|start|status|auto)`);
     console.log(`  ${chalk.cyan('agents [skill]')}      List agents / suggest best for skill`);
     console.log(`  ${chalk.cyan('judge [task-id]')}     Judge agent decisions for tasks`);
     console.log(`  ${chalk.cyan('install <skill>')}     Install an agent skill`);
@@ -1242,6 +1245,290 @@ program
     if (opts.agent) console.log(chalk.gray(`   Agent:   ${opts.agent}`));
     console.log();
   });
+
+// ─── Chain Command ──────────────────────────────────────────────────────────
+// TRIZ #40 Composite Materials — skills compose into pipelines
+
+program
+  .command('chain <cmd> [args...]')
+  .alias('ch')
+  .description('Skill chain pipelines (list|info|start|status|advance|skip|abort|auto|history)')
+  .option('-p, --project <name>', 'Project name or ID')
+  .option('--agent <agent>', 'Agent name', 'antigravity')
+  .action((cmd, args, opts) => {
+    switch (cmd) {
+      case 'list': case 'ls': chainList(); break;
+      case 'info': chainInfo(args[0]); break;
+      case 'start': chainStart(args[0], args.slice(1).join(' '), opts); break;
+      case 'status': case 'st': chainStatus(args[0]); break;
+      case 'advance': case 'next': chainAdvance(args[0], args.slice(1).join(' ')); break;
+      case 'skip': chainSkip(args[0], args.slice(1).join(' ')); break;
+      case 'abort': chainAbort(args[0], args.slice(1).join(' ')); break;
+      case 'auto': chainAuto(args.join(' '), opts); break;
+      case 'history': case 'hist': chainHistory(); break;
+      default:
+        console.log(chalk.red(`Unknown: ${cmd}`));
+        console.log(chalk.gray('Available: list, info, start, status, advance, skip, abort, auto, history'));
+    }
+  });
+
+function chainList() {
+  const chains = listChains();
+  console.log(chalk.cyan('\n🔗 Available Skill Chains\n'));
+  for (const chain of chains) {
+    console.log(`  ${chain.icon} ${chalk.white(padRight(chain.name, 24))} ${chalk.gray(chain.description)}`);
+    console.log(chalk.gray(`     ID: ${chain.id} | Steps: ${chain.steps.length} | Triggers: ${chain.triggers.slice(0, 4).join(', ')}...`));
+    console.log();
+  }
+  console.log(chalk.gray(`  Total: ${chains.length} chains\n`));
+  console.log(chalk.cyan('💡 Quick start:'));
+  console.log(chalk.gray('   cody chain auto "Build user authentication"    # Auto-detect chain'));
+  console.log(chalk.gray('   cody chain start feature-development "My task"  # Start specific chain'));
+  console.log();
+}
+
+function chainInfo(chainId: string) {
+  if (!chainId) { console.log(chalk.red('❌ Usage: cody chain info <chain-id>')); return; }
+  const chain = findChain(chainId);
+  if (!chain) { console.log(chalk.red(`❌ Chain not found: ${chainId}`)); console.log(chalk.gray('   Use "cody chain list" to see available chains.')); return; }
+
+  console.log(chalk.cyan(`\n${chain.icon} Chain: ${chain.name}\n`));
+  console.log(`  ${chalk.white('ID:')}          ${chain.id}`);
+  console.log(`  ${chalk.white('Description:')} ${chain.description}`);
+  console.log(`  ${chalk.white('Steps:')}       ${chain.steps.length}`);
+  console.log(`  ${chalk.white('Triggers:')}    ${chain.triggers.join(', ')}`);
+  console.log();
+  console.log(chalk.white('  Pipeline:'));
+  for (let i = 0; i < chain.steps.length; i++) {
+    const step = chain.steps[i];
+    const condBadge = step.condition === 'always' ? chalk.green('ALWAYS') : step.condition === 'if-complex' ? chalk.yellow('IF-COMPLEX') : chalk.blue('IF-READY');
+    const optBadge = step.optional ? chalk.gray(' (optional)') : '';
+    const connector = i < chain.steps.length - 1 ? '  │' : '   ';
+    console.log(`  ${chalk.cyan(`${i + 1}.`)} ${padRight(step.skill, 24)} ${condBadge}${optBadge}`);
+    console.log(chalk.gray(`  ${connector}  ${step.description}`));
+    if (i < chain.steps.length - 1) console.log(chalk.gray('  │'));
+  }
+  console.log();
+}
+
+function chainStart(chainId: string, taskTitle: string, opts: any) {
+  if (!chainId) { console.log(chalk.red('❌ Usage: cody chain start <chain-id> "Task title"')); return; }
+  if (!taskTitle) { console.log(chalk.red('❌ Task title required. Usage: cody chain start <chain-id> "My task"')); return; }
+
+  const chain = findChain(chainId);
+  if (!chain) { console.log(chalk.red(`❌ Chain not found: ${chainId}`)); return; }
+
+  const data = loadData();
+  let projectId: string;
+  if (opts.project) {
+    const project = findProjectByNameOrId(data, opts.project);
+    if (!project) { console.log(chalk.red(`❌ Project not found: ${opts.project}`)); return; }
+    projectId = project.id;
+  } else if (data.projects.length > 0) {
+    projectId = data.projects[0].id;
+  } else {
+    console.log(chalk.red('❌ No projects. Create one first: cody init')); return;
+  }
+
+  const agent = opts.agent || 'antigravity';
+  const execution = createChainExecution(chain, projectId, taskTitle, agent);
+  data.chainExecutions.push(execution);
+
+  // Create a task linked to this chain
+  const now = new Date().toISOString();
+  const task: Task = {
+    id: crypto.randomUUID(), projectId, title: taskTitle, description: `Chain: ${chain.name}`,
+    column: 'in-progress', order: 0, priority: 'medium', agent, skill: execution.steps[0]?.skill || '',
+    createdAt: now, updatedAt: now, chainId: chain.id, chainExecutionId: execution.id,
+  };
+  data.tasks.push(task);
+
+  logActivity(data, 'chain_started', `Chain "${chain.name}" started: "${taskTitle}"`, projectId, agent, {
+    chainId: chain.id, executionId: execution.id, steps: chain.steps.length,
+  });
+  saveData(data);
+
+  const project = data.projects.find(p => p.id === projectId);
+  console.log(chalk.green(`\n🔗 Chain started!`));
+  console.log(chalk.gray(`   Chain:     ${chain.icon} ${chain.name}`));
+  console.log(chalk.gray(`   Task:      ${taskTitle}`));
+  console.log(chalk.gray(`   Project:   ${project?.name || '—'}`));
+  console.log(chalk.gray(`   Agent:     ${agent}`));
+  console.log(chalk.gray(`   Steps:     ${chain.steps.length}`));
+  console.log(chalk.gray(`   Exec ID:   ${shortId(execution.id)}`));
+  console.log();
+  console.log(chalk.cyan(`  ▶ Current step: ${execution.steps[0]?.skill} — ${execution.steps[0]?.description}`));
+  console.log();
+  console.log(chalk.gray(`  Next: cody chain advance ${shortId(execution.id)} "output summary"`));
+  console.log();
+}
+
+function chainStatus(execIdPrefix?: string) {
+  const data = loadData();
+
+  if (execIdPrefix) {
+    // Show specific execution
+    const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
+    if (!exec) { console.log(chalk.red(`❌ Chain execution not found: ${execIdPrefix}`)); return; }
+    console.log();
+    console.log(formatChainProgress(exec));
+    console.log();
+    return;
+  }
+
+  // Show all active executions
+  const active = data.chainExecutions.filter(e => e.status === 'running' || e.status === 'paused');
+  if (active.length === 0) {
+    console.log(chalk.gray('\n  No active chain executions.'));
+    console.log(chalk.gray('  Start one with: cody chain auto "task description"\n'));
+    return;
+  }
+
+  console.log(chalk.cyan(`\n🔗 Active Chains (${active.length})\n`));
+  for (const exec of active) {
+    const project = data.projects.find(p => p.id === exec.projectId);
+    const currentSkill = getCurrentSkill(exec);
+    const progressBar = formatChainProgressBar(exec);
+    console.log(`  ${chalk.white(exec.chainName)} — "${exec.taskTitle}"`);
+    console.log(chalk.gray(`   ${progressBar} | Step ${exec.currentStepIndex + 1}/${exec.steps.length}: ${currentSkill || 'done'}`));
+    console.log(chalk.gray(`   ID: ${shortId(exec.id)} | Agent: ${exec.agent} | Project: ${project?.name || '—'}`));
+    console.log();
+  }
+}
+
+function chainAdvance(execIdPrefix: string, output?: string) {
+  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cody chain advance <exec-id> ["output summary"]')); return; }
+  const data = loadData();
+  const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
+  if (!exec) { console.log(chalk.red(`❌ Chain execution not found: ${execIdPrefix}`)); return; }
+  if (exec.status !== 'running') { console.log(chalk.yellow(`⚠️  Chain is ${exec.status}, cannot advance.`)); return; }
+
+  const completedStep = exec.steps[exec.currentStepIndex];
+  const result = advanceChainStep(exec, output);
+
+  // Update linked task's current skill
+  const linkedTask = data.tasks.find(t => t.chainExecutionId === exec.id);
+  if (linkedTask && result.nextSkill) {
+    linkedTask.skill = result.nextSkill;
+    linkedTask.updatedAt = new Date().toISOString();
+  }
+
+  if (result.completed) {
+    if (linkedTask) {
+      linkedTask.column = 'review';
+      linkedTask.updatedAt = new Date().toISOString();
+    }
+    logActivity(data, 'chain_completed', `Chain "${exec.chainName}" completed: "${exec.taskTitle}"`, exec.projectId, exec.agent, {
+      executionId: exec.id, totalSteps: exec.steps.length,
+    });
+    saveData(data);
+    console.log(chalk.green(`\n✅ Chain completed! All ${exec.steps.length} steps done.`));
+    console.log(chalk.gray(`   Chain: ${exec.chainName}`));
+    console.log(chalk.gray(`   Task:  ${exec.taskTitle}`));
+    console.log();
+  } else {
+    logActivity(data, 'chain_step_completed', `Chain step completed: ${completedStep?.skill} → next: ${result.nextSkill}`, exec.projectId, exec.agent, {
+      executionId: exec.id, completedSkill: completedStep?.skill, nextSkill: result.nextSkill,
+    });
+    saveData(data);
+    const nextStep = exec.steps[exec.currentStepIndex];
+    console.log(chalk.green(`\n✅ Step completed: ${completedStep?.skill}`));
+    console.log(chalk.cyan(`  ▶ Next step: ${result.nextSkill} — ${nextStep?.description}`));
+    console.log(chalk.gray(`   Progress: ${formatChainProgressBar(exec)}`));
+    console.log();
+  }
+}
+
+function chainSkip(execIdPrefix: string, reason?: string) {
+  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cody chain skip <exec-id> ["reason"]')); return; }
+  const data = loadData();
+  const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
+  if (!exec) { console.log(chalk.red(`❌ Chain execution not found: ${execIdPrefix}`)); return; }
+  if (exec.status !== 'running') { console.log(chalk.yellow(`⚠️  Chain is ${exec.status}, cannot skip.`)); return; }
+
+  const skippedStep = exec.steps[exec.currentStepIndex];
+  const result = skipChainStep(exec, reason);
+  saveData(data);
+
+  console.log(chalk.yellow(`  ⏭️  Skipped: ${skippedStep?.skill}`));
+  if (result.completed) {
+    console.log(chalk.green(`  ✅ Chain completed!`));
+  } else {
+    console.log(chalk.cyan(`  ▶ Next: ${result.nextSkill}`));
+  }
+  console.log();
+}
+
+function chainAbort(execIdPrefix: string, reason?: string) {
+  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cody chain abort <exec-id> ["reason"]')); return; }
+  const data = loadData();
+  const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
+  if (!exec) { console.log(chalk.red(`❌ Chain execution not found: ${execIdPrefix}`)); return; }
+  if (exec.status !== 'running' && exec.status !== 'paused') { console.log(chalk.yellow(`⚠️  Chain already ${exec.status}.`)); return; }
+
+  abortChain(exec, reason);
+  logActivity(data, 'chain_aborted', `Chain "${exec.chainName}" aborted: ${reason || 'no reason'}`, exec.projectId, exec.agent, {
+    executionId: exec.id,
+  });
+  saveData(data);
+
+  console.log(chalk.red(`\n🛑 Chain aborted: ${exec.chainName}`));
+  if (reason) console.log(chalk.gray(`   Reason: ${reason}`));
+  console.log();
+}
+
+function chainAuto(taskTitle: string, opts: any) {
+  if (!taskTitle) {
+    console.log(chalk.red('❌ Usage: cody chain auto "task description"'));
+    console.log(chalk.gray('   Example: cody chain auto "Build user authentication"'));
+    return;
+  }
+
+  const chain = matchChain(taskTitle);
+  if (!chain) {
+    console.log(chalk.yellow(`\n⚠️  No matching chain found for: "${taskTitle}"`));
+    console.log(chalk.gray('   Available chains:'));
+    for (const c of listChains()) {
+      console.log(chalk.gray(`     ${c.icon} ${c.id}: ${c.triggers.slice(0, 3).join(', ')}...`));
+    }
+    console.log(chalk.gray('\n   Use "cody chain start <chain-id> <title>" to start manually.'));
+    return;
+  }
+
+  console.log(chalk.cyan(`\n🤖 Auto-detected chain: ${chain.icon} ${chain.name}`));
+  console.log(chalk.gray(`   Matched from: "${taskTitle}"`));
+  console.log();
+
+  // Delegate to chainStart
+  chainStart(chain.id, taskTitle, opts);
+}
+
+function chainHistory() {
+  const data = loadData();
+  const execs = data.chainExecutions;
+
+  if (execs.length === 0) {
+    console.log(chalk.gray('\n  No chain executions yet.\n'));
+    return;
+  }
+
+  const STATUS_ICONS: Record<string, string> = {
+    pending: '⚪', running: '🔵', paused: '⏸️', completed: '✅', failed: '❌', aborted: '🛑',
+  };
+
+  console.log(chalk.cyan(`\n🔗 Chain History (${execs.length})\n`));
+  console.log(chalk.gray('  ' + padRight('Status', 8) + padRight('Chain', 24) + padRight('Task', 30) + padRight('Progress', 14) + 'Time'));
+  console.log(chalk.gray('  ' + '─'.repeat(86)));
+
+  for (const exec of execs.slice(0, 20)) {
+    const icon = STATUS_ICONS[exec.status] || '❓';
+    const completed = exec.steps.filter(s => s.status === 'completed' || s.status === 'skipped').length;
+    const progress = `${completed}/${exec.steps.length} steps`;
+    const time = formatTimeAgoCli(exec.startedAt);
+    console.log('  ' + padRight(icon, 8) + padRight(exec.chainName.substring(0, 22), 24) + padRight(exec.taskTitle.substring(0, 28), 30) + chalk.gray(padRight(progress, 14)) + chalk.gray(time));
+  }
+  console.log();
+}
 
 // ─── Parse ──────────────────────────────────────────────────────────────────
 

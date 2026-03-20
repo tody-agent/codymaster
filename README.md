@@ -6,14 +6,14 @@
 **One Bootstrap → Configs for 7+ AI Agent Platforms**
 
 <p>
-  <img src="https://img.shields.io/badge/Version-3.1.0-brightgreen?style=for-the-badge" alt="Version" />
-  <img src="https://img.shields.io/badge/Skills-25+-blue?style=for-the-badge" alt="Skills" />
+  <img src="https://img.shields.io/badge/Version-3.2.0-brightgreen?style=for-the-badge" alt="Version" />
+  <img src="https://img.shields.io/badge/Skills-35+-blue?style=for-the-badge" alt="Skills" />
   <img src="https://img.shields.io/badge/Self--Enhancing-✓-purple?style=for-the-badge" alt="Self-Enhancing" />
-  <img src="https://img.shields.io/badge/Providers-7-orange?style=for-the-badge" alt="Providers" />
+  <img src="https://img.shields.io/badge/Providers-10-orange?style=for-the-badge" alt="Providers" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
 </p>
 
-*Transform any AI coding tool into a **self-enhancing Senior Engineer** with 25+ built-in skills,*  
+*Transform any AI coding tool into a **self-enhancing Senior Engineer** with 35+ built-in skills,*  
 *auto-discovery of new skills via [skills.sh](https://skills.sh), real-time dashboard, and working memory.*
 
 <br/>
@@ -82,9 +82,9 @@ cm continuity init
 
 ---
 
-## 🧩 Skills Library (25+ Skills in 5 Swarms)
+## 🧩 Skills Library (35+ Skills in 6 Swarms)
 
-Skills are organized into **5 swarms** for intelligent auto-selection:
+Skills are organized into **6 swarms** for intelligent auto-selection:
 
 ### 🔧 Engineering Swarm
 
@@ -95,6 +95,7 @@ Skills are organized into **5 swarms** for intelligent auto-selection:
 | `cm-quality-gate` | 6-gate verification: static → blind review → security → ship |
 | `cm-test-gate` | Setup 4-layer test infrastructure for any project |
 | `cm-code-review` | Professional PR review lifecycle |
+| `frappe-app-builder` | Build production-ready Frappe/ERPNext custom apps |
 
 ### ⚙️ Operations Swarm
 
@@ -110,8 +111,11 @@ Skills are organized into **5 swarms** for intelligent auto-selection:
 | Skill | Purpose |
 |-------|---------|
 | `cm-planning` | Brainstorm intent → design → implementation plan |
+| `cm-brainstorm-idea` | Strategic analysis gate — Design Thinking + 9 Windows (TRIZ) |
 | `cm-ux-master` | 48 UX Laws + 37 Design Tests + Figma/Stitch |
+| `cm-ui-preview` | AI-powered UI preview with Stitch/Pencil MCP |
 | `cm-dockit` | Complete knowledge base from codebase |
+| `cm-readit` | Audio reading mode + voice CRO for any website |
 | `cm-project-bootstrap` | Full project setup: design system → CI → deploy + **universal agent configs** |
 
 ### 📈 Growth Swarm
@@ -122,6 +126,8 @@ Skills are organized into **5 swarms** for intelligent auto-selection:
 | `cm-ads-tracker` | Facebook/TikTok/Google tracking setup |
 | `cro-methodology` | Conversion audit + A/B test design |
 | `booking-calendar` | Calendar CRO engine with .ics export |
+| `marketplace-report-crawler` | Automated marketplace data crawling (Shopee/Lazada/TikTok) |
+| `medical-research` | Evidence-based medical writing protocol |
 
 ### 🎯 Orchestration Swarm
 
@@ -129,14 +135,26 @@ Skills are organized into **5 swarms** for intelligent auto-selection:
 |-------|---------|
 | `cm-execution` | Execute plans: batch, parallel, subagent, or RARV |
 | `cm-continuity` | Working memory: read at start, update at end |
-| `cm-skill-index` | Progressive disclosure — scan 25 skills in 100 tokens |
+| `cm-skill-chain` | Compose skills into automated multi-step pipelines |
+| `cm-skill-index` | Progressive disclosure — scan 35 skills in 100 tokens |
 | `cm-safe-i18n` | Multi-pass translation with 8 audit gates |
 | `cm-skill-mastery` | Meta: when to invoke skills, how to create new ones |
+| `cm-identity-guard` | Prevent wrong-account deploys across git/Cloudflare/Supabase |
 | `find-skills` ⭐ | Auto-discover & install skills from [skills.sh](https://skills.sh) — `npx skills find` |
+
+### 📖 Knowledge Swarm
+
+| Skill | Purpose |
+|-------|---------|
+| `jobs-to-be-done` | Customer need discovery via JTBD framework |
+| `mom-test` | Customer interview validation — talk less, learn more |
+| `release-it` | Production stability: circuit breakers, bulkheads, timeouts |
+| `tailwind-mastery` | Tailwind CSS utilities, responsive design, a11y patterns |
+| `skill-creator-ultra` | Create new AI skills from ideas or workflows |
 
 ---
 
-## 🧠 Working Memory (v3.1.0)
+## 🧠 Working Memory (v3.2.0)
 
 CodyMaster maintains context across sessions through **CONTINUITY.md**:
 

@@ -9,6 +9,8 @@ import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
 import { ensureCmDir, readContinuityState, writeContinuityMd, getContinuityStatus, addLearning, getLearnings, addDecision, getDecisions, hasCmDir } from './continuity';
 import type { ContinuityState, Learning, Decision } from './continuity';
 import { evaluateAllTasks, evaluateTaskState, suggestAgentsForTask, suggestAgentsForSkill, getSkillDomain, suggestTransitions } from './judge';
+import { listChains, findChain, matchChain, createChainExecution, advanceChain as advanceChainStep, skipChainStep, abortChain, getCurrentSkill } from './skill-chain';
+import type { ChainExecution } from './skill-chain';
 
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 
@@ -605,6 +607,85 @@ export function launchDashboard(port: number = DEFAULT_PORT) {
     res.json({ taskId: task.id, skill: task.skill, suggestions });
   });
 
+  // ─── Chain API ────────────────────────────────────────────────────────────
+
+  app.get('/api/chains', (_req, res) => {
+    res.json(listChains());
+  });
+
+  app.get('/api/chains/:id', (req, res) => {
+    const chain = findChain(req.params.id);
+    if (!chain) { res.status(404).json({ error: 'Chain not found' }); return; }
+    res.json(chain);
+  });
+
+  app.get('/api/chain-executions', (req, res) => {
+    const data = loadData();
+    let execs = data.chainExecutions;
+    if (req.query.status) execs = execs.filter(e => e.status === req.query.status);
+    if (req.query.projectId) execs = execs.filter(e => e.projectId === req.query.projectId);
+    res.json(execs);
+  });
+
+  app.get('/api/chain-executions/:id', (req, res) => {
+    const data = loadData();
+    const exec = data.chainExecutions.find(e => e.id === req.params.id);
+    if (!exec) { res.status(404).json({ error: 'Chain execution not found' }); return; }
+    res.json(exec);
+  });
+
+  app.post('/api/chain-executions', (req, res) => {
+    const { chainId, taskTitle, projectId, agent } = req.body;
+    if (!chainId || !taskTitle) { res.status(400).json({ error: 'chainId and taskTitle required' }); return; }
+    const chain = findChain(chainId);
+    if (!chain) { res.status(404).json({ error: 'Chain not found' }); return; }
+    const data = loadData();
+    const pid = projectId || (data.projects.length > 0 ? data.projects[0].id : undefined);
+    if (!pid) { res.status(400).json({ error: 'No project available' }); return; }
+    const execution = createChainExecution(chain, pid, taskTitle, agent || 'antigravity');
+    data.chainExecutions.push(execution);
+    logActivity(data, 'chain_started', `Chain "${chain.name}" started: "${taskTitle}"`, pid, agent || '', { chainId, executionId: execution.id });
+    saveData(data);
+    res.status(201).json(execution);
+  });
+
+  app.put('/api/chain-executions/:id/advance', (req, res) => {
+    const data = loadData();
+    const exec = data.chainExecutions.find(e => e.id === req.params.id);
+    if (!exec) { res.status(404).json({ error: 'Chain execution not found' }); return; }
+    if (exec.status !== 'running') { res.status(400).json({ error: `Chain is ${exec.status}` }); return; }
+    const result = advanceChainStep(exec, req.body.output);
+    const actType = result.completed ? 'chain_completed' : 'chain_step_completed';
+    logActivity(data, actType, result.completed ? `Chain completed: "${exec.taskTitle}"` : `Chain step advanced: ${result.nextSkill}`, exec.projectId, exec.agent, { executionId: exec.id });
+    saveData(data);
+    res.json({ ...result, execution: exec });
+  });
+
+  app.put('/api/chain-executions/:id/skip', (req, res) => {
+    const data = loadData();
+    const exec = data.chainExecutions.find(e => e.id === req.params.id);
+    if (!exec) { res.status(404).json({ error: 'Chain execution not found' }); return; }
+    if (exec.status !== 'running') { res.status(400).json({ error: `Chain is ${exec.status}` }); return; }
+    const result = skipChainStep(exec, req.body.reason);
+    saveData(data);
+    res.json({ ...result, execution: exec });
+  });
+
+  app.put('/api/chain-executions/:id/abort', (req, res) => {
+    const data = loadData();
+    const exec = data.chainExecutions.find(e => e.id === req.params.id);
+    if (!exec) { res.status(404).json({ error: 'Chain execution not found' }); return; }
+    abortChain(exec, req.body.reason);
+    logActivity(data, 'chain_aborted', `Chain aborted: "${exec.taskTitle}"`, exec.projectId, exec.agent, { executionId: exec.id });
+    saveData(data);
+    res.json(exec);
+  });
+
+  app.get('/api/chains/suggest/:title', (req, res) => {
+    const chain = matchChain(req.params.title);
+    res.json(chain || { match: false });
+  });
+
   // ─── Fallback ──────────────────────────────────────────────────────────
 
   app.get('/{*path}', (_req, res) => {
@@ -615,7 +696,7 @@ export function launchDashboard(port: number = DEFAULT_PORT) {
 
   const server = app.listen(port, () => {
     try { fs.writeFileSync(PID_FILE, String(process.pid)); } catch {}
-    console.log(chalk.cyan(`\n🚀 CodyMaster Dashboard v3 at http://codymaster.localhost:${port}`));
+    console.log(chalk.cyan(`\n🚀 CodyMaster Dashboard v4 at http://codymaster.localhost:${port}`));
     console.log(chalk.gray(`   Data: ${DATA_FILE}`));
     console.log(chalk.gray(`   Press Ctrl+C to stop.\n`));
   });

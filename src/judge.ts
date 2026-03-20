@@ -1,9 +1,10 @@
 import type { Task } from './data';
 import type { Learning } from './continuity';
+import { matchChain, type ChainDefinition } from './skill-chain';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
-export type JudgeAction = 'CONTINUE' | 'COMPLETE' | 'ESCALATE' | 'PIVOT';
+export type JudgeAction = 'CONTINUE' | 'COMPLETE' | 'ESCALATE' | 'PIVOT' | 'CHAIN_NEXT';
 
 export interface JudgeDecision {
   action: JudgeAction;
@@ -148,6 +149,16 @@ export function evaluateTaskState(
   }
 
   // ─── CONTINUE: Normal progress ─────────────────────────────────────────
+  // Check if task has a chain — suggest advancing
+  if (task.chainId && task.column === 'review') {
+    return {
+      action: 'CHAIN_NEXT',
+      reason: `Task is part of chain "${task.chainId}". Ready to advance to next step.`,
+      confidence: 0.8,
+      badge: '⛓️',
+    };
+  }
+
   return {
     action: 'CONTINUE',
     reason: 'Task is progressing normally.',
@@ -284,5 +295,16 @@ export function suggestTransitions(tasks: Task[]): TransitionSuggestion[] {
   }
 
   return suggestions.sort((a, b) => b.stuckMinutes - a.stuckMinutes);
+}
+
+// ─── Chain Suggestions ───────────────────────────────────────────────────
+// TRIZ #10: Preliminary Action — analyze task before dispatch
+
+/**
+ * Suggest the best chain for a task based on its title.
+ * Returns the matching chain definition or undefined.
+ */
+export function suggestChain(taskTitle: string): ChainDefinition | undefined {
+  return matchChain(taskTitle);
 }
 

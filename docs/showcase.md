@@ -481,6 +481,103 @@ $ npm run agent:sync
 
 ---
 
+## Example 9: Skill Chain Automation
+
+**Scenario:** You want to go from idea to deployed landing page with one command using chained skills.
+
+### Step 1: Trigger a Skill Chain
+
+```
+@[/cm-skill-chain] Build and deploy a landing page for my new AI tutoring product
+```
+
+**What happens behind the scenes:**
+
+```
+🔗 CHAIN DETECTED: landing-page-pipeline
+
+Step 1/5: cm-brainstorm-idea → Analyze target audience + positioning
+  ✅ Qualified problem: "AI tutoring for K-12 students"
+  ✅ Recommended approach: Social proof + demo-first CTA
+
+Step 2/5: cm-ux-master → Extract design system + choose template
+  ✅ Design tokens generated
+  ✅ Color palette: Educational blue/green
+
+Step 3/5: cm-content-factory → Write conversion-optimized copy
+  ✅ Hero headline, features, testimonials, CTA
+  ✅ SEO meta tags
+
+Step 4/5: cm-execution → Build and assemble
+  ✅ HTML/CSS/JS generated
+  ✅ Responsive + accessible
+
+Step 5/5: cm-safe-deploy → Deploy to staging
+  ✅ 8 gates passed
+  ✅ Live at https://staging.ai-tutor.com
+```
+
+### Key Benefit
+
+Instead of manually invoking 5 skills in sequence, the Skill Chain Engine orchestrates everything automatically. One prompt → full pipeline.
+
+---
+
+## Example 10: Strategic Analysis (Brainstorm Idea)
+
+**Scenario:** Your SaaS dashboard needs improvement but you're unsure what direction to take.
+
+### Step 1: Run Strategic Analysis
+
+```
+@[/cm-brainstorm-idea] Our dashboard conversion rate dropped 15% last month. 
+Users complain about complexity. What should we do?
+```
+
+**The agent runs the Double Diamond process:**
+
+```
+Phase 1: DISCOVER
+  📊 Scanned codebase: 47 components, 12 pages, 3 API endpoints
+  📋 User context: B2B SaaS, 500 active users, churn spike
+
+Phase 2: DEFINE (9 Windows Analysis)
+  ┌─────────────┬──────────────────┬──────────────────┐
+  │             │    PRESENT       │    FUTURE        │
+  ├─────────────┼──────────────────┼──────────────────┤
+  │ System      │ Complex 12-page  │ Simplified 5-page│
+  │ (product)   │ dashboard        │ with guided UX   │
+  └─────────────┴──────────────────┴──────────────────┘
+
+Phase 3: DEVELOP — 3 Options Generated
+  Option A: Simplify (remove 7 pages, guided onboarding)
+  Option B: Personalize (AI-driven default views per role)
+  Option C: Rebuild (new design system, progressive disclosure)
+
+Phase 4: EVALUATE
+  ┌────────────┬──────┬──────┬──────┐
+  │ Dimension  │  A   │  B   │  C   │
+  ├────────────┼──────┼──────┼──────┤
+  │ Tech       │ 8/10 │ 6/10 │ 4/10 │
+  │ Product    │ 7/10 │ 9/10 │ 8/10 │
+  │ Business   │ 9/10 │ 7/10 │ 5/10 │
+  ├────────────┼──────┼──────┼──────┤
+  │ Total      │ 8.0  │ 7.3  │ 5.7  │
+  └────────────┴──────┴──────┴──────┘
+
+🎯 Recommendation: Option A (Simplify)
+```
+
+### Step 2: Handoff to Planning
+
+```
+@[/cm-planning] Execute Option A from the brainstorm analysis
+```
+
+The brainstorm output feeds directly into `cm-planning` with qualified context — no guessing, no ambiguity.
+
+---
+
 ## CLI Quick Reference
 
 ```bash

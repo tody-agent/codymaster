@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import os from 'os';
 import crypto from 'crypto';
+import type { ChainExecution } from './skill-chain';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -29,13 +30,16 @@ export interface Task {
   dispatchedAt?: string;
   dispatchError?: string;
   stuckSince?: string;
+  chainId?: string;
+  chainExecutionId?: string;
 }
 
 export type ActivityType =
   | 'task_created' | 'task_moved' | 'task_done' | 'task_deleted' | 'task_updated' | 'task_dispatched' | 'task_transitioned'
   | 'project_created' | 'project_deleted'
   | 'deploy_staging' | 'deploy_production' | 'deploy_failed' | 'rollback'
-  | 'git_push' | 'changelog_added';
+  | 'git_push' | 'changelog_added'
+  | 'chain_started' | 'chain_step_completed' | 'chain_completed' | 'chain_failed' | 'chain_aborted';
 
 export interface ActivityLog {
   id: string;
@@ -80,6 +84,7 @@ export interface KanbanData {
   activities: ActivityLog[];
   deployments: Deployment[];
   changelog: ChangelogEntry[];
+  chainExecutions: ChainExecution[];
   version: number;
 }
 
@@ -98,7 +103,7 @@ export function ensureDataDir(): void {
   }
 }
 
-const EMPTY_DATA: KanbanData = { projects: [], tasks: [], activities: [], deployments: [], changelog: [], version: 3 };
+const EMPTY_DATA: KanbanData = { projects: [], tasks: [], activities: [], deployments: [], changelog: [], chainExecutions: [], version: 4 };
 
 export function loadData(): KanbanData {
   ensureDataDir();
@@ -134,6 +139,13 @@ export function loadData(): KanbanData {
         });
       }
       data.version = 3;
+      needsSave = true;
+    }
+
+    // v3 → v4 migration (add chainExecutions)
+    if (data.version < 4) {
+      if (!data.chainExecutions) data.chainExecutions = [];
+      data.version = 4;
       needsSave = true;
     }
 
