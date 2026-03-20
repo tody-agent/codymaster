@@ -1,0 +1,28 @@
+platform: vscode-mcp
+display_name: VS Code MCP Server
+install_type: mcp
+folder_structure:
+  root: ".vscode"
+  skillPath: "mcp"
+  filename: "ux-master.json"
+script_path: "mcp/server.py"
+frontmatter: null
+sections:
+  quick_reference: false
+title: "UX Master MCP Server"
+description: "MCP server providing UX Laws, Design Tests, and validation tools for VS Code."
+skill_or_workflow: "MCP Server"
+mcp_capabilities:
+  - search_ux_laws
+  - search_design_tests
+  - validate_design
+  - extract_design_system
+  - generate_color_palette
+  - suggest_typography
+tool_endpoints:
+  - name: "search_ux_laws"
+    description: "Search 48 UX Laws applicable to product type"
+  - name: "validate_design"
+    description: "Validate UI code against 37 Design Tests"
+  - name: "extract_design_system"
+    description: "Extract design tokens from website URL"

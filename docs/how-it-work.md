@@ -179,8 +179,8 @@ graph TB
 
 | Approach | Tokens Used | Efficiency |
 |----------|-------------|------------|
-| Load all 35 skills | 140,000 | 0% saved |
-| Progressive Disclosure | 7,350 | **94.7% saved** |
+| Load all 30 skills | 120,000 | 0% saved |
+| Progressive Disclosure | 6,300 | **94.7% saved** |
 
 ---
 

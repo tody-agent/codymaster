@@ -1,0 +1,21 @@
+Device,Category,Width_Min,Width_Max,Height,Aspect_Ratio,Touch,Pixel_Density,UX_Priority,Guidelines
+iPhone SE,Mobile Small,320,375,667,9:16,Yes,2x,Thumb zone bottom 1/3. Min touch target 44px. Single column layout only.,Test at 320px width. No horizontal scroll. Stack all content vertically.
+iPhone 14/15,Mobile Standard,390,393,852,9:19.5,Yes,3x,Primary test device. Thumb zone critical. Bottom nav preferred.,Design mobile-first at 390px. Safe area insets for notch. Bottom navigation pattern.
+iPhone Pro Max,Mobile Large,430,430,932,9:19.5,Yes,3x,Larger touch targets possible. Can fit 2-column grid for cards.,Test content density. Can show more data than standard mobile. Still single-hand use.
+Samsung Galaxy S,Mobile Android,360,412,800,9:20,Yes,2.75x,Material Design guidelines. System back button. Different safe areas.,Account for Android navigation bar. Test with different font scales. Edge-to-edge design.
+Android Compact,Mobile Budget,280,320,534,9:16,Yes,1.5x,Minimal device. Must work with reduced content.,Test with smallest viewport. Truncate text with ellipsis. Reduce image quality for performance.
+iPad Mini,Tablet Small,744,768,1024,3:4,Yes,2x,Split between mobile and tablet layout. Can show sidebar overlay.,Transition point for layout. Consider showing tablet layout with collapsible sidebar.
+iPad Air/Pro,Tablet Standard,820,1024,1180,4:3,Yes,2x,Full tablet layout. Persistent sidebar viable. Multi-column content.,Two-column layout minimum. Persistent navigation sidebar. Larger touch targets OK.
+iPad Pro 12.9,Tablet Large,1024,1366,1024,4:3,Yes,2x,Near-desktop experience. Full multi-pane layouts possible.,Three-column layout viable. Split view support. Desktop-like density acceptable.
+Samsung Galaxy Tab,Tablet Android,800,962,1280,5:8,Yes,2x,Android tablet. Bottom navigation still common. Material guidelines.,Material Design 3 tablet patterns. Navigation rail preferred over bottom bar.
+Laptop Standard,Desktop Small,1280,1366,768,16:9,No,1x,Primary desktop target. Hover states required. Mouse-first interaction.,Full desktop layout. Sidebar + content. Dropdown menus. Hover tooltips enabled.
+Desktop HD,Desktop Standard,1440,1920,900,16:9,No,1x,Maximum content width ~1280px for readability. Center content.,max-width container. Generous whitespace. Multi-column dashboards. Data tables.
+Desktop 4K,Desktop Large,2560,3840,2160,16:9,No,2x,Scale UI. Don't just stretch. Increase content density or zoom.,Use rem/em units. Test with browser zoom 150-200%. Don't hardcode pixel values.
+Apple Watch,Watch Smartwatch Wearable,272,396,340,1:1,Yes,2x,Glanceable information only. Single action per screen. Large text.,Max 3-4 items visible. Swipe navigation. No complex forms. Status-focused. Font 17pt minimum.
+Samsung Galaxy Watch,Watch Smartwatch Wearable Android,360,396,360,1:1,Yes,2x,Wear OS patterns. Tile-based layout. Quick actions only.,Circular layout consideration. Edge complications. Voice-first interaction support.
+Foldable Folded,Foldable Small,280,320,720,9:25,Yes,3x,Compact front screen. Quick tasks only. Notifications and status.,Cover screen UI. Simplified controls only. Large touch targets on narrow screen.
+Foldable Unfolded,Foldable Large,585,674,886,3:4,Yes,3x,Tablet-like when open. Adapt layout seamlessly on fold/unfold.,Flex mode support (half screen). Continuity from folded to unfolded state. Media queries for fold.
+Smart TV,TV,1920,3840,1080,16:9,No (Remote),1x,D-pad navigation. Large text (min 24px). 10-foot viewing distance.,Focus-based navigation. No hover states. Card-based grid. High contrast for viewing distance.
+Android TV,TV Android,1920,1920,1080,16:9,No (Remote),1x,Leanback library patterns. D-pad focus management. Overscan margin.,80px overscan margin. Focus ring on all items. Horizontal scrolling rows. No text input.
+CarPlay Display,Car,800,1280,480,8:3,Yes (Limited),2x,Glanceable. Large buttons. Minimal text. Drive-safe design.,Maximum 6 items visible. 76px minimum touch target. No scrolling. Voice-first.
+VR/AR Headset,Spatial,var,var,var,varies,Hand/Eye,varies,Spatial UI patterns. Depth layers. Gaze-based interaction. Comfort zones.,Place UI at 1-2m distance. Avoid rapid movement. Use spatial audio cues. Curved panels.

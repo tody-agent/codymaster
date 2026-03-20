@@ -1,0 +1,21 @@
+platform: windsurf
+display_name: Windsurf
+install_type: full
+folder_structure:
+  root: ".windsurf"
+  skillPath: "skills/ux-master"
+  filename: "SKILL.md"
+script_path: "skills/ux-master/scripts/search.py"
+frontmatter:
+  name: "ux-master"
+  description: "Ultimate UX Design Intelligence with 48 UX Laws, 37 Design Tests. Use when designing, building, reviewing, or improving any UI/UX."
+sections:
+  quick_reference: true
+title: "UX Master - Ultimate Design Intelligence"
+description: "Comprehensive design guide with psychology-driven UX Laws and automated Design Tests."
+skill_or_workflow: "Skill"
+mcp_capabilities:
+  - search
+  - validate
+  - extract
+tool_endpoints: []

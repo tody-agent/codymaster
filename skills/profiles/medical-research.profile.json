@@ -1,0 +1,321 @@
+{
+    "id": "medical-research",
+    "name": "Medical Research — Evidence-Based Writing",
+    "version": "1.0",
+    "domain": "healthcare",
+    "description": "Evidence-based medical writing protocol with Oxford CEBM grading, guideline citations, clinical safety markers, and anti-hallucination rules. Optimized for OB/GYN but applicable to any medical specialty.",
+    "evidence_system": {
+        "enabled": true,
+        "levels": [
+            {
+                "level": "I",
+                "label": "Systematic Review / Meta-analysis / RCT lớn",
+                "marker": "[LoE: I]"
+            },
+            {
+                "level": "II",
+                "label": "RCT nhỏ / Cohort study chất lượng cao",
+                "marker": "[LoE: II]"
+            },
+            {
+                "level": "III",
+                "label": "Case-control study / Cohort hồi cứu",
+                "marker": "[LoE: III]"
+            },
+            {
+                "level": "IV",
+                "label": "Case series / Cross-sectional",
+                "marker": "[LoE: IV]"
+            },
+            {
+                "level": "V",
+                "label": "Expert opinion / Consensus",
+                "marker": "[LoE: V]"
+            }
+        ],
+        "marker_pattern": "\\[LoE:\\s*[IViv]+",
+        "min_per_tier": {
+            "T1": 1,
+            "T2": 3,
+            "T3": 2
+        }
+    },
+    "citation_standard": {
+        "sources": [
+            {
+                "priority": "P0",
+                "org": "BYT",
+                "label": "Hướng dẫn BYT Việt Nam",
+                "example": "[BYT 2023 — Hướng dẫn Chẩn đoán và Điều trị]"
+            },
+            {
+                "priority": "P1",
+                "org": "ACOG",
+                "label": "ACOG Practice Bulletin",
+                "example": "[ACOG PB #234, 2024]"
+            },
+            {
+                "priority": "P1",
+                "org": "ASRM",
+                "label": "ASRM Committee Opinion",
+                "example": "[ASRM CO 2023]"
+            },
+            {
+                "priority": "P1",
+                "org": "ESHRE",
+                "label": "ESHRE Guideline",
+                "example": "[ESHRE Guideline 2024]"
+            },
+            {
+                "priority": "P2",
+                "org": "WHO",
+                "label": "WHO Recommendation",
+                "example": "[WHO 2023]"
+            },
+            {
+                "priority": "P2",
+                "org": "Cochrane",
+                "label": "Cochrane Systematic Review",
+                "example": "[Cochrane 2023]"
+            },
+            {
+                "priority": "P3",
+                "org": "NICE",
+                "label": "NICE Guideline",
+                "example": "[NICE NG000, 2024]"
+            },
+            {
+                "priority": "P3",
+                "org": "RCOG",
+                "label": "RCOG",
+                "example": "[RCOG Green-top 2024]"
+            },
+            {
+                "priority": "P3",
+                "org": "FIGO",
+                "label": "FIGO",
+                "example": "[FIGO 2024]"
+            },
+            {
+                "priority": "P3",
+                "org": "ISUOG",
+                "label": "ISUOG",
+                "example": "[ISUOG 2024]"
+            }
+        ],
+        "recognized_orgs": [
+            "ACOG",
+            "ASRM",
+            "ESHRE",
+            "WHO",
+            "BYT",
+            "NICE",
+            "RCOG",
+            "Cochrane",
+            "FIGO",
+            "ISUOG",
+            "RANZCOG",
+            "SOGC"
+        ],
+        "min_citations": {
+            "T1": 2,
+            "T2": 3,
+            "T3": 2
+        },
+        "reference_section_patterns": [
+            "##\\s*\\d*\\.?\\s*TÀI LIỆU THAM KHẢO",
+            "##\\s*\\d*\\.?\\s*REFERENCES",
+            "##\\s*\\d*\\.?\\s*THAM KHẢO"
+        ],
+        "require_inline": true,
+        "banned_phrases": [
+            "Theo nghiên cứu",
+            "Các chuyên gia cho rằng",
+            "Nghiên cứu cho thấy",
+            "Theo các bác sĩ"
+        ]
+    },
+    "safety_markers": [
+        {
+            "id": "clinical_note",
+            "icon": "💊",
+            "label": "GHI CHÚ LÂM SÀNG",
+            "pattern": "GHI CHÚ LÂM SÀNG",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "red_flag",
+            "icon": "⚠️",
+            "label": "CỜ ĐỎ",
+            "pattern": "CỜ ĐỎ|RED FLAG",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "reference",
+            "icon": "📚",
+            "label": "THAM KHẢO",
+            "pattern": "THAM KHẢO|REFERENCES",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        },
+        {
+            "id": "disclaimer",
+            "icon": "⚕️",
+            "label": "DISCLAIMER",
+            "pattern": "DISCLAIMER|cần chỉ định của bác sĩ|bác sĩ chuyên khoa|⚕️",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        }
+    ],
+    "anti_hallucination": {
+        "rules": [
+            "Không bịa số liệu — không tự tạo tỷ lệ %, con số thống kê",
+            "Không bịa thuốc — chỉ ghi thuốc có thật, đúng liều",
+            "Không bịa guideline — chỉ trích dẫn guideline có thật",
+            "Không bịa nghiên cứu — không tạo tên tác giả/năm giả",
+            "Khi không chắc → ghi rõ khoảng ước tính"
+        ],
+        "safe_phrases": [
+            "Tỷ lệ dao động từ X-Y% tùy nghiên cứu",
+            "Theo y văn, ước tính khoảng...",
+            "Dữ liệu tại Việt Nam còn hạn chế, quốc tế báo cáo...",
+            "Cần thêm nghiên cứu để xác nhận"
+        ],
+        "suspicious_patterns": [
+            "\\d{2,3}\\.\\d{1,2}%"
+        ]
+    },
+    "content_tiers": {
+        "T1": {
+            "name": "Nền tảng (Foundation)",
+            "min_words": 1500
+        },
+        "T2": {
+            "name": "Bệnh lý (Pathology)",
+            "min_words": 2000
+        },
+        "T3": {
+            "name": "Kỹ thuật (Technique)",
+            "min_words": 1500
+        }
+    },
+    "tier_detection": {
+        "prefix_map": {
+            "F-": "T1",
+            "VSN-": "T2",
+            "VSM-": "T2",
+            "NTI-": "T2",
+            "BT-": "T2",
+            "TC-": "T2",
+            "VT-": "T2",
+            "CTC-": "T2",
+            "AD-": "T2",
+            "VU-": "T2",
+            "TK1-": "T2",
+            "TK2-": "T2",
+            "TK3-": "T2",
+            "TNC-": "T2",
+            "SSL-": "T2",
+            "HSS-": "T2",
+            "VNPK-": "T2",
+            "SMTD-": "T2",
+            "SLTT-": "T2",
+            "UPKSS-": "T2",
+            "PLHP-": "T2",
+            "KTHT-": "T3",
+            "PD-": "T3",
+            "PHO-": "T3",
+            "TDP-": "T3",
+            "DT-": "T3"
+        },
+        "default_tier": "T2"
+    },
+    "cross_reference": {
+        "require_icd10_tiers": [
+            "T2"
+        ],
+        "icd10_pattern": "ICD-10\\s*:\\s*[A-Z]\\d",
+        "min_cross_links": 2,
+        "cross_link_patterns": [
+            "CROSS.?LINK",
+            "Xem chi tiết",
+            "→\\s*Xem",
+            "Xem thêm"
+        ],
+        "code_format": "→ Xem chi tiết: [{code}] {title}"
+    },
+    "prompt_injection": {
+        "T1": "EVIDENCE-BASED REQUIREMENTS:\n1. Mỗi khuyến cáo ghi [LoE: I-V] + nguồn\n2. Trích dẫn ≥ 2 guideline khác nhau\n3. Cuối bài có \"## TÀI LIỆU THAM KHẢO\"\n4. Cuối bài có DISCLAIMER y khoa\n5. KHÔNG bịa số liệu — dùng khoảng ước tính khi thiếu dữ liệu",
+        "T2": "EVIDENCE-BASED REQUIREMENTS:\n1. Mỗi khuyến cáo điều trị ghi [LoE: I-V] + nguồn\n2. Section \"CHẨN ĐOÁN\" phải có bảng xét nghiệm với cột \"Guideline nguồn\"\n3. Section \"ĐIỀU TRỊ\" phải trích dẫn phác đồ cụ thể (ACOG/BYT/ASRM)\n4. Cuối bài có \"## TÀI LIỆU THAM KHẢO\" liệt kê ≥ 3 guideline\n5. Cuối bài có DISCLAIMER y khoa\n6. KHÔNG bịa số liệu — dùng khoảng ước tính khi thiếu dữ liệu chính xác\n7. Phải có markers: 💊 GHI CHÚ LÂM SÀNG, ⚠️ CỜ ĐỎ, ICD-10 trong header",
+        "T3": "EVIDENCE-BASED REQUIREMENTS:\n1. Mỗi bước quy trình ghi nguồn phác đồ (ASRM/ESHRE/BYT)\n2. Bảng thuốc phải có cột \"Guideline\"\n3. Tỷ lệ thành công phải ghi nguồn + khoảng tin cậy\n4. Cuối bài có \"## TÀI LIỆU THAM KHẢO\" ≥ 2 guideline\n5. Cuối bài có DISCLAIMER y khoa"
+    },
+    "scoring": {
+        "dimensions": [
+            {
+                "name": "Evidence Quality",
+                "weight": 10,
+                "check": "loe_count",
+                "description": "LoE markers cho khuyến cáo chính"
+            },
+            {
+                "name": "Citation Depth",
+                "weight": 10,
+                "check": "citation_count",
+                "description": "Trích dẫn guideline cụ thể"
+            },
+            {
+                "name": "Clinical Accuracy",
+                "weight": 10,
+                "check": "no_errors",
+                "description": "Không có sai sót y khoa"
+            },
+            {
+                "name": "Structure",
+                "weight": 10,
+                "check": "structure_complete",
+                "description": "Đúng template, đủ section"
+            },
+            {
+                "name": "ICD-10 Compliance",
+                "weight": 10,
+                "check": "icd10",
+                "description": "Mã ICD-10 đúng (T2 only)"
+            },
+            {
+                "name": "Safety Markers",
+                "weight": 10,
+                "check": "safety_markers",
+                "description": "CỜ ĐỎ, Disclaimer"
+            },
+            {
+                "name": "Cross-References",
+                "weight": 10,
+                "check": "cross_links",
+                "description": "Liên kết bài liên quan"
+            },
+            {
+                "name": "Word Count",
+                "weight": 10,
+                "check": "word_count",
+                "description": "Đủ độ dài tối thiểu"
+            }
+        ],
+        "max_score": 80,
+        "thresholds": {
+            "excellent": 72,
+            "good": 56,
+            "average": 40
+        }
+    },
+    "disclaimer_text": "⚕️ **DISCLAIMER:** Nội dung bài viết chỉ mang tính chất tham khảo y khoa.\nMọi quyết định chẩn đoán và điều trị **cần chỉ định của bác sĩ chuyên khoa**.\nKhông tự ý áp dụng phác đồ khi chưa có đánh giá lâm sàng cụ thể."
+}

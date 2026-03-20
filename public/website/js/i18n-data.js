@@ -24,7 +24,7 @@ window.__I18N_DATA__ = {
       "ctaGithub": "⭐ Star on GitHub",
       "trustLabel": "Seamless integration with every major AI platform",
       "stats": {
-        "skills": "35+",
+        "skills": "30+",
         "skillsLabel": "Enforced Skills",
         "platforms": "7",
         "platformsLabel": "AI Platforms",
@@ -870,7 +870,7 @@ window.__I18N_DATA__ = {
       "ctaGithub": "⭐ Star trên GitHub",
       "trustLabel": "Tích hợp mượt mà với mọi nền tảng AI hàng đầu",
       "stats": {
-        "skills": "35+",
+        "skills": "30+",
         "skillsLabel": "Kỹ Năng Senior",
         "platforms": "7",
         "platformsLabel": "LLMs Kết Nối",
@@ -1717,7 +1717,7 @@ window.__I18N_DATA__ = {
       "ctaGithub": "⭐ GitHub 点赞",
       "trustLabel": "无缝集成所有主流 AI 平台",
       "stats": {
-        "skills": "35+",
+        "skills": "30+",
         "skillsLabel": "资深级技能",
         "platforms": "7",
         "platformsLabel": "支持 AI 型号",
@@ -2564,7 +2564,7 @@ window.__I18N_DATA__ = {
       "ctaGithub": "⭐ Star на GitHub",
       "trustLabel": "Бесшовная интеграция со всеми основными AI-платформами",
       "stats": {
-        "skills": "35+",
+        "skills": "30+",
         "skillsLabel": "Senior-навыков",
         "platforms": "7",
         "platformsLabel": "Поддерживаемых LLM",

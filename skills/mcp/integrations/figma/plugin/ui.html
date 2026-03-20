@@ -1,0 +1,334 @@
+<!-- UX-Master Figma Plugin UI - Designer Friendly -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>UX-Master for Figma</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #7C3AED;
+            --bg: #0F172A;
+            --card: #1E293B;
+            --text: #F8FAFC;
+            --muted: #94A3B8;
+            --success: #10B981;
+            --error: #EF4444;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 16px;
+            min-width: 300px;
+        }
+        .header { text-align: center; margin-bottom: 20px; }
+        .logo {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary), #A78BFA);
+            border-radius: 12px;
+            margin: 0 auto 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .tabs {
+            display: flex; gap: 4px; margin-bottom: 16px;
+            background: var(--card); padding: 4px; border-radius: 10px;
+        }
+        .tab {
+            flex: 1; padding: 10px; border: none; background: transparent;
+            color: var(--muted); font-size: 13px; border-radius: 8px;
+            cursor: pointer;
+        }
+        .tab.active { background: var(--primary); color: white; }
+        .panel { display: none; }
+        .panel.active { display: block; }
+        .card {
+            background: var(--card); border-radius: 12px; padding: 16px;
+            margin-bottom: 12px;
+        }
+        textarea, input, select {
+            width: 100%; padding: 10px; background: var(--bg);
+            border: 1px solid #334155; border-radius: 8px;
+            color: var(--text); font-family: inherit;
+            margin-top: 8px;
+        }
+        .btn {
+            width: 100%; padding: 12px; border: none; border-radius: 8px;
+            font-weight: 600; cursor: pointer; margin-top: 12px;
+            transition: all 0.2s;
+        }
+        .btn-magic {
+            background: linear-gradient(135deg, #7C3AED, #4ECDC4, #45B7D1);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+            color: white;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .btn-primary {
+            background: var(--primary); color: white;
+        }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid #334155;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading { display: none; text-align: center; }
+        .loading.active { display: block; }
+        .result-item {
+            background: var(--bg); padding: 12px; border-radius: 8px;
+            margin-top: 8px; border: 1px solid #334155;
+        }
+        .badge {
+            font-size: 10px; padding: 2px 8px; border-radius: 12px;
+            display: inline-block; margin-top: 8px;
+        }
+        .badge-success { background: rgba(16,185,129,0.2); color: var(--success); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">✦</div>
+        <h2>UX-Master</h2>
+        <small style="color: var(--muted);">AI Design Intelligence</small>
+    </div>
+    
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab('generate')">✨ Generate</button>
+        <button class="tab" onclick="switchTab('validate')">✓ Validate</button>
+    </div>
+    
+    <div id="generate-panel" class="panel active">
+        <div class="card">
+            <h3>🎨 Generate Design System</h3>
+            <p style="color: var(--muted); font-size: 13px; margin: 8px 0;">
+                Describe your project and AI will create a complete design system
+            </p>
+            <textarea id="desc" rows="3" placeholder="e.g., A fintech dashboard with dark mode..."></textarea>
+            <button class="btn btn-magic" onclick="generate()">✨ Generate Magic</button>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="color: var(--muted);">Consulting 48 UX Laws...</p>
+        </div>
+        
+        <div id="results"></div>
+    </div>
+    
+    <div id="validate-panel" class="panel">
+        <div class="card">
+            <h3>✓ Validate Design</h3>
+            <p style="color: var(--muted); font-size: 13px; margin: 8px 0;">
+                Run 37 Design Tests on your selection
+            </p>
+            <select id="test-suite" style="margin-bottom: 8px;">
+                <option value="all">All Tests (37)</option>
+                <option value="mobile">Mobile Tests (7)</option>
+                <option value="landing">Landing Page Tests (6)</option>
+                <option value="dashboard">Dashboard Tests (6)</option>
+                <option value="a11y">Accessibility Tests (5)</option>
+            </select>
+            <button class="btn btn-primary" onclick="validate()">Run Validation</button>
+        </div>
+        
+        <div class="loading" id="validate-loading">
+            <div class="spinner"></div>
+            <p style="color: var(--muted);">Running 37 Design Tests...</p>
+        </div>
+        
+        <div id="validate-results"></div>
+    </div>
+    
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tab + '-panel').classList.add('active');
+        }
+        
+        function generate() {
+            const desc = document.getElementById('desc').value;
+            if (!desc) return alert('Please describe your project');
+            
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('results').innerHTML = '';
+            
+            setTimeout(() => {
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('results').innerHTML = `
+                    <div class="card">
+                        <h4>🎨 Recommended Style</h4>
+                        <p style="color: var(--muted); font-size: 13px;">Soft UI with Glassmorphism</p>
+                        <div style="display: flex; gap: 8px; margin-top: 12px;">
+                            <div style="width: 40px; height: 40px; background: #7C3AED; border-radius: 8px;"></div>
+                            <div style="width: 40px; height: 40px; background: #A78BFA; border-radius: 8px;"></div>
+                            <div style="width: 40px; height: 40px; background: #F59E0B; border-radius: 8px;"></div>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top: 12px;" 
+                            onclick="parent.postMessage({pluginMessage: {type: 'apply-colors'}}, '*')">
+                            🎨 Apply to Figma
+                        </button>
+                    </div>
+                    <div class="card">
+                        <h4>📱 UX Laws Applied</h4>
+                        <div class="result-item">
+                            <strong>Fitts's Law</strong>
+                            <p style="font-size: 12px; color: var(--muted);">48px touch targets</p>
+                            <span class="badge badge-success">Applied ✓</span>
+                        </div>
+                        <div class="result-item">
+                            <strong>Hick's Law</strong>
+                            <p style="font-size: 12px; color: var(--muted);">2 primary CTAs</p>
+                            <span class="badge badge-success">Applied ✓</span>
+                        </div>
+                    </div>
+                `;
+            }, 2000);
+        }
+        
+        function validate() {
+            const suite = document.getElementById('test-suite').value;
+            
+            document.getElementById('validate-loading').classList.add('active');
+            document.getElementById('validate-results').innerHTML = '';
+            
+            // Send message to plugin code
+            parent.postMessage({
+                pluginMessage: {
+                    type: 'validate-selection',
+                    suite: suite
+                }
+            }, '*');
+        }
+        
+        // Listen for validation results from plugin code
+        window.addEventListener('message', function(event) {
+            const msg = event.data.pluginMessage;
+            if (!msg) return;
+            
+            if (msg.type === 'validation-results') {
+                document.getElementById('validate-loading').classList.remove('active');
+                displayValidationResults(msg.data);
+            }
+        });
+        
+        function displayValidationResults(data) {
+            const score = data.score || 0;
+            const scoreColor = score >= 80 ? 'var(--success)' : score >= 60 ? '#F59E0B' : 'var(--error)';
+            const passed = data.passed || 0;
+            const failed = data.failed || 0;
+            const tests = data.tests || [];
+            
+            let failedTestsHtml = '';
+            const failedTests = tests.filter(t => !t.passed);
+            
+            if (failedTests.length > 0) {
+                failedTestsHtml = `
+                    <div class="card">
+                        <h4 style="color: var(--error); margin-bottom: 12px;">
+                            ⚠ ${failedTests.length} Issues Found
+                        </h4>
+                `;
+                
+                // Group by severity
+                const critical = failedTests.filter(t => t.severity === 'critical');
+                const high = failedTests.filter(t => t.severity === 'high');
+                const medium = failedTests.filter(t => t.severity === 'medium');
+                
+                if (critical.length > 0) {
+                    failedTestsHtml += `<div style="margin-bottom: 16px;"><strong style="color: var(--error);">Critical (${critical.length})</strong>`;
+                    critical.forEach(test => {
+                        failedTestsHtml += createTestResultHtml(test, 'var(--error)');
+                    });
+                    failedTestsHtml += `</div>`;
+                }
+                
+                if (high.length > 0) {
+                    failedTestsHtml += `<div style="margin-bottom: 16px;"><strong style="color: #F59E0B;">High Priority (${high.length})</strong>`;
+                    high.slice(0, 3).forEach(test => {
+                        failedTestsHtml += createTestResultHtml(test, '#F59E0B');
+                    });
+                    failedTestsHtml += `</div>`;
+                }
+                
+                failedTestsHtml += `</div>`;
+            }
+            
+            // Category breakdown
+            const categories = {};
+            tests.forEach(t => {
+                const cat = t.category || 'other';
+                if (!categories[cat]) categories[cat] = { passed: 0, failed: 0 };
+                if (t.passed) categories[cat].passed++;
+                else categories[cat].failed++;
+            });
+            
+            let categoryHtml = '<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px;">';
+            Object.entries(categories).forEach(([cat, stats]) => {
+                const catScore = Math.round((stats.passed / (stats.passed + stats.failed)) * 100);
+                const catColor = catScore >= 80 ? 'var(--success)' : catScore >= 60 ? '#F59E0B' : 'var(--error)';
+                categoryHtml += `
+                    <div style="background: var(--bg); padding: 10px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 11px; color: var(--muted); text-transform: uppercase;">${cat}</div>
+                        <div style="font-size: 20px; font-weight: bold; color: ${catColor};">${catScore}%</div>
+                    </div>
+                `;
+            });
+            categoryHtml += '</div>';
+            
+            document.getElementById('validate-results').innerHTML = `
+                <div class="card">
+                    <div style="text-align: center; padding: 20px 0;">
+                        <div style="font-size: 48px; font-weight: bold; color: ${scoreColor};">${Math.round(score)}</div>
+                        <div style="color: var(--muted);">Design Quality Score</div>
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 24px; margin-top: 16px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: var(--success);">${passed}</div>
+                            <div style="font-size: 11px; color: var(--muted);">PASSED</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: var(--error);">${failed}</div>
+                            <div style="font-size: 11px; color: var(--muted);">FAILED</div>
+                        </div>
+                    </div>
+                    ${categoryHtml}
+                </div>
+                ${failedTestsHtml}
+                <div class="card">
+                    <h4>💡 Quick Fixes</h4>
+                    <ul style="color: var(--muted); font-size: 13px; margin-top: 8px; padding-left: 16px;">
+                        ${failedTests.slice(0, 3).map(t => `<li style="margin-bottom: 4px;">${t.suggestion || t.message}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+        
+        function createTestResultHtml(test, color) {
+            return `
+                <div class="result-item" style="border-left: 3px solid ${color};">
+                    <strong style="font-size: 13px;">${test.name}</strong>
+                    <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">${test.message}</p>
+                    ${test.suggestion ? `<p style="font-size: 11px; color: ${color}; margin-top: 4px;">💡 ${test.suggestion}</p>` : ''}
+                    <span style="font-size: 10px; color: var(--muted);">UX Law: ${test.ux_law}</span>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

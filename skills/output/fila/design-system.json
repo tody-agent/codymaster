@@ -1,0 +1,168 @@
+{
+  "name": "Fila",
+  "description": "Design system extracted from https://templates.envytheme.com/fila/project-management.html",
+  "colors": {
+    "primary": {
+      "base": "#0F79F3",
+      "shades": {
+        "hover": "#0D6CDA",
+        "active": "#0C60C2",
+        "disabled": "#9FC9FA",
+        "light-default": "#E2EEFD",
+        "light-hover": "#D3E6FC",
+        "light-active": "#C3DDFC"
+      },
+      "psychology": {
+        "h": 212,
+        "s": 90,
+        "l": 51,
+        "temperature": "neutral",
+        "energy": "high",
+        "emotion": "professional",
+        "useCase": "primary actions"
+      }
+    },
+    "success": {
+      "base": "#EAFBF2",
+      "shades": {
+        "hover": "#D2E1D9",
+        "active": "#BBC8C1",
+        "disabled": "#F6FDF9",
+        "light-default": "#FCFEFD",
+        "light-hover": "#FBFEFC",
+        "light-active": "#F9FEFB"
+      }
+    },
+    "warning": {
+      "base": "#FFB264",
+      "shades": {
+        "hover": "#E5A05A",
+        "active": "#CC8E50",
+        "disabled": "#FFE0C1",
+        "light-default": "#FFF5EC",
+        "light-hover": "#FFF1E3",
+        "light-active": "#FFEBD8"
+      }
+    },
+    "danger": {
+      "base": "#FDEBF3",
+      "shades": {
+        "hover": "#E3D3DA",
+        "active": "#CABCC2",
+        "disabled": "#FEF7FA",
+        "light-default": "#FEFCFD",
+        "light-hover": "#FEFBFC",
+        "light-active": "#FEFAFC"
+      }
+    },
+    "info": {
+      "base": "#F6F5FE",
+      "shades": {
+        "hover": "#DDDCE4",
+        "active": "#C4C4CB",
+        "disabled": "#FBFBFE",
+        "light-default": "#FDFDFE",
+        "light-hover": "#FDFDFE",
+        "light-active": "#FCFCFE"
+      }
+    },
+    "link": "#919AA3",
+    "text-0": "#919AA3",
+    "text-1": "#475569",
+    "bg-0": "#EFF3F9",
+    "bg-1": "#FFFFFF",
+    "bg-3": "#FFFFFF",
+    "neutral-50": "#FFFFFF",
+    "neutral-100": "#F7F7F7",
+    "neutral-200": "#F7F7F7",
+    "neutral-300": "#F6F5FE",
+    "neutral-400": "#F4F6FC",
+    "neutral-500": "#F4F6FC",
+    "neutral-600": "#EFF3F9",
+    "neutral-700": "#E7EFFD",
+    "neutral-800": "#E7EFFD",
+    "neutral-900": "#919AA3",
+    "fill-0": "rgba(247, 247, 247, 0.05)",
+    "fill-1": "rgba(247, 247, 247, 0.1)",
+    "fill-2": "rgba(247, 247, 247, 0.15)",
+    "border": "#F7F7F7",
+    "disabled-bg": "#F7F7F7",
+    "disabled-text": "#F4F6FC",
+    "white": "#FFFFFF",
+    "black": "#000000",
+    "overlay": "rgba(0, 0, 0, 0.6)",
+    "shadow": "rgba(0, 0, 0, 0.04)"
+  },
+  "typography": {
+    "font-family-regular": "Outfit, sans-serif",
+    "font-size-header-1": "18px",
+    "font-size-header-2": "26px",
+    "font-size-header-3": "17px",
+    "font-size-header-4": "16px",
+    "font-size-header-5": "18px",
+    "font-size-regular": "14.08px",
+    "line-height-regular": "21.12px",
+    "font-weight-light": "200",
+    "font-weight-regular": "400",
+    "font-weight-medium": "500",
+    "font-weight-semibold": "600",
+    "font-weight-bold": "700"
+  },
+  "spacing": {
+    "none": "1px",
+    "super-tight": "1px",
+    "extra-tight": "4px",
+    "tight": "8px",
+    "base-tight": "12px",
+    "base": "14px",
+    "base-loose": "18px",
+    "loose": "22px",
+    "extra-loose": "30px",
+    "super-loose": "40px"
+  },
+  "borders": {
+    "thickness-control": "1px",
+    "thickness": "0",
+    "thickness-control-focus": "1px",
+    "radius-xs": "10px",
+    "radius-sm": "3px",
+    "radius-md": "2px",
+    "radius-lg": "50%",
+    "radius-full": "100px",
+    "radius-circle": "50%"
+  },
+  "shadows": {
+    "sm": "0 0 1px rgba(0, 0, 0, 0.1)",
+    "elevated": "0 0 1px rgba(0, 0, 0, 0.3), 0 4px 14px rgba(0, 0, 0, 0.1)",
+    "lg": "0 0 1px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.12)"
+  },
+  "sizing": {
+    "height-control-small": "24px",
+    "height-control-default": "32px",
+    "height-control-large": "40px",
+    "width-icon-extra-small": "8px",
+    "width-icon-small": "12px",
+    "width-icon-medium": "16px",
+    "width-icon-large": "20px",
+    "width-icon-extra-large": "24px"
+  },
+  "components": {},
+  "layout": {
+    "type": "sidebar-layout",
+    "has_sidebar": true,
+    "has_header": true,
+    "sidebar_width": 259,
+    "header_height": 68
+  },
+  "meta": {
+    "url": "https://templates.envytheme.com/fila/project-management.html",
+    "title": "Fila - Bootstrap 5 Admin Dashboard Template",
+    "timestamp": "2026-02-25T17:33:58.561Z",
+    "pageType": "dashboard",
+    "viewport": {
+      "width": 1512,
+      "height": 861
+    },
+    "elementCount": 2229
+  }
+}

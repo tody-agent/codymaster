@@ -1,0 +1,147 @@
+{
+    "niche": "dental-clinic",
+    "brand": {
+        "name": "SmileFirst Dental",
+        "slogan": "Confident Smiles, Expert Care",
+        "tone": "caring-professional",
+        "language": "en",
+        "colors": {
+            "primary": "#0891B2",
+            "secondary": "#FFFFFF",
+            "accent": "#F0FDFA"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "treatment-guide",
+                "title_template": "{topic_name}: Procedure, Cost, Recovery & What to Expect",
+                "category": "treatments",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "dental treatment",
+                    "procedure",
+                    "cost"
+                ]
+            },
+            {
+                "id": "symptom-article",
+                "title_template": "{topic_name}: Causes, Symptoms & When to See a Dentist",
+                "category": "symptoms",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "symptoms",
+                    "causes",
+                    "dental health"
+                ]
+            },
+            {
+                "id": "cost-breakdown",
+                "title_template": "{topic_name} Cost Breakdown: With & Without Insurance (2025)",
+                "category": "costs",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "cost",
+                    "insurance",
+                    "payment plans"
+                ]
+            },
+            {
+                "id": "comparison",
+                "title_template": "{topic_name}: Types, Materials & Which Is Best for You",
+                "category": "comparisons",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "comparison",
+                    "types",
+                    "best option"
+                ]
+            },
+            {
+                "id": "faq-article",
+                "title_template": "{topic_name}: Dental Questions Answered by Our Experts",
+                "category": "faq",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "FAQ",
+                    "dental",
+                    "questions"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "reviewedBy"
+            ]
+        },
+        "word_count": {
+            "min": 1000,
+            "max": 2000
+        },
+        "language": "en",
+        "disclaimer": "This content is for informational purposes only. Consult your dentist for personalized treatment."
+    },
+    "sources": {
+        "type": "markdown",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": true
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}
