@@ -8,6 +8,7 @@
     "howItWorks": "यह कैसे काम करता है",
     "deepDive": "विस्तृत जानकारी",
     "personas": "आपके लिए",
+    "docs": "Docs",
     "skills": "कौशल",
     "story": "हमारी कहानी",
     "getStarted": "शुरू करें",
@@ -15,7 +16,13 @@
   },
   "hero": {
     "badge": "30+ AI कौशल · ओपन-सोर्स · मुफ़्त",
-    "headline": "विचारों को उत्पाद में परिणत करें\n10 गुना तेज़ी से",
+    "typingPhrases": [
+      "विचारों को 10 गुना तेज़ी से उत्पाद बनाएं",
+      "मिनटों में प्रोडक्शन कोड शिप करें",
+      "बिना Dev टीम के SaaS ऐप बनाएं",
+      "एक चैट से शानदार UX डिज़ाइन करें",
+      "पेशेवर दस्तावेज़ स्वचालित बनाएं"
+    ],
     "subtitle": "एक AI एजेंट कौशल किट जो आपको विचार → डिज़ाइन → कोड → परिनियोजन के माध्यम से मार्गदर्शन करती है,\nशून्य कोडिंग आवश्यक। बस प्राकृतिक भाषा में बात करें।",
     "ctaPrimary": "मुफ़्त में उपयोग करें",
     "ctaSecondary": "डेमो देखें",
@@ -104,21 +111,578 @@
   "personas": {
     "label": "यह किसके लिए है?",
     "title": "टीम की हर भूमिका के लिए निर्मित",
-    "dev": {
-      "title": "डेवलपर्स के लिए",
-      "desc": "बॉयलरप्लेट लिखना बंद करें। AI को 80% काम संभालने दें और आप आर्किटेक्चर पर ध्यान दें। अनिवार्य TDD कोड को त्रुटि-मुक्त बनाता है।"
-    },
-    "pm": {
-      "title": "PMs और व्यापार मालिकों के लिए",
-      "desc": "5 गुना तेजी से सुविधाएँ लॉन्च करें। सामान्य भाषा में बताएं, Cody Master इसे कार्यों में तोड़ता है और निष्पादित करता है।"
-    },
-    "qa": {
-      "title": "QA इंजीनियर्स के लिए",
-      "desc": "मर्ज करने से पहले बग पकड़ें। 6-गेट गुणवत्ता प्रणाली सुनिश्चित करती है कि हर कमिट टेस्ट, लिंटिंग और सुरक्षा स्कैन से गुजरे।"
-    },
-    "founders": {
-      "title": "संस्थापकों के लिए",
-      "desc": "तकनीकी सह-संस्थापक के बिना MVP बनाएं। एजेंसी लागत का 90% बचाएं और महीनों के बजाय कुछ दिनों में लॉन्च करें।"
+    "subtitle": "Cody Master understands YOUR specific challenges. Find your role, see how it solves YOUR problems.",
+    "learnMore": "Learn more →",
+    "cards": [
+      {
+        "id": "founder",
+        "emoji": "🚀",
+        "title": "For Founders",
+        "tagline": "Build your MVP without a dev team",
+        "pains": [
+          "Ideas stuck in your head for months",
+          "Agencies charge $30K-50K and take forever",
+          "No-code tools hit limits fast"
+        ],
+        "dream": "From idea to live product in days, not months."
+      },
+      {
+        "id": "cmo",
+        "emoji": "📢",
+        "title": "For CMOs & Marketing Managers",
+        "tagline": "Content, landing pages, and tracking — instantly",
+        "pains": [
+          "Content team can't keep up with demand",
+          "Landing pages take weeks through dev pipeline",
+          "No conversion tracking = can't prove ROI"
+        ],
+        "dream": "SEO content + landing pages + full tracking in minutes."
+      },
+      {
+        "id": "pm",
+        "emoji": "📋",
+        "title": "For PMs, POs & BAs",
+        "tagline": "Ship features without the chaos",
+        "pains": [
+          "AI writes code but breaks everything else",
+          "Design inconsistent across projects",
+          "No docs, no onboarding, users are lost"
+        ],
+        "dream": "Disciplined AI that follows rules and ships quality."
+      },
+      {
+        "id": "dev",
+        "emoji": "💻",
+        "title": "For Tech Teams",
+        "tagline": "CTO · Tech Lead · FE/BE · Mobile · QC",
+        "pains": [
+          "80% of time wasted on boilerplate setup",
+          "AI code has zero tests, zero security",
+          "Deploys are stressful with no rollback"
+        ],
+        "dream": "Focus on architecture. AI handles the rest — with quality gates."
+      },
+      {
+        "id": "designer",
+        "emoji": "🎨",
+        "title": "For Designers",
+        "tagline": "AI that respects your design system",
+        "pains": [
+          "AI ignores your tokens and guidelines",
+          "Can't preview before coding starts",
+          "Every AI output looks different from your brand"
+        ],
+        "dream": "Design-first workflow: preview → approve → code."
+      },
+      {
+        "id": "claw",
+        "emoji": "🦞",
+        "title": "For the Claw Family",
+        "tagline": "OpenClaw · NemoClaw · OpenFang · More",
+        "pains": [
+          "Skills locked to one AI agent only",
+          "Config doesn't transfer between tools",
+          "Fragmented ecosystem, no interop"
+        ],
+        "dream": "One config. Every Claw agent obeys. Universal skills."
+      }
+    ],
+    "details": {
+      "founder": {
+        "heroTitle": "You have the idea.\nYou just need the 100 hands to build it.",
+        "heroSub": "Cody Master gives non-technical founders the power to build, design, and deploy production-ready products — without writing a single line of code.",
+        "painLabel": "THE WALLS YOU'RE HITTING",
+        "painTitle": "We know what's stopping you",
+        "pains": [
+          {
+            "icon": "💸",
+            "title": "Agencies drain your budget",
+            "desc": "You've been quoted $30K-50K for an MVP. Weeks of meetings. Revisions that cost extra. And the result? A product that doesn't match your vision."
+          },
+          {
+            "icon": "⏳",
+            "title": "Ideas die waiting",
+            "desc": "By the time you find a developer, negotiate contracts, and start building — your competitor already launched. Speed is everything in startup land."
+          },
+          {
+            "icon": "🧱",
+            "title": "No-code hits a wall",
+            "desc": "Wix, Squarespace, Bubble — great for static pages, terrible for real products. You need auth, dashboards, APIs, databases. No-code can't do that."
+          },
+          {
+            "icon": "🎯",
+            "title": "You can't validate fast enough",
+            "desc": "Every day without a live product is a day you're guessing instead of learning. You need to test the market NOW, not in 3 months."
+          }
+        ],
+        "solutionLabel": "HOW CODY MASTER HELPS",
+        "solutionTitle": "Your AI co-founder that never sleeps",
+        "solutions": [
+          {
+            "skill": "cm-planning",
+            "benefit": "Describe your idea in plain English. AI breaks it into an actionable plan."
+          },
+          {
+            "skill": "cm-ux-master",
+            "benefit": "Get a professional design system — 48 UX Laws, 1032+ patterns."
+          },
+          {
+            "skill": "cm-execution",
+            "benefit": "AI writes production code with tests. Not prototypes — real products."
+          },
+          {
+            "skill": "cm-safe-deploy",
+            "benefit": "One command to deploy. 8-gate pipeline. Automatic rollback if anything breaks."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "$30K+ agency fees",
+            "3-6 months to launch",
+            "Product doesn't match your vision",
+            "Can't iterate quickly",
+            "Dependent on developers"
+          ],
+          "after": [
+            "$0 — completely free",
+            "Days to launch, not months",
+            "You describe, AI builds exactly that",
+            "Iterate in real-time with chat",
+            "Full ownership, no dependency"
+          ]
+        },
+        "objections": [
+          {
+            "q": "Can AI really build production-quality products?",
+            "a": "Yes. Unlike ChatGPT copy-paste, Cody Master enforces TDD, quality gates, and security scans. Every line of code is tested before deploy."
+          },
+          {
+            "q": "I literally don't know any code. Will this work for me?",
+            "a": "That's exactly who this is for. The creator of Cody Master is a PM who can't code either. You chat naturally — AI handles everything."
+          },
+          {
+            "q": "What if I need changes later?",
+            "a": "Chat again. Tell AI what to change. It remembers context (cm-continuity) and updates without breaking existing functionality."
+          }
+        ],
+        "ctaTitle": "Your idea deserves to exist.\nStop waiting. Start building.",
+        "ctaSub": "Free. No credit card. From idea to live product today.",
+        "ctaButton": "Build My MVP Now →"
+      },
+      "cmo": {
+        "heroTitle": "Your content team can't keep up.\nCody Master can.",
+        "heroSub": "Generate SEO-optimized content, high-converting landing pages, and complete ad tracking setup — all powered by StoryBrand, Cialdini, and 7 proven frameworks.",
+        "painLabel": "THE BOTTLENECK",
+        "painTitle": "Marketing at scale is broken without the right tools",
+        "pains": [
+          {
+            "icon": "📝",
+            "title": "Content creation is too slow",
+            "desc": "Your writers produce 2 blog posts a week. You need 10. SEO specialists cost $5K/month. You're always behind the editorial calendar."
+          },
+          {
+            "icon": "🖥️",
+            "title": "Landing pages take forever",
+            "desc": "Every campaign needs a landing page. Designer → developer → QA → deploy. 2-3 weeks minimum. By then the campaign window has closed."
+          },
+          {
+            "icon": "📊",
+            "title": "Can't prove ROI to the board",
+            "desc": "Facebook Pixel partially set up. Google Ads conversion tracking missing. UTM parameters are inconsistent. You're flying blind on ROAS."
+          },
+          {
+            "icon": "🎯",
+            "title": "Content doesn't convert",
+            "desc": "Your content looks good but doesn't drive action. No persuasion framework. No CRO optimization. No A/B testing hooks. Just words on a page."
+          }
+        ],
+        "solutionLabel": "YOUR NEW CONTENT ENGINE",
+        "solutionTitle": "7 persuasion frameworks. Zero content bottleneck.",
+        "solutions": [
+          {
+            "skill": "cm-content-factory",
+            "benefit": "StoryBrand + Cialdini + SUCCESs + STEPPS. AI writes content that converts, not just fills pages."
+          },
+          {
+            "skill": "cm-ux-master",
+            "benefit": "Landing pages with CRO built in — hero sections, social proof, objection handling, urgency."
+          },
+          {
+            "skill": "cm-ads-tracker",
+            "benefit": "Complete tracking: Meta Pixel + CAPI, TikTok Events, Google Ads Enhanced Conversions, UTM attribution."
+          },
+          {
+            "skill": "cm-readit",
+            "benefit": "Turn any content into audio. TTS reading mode increases engagement and time-on-page."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "2 blog posts per week",
+            "Landing pages take 2-3 weeks",
+            "No conversion tracking",
+            "Content without persuasion framework",
+            "Can't prove ROI"
+          ],
+          "after": [
+            "30+ blog posts generated instantly",
+            "Landing pages in 15 minutes",
+            "Full pixel + CAPI + UTM tracking",
+            "7 proven frameworks in every piece",
+            "Complete attribution and ROAS data"
+          ]
+        },
+        "objections": [
+          {
+            "q": "Will AI content get penalized by Google?",
+            "a": "No. cm-content-factory generates original, SEO-optimized content with proper heading hierarchy, internal linking, and schema markup. It's not generic AI slop."
+          },
+          {
+            "q": "Can it match our brand voice?",
+            "a": "Yes. Phase 0 asks about your brand, tone, style. It learns your voice and applies it consistently across all content."
+          },
+          {
+            "q": "We use complex multi-touch attribution. Can it handle that?",
+            "a": "cm-ads-tracker sets up first-touch and last-touch attribution, cross-channel deduplication, and UTM conventions. Enterprise-grade tracking."
+          }
+        ],
+        "ctaTitle": "Stop being the bottleneck.\nStart being the growth engine.",
+        "ctaSub": "From content strategy to live campaigns — in minutes, not months.",
+        "ctaButton": "Supercharge My Marketing →"
+      },
+      "pm": {
+        "heroTitle": "AI gave you 100 hands.\nBut without discipline, those hands create chaos.",
+        "heroSub": "Cody Master is the control system for AI-powered product development. Enforced quality gates, design consistency, and auto-generated documentation.",
+        "painLabel": "THE CHAOS YOU KNOW TOO WELL",
+        "painTitle": "Sound familiar?",
+        "pains": [
+          {
+            "icon": "🎨",
+            "title": "Design is different every time",
+            "desc": "Same brand, same project, three different styles. AI forgets your design system between sessions. Stakeholders think it's three different products."
+          },
+          {
+            "icon": "💥",
+            "title": "AI breaks what already works",
+            "desc": "You ask AI to add a feature. It rewrites half the codebase. Working functionality disappears. You spend the next 2 days undoing the damage."
+          },
+          {
+            "icon": "📄",
+            "title": "No docs means no self-onboarding",
+            "desc": "Amazing product, zero documentation. Users flood support with basic questions. Your support team is drowning because nobody can self-serve."
+          },
+          {
+            "icon": "🔍",
+            "title": "You can't see what AI is doing",
+            "desc": "Running 3 AI agents on 5 tasks. Which one is stuck? What deployed where? How many tokens were spent? You have zero visibility."
+          }
+        ],
+        "solutionLabel": "YOUR AI CONTROL SYSTEM",
+        "solutionTitle": "Discipline for AI. Peace of mind for you.",
+        "solutions": [
+          {
+            "skill": "cm-ux-master",
+            "benefit": "Design system enforced automatically. Same brand, same style, every single time."
+          },
+          {
+            "skill": "cm-quality-gate",
+            "benefit": "6-gate quality system. Nothing reaches production without passing tests, linting, and security."
+          },
+          {
+            "skill": "cm-dockit",
+            "benefit": "Auto-generate complete docs from code: API reference, SOPs, user guides, personas, JTBD."
+          },
+          {
+            "skill": "cm-continuity",
+            "benefit": "Context persists across sessions. AI remembers mistakes and never repeats them."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "Design chaos — different every time",
+            "AI breaks existing code",
+            "Zero documentation",
+            "No visibility into AI activity",
+            "Manual quality reviews"
+          ],
+          "after": [
+            "Design system enforced by AI",
+            "Multi-layer code protection",
+            "World-class docs auto-generated",
+            "Dashboard showing everything",
+            "Automated 6-gate quality"
+          ]
+        },
+        "objections": [
+          {
+            "q": "Won't quality gates slow things down?",
+            "a": "They save time. Catching a bug in the gate takes seconds. Catching it in production takes days. Net effect: you ship FASTER, not slower."
+          },
+          {
+            "q": "I'm a PM, not a dev. Is this too technical?",
+            "a": "Cody Master's creator is a PM too. Everything is designed for you to chat naturally. You say what you want, AI handles the technical details."
+          },
+          {
+            "q": "We use Jira/Linear for task management. Does this replace them?",
+            "a": "No. Cody Master complements your tools. It handles the AI execution part — the quality, consistency, and deployment that Jira can't enforce."
+          }
+        ],
+        "ctaTitle": "You've managed chaos long enough.\nTime for discipline.",
+        "ctaSub": "From AI chaos to production-ready products with enforced quality.",
+        "ctaButton": "Take Control Now →"
+      },
+      "dev": {
+        "heroTitle": "Stop writing setup code.\nStart writing what matters.",
+        "heroSub": "For CTOs, Tech Leads, Frontend, Backend, Mobile devs, and QC engineers — Cody Master handles the 80% of boilerplate while enforcing the quality standards you actually want.",
+        "painLabel": "THE DEVELOPER'S DAILY GRIND",
+        "painTitle": "Every dev knows this pain",
+        "pains": [
+          {
+            "icon": "🔄",
+            "title": "Setup déjà vu",
+            "desc": "Every. Single. Project. Git init, CI/CD config, test infra, linting, i18n, design tokens, deploy pipeline. You've done this 100 times. It never gets faster."
+          },
+          {
+            "icon": "🧪",
+            "title": "AI code = zero test coverage",
+            "desc": "AI generates code fast. But no tests, no type safety, no error handling. You either rewrite it or ship and pray. Neither option is great."
+          },
+          {
+            "icon": "🚀",
+            "title": "Deploy with fingers crossed",
+            "desc": "No staging environment. No rollback strategy. No quality gates. You push to main and check if production is still alive. Every time."
+          },
+          {
+            "icon": "🏗️",
+            "title": "Architecture decisions without context",
+            "desc": "AI doesn't understand your codebase's patterns. It generates code that conflicts with your architecture. You spend more time fixing than writing."
+          },
+          {
+            "icon": "🧑‍🤝‍🧑",
+            "title": "QC has no automated safety net",
+            "desc": "QC engineers manually test everything. No automated test gates, no regression checks, no security scans built into the pipeline."
+          }
+        ],
+        "solutionLabel": "YOUR ENGINEERING MULTIPLIER",
+        "solutionTitle": "The discipline your codebase deserves",
+        "solutions": [
+          {
+            "skill": "cm-project-bootstrap",
+            "benefit": "One command: design system, test infra, CI/CD, i18n, SEO, deploy pipeline. All wired up on day zero."
+          },
+          {
+            "skill": "cm-tdd",
+            "benefit": "Tests are written BEFORE implementation. Every feature has coverage from the start."
+          },
+          {
+            "skill": "cm-safe-deploy",
+            "benefit": "8-gate pipeline: lint → type check → test → build → security → preview → deploy → verify. Auto-rollback on failure."
+          },
+          {
+            "skill": "cm-code-review",
+            "benefit": "Full review lifecycle with technical rigor. Catches issues before they become production incidents."
+          },
+          {
+            "skill": "cm-quality-gate",
+            "benefit": "For QC engineers: automated test gates, evidence-based verification, frontend safety checks. No deploy without passing."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "2-3 days to set up each project",
+            "AI code with zero tests",
+            "No deploy safety net",
+            "Manual code reviews",
+            "QC tests everything by hand"
+          ],
+          "after": [
+            "10 minutes to production-ready scaffold",
+            "TDD enforced — tests first",
+            "8-gate deploy + automatic rollback",
+            "AI-assisted reviews with rigor",
+            "Automated quality gates for QC"
+          ]
+        },
+        "objections": [
+          {
+            "q": "My stack is unusual. Will it work?",
+            "a": "Cody Master supports 17 frameworks: React, Next.js, Astro, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, Angular, htmx, Electron, Tauri, and more."
+          },
+          {
+            "q": "I don't want AI writing my core logic.",
+            "a": "Then don't. Use Cody Master for the 80% that's boring: scaffolding, tests, docs, deploy config. You write the 20% that requires your brain."
+          },
+          {
+            "q": "How does this work for a CTO managing a team?",
+            "a": "As CTO, you define the quality standards once. Cody Master enforces them across every project, every developer, every AI agent. Consistency at scale."
+          }
+        ],
+        "ctaTitle": "Life is too short to write boilerplate.\nLet AI do the boring parts. You do the brilliant parts.",
+        "ctaSub": "Free. Open source. Production-ready from day one.",
+        "ctaButton": "Start Building →"
+      },
+      "designer": {
+        "heroTitle": "You designed the system.\nAI should respect it.",
+        "heroSub": "Cody Master is the only AI toolkit that reads your design tokens, previews before coding, and enforces brand consistency — making AI your design partner, not your design enemy.",
+        "painLabel": "EVERY DESIGNER'S FRUSTRATION",
+        "painTitle": "AI should amplify your vision, not ignore it",
+        "pains": [
+          {
+            "icon": "🎨",
+            "title": "AI ignores your design tokens",
+            "desc": "You spent weeks defining your design system: colors, spacing, typography, components. AI doesn't read any of it. Every output looks random."
+          },
+          {
+            "icon": "👁️",
+            "title": "No preview before coding",
+            "desc": "With code-first AI tools, you can't see the design until it's already built. By then, 80% of the code needs to change to match your vision."
+          },
+          {
+            "icon": "🔀",
+            "title": "Inconsistent output kills brand",
+            "desc": "Page A uses rounded corners, Page B uses sharp edges, Page C has a completely different color palette. Same project. Same AI. Zero consistency."
+          },
+          {
+            "icon": "🤝",
+            "title": "Dev handoff is broken",
+            "desc": "You design in Figma. AI codes from scratch, ignoring your meticulously crafted components. The gap between design and production is a canyon."
+          }
+        ],
+        "solutionLabel": "YOUR DESIGN-FIRST WORKFLOW",
+        "solutionTitle": "Preview → Approve → Code. In that order.",
+        "solutions": [
+          {
+            "skill": "cm-ux-master",
+            "benefit": "Harvester v4 reads your existing design system. 48 UX Laws validate every component. 1032+ patterns for inspiration."
+          },
+          {
+            "skill": "cm-ui-preview",
+            "benefit": "See the UI before a single line of code is written. Powered by Google Stitch and Pencil.dev."
+          },
+          {
+            "skill": "cm-execution",
+            "benefit": "AI generates code that uses YOUR tokens, YOUR components, YOUR spacing. Not random defaults."
+          },
+          {
+            "skill": "cm-project-bootstrap",
+            "benefit": "Design system is set up from day one. Every project starts with your brand DNA."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "AI ignores your design system",
+            "Code first, design second",
+            "Inconsistent brand output",
+            "Manual handoff gap",
+            "Redesign after every AI generation"
+          ],
+          "after": [
+            "Design tokens are read and enforced",
+            "Design preview before any code",
+            "Pixel-perfect brand consistency",
+            "Design-to-code pipeline",
+            "Approve once, code matches perfectly"
+          ]
+        },
+        "objections": [
+          {
+            "q": "I use Figma. Can it read my Figma tokens?",
+            "a": "Yes. cm-ux-master Harvester extracts design tokens from existing sites, CSS files, and design systems. Export from Figma, import into Cody Master."
+          },
+          {
+            "q": "Does 'AI preview' actually look like proper design?",
+            "a": "cm-ui-preview uses Google Stitch and Pencil.dev — professional design tools, not text mockups. You review real visual designs."
+          },
+          {
+            "q": "I'm not technical. Can I still control the output?",
+            "a": "That's the entire point. You describe the design in natural language, preview it visually, and approve before any code is generated."
+          }
+        ],
+        "ctaTitle": "Your design system deserves AI that listens.\nNot AI that ignores.",
+        "ctaSub": "Design-first. Preview-first. Quality-first.",
+        "ctaButton": "Try Design-First AI →"
+      },
+      "claw": {
+        "heroTitle": "One skill kit.\nEvery AI agent in the family.",
+        "heroSub": "Whether you use Cursor, Claude Desktop, Antigravity, OpenClaw, NemoClaw, or OpenFang — Cody Master's universal format means your skills work everywhere, instantly.",
+        "painLabel": "THE FRAGMENTATION PROBLEM",
+        "painTitle": "Tired of rewriting rules for every agent?",
+        "pains": [
+          {
+            "icon": "🔒",
+            "title": "Locked into one agent",
+            "desc": "You built custom prompts and rules for Cursor. Now you want to try Claude Desktop. Start from scratch. All your work? Doesn't transfer."
+          },
+          {
+            "icon": "🧩",
+            "title": "Config files don't transfer",
+            "desc": ".cursorrules, claude_desktop_config.json, .windsurfrules — every agent has a different format. Your knowledge is fragmented across incompatible files."
+          },
+          {
+            "icon": "🌐",
+            "title": "No universal skill format",
+            "desc": "You learned to write skills for one agent. But the Claw ecosystem (OpenClaw, NemoClaw, OpenFang) needs interoperability. No standard exists."
+          },
+          {
+            "icon": "🔄",
+            "title": "Switching agents = starting over",
+            "desc": "A new, better agent launches. You want to try it. But migration means re-creating everything. Lock-in by configuration complexity."
+          }
+        ],
+        "solutionLabel": "THE UNIVERSAL STANDARD",
+        "solutionTitle": "Write once. Run anywhere. The Claw way.",
+        "solutions": [
+          {
+            "skill": "CodyMaster Claw",
+            "benefit": "A universal adapter that translates your skills into any agent's format. One SKILL.md, every agent reads it."
+          },
+          {
+            "skill": "cm-skill-mastery",
+            "benefit": "Meta-skill that knows your entire skill library. Ask which skill to use — it routes instantly."
+          },
+          {
+            "skill": "cm-skill-chain",
+            "benefit": "Chain skills into automated pipelines. Works the same across Cursor, Claude, Antigravity, OpenClaw, and more."
+          },
+          {
+            "skill": "cm-example",
+            "benefit": "Universal skill template. Create once, compatible with Antigravity, Claude, Cursor, OpenClaw, NemoClaw, and OpenFang."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "Skills locked to one agent",
+            "Different config format per tool",
+            "No interoperability",
+            "Switching = starting over",
+            "Community skills don't work cross-agent"
+          ],
+          "after": [
+            "Skills work on every agent",
+            "One universal format",
+            "Full Claw ecosystem interop",
+            "Switch freely, zero migration cost",
+            "30+ skills, instant cross-agent compatibility"
+          ]
+        },
+        "objections": [
+          {
+            "q": "I only use Cursor. Do I need this?",
+            "a": "Yes! Even on Cursor alone, you get 30+ battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
+          },
+          {
+            "q": "What is the 'Claw Family' exactly?",
+            "a": "It's the ecosystem of AI agent tools that share the Open Claw interop philosophy: OpenClaw, NemoClaw, OpenFang, and others. Cody Master speaks their language natively."
+          },
+          {
+            "q": "Can I create my own skills in this format?",
+            "a": "Absolutely. cm-skill-mastery and skill-creator-ultra help you create custom skills that work across ALL Claw-compatible agents instantly."
+          }
+        ],
+        "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
+        "ctaSub": "30+ skills. Every Claw agent. Zero lock-in.",
+        "ctaButton": "Join the Claw Family →"
+      }
     }
   },
   "claw": {
@@ -130,20 +694,54 @@
     "label": "कौशल",
     "title": "हर चरण के लिए\n30+ विशेषज्ञ कौशल",
     "subtitle": "प्रत्येक कौशल विचार सृजन, डिज़ाइन से लेकर कॉपीराइटिंग, सुरक्षा और तैनाती तक एक विशेष AI विशेषज्ञ है।",
-    "categories": ["विचार सृजन", "डिज़ाइन", "सामग्री", "कोड एवं परिनियोजन", "सुरक्षा"],
+    "categories": [
+      "विचार सृजन",
+      "डिज़ाइन",
+      "सामग्री",
+      "कोड एवं परिनियोजन",
+      "सुरक्षा"
+    ],
     "cards": [
-      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "description": "निर्माण से पहले विचारों को मान्य करने के लिए बहुआयामी रचनात्मक विश्लेषण" },
-      { "icon": "file-text", "name": "cm-planning", "description": "कोडिंग से पहले विस्तृत योजना-पुनर्लेखन के घंटों को बचाता है" },
-      { "icon": "palette", "name": "cm-ux-master", "description": "UX-संचालित UI डिज़ाइन-सुंदर, उपयोगकर्ता के अनुकूल और रूपांतरण के लिए ट्यून्ड" },
-      { "icon": "pen-tool", "name": "cm-content-factory", "description": "SEO-अनुकूलित कॉपीराइटिंग-ब्लॉग से लेकर पृष्ठों तक विशेषज्ञ की तरह लिखता है" }
+      {
+        "icon": "lightbulb",
+        "name": "cm-brainstorm-idea",
+        "description": "निर्माण से पहले विचारों को मान्य करने के लिए बहुआयामी रचनात्मक विश्लेषण"
+      },
+      {
+        "icon": "file-text",
+        "name": "cm-planning",
+        "description": "कोडिंग से पहले विस्तृत योजना-पुनर्लेखन के घंटों को बचाता है"
+      },
+      {
+        "icon": "palette",
+        "name": "cm-ux-master",
+        "description": "UX-संचालित UI डिज़ाइन-सुंदर, उपयोगकर्ता के अनुकूल और रूपांतरण के लिए ट्यून्ड"
+      },
+      {
+        "icon": "pen-tool",
+        "name": "cm-content-factory",
+        "description": "SEO-अनुकूलित कॉपीराइटिंग-ब्लॉग से लेकर पृष्ठों तक विशेषज्ञ की तरह लिखता है"
+      }
     ]
   },
   "stats": {
     "items": [
-      { "number": "30+", "label": "AI कौशल" },
-      { "number": "17", "label": "समर्थित फ्रेमवर्क" },
-      { "number": "48", "label": "UX कानून" },
-      { "number": "1032+", "label": "डिज़ाइन पैटर्न" }
+      {
+        "number": "30+",
+        "label": "AI कौशल"
+      },
+      {
+        "number": "17",
+        "label": "समर्थित फ्रेमवर्क"
+      },
+      {
+        "number": "48",
+        "label": "UX कानून"
+      },
+      {
+        "number": "1032+",
+        "label": "डिज़ाइन पैटर्न"
+      }
     ]
   },
   "cta": {
@@ -152,10 +750,18 @@
     "button": "अभी शुरू करें"
   },
   "footer": {
-    "links": ["GitHub", "प्रलेखन", "Discord समुदाय"],
+    "links": [
+      "GitHub",
+      "प्रलेखन",
+      "Discord समुदाय"
+    ],
     "copyright": "© 2026 Cody Master · AI-Powered"
   },
   "skillsPage": {
+    "modalWhat": "What is it?",
+    "modalWhen": "When to use?",
+    "modalWhy": "Why use it?",
+    "modalBest": "Best Practice",
     "meta": {
       "title": "कौशल - Cody Master Kit",
       "description": "30 से अधिक विशेष AI एजेंट कौशल का अन्वेषण करें।"
@@ -163,19 +769,560 @@
     "hero": "संपूर्ण कौशल निर्देशिका की खोज करें",
     "heroSub": "प्रत्येक कौशल आपका व्यक्तिगत AI विशेषज्ञ है। खोजें और फ़िल्टर करें।",
     "searchPlaceholder": "कौशल खोजें...",
-    "categories": ["सभी", "विचार सृजन", "डिज़ाइन", "सामग्री", "कोड एवं परिनियोजन", "सुरक्षा", "गुणवत्ता", "डेवऑप्स"],
+    "categories": [
+      "सभी",
+      "विचार सृजन",
+      "डिज़ाइन",
+      "सामग्री",
+      "कोड एवं परिनियोजन",
+      "सुरक्षा",
+      "गुणवत्ता",
+      "डेवऑप्स"
+    ],
     "modalTryPrompt": "यह पूछने का प्रयास करें:",
     "modalRelated": "संबंधित कौशल",
     "modalCta": "इस कौशल का उपयोग करना शुरू करें",
     "catalog": [
-      { "id": "cm-brainstorm-idea", "name": "cm-brainstorm-idea", "category": "विचार सृजन", "icon": "lightbulb", "tagline": "रणनीतिक रचनात्मक विश्लेषण", "description": "बहु-आयामी मूल्यांकन जिसमें डिज़ाइन थिंकिंग और 9 विंडोज़ (TRIZ) शामिल हैं।", "prompt": "मेरे ई-कॉमर्स प्लेटफ़ॉर्म का विश्लेषण करें", "related": ["cm-planning", "cm-ux-master"] },
-      { "id": "cm-planning", "name": "cm-planning", "category": "विचार सृजन", "icon": "map", "tagline": "कार्यान्वयन योजना", "description": "कार्यान्वयन से पहले मंशा और आवश्यकताओं का अन्वेषण। कोडिंग के घंटों को बचाता है।", "prompt": "उपयोगकर्ता प्रमाणीकरण कार्यान्वयन की योजना बनाएं", "related": ["cm-brainstorm-idea", "cm-execution"] },
-      { "id": "cm-content-factory", "name": "cm-content-factory", "category": "सामग्री", "icon": "pen-tool", "tagline": "AI सामग्री इंजन", "description": "StoryBrand ढांचे के आधार पर स्व-शिक्षण सामग्री इंजन। SEO-अनुकूल सामग्री उत्पन्न करता है।", "prompt": "दूरस्थ कार्य उत्पादकता के बारे में एक ब्लॉग पोस्ट लिखें", "related": ["cm-readit", "cm-ux-master"] },
-      { "id": "cm-ux-master", "name": "cm-ux-master", "category": "डिज़ाइन", "icon": "palette", "tagline": "UI/UX इंटेलिजेंस", "description": "48 UX कानून, 37 डिज़ाइन परीक्षण। संपूर्ण डिज़ाइन सिस्टम उत्पन्न करता है।", "prompt": "SaaS एनालिटिक्स ऐप के लिए डिज़ाइन तैयार करें", "related": ["cm-ui-preview", "cm-content-factory"] },
-      { "id": "cm-ui-preview", "name": "cm-ui-preview", "category": "डिज़ाइन", "icon": "monitor", "tagline": "UI पूर्वावलोकन और दृश्यता", "description": "Google Stitch को नियोजित करके पूर्णतः उत्पादन के लिए तैयार डिज़ाइन आउटपुट करता है।", "prompt": "लॉगिन पृष्ठ का पूर्वावलोकन जेनरेट करें", "related": ["cm-ux-master", "cm-planning"] },
-      { "id": "cm-execution", "name": "cm-execution", "category": "कोड एवं परिनियोजन", "icon": "play", "tagline": "स्मार्ट कोड पैकेज निष्पादन", "description": "पूर्व अनुवर्ती डिज़ाइन के अनुसार बिना किसी दोहराव के स्वचालित रूप से कार्य करता है।", "prompt": "चेकआउट सुविधा के कार्यान्वयन को निष्पादित करें", "related": ["cm-planning", "cm-tdd"] },
-      { "id": "cm-tdd", "name": "cm-tdd", "category": "गुणवत्ता", "icon": "check-square", "tagline": "टेस्ट संचालित विकास", "description": "सुविधा निर्माण से पहले सभी परीक्षण कवर और सुनिश्चित करता है।", "prompt": "भुगतान प्रसंस्करण के लिए परीक्षण लिखें", "related": ["cm-execution", "cm-quality-gate"] },
-      { "id": "cm-debugging", "name": "cm-debugging", "category": "गुणवत्ता", "icon": "bug", "tagline": "मूल कारण डीबगर", "description": "समस्याओं का व्यवस्थित रूप से विश्लेषण करके सतही सुधार करता है।", "prompt": "डीबग करें कि मोबाइल पर लॉगिन क्रैश क्यों होता है", "related": ["cm-tdd", "cm-terminal"] }
+      {
+        "id": "cm-brainstorm-idea",
+        "name": "cm-brainstorm-idea",
+        "category": "Ideation",
+        "icon": "lightbulb",
+        "tagline": "Strategic Idea Analysis",
+        "prompt": "Analyze my e-commerce platform and suggest improvements",
+        "related": [
+          "cm-planning",
+          "cm-ux-master"
+        ],
+        "problem": "Got a brilliant idea but paranoid about building the wrong thing and burning time?",
+        "solution": "Multi-dimensional analysis to architect the absolute best execution strategy before hardcoding.",
+        "whatIsIt": "A strategic analysis tactician acting as your Product Manager. Employs Design Thinking, TRIZ 9 Windows, and Double Diamond matrices to dissect mechanics, marketing, and business risks.",
+        "whenToUse": "Exclusively before bootstrapping major epics or refactoring chaotic multi-tiered legacy systems.",
+        "whyToUse": "Eviscerates the 'build fast but build wrong' illusion. Forces you into evaluating 2-3 structured strategic options (comparing Pros/Cons) rather than coding blindly.",
+        "bestPractice": "Feed it extensive raw User Profile contexts. Consistently execute this prior to invoking `cm-planning`."
+      },
+      {
+        "id": "cm-planning",
+        "name": "cm-planning",
+        "category": "Ideation",
+        "icon": "map",
+        "tagline": "Implementation Planning",
+        "prompt": "Plan the implementation for user authentication",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-execution"
+        ],
+        "problem": "Whenever the AI is commanded to code raw, it violently demolishes your stable architecture?",
+        "solution": "Force AI to formulate a comprehensive structural blueprint defining scope before keyboard hitting.",
+        "whatIsIt": "The supreme operational orchestrator. Pushes out an architectural blueprint (`implementation_plan.md`) documenting exactly what files undergo structural mutation.",
+        "whenToUse": "After the core idea hits green-light status (via `cm-brainstorm-idea`) and identically moments before physically coding.",
+        "whyToUse": "Shatters monolithic requests into micro-manageable step-nodes. Pre-reviewing this architectural snapshot rescues you from infinite debugging loops late night.",
+        "bestPractice": "Intensely scrutinize the `implementation_plan.md`. Command the AI to patch architectural flaws rigidly before ever approving movement to `cm-execution`."
+      },
+      {
+        "id": "cm-content-factory",
+        "name": "cm-content-factory",
+        "category": "Content",
+        "icon": "pen-tool",
+        "tagline": "AI Content Engine",
+        "prompt": "Write a blog post about remote work productivity",
+        "related": [
+          "cm-readit",
+          "cm-ux-master"
+        ],
+        "problem": "Your landing page SEO content sounds incredibly robotic, driving bounce rates up and conversions down?",
+        "solution": "A psychological copywriting factory that mimics 8-figure conversion marketers flawlessly.",
+        "whatIsIt": "A self-improving content engine imbued with 8+ hypnotic psychological frameworks (StoryBrand SB7, Cialdini's Persuasion, SUCCESs vectors) for elite marketing campaigns.",
+        "whenToUse": "Drafting intensely persuasive content mediums: Lead generation funnels, blast emails, commercial blogs, or Facebook Ad hooks.",
+        "whyToUse": "Moves away from generative dictionary-text into pure psychological maneuvers. It agitates exact user trauma points, weaponizes curiosity, and boosts global Conversion Rates (CRO).",
+        "bestPractice": "Initially define the JTBD (Job-to-be-Done). Trigger the StoryBrand mode projecting your Customer strictly as the Hero, and your Brand as the Yoda-like Guide."
+      },
+      {
+        "id": "cm-ux-master",
+        "name": "cm-ux-master",
+        "category": "Design",
+        "icon": "palette",
+        "tagline": "UI/UX Design Intelligence",
+        "prompt": "Design a dashboard for a SaaS analytics app",
+        "related": [
+          "cm-ui-preview",
+          "cm-content-factory"
+        ],
+        "problem": "Your interface is erratic, spacing grids clash, and the color hierarchies resemble a circus?",
+        "solution": "Instantly impose absolute UI/UX design compliance inherited from 48 universal laws and elite patterns.",
+        "whatIsIt": "The apex visual intelligence node. Integrates 48 strict UX Laws, thousands of component heuristics, deeply optimizing aesthetic A11y scaling and whitespace math.",
+        "whenToUse": "Prototyping new UI layouts from scratch, auditing broken checkout friction streams, or elevating UI consistency globally.",
+        "whyToUse": "Eradicates the dependency on highly expensive UX consultation. Acts as a draconian design gatekeeper verifying your aesthetic yields extreme polish and engagement.",
+        "bestPractice": "Always pair this engine sequentially with `cm-ui-preview` to visualize its conceptualized mockups before dropping into Tailwind syntax."
+      },
+      {
+        "id": "cm-ui-preview",
+        "name": "cm-ui-preview",
+        "category": "Design",
+        "icon": "monitor",
+        "tagline": "Visual UI Preview",
+        "prompt": "Preview a mobile app login screen",
+        "related": [
+          "cm-ux-master",
+          "cm-planning"
+        ],
+        "problem": "A nightmare trying to conceptualize how an AI's code will visually render without compiling?",
+        "solution": "Render immediate hyper-realistic mockups strictly locking down design specs before HTML processing.",
+        "whatIsIt": "Seamlessly interlocks via Google Stitch/Pencil integration parameters producing live UI graphical snapshots instantaneously.",
+        "whenToUse": "Traversing the twilight zone between conceptual ideation and deep coding pipelines to physically validate concepts.",
+        "whyToUse": "Iterating graphical elements is hundreds of times cheaper token-wise and time-wise compared to endless CSS refactoring loops. 'Preview before producing'.",
+        "bestPractice": "Declare component demands precisely (Sidebar grids, Hero Call-to-actions). Demand exported screenshot renderings immediately traversing processing."
+      },
+      {
+        "id": "cm-execution",
+        "name": "cm-execution",
+        "category": "Code & Deploy",
+        "icon": "play",
+        "tagline": "Smart Code Execution",
+        "prompt": "Execute the implementation plan for the checkout feature",
+        "related": [
+          "cm-planning",
+          "cm-tdd"
+        ],
+        "problem": "Unleashing an AI on gigantic changesheets causes token amnesia, breaking pristine logic boundaries?",
+        "solution": "Atomically partition operations, buffer saves, and intelligently string processing simultaneously.",
+        "whatIsIt": "The industrial-tier coding execution loop mechanism. Capable of intense batch processing trajectories, anomaly isolation, and non-stop operational perseverance.",
+        "whenToUse": "Armed explicitly with an `implementation_plan.md` and prepared to industrially construct the feature sets.",
+        "whyToUse": "It honors strict Dependency-First execution flow (E.g. generating DB schemas prior to UI consumption). Audits itself sequentially post-microstep.",
+        "bestPractice": "Monitor the `task.md` dashboard progress actively. Refrain arbitrarily interrupting the AI whilst locked in a Deep Execution state unless a nuclear error signals."
+      },
+      {
+        "id": "cm-tdd",
+        "name": "cm-tdd",
+        "category": "Quality",
+        "icon": "check-square",
+        "tagline": "Test-Driven Development",
+        "prompt": "Write tests for the payment processing module",
+        "related": [
+          "cm-execution",
+          "cm-quality-gate"
+        ],
+        "problem": "App functions flawlessly initially, but collapses silently via regression every minor patch cycle?",
+        "solution": "Draconian enforcement of Test-Driven Development (TDD) engineering absolute structural shields.",
+        "whatIsIt": "Pure TDD dogma enforcer. Physically authors logical assertions (Unit/Integration) *before* spawning the core algorithm logic designed to clear the test constraints.",
+        "whenToUse": "Absolutely fundamental dictation when handling core mathematical layers, payment gateways, complex state mutations, or critical endpoints.",
+        "whyToUse": "Guarantees mission-critical infrastructure operates immune to silent regression creeping. Green test matrices equal zero-anxiety nocturnal deployments.",
+        "bestPractice": "Never disregard utility function coverage metrics. Command the AI to ingest your custom Jest/Vitest configuration specifications thoroughly."
+      },
+      {
+        "id": "cm-debugging",
+        "name": "cm-debugging",
+        "category": "Quality",
+        "icon": "bug",
+        "tagline": "Root Cause Debugging",
+        "prompt": "Debug why the login page crashes on mobile",
+        "related": [
+          "cm-tdd",
+          "cm-terminal"
+        ],
+        "problem": "Hitting an anomaly and the AI guesses wildly, altering stable dependencies while deteriorating the stack?",
+        "solution": "Implement surgical Root Cause methodologies replacing volatile wild-guess patchwork immediately.",
+        "whatIsIt": "A methodical trace forensics instrument. Recursively scans the data flow pipelines, unravels terminal output, and isolates exact structural node failures surgically.",
+        "whenToUse": "Confronted by visible UI rendering fracturing, terminal compilation panics, or logic chains returning catastrophic mutations.",
+        "whyToUse": "Standard unstructured debugging usually annihilates secondary logic clusters. This technique isolates the infection, deploying a single targeted patch conserving absolute context stability.",
+        "bestPractice": "Deliver raw unadulterated Error Stack Traces. Explicitly instruct it: 'Analyze Root Cause precisely' prior to ever granting file-write authorization."
+      },
+      {
+        "id": "cm-code-review",
+        "name": "cm-code-review",
+        "category": "Quality",
+        "icon": "git-pull-request",
+        "tagline": "Code Review & Feedback",
+        "prompt": "Review the latest pull request for the API module",
+        "related": [
+          "cm-quality-gate",
+          "cm-tdd"
+        ],
+        "problem": "Terrified to merge foreign or rapid code injections out of fear they harbor security/technical decay?",
+        "solution": "Deploy a merciless automated Senior Engineer verification protocol gating your main branch.",
+        "whatIsIt": "An exhaustive Pull Request surveillance apparatus. Critiques invisible Code Smells, algorithm latency bottlenecks, reusability scaling, and security liabilities.",
+        "whenToUse": "Concluding feature isolation arcs, right before attempting branch merging matrices, or retro-auditing massive legacy refactors.",
+        "whyToUse": "Decimates the requirement for Senior human reviewers constantly standing by. Recommends intensely elegant structural refactoring permutations proactively decreasing Tech Debt.",
+        "bestPractice": "Ask the AI directly: 'Identify the top 3 Technical Debt consequences introducing this specific implementation will forge long-term'."
+      },
+      {
+        "id": "cm-quality-gate",
+        "name": "cm-quality-gate",
+        "category": "Quality",
+        "icon": "shield",
+        "tagline": "Deploy Quality Gate",
+        "prompt": "Run quality gate before deploying to production",
+        "related": [
+          "cm-tdd",
+          "cm-safe-deploy"
+        ],
+        "problem": "The classic 'It runs perfect on my localhost!' transitioning into a blazing server collapse deployment?",
+        "solution": "The uncompromising iron Quality Gate checkpoint. Failure to pass = Absolute deployment prohibition.",
+        "whatIsIt": "The ultimate CI validation blockade. Enforces zero-leniency clears over Linting aesthetics, Test pass rates, TypeScript bindings, and Security vulnerability scanners.",
+        "whenToUse": "MANDATORY checkpoint directly preceding any activation of the `cm-safe-deploy` command or concluding your two-week Scrum Sprint cycles.",
+        "whyToUse": "Anchors the RARV (Review-Audit-Resolve-Verify) standard. Violently blocks humiliating service outages stemming from simple undefined tokens or broken logic gates.",
+        "bestPractice": "Never under any administrative pressure bypass the execution check of this QA Gate checkpoint."
+      },
+      {
+        "id": "cm-test-gate",
+        "name": "cm-test-gate",
+        "category": "Quality",
+        "icon": "clipboard-check",
+        "tagline": "Test Infrastructure",
+        "prompt": "Set up test infrastructure for my Next.js project",
+        "related": [
+          "cm-tdd",
+          "cm-quality-gate"
+        ],
+        "problem": "Acknowledging Testing is paramount but entirely lost configuring the sophisticated infrastructure properly?",
+        "solution": "Instantiate robust automated testing CI foundations systematically strictly by the book.",
+        "whatIsIt": "Testing infrastructure scaffolding authority. Sets up the backbone array (Vitest, Jest, Cypress), environment profiles, and Husky pre-commit defensive mechanisms.",
+        "whenToUse": "Booting an entirely fresh repository, or salvaging an older legacy codebase devoid of comprehensive structural verification standards.",
+        "whyToUse": "Integrating Test Gates on Day 1 catalyzes massive horizontal project scaling capability without internal fracturing. It pre-populates dummy specs mapping out behavior.",
+        "bestPractice": "Trigger this initialization explicitly early, normally as the direct sequential operational step after clearing `cm-project-bootstrap`."
+      },
+      {
+        "id": "cm-terminal",
+        "name": "cm-terminal",
+        "category": "DevOps",
+        "icon": "terminal",
+        "tagline": "Terminal Management",
+        "prompt": "Run and monitor the build process",
+        "related": [
+          "cm-execution",
+          "cm-debugging"
+        ],
+        "problem": "Long-haul background compilations or terminal operations spew unnoticed critical warnings inducing invisible crashes?",
+        "solution": "Impose hyper-intelligent oversight spanning all terminal and shell execution processes instantly.",
+        "whatIsIt": "A dedicated supervisory overlay for Terminal executions—capturing NPM dependency installations, build engines, or headless daemon dev environments actively.",
+        "whenToUse": "Whenever authorizing heavily destructive directory commands or package cascades known to traditionally generate dense obscure warning streams.",
+        "whyToUse": "Aggressively checks AI 'fire and forget' tendencies. The unit methodically translates terminal feedback, pauses for process resolution, and neutralizes rogue exits carefully.",
+        "bestPractice": "Monitor and enforce its command restriction boundaries. Ask it dynamically to dump diagnostic log buffers if an unhandled backend process mysteriously evaporates."
+      },
+      {
+        "id": "cm-safe-deploy",
+        "name": "cm-safe-deploy",
+        "category": "DevOps",
+        "icon": "rocket",
+        "tagline": "Safe Deployment Pipeline",
+        "prompt": "Deploy the staging build to Cloudflare Pages",
+        "related": [
+          "cm-quality-gate",
+          "cm-identity-guard"
+        ],
+        "problem": "Does triggering the 'Deploy' sequence invoke intense anxiety and fear of irreversible domain outages?",
+        "solution": "An 8-Gate verification deployment protocol verifying holistic integrity before superseding live data arrays.",
+        "whatIsIt": "Zero-downtime automated deployment orchestrator. Fluidly connects with Vercel, Cloudflare Pages, or custom raw VPS server configurations gracefully.",
+        "whenToUse": "Progressing verified staging code integrations over the threshold into global Production/Live environment status updates.",
+        "whyToUse": "Alleviates the immense psychological friction attached to shipping internet products. Prioritizes indestructible rollback systems instantaneously shielding users if a build is fundamentally toxic.",
+        "bestPractice": "Obligatorily sequence this protocol exclusively only after achieving a full-green certification run from your `cm-quality-gate`."
+      },
+      {
+        "id": "cm-project-bootstrap",
+        "name": "cm-project-bootstrap",
+        "category": "DevOps",
+        "icon": "folder-plus",
+        "tagline": "Project Scaffold",
+        "prompt": "Bootstrap a new SaaS project with Next.js",
+        "related": [
+          "cm-planning",
+          "cm-safe-deploy"
+        ],
+        "problem": "The introductory configurations feel like an endless repeating chore: tailwind, git, eslint, routing setup...",
+        "solution": "Instantiate total enterprise-grade structural configurations universally under a rapid minute.",
+        "whatIsIt": "Paramount project initialization scaffold. Bakes in structural directory perfection, staging profiles, pre-configured i18n support, SEO metadata layers out of the box.",
+        "whenToUse": "Ground Zero momentum initializing a completely empty project canvas.",
+        "whyToUse": "Constructing upon a shaky foundational structure guarantees collapse later. Executing this standard magnifies developmental agility 10x throughout subsequent development months.",
+        "bestPractice": "Ensure correct organizational nomenclature (Domain, Project Title) when prompted, allowing the Identity Guard mechanisms to calibrate seamlessly."
+      },
+      {
+        "id": "cm-git-worktrees",
+        "name": "cm-git-worktrees",
+        "category": "DevOps",
+        "icon": "git-branch",
+        "tagline": "Git Worktree Manager",
+        "prompt": "Create a worktree for the new payment feature",
+        "related": [
+          "cm-code-review",
+          "cm-execution"
+        ],
+        "problem": "Halfway configuring deep logic when an immediate Live bug detonates; switching branches yields absolute Git apocalyptic conflicts?",
+        "solution": "Activate Git Worktree multiplexing, allowing multi-stream operations without shedding uncommitted code progress.",
+        "whatIsIt": "An elite branching parallelization tool. Worktrees instantiate isolated physical folder variants synchronized to a singular central git repository simultaneously.",
+        "whenToUse": "Extremely critical when forced to suspend highly-complex uncommitted algorithms to resolve catastrophic sudden high-tier organizational demands.",
+        "whyToUse": "Eradicates the volatile 'git stash' inferno. Eliminates excruciating `node_modules` reconfiguration wait-times. Operational context streams remain hermetically sealed and safe from tampering.",
+        "bestPractice": "Always prune and delete the isolated worktree directory securely once the temporary branch has achieved successful final merger integration to save SSD capacities."
+      },
+      {
+        "id": "cm-safe-i18n",
+        "name": "cm-safe-i18n",
+        "category": "Content",
+        "icon": "globe",
+        "tagline": "Safe Internationalization",
+        "prompt": "Translate the app from English to Vietnamese",
+        "related": [
+          "cm-content-factory",
+          "cm-quality-gate"
+        ],
+        "problem": "Generative AI multi-translation iterations capriciously obliterate core internal logic values or semantic HTML structures?",
+        "solution": "Absolute bulletproof localization matrices guaranteeing zero distortion in structural application frameworks.",
+        "whatIsIt": "Massive multi-pass array translation engine running distinct languages synchronously. Applies raw regex differential analysis ensuring structural components stay completely immaculate.",
+        "whenToUse": "Geographically scaling applications incorporating dense dual locales (E.g. processing Korean, Vietnamese, or custom English integrations globally).",
+        "whyToUse": "Forged directly directly in the fires of catastrophic AI-refactoring wipeouts. It integrates an 8-layer structural audit enforcing variables and DIV architectures stay entirely intact perpetually.",
+        "bestPractice": "Mandate parsing minimal JSON blocks strictly beneath 2,000 text lines to prevent extensive recursive hallucination tendencies in the LLM."
+      },
+      {
+        "id": "cm-readit",
+        "name": "cm-readit",
+        "category": "Content",
+        "icon": "headphones",
+        "tagline": "Audio & Voice CRO",
+        "prompt": "Add text-to-speech reading mode to my blog",
+        "related": [
+          "cm-content-factory",
+          "cm-ux-master"
+        ],
+        "problem": "Text-heavy domain articles massively fatigue user optics culminating in devastating Bounce Rates rapidly?",
+        "solution": "Algorithmically transcribe dense typographical realms into digestible Podcast/Audio player modules proactively.",
+        "whatIsIt": "Fully loaded Text-to-Speech (TTS) module architecture equipped intricately with interface players and Voice Activation CRO optimization triggers.",
+        "whenToUse": "Across extensively formatted academic manuals, storytelling marketing landing paths, and dense analytical journalism sectors prioritizing distinct interactivity.",
+        "whyToUse": "Substantially augments User Retention metrics. Listening mandates passive involvement. Massively supports Web Accessibility A11y while distinguishing overall media interactions.",
+        "bestPractice": "Integrate refined seamless Web Speech Engine configurations, or synchronize precisely generated high-definition Voice Actor MP3 rendering arrays."
+      },
+      {
+        "id": "cm-secret-shield",
+        "name": "cm-secret-shield",
+        "category": "Security",
+        "icon": "lock",
+        "tagline": "Secret Leak Prevention",
+        "prompt": "Scan the repo for exposed API keys",
+        "related": [
+          "cm-identity-guard",
+          "cm-safe-deploy"
+        ],
+        "problem": "Routinely exposing private Cloud Database keys or Secret Tokens over to Public GitHub feeds triggering massive global breaches?",
+        "solution": "An impermeable early-warning barrier annihilating unencrypted credential anomalies natively at the push horizon.",
+        "whatIsIt": "A ubiquitous cryptographic scanner instrument armed with intense regex logic sniffing AWS, JWT tokens, Stripe Secrets systematically bound strictly the localized Git hook level.",
+        "whenToUse": "Perpetually active in stealth sequence. However, specifically deploy the manual forced scan protocol previous to substantial complex network merges.",
+        "whyToUse": "Revealing organizational logic hashes guarantees absolute vulnerability exploitation by rogue actors. This intelligence possesses absolute zero leniency for anomalous hex-chains.",
+        "bestPractice": "Evacuate all sensitive variable arrays into a distinct `.env` container, checking explicitly thrice that `.env` forms the bedrock of your `.gitignore` protocol."
+      },
+      {
+        "id": "cm-identity-guard",
+        "name": "cm-identity-guard",
+        "category": "Security",
+        "icon": "fingerprint",
+        "tagline": "Identity & Account Guard",
+        "prompt": "Verify git config before pushing to production",
+        "related": [
+          "cm-secret-shield",
+          "cm-safe-deploy"
+        ],
+        "problem": "Co-mingling agency and individual workstation configurations leads to disastrously compromised corporate deployments to competing accounts?",
+        "solution": "Identity gating matrices verifying terminal profile identities correlate identically with organizational destination targets.",
+        "whatIsIt": "Total Git Configuration and structural credential lockdown engine. Unilaterally paralyses deployment scripts detecting profile mismatched variables (E.g. email mismatches).",
+        "whenToUse": "Triggered inherently upon executing `cm-safe-deploy`. Outstanding diagnostic layer for independent multi-client agency developers orchestrating synchronous configurations.",
+        "whyToUse": "Safeguards intellectual domains and proprietary organizational vectors. Ensures highly confidential SaaS algorithms NEVER mistakenly sync over external or unauthorized network hosts.",
+        "bestPractice": "Set up strict segregated environmental folders and uniquely assert `--local` configuration bounds specifically per isolated directory."
+      },
+      {
+        "id": "cm-ads-tracker",
+        "name": "cm-ads-tracker",
+        "category": "Content",
+        "icon": "bar-chart-2",
+        "tagline": "Conversion Tracking",
+        "prompt": "Set up Facebook Pixel and Google Ads tracking",
+        "related": [
+          "cm-content-factory",
+          "cm-ux-master"
+        ],
+        "problem": "Bleeding advertising revenue blindly whilst Conversion Tracking fails inherently due to fragmented logic or external browser blockers?",
+        "solution": "Enterprise Standard Server-Side telemetry configurations structurally formulated instantaneously with clinical precision.",
+        "whatIsIt": "The CRO Data Telemetry Architect. In under moments, array Meta CAPI limits, TikTok Event interfaces, standardized Google TM parameters and unified Enhanced Conversions mappings.",
+        "whenToUse": "MANDATORY configuration before any digital product is subjected to inbound funnel advertisement campaigns requesting concrete ROI analytic generation.",
+        "whyToUse": "Without accurate data, AI Advertising Engines hallucinate targeting profiles. This utility engineers a pristine operational 'Datalayer' to capture signals unbreakably flawlessly.",
+        "bestPractice": "Input exact localized Pixel strings reliably; explicitly define to the algorithm specifically which interface elements signify a fundamental 'Lead' versus an ultimate 'Purchase'."
+      },
+      {
+        "id": "cm-continuity",
+        "name": "cm-continuity",
+        "category": "DevOps",
+        "icon": "refresh-cw",
+        "tagline": "Session Memory",
+        "prompt": "Load context from the previous session",
+        "related": [
+          "cm-skill-mastery",
+          "cm-planning"
+        ],
+        "problem": "Terminating a workflow session completely erases situational AI memory invoking aggressive context reloading friction tomorrow morning?",
+        "solution": "Implement temporal State Save Persistence bridging comprehensive historical memory traversing asynchronous dev sessions indefinitely.",
+        "whatIsIt": "The definitive `CONTINUITY.md` memory tracking engine. Accumulating continuously: the exact architectural suspension point, historic glitches conquered, thwarting persistent episodic amnesia completely.",
+        "whenToUse": "Crucial debriefing protocol initializing previous to pausing aggressive development streams, or rebooting awareness inside an entirely pristine blank chat matrix.",
+        "whyToUse": "Utterly circumvents LLM context displacement. Synthesizes an atmosphere where your AI companion perpetually operates resembling a solo, hyper-aware Senior Architect that never slumbers natively.",
+        "bestPractice": "Forcefully commission it explicitly to 'Generate Continuity Report array' right before you decisively shut down the operational session."
+      },
+      {
+        "id": "cm-dockit",
+        "name": "cm-dockit",
+        "category": "Content",
+        "icon": "book-open",
+        "tagline": "Knowledge Docs Generator",
+        "prompt": "Generate documentation for my Frappe app",
+        "related": [
+          "cm-content-factory",
+          "cm-planning"
+        ],
+        "problem": "Handing off intricate enterprise apps bereft of operational manuals renders users helpless and obscures logic for consecutive engineers?",
+        "solution": "Automated code analysis matrix capable of manifesting exquisite technical manuals from A-Z effortlessly.",
+        "whatIsIt": "The internal Knowledge Platform creation bot. Synthesizes Markdown/VitePress formatting explaining deep backend API Reference tables, holistic Persona paths, and explicit SOP parameters intuitively.",
+        "whenToUse": "Scheduled across periodic enterprise scaling phases or strictly immediately preparatory for an inclusive public domain release horizon.",
+        "whyToUse": "End Users invariably rely on Documentation rather than analyzing chaotic syntax parameters directly. Superb systemic guides systematically decimate irrelevant mundane support tickets radically.",
+        "bestPractice": "Simultaneously commission the formulation of both an Internal Dev Reference Manual and an external simplified End-User Orientation Guide."
+      },
+      {
+        "id": "cm-skill-chain",
+        "name": "cm-skill-chain",
+        "category": "DevOps",
+        "icon": "link",
+        "tagline": "Skill Pipeline Engine",
+        "prompt": "Chain brainstorm → plan → execute for my feature",
+        "related": [
+          "cm-skill-mastery",
+          "cm-execution"
+        ],
+        "problem": "Executing atomic capabilities sequentially incurs brutal operational friction and stagnates velocity?",
+        "solution": "Unify discrete functional workflows via algorithmic cascading sequences: Strategy -> Blueprint -> Full Autonomous Implementation.",
+        "whatIsIt": "The operational Skill Pipeline orchestrator tool. Programmatically strings complementary AI disciplines logically functioning via dynamically checked transitional parameters reliably.",
+        "whenToUse": "Activated upon mastering initial isolated competencies when targeting hands-free automation, allowing intense prolonged operational execution away from keyboard interactions.",
+        "whyToUse": "Maximizes exponential technological leverage securely. A single command sequences automated deployment cycles analyzing, building, validating, and globally staging millions of code interactions passively.",
+        "bestPractice": "Exclusively orchestrate inherently non-destructive analytical skills concurrently early on. Always invariably conclude massive chains by interlocking strictly securely into `cm-quality-gate` configurations."
+      },
+      {
+        "id": "cm-skill-mastery",
+        "name": "cm-skill-mastery",
+        "category": "Ideation",
+        "icon": "compass",
+        "tagline": "Skill Discovery",
+        "prompt": "Which skill should I use for UX audit?",
+        "related": [
+          "cm-skill-chain",
+          "cm-how-it-work"
+        ],
+        "problem": "Overwhelmed analyzing 30+ sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
+        "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
+        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 30+ systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
+        "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
+        "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
+        "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
+      },
+      {
+        "id": "cm-skill-index",
+        "name": "cm-skill-index",
+        "category": "DevOps",
+        "icon": "list",
+        "tagline": "Skill Index",
+        "prompt": "Show me a summary of all available skills",
+        "related": [
+          "cm-skill-mastery",
+          "cm-skill-chain"
+        ],
+        "problem": "Blindly processing expansive arrays of instructional payloads concurrently corrupts prompt stability through severe Token saturation constraints?",
+        "solution": "Adopt layered Progressive Disclosures mechanics ensuring deep Context loading occurs exclusively upon situational demand necessity.",
+        "whatIsIt": "An underlying silent infrastructural database registry. Systematically caches mere high-level indexing semantics (Layer 1), extracting massive operational execution parameters (Layer 3) precisely strictly when definitively mandated.",
+        "whenToUse": "Operates intrinsically bound within the AI’s autonomous structural mechanics; absolutely necessitates zero human operational intervention manually.",
+        "whyToUse": "Surgically guarantees unpolluted AI focal precision, suppressing tangential hallucinatory feedback and remarkably conserving extensive extraneous processing API financial overhead essentially.",
+        "bestPractice": "Assure rigidly that crucial configuration registry logic maps located in standard execution directories remain un-deleted and uninterrupted universally securely."
+      },
+      {
+        "id": "cm-how-it-work",
+        "name": "cm-how-it-work",
+        "category": "Ideation",
+        "icon": "help-circle",
+        "tagline": "Getting Started Guide",
+        "prompt": "How do I use Cody Master for the first time?",
+        "related": [
+          "cm-skill-mastery",
+          "cm-project-bootstrap"
+        ],
+        "problem": "Freshly initiated toward the Cody Master architecture and deeply confused confronting esoteric terminal interfaces and workflow paradigms?",
+        "solution": "Immerse comprehensively directly into the central Vibe Coding operational foundation whitepaper natively.",
+        "whatIsIt": "An exhaustive induction manuscript actively translating the internal physics powering Cody Master operations, pre-packaged distinctly featuring explicit operational scenario blueprints.",
+        "whenToUse": "Sequentially instantly subsequent to native baseline installation completions, or orchestrating technical induction processes introducing auxiliary Junior Developers into organizational standardized rhythms.",
+        "whyToUse": "Solidifies core operational philosophies intimately. Comprehending fundamental mechanisms equips a singular autonomous operative executing parallel production equalizing conventional development team cohorts.",
+        "bestPractice": "Chronologically explore sections initially mapping overarching physical directory matrices alongside strict cognitive iterations dictating the standard RARV automation methodologies."
+      },
+      {
+        "id": "cm-dashboard",
+        "name": "cm-dashboard",
+        "category": "DevOps",
+        "icon": "layout-dashboard",
+        "tagline": "Project Dashboard",
+        "prompt": "Show me the project dashboard",
+        "related": [
+          "cm-skill-chain",
+          "cm-continuity"
+        ],
+        "problem": "Struggling to track deep automated AI progressions tangibly resulting in dangerous operational disconnections across simultaneous executions?",
+        "solution": "Invoke graphical mission-command interface displays interpreting structural telemetry in tangible visual real-time.",
+        "whatIsIt": "A dedicated Radar UI console array structurally exposing macro Token combustions, executing Queue allocations, and continuous cascading Error Event matrices.",
+        "whenToUse": "Persistently anchor executing reliably active adjacent alongside complex Vibe Coding engagements handling numerous AI processing trajectories securely.",
+        "whyToUse": "Radically dissipates intrinsic 'Black-box' abstractions tangibly. Explicitly transparent visual feedback precisely denotes immediately exact processing allocations revealing latency obstacles effortlessly natively.",
+        "bestPractice": "Allocate specifically a secondary auxiliary monitor screen completely devoted explicitly exclusively towards keeping this systemic radar continuously operative."
+      },
+      {
+        "id": "cm-start",
+        "name": "cm-start",
+        "category": "Ideation",
+        "icon": "power",
+        "tagline": "Quick Start",
+        "prompt": "Start working on my new feature",
+        "related": [
+          "cm-planning",
+          "cm-skill-mastery"
+        ],
+        "problem": "Infuriated by perpetually articulating immensely verbose prompt incantations every explicit instance initiating standard procedural code modifications?",
+        "solution": "Trigger a rapid instantaneous universal execution macro immediately deciphering complex geographical active operational context implicitly.",
+        "whatIsIt": "Emergency execution launch pad module. Subconsciously interrogates ambient environmental editor logic deducing precise project situational trajectories instinctively without descriptive preamble required.",
+        "whenToUse": "Routinely deployed to aggressively jump-start algorithmic implementation logic refactors circumscribing long-winded tedious introductory exposition delays.",
+        "whyToUse": "Obliterates systematic preparation delays conclusively. Elicits focused tool deployments surgically relying minimally on brief un-nuanced directives.",
+        "bestPractice": "Ensuring the target explicit JS/CSS logic files are concurrently active focal points within your IDE immediately preceding launching this specific operational capability yields peak fidelity."
+      },
+      {
+        "id": "cm-status",
+        "name": "cm-status",
+        "category": "DevOps",
+        "icon": "activity",
+        "tagline": "Project Status",
+        "prompt": "What's the current status of my project?",
+        "related": [
+          "cm-dashboard",
+          "cm-quality-gate"
+        ],
+        "problem": "Desperately lack verifiable aggregate reporting indices to empirically authenticate grand total project structural completion progression professionally?",
+        "solution": "Trigger high-velocity diagnostic status compilers synthesizing comprehensive holistic developmental metric snapshots definitively.",
+        "whatIsIt": "Algorithmic audit query mechanism. Computes concrete output detailing total TDD verification coverage matrix paths, analytical build stability variables, alongside impending outstanding priority Tasklist assignments.",
+        "whenToUse": "Routinely deployed facilitating scheduled Monday macro-evaluations, or functioning integrally beforehand organizing executive administrative progress presentations reliably.",
+        "whyToUse": "Delivers indisputably tangible analytical empirical transparency systematically. Evaluates production quality metrics explicitly displacing subjective abstract development assessment entirely.",
+        "bestPractice": "Execute comprehensively operating synergistically paired consistently alongside `cm-continuity` updates achieving permanently chronicled historical tracking datastore registries securely."
+      },
+      {
+        "id": "cm-example",
+        "name": "cm-example",
+        "category": "DevOps",
+        "icon": "file-code",
+        "tagline": "Skill Template",
+        "prompt": "Show me how to create a new skill",
+        "related": [
+          "cm-skill-mastery",
+          "cm-skill-chain"
+        ],
+        "problem": "Urgently need to engineer highly proprietary internalized AI command capacities exclusively suited uniquely for specific corporate workflows perfectly?",
+        "solution": "Exploit pre-hardened architectural boilerplate code matrices completely circumventing frustrating manual procedural baseline setup anomalies.",
+        "whatIsIt": "A flawless mock-up prototype script architecturally harmonized precisely aligned toward strict Antigravity and established MCP framework interface protocols certifying flawless operational recognition inherently.",
+        "whenToUse": "Commencing complex localized bespoke automated functional Bot protocols handling niche organizational internal rulebook mechanics reliably.",
+        "whyToUse": "Abolishes the agonizing friction reviewing sprawling expansive external platform documentation endlessly. Empowers copying an inherently robust foundation operational dynamically efficiently instantly.",
+        "bestPractice": "Mechanically duplicate the target directory skeleton completely, comprehensively update structural naming taxonomies, and aggressively inject definitive proprietary context parameters efficiently prior to deployment."
+      }
     ]
   },
   "startPage": {
@@ -189,7 +1336,11 @@
       {
         "title": "पूर्वापेक्षाएँ",
         "description": "कृपया निम्नलिखित को अपने कंप्यूटर पर सत्यापित करें।",
-        "items": ["VS Code या Cursor संपादक", "Node.js संस्करण 18+", "टर्मिनल एमुलेटर"],
+        "items": [
+          "VS Code या Cursor संपादक",
+          "Node.js संस्करण 18+",
+          "टर्मिनल एमुलेटर"
+        ],
         "note": "Node.js नहीं है? nodejs.org से डाउनलोड करें।"
       },
       {
@@ -290,7 +1441,11 @@
         "icon": "globe",
         "title": "उच्च प्रदर्शन वाली लैंडिंग",
         "description": "A/B परीक्षण और CRO अनुकूलन के साथ सेकंडों में लैंडिंग पृष्ठ।",
-        "skills": ["cm-ux-master", "cm-content-factory"],
+        "skills": [
+          "cm-ux-master",
+          "cm-content-factory",
+          "cm-safe-deploy"
+        ],
         "metric": "15 मिनट से कम",
         "metricLabel": "तैनाती"
       },
@@ -298,7 +1453,11 @@
         "icon": "layout-dashboard",
         "title": "SaaS फुलस्टैक",
         "description": "सुरक्षा और प्रबंधन डैशबोर्ड के साथ संपूर्ण आर्किटेक्चर।",
-        "skills": ["cm-planning", "cm-execution"],
+        "skills": [
+          "cm-planning",
+          "cm-execution",
+          "cm-tdd"
+        ],
         "metric": "फुल-स्टैक",
         "metricLabel": "पूर्ण रूप से"
       },
@@ -306,7 +1465,11 @@
         "icon": "book-open",
         "title": "मल्टी डॉक्यूमेंट जनरेशन",
         "description": "API और बहुभाषी टेक दस्तावेजों का एक साथ निर्माण।",
-        "skills": ["cm-dockit", "cm-safe-i18n"],
+        "skills": [
+          "cm-dockit",
+          "cm-safe-i18n",
+          "cm-content-factory"
+        ],
         "metric": "30+ भाषाएँ",
         "metricLabel": "एक साथ समर्थन"
       },
@@ -314,7 +1477,11 @@
         "icon": "megaphone",
         "title": "प्रोमो सामग्री स्पेक्ट्रम",
         "description": "खोज इंजन से लेकर ईमेल विज्ञापनों तक उच्च रैंकिंग वाला टेक्स्ट।",
-        "skills": ["cm-content-factory", "cm-readit"],
+        "skills": [
+          "cm-content-factory",
+          "cm-ads-tracker",
+          "cm-readit"
+        ],
         "metric": "7 नियमों",
         "metricLabel": "के साथ"
       }
@@ -326,21 +1493,23 @@
     "before": {
       "title": "कोडी मास्टर के बिना",
       "items": [
-        "पूरी तरह से अप्रत्याशित UI टोन",
-        "AI के कारण होने वाली महत्वपूर्ण बग्स",
-        "सुरक्षा कुंजी लीक जोखिम",
-        "बिना किसी मार्गदर्शन के बंजर भूमि",
-        "एक ही काम की अंतहीन मैन्युअल पुनरावृत्ति"
+        "Design inconsistent every time",
+        "AI breaks code when context is lost",
+        "Secrets leaked to GitHub",
+        "No docs, no onboarding",
+        "Weeks of manual work",
+        "Deploy and pray"
       ]
     },
     "after": {
       "title": "कोडी मास्टर के साथ",
       "items": [
-        "संरेखित ब्रांड एकरूपता",
-        "डेटा हानि को रोकने के लिए कई परतें",
-        "अपलोड करते समय गोपनीय जानकारी फ़िल्टरिंग",
-        "स्वचालित रूप से उत्पन्न तकनीकी ज्ञान",
-        "सेकंड्स में पूरी गति"
+        "Design system enforced by AI",
+        "Multi-layer protection prevents breakage",
+        "Secret scanning on every commit",
+        "Auto-generated world-class docs",
+        "Minutes from idea to production",
+        "8-gate deploy pipeline + rollback"
       ]
     }
   },
@@ -363,42 +1532,67 @@
         "number": "02",
         "title": "डिज़ाइन अराजकता",
         "content": "AI के लेआउट और रंग असंगति से ग्रस्त थे। यह मेरे द्वारा परिकल्पित एक ब्रांड नहीं था।",
-        "skills": ["cm-ux-master", "cm-ui-preview"],
+        "skills": [
+          "cm-ux-master",
+          "cm-ui-preview",
+          "tailwind-mastery"
+        ],
         "quote": "रोबोट के लिए डिजाइन की भावना उत्कृष्ट है, लेकिन स्थिरता असफलता है।"
       },
       {
         "number": "03",
         "title": "सब कुछ मिटा देने वाला सप्ताह",
         "content": "AI ने मेरे संदर्भ को भूलकर हमारे काम के एक पूरे सप्ताह को हटा दिया। मुझे एहसास हुआ कि एक सुरक्षा व्यवस्था का निर्माण आवश्यक था।",
-        "skills": ["cm-tdd", "cm-safe-i18n"],
+        "skills": [
+          "cm-tdd",
+          "cm-safe-i18n",
+          "cm-quality-gate",
+          "cm-safe-deploy",
+          "cm-secret-shield",
+          "cm-identity-guard"
+        ],
         "quote": "चार विफलताएं जिन्होंने पूर्ण रक्षा प्रणाली की स्थापना की।"
       },
       {
         "number": "04",
         "title": "आलसी नेता का आदर्श वाक्य",
         "content": "समान दर्द दो बार सहना पर्याप्त है। तीसरी बार होने से पहले, मैंने सब कुछ स्वचालित कर दिया।",
-        "skills": ["cm-project-bootstrap", "cm-execution"],
+        "skills": [
+          "cm-project-bootstrap",
+          "cm-execution",
+          "cm-skill-chain"
+        ],
         "quote": "एक बग जिसने मुझे दो बार क्रोधित किया, उसे नरक में ले जाया जाना चाहिए।"
       },
       {
         "number": "05",
         "title": "उपयोगकर्ता नहीं जानते",
         "content": "उत्पाद जारी किया गया था लेकिन किसी ने इसे नहीं समझा। मैनुअल टाइप करने की शर्मिंदगी से बचने के लिए मैंने डॉकट तैयार किया।",
-        "skills": ["cm-dockit", "cm-content-factory"],
+        "skills": [
+          "cm-dockit",
+          "cm-content-factory"
+        ],
         "quote": "स्वयं को बचाने का आविष्कार।"
       },
       {
         "number": "06",
         "title": "ओवरवॉच प्रबंधन",
         "content": "मुझे एक डैशबोर्ड की आवश्यकता थी जो सभी गतिविधियों को एक नज़र में सारांशित कर सके ताकि मैं हर चीज़ पर नज़र रख सकूँ।",
-        "skills": ["cm-dashboard", "cm-status"],
+        "skills": [
+          "cm-dashboard",
+          "cm-status"
+        ],
         "quote": "नियंत्रण सबसे महत्वपूर्ण है।"
       },
       {
         "number": "07",
         "title": "सामूहिक बुद्धिमत्ता",
         "content": "यह सभी खुले स्रोत के जीनियस की मदद से संभव हुआ। मैं केवल एक यात्री हूँ जिसने उन टुकड़ों को जोड़ा है।",
-        "skills": ["cm-skill-mastery", "cm-continuity"],
+        "skills": [
+          "cm-skill-mastery",
+          "cm-continuity",
+          "cm-how-it-work"
+        ],
         "quote": "समुदाय की एक बड़ी लहर से उत्पन्न कृतियां।"
       }
     ],
@@ -410,5 +1604,452 @@
     },
     "cta": "अभी अपनी यात्रा शुरू करें →",
     "backHome": "← आरंभ पृष्ठ"
+  },
+  "docsPage": {
+    "meta": {
+      "title": "Complete Guide — Cody Master Kit | Personas, JTBD, Use Cases",
+      "description": "The complete guide to Cody Master Kit: 5 user personas, 5 jobs-to-be-done, 8 real-world use cases. Learn who it's for, what problems it solves, and how it works."
+    },
+    "hero": "The Complete Guide",
+    "heroSub": "Who is Cody Master for? What problems does it solve? How does it actually work? Everything you need to know — in one page.",
+    "tocTitle": "On This Page",
+    "toc": [
+      "User Personas",
+      "Jobs to Be Done",
+      "Use Cases",
+      "Skill Map",
+      "FAQ"
+    ],
+    "personasSection": {
+      "label": "WHO IS IT FOR?",
+      "title": "5 User Personas",
+      "subtitle": "Cody Master was built for real people with real problems. Find yourself below.",
+      "personas": [
+        {
+          "emoji": "🚀",
+          "role": "The Non-Technical Founder",
+          "tagline": "Has ideas. No dev team. No coding skills.",
+          "demographics": "Solo founders, bootstrappers, first-time entrepreneurs. Age 25-45. No technical background.",
+          "painPoints": [
+            "Can't turn ideas into working products without a developer",
+            "Agencies charge $10K-50K and take months",
+            "AI tools produce throwaway prototypes, not production code",
+            "No way to maintain quality or consistency across projects"
+          ],
+          "dreamOutcome": "Build and launch a professional product — landing page, SaaS app, or content site — in days, not months, without writing a single line of code.",
+          "skills": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "When I have a product idea but no technical skills, I want to describe it in plain language and get a production-ready product, so I can test the market before competitors move."
+        },
+        {
+          "emoji": "📋",
+          "role": "The Overwhelmed PM",
+          "tagline": "Manages AI agents. Drowning in chaos.",
+          "demographics": "Product Managers, Business Owners with 5-15 years experience. Use AI daily but struggle with consistency.",
+          "painPoints": [
+            "AI designs every project differently — same brand, 3 different styles",
+            "AI loses context and breaks existing code during refactors",
+            "No documentation for products, users can't self-onboard",
+            "Can't track what multiple AI agents are doing simultaneously"
+          ],
+          "dreamOutcome": "A disciplined AI system that follows rules, maintains brand consistency, protects code, generates docs, and shows progress on a single dashboard.",
+          "skills": [
+            "cm-ux-master",
+            "cm-continuity",
+            "cm-dockit",
+            "cm-quality-gate"
+          ],
+          "jtbd": "When AI writes code inconsistently and breaks things, I want enforced quality standards and design system compliance, so nothing reaches production without passing quality gates."
+        },
+        {
+          "emoji": "💻",
+          "role": "The Solo Developer",
+          "tagline": "Tired of boilerplate. Wants to ship faster.",
+          "demographics": "Full-stack developers, freelancers. 3-10 years experience. Work solo or in small teams.",
+          "painPoints": [
+            "80% of time spent on boilerplate setup, not actual features",
+            "Every new project: setup git, deploy, i18n, test infra — from scratch",
+            "AI-generated code has no tests, no security scans",
+            "Deploying is stressful — no rollback, no quality gates"
+          ],
+          "dreamOutcome": "Focus on architecture and business logic while AI handles boilerplate, tests, deploys, and documentation — with quality gates at every step.",
+          "skills": [
+            "cm-project-bootstrap",
+            "cm-tdd",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "When I start a new project, I want automated scaffolding with test infra, CI/CD, and design system from day one, so I can focus on business logic instead of setup."
+        },
+        {
+          "emoji": "📢",
+          "role": "The Marketing Director",
+          "tagline": "Needs content and landing pages. Yesterday.",
+          "demographics": "Marketing managers, growth hackers, content strategists. Manage brands and campaigns across channels.",
+          "painPoints": [
+            "Content team can't produce articles fast enough",
+            "Landing pages take weeks through designers and developers",
+            "SEO optimization requires expensive specialists",
+            "No conversion tracking setup — can't measure ROAS"
+          ],
+          "dreamOutcome": "Generate SEO-optimized content, high-converting landing pages, and complete tracking setup — all in minutes, using proven frameworks like StoryBrand and Cialdini.",
+          "skills": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-ux-master",
+            "cm-readit"
+          ],
+          "jtbd": "When I need content marketing assets quickly, I want AI that writes using proven persuasion frameworks with SEO built in, so I can drive traffic without hiring a full content team."
+        },
+        {
+          "emoji": "🏢",
+          "role": "The Agency / Freelancer",
+          "tagline": "Building for multiple clients. Needs efficiency.",
+          "demographics": "Digital agencies, freelance developers, consultants. Juggling 3-10 client projects simultaneously.",
+          "painPoints": [
+            "Every client project needs unique setup — repeating the same work",
+            "Design inconsistency across client projects damages credibility",
+            "Secret management nightmare — risk deploying to wrong client's account",
+            "Documentation and handoff takes longer than building"
+          ],
+          "dreamOutcome": "One kit that bootstraps every client project with the same quality standard, enforces brand consistency, prevents cross-project contamination, and auto-generates handoff docs.",
+          "skills": [
+            "cm-project-bootstrap",
+            "cm-identity-guard",
+            "cm-dockit",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "When I manage multiple client projects, I want a standardized toolkit that prevents cross-project mistakes and auto-generates documentation, so I can deliver faster with higher quality."
+        }
+      ]
+    },
+    "jtbdSection": {
+      "label": "WHAT PROBLEMS DOES IT SOLVE?",
+      "title": "5 Jobs to Be Done",
+      "subtitle": "Every skill in Cody Master exists because of a real job that real people need done. Here are the 5 core jobs.",
+      "forceLabels": {
+        "push": "Push (Current Pain)",
+        "pull": "Pull (Dream Outcome)",
+        "habit": "Habit (Current Behavior)",
+        "anxiety": "Anxiety (Fear of Change)"
+      },
+      "jobs": [
+        {
+          "number": "01",
+          "situation": "When I have a product idea but no technical skills...",
+          "motivation": "I want to describe what I need in plain language and get a production-ready result...",
+          "outcome": "So I can test the market before competitors move, without spending months or $50K on agencies.",
+          "functional": "Build a working product from a text description",
+          "emotional": "Feel empowered and capable despite not knowing code",
+          "social": "Be seen as a competent founder who ships fast",
+          "push": "Ideas stay in my head for months. Agencies are too expensive. No-code tools are too limited.",
+          "pull": "Describe → Design → Code → Deploy in one session. Professional quality. Full ownership.",
+          "habit": "Hiring freelancers, using Wix/Squarespace, or giving up on the idea entirely.",
+          "anxiety": "Will the AI-generated code actually be production-ready? Can I maintain it long-term?",
+          "skills": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-execution",
+            "cm-safe-deploy",
+            "cm-project-bootstrap"
+          ]
+        },
+        {
+          "number": "02",
+          "situation": "When AI writes code inconsistently and breaks existing work...",
+          "motivation": "I want enforced quality standards, design system compliance, and multi-layer protections...",
+          "outcome": "So nothing breaks in production and every project maintains brand consistency.",
+          "functional": "Enforce code quality, design rules, and testing automatically",
+          "emotional": "Sleep well knowing the deployment pipeline catches errors",
+          "social": "Deliver professional, consistent work every time",
+          "push": "AI designs every project differently. Refactors delete existing code. No tests means no safety net.",
+          "pull": "6-gate quality system. Design system enforcement. Auto-rollback on failure.",
+          "habit": "Manually reviewing AI output, redoing work 3-4 times, avoiding refactors.",
+          "anxiety": "Will adding quality gates slow down my workflow? Is the overhead worth it?",
+          "skills": [
+            "cm-ux-master",
+            "cm-tdd",
+            "cm-quality-gate",
+            "cm-safe-i18n",
+            "cm-safe-deploy"
+          ]
+        },
+        {
+          "number": "03",
+          "situation": "When I build great products that nobody knows how to use...",
+          "motivation": "I want auto-generated documentation — API reference, SOPs, user guides, personas...",
+          "outcome": "So users can self-onboard, support team isn't overwhelmed, and the product thrives.",
+          "functional": "Generate documentation from codebase analysis automatically",
+          "emotional": "Remove the dread of writing docs after exhausting coding sessions",
+          "social": "Be recognized for having world-class documentation",
+          "push": "No docs = no self-service = support team drowning. Writing docs after coding is torture.",
+          "pull": "One scan of the codebase = complete knowledge base. Multi-language. SEO-optimized.",
+          "habit": "Skipping docs entirely, or writing minimal README files.",
+          "anxiety": "Will auto-generated docs be accurate enough? Will they match the codebase?",
+          "skills": [
+            "cm-dockit",
+            "cm-content-factory",
+            "cm-safe-i18n"
+          ]
+        },
+        {
+          "number": "04",
+          "situation": "When I run multiple AI agents across multiple projects...",
+          "motivation": "I want a single control center to monitor progress, token usage, and deployment status...",
+          "outcome": "So I don't lose track and can maximize productivity across all my work.",
+          "functional": "Visual dashboard showing all agents, tasks, and deployments",
+          "emotional": "Feel in control even when running 5+ projects simultaneously",
+          "social": "Demonstrate operational maturity to clients and stakeholders",
+          "push": "Can't see what's happening. Which agent is stuck? How many tokens spent? What deployed where?",
+          "pull": "One screen shows everything: pipeline progress, task queue, token tracker, event log.",
+          "habit": "Checking logs manually, running CLI commands, losing hours to context switching.",
+          "anxiety": "Will the dashboard add complexity? Do I need to learn a new tool?",
+          "skills": [
+            "cm-continuity",
+            "cm-skill-chain",
+            "cm-terminal"
+          ]
+        },
+        {
+          "number": "05",
+          "situation": "When I need content marketing assets but can't hire a full team...",
+          "motivation": "I want AI that writes using proven persuasion frameworks with SEO built in...",
+          "outcome": "So I can drive traffic, generate leads, and scale content without hiring writers.",
+          "functional": "Generate SEO blog posts, landing pages, ad copy, email campaigns",
+          "emotional": "Confidence that content follows proven frameworks (not random AI output)",
+          "social": "Build authority in the niche through consistent, high-quality publishing",
+          "push": "Content team can't keep up. SEO specialists cost $5K/month. Tracking is a mess.",
+          "pull": "StoryBrand + Cialdini + 7 frameworks combined. Auto-SEO. Complete tracking setup.",
+          "habit": "Writing sporadically, no framework, no tracking, hoping for organic growth.",
+          "anxiety": "Will AI-written content feel generic? Will Google penalize it?",
+          "skills": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-readit",
+            "cm-ux-master"
+          ]
+        }
+      ]
+    },
+    "useCasesSection": {
+      "label": "HOW DOES IT WORK IN PRACTICE?",
+      "title": "8 Real-World Use Cases",
+      "subtitle": "Not theory. Here are real scenarios showing which skills activate, in what order, and what you get.",
+      "cases": [
+        {
+          "emoji": "🌐",
+          "title": "Launch a Landing Page in 15 Minutes",
+          "scenario": "You have a coffee shop and need a professional website with online ordering. You describe it to Cody Master in plain English.",
+          "chain": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-content-factory",
+            "cm-safe-deploy"
+          ],
+          "outcome": "A fully responsive, SEO-optimized landing page with CRO elements, deployed to a live URL.",
+          "timeSaved": "2 weeks → 15 min",
+          "costSaved": "$5,000 → $0"
+        },
+        {
+          "emoji": "🏗️",
+          "title": "Build a SaaS MVP in One Day",
+          "scenario": "You're validating a B2B idea — need auth, dashboard, API, and database. You describe the features and let Cody Master plan and execute.",
+          "chain": [
+            "cm-brainstorm-idea",
+            "cm-planning",
+            "cm-tdd",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "outcome": "A full-stack application with user authentication, admin dashboard, REST API, and PostgreSQL — tested and deployed.",
+          "timeSaved": "3 months → 1 day",
+          "costSaved": "$30,000 → $0"
+        },
+        {
+          "emoji": "📚",
+          "title": "Auto-Generate Complete Documentation",
+          "scenario": "Your SaaS product has 50+ features but zero documentation. Users can't self-onboard. Support tickets are piling up.",
+          "chain": [
+            "cm-dockit",
+            "cm-safe-i18n",
+            "cm-content-factory"
+          ],
+          "outcome": "Full documentation site: API reference, user guides, SOPs, personas, JTBD analysis, process flows. Multi-language. SEO-optimized.",
+          "timeSaved": "2 months → 1 hour",
+          "costSaved": "$15,000 → $0"
+        },
+        {
+          "emoji": "📈",
+          "title": "Run a Content Marketing Campaign",
+          "scenario": "You need 30 blog posts, 5 landing pages, and conversion tracking across Facebook, Google, and TikTok — all optimized for SEO.",
+          "chain": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-readit",
+            "cm-safe-deploy"
+          ],
+          "outcome": "30 SEO-optimized articles, 5 high-converting landing pages, complete pixel setup with UTM tracking and attribution.",
+          "timeSaved": "3 months → 1 week",
+          "costSaved": "$20,000 → $0"
+        },
+        {
+          "emoji": "🌍",
+          "title": "Migrate to Multi-Language Safely",
+          "scenario": "Your app is English-only. You need Vietnamese, Chinese, and Russian — but the last i18n attempt broke everything.",
+          "chain": [
+            "cm-safe-i18n",
+            "cm-quality-gate",
+            "cm-tdd"
+          ],
+          "outcome": "Complete multi-language support with 8 audit gates, HTML integrity checks, and zero regression. All tests pass.",
+          "timeSaved": "2 weeks → 2 hours",
+          "costSaved": "$8,000 → $0"
+        },
+        {
+          "emoji": "🛡️",
+          "title": "Security Audit and Safe Deploy",
+          "scenario": "Before launching v2.0, you need to ensure no secrets are leaked, all dependencies are secure, and deploy has rollback.",
+          "chain": [
+            "cm-secret-shield",
+            "cm-identity-guard",
+            "cm-quality-gate",
+            "cm-safe-deploy"
+          ],
+          "outcome": "Complete security audit: secret scanning, dependency check, identity verification, 8-gate deploy pipeline with automatic rollback.",
+          "timeSaved": "1 week → 30 min",
+          "costSaved": "$10,000 → $0"
+        },
+        {
+          "emoji": "🏭",
+          "title": "Bootstrap a New Client Project",
+          "scenario": "You're a freelancer starting a new client project. You need design system, test infrastructure, CI/CD, i18n, SEO — the works.",
+          "chain": [
+            "cm-project-bootstrap",
+            "cm-planning",
+            "cm-ux-master",
+            "cm-safe-deploy"
+          ],
+          "outcome": "Complete project scaffold: design system, test infra, deploy pipeline, i18n support, SEO foundation, AGENTS.md manifest — all in one command.",
+          "timeSaved": "3 days → 10 min",
+          "costSaved": "$3,000 → $0"
+        },
+        {
+          "emoji": "🎨",
+          "title": "Enforce Design System Across Projects",
+          "scenario": "Your brand has a design system but AI ignores it. Every AI-generated page looks different from your brand guidelines.",
+          "chain": [
+            "cm-ux-master",
+            "cm-ui-preview",
+            "cm-execution"
+          ],
+          "outcome": "AI reads your design tokens, components, and brand guidelines. Preview designs before coding. Every page matches your brand perfectly.",
+          "timeSaved": "Ongoing — saves redesign cycles",
+          "costSaved": "Prevents brand damage"
+        }
+      ]
+    },
+    "skillMapSection": {
+      "label": "HOW SKILLS CONNECT",
+      "title": "The Skill Map",
+      "subtitle": "30+ skills organized into 5 swarms. Skills auto-chain based on your task.",
+      "swarms": [
+        {
+          "name": "🎯 Ideation",
+          "color": "purple",
+          "skills": [
+            "cm-brainstorm-idea",
+            "cm-planning",
+            "cm-skill-mastery",
+            "cm-how-it-work",
+            "cm-start"
+          ]
+        },
+        {
+          "name": "🎨 Design",
+          "color": "blue",
+          "skills": [
+            "cm-ux-master",
+            "cm-ui-preview"
+          ]
+        },
+        {
+          "name": "📝 Content",
+          "color": "lime",
+          "skills": [
+            "cm-content-factory",
+            "cm-dockit",
+            "cm-safe-i18n",
+            "cm-readit",
+            "cm-ads-tracker"
+          ]
+        },
+        {
+          "name": "⚡ Code & Deploy",
+          "color": "orange",
+          "skills": [
+            "cm-execution",
+            "cm-tdd",
+            "cm-debugging",
+            "cm-code-review",
+            "cm-quality-gate",
+            "cm-test-gate",
+            "cm-safe-deploy",
+            "cm-project-bootstrap"
+          ]
+        },
+        {
+          "name": "🛡️ Security & Ops",
+          "color": "red",
+          "skills": [
+            "cm-secret-shield",
+            "cm-identity-guard",
+            "cm-terminal",
+            "cm-git-worktrees",
+            "cm-continuity",
+            "cm-skill-chain",
+            "cm-skill-index"
+          ]
+        }
+      ]
+    },
+    "faqSection": {
+      "label": "FREQUENTLY ASKED QUESTIONS",
+      "title": "FAQ",
+      "questions": [
+        {
+          "q": "Do I need to know how to code?",
+          "a": "No. Cody Master is designed for people who can't code. You describe what you want in plain language — AI handles the rest."
+        },
+        {
+          "q": "Is this free?",
+          "a": "Yes, Cody Master is open source and free. You only pay for the AI provider (Gemini, Claude, etc.) you choose to use."
+        },
+        {
+          "q": "Which AI agents does it work with?",
+          "a": "All major AI coding agents: Google Antigravity (Gemini), Claude, Cursor, Windsurf, Cline/RooCode, GitHub Copilot, OpenClaw, and more."
+        },
+        {
+          "q": "Can I use my existing design system?",
+          "a": "Yes! cm-ux-master reads your existing design tokens, components, and brand guidelines — then builds with them."
+        },
+        {
+          "q": "How is this different from v0, Bolt, or Lovable?",
+          "a": "Those tools generate one-off prototypes. Cody Master is a complete skills framework — it enforces TDD, quality gates, security scans, design consistency, documentation, and safe deployment. It's production-ready from day one."
+        },
+        {
+          "q": "Can I create my own skills?",
+          "a": "Absolutely! Use cm-skill-mastery or skill-creator-ultra to create custom skills. The format is compatible with Antigravity, Claude, Cursor, and OpenClaw."
+        }
+      ]
+    },
+    "ctaSection": {
+      "title": "Ready to solve your biggest\nproduct challenge?",
+      "subtitle": "Pick your persona. Choose your use case. Start building.",
+      "button": "Get Started Now →"
+    }
   }
 }

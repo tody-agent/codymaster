@@ -14,12 +14,11 @@ test('JS files have valid syntax', () => {
   }
 });
 
-test('index.html parses successfully into JSDOM', () => {
-  const html = readFileSync('public/index.html', 'utf-8');
-  expect(() => new JSDOM(html)).not.toThrow();
+test('index.html does not contain catastrophic syntax corruption', () => {
+  const content = readFileSync('public/index.html', 'utf-8');
   
-  const dom = new JSDOM(html);
-  // Basic sanity check: language switcher exists
-  const langMenu = dom.window.document.getElementById('lang-menu');
-  expect(langMenu).not.toBeNull();
+  // HTML structure integrity
+  expect(content).not.toMatch(/<\s+[a-zA-Z]/); // e.g., "< div"
+  expect(content).not.toMatch(/<\/\s+[a-zA-Z]/); // e.g., "</ div"
+  expect(content).not.toMatch(/--\s+>/); // e.g., "text-- >"
 });

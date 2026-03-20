@@ -8,6 +8,7 @@
     "howItWorks": "Cách hoạt động",
     "deepDive": "Chi tiết",
     "personas": "Dành cho bạn",
+    "docs": "Tài liệu",
     "skills": "Kỹ năng",
     "story": "Câu chuyện",
     "getStarted": "Bắt đầu",
@@ -15,7 +16,13 @@
   },
   "hero": {
     "badge": "30+ AI Skills · Mã nguồn mở · Miễn phí",
-    "headline": "Biến ý tưởng thành sản phẩm\nnhanh gấp 10 lần",
+    "typingPhrases": [
+      "Biến Ý Tưởng Thành Sản Phẩm Nhanh Gấp 10 Lần",
+      "Ship Code Production Chỉ Trong Vài Phút",
+      "Xây Dựng SaaS Không Cần Dev Team",
+      "Thiết Kế UX Chuẩn Chỉ Bằng 1 Câu Chat",
+      "Tạo Tài Liệu Chuyên Nghiệp Tự Động"
+    ],
     "subtitle": "Bộ kỹ năng AI Agent đưa bạn từ ý tưởng → thiết kế → code → triển khai,\nkhông cần biết lập trình. Chỉ cần chat bằng tiếng Việt.",
     "ctaPrimary": "Dùng thử miễn phí",
     "ctaSecondary": "Xem Demo",
@@ -104,21 +111,578 @@
   "personas": {
     "label": "DÀNH CHO AI?",
     "title": "Xây dựng cho mọi vai trò trong nhóm",
-    "dev": {
-      "title": "Dành cho Lập trình viên",
-      "desc": "Ngừng viết mã lặp lại. Để AI xử lý 80% trong khi bạn tập trung vào kiến trúc. Bắt buộc TDD giúp code thực sự chạy."
-    },
-    "pm": {
-      "title": "Dành cho PM & BO",
-      "desc": "Ra mắt tính năng nhanh gấp 5 lần. Chỉ cần mô tả mong muốn, Cody Master chia nhỏ thành task và thực thi ngay lập tức."
-    },
-    "qa": {
-      "title": "Dành cho QA Engineer",
-      "desc": "Bắt lỗi kịp thời trước khi merge. Hệ thống chất lượng 6 cổng đánh giá từng commit vượt qua test, linting và bảo mật."
-    },
-    "founders": {
-      "title": "Dành cho Founder",
-      "desc": "Xây dựng MVP không cần người đồng sáng lập kỹ thuật. Tiết kiệm 90% chi phí agency, ra mắt trong vài ngày thay vì hàng tháng."
+    "subtitle": "Cody Master thấu hiểu thách thức CỤ THỂ của bạn. Tìm vai trò, xem cách giải quyết vấn đề CỦA BẠN.",
+    "learnMore": "Tìm hiểu thêm →",
+    "cards": [
+      {
+        "id": "founder",
+        "emoji": "🚀",
+        "title": "Dành cho Founder",
+        "tagline": "Xây MVP không cần đội dev",
+        "pains": [
+          "Ý tưởng nằm trong đầu hàng tháng trời",
+          "Agency đòi 500tr-1 tỷ, làm mãi không xong",
+          "Công cụ no-code đụng trần rất nhanh"
+        ],
+        "dream": "Từ ý tưởng đến sản phẩm live trong vài ngày, không phải vài tháng."
+      },
+      {
+        "id": "cmo",
+        "emoji": "📢",
+        "title": "Dành cho CMO & Marketing Manager",
+        "tagline": "Content, landing page, tracking — tức thì",
+        "pains": [
+          "Đội content không kịp sản xuất",
+          "Landing page phải qua dev, mất hàng tuần",
+          "Không tracking = không chứng minh được ROI"
+        ],
+        "dream": "Content SEO + landing page + full tracking trong vài phút."
+      },
+      {
+        "id": "pm",
+        "emoji": "📋",
+        "title": "Dành cho PM, PO & BA",
+        "tagline": "Ship feature mà không hỗn loạn",
+        "pains": [
+          "AI viết code nhưng phá hết mọi thứ khác",
+          "Design mỗi lần một kiểu",
+          "Không docs, không onboarding, user lạc lối"
+        ],
+        "dream": "AI có kỷ luật, tuân thủ quy tắc, ship chất lượng."
+      },
+      {
+        "id": "dev",
+        "emoji": "💻",
+        "title": "Dành cho Tech Team",
+        "tagline": "CTO · Tech Lead · FE/BE · Mobile · QC",
+        "pains": [
+          "80% thời gian lãng phí vào setup boilerplate",
+          "Code AI không có test, không bảo mật",
+          "Deploy chỉ biết cầu trời, không rollback"
+        ],
+        "dream": "Tập trung kiến trúc. AI lo phần còn lại — có quality gate."
+      },
+      {
+        "id": "designer",
+        "emoji": "🎨",
+        "title": "Dành cho Designer",
+        "tagline": "AI tôn trọng design system của bạn",
+        "pains": [
+          "AI bỏ qua tokens và guidelines của bạn",
+          "Không preview được trước khi code",
+          "Output AI mỗi lần một kiểu, lạc brand"
+        ],
+        "dream": "Quy trình design-first: preview → duyệt → code."
+      },
+      {
+        "id": "claw",
+        "emoji": "🦞",
+        "title": "Dành cho Gia Đình Claw",
+        "tagline": "OpenClaw · NemoClaw · OpenFang · Và hơn thế",
+        "pains": [
+          "Skill bị khóa trong một AI agent duy nhất",
+          "Config không chuyển được giữa các tool",
+          "Hệ sinh thái phân mảnh, không tương thích"
+        ],
+        "dream": "Một config. Mọi Claw agent tuân thủ. Skill phổ quát."
+      }
+    ],
+    "details": {
+      "founder": {
+        "heroTitle": "Bạn có ý tưởng.\nBạn chỉ cần 100 cánh tay để xây dựng nó.",
+        "heroSub": "Cody Master trao cho founder không biết code sức mạnh xây dựng, thiết kế và triển khai sản phẩm production-ready — không cần viết một dòng code nào.",
+        "painLabel": "NHỮNG BỨC TƯỜNG BẠN ĐANG ĐỐI MẶT",
+        "painTitle": "Chúng tôi hiểu điều gì đang cản bạn",
+        "pains": [
+          {
+            "icon": "💸",
+            "title": "Agency rút cạn ngân sách",
+            "desc": "Bạn được báo giá 500tr-1 tỷ cho một MVP. Hàng tuần họp. Sửa thêm tính phí. Và kết quả? Sản phẩm không đúng vision của bạn."
+          },
+          {
+            "icon": "⏳",
+            "title": "Ý tưởng chết khi chờ đợi",
+            "desc": "Đến lúc tìm được dev, thương lượng hợp đồng, bắt đầu xây — đối thủ đã launch rồi. Tốc độ là tất cả trong startup."
+          },
+          {
+            "icon": "🧱",
+            "title": "No-code chạm giới hạn",
+            "desc": "Wix, Squarespace, Bubble — tốt cho trang tĩnh, tệ cho sản phẩm thực sự. Bạn cần auth, dashboard, API, database. No-code không làm được."
+          },
+          {
+            "icon": "🎯",
+            "title": "Không validate đủ nhanh",
+            "desc": "Mỗi ngày không có sản phẩm live là một ngày bạn đoán mò thay vì học hỏi. Bạn cần test thị trường NGAY, không phải 3 tháng nữa."
+          }
+        ],
+        "solutionLabel": "CODY MASTER GIÚP GÌ",
+        "solutionTitle": "Người đồng sáng lập AI không bao giờ ngủ",
+        "solutions": [
+          {
+            "skill": "cm-planning",
+            "benefit": "Mô tả ý tưởng bằng tiếng Việt. AI chia nhỏ thành kế hoạch hành động."
+          },
+          {
+            "skill": "cm-ux-master",
+            "benefit": "Có ngay hệ thống thiết kế chuyên nghiệp — 48 Luật UX, 1032+ pattern."
+          },
+          {
+            "skill": "cm-execution",
+            "benefit": "AI viết code production có test. Không phải prototype — sản phẩm thật."
+          },
+          {
+            "skill": "cm-safe-deploy",
+            "benefit": "Một lệnh để deploy. Pipeline 8 cổng. Tự rollback nếu có lỗi."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "Chi phí agency 500tr+",
+            "3-6 tháng để launch",
+            "Sản phẩm không đúng vision",
+            "Không lặp lại nhanh được",
+            "Phụ thuộc developer"
+          ],
+          "after": [
+            "$0 — hoàn toàn miễn phí",
+            "Vài ngày để launch",
+            "Bạn mô tả, AI xây chính xác",
+            "Lặp lại real-time bằng chat",
+            "Sở hữu hoàn toàn, không phụ thuộc"
+          ]
+        },
+        "objections": [
+          {
+            "q": "AI có thật sự xây được sản phẩm production-quality?",
+            "a": "Có. Không giống copy-paste ChatGPT, Cody Master bắt buộc TDD, quality gate và security scan. Mỗi dòng code đều được test trước khi deploy."
+          },
+          {
+            "q": "Tôi hoàn toàn không biết code. Có dùng được không?",
+            "a": "Đây chính xác là người Cody Master phục vụ. Người tạo ra Cody Master cũng là PM không biết code. Bạn chat tự nhiên — AI lo mọi thứ."
+          },
+          {
+            "q": "Nếu cần thay đổi sau thì sao?",
+            "a": "Chat lại. Nói AI cần đổi gì. Nó nhớ context (cm-continuity) và cập nhật mà không phá chức năng hiện tại."
+          }
+        ],
+        "ctaTitle": "Ý tưởng của bạn xứng đáng được hiện thực.\nĐừng chờ nữa. Bắt đầu xây.",
+        "ctaSub": "Miễn phí. Không cần thẻ. Từ ý tưởng đến sản phẩm live ngay hôm nay.",
+        "ctaButton": "Xây MVP Ngay →"
+      },
+      "cmo": {
+        "heroTitle": "Đội content không kịp sản xuất.\nCody Master thì có thể.",
+        "heroSub": "Tạo content chuẩn SEO, landing page chuyển đổi cao, và setup tracking hoàn chỉnh — tất cả dựa trên StoryBrand, Cialdini và 7 framework chuyển đổi.",
+        "painLabel": "NÚT CỔ CHAI",
+        "painTitle": "Marketing quy mô bị bế tắc nếu thiếu công cụ đúng",
+        "pains": [
+          {
+            "icon": "📝",
+            "title": "Sản xuất content quá chậm",
+            "desc": "Writer viết 2 bài/tuần. Bạn cần 10. SEO specialist tốn 100tr/tháng. Calendar luôn bị chậm trễ."
+          },
+          {
+            "icon": "🖥️",
+            "title": "Landing page mất hàng tuần",
+            "desc": "Mỗi campaign cần landing page. Designer → dev → QA → deploy. Tối thiểu 2-3 tuần. Lúc đó thì cửa sổ campaign đã đóng."
+          },
+          {
+            "icon": "📊",
+            "title": "Không chứng minh ROI cho sếp",
+            "desc": "Facebook Pixel setup nửa vời. Google Ads conversion tracking thiếu. UTM không nhất quán. Bạn bay mù về ROAS."
+          },
+          {
+            "icon": "🎯",
+            "title": "Content không chuyển đổi",
+            "desc": "Content nhìn đẹp nhưng không tạo hành động. Không framework thuyết phục. Không CRO. Không A/B testing. Chỉ là chữ trên trang."
+          }
+        ],
+        "solutionLabel": "CỖ MÁY CONTENT MỚI",
+        "solutionTitle": "7 framework thuyết phục. Không nút cổ chai content.",
+        "solutions": [
+          {
+            "skill": "cm-content-factory",
+            "benefit": "StoryBrand + Cialdini + SUCCESs + STEPPS. AI viết content chuyển đổi, không chỉ lấp đầy trang."
+          },
+          {
+            "skill": "cm-ux-master",
+            "benefit": "Landing page có CRO tích hợp — hero, social proof, xử lý phản đối, urgency."
+          },
+          {
+            "skill": "cm-ads-tracker",
+            "benefit": "Tracking hoàn chỉnh: Meta Pixel + CAPI, TikTok Events, Google Ads Enhanced Conversions, UTM attribution."
+          },
+          {
+            "skill": "cm-readit",
+            "benefit": "Biến mọi content thành audio. Chế độ đọc TTS tăng engagement và thời gian trên trang."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "2 bài blog mỗi tuần",
+            "Landing page mất 2-3 tuần",
+            "Không có tracking chuyển đổi",
+            "Content không có framework",
+            "Không chứng minh được ROI"
+          ],
+          "after": [
+            "30+ bài blog tạo tức thì",
+            "Landing page trong 15 phút",
+            "Full pixel + CAPI + UTM tracking",
+            "7 framework tích hợp mỗi bài",
+            "Dữ liệu attribution và ROAS đầy đủ"
+          ]
+        },
+        "objections": [
+          {
+            "q": "Content AI có bị Google phạt không?",
+            "a": "Không. cm-content-factory tạo content gốc, chuẩn SEO với heading hierarchy, internal linking, schema markup. Không phải AI slop generic."
+          },
+          {
+            "q": "Có match được brand voice không?",
+            "a": "Có. Phase 0 hỏi về brand, tone, style. Nó học giọng của bạn và áp dụng nhất quán xuyên suốt mọi content."
+          },
+          {
+            "q": "Chúng tôi dùng multi-touch attribution phức tạp. Có handle được không?",
+            "a": "cm-ads-tracker setup first-touch và last-touch attribution, cross-channel deduplication, UTM conventions. Tracking cấp doanh nghiệp."
+          }
+        ],
+        "ctaTitle": "Đừng để bạn là nút cổ chai.\nHãy trở thành cỗ máy tăng trưởng.",
+        "ctaSub": "Từ chiến lược content đến campaign live — trong vài phút, không phải vài tháng.",
+        "ctaButton": "Tăng Tốc Marketing →"
+      },
+      "pm": {
+        "heroTitle": "AI cho bạn 100 cánh tay.\nNhưng thiếu kỷ luật, 100 cánh tay đó tạo hỗn loạn.",
+        "heroSub": "Cody Master là hệ thống điều khiển cho phát triển sản phẩm bằng AI. Quality gate bắt buộc, design nhất quán, và documentation tự động.",
+        "painLabel": "SỰ HỖN LOẠN BẠN QUÁ QUEN THUỘC",
+        "painTitle": "Nghe quen không?",
+        "pains": [
+          {
+            "icon": "🎨",
+            "title": "Design mỗi lần một kiểu",
+            "desc": "Cùng brand, cùng project, ba kiểu khác nhau. AI quên design system giữa các session. Stakeholder tưởng là 3 sản phẩm khác nhau."
+          },
+          {
+            "icon": "💥",
+            "title": "AI phá cái đang chạy",
+            "desc": "Bạn yêu cầu AI thêm feature. Nó rewrite nửa codebase. Chức năng đang chạy biến mất. Bạn mất 2 ngày sửa lại."
+          },
+          {
+            "icon": "📄",
+            "title": "Không docs = không self-onboarding",
+            "desc": "Sản phẩm tuyệt vời, zero documentation. User flood hỏi câu basic. Đội support chìm nghỉm vì không ai self-serve được."
+          },
+          {
+            "icon": "🔍",
+            "title": "Không thấy AI đang làm gì",
+            "desc": "Chạy 3 agent trên 5 task. Con nào bị kẹt? Deploy ở đâu? Tốn bao nhiêu token? Bạn zero visibility."
+          }
+        ],
+        "solutionLabel": "HỆ THỐNG ĐIỀU KHIỂN AI",
+        "solutionTitle": "Kỷ luật cho AI. Yên tâm cho bạn.",
+        "solutions": [
+          {
+            "skill": "cm-ux-master",
+            "benefit": "Design system được bắt buộc tự động. Cùng brand, cùng style, mọi lần."
+          },
+          {
+            "skill": "cm-quality-gate",
+            "benefit": "Hệ thống 6 cổng. Không gì đến production mà chưa qua test, linting, security."
+          },
+          {
+            "skill": "cm-dockit",
+            "benefit": "Tự sinh docs hoàn chỉnh từ code: API reference, SOP, hướng dẫn sử dụng, persona, JTBD."
+          },
+          {
+            "skill": "cm-continuity",
+            "benefit": "Context lưu xuyên session. AI nhớ lỗi và không lặp lại."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "Design hỗn loạn — mỗi lần một kiểu",
+            "AI phá code hiện tại",
+            "Zero documentation",
+            "Không thấy AI đang làm gì",
+            "Review chất lượng thủ công"
+          ],
+          "after": [
+            "Design system được AI tuân thủ",
+            "Bảo vệ code đa tầng",
+            "Docs world-class tự động",
+            "Dashboard hiển thị mọi thứ",
+            "Quality gate 6 cổng tự động"
+          ]
+        },
+        "objections": [
+          {
+            "q": "Quality gate có làm chậm không?",
+            "a": "Ngược lại, tiết kiệm thời gian. Bắt bug ở gate mất vài giây. Bắt ở production mất vài ngày. Net: ship NHANH hơn."
+          },
+          {
+            "q": "Tôi là PM, không phải dev. Có quá kỹ thuật không?",
+            "a": "Người tạo Cody Master cũng là PM. Mọi thứ được thiết kế để bạn chat tự nhiên. Bạn nói muốn gì, AI lo phần kỹ thuật."
+          },
+          {
+            "q": "Chúng tôi dùng Jira/Linear. Có thay thế chúng không?",
+            "a": "Không. Cody Master bổ trợ. Nó xử lý phần AI — chất lượng, nhất quán, deploy mà Jira không enforce được."
+          }
+        ],
+        "ctaTitle": "Bạn đã quản lý hỗn loạn đủ lâu.\nĐã đến lúc có kỷ luật.",
+        "ctaSub": "Từ AI hỗn loạn đến sản phẩm production-ready với chất lượng bắt buộc.",
+        "ctaButton": "Kiểm Soát Ngay →"
+      },
+      "dev": {
+        "heroTitle": "Ngừng viết code setup.\nBắt đầu viết thứ quan trọng.",
+        "heroSub": "Dành cho CTO, Tech Lead, Frontend, Backend, Mobile dev, và QC engineer — Cody Master xử lý 80% boilerplate trong khi enforce tiêu chuẩn chất lượng bạn thực sự muốn.",
+        "painLabel": "NỖI ĐAU HÀNG NGÀY CỦA DEV",
+        "painTitle": "Dev nào cũng biết nỗi đau này",
+        "pains": [
+          {
+            "icon": "🔄",
+            "title": "Setup déjà vu",
+            "desc": "Mỗi. Dự. Án. Git init, CI/CD config, test infra, linting, i18n, design tokens, deploy pipeline. Bạn đã làm 100 lần. Không bao giờ nhanh hơn."
+          },
+          {
+            "icon": "🧪",
+            "title": "Code AI = zero test coverage",
+            "desc": "AI sinh code nhanh. Nhưng không test, không type safety, không error handling. Hoặc rewrite hoặc ship rồi cầu trời. Cả hai đều tệ."
+          },
+          {
+            "icon": "🚀",
+            "title": "Deploy bắn tay",
+            "desc": "Không staging. Không rollback. Không quality gate. Push main rồi check production còn sống không. Mỗi lần."
+          },
+          {
+            "icon": "🏗️",
+            "title": "Kiến trúc không context",
+            "desc": "AI không hiểu pattern codebase. Sinh code xung đột architecture. Mất nhiều thời gian sửa hơn viết."
+          },
+          {
+            "icon": "🧑‍🤝‍🧑",
+            "title": "QC không có lưới an toàn tự động",
+            "desc": "QC engineer test thủ công mọi thứ. Không test gate tự động, không regression check, không security scan trong pipeline."
+          }
+        ],
+        "solutionLabel": "BỘ NHÂN LỰC ENGINEERING",
+        "solutionTitle": "Kỷ luật mà codebase xứng đáng",
+        "solutions": [
+          {
+            "skill": "cm-project-bootstrap",
+            "benefit": "Một lệnh: design system, test infra, CI/CD, i18n, SEO, deploy pipeline. Tất cả sẵn sàng ngày zero."
+          },
+          {
+            "skill": "cm-tdd",
+            "benefit": "Test viết TRƯỚC implementation. Mọi feature có coverage từ đầu."
+          },
+          {
+            "skill": "cm-safe-deploy",
+            "benefit": "Pipeline 8 cổng: lint → type check → test → build → security → preview → deploy → verify. Auto-rollback khi lỗi."
+          },
+          {
+            "skill": "cm-code-review",
+            "benefit": "Review toàn diện với kỷ luật kỹ thuật. Bắt vấn đề trước khi thành production incident."
+          },
+          {
+            "skill": "cm-quality-gate",
+            "benefit": "Cho QC: test gate tự động, xác minh bằng chứng, an toàn frontend. Không deploy nếu chưa pass."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "2-3 ngày setup mỗi project",
+            "Code AI không có test",
+            "Không có lưới an toàn deploy",
+            "Code review thủ công",
+            "QC test tất cả bằng tay"
+          ],
+          "after": [
+            "10 phút có scaffold production-ready",
+            "TDD bắt buộc — test trước",
+            "8 cổng deploy + auto-rollback",
+            "Review AI hỗ trợ có kỷ luật",
+            "Quality gate tự động cho QC"
+          ]
+        },
+        "objections": [
+          {
+            "q": "Stack tôi lạ. Có chạy được không?",
+            "a": "Cody Master hỗ trợ 17 framework: React, Next.js, Astro, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, Angular, htmx, Electron, Tauri, và nhiều hơn."
+          },
+          {
+            "q": "Tôi không muốn AI viết core logic.",
+            "a": "Thì đừng. Dùng Cody Master cho 80% nhàm chán: scaffolding, test, docs, deploy config. Bạn viết 20% cần bộ não."
+          },
+          {
+            "q": "CTO quản lý team thì dùng thế nào?",
+            "a": "CTO định nghĩa tiêu chuẩn chất lượng một lần. Cody Master enforce xuyên mọi project, mọi dev, mọi AI agent. Nhất quán quy mô lớn."
+          }
+        ],
+        "ctaTitle": "Đời quá ngắn để viết boilerplate.\nĐể AI làm phần nhàm. Bạn làm phần brillant.",
+        "ctaSub": "Miễn phí. Mã nguồn mở. Production-ready từ ngày một.",
+        "ctaButton": "Bắt Đầu Xây →"
+      },
+      "designer": {
+        "heroTitle": "Bạn thiết kế hệ thống.\nAI phải tôn trọng nó.",
+        "heroSub": "Cody Master là bộ công cụ AI duy nhất đọc design tokens, preview trước khi code, và enforce brand nhất quán — biến AI thành partner thiết kế, không phải kẻ thù thiết kế.",
+        "painLabel": "NỖI THẤT VỌNG CỦA MỌI DESIGNER",
+        "painTitle": "AI nên khuếch đại vision của bạn, không phải bỏ qua nó",
+        "pains": [
+          {
+            "icon": "🎨",
+            "title": "AI bỏ qua design tokens",
+            "desc": "Bạn mất hàng tuần định nghĩa design system: màu, spacing, typography, component. AI không đọc gì cả. Output trông ngẫu nhiên."
+          },
+          {
+            "icon": "👁️",
+            "title": "Không preview trước khi code",
+            "desc": "Với AI code-first, bạn không thấy design cho đến khi nó đã build xong. Lúc đó 80% code phải đổi để match vision."
+          },
+          {
+            "icon": "🔀",
+            "title": "Output không nhất quán giết brand",
+            "desc": "Trang A bo tròn, Trang B bo vuông, Trang C đổi hoàn toàn bảng màu. Cùng project. Cùng AI. Zero nhất quán."
+          },
+          {
+            "icon": "🤝",
+            "title": "Handoff dev bị hỏng",
+            "desc": "Bạn design trong Figma. AI code từ đầu, bỏ qua component bạn tỉ mỉ tạo ra. Khoảng cách design - production là vực thẳm."
+          }
+        ],
+        "solutionLabel": "QUY TRÌNH DESIGN-FIRST",
+        "solutionTitle": "Preview → Duyệt → Code. Đúng thứ tự.",
+        "solutions": [
+          {
+            "skill": "cm-ux-master",
+            "benefit": "Harvester v4 đọc design system hiện tại. 48 Luật UX validate mọi component. 1032+ pattern cho cảm hứng."
+          },
+          {
+            "skill": "cm-ui-preview",
+            "benefit": "Xem UI trước khi viết một dòng code. Powered by Google Stitch và Pencil.dev."
+          },
+          {
+            "skill": "cm-execution",
+            "benefit": "AI sinh code dùng tokens CỦA BẠN, component CỦA BẠN, spacing CỦA BẠN. Không phải default ngẫu nhiên."
+          },
+          {
+            "skill": "cm-project-bootstrap",
+            "benefit": "Design system setup từ ngày một. Mọi project bắt đầu với brand DNA của bạn."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "AI bỏ qua design system",
+            "Code trước, design sau",
+            "Output brand không nhất quán",
+            "Handoff thủ công",
+            "Redesign sau mỗi lần AI sinh"
+          ],
+          "after": [
+            "Design tokens được đọc và enforce",
+            "Preview design trước mọi code",
+            "Brand nhất quán pixel-perfect",
+            "Pipeline design-to-code",
+            "Duyệt một lần, code match hoàn hảo"
+          ]
+        },
+        "objections": [
+          {
+            "q": "Tôi dùng Figma. Có đọc Figma tokens được không?",
+            "a": "Có. cm-ux-master Harvester trích xuất design tokens từ site, CSS file, design system. Export từ Figma, import vào Cody Master."
+          },
+          {
+            "q": "'AI preview' có thực sự giống design chuyên nghiệp?",
+            "a": "cm-ui-preview dùng Google Stitch và Pencil.dev — công cụ thiết kế chuyên nghiệp, không phải text mockup. Bạn review design thật."
+          },
+          {
+            "q": "Tôi không biết kỹ thuật. Có kiểm soát output được không?",
+            "a": "Đó chính xác là mục đích. Bạn mô tả design bằng ngôn ngữ tự nhiên, preview trực quan, duyệt trước khi code được sinh."
+          }
+        ],
+        "ctaTitle": "Design system của bạn xứng đáng AI biết lắng nghe.\nKhông phải AI bỏ qua.",
+        "ctaSub": "Design-first. Preview-first. Quality-first.",
+        "ctaButton": "Thử AI Design-First →"
+      },
+      "claw": {
+        "heroTitle": "Một bộ skill.\nMọi AI agent trong gia đình.",
+        "heroSub": "Dù bạn dùng Cursor, Claude Desktop, Antigravity, OpenClaw, NemoClaw, hay OpenFang — format phổ quát của Cody Master đồng nghĩa skill hoạt động mọi nơi, tức thì.",
+        "painLabel": "VẤN ĐỀ PHÂN MẢNH",
+        "painTitle": "Chán viết lại rules cho mỗi agent?",
+        "pains": [
+          {
+            "icon": "🔒",
+            "title": "Bị khóa trong một agent",
+            "desc": "Bạn xây custom prompt và rules cho Cursor. Giờ muốn thử Claude Desktop. Làm lại từ đầu. Mọi công sức? Không chuyển được."
+          },
+          {
+            "icon": "🧩",
+            "title": "Config file không chuyển được",
+            "desc": ".cursorrules, claude_desktop_config.json, .windsurfrules — mỗi agent format khác. Kiến thức phân mảnh trong file không tương thích."
+          },
+          {
+            "icon": "🌐",
+            "title": "Không có format skill phổ quát",
+            "desc": "Bạn học viết skill cho một agent. Nhưng hệ sinh thái Claw (OpenClaw, NemoClaw, OpenFang) cần tương thích. Chưa có chuẩn nào."
+          },
+          {
+            "icon": "🔄",
+            "title": "Đổi agent = làm lại từ đầu",
+            "desc": "Agent mới, tốt hơn ra mắt. Bạn muốn thử. Nhưng migration nghĩa là tạo lại mọi thứ. Lock-in bởi config phức tạp."
+          }
+        ],
+        "solutionLabel": "CHUẨN PHỔ QUÁT",
+        "solutionTitle": "Viết một lần. Chạy mọi nơi. Kiểu Claw.",
+        "solutions": [
+          {
+            "skill": "CodyMaster Claw",
+            "benefit": "Adapter phổ quát dịch skill sang format bất kỳ agent. Một SKILL.md, mọi agent đọc được."
+          },
+          {
+            "skill": "cm-skill-mastery",
+            "benefit": "Meta-skill biết toàn bộ thư viện. Hỏi dùng skill nào — nó route tức thì."
+          },
+          {
+            "skill": "cm-skill-chain",
+            "benefit": "Chain skill thành pipeline tự động. Chạy giống nhau trên Cursor, Claude, Antigravity, OpenClaw."
+          },
+          {
+            "skill": "cm-example",
+            "benefit": "Template skill phổ quát. Tạo một lần, tương thích Antigravity, Claude, Cursor, OpenClaw, NemoClaw, OpenFang."
+          }
+        ],
+        "beforeAfter": {
+          "before": [
+            "Skill bị khóa trong một agent",
+            "Format config khác mỗi tool",
+            "Không tương thích",
+            "Đổi = làm lại từ đầu",
+            "Skill cộng đồng không cross-agent"
+          ],
+          "after": [
+            "Skill chạy trên mọi agent",
+            "Một format phổ quát",
+            "Toàn bộ Claw ecosystem tương thích",
+            "Đổi tự do, zero chi phí migration",
+            "30+ skill, cross-agent tức thì"
+          ]
+        },
+        "objections": [
+          {
+            "q": "Tôi chỉ dùng Cursor. Có cần không?",
+            "a": "Có! Trên Cursor thôi bạn đã có 30+ skill battle-tested. Và nếu muốn thử Claude hay Antigravity, toàn bộ thư viện skill theo bạn."
+          },
+          {
+            "q": "'Gia đình Claw' chính xác là gì?",
+            "a": "Là hệ sinh thái AI agent tool chia sẻ triết lý Open Claw interop: OpenClaw, NemoClaw, OpenFang, và khác. Cody Master nói ngôn ngữ của chúng native."
+          },
+          {
+            "q": "Có thể tạo skill riêng theo format này?",
+            "a": "Hoàn toàn. cm-skill-mastery và skill-creator-ultra giúp tạo custom skill chạy cross-agent tức thì."
+          }
+        ],
+        "ctaTitle": "Tham gia hệ sinh thái skill phổ quát.\nViết một lần. Chạy mọi nơi.",
+        "ctaSub": "30+ skill. Mọi Claw agent. Zero lock-in.",
+        "ctaButton": "Gia Nhập Claw Family →"
+      }
     }
   },
   "claw": {
@@ -130,20 +694,54 @@
     "label": "THƯ VIỆN KỸ NĂNG",
     "title": "30+ Kỹ năng chuyên biệt\ncho mọi giai đoạn",
     "subtitle": "Mỗi kỹ năng là một chuyên gia AI — từ lên ý tưởng, thiết kế, viết nội dung, đến bảo mật và triển khai.",
-    "categories": ["Ý tưởng", "Thiết kế", "Nội dung", "Code & Triển khai", "Bảo mật"],
+    "categories": [
+      "Ý tưởng",
+      "Thiết kế",
+      "Nội dung",
+      "Code & Triển khai",
+      "Bảo mật"
+    ],
     "cards": [
-      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "description": "Phân tích ý tưởng đa chiều, đánh giá tính khả thi trước khi bắt tay xây dựng" },
-      { "icon": "file-text", "name": "cm-planning", "description": "Lên kế hoạch chi tiết trước khi code — không lãng phí thời gian sửa đi sửa lại" },
-      { "icon": "palette", "name": "cm-ux-master", "description": "Thiết kế giao diện chuẩn UX — đẹp, dễ dùng, tối ưu chuyển đổi" },
-      { "icon": "pen-tool", "name": "cm-content-factory", "description": "Viết nội dung chuẩn SEO — từ blog đến landing page, AI viết như chuyên gia" }
+      {
+        "icon": "lightbulb",
+        "name": "cm-brainstorm-idea",
+        "description": "Phân tích ý tưởng đa chiều, đánh giá tính khả thi trước khi bắt tay xây dựng"
+      },
+      {
+        "icon": "file-text",
+        "name": "cm-planning",
+        "description": "Lên kế hoạch chi tiết trước khi code — không lãng phí thời gian sửa đi sửa lại"
+      },
+      {
+        "icon": "palette",
+        "name": "cm-ux-master",
+        "description": "Thiết kế giao diện chuẩn UX — đẹp, dễ dùng, tối ưu chuyển đổi"
+      },
+      {
+        "icon": "pen-tool",
+        "name": "cm-content-factory",
+        "description": "Viết nội dung chuẩn SEO — từ blog đến landing page, AI viết như chuyên gia"
+      }
     ]
   },
   "stats": {
     "items": [
-      { "number": "30+", "label": "Kỹ năng AI" },
-      { "number": "17", "label": "Framework" },
-      { "number": "48", "label": "Luật UX" },
-      { "number": "1032+", "label": "Design Pattern" }
+      {
+        "number": "30+",
+        "label": "Kỹ năng AI"
+      },
+      {
+        "number": "17",
+        "label": "Framework"
+      },
+      {
+        "number": "48",
+        "label": "Luật UX"
+      },
+      {
+        "number": "1032+",
+        "label": "Design Pattern"
+      }
     ]
   },
   "cta": {
@@ -152,11 +750,18 @@
     "button": "Bắt đầu ngay"
   },
   "footer": {
-    "links": ["GitHub", "Tài liệu", "Discord"],
+    "links": [
+      "GitHub",
+      "Tài liệu",
+      "Discord"
+    ],
     "copyright": "© 2026 Cody Master · Được tạo bởi AI"
   },
-
   "skillsPage": {
+    "modalWhat": "Đây là gì?",
+    "modalWhen": "Khi nào sử dụng?",
+    "modalWhy": "Tại sao nên dùng?",
+    "modalBest": "Thực hành tốt nhất",
     "meta": {
       "title": "Thư viện Kỹ năng — Cody Master Kit",
       "description": "Khám phá 30+ kỹ năng AI Agent chuyên biệt cho ý tưởng, thiết kế, nội dung, code, bảo mật và triển khai."
@@ -164,44 +769,562 @@
     "hero": "Khám phá Thư viện Kỹ năng",
     "heroSub": "Mỗi kỹ năng là một chuyên gia AI riêng. Tìm kiếm, lọc và khám phá kỹ năng phù hợp.",
     "searchPlaceholder": "Tìm kiếm kỹ năng...",
-    "categories": ["Tất cả", "Ý tưởng", "Thiết kế", "Nội dung", "Code & Triển khai", "Bảo mật", "Chất lượng", "DevOps"],
+    "categories": [
+      "Tất cả",
+      "Ý tưởng",
+      "Thiết kế",
+      "Nội dung",
+      "Code & Triển khai",
+      "Bảo mật",
+      "Chất lượng",
+      "DevOps"
+    ],
     "modalTryPrompt": "Hãy thử nói:",
     "modalRelated": "Kỹ năng liên quan",
     "modalCta": "Bắt đầu với kỹ năng này",
     "catalog": [
-      { "id": "cm-brainstorm-idea", "name": "cm-brainstorm-idea", "category": "Ý tưởng", "icon": "lightbulb", "tagline": "Phân tích Ý tưởng Chiến lược", "description": "Đánh giá đa chiều sử dụng Design Thinking + TRIZ 9 Windows + Double Diamond. Đưa ra 2-3 phương án có chất lượng kèm khuyến nghị.", "prompt": "Phân tích nền tảng thương mại điện tử và đề xuất cải tiến", "related": ["cm-planning", "cm-ux-master"] },
-      { "id": "cm-planning", "name": "cm-planning", "category": "Ý tưởng", "icon": "map", "tagline": "Lập kế hoạch Triển khai", "description": "Tìm hiểu mục đích và yêu cầu trước khi code. Lập kế hoạch chi tiết trước khi viết bất kỳ dòng code nào — tiết kiệm hàng giờ đồng hồ.", "prompt": "Lên kế hoạch triển khai xác thực người dùng", "related": ["cm-brainstorm-idea", "cm-execution"] },
-      { "id": "cm-content-factory", "name": "cm-content-factory", "category": "Nội dung", "icon": "pen-tool", "tagline": "Nhà máy Nội dung AI", "description": "Công cụ nội dung tự học với framework StoryBrand, Cialdini, SUCCESs. Tạo nội dung chuẩn SEO cho mọi ngách tức thì.", "prompt": "Viết bài blog về năng suất làm việc từ xa", "related": ["cm-readit", "cm-ux-master"] },
-      { "id": "cm-ux-master", "name": "cm-ux-master", "category": "Thiết kế", "icon": "palette", "tagline": "Trí tuệ Thiết kế UI/UX", "description": "48 Luật UX, 37 Bài kiểm tra Thiết kế, 1032+ mẫu thiết kế. Tạo hệ thống thiết kế hoàn chỉnh và kiểm tra khả năng truy cập.", "prompt": "Thiết kế dashboard cho ứng dụng phân tích SaaS", "related": ["cm-ui-preview", "cm-content-factory"] },
-      { "id": "cm-ui-preview", "name": "cm-ui-preview", "category": "Thiết kế", "icon": "monitor", "tagline": "Xem trước UI trực quan", "description": "Tạo bản xem trước UI sẵn sàng production bằng Google Stitch hoặc Pencil.dev. Xem thiết kế trước khi viết code.", "prompt": "Xem trước màn hình đăng nhập ứng dụng di động", "related": ["cm-ux-master", "cm-planning"] },
-      { "id": "cm-execution", "name": "cm-execution", "category": "Code & Triển khai", "icon": "play", "tagline": "Thực thi Code Thông minh", "description": "Thực thi theo lô với checkpoint, phân phối song song cho các tác vụ độc lập. Triển khai kế hoạch hiệu quả ít phải làm lại.", "prompt": "Thực thi kế hoạch triển khai tính năng thanh toán", "related": ["cm-planning", "cm-tdd"] },
-      { "id": "cm-tdd", "name": "cm-tdd", "category": "Chất lượng", "icon": "check-square", "tagline": "Phát triển Hướng kiểm thử", "description": "Viết test trước code. Đảm bảo mọi tính năng đều có bao phủ kiểm thử từ đầu.", "prompt": "Viết test cho module xử lý thanh toán", "related": ["cm-execution", "cm-quality-gate"] },
-      { "id": "cm-debugging", "name": "cm-debugging", "category": "Chất lượng", "icon": "bug", "tagline": "Debug tìm Nguyên nhân gốc", "description": "Phân tích lỗi có hệ thống — tìm nguyên nhân thực sự, không chỉ triệu chứng. Ngăn lỗi tái phát.", "prompt": "Debug tại sao trang đăng nhập bị crash trên di động", "related": ["cm-tdd", "cm-terminal"] },
-      { "id": "cm-code-review", "name": "cm-code-review", "category": "Chất lượng", "icon": "git-pull-request", "tagline": "Review Code & Phản hồi", "description": "Quy trình review toàn diện — yêu cầu review, xử lý phản hồi kỹ lưỡng, tích hợp nhánh.", "prompt": "Review pull request mới nhất cho module API", "related": ["cm-quality-gate", "cm-tdd"] },
-      { "id": "cm-quality-gate", "name": "cm-quality-gate", "category": "Chất lượng", "icon": "shield", "tagline": "Cổng Chất lượng Triển khai", "description": "Bắt buộc qua cổng kiểm thử, xác minh bằng chứng, kiểm tra an toàn frontend. Không triển khai nếu chưa đạt.", "prompt": "Chạy kiểm tra chất lượng trước khi triển khai production", "related": ["cm-tdd", "cm-safe-deploy"] },
-      { "id": "cm-test-gate", "name": "cm-test-gate", "category": "Chất lượng", "icon": "clipboard-check", "tagline": "Hạ tầng Kiểm thử", "description": "Thiết lập cổng kiểm thử đáng tin cậy — phát hiện stack, file test cốt lõi, kết nối script, pattern CI.", "prompt": "Thiết lập hạ tầng test cho dự án Next.js", "related": ["cm-tdd", "cm-quality-gate"] },
-      { "id": "cm-terminal", "name": "cm-terminal", "category": "DevOps", "icon": "terminal", "tagline": "Quản lý Terminal", "description": "Ghi log tiến trình rõ ràng, đọc output, dừng khi có lỗi. Không bao giờ để tiến trình terminal chạy mất kiểm soát.", "prompt": "Chạy và giám sát quy trình build", "related": ["cm-execution", "cm-debugging"] },
-      { "id": "cm-safe-deploy", "name": "cm-safe-deploy", "category": "DevOps", "icon": "rocket", "tagline": "Pipeline Triển khai An toàn", "description": "Pipeline triển khai nhiều cổng với kiểm thử, xác minh build, an toàn frontend, và chiến lược rollback.", "prompt": "Deploy bản staging lên Cloudflare Pages", "related": ["cm-quality-gate", "cm-identity-guard"] },
-      { "id": "cm-project-bootstrap", "name": "cm-project-bootstrap", "category": "DevOps", "icon": "folder-plus", "tagline": "Khởi tạo Dự án", "description": "Bắt đầu dự án từ đầu — hệ thống thiết kế, staging+production, i18n, SEO, hạ tầng test, pipeline 8 cổng.", "prompt": "Khởi tạo dự án SaaS mới với Next.js", "related": ["cm-planning", "cm-safe-deploy"] },
-      { "id": "cm-git-worktrees", "name": "cm-git-worktrees", "category": "DevOps", "icon": "git-branch", "tagline": "Quản lý Git Worktree", "description": "Tạo worktree git cách ly thông minh. Làm việc trên tính năng mới mà không ảnh hưởng nhánh chính.", "prompt": "Tạo worktree cho tính năng thanh toán mới", "related": ["cm-code-review", "cm-execution"] },
-      { "id": "cm-safe-i18n", "name": "cm-safe-i18n", "category": "Nội dung", "icon": "globe", "tagline": "Đa ngôn ngữ An toàn", "description": "Xử lý theo lô nhiều lượt, phân phối song song mỗi ngôn ngữ, 8 cổng kiểm tra, đảm bảo toàn vẹn HTML.", "prompt": "Dịch ứng dụng từ tiếng Anh sang tiếng Việt", "related": ["cm-content-factory", "cm-quality-gate"] },
-      { "id": "cm-readit", "name": "cm-readit", "category": "Nội dung", "icon": "headphones", "tagline": "Âm thanh & Giọng nói CRO", "description": "Chế độ đọc TTS, trình phát MP3, hệ thống Voice CRO. Biến website thành trải nghiệm âm thanh.", "prompt": "Thêm tính năng đọc văn bản cho blog", "related": ["cm-content-factory", "cm-ux-master"] },
-      { "id": "cm-secret-shield", "name": "cm-secret-shield", "category": "Bảo mật", "icon": "lock", "tagline": "Ngăn chặn Rò rỉ Bí mật", "description": "Quét bí mật trước commit, phát hiện pattern toàn repo, quản lý vòng đời token. Chặn rò rỉ ở mọi giai đoạn.", "prompt": "Quét repo tìm API key bị lộ", "related": ["cm-identity-guard", "cm-safe-deploy"] },
-      { "id": "cm-identity-guard", "name": "cm-identity-guard", "category": "Bảo mật", "icon": "fingerprint", "tagline": "Bảo vệ Danh tính & Tài khoản", "description": "Xác minh và khóa danh tính dự án trước mỗi lần push hoặc deploy. Ngăn deploy nhầm tài khoản.", "prompt": "Xác minh cấu hình git trước khi push production", "related": ["cm-secret-shield", "cm-safe-deploy"] },
-      { "id": "cm-ads-tracker", "name": "cm-ads-tracker", "category": "Nội dung", "icon": "bar-chart-2", "tagline": "Theo dõi Chuyển đổi", "description": "Tạo setup tracking hoàn chỉnh: Meta Pixel + CAPI, TikTok Events, Google Ads Enhanced Conversions, UTM attribution.", "prompt": "Cài đặt Facebook Pixel và Google Ads tracking", "related": ["cm-content-factory", "cm-ux-master"] },
-      { "id": "cm-continuity", "name": "cm-continuity", "category": "DevOps", "icon": "refresh-cw", "tagline": "Bộ nhớ Phiên làm việc", "description": "Duy trì ngữ cảnh xuyên phiên qua CONTINUITY.md. Ghi nhận lỗi và bài học để không lặp lại.", "prompt": "Tải ngữ cảnh từ phiên trước", "related": ["cm-skill-mastery", "cm-planning"] },
-      { "id": "cm-dockit", "name": "cm-dockit", "category": "Nội dung", "icon": "book-open", "tagline": "Tạo Tài liệu Tri thức", "description": "Phân tích codebase, tạo Personas, JTBD, quy trình, SOP, tham chiếu API. Một lần quét = cơ sở tri thức đầy đủ.", "prompt": "Tạo tài liệu cho ứng dụng Frappe", "related": ["cm-content-factory", "cm-planning"] },
-      { "id": "cm-skill-chain", "name": "cm-skill-chain", "category": "DevOps", "icon": "link", "tagline": "Chuỗi Kỹ năng Tự động", "description": "Kết hợp kỹ năng thành pipeline tự động. Một tác vụ kích hoạt quy trình đa kỹ năng có theo dõi tiến trình.", "prompt": "Chain brainstorm → plan → execute cho tính năng", "related": ["cm-skill-mastery", "cm-execution"] },
-      { "id": "cm-skill-mastery", "name": "cm-skill-mastery", "category": "Ý tưởng", "icon": "compass", "tagline": "Khám phá Kỹ năng", "description": "Kỹ năng tổng — biết khi nào dùng kỹ năng nào, cách tạo kỹ năng mới, khám phá kỹ năng trong bộ kit.", "prompt": "Tôi nên dùng kỹ năng nào cho UX audit?", "related": ["cm-skill-chain", "cm-how-it-work"] },
-      { "id": "cm-skill-index", "name": "cm-skill-index", "category": "DevOps", "icon": "list", "tagline": "Chỉ mục Kỹ năng", "description": "Chỉ mục tiết lộ dần — 3 lớp tải kỹ năng. Quản lý ngữ cảnh hiệu quả cho AI agent.", "prompt": "Hiển thị tóm tắt tất cả kỹ năng có sẵn", "related": ["cm-skill-mastery", "cm-skill-chain"] },
-      { "id": "cm-how-it-work", "name": "cm-how-it-work", "category": "Ý tưởng", "icon": "help-circle", "tagline": "Hướng dẫn Bắt đầu", "description": "Hướng dẫn toàn diện về bộ Cody Master — từ ý tưởng đến deploy. Phủ toàn bộ quy trình và trường hợp thường gặp.", "prompt": "Làm sao dùng Cody Master lần đầu?", "related": ["cm-skill-mastery", "cm-project-bootstrap"] },
-      { "id": "cm-dashboard", "name": "cm-dashboard", "category": "DevOps", "icon": "layout-dashboard", "tagline": "Bảng điều khiển Dự án", "description": "Trung tâm điều hành giám sát hoạt động skill, trạng thái dự án, tiến trình các tác vụ.", "prompt": "Hiển thị bảng điều khiển dự án", "related": ["cm-skill-chain", "cm-continuity"] },
-      { "id": "cm-start", "name": "cm-start", "category": "Ý tưởng", "icon": "power", "tagline": "Khởi động Nhanh", "description": "Cách nhanh nhất để bắt đầu tác vụ mới. Tự phát hiện ngữ cảnh và điều hướng đến đúng kỹ năng.", "prompt": "Bắt đầu làm tính năng mới", "related": ["cm-planning", "cm-skill-mastery"] },
-      { "id": "cm-status", "name": "cm-status", "category": "DevOps", "icon": "activity", "tagline": "Trạng thái Dự án", "description": "Kiểm tra sức khỏe nhanh — trạng thái build, bao phủ test, deploy, tác vụ chưa hoàn thành.", "prompt": "Trạng thái hiện tại của dự án là gì?", "related": ["cm-dashboard", "cm-quality-gate"] },
-      { "id": "cm-example", "name": "cm-example", "category": "DevOps", "icon": "file-code", "tagline": "Mẫu Kỹ năng", "description": "Mẫu minh họa định dạng skill tương thích Antigravity, Claude, Cursor, OpenClaw.", "prompt": "Hướng dẫn tạo skill mới", "related": ["cm-skill-mastery", "cm-skill-chain"] }
+      {
+        "id": "cm-brainstorm-idea",
+        "name": "cm-brainstorm-idea",
+        "category": "Ý tưởng",
+        "icon": "lightbulb",
+        "tagline": "Phân tích Ý tưởng Chiến lược",
+        "prompt": "Phân tích nền tảng thương mại điện tử và đề xuất cải tiến",
+        "related": [
+          "cm-planning",
+          "cm-ux-master"
+        ],
+        "problem": "Bạn có ý tưởng nhưng sợ đi sai hướng hoặc không giải quyết đúng vấn đề cốt lõi?",
+        "solution": "Đánh giá đa chiều bằng Design Thinking để tìm ra hướng đi tối ưu nhất trước khi code.",
+        "whatIsIt": "Một kỹ năng phân tích chiến lược. Sử dụng Design Thinking, 9 Windows (TRIZ), và Double Diamond để mổ xẻ vấn đề từ kỹ thuật, sản phẩm, đến kinh doanh.",
+        "whenToUse": "Sử dụng trước khi bắt đầu một tính năng mới lớn, hoặc khi muốn cải tiến dự án đã có.",
+        "whyToUse": "Giúp bạn tránh cái bẫy 'xây nhanh nhưng sai thứ người dùng cần'. Nó đưa ra các phương án rõ ràng để bạn chọn so sánh.",
+        "bestPractice": "Chạy kỹ năng này trước khi gọi `cm-planning`. Hãy chia sẻ càng nhiều về người dùng mục tiêu càng tốt."
+      },
+      {
+        "id": "cm-planning",
+        "name": "cm-planning",
+        "category": "Ý tưởng",
+        "icon": "map",
+        "tagline": "Lập kế hoạch Triển khai",
+        "prompt": "Lên kế hoạch triển khai xác thực người dùng",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-execution"
+        ],
+        "problem": "Mỗi lần nhờ AI code ngay, nó hay làm vỡ kiến trúc cũ vì thiếu bức tranh toàn cảnh?",
+        "solution": "Lập kế hoạch kiến trúc chi tiết để cả bạn và AI đều biết chính xác những gì sẽ thay đổi.",
+        "whatIsIt": "Kỹ năng lập kế hoạch triển khai. Nó tạo ra bản thiết kế kiến trúc (`implementation_plan.md`) liệt kê chính xác các file sẽ bị sửa đổi.",
+        "whenToUse": "Sau khi chốt ý tưởng, trước khi bắt đầu viết bất kỳ dòng code nào.",
+        "whyToUse": "Loại bỏ sự mơ hồ và lỗi logic tốn thời gian debug sau này. Nó là la bàn định hướng cho file mã nguồn.",
+        "bestPractice": "Đọc kỹ `implementation_plan.md`. Yêu cầu AI sửa file kế hoạch nếu chưa ưng ý trước khi qua bước tiếp theo."
+      },
+      {
+        "id": "cm-content-factory",
+        "name": "cm-content-factory",
+        "category": "Nội dung",
+        "icon": "pen-tool",
+        "tagline": "Nhà máy Nội dung AI",
+        "prompt": "Viết bài blog về năng suất làm việc từ xa",
+        "related": [
+          "cm-readit",
+          "cm-ux-master"
+        ],
+        "problem": "Bạn cần viết nội dung SEO, Landing Page nhưng văn phong AI quá nhàm chán và máy móc?",
+        "solution": "Nhà máy content dựa trên framework tâm lý học để tạo nội dung chuyển đổi cao.",
+        "whatIsIt": "Một động cơ nội dung. Tích hợp 8+ framework tâm lý học như StoryBrand, Cialdini, để tạo nội dung chuẩn marketing.",
+        "whenToUse": "Khi cần nội dung có sức thuyết phục: Landing page, email marketing, blog post, hoặc quảng cáo Facebook.",
+        "whyToUse": "Nó không chỉ 'viết chữ' mà tạo ra chiến lược thuyết phục. Nội dung tập trung vào nỗi đau người dùng, tạo sự tò mò (CRO).",
+        "bestPractice": "Bắt đầu với thông tin Persona. Dùng framework StoryBrand để biến khách hàng thành Hero."
+      },
+      {
+        "id": "cm-ux-master",
+        "name": "cm-ux-master",
+        "category": "Thiết kế",
+        "icon": "palette",
+        "tagline": "Trí tuệ Thiết kế UI/UX",
+        "prompt": "Thiết kế dashboard cho ứng dụng phân tích SaaS",
+        "related": [
+          "cm-ui-preview",
+          "cm-content-factory"
+        ],
+        "problem": "Giao diện website lộn xộn, trải nghiệm tệ và hệ thống màu sắc không đồng nhất?",
+        "solution": "Áp dụng thiết kế chuẩn UX tự động từ 48 quy luật và hàng nghìn pattern chuyên nghiệp.",
+        "whatIsIt": "Bộ não thiết kế UI/UX. Tích hợp 48 Luật UX, hàng trăm Component chuẩn mực, tối ưu hóa hiển thị.",
+        "whenToUse": "Khi bạn tạo một hệ thống UI mới hoặc muốn fix giao diện cũ cho đẹp và chuyên nghiệp.",
+        "whyToUse": "Thay thế UX Designer đắt đỏ. Nó đảm bảo app của bạn thân thiện, truy cập mượt mà và chuyển đổi tốt.",
+        "bestPractice": "Kết hợp cùng `cm-ui-preview` để xem trước các giao diện mà kỹ năng này thiết kế."
+      },
+      {
+        "id": "cm-ui-preview",
+        "name": "cm-ui-preview",
+        "category": "Thiết kế",
+        "icon": "monitor",
+        "tagline": "Xem trước UI trực quan",
+        "prompt": "Xem trước màn hình đăng nhập ứng dụng di động",
+        "related": [
+          "cm-ux-master",
+          "cm-planning"
+        ],
+        "problem": "Rất khó để hình dung giao diện sẽ ra sao nếu chỉ đọc code HTML/CSS khô khan?",
+        "solution": "Tạo bản xem trước trực quan để chốt thiết kế trước khi code thực tế.",
+        "whatIsIt": "Kỹ năng kết nối với engine thiết kế (Stitch, Pencil) để xuất hình ảnh UI ngay lập tức.",
+        "whenToUse": "Trong lúc thiết kế ý tưởng, để trực quan hóa UI trước khi ném cho AI code.",
+        "whyToUse": "Sửa ý tưởng trên hình dễ và rẻ hơn trăm lần so với sửa code. 'Xem trước khi xây'.",
+        "bestPractice": "Liệt kê rõ các thành phần bạn muốn thấy (Card, Sidebar, Navbar). Yêu cầu ảnh chụp màn hình sau khi thiết kế."
+      },
+      {
+        "id": "cm-execution",
+        "name": "cm-execution",
+        "category": "Code & Triển khai",
+        "icon": "play",
+        "tagline": "Thực thi Code Thông minh",
+        "prompt": "Thực thi kế hoạch triển khai tính năng thanh toán",
+        "related": [
+          "cm-planning",
+          "cm-tdd"
+        ],
+        "problem": "Khi triển khai logic lớn, AI hay kiệt sức, quên context và làm hỏng code?",
+        "solution": "Chia nhỏ, lưu checkpoint và phân phối tác vụ song song thông minh.",
+        "whatIsIt": "Quy trình thực thi code chuyên gia. Xử lý nhiều file với khả năng auto-checkpoint.",
+        "whenToUse": "Sau khi có `implementation_plan.md` và muốn tiến hành viết code ngay.",
+        "whyToUse": "Thi công thông minh theo thứ tự ưu tiên (Dependency-first). Kiểm định an toàn từng bước nhỏ.",
+        "bestPractice": "Theo dõi tiến độ trong `task.md`. Đừng ngắt ngang AI khi nó đang thi công trừ khi bị văng lỗi nặng."
+      },
+      {
+        "id": "cm-tdd",
+        "name": "cm-tdd",
+        "category": "Chất lượng",
+        "icon": "check-square",
+        "tagline": "Phát triển Hướng kiểm thử",
+        "prompt": "Viết test cho module xử lý thanh toán",
+        "related": [
+          "cm-execution",
+          "cm-quality-gate"
+        ],
+        "problem": "App chạy đúng, nhưng mỗi lần thêm tính năng mới là tính năng cũ lăn ra báo lỗi?",
+        "solution": "Bắt buộc tư duy Test-Driven Development (TDD) để luôn có lưới an toàn.",
+        "whatIsIt": "Kiểm thử hướng phát triển. Nó viết Unit/Integration test trước, rồi mới viết hàm thực hiện logic để pass test đó.",
+        "whenToUse": "Bắt buộc dùng khi code core logic, xử lý toán học, thanh toán, hoặc API.",
+        "whyToUse": "Code chất lượng cao không bị regression. Test xanh = Yên tâm ngủ ngon.",
+        "bestPractice": "Đừng bỏ qua viết test cho Utility functions. Cho AI hiểu rõ document test framework (Jest/Vitest) đang dùng."
+      },
+      {
+        "id": "cm-debugging",
+        "name": "cm-debugging",
+        "category": "Chất lượng",
+        "icon": "bug",
+        "tagline": "Debug tìm Nguyên nhân gốc",
+        "prompt": "Debug tại sao trang đăng nhập bị crash trên di động",
+        "related": [
+          "cm-tdd",
+          "cm-terminal"
+        ],
+        "problem": "Lỗi xuất hiện, AI chỉ đoán mò sửa mù quáng làm hỏng nhiều file hơn?",
+        "solution": "Root Cause Analysis – Tìm nguyên nhân gốc rễ một cách có hệ thống.",
+        "whatIsIt": "Quy trình phân tích lỗi chuyên sâu. Cách ly lỗi, phân tích Stack Trace và xử lý chính xác.",
+        "whenToUse": "Khi app văng lỗi, UI bị kẹt hoặc logic dữ liệu bị sai số.",
+        "whyToUse": "Tránh việc chữa cháy triệu chứng. Nó sẽ fix đúng một dòng duy nhất để vá lỗ hổng triệt để.",
+        "bestPractice": "Luôn pass toàn bộ Stack Trace cho AI và bắt nó tìm Nguyên Nhân trước khi cho phép sửa code."
+      },
+      {
+        "id": "cm-code-review",
+        "name": "cm-code-review",
+        "category": "Chất lượng",
+        "icon": "git-pull-request",
+        "tagline": "Review Code & Phản hồi",
+        "prompt": "Review pull request mới nhất cho module API",
+        "related": [
+          "cm-quality-gate",
+          "cm-tdd"
+        ],
+        "problem": "Lo sợ mã nguồn người khác merge vào phá vỡ các luồng của hệ thống?",
+        "solution": "Chữ kí duyệt code từ Senior AI khắt khe.",
+        "whatIsIt": "Hệ thống duyệt PR chuyên sâu. Đánh giá độ sạch code, performance, bảo mật mở rộng.",
+        "whenToUse": "Trước khi gộp nhánh, hoặc audit định kỳ các file cũ.",
+        "whyToUse": "Nâng tầm chuẩn mực kỹ thuật (Tech debt). Code luôn sạch sẽ, dễ bảo trì về sau.",
+        "bestPractice": "Yêu cầu rà soát đặc biệt các vòng lặp ẩn hoặc SQL Injection tiềm tàng."
+      },
+      {
+        "id": "cm-quality-gate",
+        "name": "cm-quality-gate",
+        "category": "Chất lượng",
+        "icon": "shield",
+        "tagline": "Cổng Chất lượng Triển khai",
+        "prompt": "Chạy kiểm tra chất lượng trước khi triển khai production",
+        "related": [
+          "cm-tdd",
+          "cm-safe-deploy"
+        ],
+        "problem": "Code có thể chạy tốt ở localhost nhưng đẩy lên Live lại thành một thảm họa?",
+        "solution": "Cổng kiểm soát chất lượng thép. Không qua = Không deploy.",
+        "whatIsIt": "Kiểm duyệt Quality Gate. Bắt buộc test toàn bộ Linting, Unit test, Type checker và Security.",
+        "whenToUse": "Mỗi khi bạn bắt đầu hành trình gọi thẻ deploy.",
+        "whyToUse": "Áp dụng chuẩn RARV, chặn tận gốc thảm họa đứt gãy dịch vụ do bất cẩn cá nhân.",
+        "bestPractice": "Không bao giờ được bypass QA gate vì bất kỳ lý do chạy deadline nào."
+      },
+      {
+        "id": "cm-test-gate",
+        "name": "cm-test-gate",
+        "category": "Chất lượng",
+        "icon": "clipboard-check",
+        "tagline": "Hạ tầng Kiểm thử",
+        "prompt": "Thiết lập hạ tầng test cho dự án Next.js",
+        "related": [
+          "cm-tdd",
+          "cm-quality-gate"
+        ],
+        "problem": "Bạn biết phải testing nhưng không biết cài đặt hệ thống hạ tầng CI ra sao?",
+        "solution": "Dựng sẵn toàn bộ hạ tầng Test Runner chuyên nghiệp.",
+        "whatIsIt": "Kỹ năng CI/CD Test Setup. Xúc tiến thư viện Vitest/Jest, file cấu hình và pre-commit Hooks cho Repo.",
+        "whenToUse": "Cài đặt dự án mới hoặc một dự án Legacy chưa từng được viết test.",
+        "whyToUse": "Một hệ thống có test từ ngày đầu là một hệ thống có thể mở rộng khổng lồ không bị sập.",
+        "bestPractice": "Gọi ngay lệnh này liền sau khi bạn hoàn thành `cm-project-bootstrap`."
+      },
+      {
+        "id": "cm-terminal",
+        "name": "cm-terminal",
+        "category": "DevOps",
+        "icon": "terminal",
+        "tagline": "Quản lý Terminal",
+        "prompt": "Chạy và giám sát quy trình build",
+        "related": [
+          "cm-execution",
+          "cm-debugging"
+        ],
+        "problem": "Các lệnh NPM hoặc Build lâu bị treo không rõ lý do ngầm bên trong?",
+        "solution": "Giám sát quy trình thiết bị Terminal thông minh.",
+        "whatIsIt": "Kỹ năng phân luồng Terminal. Đọc Output từ shell tiến trình, kiểm tra log lỗi, dừng thao tác khi gặp Exception.",
+        "whenToUse": "Mỗi khi chạy cài đặt packager lớn hoặc khởi lệnh Dev server dài hơi.",
+        "whyToUse": "Ngăn AI 'fire and forget' (nhấn chạy xong bỏ đó). AI sẽ đọc logs thông minh.",
+        "bestPractice": "Để Terminal luôn trong tầm quan sát, cấm AI tự ý wipe thư mục hệ thống."
+      },
+      {
+        "id": "cm-safe-deploy",
+        "name": "cm-safe-deploy",
+        "category": "DevOps",
+        "icon": "rocket",
+        "tagline": "Pipeline Triển khai An toàn",
+        "prompt": "Deploy bản staging lên Cloudflare Pages",
+        "related": [
+          "cm-quality-gate",
+          "cm-identity-guard"
+        ],
+        "problem": "Cảm giác sợ hãi mỗi khi đẩy sản phẩm lên Server production?",
+        "solution": "Pipeline 8 cổng an toàn. Back-up và phục hồi nhanh nếu rủi ro.",
+        "whatIsIt": "Quy trình đưa app ra internet. Hỗ trợ Vercel, Cloudflare, VPS Zero-downtime.",
+        "whenToUse": "Triển khai code hoàn thiện từ nhánh Dev lên Staging hoặc Live.",
+        "whyToUse": "Thao tác tự tin hơn với chức năng tự động rollback. Bạn ngủ ngon, bot chực chiến.",
+        "bestPractice": "Thiết lập `cm-identity-guard` kèm theo để đảm bảo đẩy đúng tài khoản Cloud."
+      },
+      {
+        "id": "cm-project-bootstrap",
+        "name": "cm-project-bootstrap",
+        "category": "DevOps",
+        "icon": "folder-plus",
+        "tagline": "Khởi tạo Dự án",
+        "prompt": "Khởi tạo dự án SaaS mới với Next.js",
+        "related": [
+          "cm-planning",
+          "cm-safe-deploy"
+        ],
+        "problem": "Setup dự án lập đi lập lại: config git, eslint, router tốn cả ngày?",
+        "solution": "Đóng gói toàn bộ Best practices khởi tạo thành 1 dòng bấm.",
+        "whatIsIt": "Công cụ Scaffold tạo thư mục gốc chuẩn quốc tế, nạp các config i18n, seo, tests sẵn.",
+        "whenToUse": "Vào Phút Số Không của mọi dự án mã nguồn mới.",
+        "whyToUse": "Móng nhà chắc thì xây bao nhiêu tầng cũng không sập. Tiết kiệm ngay 10 ngày setup ban đầu.",
+        "bestPractice": "Tuyệt đối không skip config các thư mục `tests` và `docs`."
+      },
+      {
+        "id": "cm-git-worktrees",
+        "name": "cm-git-worktrees",
+        "category": "DevOps",
+        "icon": "git-branch",
+        "tagline": "Quản lý Git Worktree",
+        "prompt": "Tạo worktree cho tính năng thanh toán mới",
+        "related": [
+          "cm-code-review",
+          "cm-execution"
+        ],
+        "problem": "Đang code giữa chừng thì Sếp kêu sửa Live Bug, nhảy nhánh làm conflict cháy nát file?",
+        "solution": "Luồng Git vật lý cách ly cho các việc khẩn cấp.",
+        "whatIsIt": "Trình quản lý Worktree cấp cao. Nó nhân bản dự án đa luồng vật lý trên một repo duy nhất.",
+        "whenToUse": "Khi bạn phải Multi-task nhưng code dở dang chưa muốn Commit.",
+        "whyToUse": "Bỏ hẳn cơn đau đầu `git stash`. Các tiến trình node_modules song song không dẫm chân lên nhau.",
+        "bestPractice": "Phải xóa sạch các folder Worktree một khi Patch code đã được Merge thành công."
+      },
+      {
+        "id": "cm-safe-i18n",
+        "name": "cm-safe-i18n",
+        "category": "Nội dung",
+        "icon": "globe",
+        "tagline": "Đa ngôn ngữ An toàn",
+        "prompt": "Dịch ứng dụng từ tiếng Anh sang tiếng Việt",
+        "related": [
+          "cm-content-factory",
+          "cm-quality-gate"
+        ],
+        "problem": "Giao AI dịch thuật file ngôn ngữ, nó xóa nhầm cả cấu trúc HTML và biến logic?",
+        "solution": "Máy dịch thuật cấu trúc an toàn, đối chứng toàn vẹn thẻ HTML.",
+        "whatIsIt": "Một Engine Localization xử lý Batch, xác thực trước/sau để giam giữ tính nguyên vẹn Regex Code.",
+        "whenToUse": "Khi thêm cờ ngôn ngữ mới (Tiếng Trung, Anh, Nhật... ) vào hệ thống.",
+        "whyToUse": "Không còn tình trạng 'app dịch xong thành phế'. Hệ thống tự động catch nếu thẻ div bị bay màu.",
+        "bestPractice": "Tuyệt đối chẻ nhỏ file ngôn ngữ dưới 2000 dòng để AI không bị Hallucination."
+      },
+      {
+        "id": "cm-readit",
+        "name": "cm-readit",
+        "category": "Nội dung",
+        "icon": "headphones",
+        "tagline": "Âm thanh & Giọng nói CRO",
+        "prompt": "Thêm tính năng đọc văn bản cho blog",
+        "related": [
+          "cm-content-factory",
+          "cm-ux-master"
+        ],
+        "problem": "Web text dài sọc không ai thèm đọc, bounce rate nhảy dựng?",
+        "solution": "Biến bài viết thành trình nghe Podcast tự động (Voice CRO).",
+        "whatIsIt": "Công cụ tích hợp âm thanh TTS, có sẵn tính năng MP3 player tương tác và chích thêm Voice Call to actions.",
+        "whenToUse": "Gắn lên Blog, sách mạng, học thuật, hoặc Landing Page dạng dài kể chuyện.",
+        "whyToUse": "Retention giữ chân tăng 3x lần vỉ nghe luôn thoải mái thụ động hơn là căng mắt đọc chữ bé tí.",
+        "bestPractice": "Chọn giọng Voice bot ấp áp tự nhiên từ Web Speech API hoặc các nền tảng ElevenLabs."
+      },
+      {
+        "id": "cm-secret-shield",
+        "name": "cm-secret-shield",
+        "category": "Bảo mật",
+        "icon": "lock",
+        "tagline": "Ngăn chặn Rò rỉ Bí mật",
+        "prompt": "Quét repo tìm API key bị lộ",
+        "related": [
+          "cm-identity-guard",
+          "cm-safe-deploy"
+        ],
+        "problem": "Sơ sẩy đẩy API key, token quan trọng lên Git Public dẫn tới hacker rút rỗng thẻ?",
+        "solution": "Bức tường thành cuối cùng quét tàn sát các mã Token rò rỉ.",
+        "whatIsIt": "Mắt thần Security. Nó rà soát các định dạng Base64, AWS keys, Stripe Token ngay khi bạn gõ phím chứ không đợi Push.",
+        "whenToUse": "Nó kích hoạt tàng hình, nhưng bạn có thể Manual Scan trước các kì Merge khổng lồ.",
+        "whyToUse": "Lộ Token là Tội Lỗi Vô Giá Trị. Một phút lơ đễnh đánh rơi sự tin tưởng hàng năm trời của startup.",
+        "bestPractice": "Code luôn sử dụng file `.env` và kiểm tra 3 lần nó đã vào `.gitignore` chưa."
+      },
+      {
+        "id": "cm-identity-guard",
+        "name": "cm-identity-guard",
+        "category": "Bảo mật",
+        "icon": "fingerprint",
+        "tagline": "Bảo vệ Danh tính & Tài khoản",
+        "prompt": "Xác minh cấu hình git trước khi push production",
+        "related": [
+          "cm-secret-shield",
+          "cm-safe-deploy"
+        ],
+        "problem": "Bạn xài nhiều tài khoản GitHub làm freelance, lỡ tay push nhầm Repo cty này sang host cty kia?",
+        "solution": "Bốt kiểm soát danh phận dự án. Chặn đứng các hành động nhầm host.",
+        "whatIsIt": "Lệnh Audit profile Git/Cloud config. Khóa lệnh deploy nếu hệ thống báo sai email hoặc team.",
+        "whenToUse": "Luôn luôn kẹp cùng lúc với tiến trình Setup đầu ngày hoặc Push production.",
+        "whyToUse": "Rò rỉ source code cho khách hàng đối thủ vì nhầm profile Git là án tử nghề nghiệp.",
+        "bestPractice": "Khuyên dùng Git config `--local` riêng lẽ từng Folder dự án."
+      },
+      {
+        "id": "cm-ads-tracker",
+        "name": "cm-ads-tracker",
+        "category": "Nội dung",
+        "icon": "bar-chart-2",
+        "tagline": "Theo dõi Chuyển đổi",
+        "prompt": "Cài đặt Facebook Pixel và Google Ads tracking",
+        "related": [
+          "cm-content-factory",
+          "cm-ux-master"
+        ],
+        "problem": "Đốt tiền quảng cáo khủng nhưng Ads Pixel bắt trượt chuyển đổi, tối ưu sai đích?",
+        "solution": "Gắn chuỗi hệ thống đo đạc Server-side hoàn hảo trong 5 phút.",
+        "whatIsIt": "Kỹ thuật Lead Tracking. Gọi Facebook CAPI, TikTok Events, Google GTM và vạch ra chiến lược UTM.",
+        "whenToUse": "Ngay khi chuẩn bị khởi chạy dòng tiền Marketing vào Landing page/SaaS.",
+        "whyToUse": "Nếu đo lường sai, quảng cáo đổ đi tìm người rác rưởi. Skill sẽ định hình Datalayer khít khao nhất.",
+        "bestPractice": "Phải xác định trước cho nó các Nút CTA cụ thể làm 'Lead' và làm 'Purchase'."
+      },
+      {
+        "id": "cm-continuity",
+        "name": "cm-continuity",
+        "category": "DevOps",
+        "icon": "refresh-cw",
+        "tagline": "Bộ nhớ Phiên làm việc",
+        "prompt": "Tải ngữ cảnh từ phiên trước",
+        "related": [
+          "cm-skill-mastery",
+          "cm-planning"
+        ],
+        "problem": "Tắt lap ngủ mai dậy AI mất trắng trí nhớ, quên luôn ngày qua đã viết đến đoạn nào?",
+        "solution": "State Machine vĩnh cửu. Phục hồi ngữ cảnh cho bất kì luồng đàm thoại mới nào.",
+        "whatIsIt": "Trình quản lý `CONTINUITY.md`. Lưu tiến độ, bài học xương máu, và checklist tổng đã qua.",
+        "whenToUse": "Cuối ngày làm việc, và mở ra nhắc bài vào sáng tinh mơ hôm sau.",
+        "whyToUse": "Vượt rào cản Token của AI. CodyMaster sẽ mãi như một developer không bao giờ bị quên lãng nhiệm vụ dở dang.",
+        "bestPractice": "Lệnh cho nó 'Viết báo cáo Continuity' trước khi Close tab."
+      },
+      {
+        "id": "cm-dockit",
+        "name": "cm-dockit",
+        "category": "Nội dung",
+        "icon": "book-open",
+        "tagline": "Tạo Tài liệu Tri thức",
+        "prompt": "Tạo tài liệu cho ứng dụng Frappe",
+        "related": [
+          "cm-content-factory",
+          "cm-planning"
+        ],
+        "problem": "Sản phẩm bàn giao khô khốc, người dùng chẳng biết dùng và dev sau kế hoạch cũng mù đường?",
+        "solution": "AI scan code và nhả ra sách giáo khoa vận hành đẹp đẽ từ A-Z.",
+        "whatIsIt": "Cỗ máy đẻ Documentation (VitePress/Markdown). Tự sinh API Reference, Persona flows, và User Guides.",
+        "whenToUse": "Ngay trước thềm Beta Launch sản phẩm ra mạng lưới cộng đồng.",
+        "whyToUse": "Hướng dẫn tốt thì triệt để cắt giảm 80% câu hỏi Support vô tri từ khách hàng.",
+        "bestPractice": "Sinh ra song song Internal Docs cho lính Code, và External Docs cho Người Dùng Cuối."
+      },
+      {
+        "id": "cm-skill-chain",
+        "name": "cm-skill-chain",
+        "category": "DevOps",
+        "icon": "link",
+        "tagline": "Chuỗi Kỹ năng Tự động",
+        "prompt": "Chain brainstorm → plan → execute cho tính năng",
+        "related": [
+          "cm-skill-mastery",
+          "cm-execution"
+        ],
+        "problem": "Bạn khó chịu khi phải ra lệnh bằng tay tuần tự từ lên kế hoạch rồi gõ lệnh code thủ công?",
+        "solution": "Ném mục tiêu vào dây chuyền, để máy AI thay ca hoạt động chuỗi tác vụ.",
+        "whatIsIt": "Pipeline Automation. Lập trình máy gọi máy thực thi theo Logic đa chiều.",
+        "whenToUse": "Khi bạn nắm rõ con flow vận hành lớn và muốn rảnh tay đi làm tách cà phê.",
+        "whyToUse": "Lực đòn bẩy vĩ đại. Một lệnh của bạn tự động bật tung IDE, code hàng nghìn dòng, pass QA và lên Live.",
+        "bestPractice": "Chỉ Chain các skill an toàn ở giai đoạn đầu. Luôn chốt chain bằng `cm-quality-gate`."
+      },
+      {
+        "id": "cm-skill-mastery",
+        "name": "cm-skill-mastery",
+        "category": "Ý tưởng",
+        "icon": "compass",
+        "tagline": "Khám phá Kỹ năng",
+        "prompt": "Tôi nên dùng kỹ năng nào cho UX audit?",
+        "related": [
+          "cm-skill-chain",
+          "cm-how-it-work"
+        ],
+        "problem": "30 kỹ năng nhìn phát hoảng. Tôi muốn giải quyết vấn đề XYZ thì xài skill nào đây?",
+        "solution": "Bách khoa toàn thư kiêm điều phối viên AI tư vấn ngược lại bạn.",
+        "whatIsIt": "Kỹ năng của các kỹ năng (Meta-skill). Nó đọc toàn bộ 30+ kỹ năng còn lại và am hiểu cách build một lệnh riêng biệt.",
+        "whenToUse": "Khi bí đường, khi cần tư vấn cách thức thiết kế workflow AI cho doanh nghiệp bạn.",
+        "whyToUse": "Bạn không cần thuộc lệnh. 'Cody, tìm tao cái nào chuyên check HTML giao diện nhanh'.",
+        "bestPractice": "Mở nó ra ngay ngày đầu hoặc khi bạn định dạy cho AI nhà bạn một format làm việc chuẩn MCP mới."
+      },
+      {
+        "id": "cm-skill-index",
+        "name": "cm-skill-index",
+        "category": "DevOps",
+        "icon": "list",
+        "tagline": "Chỉ mục Kỹ năng",
+        "prompt": "Hiển thị tóm tắt tất cả kỹ năng có sẵn",
+        "related": [
+          "cm-skill-mastery",
+          "cm-skill-chain"
+        ],
+        "problem": "AI phình bụng vì nạp một đống tài liệu 30 SKILLS dư thừa khiến bị giảm tốc độ và thông minh?",
+        "solution": "Đọc kiểu mục lục: Progressive Context loading.",
+        "whatIsIt": "Hạ tầng lõi ẩn sâu. Khiến AI chỉ nhớ Tên Skill. Lúc thực sự cần nó mới lôi Bộ Nội Dung chi tiết ra đọc tiếp.",
+        "whenToUse": "Tự kích hoạt, bạn tuyệt đối không đụng vào thao tác tay.",
+        "whyToUse": "Bảo toàn số token (chi phí API rẻ bèo) và giữ cho luồng tư duy Context của AI không bị 'Nhiễu loạn'.",
+        "bestPractice": "Cấm các hành vi xóa hay ghi đè lộn xộn các index data mặc định ở thư mục skills."
+      },
+      {
+        "id": "cm-how-it-work",
+        "name": "cm-how-it-work",
+        "category": "Ý tưởng",
+        "icon": "help-circle",
+        "tagline": "Hướng dẫn Bắt đầu",
+        "prompt": "Làm sao dùng Cody Master lần đầu?",
+        "related": [
+          "cm-skill-mastery",
+          "cm-project-bootstrap"
+        ],
+        "problem": "Lần đầu tải về và lầm tưởng Cody Master chỉ là cái công cụ Chat thông thường?",
+        "solution": "Lĩnh hội Sách Trắng - Bí kíp Vibe Coding thực thụ.",
+        "whatIsIt": "Cuốn Whitepaper chứa đựng tinh hoa nguyên lý vận hành Model RARV, và Workflow các tác vụ mẫu mượt mà.",
+        "whenToUse": "Khi mới vừa setup init. Hoặc ném cho Newbies dev team bạn lúc vừa gia nhập công ty.",
+        "whyToUse": "Nếu không thấm thía triết lý, bạn sẽ dùng nó như đồ chơi. Nếu thấm nhuần, bạn thành Super Hero IT One Man Army.",
+        "bestPractice": "Đọc trọn vẹn chương 1 đến 5 để biết giới hạn và cách phá bỏ giới hạn của con quái vật AI."
+      },
+      {
+        "id": "cm-dashboard",
+        "name": "cm-dashboard",
+        "category": "DevOps",
+        "icon": "layout-dashboard",
+        "tagline": "Bảng điều khiển Dự án",
+        "prompt": "Hiển thị bảng điều khiển dự án",
+        "related": [
+          "cm-skill-chain",
+          "cm-continuity"
+        ],
+        "problem": "Phố lên đèn nhưng AI chạy quá nhiều tác vụ ngầm làm bạn không kiểm soát nổi tiến trình?",
+        "solution": "Mission Control Dashboard hiển thị trực quan các biểu đồ Live Pipeline.",
+        "whatIsIt": "Công cụ Radar UI hiển thị số token, tình trạng Queue task, Error Event Log.",
+        "whenToUse": "Luôn bật trên một cửa sổ Chrome kế bên khi Vibe Coding mãnh liệt nhiều ngày.",
+        "whyToUse": "Xóa ranh giới mù mờ (Black box action). Nhìn màn hình là nắm rõ cái gì đang bị đơ hay chạy vi vu.",
+        "bestPractice": "Tách một màn hình Desktop monitor số 2 chỉ để treo Dashboard này."
+      },
+      {
+        "id": "cm-start",
+        "name": "cm-start",
+        "category": "Ý tưởng",
+        "icon": "power",
+        "tagline": "Khởi động Nhanh",
+        "prompt": "Bắt đầu làm tính năng mới",
+        "related": [
+          "cm-planning",
+          "cm-skill-mastery"
+        ],
+        "problem": "Bực bội khi mỗi lần tạo cái tính năng mới lại phải viết một dòng Prompt 200 chữ lê thê?",
+        "solution": "Nút khởi động tàng hình bám sát bối cảnh trang mà bạn đang bật lên.",
+        "whatIsIt": "Cú Launchpad cấp tốc gộp lệnh. Tự động soi Context file hiện tại để dò bắt sóng công việc chính xác.",
+        "whenToUse": "Khi muốn nhào thẳng vào sửa giao diện hoặc tạo hàm logic mà lười type văn bản dài.",
+        "whyToUse": "Một chữ \"Bắt đầu nào\" thay thế nguyên 200 dòng briefing mệt mỏi.",
+        "bestPractice": "Click mở đúng File JS/CSS/HTML ở Editor ngay trước lúc gõ gọi dòng skill này."
+      },
+      {
+        "id": "cm-status",
+        "name": "cm-status",
+        "category": "DevOps",
+        "icon": "activity",
+        "tagline": "Trạng thái Dự án",
+        "prompt": "Trạng thái hiện tại của dự án là gì?",
+        "related": [
+          "cm-dashboard",
+          "cm-quality-gate"
+        ],
+        "problem": "Sếp hỏi tiến bộ dự án đến đâu và test bao nhiêu case rồi? Không có số liệu báo cáo!",
+        "solution": "Câu lệnh lấy Report thần tốc báo cáo y khoa của Project.",
+        "whatIsIt": "Tool chẩn đoán tổng quát. Ghi log độ đo Test Coverage, Status build, Tasklist sót lại từ Todo.",
+        "whenToUse": "Họp giao ban buổi sáng Thứ 2, hoặc khi định chốt hạ chuẩn bị rẽ sang Phase nâng cấp dự án khác.",
+        "whyToUse": "Cung cấp sự minh bạch đo đếm được. Dữ liệu chứng minh chất lượng.",
+        "bestPractice": "Chạy chung với Continuity report để ghi lại sổ theo dõi dài kỳ (Archive logs)."
+      },
+      {
+        "id": "cm-example",
+        "name": "cm-example",
+        "category": "DevOps",
+        "icon": "file-code",
+        "tagline": "Mẫu Kỹ năng",
+        "prompt": "Hướng dẫn tạo skill mới",
+        "related": [
+          "cm-skill-mastery",
+          "cm-skill-chain"
+        ],
+        "problem": "Công ty bạn có một nghiệp vụ bí truyền và muốn bot AI thực thi chuẩn theo luật đó?",
+        "solution": "Custom Skill Template để bạn viết ra kỹ năng cá nhân hoá riêng rẽ siêu tốc.",
+        "whatIsIt": "Khuôn đổ mã chuẩn Antigravity Framework dể bạn copy, đổi tên, và tống vào đó các Luật lệ ngầm của tổ chức.",
+        "whenToUse": "Lập trình viên viết Bot chuyên ngành (Ví dụ: Bot check thuế, Bot review đơn hàng kế toán).",
+        "whyToUse": "Chỉ mất 2 phút copy cái ruột cấu trúc là đủ biến Claude/Cursor thành thiên tài nghiệp vụ nhà bạn thay vì phải dạy nó từ đầu tới cuối.",
+        "bestPractice": "Clone thư mục này, sửa SKILL.md với dòng mô tả rõ mục đích vào rồi gọi tên nó đi làm."
+      }
     ]
   },
-
   "startPage": {
     "meta": {
       "title": "Bắt đầu — Cody Master Kit",
@@ -213,7 +1336,11 @@
       {
         "title": "Yêu cầu chuẩn bị",
         "description": "Đảm bảo bạn đã cài những thứ này trên máy.",
-        "items": ["VS Code hoặc Cursor editor", "Node.js phiên bản 18 trở lên", "Ứng dụng Terminal"],
+        "items": [
+          "VS Code hoặc Cursor editor",
+          "Node.js phiên bản 18 trở lên",
+          "Ứng dụng Terminal"
+        ],
         "note": "Chưa có Node.js? Tải miễn phí tại nodejs.org"
       },
       {
@@ -248,7 +1375,6 @@
     "finalCta": "Bạn đã sẵn sàng! Hãy bắt đầu xây dựng điều tuyệt vời.",
     "finalButton": "Mở Cody Master"
   },
-
   "demoPage": {
     "meta": {
       "title": "Thử Cody Master — Demo Tương tác",
@@ -279,7 +1405,6 @@
     "resultCta": "Ấn tượng? Cài đặt ngay →",
     "tryAnother": "Thử prompt khác"
   },
-
   "bornFromPain": {
     "label": "TẠI SAO CHÚNG TÔI XÂY DỰNG",
     "title": "Sinh ra từ nỗi đau thật,\nkhông phải bản kế hoạch kinh doanh",
@@ -307,7 +1432,6 @@
     ],
     "readStory": "Đọc câu chuyện đầy đủ →"
   },
-
   "useCases": {
     "label": "BẠN CÓ THỂ XÂY GÌ",
     "title": "Từ ý tưởng đến sản phẩm,\nmọi lĩnh vực",
@@ -317,7 +1441,11 @@
         "icon": "globe",
         "title": "Landing Pages",
         "description": "Trang chuyển đổi cao với tối ưu CRO, hook A/B testing, thiết kế pixel-perfect. Triển khai trong vài phút.",
-        "skills": ["cm-ux-master", "cm-content-factory", "cm-safe-deploy"],
+        "skills": [
+          "cm-ux-master",
+          "cm-content-factory",
+          "cm-safe-deploy"
+        ],
         "metric": "< 15 phút",
         "metricLabel": "để ra mắt"
       },
@@ -325,7 +1453,11 @@
         "icon": "layout-dashboard",
         "title": "Ứng dụng SaaS",
         "description": "App full-stack với auth, dashboard, API, database, kiến trúc multi-tenant. Sẵn sàng production từ ngày đầu.",
-        "skills": ["cm-planning", "cm-execution", "cm-tdd"],
+        "skills": [
+          "cm-planning",
+          "cm-execution",
+          "cm-tdd"
+        ],
         "metric": "Full stack",
         "metricLabel": "từ đầu đến cuối"
       },
@@ -333,7 +1465,11 @@
         "icon": "book-open",
         "title": "Trang Tài liệu",
         "description": "Docs đa ngôn ngữ với API reference, SOP, hướng dẫn sử dụng, process flow. Tự tạo từ codebase.",
-        "skills": ["cm-dockit", "cm-safe-i18n", "cm-content-factory"],
+        "skills": [
+          "cm-dockit",
+          "cm-safe-i18n",
+          "cm-content-factory"
+        ],
         "metric": "30+ ngôn ngữ",
         "metricLabel": "hỗ trợ"
       },
@@ -341,13 +1477,16 @@
         "icon": "megaphone",
         "title": "Content Marketing",
         "description": "Bài viết chuẩn SEO, nội dung mạng xã hội, email marketing. Powered by StoryBrand + Cialdini.",
-        "skills": ["cm-content-factory", "cm-ads-tracker", "cm-readit"],
+        "skills": [
+          "cm-content-factory",
+          "cm-ads-tracker",
+          "cm-readit"
+        ],
         "metric": "7 framework",
         "metricLabel": "tích hợp sẵn"
       }
     ]
   },
-
   "beforeAfter": {
     "label": "SỰ CHUYỂN ĐỔI",
     "title": "Trước vs Sau",
@@ -374,7 +1513,6 @@
       ]
     }
   },
-
   "storyPage": {
     "meta": {
       "title": "Câu Chuyện — Cody Master Kit",
@@ -394,42 +1532,67 @@
         "number": "02",
         "title": "Design Hỗn Loạn: Mỗi Lần Một Kiểu",
         "content": "Tôi bắt đầu dùng AI để làm các dự án cho công ty. Dự án A: giao diện tối giản, font sans-serif, bo góc 8px. Dự án B — cùng hệ thống, cùng brand: bỗng dưng AI chơi font serif, nút tròn vo, đổi bảng màu. Dự án C: lại một phong cách hoàn toàn khác.\n\nMỗi lần design một kiểu. Không lần nào giống lần nào.\n\nVới một Product Manager hơn 10 năm trong ngành, điều này khiến tôi phát điên. Không phải vì xấu — nhiều khi từng cái đều đẹp. Nhưng khi đặt cạnh nhau, nó là một mớ hỗn loạn. Doanh nghiệp cần nhất quán. Brand cần hệ thống.",
-        "skills": ["cm-ux-master", "cm-ui-preview", "tailwind-mastery"],
+        "skills": [
+          "cm-ux-master",
+          "cm-ui-preview",
+          "tailwind-mastery"
+        ],
         "quote": "AI giỏi thiết kế. Nhưng nó tệ kinh khủng trong việc nhớ quy tắc."
       },
       {
         "number": "03",
         "title": "Tuần Lễ Kinh Hoàng — Khi AI Xóa Sạch Code",
         "content": "Đây là bài học đau đớn nhất. Tôi không bao giờ quên.\n\nCó một dự án khá lớn — hệ thống SaaS đang chạy production, phải refactor toàn bộ sang đa ngôn ngữ, đa quốc gia. Tôi giao cho AI. Nó bắt đầu... ổn.\n\nRồi mọi thứ sụp đổ.\n\nContext dài quá, AI bắt đầu 'mất trí'. Nó sửa chỗ này, phá chỗ kia. Và kinh hoàng nhất — AI xóa sạch gần hết code cũ. Nguyên tuần làm việc. Bay.\n\nTôi phải làm lại. Lần 1. Lần 2. Lần 3. Lần 4.\n\nTôi thề: Chuyện này sẽ không bao giờ lặp lại nữa.",
-        "skills": ["cm-tdd", "cm-safe-i18n", "cm-quality-gate", "cm-safe-deploy", "cm-secret-shield", "cm-identity-guard"],
+        "skills": [
+          "cm-tdd",
+          "cm-safe-i18n",
+          "cm-quality-gate",
+          "cm-safe-deploy",
+          "cm-secret-shield",
+          "cm-identity-guard"
+        ],
         "quote": "4 lần làm lại. Nguyên tuần mất trắng. Đó là lúc hệ thống bảo vệ đa tầng ra đời."
       },
       {
         "number": "04",
         "title": "Triết Lý Kẻ Lười Biếng",
         "content": "Thú thật: tôi lười.\n\nKhông phải lười suy nghĩ — mà lười làm lặp đi lặp lại cùng một việc. Mỗi lần bắt đầu dự án mới: setup git, cấu hình deploy, tạo design system... Lần nào cũng vậy.\n\nVà tôi nhận ra: Một vấn đề mà đã gặp 2 lần, thì lần thứ 3 nó phải trở thành quy trình tự động.\n\nMỗi lần gặp vấn đề mới, tôi không chỉ giải quyết — tôi đóng gói lại thành một skill mới. Cải tiến, chỉnh sửa, nhân bản được.",
-        "skills": ["cm-project-bootstrap", "cm-execution", "cm-skill-chain"],
+        "skills": [
+          "cm-project-bootstrap",
+          "cm-execution",
+          "cm-skill-chain"
+        ],
         "quote": "Vấn đề gặp 2 lần thì không bao giờ nên gặp lần thứ 3."
       },
       {
         "number": "05",
         "title": "Sản Phẩm Hay Nhưng Không Ai Biết",
         "content": "Hơn 10 năm làm Product tại công ty SaaS, có một nỗi ám ảnh cứ đeo bám: Self-onboarding.\n\nSản phẩm xịn. Tính năng nhiều. Nhưng user mới vào thì... lạc. Không có docs tử tế. Support team quá tải.\n\nVà khi tự xây sản phẩm mà không có đội văn phong: viết docs trở thành cực hình.\n\ncm-dockit ra đời — cỗ máy documentation khủng. Nó đọc code, hiểu code, tự sinh ra API docs, SOP, hướng dẫn sử dụng. Đa ngôn ngữ. SEO-optimized. Không cần viết một chữ.",
-        "skills": ["cm-dockit", "cm-content-factory"],
+        "skills": [
+          "cm-dockit",
+          "cm-content-factory"
+        ],
         "quote": "Sản phẩm hay nhất thế giới cũng vô giá trị nếu không ai biết cách dùng."
       },
       {
         "number": "06",
         "title": "Mission Control Cho 100 Cánh Tay",
         "content": "Khi chạy nhiều AI agent, nhiều project, nhiều task song song để bào tối đa năng suất... nhanh chóng mất kiểm soát.\n\nTôi là người thích nhìn bằng mắt. Tôi cần THẤY mọi thứ đang diễn ra.\n\nTất tật nằm trên một màn hình: pipeline progress, task queue, token tracker, event log. Mở lên — nhìn — biết ngay tình hình.",
-        "skills": ["cm-dashboard", "cm-status"],
+        "skills": [
+          "cm-dashboard",
+          "cm-status"
+        ],
         "quote": "Không nhìn thấy thì không kiểm soát được."
       },
       {
         "number": "07",
         "title": "Lòng Biết Ơn Cộng Đồng",
         "content": "Không phải mọi thứ tôi đều tự nghĩ ra.\n\nTôi nợ cộng đồng rất nhiều.\n\nSuperpower, Loki Mode, UX Max Pro... Những skill tuyệt vời mà các anh chị, các bạn đã chia sẻ — tôi học hỏi, tuyển chọn, chắt lọc, và tích hợp vào hệ sinh thái Cody Master.\n\nCảm ơn tất cả những người đã chia sẻ. Thật lòng.",
-        "skills": ["cm-skill-mastery", "cm-continuity", "cm-how-it-work"],
+        "skills": [
+          "cm-skill-mastery",
+          "cm-continuity",
+          "cm-how-it-work"
+        ],
         "quote": "Đứng trên vai của một cộng đồng hào phóng."
       }
     ],
@@ -441,5 +1604,452 @@
     },
     "cta": "Bắt đầu hành trình của bạn →",
     "backHome": "← Về trang chủ"
+  },
+  "docsPage": {
+    "meta": {
+      "title": "Hướng dẫn toàn diện — Cody Master Kit | Personas, JTBD, Use Cases",
+      "description": "Hướng dẫn đầy đủ về Cody Master Kit: 5 chân dung người dùng, 5 công việc cần hoàn thành, 8 tình huống thực tế."
+    },
+    "hero": "Hướng Dẫn Toàn Diện",
+    "heroSub": "Cody Master dành cho ai? Giải quyết vấn đề gì? Hoạt động như thế nào? Tất cả trong một trang.",
+    "tocTitle": "Trong Trang Này",
+    "toc": [
+      "Chân Dung Người Dùng",
+      "Công Việc Cần Hoàn Thành",
+      "Tình Huống Sử Dụng",
+      "Bản Đồ Kỹ Năng",
+      "Câu Hỏi Thường Gặp"
+    ],
+    "personasSection": {
+      "label": "DÀNH CHO AI?",
+      "title": "5 Chân Dung Người Dùng",
+      "subtitle": "Cody Master được xây dựng cho những người thật với vấn đề thật. Tìm chính bạn bên dưới.",
+      "personas": [
+        {
+          "emoji": "🚀",
+          "role": "Nhà Sáng Lập Không Biết Code",
+          "tagline": "Có ý tưởng. Không có đội dev. Không biết lập trình.",
+          "demographics": "Founder solo, bootstrapper, khởi nghiệp lần đầu. 25-45 tuổi. Không có nền tảng kỹ thuật.",
+          "painPoints": [
+            "Không thể biến ý tưởng thành sản phẩm nếu không có lập trình viên",
+            "Agency tính phí $10K-50K và mất hàng tháng",
+            "Công cụ AI tạo ra prototype tạm bợ, không phải code production",
+            "Không cách nào duy trì chất lượng hay tính nhất quán"
+          ],
+          "dreamOutcome": "Xây dựng và ra mắt sản phẩm chuyên nghiệp — landing page, ứng dụng SaaS, hay trang nội dung — trong vài ngày, không cần viết một dòng code.",
+          "skills": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "Khi tôi có ý tưởng sản phẩm nhưng không có kỹ năng kỹ thuật, tôi muốn mô tả bằng ngôn ngữ tự nhiên và nhận được sản phẩm production-ready, để tôi có thể thử nghiệm thị trường trước đối thủ."
+        },
+        {
+          "emoji": "📋",
+          "role": "PM Quá Tải",
+          "tagline": "Quản lý AI agents. Chìm trong hỗn loạn.",
+          "demographics": "Product Manager, Chủ doanh nghiệp có 5-15 năm kinh nghiệm. Dùng AI hàng ngày nhưng gặp khó khăn về tính nhất quán.",
+          "painPoints": [
+            "AI thiết kế mỗi dự án một kiểu — cùng thương hiệu, 3 phong cách khác nhau",
+            "AI mất context và phá hỏng code khi refactor",
+            "Không có tài liệu, người dùng không thể tự onboard",
+            "Không thể theo dõi nhiều AI agent cùng lúc"
+          ],
+          "dreamOutcome": "Hệ thống AI kỷ luật, tuân thủ quy tắc, duy trì tính nhất quán thương hiệu, bảo vệ code, tạo tài liệu, và hiển thị tiến độ trên một dashboard duy nhất.",
+          "skills": [
+            "cm-ux-master",
+            "cm-continuity",
+            "cm-dockit",
+            "cm-quality-gate"
+          ],
+          "jtbd": "Khi AI viết code không nhất quán và làm hỏng mọi thứ, tôi muốn có tiêu chuẩn chất lượng bắt buộc và tuân thủ design system, để không có gì đến production mà không qua quality gate."
+        },
+        {
+          "emoji": "💻",
+          "role": "Lập Trình Viên Solo",
+          "tagline": "Chán boilerplate. Muốn ship nhanh hơn.",
+          "demographics": "Full-stack developer, freelancer. 3-10 năm kinh nghiệm. Làm việc solo hoặc nhóm nhỏ.",
+          "painPoints": [
+            "80% thời gian cho setup boilerplate, không phải tính năng thực sự",
+            "Mỗi dự án mới: setup git, deploy, i18n, test infra — từ đầu",
+            "Code AI tạo ra không có test, không có security scan",
+            "Deploy rất căng thẳng — không rollback, không quality gate"
+          ],
+          "dreamOutcome": "Tập trung vào kiến trúc và business logic trong khi AI xử lý boilerplate, test, deploy, và tài liệu — với quality gate ở mọi bước.",
+          "skills": [
+            "cm-project-bootstrap",
+            "cm-tdd",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "Khi bắt đầu dự án mới, tôi muốn scaffolding tự động với test infra, CI/CD, và design system từ ngày đầu, để tập trung vào business logic thay vì setup."
+        },
+        {
+          "emoji": "📢",
+          "role": "Giám Đốc Marketing",
+          "tagline": "Cần nội dung và landing page. Ngay lập tức.",
+          "demographics": "Marketing manager, growth hacker, content strategist. Quản lý thương hiệu và chiến dịch đa kênh.",
+          "painPoints": [
+            "Đội content không thể sản xuất bài viết đủ nhanh",
+            "Landing page mất hàng tuần qua designer và developer",
+            "Tối ưu SEO cần chuyên gia đắt đỏ",
+            "Không có tracking chuyển đổi — không đo được ROAS"
+          ],
+          "dreamOutcome": "Tạo nội dung SEO, landing page chuyển đổi cao, và setup tracking hoàn chỉnh — trong vài phút, sử dụng framework đã chứng minh như StoryBrand và Cialdini.",
+          "skills": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-ux-master",
+            "cm-readit"
+          ],
+          "jtbd": "Khi cần tài sản content marketing nhanh, tôi muốn AI viết theo framework thuyết phục đã chứng minh với SEO tích hợp, để tôi đẩy traffic mà không cần thuê đội content."
+        },
+        {
+          "emoji": "🏢",
+          "role": "Agency / Freelancer",
+          "tagline": "Xây dựng cho nhiều khách hàng. Cần hiệu quả.",
+          "demographics": "Agency digital, freelance developer, consultant. Quản lý 3-10 dự án khách hàng cùng lúc.",
+          "painPoints": [
+            "Mỗi dự án khách hàng cần setup riêng — lặp lại cùng một công việc",
+            "Thiết kế không nhất quán giữa các dự án làm giảm uy tín",
+            "Quản lý secret là ác mộng — rủi ro deploy nhầm account",
+            "Viết tài liệu và bàn giao mất thời gian hơn cả xây dựng"
+          ],
+          "dreamOutcome": "Một bộ kit bootstrap mọi dự án khách hàng với cùng tiêu chuẩn chất lượng, đảm bảo tính nhất quán, ngăn lỗi chéo dự án, và tự động tạo tài liệu bàn giao.",
+          "skills": [
+            "cm-project-bootstrap",
+            "cm-identity-guard",
+            "cm-dockit",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "Khi quản lý nhiều dự án khách hàng, tôi muốn bộ công cụ chuẩn hóa ngăn lỗi chéo dự án và tự động tạo tài liệu, để giao hàng nhanh hơn với chất lượng cao hơn."
+        }
+      ]
+    },
+    "jtbdSection": {
+      "label": "GIẢI QUYẾT VẤN ĐỀ GÌ?",
+      "title": "5 Công Việc Cần Hoàn Thành",
+      "subtitle": "Mỗi kỹ năng trong Cody Master tồn tại vì một công việc thật mà người thật cần làm.",
+      "forceLabels": {
+        "push": "Đẩy (Nỗi Đau Hiện Tại)",
+        "pull": "Kéo (Kết Quả Mơ Ước)",
+        "habit": "Thói Quen (Hành Vi Hiện Tại)",
+        "anxiety": "Lo Lắng (Sợ Thay Đổi)"
+      },
+      "jobs": [
+        {
+          "number": "01",
+          "situation": "Khi tôi có ý tưởng sản phẩm nhưng không biết code...",
+          "motivation": "Tôi muốn mô tả nhu cầu bằng ngôn ngữ tự nhiên và nhận kết quả production-ready...",
+          "outcome": "Để thử nghiệm thị trường trước đối thủ, không mất hàng tháng hay $50K cho agency.",
+          "functional": "Xây sản phẩm hoạt động từ mô tả văn bản",
+          "emotional": "Cảm thấy tự tin và có khả năng dù không biết code",
+          "social": "Được nhìn nhận là founder có năng lực, ship nhanh",
+          "push": "Ý tưởng nằm trong đầu hàng tháng. Agency quá đắt. No-code quá hạn chế.",
+          "pull": "Mô tả → Thiết kế → Code → Deploy trong một phiên. Chất lượng chuyên nghiệp.",
+          "habit": "Thuê freelancer, dùng Wix/Squarespace, hoặc từ bỏ ý tưởng.",
+          "anxiety": "Code AI tạo ra có thật sự production-ready không? Có duy trì được lâu dài không?",
+          "skills": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-execution",
+            "cm-safe-deploy",
+            "cm-project-bootstrap"
+          ]
+        },
+        {
+          "number": "02",
+          "situation": "Khi AI viết code không nhất quán và phá hỏng code cũ...",
+          "motivation": "Tôi muốn tiêu chuẩn chất lượng bắt buộc, tuân thủ design system, và bảo vệ nhiều lớp...",
+          "outcome": "Để không gì hỏng trên production và mọi dự án duy trì tính nhất quán thương hiệu.",
+          "functional": "Tự động enforce chất lượng code, design rule, và testing",
+          "emotional": "Ngủ ngon vì biết pipeline deploy bắt lỗi",
+          "social": "Giao hàng chuyên nghiệp, nhất quán mỗi lần",
+          "push": "AI thiết kế mỗi dự án khác nhau. Refactor xóa code cũ. Không test = không an toàn.",
+          "pull": "Hệ thống 6 cổng chất lượng. Enforce design system. Tự động rollback khi lỗi.",
+          "habit": "Review AI output thủ công, làm lại 3-4 lần, tránh refactor.",
+          "anxiety": "Quality gate có làm chậm workflow không? Overhead có đáng không?",
+          "skills": [
+            "cm-ux-master",
+            "cm-tdd",
+            "cm-quality-gate",
+            "cm-safe-i18n",
+            "cm-safe-deploy"
+          ]
+        },
+        {
+          "number": "03",
+          "situation": "Khi tôi xây sản phẩm tốt mà không ai biết cách dùng...",
+          "motivation": "Tôi muốn tài liệu tự động — API reference, SOP, hướng dẫn sử dụng, personas...",
+          "outcome": "Để người dùng tự onboard, đội hỗ trợ không quá tải, và sản phẩm phát triển.",
+          "functional": "Tự động tạo tài liệu từ phân tích codebase",
+          "emotional": "Xóa bỏ nỗi sợ viết docs sau những phiên code kiệt sức",
+          "social": "Được công nhận có tài liệu đẳng cấp thế giới",
+          "push": "Không docs = không self-service = đội hỗ trợ chìm. Viết docs sau code là cực hình.",
+          "pull": "Một lần scan codebase = knowledge base hoàn chỉnh. Đa ngôn ngữ. SEO.",
+          "habit": "Bỏ qua docs hoàn toàn, hoặc viết README tối thiểu.",
+          "anxiety": "Docs tự động có đủ chính xác không? Có khớp với codebase không?",
+          "skills": [
+            "cm-dockit",
+            "cm-content-factory",
+            "cm-safe-i18n"
+          ]
+        },
+        {
+          "number": "04",
+          "situation": "Khi tôi chạy nhiều AI agent trên nhiều dự án...",
+          "motivation": "Tôi muốn trung tâm điều khiển duy nhất để theo dõi tiến độ, token, và trạng thái deploy...",
+          "outcome": "Để không mất kiểm soát và tối đa hóa năng suất trên mọi công việc.",
+          "functional": "Dashboard trực quan hiển thị tất cả agent, task, và deployment",
+          "emotional": "Cảm thấy kiểm soát dù chạy 5+ dự án cùng lúc",
+          "social": "Thể hiện sự chín chắn vận hành với khách hàng",
+          "push": "Không thấy gì đang xảy ra. Agent nào bị kẹt? Bao nhiêu token đã dùng?",
+          "pull": "Một màn hình hiển thị mọi thứ: pipeline, task queue, token tracker, event log.",
+          "habit": "Kiểm tra log thủ công, chạy CLI, mất hàng giờ chuyển context.",
+          "anxiety": "Dashboard có thêm phức tạp không? Có phải học tool mới không?",
+          "skills": [
+            "cm-continuity",
+            "cm-skill-chain",
+            "cm-terminal"
+          ]
+        },
+        {
+          "number": "05",
+          "situation": "Khi cần content marketing nhưng không thuê được đội đầy đủ...",
+          "motivation": "Tôi muốn AI viết theo framework thuyết phục đã chứng minh với SEO tích hợp...",
+          "outcome": "Để đẩy traffic, tạo lead, và scale nội dung mà không cần thuê writer.",
+          "functional": "Tạo bài blog SEO, landing page, ad copy, email campaign",
+          "emotional": "Tự tin nội dung tuân theo framework đã chứng minh",
+          "social": "Xây dựng uy tín chuyên gia qua xuất bản chất lượng, nhất quán",
+          "push": "Đội content không theo kịp. SEO specialist tốn $5K/tháng. Tracking là đống hỗn loạn.",
+          "pull": "StoryBrand + Cialdini + 7 framework kết hợp. Auto-SEO. Setup tracking hoàn chỉnh.",
+          "habit": "Viết lẻ tẻ, không framework, không tracking, hy vọng tăng trưởng tự nhiên.",
+          "anxiety": "Nội dung AI viết có generic không? Google có phạt không?",
+          "skills": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-readit",
+            "cm-ux-master"
+          ]
+        }
+      ]
+    },
+    "useCasesSection": {
+      "label": "HOẠT ĐỘNG NHƯ THẾ NÀO?",
+      "title": "8 Tình Huống Thực Tế",
+      "subtitle": "Không phải lý thuyết. Đây là tình huống thực cho thấy kỹ năng nào kích hoạt, theo thứ tự nào, và bạn nhận được gì.",
+      "cases": [
+        {
+          "emoji": "🌐",
+          "title": "Ra mắt Landing Page trong 15 phút",
+          "scenario": "Bạn có quán cà phê và cần website chuyên nghiệp với đặt hàng online. Bạn mô tả cho Cody Master bằng tiếng Việt.",
+          "chain": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-content-factory",
+            "cm-safe-deploy"
+          ],
+          "outcome": "Landing page responsive, tối ưu SEO với CRO elements, deploy lên URL live.",
+          "timeSaved": "2 tuần → 15 phút",
+          "costSaved": "$5,000 → $0"
+        },
+        {
+          "emoji": "🏗️",
+          "title": "Xây SaaS MVP trong 1 ngày",
+          "scenario": "Bạn đang validate ý tưởng B2B — cần auth, dashboard, API, và database. Mô tả tính năng và để Cody Master lên kế hoạch và thực hiện.",
+          "chain": [
+            "cm-brainstorm-idea",
+            "cm-planning",
+            "cm-tdd",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "outcome": "Ứng dụng full-stack với xác thực người dùng, admin dashboard, REST API, và PostgreSQL — đã test và deploy.",
+          "timeSaved": "3 tháng → 1 ngày",
+          "costSaved": "$30,000 → $0"
+        },
+        {
+          "emoji": "📚",
+          "title": "Tự động tạo tài liệu hoàn chỉnh",
+          "scenario": "Sản phẩm SaaS có 50+ tính năng nhưng không có tài liệu. Người dùng không tự onboard được. Ticket hỗ trợ chất đống.",
+          "chain": [
+            "cm-dockit",
+            "cm-safe-i18n",
+            "cm-content-factory"
+          ],
+          "outcome": "Trang tài liệu đầy đủ: API reference, user guide, SOP, personas, JTBD. Đa ngôn ngữ. SEO.",
+          "timeSaved": "2 tháng → 1 giờ",
+          "costSaved": "$15,000 → $0"
+        },
+        {
+          "emoji": "📈",
+          "title": "Chạy chiến dịch Content Marketing",
+          "scenario": "Bạn cần 30 bài blog, 5 landing page, và tracking chuyển đổi trên Facebook, Google, TikTok — tất cả tối ưu SEO.",
+          "chain": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-readit",
+            "cm-safe-deploy"
+          ],
+          "outcome": "30 bài SEO, 5 landing page chuyển đổi cao, setup pixel hoàn chỉnh với UTM tracking.",
+          "timeSaved": "3 tháng → 1 tuần",
+          "costSaved": "$20,000 → $0"
+        },
+        {
+          "emoji": "🌍",
+          "title": "Chuyển đổi đa ngôn ngữ an toàn",
+          "scenario": "App chỉ có tiếng Anh. Cần thêm tiếng Việt, Trung, Nga — nhưng lần i18n trước phá hỏng mọi thứ.",
+          "chain": [
+            "cm-safe-i18n",
+            "cm-quality-gate",
+            "cm-tdd"
+          ],
+          "outcome": "Hỗ trợ đa ngôn ngữ hoàn chỉnh với 8 audit gate, kiểm tra HTML integrity, zero regression.",
+          "timeSaved": "2 tuần → 2 giờ",
+          "costSaved": "$8,000 → $0"
+        },
+        {
+          "emoji": "🛡️",
+          "title": "Kiểm tra bảo mật và Deploy an toàn",
+          "scenario": "Trước khi ra mắt v2.0, cần đảm bảo không lộ secret, dependency an toàn, và deploy có rollback.",
+          "chain": [
+            "cm-secret-shield",
+            "cm-identity-guard",
+            "cm-quality-gate",
+            "cm-safe-deploy"
+          ],
+          "outcome": "Kiểm tra bảo mật hoàn chỉnh: secret scanning, dependency check, identity verification, 8-gate deploy pipeline.",
+          "timeSaved": "1 tuần → 30 phút",
+          "costSaved": "$10,000 → $0"
+        },
+        {
+          "emoji": "🏭",
+          "title": "Bootstrap dự án khách hàng mới",
+          "scenario": "Bạn là freelancer bắt đầu dự án mới. Cần design system, test infra, CI/CD, i18n, SEO — đầy đủ.",
+          "chain": [
+            "cm-project-bootstrap",
+            "cm-planning",
+            "cm-ux-master",
+            "cm-safe-deploy"
+          ],
+          "outcome": "Scaffold dự án hoàn chỉnh: design system, test infra, deploy pipeline, i18n, SEO, AGENTS.md — trong một lệnh.",
+          "timeSaved": "3 ngày → 10 phút",
+          "costSaved": "$3,000 → $0"
+        },
+        {
+          "emoji": "🎨",
+          "title": "Enforce Design System xuyên suốt dự án",
+          "scenario": "Thương hiệu có design system nhưng AI bỏ qua. Mỗi trang AI tạo ra trông khác với brand guidelines.",
+          "chain": [
+            "cm-ux-master",
+            "cm-ui-preview",
+            "cm-execution"
+          ],
+          "outcome": "AI đọc design tokens, components, và brand guidelines. Preview trước khi code. Mọi trang khớp brand hoàn hảo.",
+          "timeSaved": "Liên tục — tiết kiệm redesign",
+          "costSaved": "Ngăn ngừa tổn hại thương hiệu"
+        }
+      ]
+    },
+    "skillMapSection": {
+      "label": "CÁC KỸ NĂNG KẾT NỐI NHƯ THẾ NÀO",
+      "title": "Bản Đồ Kỹ Năng",
+      "subtitle": "30+ kỹ năng tổ chức thành 5 nhóm. Kỹ năng tự động nối chuỗi dựa trên nhiệm vụ.",
+      "swarms": [
+        {
+          "name": "🎯 Ý Tưởng",
+          "color": "purple",
+          "skills": [
+            "cm-brainstorm-idea",
+            "cm-planning",
+            "cm-skill-mastery",
+            "cm-how-it-work",
+            "cm-start"
+          ]
+        },
+        {
+          "name": "🎨 Thiết Kế",
+          "color": "blue",
+          "skills": [
+            "cm-ux-master",
+            "cm-ui-preview"
+          ]
+        },
+        {
+          "name": "📝 Nội Dung",
+          "color": "lime",
+          "skills": [
+            "cm-content-factory",
+            "cm-dockit",
+            "cm-safe-i18n",
+            "cm-readit",
+            "cm-ads-tracker"
+          ]
+        },
+        {
+          "name": "⚡ Code & Deploy",
+          "color": "orange",
+          "skills": [
+            "cm-execution",
+            "cm-tdd",
+            "cm-debugging",
+            "cm-code-review",
+            "cm-quality-gate",
+            "cm-test-gate",
+            "cm-safe-deploy",
+            "cm-project-bootstrap"
+          ]
+        },
+        {
+          "name": "🛡️ Bảo Mật & Vận Hành",
+          "color": "red",
+          "skills": [
+            "cm-secret-shield",
+            "cm-identity-guard",
+            "cm-terminal",
+            "cm-git-worktrees",
+            "cm-continuity",
+            "cm-skill-chain",
+            "cm-skill-index"
+          ]
+        }
+      ]
+    },
+    "faqSection": {
+      "label": "CÂU HỎI THƯỜNG GẶP",
+      "title": "FAQ",
+      "questions": [
+        {
+          "q": "Tôi có cần biết code không?",
+          "a": "Không. Cody Master được thiết kế cho người không biết code. Bạn mô tả nhu cầu bằng ngôn ngữ tự nhiên — AI xử lý phần còn lại."
+        },
+        {
+          "q": "Có miễn phí không?",
+          "a": "Có, Cody Master là mã nguồn mở và miễn phí. Bạn chỉ trả cho AI provider (Gemini, Claude, v.v.) mà bạn chọn sử dụng."
+        },
+        {
+          "q": "Hoạt động với AI agent nào?",
+          "a": "Tất cả AI coding agent chính: Google Antigravity (Gemini), Claude, Cursor, Windsurf, Cline/RooCode, GitHub Copilot, OpenClaw, và nhiều hơn."
+        },
+        {
+          "q": "Có dùng được design system hiện tại không?",
+          "a": "Có! cm-ux-master đọc design tokens, components, và brand guidelines hiện tại — rồi xây dựng với chúng."
+        },
+        {
+          "q": "Khác gì so với v0, Bolt, hay Lovable?",
+          "a": "Những tool đó tạo prototype dùng một lần. Cody Master là framework kỹ năng hoàn chỉnh — enforce TDD, quality gate, security scan, design consistency, tài liệu, và safe deploy. Production-ready từ ngày đầu."
+        },
+        {
+          "q": "Tôi có thể tạo skill riêng không?",
+          "a": "Hoàn toàn có thể! Dùng cm-skill-mastery hoặc skill-creator-ultra để tạo skill tùy chỉnh. Format tương thích với Antigravity, Claude, Cursor, và OpenClaw."
+        }
+      ]
+    },
+    "ctaSection": {
+      "title": "Sẵn sàng giải quyết thách thức\nsản phẩm lớn nhất?",
+      "subtitle": "Chọn persona. Chọn use case. Bắt đầu xây dựng.",
+      "button": "Bắt Đầu Ngay →"
+    }
   }
 }
