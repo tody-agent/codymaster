@@ -1,11 +1,11 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "cody-master",
-  "version": "3.3.0",
-  "description": "Universal AI agent skills framework — 33+ skills covering TDD, debugging, deploy, UX, content, i18n, security and orchestration. One install gives your AI agent senior-engineer discipline.",
   "owner": {
     "name": "Tody Agent",
-    "url": "https://codymaster.pages.dev"
+    "email": "hello@codymaster.pages.dev"
+  },
+  "metadata": {
+    "description": "Universal AI agent skills framework — 33+ skills for Claude Code"
   },
   "plugins": [
     {
@@ -14,8 +14,7 @@
       "version": "3.3.0",
       "source": "./",
       "author": {
-        "name": "Tody Agent",
-        "url": "https://codymaster.pages.dev"
+        "name": "Tody Agent"
       },
       "category": "software-development"
     }
