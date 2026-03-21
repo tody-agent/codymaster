@@ -3,12 +3,12 @@
 # 🧠 CodyMaster
 
 **The Universal AI Agent Skills Framework**
-**33+ Skills · 1 Plugin · 7 Domains · 7+ Platforms**
+**33 Skills · 11 Commands · 1 Plugin · 6 Domains · 7+ Platforms**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-3.4.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-33%2B-success.svg" />
-  <img alt="Commands" src="https://img.shields.io/badge/commands-10-orange.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-33-success.svg" />
+  <img alt="Commands" src="https://img.shields.io/badge/commands-11-orange.svg" />
   <img alt="Plugins" src="https://img.shields.io/badge/plugins-1-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
@@ -25,17 +25,17 @@
 
 ### Claude Code (Recommended)
 
-**One-liner** — prints all commands for you:
+**One-liner** — auto-detect, multi-language, scope selection:
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
 ```
 
-**Or run manually:**
+**Or manually:**
 ```bash
-# Step 1: Add the marketplace
+# 1. Add marketplace
 claude plugin marketplace add tody-agent/codymaster
 
-# Step 2: Install all 33+ skills in one go
+# 2. Install all 33 skills
 claude plugin install cody-master@cody-master
 ```
 
@@ -51,18 +51,16 @@ gemini extensions install https://github.com/tody-agent/codymaster
 /add-plugin cody-master
 ```
 
-Or search for "cody-master" in the Cursor plugin marketplace.
+Or search "cody-master" in the Cursor plugin marketplace.
 
 ### Codex
 
-Tell Codex:
 ```
 Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
 ```
 
 ### OpenCode
 
-Tell OpenCode:
 ```
 Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
 ```
@@ -70,44 +68,45 @@ Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/
 ### Antigravity / Gemini (Manual)
 
 ```bash
-# Global install
+# Global
 git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
 cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
-# Or per-project
+# Per-project
 cp -r ~/.cody-master/skills/* .gemini/skills/
 ```
 
-### Other Assistants
+### Any Other Agent
 
-The `skills/*/SKILL.md` files follow the universal skill format and work with any AI tool that reads them:
+`skills/*/SKILL.md` follows the universal format — drop them anywhere:
 
 ```bash
-cp -r skills/* .opencode/skills/    # OpenCode
-cp -r skills/* .cursor/skills/      # Cursor
-cp -r skills/* .codex/skills/       # Codex
-cp -r skills/* .kiro/skills/        # Kiro
+cp -r skills/* .opencode/skills/
+cp -r skills/* .cursor/skills/
+cp -r skills/* .codex/skills/
+cp -r skills/* .kiro/skills/
 ```
 
 ---
 
 ## What's Inside
 
-All 33+ skills ship as a **single plugin** (`cody-master`), organized by domain:
+All 33 skills ship as a **single plugin** (`cody-master`), organized by domain:
 
 | Domain | Skills |
 |--------|--------|
-| 🔧 Engineering | `cm-tdd`, `cm-debugging`, `cm-quality-gate`, `cm-test-gate`, `cm-code-review` |
-| ⚙️ Operations | `cm-safe-deploy`, `cm-identity-guard`, `cm-git-worktrees`, `cm-terminal`, `cm-secret-shield`, `cm-safe-i18n` |
-| 🎨 Product | `cm-planning`, `cm-brainstorm-idea`, `cm-ux-master`, `cm-ui-preview`, `cm-dockit`, `cm-readit`, `cm-project-bootstrap`, `cm-jtbd` |
-| 📈 Growth | `cm-content-factory`, `cm-ads-tracker`, `cro-methodology` |
-| 🎯 Orchestration | `cm-execution`, `cm-continuity`, `cm-deep-search`, `cm-skill-chain`, `cm-skill-mastery`, `cm-how-it-work` |
+| 🔧 Engineering | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` |
+| ⚙️ Operations | `cm-safe-deploy` `cm-identity-guard` `cm-git-worktrees` `cm-terminal` `cm-secret-shield` `cm-safe-i18n` |
+| 🎨 Product | `cm-planning` `cm-brainstorm-idea` `cm-ux-master` `cm-ui-preview` `cm-dockit` `cm-readit` `cm-project-bootstrap` `cm-jtbd` |
+| 📈 Growth | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
+| 🎯 Orchestration | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-index` `cm-skill-mastery` `cm-deep-search` `cm-how-it-work` |
+| 🖥️ Workflow | `cm-start` `cm-dashboard` `cm-status` |
 
 ---
 
 ## Start Here
 
-After installing, run the interactive onboarding tour first:
+After installing, run the onboarding tour:
 
 ```
 /cody-master:demo
@@ -127,7 +126,7 @@ After installing, run the interactive onboarding tour first:
 | Setup tracking? | `/cody-master:track` |
 | Resume session? | `/cody-master:continuity` |
 
-Skills activate automatically when relevant — no explicit invocation needed. Commands force specific workflows.
+Skills activate **automatically** when relevant — no invocation needed. Commands force specific workflows.
 
 ---
 
@@ -160,7 +159,8 @@ Your Idea → /plan → /build (TDD) → /review → /deploy → Production
 |-----|-------------|
 | [Website](https://codymaster.pages.dev) | Landing page and overview |
 | [Docs](https://codymaster.pages.dev/docs) | Full documentation |
-| [Skills Reference](skills/) | All SKILL.md files |
+| [Skills Reference](skills/) | All 33 SKILL.md files |
+| [Installation Guide](docs/sop/installation.md) | Detailed setup for all platforms |
 
 ---
 

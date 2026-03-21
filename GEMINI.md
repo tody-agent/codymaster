@@ -16,6 +16,7 @@
 @./skills/cm-dockit/SKILL.md
 @./skills/cm-readit/SKILL.md
 @./skills/cm-project-bootstrap/SKILL.md
+@./skills/cm-jtbd/SKILL.md
 @./skills/cm-content-factory/SKILL.md
 @./skills/cm-ads-tracker/SKILL.md
 @./skills/cro-methodology/SKILL.md
@@ -25,3 +26,7 @@
 @./skills/cm-skill-index/SKILL.md
 @./skills/cm-skill-mastery/SKILL.md
 @./skills/cm-deep-search/SKILL.md
+@./skills/cm-how-it-work/SKILL.md
+@./skills/cm-start/SKILL.md
+@./skills/cm-dashboard/SKILL.md
+@./skills/cm-status/SKILL.md

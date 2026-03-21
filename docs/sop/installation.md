@@ -21,10 +21,10 @@ Cody Master installs as a Claude Code plugin bundle — no npm, no separate serv
 Open your terminal and run:
 
 ```bash
-claude plugin marketplace add tody-agent/cody-master
+claude plugin marketplace add tody-agent/codymaster
 ```
 
-### Step 2: Install All 33+ Skills
+### Step 2: Install All 33 Skills
 
 One command installs everything:
 
@@ -32,15 +32,16 @@ One command installs everything:
 claude plugin install cody-master@cody-master
 ```
 
-All skills are included in a single plugin:
+All 33 skills ship as a single plugin:
 
 | Domain | Skills |
 |--------|--------|
-| Engineering | cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review |
-| Operations | cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-secret-shield, cm-safe-i18n |
-| Product | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap, cm-jtbd |
-| Growth | cm-content-factory, cm-ads-tracker, cro-methodology |
-| Orchestration | cm-execution, cm-continuity, cm-deep-search, cm-skill-chain, cm-skill-mastery, cm-how-it-work |
+| 🔧 Engineering | cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review |
+| ⚙️ Operations | cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-secret-shield, cm-safe-i18n |
+| 🎨 Product | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap, cm-jtbd |
+| 📈 Growth | cm-content-factory, cm-ads-tracker, cro-methodology |
+| 🎯 Orchestration | cm-execution, cm-continuity, cm-skill-chain, cm-skill-index, cm-skill-mastery, cm-deep-search, cm-how-it-work |
+| 🖥️ Workflow | cm-start, cm-dashboard, cm-status |
 
 ### Step 3: Verify
 
