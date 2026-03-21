@@ -133,11 +133,9 @@ Skills activate automatically when relevant — no explicit invocation needed. C
 
 ## How It Works
 
-**Skills** are the building blocks. Each skill gives your AI agent domain knowledge and a structured workflow for a specific task. Skills are loaded automatically when relevant.
+**Skills** (`skills/cm-*/SKILL.md`) give your AI agent domain knowledge and structured workflows. They activate automatically when relevant — no invocation needed.
 
-**Commands** are user-triggered workflows invoked with `/command-name`. They chain one or more skills into an end-to-end process.
-
-**Plugins** group related skills and commands into installable packages. Each plugin covers a domain — engineering, operations, product, growth, or orchestration.
+**Commands** (`commands/*.md`) are user-triggered workflows invoked with `/cody-master:name`. They chain skills into end-to-end processes.
 
 ```
 Your Idea → /plan → /build (TDD) → /review → /deploy → Production
@@ -169,11 +167,8 @@ Your Idea → /plan → /build (TDD) → /review → /deploy → Production
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a skill folder: `skills/your-skill-name/SKILL.md`
-3. Add it to the appropriate plugin directory
-4. Submit a Pull Request
-
-See `skills/cm-example/SKILL.md` for the universal skill format template.
+2. Create `skills/cm-your-skill/SKILL.md` (see `skills/cm-example/SKILL.md` as template)
+3. Submit a Pull Request
 
 ---
 

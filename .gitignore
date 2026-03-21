@@ -15,3 +15,11 @@ public/docs/
 docs/node_modules/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
+
+# Project artifacts
+projects/**/logs/
+projects/**/output/
+projects/**/__pycache__/
+projects/**/*.pyc
+projects/**/.venv/
+projects/**/node_modules/
