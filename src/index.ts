@@ -53,8 +53,165 @@ function padRight(str: string, len: number): string {
 }
 
 function openUrl(url: string) {
-  const cmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
-  exec(`${cmd} ${url}`);
+  const { execFile } = require('child_process');
+  const [cmd, ...args] =
+    process.platform === 'darwin'  ? ['open',     url] :
+    process.platform === 'win32'   ? ['cmd', '/c', 'start', url] :
+                                     ['xdg-open', url];
+  execFile(cmd, args, () => {});
+}
+
+// ─── Post-install Onboarding ─────────────────────────────────────────────────
+
+async function postInstallOnboarding(platform: string) {
+  console.log();
+  console.log(chalk.green('╔══════════════════════════════════════════════════╗'));
+  console.log(chalk.green('║  🎉 You\'re all set! What would you like to do?   ║'));
+  console.log(chalk.green('╚══════════════════════════════════════════════════╝'));
+  console.log();
+
+  const p = (await import('prompts')).default;
+  const invoke =
+    platform === 'claude'   ? '/cody-master:demo  (type in Claude Code)' :
+    platform === 'gemini'   ? '@[/cm-planning] in Gemini CLI' :
+    platform === 'cursor'   ? '@cm-planning in Cursor Agent' :
+                              '@cm-planning in your AI tool';
+
+  const resp = await p({
+    type: 'select',
+    name: 'action',
+    message: 'Choose an action:',
+    choices: [
+      { title: chalk.cyan('📊 Launch Dashboard'), value: 'dashboard',
+        description: `Open Mission Control → http://codymaster.localhost:${DEFAULT_PORT}` },
+      { title: chalk.magenta('🚀 Start in ' + platform.charAt(0).toUpperCase() + platform.slice(1)), value: 'invoke',
+        description: invoke },
+      { title: chalk.white('🧩 Browse all 33 skills'), value: 'skills',
+        description: 'See every skill, domain, and usage' },
+      { title: chalk.yellow('⚡ Install `cody` globally'), value: 'global',
+        description: 'Add cody / cm / codymaster to your PATH' },
+      { title: chalk.gray('✅ Done'), value: 'done' },
+    ],
+    hint: '↑↓ navigate · Enter select · Ctrl+C exit',
+  });
+
+  switch (resp?.action) {
+    case 'dashboard': {
+      console.log();
+      if (!isDashboardRunning()) {
+        launchDashboard(DEFAULT_PORT, false);
+        await new Promise(r => setTimeout(r, 800)); // let server start
+      }
+      console.log(chalk.cyan(`🌐 Opening http://codymaster.localhost:${DEFAULT_PORT} ...`));
+      openUrl(`http://codymaster.localhost:${DEFAULT_PORT}`);
+      console.log(chalk.gray('   Dashboard is running. Press Ctrl+C to stop.\n'));
+      break;
+    }
+    case 'invoke':
+      console.log();
+      if (platform === 'claude') {
+        console.log(chalk.white('Open Claude Code and type:\n'));
+        console.log(chalk.cyan('  /cody-master:demo'));
+        console.log(chalk.gray('\n  This will run an interactive tour of all 33 skills.\n'));
+      } else {
+        console.log(chalk.cyan(`  ${invoke}\n`));
+      }
+      break;
+    case 'skills':
+      console.log();
+      skillList();
+      break;
+    case 'global':
+      console.log();
+      console.log(chalk.white('Run this to install the `cody` CLI globally:\n'));
+      console.log(chalk.cyan('  npm install -g cody-master'));
+      console.log(chalk.gray('\nThen use:'));
+      console.log(chalk.cyan('  cody task add "My task"'));
+      console.log(chalk.cyan('  cody dashboard'));
+      console.log(chalk.cyan('  cody status\n'));
+      break;
+    default:
+      console.log(chalk.gray('\nRun `npx codymaster` any time to open the menu.\n'));
+  }
+}
+
+// ─── Interactive Quick Menu (no-args entry point) ─────────────────────────────
+
+async function showInteractiveMenu() {
+  showBanner();
+
+  const dashStatus = isDashboardRunning()
+    ? chalk.green('● RUNNING') + chalk.gray(` http://codymaster.localhost:${DEFAULT_PORT}`)
+    : chalk.gray('○ stopped');
+
+  console.log(chalk.gray(`  Dashboard: ${dashStatus}`));
+  console.log();
+
+  const p = (await import('prompts')).default;
+  const resp = await p({
+    type: 'select',
+    name: 'action',
+    message: 'Quick menu:',
+    choices: [
+      { title: chalk.cyan('📊 Dashboard'), value: 'dashboard',
+        description: isDashboardRunning() ? 'Open in browser' : 'Start & open in browser' },
+      { title: chalk.white('📋 My Tasks'), value: 'tasks',
+        description: 'View all tasks across projects' },
+      { title: chalk.white('📈 Status'), value: 'status',
+        description: 'Project health snapshot' },
+      { title: chalk.magenta('🧩 Browse Skills'), value: 'skills',
+        description: 'All 33 skills by domain' },
+      { title: chalk.yellow('➕ Add a Task'), value: 'addtask',
+        description: 'Quickly add a task to backlog' },
+      { title: chalk.green('⚡ Install/Update Skills'), value: 'install',
+        description: 'npx codymaster add --all' },
+      { title: chalk.gray('❓ Help'), value: 'help' },
+    ],
+    hint: '↑↓ navigate · Enter select · Ctrl+C exit',
+  });
+
+  console.log();
+  switch (resp?.action) {
+    case 'dashboard':
+      if (!isDashboardRunning()) {
+        launchDashboard(DEFAULT_PORT, false);
+        await new Promise(r => setTimeout(r, 800));
+      }
+      console.log(chalk.cyan(`🌐 Opening http://codymaster.localhost:${DEFAULT_PORT} ...`));
+      openUrl(`http://codymaster.localhost:${DEFAULT_PORT}`);
+      console.log(chalk.gray('Dashboard is running. Ctrl+C to stop.\n'));
+      break;
+    case 'tasks':
+      // Inline task list
+      require('child_process').spawnSync(process.execPath, [process.argv[1], 'task', 'list'], { stdio: 'inherit' });
+      break;
+    case 'status':
+      require('child_process').spawnSync(process.execPath, [process.argv[1], 'status'], { stdio: 'inherit' });
+      break;
+    case 'skills':
+      skillList();
+      break;
+    case 'addtask': {
+      const t = await p({ type: 'text', name: 'title', message: 'Task title:' });
+      if (t?.title) {
+        require('child_process').spawnSync(process.execPath, [process.argv[1], 'task', 'add', t.title], { stdio: 'inherit' });
+      }
+      break;
+    }
+    case 'install':
+      console.log(chalk.cyan('Run:  npx codymaster add --all\n'));
+      break;
+    case 'help':
+    default:
+      console.log(chalk.white('Usage: cody <command> [options]\n'));
+      console.log(chalk.gray('  cody dashboard          Open Mission Control'));
+      console.log(chalk.gray('  cody status             Project overview'));
+      console.log(chalk.gray('  cody task add "Title"   Add a task'));
+      console.log(chalk.gray('  cody task list          View tasks'));
+      console.log(chalk.gray('  cody list               Browse 33 skills'));
+      console.log(chalk.gray('  cody deploy staging     Record deployment'));
+      console.log(chalk.gray('  npx codymaster add --all   Install/update skills\n'));
+  }
 }
 
 // ─── Program ────────────────────────────────────────────────────────────────
@@ -63,58 +220,11 @@ const program = new Command();
 
 program
   .name('cody')
-  .description('Cody — Universal AI Agent Skills Platform')
+  .description('Cody — 33 Skills. Ship 10x faster.')
   .version(VERSION, '-v, --version', 'Show version')
-  .action(() => {
-    showBanner();
-    console.log(chalk.white('Usage: cody <command> [options]\n'));
-    console.log(chalk.white('Core Commands:'));
-    console.log(`  ${chalk.cyan('dashboard [cmd]')}     Dashboard server (start|stop|status|open)`);
-    console.log(`  ${chalk.cyan('open')}                Open dashboard in browser (shortcut)`);
-    console.log(`  ${chalk.cyan('init')}                Initialize project from current directory`);
-    console.log(`  ${chalk.cyan('status')}              Show task & project summary`);
-    console.log();
-    console.log(chalk.white('Task & Project:'));
-    console.log(`  ${chalk.cyan('task <cmd>')}          Task management (add|list|move|done|rm|dispatch)`);
-    console.log(`  ${chalk.cyan('project <cmd>')}       Project management (add|list|rm)`);
-    console.log(`  ${chalk.cyan('sync <file>')}         Bulk import tasks from JSON file`);
-    console.log();
-    console.log(chalk.white('Deploy & Release:'));
-    console.log(`  ${chalk.cyan('deploy <cmd>')}        Deploy management (staging|production|list)`);
-    console.log(`  ${chalk.cyan('rollback <id>')}       Rollback a deployment`);
-    console.log(`  ${chalk.cyan('changelog <cmd>')}     Changelog (add|list)`);
-    console.log(`  ${chalk.cyan('history')}             Show activity history`);
-    console.log();
-    console.log(chalk.white('AI & Skills:'));
-    console.log(`  ${chalk.cyan('add')}                 Add skills: ${chalk.gray('--skill cm-debugging | --all | --platform gemini')}`);
-    console.log(`  ${chalk.cyan('list')}                List all 33 skills (quick alias)`);
-    console.log(`  ${chalk.cyan('skill <cmd>')}         Skill management (list|info|domains)`);
-    console.log(`  ${chalk.cyan('chain <cmd>')}         Skill chain pipelines (list|start|status|auto)`);
-    console.log(`  ${chalk.cyan('agents [skill]')}      List agents / suggest best for skill`);
-    console.log(`  ${chalk.cyan('judge [task-id]')}     Judge agent decisions for tasks`);
-    console.log(`  ${chalk.cyan('install <skill>')}     Install an agent skill`);
-    console.log();
-    console.log(chalk.white('System:'));
-    console.log(`  ${chalk.cyan('continuity [cmd]')}    Working memory (init|status|reset|learnings)`);
-    console.log(`  ${chalk.cyan('config')}              Show configuration & data paths`);
-    console.log(`  ${chalk.cyan('version')}             Show version`);
-    console.log(`  ${chalk.cyan('help')}                Show this help`);
-    console.log();
-    console.log(chalk.white('Examples:'));
-    console.log(chalk.gray('  npx codymaster add --skill cm-debugging      # Add one skill (auto-detect platform)'));
-    console.log(chalk.gray('  npx codymaster add --all --platform gemini   # Install all 33 skills for Gemini'));
-    console.log(chalk.gray('  npx codymaster add --all                     # Install all (interactive)'));
-    console.log(chalk.gray('  cody list                                    # Browse all skills'));
-    console.log(chalk.gray('  cody init                                    # Init project'));
-    console.log(chalk.gray('  cody task add "Fix bug" --priority high       # Add task'));
-    console.log(chalk.gray('  cody skill list                              # Browse skills'));
-    console.log(chalk.gray('  cody deploy staging -m "Fix login"           # Record deploy'));
-    console.log(chalk.gray('  cody open                                    # Open dashboard'));
-    console.log(chalk.gray('  cody status                                  # Overview'));
-    console.log();
-    console.log(chalk.gray(`Data: ${DATA_FILE}`));
-    console.log(chalk.gray(`Port: ${DEFAULT_PORT}`));
-    console.log(chalk.gray(`Aliases: cody | cm | codymaster\n`));
+  .action(async () => {
+    // Interactive quick menu (Amp-style)
+    await showInteractiveMenu();
   });
 
 // ─── Dashboard Command ─────────────────────────────────────────────────────
@@ -799,7 +909,7 @@ async function doAddSkills(skills: string[], platform: string) {
     try {
       execFileSync('claude', ['plugin', 'install', 'cody-master@cody-master'], { stdio: 'inherit' });
       console.log('\n' + chalk.green('✅ All 33 skills installed!'));
-      console.log(chalk.cyan('\n🎯 Run this first in Claude Code:  /cody-master:demo'));
+      await postInstallOnboarding('claude');
     } catch {
       console.log(chalk.yellow('\n⚠️  Plugin install failed. Run manually:\n'));
       console.log(chalk.cyan('  claude plugin install cody-master@cody-master'));
@@ -814,7 +924,7 @@ async function doAddSkills(skills: string[], platform: string) {
     try {
       execFileSync('gemini', ['extensions', 'install', 'https://github.com/tody-agent/codymaster'], { stdio: 'inherit' });
       console.log('\n' + chalk.green('✅ All 33 skills installed for Gemini CLI!'));
-      console.log(chalk.cyan('\n📖 Use: @[/cm-planning] Design a new feature'));
+      await postInstallOnboarding('gemini');
     } catch {
       console.log(chalk.yellow('💡 Run this in your terminal:\n'));
       console.log(chalk.cyan('   gemini extensions install https://github.com/tody-agent/codymaster\n'));
@@ -864,6 +974,7 @@ async function doAddSkills(skills: string[], platform: string) {
     const invoke = target.invoke.replace('<skill>', skills[0]);
     console.log(chalk.cyan(`📖 Usage: ${invoke}  Your prompt here`));
     if (target.note) console.log(chalk.gray(`   Note: ${target.note}`));
+    await postInstallOnboarding(platform);
   }
   if (fail > 0) {
     console.log(chalk.yellow(`⚠️  ${fail} failed — check connection or clone manually:`));
