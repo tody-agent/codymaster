@@ -773,16 +773,35 @@ async function doAddSkills(skills: string[], platform: string) {
   if (platform === 'claude') {
     console.log(chalk.magenta('🟣 Claude Code — Installing via plugin system'));
     console.log(chalk.gray('   (Claude installs all 33 skills as one bundle)\n'));
+
+    // Step 1: Register marketplace — "already installed" is OK, just continue
+    console.log(chalk.gray('   $ claude plugin marketplace add tody-agent/codymaster'));
     try {
-      console.log(chalk.gray('   $ claude plugin marketplace add tody-agent/codymaster'));
-      execFileSync('claude', ['plugin', 'marketplace', 'add', 'tody-agent/codymaster'], { stdio: 'inherit' });
-      console.log(chalk.gray('   $ claude plugin install cody-master@cody-master'));
+      // Use 'pipe' so we can inspect output on failure; print stdout ourselves
+      const r1 = require('child_process').spawnSync(
+        'claude', ['plugin', 'marketplace', 'add', 'tody-agent/codymaster'],
+        { encoding: 'utf8' }
+      );
+      if (r1.stdout) process.stdout.write(r1.stdout);
+      if (r1.stderr) process.stderr.write(r1.stderr);
+      const combined = String(r1.stdout || '') + String(r1.stderr || '');
+      if (r1.status !== 0 && !combined.includes('already installed') && !combined.includes('already exists')) {
+        console.log(chalk.yellow('   ⚠️  Marketplace warning — continuing anyway'));
+      } else if (combined.includes('already installed') || combined.includes('already exists')) {
+        console.log(chalk.gray('   ℹ️  Marketplace already registered'));
+      }
+    } catch {
+      console.log(chalk.yellow('   ⚠️  Could not reach marketplace — continuing'));
+    }
+
+    // Step 2: Install / update the plugin
+    console.log(chalk.gray('   $ claude plugin install cody-master@cody-master'));
+    try {
       execFileSync('claude', ['plugin', 'install', 'cody-master@cody-master'], { stdio: 'inherit' });
       console.log('\n' + chalk.green('✅ All 33 skills installed!'));
       console.log(chalk.cyan('\n🎯 Run this first in Claude Code:  /cody-master:demo'));
     } catch {
-      console.log(chalk.yellow('⚠️  Could not run claude CLI automatically. Run these manually:\n'));
-      console.log(chalk.cyan('  claude plugin marketplace add tody-agent/codymaster'));
+      console.log(chalk.yellow('\n⚠️  Plugin install failed. Run manually:\n'));
       console.log(chalk.cyan('  claude plugin install cody-master@cody-master'));
       console.log(chalk.gray('\n  Or one-liner:'));
       console.log(chalk.cyan('  bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude'));
