@@ -75,8 +75,10 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `cm-brainstorm-idea` | analyze, enhance, improve, initiative, evaluate, review product | Strategic analysis gate: 9 Windows + Double Diamond → 2-3 qualified options |
 | `cm-planning` | plan, design, brainstorm, feature | Brainstorm intent → write implementation plan → then code |
 | `cm-ux-master` | UI, UX, design, interface, usability | 48 UX Laws + 37 Design Tests + Figma/Stitch integration |
+| `cm-ui-preview` | preview, visual, mockup, render UI, wireframe | Live UI concept generation via Google Stitch or Pencil MCP |
 | `cm-dockit` | docs, documentation, knowledge base, SOP | Generate complete knowledge base from codebase |
 | `cm-project-bootstrap` | new project, init, bootstrap, setup | Full project setup: design system → staging → CI → deploy |
+| `cm-jtbd` | customer discovery, JTBD, jobs to be done, product-market fit, why users churn | JTBD canvas: Switch Interview → Outcome Metrics → Opportunity Scoring |
 
 ### Growth Swarm 📈
 
@@ -95,18 +97,24 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `cm-skill-mastery` | which skill, skill list, discover, help | Meta-skill: when to invoke skills, how to create new ones |
 | `cm-safe-i18n` | translate, i18n, language, localize | Safe translation with multi-pass batching and audit gates |
 | `cm-skill-chain` | chain, pipeline, workflow, multi-step, full process | Compose skills into automated multi-step pipelines |
-| `cm-ui-preview` | preview, visual, mockup, render UI | Live UI preview during design and prototyping |
 | `cm-deep-search` | semantic search, find docs, large codebase, qmd | Optional power-up for semantic search across large projects |
-| `cm-readit` | read, summarize, extract, document analysis | Read and extract insights from files and documents |
+| `cm-readit` | audio, TTS, read aloud, voice, speech, SpeechSynthesis, MP3 player | Web audio engine — TTS reader, pre-recorded MP3 player, Voice CRO triggers |
 | `cm-how-it-work` | how does X work, explain, architecture overview | Explain how a system, feature, or codebase works |
 
-### Specialized 🧪
-
-> **Note:** Skills below marked *(planned)* are not yet implemented — no SKILL.md file exists.
+### Workflow Commands 🖥️
 
 | Skill | Triggers | Summary |
 |-------|----------|---------|
-| `cm-jtbd` | customer discovery, JTBD, product-market fit | Discover customer needs via JTBD interviews and canvas |
+| `cm-start` | /cm-start, start workflow, begin objective, new task | Orchestrate full cm-* workflow from objective to production code |
+| `cm-dashboard` | /cm-dashboard, kanban, task board, show tasks, status board | Render Kanban board from cm-tasks.json — visual task overview |
+| `cm-status` | /cm-status, quick status, progress, what's next, blocked | Ultra-concise progress summary: done / next / blocked |
+
+### Planned (not yet implemented) 🧪
+
+> Skills below do not have SKILL.md files yet.
+
+| Skill | Triggers | Summary |
+|-------|----------|---------|
 | `mom-test` *(planned)* | customer interview, validate idea, leading questions | Customer interviews without leading questions |
 | `release-it` *(planned)* | production, circuit breaker, timeout, chaos | Build production-ready systems with stability patterns |
 | `medical-research` *(planned)* | medical, OB/GYN, clinical, evidence-based | Evidence-based medical writing with citation standards |
@@ -144,7 +152,7 @@ view_file /path/to/skills/cm-tdd/SKILL.md
 ```
 1. AT SESSION START:
    - Load this skill index (Layer 1) — costs ~2500 tokens total
-   - Now you know what 30+ skills do without reading any of them
+   - Now you know what 33 skills do without reading any of them
 
 2. WHEN MATCHING A TASK:
    - Scan Layer 1 triggers to find matching skill(s)
@@ -156,9 +164,9 @@ view_file /path/to/skills/cm-tdd/SKILL.md
    - Follow the skill's instructions completely
 
 4. SAVINGS:
-   - Without index: 30 × 4000 = 120,000 tokens
-   - With index: 2500 + 300 + 4000 = 6,800 tokens
-   - Saved: ~113,000 tokens (~94%)
+   - Without index: 33 × 4000 = 132,000 tokens
+   - With index: 2800 + 300 + 4000 = 7,100 tokens
+   - Saved: ~124,900 tokens (~94%)
 ```
 
 ## Skill Domain Mapping
@@ -167,12 +175,13 @@ For dynamic agent selection (Phase 3), skills map to domains:
 
 ```yaml
 engineering: [cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review]
-operations: [cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal]
+operations: [cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-safe-i18n]
 security: [cm-secret-shield]
-product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-dockit, cm-project-bootstrap]
+product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-ui-preview, cm-dockit, cm-project-bootstrap, cm-jtbd]
 growth: [cm-content-factory, cm-ads-tracker, cro-methodology]
-orchestration: [cm-execution, cm-continuity, cm-skill-mastery, cm-safe-i18n, cm-skill-chain, cm-ui-preview, cm-deep-search, cm-readit, cm-how-it-work]
-specialized: [cm-jtbd]  # remaining planned skills not yet implemented: mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, google-forms-sheet, skill-creator-ultra
+orchestration: [cm-execution, cm-continuity, cm-skill-mastery, cm-skill-chain, cm-deep-search, cm-readit, cm-how-it-work]
+commands: [cm-start, cm-dashboard, cm-status]
+# planned (no SKILL.md yet): mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, google-forms-sheet, skill-creator-ultra
 ```
 
 ## The Bottom Line

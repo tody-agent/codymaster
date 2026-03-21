@@ -1,4 +1,5 @@
 ---
+name: cm-start
 description: Start the CM Workflow to execute your objective from idea to production code.
 ---
 

@@ -82,24 +82,63 @@ The **Cody Master (CM)** kit transforms ideas into production code through 13 sp
 
 ---
 
-## Cody Master Kit — 14 Skills Summary
+## Cody Master Kit — 33 Skills Summary
 
-| # | Skill | Primary Function |
-|---|-------|-----------------|
-| 1 | `cm-project-bootstrap` | Initialize project with 10-phase standard setup. |
-| 2 | `cm-brainstorm-idea` | Strategic analysis: 9 Windows + Double Diamond → 2-3 options. |
-| 3 | `cm-planning` | Explore ideas and create execution plans. |
-| 4 | `cm-execution` | Run implementation plan (Manual/Parallel/Subagent). |
-| 5 | `cm-tdd` | Strict Test-Driven Development workflow. |
-| 6 | `cm-quality-gate` | Setup test files + Verification before claim/deploy. |
-| 7 | `cm-code-review` | Manage PR lifecycle and feedback. |
-| 8 | `cm-safe-deploy` | 8-gate automated deployment pipeline. |
-| 9 | `cm-safe-i18n` | Safe multi-language management and translation. |
-| 10 | `cm-debugging` | Systematic error investigation (Root cause first). |
-| 11 | `cm-terminal` | Safe terminal command execution protocol. |
-| 12 | `cm-git-worktrees` | Isolate code environments by task. |
-| 13 | `cm-skill-mastery` | Find, install, and create new skills. |
-| 14 | `cm-identity-guard` | Protect project from wrong account/project deploys. |
+### 🔧 Engineering
+| Skill | Primary Function |
+|-------|-----------------|
+| `cm-tdd` | Strict Red-Green-Refactor TDD — no code without failing test first. |
+| `cm-debugging` | Systematic 5-phase error investigation (root cause first). |
+| `cm-quality-gate` | 6-gate verification: static analysis → blind review → ship. |
+| `cm-test-gate` | Setup 4-layer test infrastructure (unit → integration → e2e → security). |
+| `cm-code-review` | Manage PR lifecycle: request → receive feedback → complete branch. |
+
+### ⚙️ Operations
+| Skill | Primary Function |
+|-------|-----------------|
+| `cm-safe-deploy` | Multi-gate deploy pipeline with rollback strategy. |
+| `cm-identity-guard` | Verify account before push/deploy to prevent wrong-project incidents. |
+| `cm-git-worktrees` | Isolate feature work in separate worktrees — no state mixing. |
+| `cm-terminal` | Safe terminal execution with progress logging and error capture. |
+| `cm-secret-shield` | Defense-in-depth: pre-commit hooks, repo scanning, token lifecycle. |
+| `cm-safe-i18n` | Safe multi-language management with multi-pass batching and 8-gate audit. |
+
+### 🎨 Product
+| Skill | Primary Function |
+|-------|-----------------|
+| `cm-project-bootstrap` | Full project setup: design system → CI → staging → deploy from Day 0. |
+| `cm-brainstorm-idea` | Strategic analysis gate: 9 Windows + Double Diamond → 2-3 qualified options. |
+| `cm-planning` | Brainstorm intent → write implementation plan → coordinate execution. |
+| `cm-ux-master` | 48 UX Laws + 37 Design Tests + Figma/Stitch + BM25 semantic design search. |
+| `cm-ui-preview` | Live UI concept generation via Google Stitch or Pencil MCP. |
+| `cm-dockit` | Generate complete knowledge bases, SOPs, and API docs from codebase. |
+| `cm-readit` | Web audio engine: TTS reader, MP3 audio player, Voice CRO trigger system. |
+| `cm-jtbd` | JTBD customer discovery: Switch Interview → Canvas → Opportunity Scoring. |
+
+### 📈 Growth
+| Skill | Primary Function |
+|-------|-----------------|
+| `cm-content-factory` | Self-learning content engine: research → generate → audit → deploy. |
+| `cm-ads-tracker` | Conversion tracking setup: GTM, Meta CAPI, TikTok, Google Ads. |
+| `cro-methodology` | CRO audit: funnel mapping → persuasion assets → A/B test design. |
+
+### 🎯 Orchestration
+| Skill | Primary Function |
+|-------|-----------------|
+| `cm-execution` | Execute plans: Manual / Parallel / Subagent / RARV batch modes. |
+| `cm-continuity` | Working memory protocol: read at session start, update at session end. |
+| `cm-skill-mastery` | Meta-skill: when to invoke which skill, how to create new skills. |
+| `cm-skill-chain` | Compose skills into automated multi-step pipelines (5 built-in chains). |
+| `cm-skill-index` | Progressive disclosure index — 90% token savings on skill discovery. |
+| `cm-deep-search` | Semantic search via qmd for large codebases (>200 src / >50 docs files). |
+| `cm-how-it-work` | Full vibe coding guide — phases, skills per phase, use cases. |
+
+### 🖥️ Workflow Commands
+| Skill | Primary Function |
+|-------|-----------------|
+| `cm-start` | Orchestrate full workflow from objective to production code. |
+| `cm-dashboard` | Render Kanban board from cm-tasks.json — visual status overview. |
+| `cm-status` | Ultra-concise 1-2 sentence progress summary (what's done, what's next). |
 
 ## 🚀 Autonomous Workflow System
 
@@ -137,13 +176,14 @@ There are 2 ways to use Cody Master: **Fully autonomous (Via Workflows)** or **M
 
 ---
 
-## 8 Golden Rules
+## 9 Golden Rules
 
 1. **Identity First:** Verify account (`cm-identity-guard`) before push/deploy.
 2. **Design Before Code:** Always have an approved plan before typing.
 3. **i18n Day 0:** Always consider multi-language from the brainstorm step.
-4. **Test Before Code:** RED → GREEN → REFACTOR. No exceptions.
+4. **Test Before Code:** RED → GREEN → REFACTOR. No exceptions (`cm-tdd`).
 5. **Evidence Over Claims:** Only trust terminal/test results output, not AI "saying" it's done.
-6. **Deploy via Gates:** 8 gates must pass sequentially. Any gate fails = STOP.
-7. **Safe Secrets:** Never commit secrets. Use `.dev.vars` or manage via Cloudflare.
-8. **Parallel Power:** Use parallel execution for i18n or multi-bug fixes.
+6. **Deploy via Gates:** 8 gates must pass sequentially. Any gate fails = STOP (`cm-safe-deploy`).
+7. **Safe Secrets:** Never commit secrets. Pre-commit hooks protect every push (`cm-secret-shield`).
+8. **Parallel Power:** Use parallel execution for i18n or multi-bug fixes (`cm-execution`).
+9. **Working Memory:** Read CONTINUITY.md at session start, update at session end (`cm-continuity`).

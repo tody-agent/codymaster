@@ -1,4 +1,5 @@
 ---
+name: cm-status
 description: View a quick progress summary of current tasks.
 ---
 

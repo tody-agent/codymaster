@@ -1,4 +1,5 @@
 ---
+name: cm-dashboard
 description: Open visual Dashboard to track work status (Simulated Kanban board)
 ---
 

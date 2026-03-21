@@ -62,9 +62,9 @@ Full skill names: `cm-brainstorm-idea`, `cm-planning`, `cm-tdd`, `cm-execution`,
 
 ## Integration with Other Skills
 
-- **cm-judge**: Automatically suggests `CHAIN_NEXT` action for chain-linked tasks
-- **cm-continuity**: Chain progress persists across sessions via kanban data
-- **Dashboard API**: Full REST API at `/api/chains` and `/api/chain-executions`
+- **cm-continuity**: Chain progress persists across sessions via CONTINUITY.md working memory
+- **cm-execution**: Each chain step delegates to cm-execution for actual implementation
+- **cm-quality-gate**: Automatically runs at end of each development chain
 
 ## For AI Agents
 
