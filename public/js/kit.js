@@ -466,11 +466,23 @@
           hamburger.classList.toggle('active');
         });
 
-        // Close mobile menu on link click
+        // Close mobile menu on plain link click
         navLinks.querySelectorAll('.nav__link').forEach(link => {
-          link.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-            hamburger.classList.remove('active');
+          if (!link.classList.contains('nav-dropdown__toggle')) {
+            link.addEventListener('click', () => {
+              navLinks.classList.remove('open');
+              hamburger.classList.remove('active');
+            });
+          }
+        });
+
+        // Mobile dropdown toggle (click to open)
+        document.querySelectorAll('.nav-dropdown__toggle').forEach(toggle => {
+          toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const parent = toggle.closest('.nav-dropdown');
+            parent.classList.toggle('active');
           });
         });
       }
