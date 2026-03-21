@@ -111,24 +111,34 @@ cp -r ~/.cody-master/skills/* .opencode/skills/                # OpenCode
 
 ---
 
-## Using Skills After Installation
+## First Steps After Installation
 
-Once installed, invoke any skill in Claude Code by name:
+Run the interactive onboarding tour — it takes ~2 minutes and shows every skill:
 
 ```
-Use cm-planning to plan my new feature
-Run cm-tdd before I write the implementation
-Apply cm-quality-gate before we deploy
+/cody-master:demo
 ```
 
-Or use the `/` shorthand that Claude Code registers for installed plugins.
+Then use any command by name:
+
+| Command | What it does |
+|---------|-------------|
+| `/cody-master:plan` | Brainstorm + architecture + task plan |
+| `/cody-master:build` | TDD implementation (red → green → refactor) |
+| `/cody-master:debug` | 4-phase root cause analysis |
+| `/cody-master:review` | Code review + quality gate |
+| `/cody-master:deploy` | Safe multi-gate deployment |
+| `/cody-master:ux` | UX design + prototyping |
+| `/cody-master:content` | AI content factory |
+| `/cody-master:bootstrap` | New project setup |
+
+Skills also activate **automatically** when relevant — just describe what you want and the right skill engages.
 
 ## Updating
 
 ```bash
 # Claude Code
-claude plugin update cm-engineering@cody-master
-# (repeat for each bundle)
+claude plugin update cody-master@cody-master
 
 # Gemini CLI
 gemini extensions update cody-master
@@ -148,7 +158,7 @@ claude --version
 
 Then retry:
 ```bash
-claude plugin marketplace add tody-agent/cody-master
+claude plugin marketplace add tody-agent/codymaster
 ```
 
 </details>
@@ -161,7 +171,7 @@ Try invoking explicitly:
 Use the cm-planning skill for this task
 ```
 
-Or check that the bundle containing the skill is installed:
+Check that the plugin is installed:
 ```bash
 claude plugin list
 ```

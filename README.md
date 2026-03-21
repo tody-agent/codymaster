@@ -6,7 +6,7 @@
 **33+ Skills · 1 Plugin · 7 Domains · 7+ Platforms**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-3.3.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-3.4.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-33%2B-success.svg" />
   <img alt="Commands" src="https://img.shields.io/badge/commands-10-orange.svg" />
   <img alt="Plugins" src="https://img.shields.io/badge/plugins-1-purple.svg" />
@@ -91,49 +91,41 @@ cp -r skills/* .kiro/skills/        # Kiro
 
 ---
 
-## Available Plugins
+## What's Inside
 
-### 🔧 cm-engineering — Engineering Discipline
+All 33+ skills ship as a **single plugin** (`cody-master`), organized by domain:
 
-Skills: `cm-tdd`, `cm-debugging`, `cm-quality-gate`, `cm-test-gate`, `cm-code-review`
-Commands: `/build`, `/review`, `/debug`
-
-### ⚙️ cm-operations — Deployment & Security
-
-Skills: `cm-safe-deploy`, `cm-identity-guard`, `cm-git-worktrees`, `cm-terminal`, `cm-secret-shield`, `cm-safe-i18n`
-Commands: `/deploy`
-
-### 🎨 cm-product — Design & Planning
-
-Skills: `cm-planning`, `cm-brainstorm-idea`, `cm-ux-master`, `cm-ui-preview`, `cm-dockit`, `cm-readit`, `cm-project-bootstrap`
-Commands: `/bootstrap`, `/plan`, `/ux`
-
-### 📈 cm-growth — Marketing & Content
-
-Skills: `cm-content-factory`, `cm-ads-tracker`, `cro-methodology`
-Commands: `/content`, `/track`
-
-### 🎯 cm-orchestration — Workflow & Memory
-
-Skills: `cm-execution`, `cm-continuity`, `cm-skill-chain`, `cm-skill-index`, `cm-skill-mastery`, `cm-deep-search`
-Commands: `/continuity`
+| Domain | Skills |
+|--------|--------|
+| 🔧 Engineering | `cm-tdd`, `cm-debugging`, `cm-quality-gate`, `cm-test-gate`, `cm-code-review` |
+| ⚙️ Operations | `cm-safe-deploy`, `cm-identity-guard`, `cm-git-worktrees`, `cm-terminal`, `cm-secret-shield`, `cm-safe-i18n` |
+| 🎨 Product | `cm-planning`, `cm-brainstorm-idea`, `cm-ux-master`, `cm-ui-preview`, `cm-dockit`, `cm-readit`, `cm-project-bootstrap`, `jobs-to-be-done` |
+| 📈 Growth | `cm-content-factory`, `cm-ads-tracker`, `cro-methodology` |
+| 🎯 Orchestration | `cm-execution`, `cm-continuity`, `cm-deep-search`, `cm-skill-chain`, `cm-skill-mastery`, `cm-how-it-work` |
 
 ---
 
 ## Start Here
 
+After installing, run the interactive onboarding tour first:
+
+```
+/cody-master:demo
+```
+
 | Goal | Command |
 |------|---------|
-| New project? | `/bootstrap` |
-| Plan a feature? | `/plan` |
-| Build with TDD? | `/build` |
-| Debug an issue? | `/debug` |
-| Review code? | `/review` |
-| Deploy safely? | `/deploy` |
-| Design UI? | `/ux` |
-| Create content? | `/content` |
-| Setup tracking? | `/track` |
-| Resume session? | `/continuity read` |
+| Onboarding tour | `/cody-master:demo` |
+| New project? | `/cody-master:bootstrap` |
+| Plan a feature? | `/cody-master:plan` |
+| Build with TDD? | `/cody-master:build` |
+| Debug an issue? | `/cody-master:debug` |
+| Review code? | `/cody-master:review` |
+| Deploy safely? | `/cody-master:deploy` |
+| Design UI? | `/cody-master:ux` |
+| Create content? | `/cody-master:content` |
+| Setup tracking? | `/cody-master:track` |
+| Resume session? | `/cody-master:continuity` |
 
 Skills activate automatically when relevant — no explicit invocation needed. Commands force specific workflows.
 
