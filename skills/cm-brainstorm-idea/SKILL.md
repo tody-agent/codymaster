@@ -398,7 +398,7 @@ Date: [date]
 | `cm-ux-master` | USED IN Phase 1 & 3: UX assessment and design ideation |
 | `cm-debugging` | REDIRECT: Simple bugs don't need brainstorming |
 | `cro-methodology` | COMPLEMENT: CRO analysis for conversion-specific improvements |
-| `jobs-to-be-done` | COMPLEMENT: JTBD research for user-need discovery |
+| `cm-jtbd` | COMPLEMENT: JTBD research for user-need discovery |
 
 ### Lifecycle Position
 

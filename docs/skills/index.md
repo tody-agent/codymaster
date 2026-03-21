@@ -76,7 +76,7 @@ Domain-specific skills for targeted workflows.
 
 | Skill | Description | Full Docs |
 |-------|-------------|-----------|
-| **jobs-to-be-done** | Customer discovery using JTBD theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring for evidence-based product decisions. | [View →](./jobs-to-be-done.md) |
+| **cm-jtbd** | Customer discovery using JTBD theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring for evidence-based product decisions. | [View →](./cm-jtbd.md) |
 
 ## 🎯 Orchestration Swarm
 

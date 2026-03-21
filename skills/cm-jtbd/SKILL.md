@@ -1,5 +1,5 @@
 ---
-name: jobs-to-be-done
+name: cm-jtbd
 description: "Customer discovery framework using Jobs-To-Be-Done theory — uncover the functional, social, and emotional jobs customers hire products to do. Produces JTBD canvases with job statements, outcome metrics, and competing solutions. Use alongside cm-brainstorm-idea for evidence-based product decisions."
 ---
 

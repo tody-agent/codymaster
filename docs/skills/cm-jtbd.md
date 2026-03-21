@@ -1,7 +1,7 @@
 ---
-title: "jobs-to-be-done"
+title: "cm-jtbd"
 description: "Customer discovery framework using Jobs-To-Be-Done theory — JTBD interviews, canvas, and opportunity scoring for evidence-based product decisions."
-keywords: ["jobs-to-be-done", "cody master", "ai skill"]
+keywords: ["cm-jtbd", "cody master", "ai skill"]
 robots: "index, follow"
 ---
 

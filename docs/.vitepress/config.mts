@@ -144,7 +144,7 @@ export default withMermaid(defineConfig({
               text: '🧪 Specialized',
               collapsed: true,
               items: [
-                { text: 'jobs-to-be-done', link: '/skills/jobs-to-be-done' },
+                { text: 'cm-jtbd', link: '/skills/cm-jtbd' },
               ]
             },
             {

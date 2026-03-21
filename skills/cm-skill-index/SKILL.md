@@ -106,7 +106,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 
 | Skill | Triggers | Summary |
 |-------|----------|---------|
-| `jobs-to-be-done` | customer discovery, JTBD, product-market fit | Discover customer needs via JTBD interviews and canvas |
+| `cm-jtbd` | customer discovery, JTBD, product-market fit | Discover customer needs via JTBD interviews and canvas |
 | `mom-test` *(planned)* | customer interview, validate idea, leading questions | Customer interviews without leading questions |
 | `release-it` *(planned)* | production, circuit breaker, timeout, chaos | Build production-ready systems with stability patterns |
 | `medical-research` *(planned)* | medical, OB/GYN, clinical, evidence-based | Evidence-based medical writing with citation standards |
@@ -172,7 +172,7 @@ security: [cm-secret-shield]
 product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-dockit, cm-project-bootstrap]
 growth: [cm-content-factory, cm-ads-tracker, cro-methodology]
 orchestration: [cm-execution, cm-continuity, cm-skill-mastery, cm-safe-i18n, cm-skill-chain, cm-ui-preview, cm-deep-search, cm-readit, cm-how-it-work]
-specialized: [jobs-to-be-done]  # remaining planned skills not yet implemented: mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, google-forms-sheet, skill-creator-ultra
+specialized: [cm-jtbd]  # remaining planned skills not yet implemented: mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, google-forms-sheet, skill-creator-ultra
 ```
 
 ## The Bottom Line

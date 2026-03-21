@@ -1363,8 +1363,8 @@
         ]
       },
       {
-        "id": "jobs-to-be-done",
-        "name": "jobs-to-be-done",
+        "id": "cm-jtbd",
+        "name": "cm-jtbd",
         "category": "Ideation",
         "icon": "users",
         "tagline": "Customer Discovery (JTBD)",
@@ -1663,7 +1663,7 @@
   "docsPage": {
     "meta": {
       "title": "Complete Guide — Cody Master Kit | Personas, JTBD, Use Cases",
-      "description": "The complete guide to Cody Master Kit: 5 user personas, 5 jobs-to-be-done, 8 real-world use cases. Learn who it's for, what problems it solves, and how it works."
+      "description": "The complete guide to Cody Master Kit: 5 user personas, 5 cm-jtbd, 8 real-world use cases. Learn who it's for, what problems it solves, and how it works."
     },
     "hero": "The Complete Guide",
     "heroSub": "Who is Cody Master for? What problems does it solve? How does it actually work? Everything you need to know — in one page.",

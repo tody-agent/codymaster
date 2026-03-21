@@ -38,7 +38,7 @@ All skills are included in a single plugin:
 |--------|--------|
 | Engineering | cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review |
 | Operations | cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-secret-shield, cm-safe-i18n |
-| Product | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap, jobs-to-be-done |
+| Product | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap, cm-jtbd |
 | Growth | cm-content-factory, cm-ads-tracker, cro-methodology |
 | Orchestration | cm-execution, cm-continuity, cm-deep-search, cm-skill-chain, cm-skill-mastery, cm-how-it-work |
 

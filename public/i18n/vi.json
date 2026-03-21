@@ -1363,8 +1363,8 @@
         ]
       },
       {
-        "id": "jobs-to-be-done",
-        "name": "jobs-to-be-done",
+        "id": "cm-jtbd",
+        "name": "cm-jtbd",
         "category": "Ý tưởng",
         "icon": "users",
         "tagline": "Customer Discovery (JTBD)",
