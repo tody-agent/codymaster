@@ -1799,6 +1799,139 @@
             "note": "Works on GitHub Copilot, Kiro, OpenCode, Windsurf, and any platform supporting custom instructions."
           }
         ]
+      },
+      {
+        "id": "opencode",
+        "label": "OpenCode",
+        "emoji": "📦",
+        "steps": [
+          {
+            "title": "Install OpenCode",
+            "description": "Make sure you have OpenCode installed and authenticated.",
+            "items": [
+              "Install: npm install -g opencode-ai (or brew install opencode)",
+              "Verify: opencode --version",
+              "Run: opencode in your project directory"
+            ]
+          },
+          {
+            "title": "Add Skills via npx",
+            "description": "Use the Cody Master CLI to install skills directly into your OpenCode project.",
+            "code": "npx codymaster add --all --platform opencode",
+            "output": "📦 opencode — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ✅ cm-planning\n  ... (33 total)\n✅ 33 skills installed → ./.opencode/skills/"
+          },
+          {
+            "title": "Or clone manually",
+            "description": "Clone and copy skills to your OpenCode skills directory.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
+            "output": "✓ 33 SKILL.md files ready in .opencode/skills/"
+          },
+          {
+            "title": "Use Skills",
+            "description": "Skills activate automatically. Reference them by name in any OpenCode session.",
+            "code": "@[/cm-planning] Design a new feature for my app",
+            "note": "All 33 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
+          }
+        ]
+      },
+      {
+        "id": "kiro",
+        "label": "Kiro",
+        "emoji": "🔶",
+        "steps": [
+          {
+            "title": "Install Kiro",
+            "description": "Download and install Kiro — AWS's AI-powered IDE. Available at kiro.dev.",
+            "items": [
+              "Download Kiro from kiro.dev",
+              "Sign in with your AWS Builder ID",
+              "Open your project in Kiro"
+            ]
+          },
+          {
+            "title": "Add Skills via npx",
+            "description": "Use the CLI to install Cody Master skills into Kiro's steering documents directory.",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (33 total)\n✅ 33 skills installed → ./.kiro/steering/"
+          },
+          {
+            "title": "Or clone manually",
+            "description": "Clone the repo and copy steering documents to Kiro.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 33 SKILL.md files ready in .kiro/steering/"
+          },
+          {
+            "title": "Use Skills",
+            "description": "Kiro reads steering documents automatically. Skills activate based on context.",
+            "code": "@cm-tdd Implement user authentication with full test coverage",
+            "note": "All 33 skills: @cm-planning, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
+          }
+        ]
+      },
+      {
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
+        "emoji": "🐙",
+        "steps": [
+          {
+            "title": "Enable GitHub Copilot",
+            "description": "Make sure GitHub Copilot is active in VS Code or your IDE.",
+            "items": [
+              "Subscribe at github.com/features/copilot",
+              "Install GitHub Copilot extension in VS Code",
+              "Sign in with your GitHub account"
+            ]
+          },
+          {
+            "title": "Add Skills via npx",
+            "description": "Cody Master injects skill references into .github/copilot-instructions.md — Copilot reads this automatically.",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 33 skills referenced in .github/copilot-instructions.md\n   GitHub Copilot will use these as context automatically."
+          },
+          {
+            "title": "Or add manually",
+            "description": "Add a reference to Cody Master skills in your Copilot instructions file.",
+            "code": "# .github/copilot-instructions.md\n\n## AI Skills Available\nThis project uses Cody Master skills. Available skills:\n- cm-tdd, cm-debugging, cm-planning, cm-safe-deploy\n- cm-ux-master, cm-content-factory, cm-code-review\n# Full list: https://github.com/tody-agent/codymaster"
+          },
+          {
+            "title": "Use Skills",
+            "description": "Ask Copilot to use any skill by name in chat. Copilot will reference the skill context automatically.",
+            "code": "Use cm-tdd to implement user authentication with full test coverage",
+            "note": "Works best in Copilot Chat (Cmd+I). All 33 skills are available as context."
+          }
+        ]
+      },
+      {
+        "id": "npx-cli",
+        "label": "npx / CLI",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ Universal one-liner — install all 33 skills, auto-detect platform",
+          "code": "npx codymaster add --all"
+        },
+        "steps": [
+          {
+            "title": "Install via npx (no install needed)",
+            "description": "Works on any machine with Node.js 18+. No global install required.",
+            "code": "npx codymaster add --all",
+            "output": "🧠 Cody Master v3.4.0\n   Detecting platform... ✅ Claude Code detected\n   Installing all 33 skills..."
+          },
+          {
+            "title": "Install specific skill",
+            "description": "Pick just the skill you need. Auto-detects your platform.",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd\nnpx codymaster add --skill cm-safe-deploy"
+          },
+          {
+            "title": "Target a specific platform",
+            "description": "Override platform detection and install to any AI coding tool.",
+            "code": "# Claude Code\nnpx codymaster add --all --platform claude\n\n# Gemini CLI\nnpx codymaster add --all --platform gemini\n\n# Cursor, Windsurf, Cline, OpenCode, Kiro\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform windsurf\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+          },
+          {
+            "title": "Browse & search skills",
+            "description": "List all 33 skills or search by domain.",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
+          }
+        ]
       }
     ]
   },

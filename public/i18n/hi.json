@@ -1799,6 +1799,139 @@
             "note": "GitHub Copilot, Kiro, OpenCode, Windsurf और custom instructions सपोर्ट करने वाले सभी प्लेटफ़ॉर्म पर काम करता है।"
           }
         ]
+      },
+      {
+        "id": "opencode",
+        "label": "OpenCode",
+        "emoji": "📦",
+        "steps": [
+          {
+            "title": "OpenCode इंस्टॉल करें",
+            "description": "सुनिश्चित करें कि OpenCode इंस्टॉल और प्रमाणित है।",
+            "items": [
+              "इंस्टॉल: npm install -g opencode-ai (या brew install opencode)",
+              "जांचें: opencode --version",
+              "प्रोजेक्ट डायरेक्टरी में चलाएं: opencode"
+            ]
+          },
+          {
+            "title": "npx से स्किल्स जोड़ें",
+            "description": "OpenCode प्रोजेक्ट में स्किल्स इंस्टॉल करने के लिए Cody Master CLI का उपयोग करें।",
+            "code": "npx codymaster add --all --platform opencode",
+            "output": "📦 opencode — सभी 33 स्किल्स इंस्टॉल हो रही हैं\n  ✅ cm-tdd\n  ... (कुल 33)\n✅ 33 स्किल्स इंस्टॉल → ./.opencode/skills/"
+          },
+          {
+            "title": "या मैन्युअली क्लोन करें",
+            "description": "रेपो क्लोन करें और OpenCode डायरेक्टरी में स्किल्स कॉपी करें।",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
+            "output": "✓ 33 SKILL.md फाइलें .opencode/skills/ में तैयार"
+          },
+          {
+            "title": "स्किल्स का उपयोग करें",
+            "description": "स्किल्स स्वचालित रूप से सक्रिय होती हैं। OpenCode सेशन में नाम से कॉल करें।",
+            "code": "@[/cm-planning] मेरे ऐप के लिए नई फीचर डिज़ाइन करें",
+            "note": "सभी 33 स्किल्स: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          }
+        ]
+      },
+      {
+        "id": "kiro",
+        "label": "Kiro",
+        "emoji": "🔶",
+        "steps": [
+          {
+            "title": "Kiro इंस्टॉल करें",
+            "description": "Kiro — AWS का AI IDE डाउनलोड और इंस्टॉल करें। kiro.dev पर उपलब्ध।",
+            "items": [
+              "kiro.dev से Kiro डाउनलोड करें",
+              "AWS Builder ID से साइन इन करें",
+              "Kiro में अपना प्रोजेक्ट खोलें"
+            ]
+          },
+          {
+            "title": "npx से स्किल्स जोड़ें",
+            "description": "Kiro की steering डायरेक्टरी में स्किल्स इंस्टॉल करने के लिए CLI का उपयोग करें।",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — सभी 33 स्किल्स इंस्टॉल हो रही हैं\n  ✅ cm-tdd\n  ... (कुल 33)\n✅ 33 स्किल्स इंस्टॉल → ./.kiro/steering/"
+          },
+          {
+            "title": "या मैन्युअली क्लोन करें",
+            "description": "रेपो क्लोन करें और Kiro steering में कॉपी करें।",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 33 SKILL.md फाइलें .kiro/steering/ में तैयार"
+          },
+          {
+            "title": "स्किल्स का उपयोग करें",
+            "description": "Kiro स्वचालित रूप से steering documents पढ़ता है। कॉन्टेक्स्ट के आधार पर स्किल्स सक्रिय होती हैं।",
+            "code": "@cm-tdd पूर्ण टेस्ट कवरेज के साथ यूजर ऑथेंटिकेशन लागू करें",
+            "note": "सभी 33 स्किल्स: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
+        "emoji": "🐙",
+        "steps": [
+          {
+            "title": "GitHub Copilot सक्षम करें",
+            "description": "सुनिश्चित करें कि VS Code में GitHub Copilot सक्रिय है।",
+            "items": [
+              "github.com/features/copilot पर सब्सक्राइब करें",
+              "VS Code में GitHub Copilot एक्सटेंशन इंस्टॉल करें",
+              "GitHub अकाउंट से साइन इन करें"
+            ]
+          },
+          {
+            "title": "npx से स्किल्स जोड़ें",
+            "description": "Cody Master .github/copilot-instructions.md में स्किल रेफरेंस जोड़ता है।",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 33 स्किल्स .github/copilot-instructions.md में रेफर हुईं\n   GitHub Copilot इन्हें स्वचालित रूप से context के रूप में उपयोग करेगा।"
+          },
+          {
+            "title": "या मैन्युअली जोड़ें",
+            "description": "copilot-instructions.md में Cody Master स्किल्स का संदर्भ जोड़ें।",
+            "code": "# .github/copilot-instructions.md\n\n## उपलब्ध AI स्किल्स\nयह प्रोजेक्ट Cody Master स्किल्स उपयोग करता है:\n- cm-tdd, cm-debugging, cm-planning\n# पूरी सूची: https://github.com/tody-agent/codymaster"
+          },
+          {
+            "title": "स्किल्स का उपयोग करें",
+            "description": "Copilot Chat में किसी भी स्किल को नाम से उपयोग करने के लिए कहें।",
+            "code": "cm-tdd का उपयोग करके पूर्ण टेस्ट कवरेज के साथ यूजर ऑथेंटिकेशन लागू करें",
+            "note": "Copilot Chat (Cmd+I) में सबसे अच्छा काम करता है। सभी 33 स्किल्स उपलब्ध।"
+          }
+        ]
+      },
+      {
+        "id": "npx-cli",
+        "label": "npx / CLI",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ एक-लाइन कमांड — सभी 33 स्किल्स इंस्टॉल करें, प्लेटफ़ॉर्म ऑटो-डिटेक्ट",
+          "code": "npx codymaster add --all"
+        },
+        "steps": [
+          {
+            "title": "npx से इंस्टॉल करें (ग्लोबल इंस्टॉल की जरूरत नहीं)",
+            "description": "Node.js 18+ वाली किसी भी मशीन पर काम करता है।",
+            "code": "npx codymaster add --all",
+            "output": "🧠 Cody Master v3.4.0\n   प्लेटफ़ॉर्म डिटेक्ट हो रहा है... ✅ Claude Code मिला\n   33 स्किल्स इंस्टॉल हो रही हैं..."
+          },
+          {
+            "title": "विशिष्ट स्किल इंस्टॉल करें",
+            "description": "सिर्फ जरूरी स्किल इंस्टॉल करें। प्लेटफ़ॉर्म ऑटो-डिटेक्ट।",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd"
+          },
+          {
+            "title": "विशिष्ट प्लेटफ़ॉर्म चुनें",
+            "description": "ऑटो-डिटेक्ट को ओवरराइड करें और किसी भी AI टूल में इंस्टॉल करें।",
+            "code": "npx codymaster add --all --platform claude\nnpx codymaster add --all --platform gemini\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+          },
+          {
+            "title": "स्किल्स ब्राउज़ करें",
+            "description": "सभी 33 स्किल्स सूचीबद्ध करें या डोमेन से खोजें।",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
+          }
+        ]
       }
     ]
   },

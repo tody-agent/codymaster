@@ -1799,6 +1799,139 @@
             "note": "适用于 GitHub Copilot、Kiro、OpenCode、Windsurf 及所有支持自定义指令的平台。"
           }
         ]
+      },
+      {
+        "id": "opencode",
+        "label": "OpenCode",
+        "emoji": "📦",
+        "steps": [
+          {
+            "title": "安装 OpenCode",
+            "description": "确保已安装并验证 OpenCode。",
+            "items": [
+              "安装: npm install -g opencode-ai (或 brew install opencode)",
+              "验证: opencode --version",
+              "在项目目录运行: opencode"
+            ]
+          },
+          {
+            "title": "通过 npx 添加技能",
+            "description": "使用 Cody Master CLI 将技能安装到 OpenCode 项目。",
+            "code": "npx codymaster add --all --platform opencode",
+            "output": "📦 opencode — 安装全部 33 个技能\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (共 33 个)\n✅ 33 个技能已安装 → ./.opencode/skills/"
+          },
+          {
+            "title": "或手动克隆",
+            "description": "克隆仓库并将技能复制到 OpenCode 目录。",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
+            "output": "✓ 33 个 SKILL.md 文件已就绪，位于 .opencode/skills/"
+          },
+          {
+            "title": "使用技能",
+            "description": "技能自动激活。在 OpenCode 会话中按名称引用。",
+            "code": "@[/cm-planning] 为我的应用设计新功能",
+            "note": "全部 33 个技能: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          }
+        ]
+      },
+      {
+        "id": "kiro",
+        "label": "Kiro",
+        "emoji": "🔶",
+        "steps": [
+          {
+            "title": "安装 Kiro",
+            "description": "下载并安装 Kiro — AWS 的 AI IDE。访问 kiro.dev。",
+            "items": [
+              "从 kiro.dev 下载 Kiro",
+              "使用 AWS Builder ID 登录",
+              "在 Kiro 中打开项目"
+            ]
+          },
+          {
+            "title": "通过 npx 添加技能",
+            "description": "使用 CLI 将 Cody Master 技能安装到 Kiro 的 steering 目录。",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — 安装全部 33 个技能\n  ✅ cm-tdd\n  ... (共 33 个)\n✅ 33 个技能已安装 → ./.kiro/steering/"
+          },
+          {
+            "title": "或手动克隆",
+            "description": "克隆仓库并复制到 Kiro steering 目录。",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 33 个 SKILL.md 文件已就绪，位于 .kiro/steering/"
+          },
+          {
+            "title": "使用技能",
+            "description": "Kiro 自动读取 steering 文档。技能基于上下文激活。",
+            "code": "@cm-tdd 使用完整测试覆盖实现用户认证",
+            "note": "全部 33 个技能: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
+        "emoji": "🐙",
+        "steps": [
+          {
+            "title": "启用 GitHub Copilot",
+            "description": "确保 GitHub Copilot 在 VS Code 中处于活动状态。",
+            "items": [
+              "在 github.com/features/copilot 订阅",
+              "在 VS Code 中安装 GitHub Copilot 扩展",
+              "使用 GitHub 账户登录"
+            ]
+          },
+          {
+            "title": "通过 npx 添加技能",
+            "description": "Cody Master 将技能引用注入 .github/copilot-instructions.md。",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 33 个技能已引用到 .github/copilot-instructions.md\n   GitHub Copilot 将自动使用这些作为上下文。"
+          },
+          {
+            "title": "或手动添加",
+            "description": "在 copilot-instructions.md 中添加 Cody Master 技能引用。",
+            "code": "# .github/copilot-instructions.md\n\n## 可用 AI 技能\n本项目使用 Cody Master 技能:\n- cm-tdd, cm-debugging, cm-planning\n# 完整列表: https://github.com/tody-agent/codymaster"
+          },
+          {
+            "title": "使用技能",
+            "description": "在 Copilot Chat 中按名称要求使用任何技能。",
+            "code": "使用 cm-tdd 实现完整测试覆盖的用户认证",
+            "note": "在 Copilot Chat (Cmd+I) 中效果最佳。全部 33 个技能均可用。"
+          }
+        ]
+      },
+      {
+        "id": "npx-cli",
+        "label": "npx / CLI",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ 一行命令 — 安装全部 33 个技能，自动检测平台",
+          "code": "npx codymaster add --all"
+        },
+        "steps": [
+          {
+            "title": "通过 npx 安装 (无需全局安装)",
+            "description": "在任何装有 Node.js 18+ 的机器上运行。无需全局安装。",
+            "code": "npx codymaster add --all",
+            "output": "🧠 Cody Master v3.4.0\n   正在检测平台... ✅ 检测到 Claude Code\n   正在安装 33 个技能..."
+          },
+          {
+            "title": "安装特定技能",
+            "description": "只安装您需要的技能。自动检测平台。",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd"
+          },
+          {
+            "title": "指定目标平台",
+            "description": "覆盖自动检测，安装到任意 AI 编码工具。",
+            "code": "npx codymaster add --all --platform claude\nnpx codymaster add --all --platform gemini\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+          },
+          {
+            "title": "浏览 & 搜索技能",
+            "description": "列出全部 33 个技能或按领域搜索。",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
+          }
+        ]
       }
     ]
   },

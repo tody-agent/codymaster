@@ -15,8 +15,10 @@ import type { Learning } from './continuity';
 import { listChains, findChain, matchChain, createChainExecution, advanceChain as advanceChainStep, skipChainStep, abortChain, formatChainProgress, formatChainProgressBar, getCurrentSkill } from './skill-chain';
 import type { ChainExecution } from './skill-chain';
 import path from 'path';
+import os from 'os';
+import https from 'https';
 
-const VERSION = '3.3.0';
+const VERSION = '3.4.0';
 
 // ─── Branding ───────────────────────────────────────────────────────────────
 
@@ -84,6 +86,8 @@ program
     console.log(`  ${chalk.cyan('history')}             Show activity history`);
     console.log();
     console.log(chalk.white('AI & Skills:'));
+    console.log(`  ${chalk.cyan('add')}                 Add skills: ${chalk.gray('--skill cm-debugging | --all | --platform gemini')}`);
+    console.log(`  ${chalk.cyan('list')}                List all 33 skills (quick alias)`);
     console.log(`  ${chalk.cyan('skill <cmd>')}         Skill management (list|info|domains)`);
     console.log(`  ${chalk.cyan('chain <cmd>')}         Skill chain pipelines (list|start|status|auto)`);
     console.log(`  ${chalk.cyan('agents [skill]')}      List agents / suggest best for skill`);
@@ -97,12 +101,13 @@ program
     console.log(`  ${chalk.cyan('help')}                Show this help`);
     console.log();
     console.log(chalk.white('Examples:'));
+    console.log(chalk.gray('  npx codymaster add --skill cm-debugging      # Add one skill (auto-detect platform)'));
+    console.log(chalk.gray('  npx codymaster add --all --platform gemini   # Install all 33 skills for Gemini'));
+    console.log(chalk.gray('  npx codymaster add --all                     # Install all (interactive)'));
+    console.log(chalk.gray('  cody list                                    # Browse all skills'));
     console.log(chalk.gray('  cody init                                    # Init project'));
     console.log(chalk.gray('  cody task add "Fix bug" --priority high       # Add task'));
-    console.log(chalk.gray('  cody task dispatch <id>                      # Dispatch to agent'));
     console.log(chalk.gray('  cody skill list                              # Browse skills'));
-    console.log(chalk.gray('  cody agents cm-tdd                           # Best agents for skill'));
-    console.log(chalk.gray('  cody judge                                   # Check task health'));
     console.log(chalk.gray('  cody deploy staging -m "Fix login"           # Record deploy'));
     console.log(chalk.gray('  cody open                                    # Open dashboard'));
     console.log(chalk.gray('  cody status                                  # Overview'));
@@ -709,6 +714,230 @@ program
     console.log(chalk.green(`\n✅ Skill '${skill}' installed for ${opts.platform}!`));
   });
 
+// ─── Add Command (npx codymaster add --skill cm-debugging) ───────────────────
+
+const ALL_SKILLS = [
+  // Engineering
+  'cm-tdd', 'cm-debugging', 'cm-quality-gate', 'cm-test-gate', 'cm-code-review',
+  // Operations
+  'cm-safe-deploy', 'cm-identity-guard', 'cm-git-worktrees', 'cm-terminal', 'cm-secret-shield', 'cm-safe-i18n',
+  // Product
+  'cm-planning', 'cm-ux-master', 'cm-ui-preview', 'cm-brainstorm-idea', 'cm-jtbd', 'cm-dockit', 'cm-project-bootstrap', 'cm-readit',
+  // Growth
+  'cm-content-factory', 'cm-ads-tracker', 'cro-methodology', 'cm-deep-search',
+  // Orchestration
+  'cm-execution', 'cm-continuity', 'cm-skill-index', 'cm-skill-mastery', 'cm-skill-chain',
+  // Workflow
+  'cm-start', 'cm-dashboard', 'cm-status', 'cm-how-it-work', 'cm-example',
+];
+
+const PLATFORM_TARGETS: Record<string, { dir: string; invoke: string; note: string }> = {
+  gemini:   { dir: '.gemini/skills',  invoke: '@[/<skill>]',   note: 'or ~/.gemini/antigravity/skills/ for global' },
+  cursor:   { dir: '.cursor/rules',   invoke: '@<skill>',       note: 'Cursor rules directory' },
+  windsurf: { dir: '.windsurf/rules', invoke: '@<skill>',       note: 'Windsurf rules directory' },
+  cline:    { dir: '.cline/skills',   invoke: '@<skill>',       note: 'Cline / RooCode skills directory' },
+  opencode: { dir: '.opencode/skills',invoke: '@[/<skill>]',   note: 'OpenCode skills directory' },
+  kiro:     { dir: '.kiro/steering',  invoke: '@<skill>',       note: 'Kiro steering documents' },
+  copilot:  { dir: '.github',         invoke: '(auto-context)', note: 'Added to copilot-instructions.md' },
+};
+
+const RAW_BASE = 'https://raw.githubusercontent.com/tody-agent/codymaster/main';
+
+function autoDetectPlatform(): string {
+  const { execFileSync } = require('child_process');
+  try { execFileSync('claude', ['--version'], { stdio: 'pipe' }); return 'claude'; } catch {}
+  try { execFileSync('gemini', ['--version'], { stdio: 'pipe' }); return 'gemini'; } catch {}
+  if (fs.existsSync(path.join(os.homedir(), '.cursor'))) return 'cursor';
+  if (fs.existsSync(path.join(os.homedir(), '.windsurf'))) return 'windsurf';
+  return 'manual';
+}
+
+function downloadFile(url: string, dest: string): Promise<boolean> {
+  return new Promise((resolve) => {
+    try {
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      const file = fs.createWriteStream(dest);
+      https.get(url, (res) => {
+        if (res.statusCode !== 200) { file.close(); try { fs.unlinkSync(dest); } catch {} resolve(false); return; }
+        res.pipe(file);
+        file.on('finish', () => { file.close(); resolve(true); });
+      }).on('error', () => { file.close(); resolve(false); });
+    } catch { resolve(false); }
+  });
+}
+
+async function doAddSkills(skills: string[], platform: string) {
+  console.log();
+  const { execFileSync } = require('child_process');
+
+  if (platform === 'claude') {
+    console.log(chalk.magenta('🟣 Claude Code — Installing via plugin system'));
+    console.log(chalk.gray('   (Claude installs all 33 skills as one bundle)\n'));
+    try {
+      console.log(chalk.gray('   $ claude plugin marketplace add tody-agent/codymaster'));
+      execFileSync('claude', ['plugin', 'marketplace', 'add', 'tody-agent/codymaster'], { stdio: 'inherit' });
+      console.log(chalk.gray('   $ claude plugin install cody-master@cody-master'));
+      execFileSync('claude', ['plugin', 'install', 'cody-master@cody-master'], { stdio: 'inherit' });
+      console.log('\n' + chalk.green('✅ All 33 skills installed!'));
+      console.log(chalk.cyan('\n🎯 Run this first in Claude Code:  /cody-master:demo'));
+    } catch {
+      console.log(chalk.yellow('⚠️  Could not run claude CLI automatically. Run these manually:\n'));
+      console.log(chalk.cyan('  claude plugin marketplace add tody-agent/codymaster'));
+      console.log(chalk.cyan('  claude plugin install cody-master@cody-master'));
+      console.log(chalk.gray('\n  Or one-liner:'));
+      console.log(chalk.cyan('  bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude'));
+    }
+    return;
+  }
+
+  if (platform === 'gemini') {
+    console.log(chalk.cyan('💻 Gemini CLI — Installing via extensions'));
+    try {
+      execFileSync('gemini', ['extensions', 'install', 'https://github.com/tody-agent/codymaster'], { stdio: 'inherit' });
+      console.log('\n' + chalk.green('✅ All 33 skills installed for Gemini CLI!'));
+      console.log(chalk.cyan('\n📖 Use: @[/cm-planning] Design a new feature'));
+    } catch {
+      console.log(chalk.yellow('💡 Run this in your terminal:\n'));
+      console.log(chalk.cyan('   gemini extensions install https://github.com/tody-agent/codymaster\n'));
+    }
+    return;
+  }
+
+  const target = PLATFORM_TARGETS[platform];
+  if (!target) {
+    console.log(chalk.red(`❌ Unknown platform: ${platform}`));
+    console.log(chalk.gray(`   Supported: claude, gemini, cursor, windsurf, cline, opencode, kiro, copilot`));
+    return;
+  }
+
+  if (platform === 'copilot') {
+    const instrFile = path.join('.github', 'copilot-instructions.md');
+    fs.mkdirSync('.github', { recursive: true });
+    const header = '\n\n## Cody Master Skills\nThe following AI skills are available — reference them by name:\n';
+    const lines = skills.map(s => `- **${s}**: see https://github.com/tody-agent/codymaster/blob/main/skills/${s}/SKILL.md`).join('\n');
+    const existing = fs.existsSync(instrFile) ? fs.readFileSync(instrFile, 'utf-8') : '';
+    if (!existing.includes('Cody Master Skills')) {
+      fs.appendFileSync(instrFile, header + lines + '\n');
+    }
+    console.log(chalk.green(`✅ ${skills.length} skills referenced in ${instrFile}`));
+    console.log(chalk.gray('   GitHub Copilot will use these as context automatically.'));
+    return;
+  }
+
+  const icons: Record<string, string> = { cursor: '🔵', windsurf: '🟠', cline: '⚫', opencode: '📦', kiro: '🔶' };
+  const icon = icons[platform] || '📦';
+  const label = skills.length === ALL_SKILLS.length ? 'all 33 skills' : skills.join(', ');
+  console.log(`${icon} ${platform} — Installing ${label}`);
+  console.log(chalk.gray(`   Target: ./${target.dir}/\n`));
+
+  let ok = 0, fail = 0;
+  for (const skill of skills) {
+    const url = `${RAW_BASE}/skills/${skill}/SKILL.md`;
+    const dest = path.join(target.dir, skill, 'SKILL.md');
+    const success = await downloadFile(url, dest);
+    if (success) { process.stdout.write(chalk.green(`  ✅ ${skill}\n`)); ok++; }
+    else { process.stdout.write(chalk.red(`  ❌ ${skill}\n`)); fail++; }
+  }
+
+  console.log();
+  if (ok > 0) {
+    console.log(chalk.green(`✅ ${ok} skill${ok > 1 ? 's' : ''} installed → ./${target.dir}/`));
+    const invoke = target.invoke.replace('<skill>', skills[0]);
+    console.log(chalk.cyan(`📖 Usage: ${invoke}  Your prompt here`));
+    if (target.note) console.log(chalk.gray(`   Note: ${target.note}`));
+  }
+  if (fail > 0) {
+    console.log(chalk.yellow(`⚠️  ${fail} failed — check connection or clone manually:`));
+    console.log(chalk.gray(`   git clone https://github.com/tody-agent/codymaster.git`));
+  }
+}
+
+program
+  .command('add')
+  .description('Add skills to your AI agent  (npx codymaster add --skill cm-debugging)')
+  .option('--skill <name>', 'Specific skill to add (e.g. cm-debugging)')
+  .option('--all', 'Add all 33 skills')
+  .option('--platform <platform>', 'Target: claude|gemini|cursor|windsurf|cline|opencode|kiro|copilot')
+  .option('--list', 'Show available skills and exit')
+  .action(async (opts) => {
+    showBanner();
+    if (opts.list) { skillList(); return; }
+
+    // Resolve skills array
+    let skills: string[] | null = null;
+    if (opts.all) {
+      skills = ALL_SKILLS;
+    } else if (opts.skill) {
+      if (!ALL_SKILLS.includes(opts.skill)) {
+        console.log(chalk.red(`❌ Unknown skill: ${opts.skill}`));
+        console.log(chalk.gray('   Run: npx codymaster add --list'));
+        return;
+      }
+      skills = [opts.skill];
+    }
+
+    // Detect or prompt platform
+    let platform: string = opts.platform || autoDetectPlatform();
+
+    if (platform === 'manual') {
+      const prompts = (await import('prompts')).default;
+      const resp = await prompts({
+        type: 'select', name: 'platform', message: 'Select your AI coding platform:',
+        choices: [
+          { title: '🟣 Claude Code  (recommended)', value: 'claude' },
+          { title: '💻 Gemini CLI', value: 'gemini' },
+          { title: '🔵 Cursor', value: 'cursor' },
+          { title: '🟠 Windsurf', value: 'windsurf' },
+          { title: '⚫ Cline / RooCode', value: 'cline' },
+          { title: '📦 OpenCode', value: 'opencode' },
+          { title: '🔶 Kiro (AWS)', value: 'kiro' },
+          { title: '🐙 GitHub Copilot', value: 'copilot' },
+        ],
+      });
+      if (!resp.platform) return;
+      platform = resp.platform;
+    }
+
+    // If no skills chosen yet, prompt
+    if (!skills) {
+      if (platform === 'claude' || platform === 'gemini') {
+        skills = ALL_SKILLS;
+      } else {
+        const prompts = (await import('prompts')).default;
+        const resp = await prompts({
+          type: 'select', name: 'mode', message: 'What to install?',
+          choices: [
+            { title: 'All 33 skills (full kit)', value: 'all' },
+            { title: 'Search & pick one skill', value: 'pick' },
+          ],
+        });
+        if (resp.mode === 'all') {
+          skills = ALL_SKILLS;
+        } else {
+          const pick = await prompts({
+            type: 'autocomplete', name: 'skill', message: 'Type to search skill:',
+            choices: ALL_SKILLS.map(s => ({ title: s, value: s })),
+          });
+          if (!pick.skill) return;
+          skills = [pick.skill];
+        }
+      }
+    }
+
+    await doAddSkills(skills!, platform);
+  });
+
+// ─── List Command (quick alias for `cody skill list`) ─────────────────────────
+
+program
+  .command('list')
+  .alias('ls')
+  .description('List all 33 available skills')
+  .option('-d, --domain <domain>', 'Filter by domain')
+  .action((opts) => {
+    skillList(opts.domain);
+  });
+
 // ─── Continuity Command (Working Memory) ────────────────────────────────────
 
 program
@@ -842,47 +1071,68 @@ function continuityDecisions(projectPath: string) {
 
 // ─── Skill Command ──────────────────────────────────────────────────────────
 
-const SKILL_CATALOG: Record<string, { skills: { name: string; desc: string }[] }> = {
+const SKILL_CATALOG: Record<string, { icon: string; skills: { name: string; desc: string }[] }> = {
   engineering: {
+    icon: '🔧',
     skills: [
-      { name: 'cm-tdd', desc: 'Red-Green-Refactor cycle — test before code' },
-      { name: 'cm-debugging', desc: '5-phase root cause investigation' },
-      { name: 'cm-quality-gate', desc: '6-gate verification system' },
-      { name: 'cm-test-gate', desc: 'Setup 4-layer test infrastructure' },
-      { name: 'cm-code-review', desc: 'Professional PR review lifecycle' },
+      { name: 'cm-tdd',           desc: 'Red-Green-Refactor cycle — test before code' },
+      { name: 'cm-debugging',     desc: '5-phase root cause investigation' },
+      { name: 'cm-quality-gate',  desc: '6-gate verification system' },
+      { name: 'cm-test-gate',     desc: 'Setup 4-layer test infrastructure' },
+      { name: 'cm-code-review',   desc: 'Professional PR review lifecycle' },
     ],
   },
   operations: {
+    icon: '⚙️',
     skills: [
-      { name: 'cm-safe-deploy', desc: 'Multi-gate deploy pipeline with rollback' },
+      { name: 'cm-safe-deploy',    desc: 'Multi-gate deploy pipeline with rollback' },
       { name: 'cm-identity-guard', desc: 'Prevent wrong-account deploys' },
-      { name: 'cm-git-worktrees', desc: 'Isolated feature branches' },
-      { name: 'cm-terminal', desc: 'Safe terminal execution with logging' },
+      { name: 'cm-git-worktrees',  desc: 'Isolated feature branches without context-switch' },
+      { name: 'cm-terminal',       desc: 'Safe terminal execution with logging' },
+      { name: 'cm-secret-shield',  desc: 'Scan & block secrets before commit/deploy' },
+      { name: 'cm-safe-i18n',      desc: 'Multi-pass translation with 8 audit gates' },
     ],
   },
   product: {
+    icon: '🎨',
     skills: [
-      { name: 'cm-planning', desc: 'Brainstorm intent → design → plan' },
-      { name: 'cm-ux-master', desc: '48 UX Laws + 37 Design Tests' },
-      { name: 'cm-dockit', desc: 'Complete knowledge base from codebase' },
-      { name: 'cm-project-bootstrap', desc: 'Full project setup: design → CI → deploy' },
+      { name: 'cm-planning',         desc: 'Intent → design → structured plan' },
+      { name: 'cm-ux-master',        desc: '48 UX Laws + 37 Design Tests' },
+      { name: 'cm-ui-preview',       desc: 'Browser-previewed UI prototypes' },
+      { name: 'cm-brainstorm-idea',  desc: 'Multi-lens ideation with scoring' },
+      { name: 'cm-jtbd',             desc: 'Jobs-To-Be-Done framework & canvas' },
+      { name: 'cm-dockit',           desc: 'Complete knowledge base from codebase' },
+      { name: 'cm-project-bootstrap',desc: 'Full project setup: design → CI → deploy' },
+      { name: 'cm-readit',           desc: 'Web audio TTS reader & MP3 player' },
     ],
   },
   growth: {
+    icon: '📈',
     skills: [
       { name: 'cm-content-factory', desc: 'AI content engine: research → deploy' },
-      { name: 'cm-ads-tracker', desc: 'Facebook/TikTok/Google tracking setup' },
-      { name: 'cro-methodology', desc: 'Conversion audit + A/B test design' },
-      { name: 'booking-calendar', desc: 'Calendar CRO engine with .ics export' },
+      { name: 'cm-ads-tracker',     desc: 'Facebook/TikTok/Google pixel setup' },
+      { name: 'cro-methodology',    desc: 'Conversion audit + A/B test design' },
+      { name: 'cm-deep-search',     desc: 'Multi-source deep research synthesis' },
     ],
   },
   orchestration: {
+    icon: '🎯',
     skills: [
-      { name: 'cm-execution', desc: 'Execute plans: batch, parallel, RARV' },
-      { name: 'cm-continuity', desc: 'Working memory: read/update per session' },
-      { name: 'cm-skill-index', desc: 'Progressive disclosure — scan skills fast' },
-      { name: 'cm-safe-i18n', desc: 'Multi-pass translation with 8 audit gates' },
-      { name: 'cm-skill-mastery', desc: 'Meta: when/how to invoke skills' },
+      { name: 'cm-execution',    desc: 'Execute plans: batch, parallel, RARV' },
+      { name: 'cm-continuity',   desc: 'Working memory: read/update per session' },
+      { name: 'cm-skill-index',  desc: 'Progressive skill discovery & routing' },
+      { name: 'cm-skill-mastery',desc: 'Meta: when/how to invoke skills' },
+      { name: 'cm-skill-chain',  desc: 'Multi-skill pipeline execution' },
+    ],
+  },
+  workflow: {
+    icon: '⚡',
+    skills: [
+      { name: 'cm-start',       desc: 'Onboarding & session kick-off wizard' },
+      { name: 'cm-dashboard',   desc: 'Project status & task Kanban board' },
+      { name: 'cm-status',      desc: 'Quick project health snapshot' },
+      { name: 'cm-how-it-work', desc: 'Interactive explainer for all 33 skills' },
+      { name: 'cm-example',     desc: 'Minimal template for new skills' },
     ],
   },
 };
@@ -909,22 +1159,30 @@ program
     }
   });
 
-function skillList() {
-  console.log(chalk.cyan('\n🧩 Skills Library\n'));
-  const DOMAIN_ICONS: Record<string, string> = {
-    engineering: '🔧', operations: '⚙️', product: '🎨', growth: '📈', orchestration: '🎯',
-  };
+function skillList(filterDomain?: string) {
+  const entries = filterDomain
+    ? Object.entries(SKILL_CATALOG).filter(([d]) => d.toLowerCase().startsWith(filterDomain.toLowerCase()))
+    : Object.entries(SKILL_CATALOG);
+
+  if (entries.length === 0) {
+    console.log(chalk.red(`❌ Domain not found: ${filterDomain}`));
+    console.log(chalk.gray('   Domains: engineering, operations, product, growth, orchestration, workflow'));
+    return;
+  }
+
+  console.log(chalk.cyan('\n🧩 Cody Master — 33 Skills\n'));
   let total = 0;
-  for (const [domain, data] of Object.entries(SKILL_CATALOG)) {
-    const icon = DOMAIN_ICONS[domain] || '📦';
-    console.log(chalk.white(`  ${icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)} Swarm`));
+  for (const [domain, data] of entries) {
+    console.log(chalk.white(`  ${data.icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)}`));
     for (const skill of data.skills) {
-      console.log(`    ${chalk.cyan(padRight(skill.name, 24))} ${chalk.gray(skill.desc)}`);
+      console.log(`    ${chalk.cyan(padRight(skill.name, 26))} ${chalk.gray(skill.desc)}`);
       total++;
     }
     console.log();
   }
-  console.log(chalk.gray(`  Total: ${total} skills across ${Object.keys(SKILL_CATALOG).length} domains\n`));
+  console.log(chalk.gray(`  ${total} skills across ${entries.length} domains`));
+  console.log(chalk.gray(`  Install: npx codymaster add --all`));
+  console.log(chalk.gray(`  Add one: npx codymaster add --skill <name>\n`));
 }
 
 function skillInfo(name: string) {
@@ -948,14 +1206,13 @@ function skillInfo(name: string) {
 }
 
 function skillDomains() {
-  const DOMAIN_ICONS: Record<string, string> = {
-    engineering: '🔧', operations: '⚙️', product: '🎨', growth: '📈', orchestration: '🎯',
-  };
-  console.log(chalk.cyan('\n🎯 Skill Domains (Swarms)\n'));
+  console.log(chalk.cyan('\n🎯 Skill Domains\n'));
+  let total = 0;
   for (const [domain, data] of Object.entries(SKILL_CATALOG)) {
-    const icon = DOMAIN_ICONS[domain] || '📦';
-    console.log(`  ${icon} ${chalk.white(padRight(domain.charAt(0).toUpperCase() + domain.slice(1), 16))} ${chalk.gray(`${data.skills.length} skills`)}`);
+    console.log(`  ${data.icon} ${chalk.white(padRight(domain.charAt(0).toUpperCase() + domain.slice(1), 16))} ${chalk.gray(`${data.skills.length} skills`)}`);
+    total += data.skills.length;
   }
+  console.log(chalk.gray(`\n  Total: ${total} skills across ${Object.keys(SKILL_CATALOG).length} domains`));
   console.log();
 }
 

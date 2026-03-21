@@ -1799,6 +1799,139 @@
             "note": "Работает на GitHub Copilot, Kiro, OpenCode, Windsurf и любой платформе с кастомными инструкциями."
           }
         ]
+      },
+      {
+        "id": "opencode",
+        "label": "OpenCode",
+        "emoji": "📦",
+        "steps": [
+          {
+            "title": "Установить OpenCode",
+            "description": "Убедитесь, что OpenCode установлен и авторизован.",
+            "items": [
+              "Установить: npm install -g opencode-ai (или brew install opencode)",
+              "Проверить: opencode --version",
+              "Запустить: opencode в директории проекта"
+            ]
+          },
+          {
+            "title": "Добавить навыки через npx",
+            "description": "Используйте CLI Cody Master для установки навыков в проект OpenCode.",
+            "code": "npx codymaster add --all --platform opencode",
+            "output": "📦 opencode — Устанавливаю все 33 навыка\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (всего 33)\n✅ 33 навыка установлены → ./.opencode/skills/"
+          },
+          {
+            "title": "Или клонировать вручную",
+            "description": "Клонируйте репозиторий и скопируйте навыки в OpenCode.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
+            "output": "✓ 33 файла SKILL.md готовы в .opencode/skills/"
+          },
+          {
+            "title": "Использование навыков",
+            "description": "Навыки активируются автоматически. Вызывайте по имени в сессии OpenCode.",
+            "code": "@[/cm-planning] Разработать новую функцию для моего приложения",
+            "note": "Все 33 навыка: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          }
+        ]
+      },
+      {
+        "id": "kiro",
+        "label": "Kiro",
+        "emoji": "🔶",
+        "steps": [
+          {
+            "title": "Установить Kiro",
+            "description": "Скачайте и установите Kiro — AI IDE от AWS. Доступно на kiro.dev.",
+            "items": [
+              "Скачать Kiro с kiro.dev",
+              "Войти с AWS Builder ID",
+              "Открыть проект в Kiro"
+            ]
+          },
+          {
+            "title": "Добавить навыки через npx",
+            "description": "Используйте CLI для установки навыков Cody Master в директорию steering Kiro.",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — Устанавливаю все 33 навыка\n  ✅ cm-tdd\n  ... (всего 33)\n✅ 33 навыка установлены → ./.kiro/steering/"
+          },
+          {
+            "title": "Или клонировать вручную",
+            "description": "Клонируйте репозиторий и скопируйте в steering Kiro.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 33 файла SKILL.md готовы в .kiro/steering/"
+          },
+          {
+            "title": "Использование навыков",
+            "description": "Kiro автоматически читает steering документы. Навыки активируются по контексту.",
+            "code": "@cm-tdd Реализовать аутентификацию с полным покрытием тестами",
+            "note": "Все 33 навыка: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
+        "emoji": "🐙",
+        "steps": [
+          {
+            "title": "Включить GitHub Copilot",
+            "description": "Убедитесь, что GitHub Copilot активен в VS Code.",
+            "items": [
+              "Подписаться на github.com/features/copilot",
+              "Установить расширение GitHub Copilot в VS Code",
+              "Войти с аккаунтом GitHub"
+            ]
+          },
+          {
+            "title": "Добавить навыки через npx",
+            "description": "Cody Master добавляет ссылки на навыки в .github/copilot-instructions.md.",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 33 навыка добавлены в .github/copilot-instructions.md\n   GitHub Copilot будет автоматически использовать их как контекст."
+          },
+          {
+            "title": "Или добавить вручную",
+            "description": "Добавьте ссылки на Cody Master в copilot-instructions.md.",
+            "code": "# .github/copilot-instructions.md\n\n## Доступные AI навыки\nПроект использует навыки Cody Master:\n- cm-tdd, cm-debugging, cm-planning\n# Полный список: https://github.com/tody-agent/codymaster"
+          },
+          {
+            "title": "Использование навыков",
+            "description": "Запросите использование любого навыка по имени в Copilot Chat.",
+            "code": "Используй cm-tdd для реализации аутентификации с полным покрытием тестами",
+            "note": "Лучше всего работает в Copilot Chat (Cmd+I). Все 33 навыка доступны."
+          }
+        ]
+      },
+      {
+        "id": "npx-cli",
+        "label": "npx / CLI",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ Однострочная команда — установить все 33 навыка, автоопределение платформы",
+          "code": "npx codymaster add --all"
+        },
+        "steps": [
+          {
+            "title": "Установить через npx (без глобальной установки)",
+            "description": "Работает на любой машине с Node.js 18+. Глобальная установка не нужна.",
+            "code": "npx codymaster add --all",
+            "output": "🧠 Cody Master v3.4.0\n   Определение платформы... ✅ Обнаружен Claude Code\n   Установка 33 навыков..."
+          },
+          {
+            "title": "Установить конкретный навык",
+            "description": "Устанавливайте только нужные навыки. Платформа определяется автоматически.",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd"
+          },
+          {
+            "title": "Указать платформу явно",
+            "description": "Переопределить автоопределение и установить в любой AI инструмент.",
+            "code": "npx codymaster add --all --platform claude\nnpx codymaster add --all --platform gemini\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+          },
+          {
+            "title": "Просмотр и поиск навыков",
+            "description": "Перечислить все 33 навыка или искать по домену.",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
+          }
+        ]
       }
     ]
   },

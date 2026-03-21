@@ -1799,6 +1799,139 @@
             "note": "Hoạt động trên GitHub Copilot, Kiro, OpenCode, Windsurf và mọi platform hỗ trợ custom instructions."
           }
         ]
+      },
+      {
+        "id": "opencode",
+        "label": "OpenCode",
+        "emoji": "📦",
+        "steps": [
+          {
+            "title": "Cài OpenCode",
+            "description": "Đảm bảo bạn đã cài OpenCode và xác thực.",
+            "items": [
+              "Cài: npm install -g opencode-ai (hoặc brew install opencode)",
+              "Kiểm tra: opencode --version",
+              "Chạy: opencode trong thư mục project"
+            ]
+          },
+          {
+            "title": "Thêm skills qua npx",
+            "description": "Dùng Cody Master CLI để cài skills vào project OpenCode.",
+            "code": "npx codymaster add --all --platform opencode",
+            "output": "📦 opencode — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (33 tổng)\n✅ 33 skills đã cài → ./.opencode/skills/"
+          },
+          {
+            "title": "Hoặc clone thủ công",
+            "description": "Clone repo và sao chép skills vào thư mục OpenCode.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
+            "output": "✓ 33 file SKILL.md sẵn sàng trong .opencode/skills/"
+          },
+          {
+            "title": "Sử dụng Skills",
+            "description": "Skills tự kích hoạt. Gọi chúng theo tên trong phiên OpenCode.",
+            "code": "@[/cm-planning] Thiết kế tính năng mới cho ứng dụng",
+            "note": "Tất cả 33 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          }
+        ]
+      },
+      {
+        "id": "kiro",
+        "label": "Kiro",
+        "emoji": "🔶",
+        "steps": [
+          {
+            "title": "Cài Kiro",
+            "description": "Tải và cài Kiro — IDE AI của AWS. Tại kiro.dev.",
+            "items": [
+              "Tải Kiro tại kiro.dev",
+              "Đăng nhập với AWS Builder ID",
+              "Mở project trong Kiro"
+            ]
+          },
+          {
+            "title": "Thêm skills qua npx",
+            "description": "Dùng CLI để cài skills Cody Master vào thư mục steering của Kiro.",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — Installing all 33 skills\n  ✅ cm-tdd\n  ... (33 tổng)\n✅ 33 skills đã cài → ./.kiro/steering/"
+          },
+          {
+            "title": "Hoặc clone thủ công",
+            "description": "Clone repo và sao chép vào steering của Kiro.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 33 file SKILL.md sẵn sàng trong .kiro/steering/"
+          },
+          {
+            "title": "Sử dụng Skills",
+            "description": "Kiro tự đọc steering documents. Skills kích hoạt theo ngữ cảnh.",
+            "code": "@cm-tdd Implement xác thực người dùng với full test coverage",
+            "note": "Tất cả 33 skills: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
+        "emoji": "🐙",
+        "steps": [
+          {
+            "title": "Kích hoạt GitHub Copilot",
+            "description": "Đảm bảo GitHub Copilot đang hoạt động trong VS Code.",
+            "items": [
+              "Đăng ký tại github.com/features/copilot",
+              "Cài extension GitHub Copilot trong VS Code",
+              "Đăng nhập với tài khoản GitHub"
+            ]
+          },
+          {
+            "title": "Thêm skills qua npx",
+            "description": "Cody Master chèn tham chiếu skills vào .github/copilot-instructions.md.",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 33 skills được tham chiếu trong .github/copilot-instructions.md\n   GitHub Copilot sẽ tự dùng làm context."
+          },
+          {
+            "title": "Hoặc thêm thủ công",
+            "description": "Thêm tham chiếu Cody Master vào file copilot-instructions.md.",
+            "code": "# .github/copilot-instructions.md\n\n## AI Skills Available\nProject này dùng Cody Master skills:\n- cm-tdd, cm-debugging, cm-planning, cm-safe-deploy\n- cm-ux-master, cm-content-factory\n# Đầy đủ: https://github.com/tody-agent/codymaster"
+          },
+          {
+            "title": "Sử dụng Skills",
+            "description": "Yêu cầu Copilot dùng skill bất kỳ theo tên trong chat.",
+            "code": "Dùng cm-tdd để implement xác thực người dùng với full test coverage",
+            "note": "Hoạt động tốt nhất trong Copilot Chat (Cmd+I). Tất cả 33 skills đều sẵn sàng."
+          }
+        ]
+      },
+      {
+        "id": "npx-cli",
+        "label": "npx / CLI",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ Lệnh một dòng — cài 33 skills, tự phát hiện platform",
+          "code": "npx codymaster add --all"
+        },
+        "steps": [
+          {
+            "title": "Cài qua npx (không cần cài toàn cục)",
+            "description": "Hoạt động trên mọi máy có Node.js 18+. Không cần cài global.",
+            "code": "npx codymaster add --all",
+            "output": "🧠 Cody Master v3.4.0\n   Đang phát hiện platform... ✅ Claude Code phát hiện\n   Đang cài 33 skills..."
+          },
+          {
+            "title": "Cài skill cụ thể",
+            "description": "Chỉ lấy skill bạn cần. Tự phát hiện platform.",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd\nnpx codymaster add --skill cm-safe-deploy"
+          },
+          {
+            "title": "Chỉ định platform cụ thể",
+            "description": "Ghi đè auto-detect và cài vào bất kỳ AI coding tool nào.",
+            "code": "# Claude Code\nnpx codymaster add --all --platform claude\n\n# Gemini CLI\nnpx codymaster add --all --platform gemini\n\n# Cursor, Windsurf, Cline, OpenCode, Kiro\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+          },
+          {
+            "title": "Duyệt & tìm kiếm skills",
+            "description": "Liệt kê 33 skills hoặc tìm theo domain.",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
+          }
+        ]
       }
     ]
   },

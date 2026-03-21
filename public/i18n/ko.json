@@ -1799,6 +1799,139 @@
             "note": "GitHub Copilot, Kiro, OpenCode, Windsurf 등 커스텀 지침을 지원하는 모든 플랫폼에서 작동합니다."
           }
         ]
+      },
+      {
+        "id": "opencode",
+        "label": "OpenCode",
+        "emoji": "📦",
+        "steps": [
+          {
+            "title": "OpenCode 설치",
+            "description": "OpenCode가 설치되고 인증되었는지 확인하세요.",
+            "items": [
+              "설치: npm install -g opencode-ai (또는 brew install opencode)",
+              "확인: opencode --version",
+              "프로젝트 디렉토리에서 실행: opencode"
+            ]
+          },
+          {
+            "title": "npx로 스킬 추가",
+            "description": "Cody Master CLI를 사용해 OpenCode 프로젝트에 스킬을 설치합니다.",
+            "code": "npx codymaster add --all --platform opencode",
+            "output": "📦 opencode — 33개 스킬 전체 설치\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (총 33개)\n✅ 33개 스킬 설치 완료 → ./.opencode/skills/"
+          },
+          {
+            "title": "또는 수동으로 클론",
+            "description": "저장소를 클론하고 OpenCode 디렉토리에 스킬을 복사합니다.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
+            "output": "✓ 33개 SKILL.md 파일이 .opencode/skills/에 준비됨"
+          },
+          {
+            "title": "스킬 사용",
+            "description": "스킬은 자동으로 활성화됩니다. OpenCode 세션에서 이름으로 호출하세요.",
+            "code": "@[/cm-planning] 내 앱의 새 기능 설계하기",
+            "note": "모든 33개 스킬: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          }
+        ]
+      },
+      {
+        "id": "kiro",
+        "label": "Kiro",
+        "emoji": "🔶",
+        "steps": [
+          {
+            "title": "Kiro 설치",
+            "description": "Kiro — AWS의 AI IDE를 다운로드하고 설치합니다. kiro.dev에서 이용 가능.",
+            "items": [
+              "kiro.dev에서 Kiro 다운로드",
+              "AWS Builder ID로 로그인",
+              "Kiro에서 프로젝트 열기"
+            ]
+          },
+          {
+            "title": "npx로 스킬 추가",
+            "description": "CLI를 사용해 Kiro의 steering 디렉토리에 스킬을 설치합니다.",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — 33개 스킬 전체 설치\n  ✅ cm-tdd\n  ... (총 33개)\n✅ 33개 스킬 설치 완료 → ./.kiro/steering/"
+          },
+          {
+            "title": "또는 수동으로 클론",
+            "description": "저장소를 클론하고 Kiro steering 디렉토리에 복사합니다.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 33개 SKILL.md 파일이 .kiro/steering/에 준비됨"
+          },
+          {
+            "title": "스킬 사용",
+            "description": "Kiro가 steering 문서를 자동으로 읽습니다. 컨텍스트에 따라 스킬이 활성화됩니다.",
+            "code": "@cm-tdd 완전한 테스트 커버리지로 사용자 인증 구현하기",
+            "note": "모든 33개 스킬: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
+        "emoji": "🐙",
+        "steps": [
+          {
+            "title": "GitHub Copilot 활성화",
+            "description": "VS Code에서 GitHub Copilot이 활성화되어 있는지 확인하세요.",
+            "items": [
+              "github.com/features/copilot에서 구독",
+              "VS Code에서 GitHub Copilot 확장 설치",
+              "GitHub 계정으로 로그인"
+            ]
+          },
+          {
+            "title": "npx로 스킬 추가",
+            "description": "Cody Master가 .github/copilot-instructions.md에 스킬 참조를 주입합니다.",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 33개 스킬이 .github/copilot-instructions.md에 참조됨\n   GitHub Copilot이 자동으로 컨텍스트로 사용합니다."
+          },
+          {
+            "title": "또는 수동으로 추가",
+            "description": "copilot-instructions.md에 Cody Master 스킬 참조를 추가합니다.",
+            "code": "# .github/copilot-instructions.md\n\n## 사용 가능한 AI 스킬\n이 프로젝트는 Cody Master 스킬을 사용합니다:\n- cm-tdd, cm-debugging, cm-planning\n# 전체 목록: https://github.com/tody-agent/codymaster"
+          },
+          {
+            "title": "스킬 사용",
+            "description": "Copilot Chat에서 스킬 이름을 지정해 사용하세요.",
+            "code": "cm-tdd를 사용해 완전한 테스트 커버리지로 사용자 인증 구현",
+            "note": "Copilot Chat (Cmd+I)에서 가장 잘 작동합니다. 모든 33개 스킬 사용 가능."
+          }
+        ]
+      },
+      {
+        "id": "npx-cli",
+        "label": "npx / CLI",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ 원라이너 — 33개 스킬 전체 설치, 플랫폼 자동 감지",
+          "code": "npx codymaster add --all"
+        },
+        "steps": [
+          {
+            "title": "npx로 설치 (글로벌 설치 불필요)",
+            "description": "Node.js 18+가 있는 모든 머신에서 작동. 글로벌 설치 불필요.",
+            "code": "npx codymaster add --all",
+            "output": "🧠 Cody Master v3.4.0\n   플랫폼 감지 중... ✅ Claude Code 감지됨\n   33개 스킬 설치 중..."
+          },
+          {
+            "title": "특정 스킬 설치",
+            "description": "필요한 스킬만 설치합니다. 플랫폼 자동 감지.",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd"
+          },
+          {
+            "title": "특정 플랫폼 지정",
+            "description": "자동 감지를 재정의하고 모든 AI 코딩 도구에 설치합니다.",
+            "code": "npx codymaster add --all --platform claude\nnpx codymaster add --all --platform gemini\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+          },
+          {
+            "title": "스킬 탐색 & 검색",
+            "description": "33개 스킬 전체를 나열하거나 도메인별로 검색합니다.",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
+          }
+        ]
       }
     ]
   },
