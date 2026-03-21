@@ -14,7 +14,7 @@ import type { ChainExecution } from './skill-chain';
 
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 
-export function launchDashboard(port: number = DEFAULT_PORT) {
+export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = false) {
   const app = express();
   app.use(express.json());
 
@@ -696,9 +696,14 @@ export function launchDashboard(port: number = DEFAULT_PORT) {
 
   const server = app.listen(port, () => {
     try { fs.writeFileSync(PID_FILE, String(process.pid)); } catch {}
-    console.log(chalk.cyan(`\n🚀 Mission Control v4 at http://codymaster.localhost:${port}`));
-    console.log(chalk.gray(`   Data: ${DATA_FILE}`));
-    console.log(chalk.gray(`   Press Ctrl+C to stop.\n`));
+    if (!silent) {
+      console.log(chalk.cyan(`\n🚀 Mission Control at http://codymaster.localhost:${port}`));
+      console.log(chalk.gray(`   Data: ${DATA_FILE}`));
+      console.log(chalk.gray(`   Press Ctrl+C to stop.\n`));
+    } else {
+      // Silent auto-start: just a subtle hint
+      console.log(chalk.gray(`  📊 Dashboard auto-started → http://codymaster.localhost:${port}`));
+    }
   });
 
   const cleanup = () => { try { fs.unlinkSync(PID_FILE); } catch {} };

@@ -26,7 +26,7 @@ function showBanner() {
   console.log(chalk.cyan(`
    ██████╗ ██████╗  ██████╗  ██╗   ██╗
   ██╔════╝██╔═══██╗██╔══██╗ ╚██╗ ██╔╝   Cody v${VERSION}
-  ██║     ██║   ██║██║  ██║  ╚████╔╝    Universal AI Agent Skills Platform
+  ██║     ██║   ██║██║  ██║  ╚████╔╝    33 Skills. Ship 10x faster.
   ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://codymaster.localhost:${DEFAULT_PORT}
   ╚██████╗╚██████╔╝██████╔╝    ██║
    ╚═════╝ ╚═════╝ ╚═════╝     ╚═╝
@@ -1807,5 +1807,16 @@ function chainHistory() {
 }
 
 // ─── Parse ──────────────────────────────────────────────────────────────────
+
+// Auto-start dashboard in background for project commands
+// Skip for: add, list, install, help, version, --help, -v
+const SKIP_DASHBOARD_CMDS = new Set(['add', 'list', 'ls', 'install', 'help', '--help', '-h', '-v', '--version', 'version']);
+const firstArg = process.argv[2] || '';
+if (!SKIP_DASHBOARD_CMDS.has(firstArg) && firstArg !== '' && !firstArg.startsWith('-')) {
+  if (!isDashboardRunning()) {
+    // Silent background start — no banner, just ensure it's running
+    launchDashboard(DEFAULT_PORT, true);
+  }
+}
 
 program.parse(process.argv);
