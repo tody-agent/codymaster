@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Cody Master Kit — 10 गुना तेज़ी से उत्पाद बनाएं",
-    "description": "30+ AI एजेंट कौशल जो आपको विचार से लेकर डिज़ाइन, कोडिंग और परिनियोजन तक ले जाते हैं—बिना कोडिंग के। बस बात करें।"
+    "description": "33 AI एजेंट कौशल जो आपको विचार से लेकर डिज़ाइन, कोडिंग और परिनियोजन तक ले जाते हैं—बिना कोडिंग के। बस बात करें।"
   },
   "nav": {
     "features": "विशेषताएँ",
@@ -16,7 +16,7 @@
     "brain": "ब्रेन"
   },
   "hero": {
-    "badge": "30+ AI कौशल · ओपन-सोर्स · मुफ़्त",
+    "badge": "33 कौशल · ओपन-सोर्स · मुफ़्त",
     "typingPhrases": [
       "विचारों को 10 गुना तेज़ी से उत्पाद बनाएं",
       "मिनटों में प्रोडक्शन कोड शिप करें",
@@ -42,7 +42,7 @@
       },
       {
         "title": "पेशेवर गुणवत्ता",
-        "description": "उत्पादन-श्रेणी कोड—सिर्फ एक बार का प्रोटोटाइप नहीं। सुरक्षा से लेकर SEO तक 30+ कौशल गुणवत्ता सुनिश्चित करते हैं।"
+        "description": "उत्पादन-श्रेणी कोड—सिर्फ एक बार का प्रोटोटाइप नहीं। सुरक्षा से लेकर SEO तक 33 कौशल गुणवत्ता सुनिश्चित करते हैं।"
       },
       {
         "title": "90% बचत",
@@ -91,8 +91,8 @@
     "steps": [
       {
         "title": "स्थापित करें",
-        "description": "एक आदेश को अपने टर्मिनल में कॉपी करें।\n30 सेकंड के भीतर निष्पादित करता है।",
-        "code": "$ npx codymaster init"
+        "description": "Marketplace जोड़ें फिर plugin इंस्टॉल करें।\n30 सेकंड में हो जाएगा।",
+        "code": "claude plugin install cody-master@cody-master"
       },
       {
         "title": "बात करें",
@@ -108,6 +108,17 @@
     "deepLabel": "आंतरिक कार्यप्रणाली",
     "deepTitle": "RARV निष्पादन चक्र और 6-चरणीय गुणवत्ता प्रणाली",
     "deepSubtitle": "Cody Master को सौंपा गया प्रत्येक कार्य स्वचालित लूप से गुजरता है जो उत्पादन के लिए तैयार कोड सुनिश्चित करता है。"
+  },
+  "install": {
+    "title": "30 सेकंड में तैयार",
+    "subtitle": "एक command से सभी 33 skills इंस्टॉल। npm नहीं, कोई config नहीं — बस Claude Code plugin।",
+    "oneliner": "One-liner (स्वतः पहचान, बहुभाषी)",
+    "or": "— या चरण-दर-चरण —",
+    "step1": "Marketplace जोड़ें",
+    "step2": "सभी 33 skills इंस्टॉल करें",
+    "step3": "Onboarding tour शुरू करें",
+    "copy": "कॉपी करें",
+    "detailedGuide": "पूरी Installation Guide"
   },
   "personas": {
     "label": "यह किसके लिए है?",
@@ -326,7 +337,7 @@
             "Can't prove ROI"
           ],
           "after": [
-            "30+ blog posts generated instantly",
+            "33 blog posts generated instantly",
             "Landing pages in 15 minutes",
             "Full pixel + CAPI + UTM tracking",
             "7 proven frameworks in every piece",
@@ -663,13 +674,13 @@
             "One universal format",
             "Full Claw ecosystem interop",
             "Switch freely, zero migration cost",
-            "30+ skills, instant cross-agent compatibility"
+            "33 skills, instant cross-agent compatibility"
           ]
         },
         "objections": [
           {
             "q": "I only use Cursor. Do I need this?",
-            "a": "Yes! Even on Cursor alone, you get 30+ battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
+            "a": "Yes! Even on Cursor alone, you get 33 battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
           },
           {
             "q": "What is the 'Claw Family' exactly?",
@@ -681,7 +692,7 @@
           }
         ],
         "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
-        "ctaSub": "30+ skills. Every Claw agent. Zero lock-in.",
+        "ctaSub": "33 skills. Every Claw agent. Zero lock-in.",
         "ctaButton": "Join the Claw Family →"
       }
     }
@@ -693,7 +704,7 @@
   },
   "skills": {
     "label": "कौशल",
-    "title": "हर चरण के लिए\n30+ विशेषज्ञ कौशल",
+    "title": "हर चरण के लिए\n33 विशेषज्ञ कौशल",
     "subtitle": "प्रत्येक कौशल विचार सृजन, डिज़ाइन से लेकर कॉपीराइटिंग, सुरक्षा और तैनाती तक एक विशेष AI विशेषज्ञ है।",
     "categories": [
       "विचार सृजन",
@@ -728,7 +739,7 @@
   "stats": {
     "items": [
       {
-        "number": "30+",
+        "number": "33",
         "label": "AI कौशल"
       },
       {
@@ -1227,9 +1238,9 @@
           "cm-skill-chain",
           "cm-how-it-work"
         ],
-        "problem": "Overwhelmed analyzing 30+ sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
+        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
         "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
-        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 30+ systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
+        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
         "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
         "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
         "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
@@ -1387,7 +1398,7 @@
   "startPage": {
     "meta": {
       "title": "शुरू करें — Cody Master Kit",
-      "description": "2 मिनट में Claude Code पर Cody Master इंस्टॉल करें। 33+ AI स्किल्स तुरंत उपलब्ध।"
+      "description": "2 मिनट में Claude Code पर Cody Master इंस्टॉल करें। 33 AI स्किल्स तुरंत उपलब्ध।"
     },
     "hero": "2 मिनट में इंस्टॉलेशन",
     "heroSub": "Cody Master, Claude Code का प्लगइन है — कोई npm नहीं, कोई अतिरिक्त टूल नहीं।",
@@ -1523,7 +1534,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "30+ भाषाएँ",
+        "metric": "33 भाषाएँ",
         "metricLabel": "एक साथ समर्थन"
       },
       {
@@ -2010,7 +2021,7 @@
     "skillMapSection": {
       "label": "HOW SKILLS CONNECT",
       "title": "The Skill Map",
-      "subtitle": "30+ skills organized into 5 swarms. Skills auto-chain based on your task.",
+      "subtitle": "33 skills organized into 5 swarms. Skills auto-chain based on your task.",
       "swarms": [
         {
           "name": "🎯 Ideation",

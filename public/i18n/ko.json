@@ -16,7 +16,7 @@
     "brain": "브레인"
   },
   "hero": {
-    "badge": "30+ AI 스킬 · 오픈소스 · 무료",
+    "badge": "33 스킬 · 오픈소스 · 무료",
     "typingPhrases": [
       "아이디어를 10배 빠르게 제품으로 바꾸세요",
       "몇 분 만에 프로덕션 코드를 배포하세요",
@@ -91,8 +91,8 @@
     "steps": [
       {
         "title": "설치",
-        "description": "터미널에 명령어를 하나 복사하세요.\n30초 안에 실행됩니다.",
-        "code": "$ npx codymaster init"
+        "description": "마켓플레이스를 추가하고 플러그인을 설치하세요.\n30초 안에 완료됩니다.",
+        "code": "claude plugin install cody-master@cody-master"
       },
       {
         "title": "채팅",
@@ -108,6 +108,17 @@
     "deepLabel": "작동 원리",
     "deepTitle": "RARV 실행 주기 및 6단계 품질 시스템",
     "deepSubtitle": "Cody Master에 할당된 모든 작업은 자동화된 루프를 거쳐 실서비스에 적합한 코드를 보장합니다."
+  },
+  "install": {
+    "title": "30초 안에 준비 완료",
+    "subtitle": "명령어 하나로 33개 스킬 전체 설치. npm 불필요, 설정 불필요 — Claude Code 플러그인만으로 끝.",
+    "oneliner": "원라이너 (자동 감지, 다국어 지원)",
+    "or": "— 또는 단계별로 —",
+    "step1": "마켓플레이스 추가",
+    "step2": "33개 스킬 전체 설치",
+    "step3": "온보딩 투어 시작",
+    "copy": "복사",
+    "detailedGuide": "전체 설치 가이드"
   },
   "personas": {
     "label": "누구를 위한 것인가요?",
@@ -326,7 +337,7 @@
             "Can't prove ROI"
           ],
           "after": [
-            "30+ blog posts generated instantly",
+            "33 blog posts generated instantly",
             "Landing pages in 15 minutes",
             "Full pixel + CAPI + UTM tracking",
             "7 proven frameworks in every piece",
@@ -663,13 +674,13 @@
             "One universal format",
             "Full Claw ecosystem interop",
             "Switch freely, zero migration cost",
-            "30+ skills, instant cross-agent compatibility"
+            "33 skills, instant cross-agent compatibility"
           ]
         },
         "objections": [
           {
             "q": "I only use Cursor. Do I need this?",
-            "a": "Yes! Even on Cursor alone, you get 30+ battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
+            "a": "Yes! Even on Cursor alone, you get 33 battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
           },
           {
             "q": "What is the 'Claw Family' exactly?",
@@ -681,7 +692,7 @@
           }
         ],
         "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
-        "ctaSub": "30+ skills. Every Claw agent. Zero lock-in.",
+        "ctaSub": "33 skills. Every Claw agent. Zero lock-in.",
         "ctaButton": "Join the Claw Family →"
       }
     }
@@ -693,7 +704,7 @@
   },
   "skills": {
     "label": "스킬",
-    "title": "모든 단계를 위한\n30+ 전문가 스킬",
+    "title": "모든 단계를 위한\n33 전문가 스킬",
     "subtitle": "각 스킬은 아이디어 도출, 디자인에서부터 문구, 보안, 배포에 이르기까지 전문화된 AI 전문가입니다.",
     "categories": [
       "아이디어 도출",
@@ -728,7 +739,7 @@
   "stats": {
     "items": [
       {
-        "number": "30+",
+        "number": "33",
         "label": "AI 스킬"
       },
       {
@@ -1227,9 +1238,9 @@
           "cm-skill-chain",
           "cm-how-it-work"
         ],
-        "problem": "Overwhelmed analyzing 30+ sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
+        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
         "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
-        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 30+ systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
+        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
         "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
         "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
         "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
@@ -2010,7 +2021,7 @@
     "skillMapSection": {
       "label": "HOW SKILLS CONNECT",
       "title": "The Skill Map",
-      "subtitle": "30+ skills organized into 5 swarms. Skills auto-chain based on your task.",
+      "subtitle": "33 skills organized into 5 swarms. Skills auto-chain based on your task.",
       "swarms": [
         {
           "name": "🎯 Ideation",

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Cody Master Kit — Turn Ideas into Products 10x Faster",
-    "description": "30+ AI Agent Skills that take you from idea to design to code to deploy — no coding required. Just chat."
+    "description": "33 AI Agent Skills that take you from idea to design to code to deploy — no coding required. Just chat."
   },
   "nav": {
     "features": "Features",
@@ -16,7 +16,7 @@
     "brain": "Brain"
   },
   "hero": {
-    "badge": "30+ AI Skills · Open Source · Free",
+    "badge": "33 Skills · Open Source · Free",
     "typingPhrases": [
       "Turn Ideas into Real Products 10x Faster",
       "Ship Production Code in Minutes",
@@ -42,7 +42,7 @@
       },
       {
         "title": "Pro Quality",
-        "description": "Production-ready code — not throwaway prototypes. 30+ skills ensure quality from security to SEO."
+        "description": "Production-ready code — not throwaway prototypes. 33 skills ensure quality from security to SEO."
       },
       {
         "title": "Save 90%",
@@ -91,8 +91,8 @@
     "steps": [
       {
         "title": "Install",
-        "description": "Copy one command into your terminal.\nDone in 30 seconds.",
-        "code": "$ npx codymaster init"
+        "description": "Add the marketplace then install the plugin.\nDone in 30 seconds.",
+        "code": "claude plugin install cody-master@cody-master"
       },
       {
         "title": "Chat",
@@ -108,6 +108,17 @@
     "deepLabel": "UNDER THE HOOD",
     "deepTitle": "The RARV Execution Cycle + 6-Gate Quality",
     "deepSubtitle": "Every task assigned to Cody Master goes through an autonomous loop ensuring production-ready code."
+  },
+  "install": {
+    "title": "Ready in 30 seconds",
+    "subtitle": "One command installs all 33 skills. No npm, no config — just a Claude Code plugin.",
+    "oneliner": "One-liner (auto-detect, multi-language)",
+    "or": "— or step by step —",
+    "step1": "Add marketplace",
+    "step2": "Install all 33 skills",
+    "step3": "Start onboarding tour",
+    "copy": "Copy",
+    "detailedGuide": "Full Install Guide"
   },
   "personas": {
     "label": "WHO IS IT FOR?",
@@ -326,7 +337,7 @@
             "Can't prove ROI"
           ],
           "after": [
-            "30+ blog posts generated instantly",
+            "33 blog posts generated instantly",
             "Landing pages in 15 minutes",
             "Full pixel + CAPI + UTM tracking",
             "7 proven frameworks in every piece",
@@ -663,13 +674,13 @@
             "One universal format",
             "Full Claw ecosystem interop",
             "Switch freely, zero migration cost",
-            "30+ skills, instant cross-agent compatibility"
+            "33 skills, instant cross-agent compatibility"
           ]
         },
         "objections": [
           {
             "q": "I only use Cursor. Do I need this?",
-            "a": "Yes! Even on Cursor alone, you get 30+ battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
+            "a": "Yes! Even on Cursor alone, you get 33 battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
           },
           {
             "q": "What is the 'Claw Family' exactly?",
@@ -681,7 +692,7 @@
           }
         ],
         "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
-        "ctaSub": "30+ skills. Every Claw agent. Zero lock-in.",
+        "ctaSub": "33 skills. Every Claw agent. Zero lock-in.",
         "ctaButton": "Join the Claw Family →"
       }
     }
@@ -693,7 +704,7 @@
   },
   "skills": {
     "label": "SKILL LIBRARY",
-    "title": "30+ Specialized Skills\nfor every stage",
+    "title": "33 Specialized Skills\nfor every stage",
     "subtitle": "Each skill is an AI expert — from ideation, design, content writing, to security and deployment.",
     "categories": [
       "Ideation",
@@ -728,7 +739,7 @@
   "stats": {
     "items": [
       {
-        "number": "30+",
+        "number": "33",
         "label": "AI Skills"
       },
       {
@@ -765,7 +776,7 @@
     "modalBest": "Best Practice",
     "meta": {
       "title": "Skill Library — Cody Master Kit",
-      "description": "Explore 30+ specialized AI Agent Skills covering ideation, design, content, code, security, and deployment."
+      "description": "Explore 33 specialized AI Agent Skills covering ideation, design, content, code, security, and deployment."
     },
     "hero": "Explore the Full Skill Library",
     "heroSub": "Every skill is a dedicated AI expert. Search, filter, and discover the right skill for your task.",
@@ -1227,9 +1238,9 @@
           "cm-skill-chain",
           "cm-how-it-work"
         ],
-        "problem": "Overwhelmed analyzing 30+ sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
+        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
         "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
-        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 30+ systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
+        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
         "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
         "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
         "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
@@ -1387,7 +1398,7 @@
   "startPage": {
     "meta": {
       "title": "Get Started — Cody Master Kit",
-      "description": "Install Cody Master on Claude Code in 2 minutes. Step-by-step guide from zero to 33+ AI skills."
+      "description": "Install Cody Master on Claude Code in 2 minutes. Step-by-step guide from zero to 33 AI skills."
     },
     "hero": "Install in 2 Minutes",
     "heroSub": "Cody Master installs as a Claude Code plugin — no npm, no extra tools needed.",
@@ -1410,15 +1421,15 @@
       },
       {
         "title": "Install All Skills",
-        "description": "One command installs all 33+ skills — TDD, debugging, deployment, UX, content, security, and more.",
+        "description": "One command installs all 33 skills — TDD, debugging, deployment, UX, content, security, and more.",
         "code": "claude plugin install cody-master@cody-master",
-        "output": "✓ cody-master installed\n📦 33+ skills ready: cm-tdd, cm-debugging, cm-planning, cm-ux-master, cm-safe-deploy..."
+        "output": "✓ cody-master installed\n📦 33 skills ready: cm-tdd, cm-debugging, cm-planning, cm-ux-master, cm-safe-deploy..."
       },
       {
         "title": "Verify & Start Using",
         "description": "Check the installation, then open Claude Code and ask it to use a skill.",
         "code": "claude plugin list",
-        "output": "✓ cody-master (33+ skills)\n✓ Ready — try: Use cm-planning to design my new feature"
+        "output": "✓ cody-master (33 skills)\n✓ Ready — try: Use cm-planning to design my new feature"
       }
     ],
     "copyButton": "Copy",
@@ -1523,7 +1534,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "30+ langs",
+        "metric": "33 langs",
         "metricLabel": "supported"
       },
       {
@@ -1655,7 +1666,7 @@
       "title": "So What Is Cody Master?",
       "content": "It's not a plugin. Not a prompt template.\n\nIt's the answer from a Product Manager who can't code, after hundreds of sleepless nights, to one single question:",
       "question": "\"How can someone with ideas but no technical skills create world-class products — from landing pages, full-stack apps, documentation, to self-onboarding — without sacrificing quality?\"",
-      "punchline": "30+ skills. Each skill is a lesson. Each lesson is a sleepless night.\n\nAnd now, you don't have to go through those nights."
+      "punchline": "33 skills. Each skill is a lesson. Each lesson is a sleepless night.\n\nAnd now, you don't have to go through those nights."
     },
     "cta": "Start your journey →",
     "backHome": "← Back to Home"
@@ -2010,7 +2021,7 @@
     "skillMapSection": {
       "label": "HOW SKILLS CONNECT",
       "title": "The Skill Map",
-      "subtitle": "30+ skills organized into 5 swarms. Skills auto-chain based on your task.",
+      "subtitle": "33 skills organized into 5 swarms. Skills auto-chain based on your task.",
       "swarms": [
         {
           "name": "🎯 Ideation",

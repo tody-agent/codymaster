@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Cody Master Kit — 10倍速将创意转化为产品",
-    "description": "30+ AI代理技能带您从创意、设计、编码到部署——无需编程，只需聊天。"
+    "description": "33个AI技能带您从创意、设计、编码到部署——无需编程，只需聊天。"
   },
   "nav": {
     "features": "特性",
@@ -16,7 +16,7 @@
     "brain": "大脑"
   },
   "hero": {
-    "badge": "30+ AI技能 · 开源 · 免费",
+    "badge": "33个技能 · 开源 · 免费",
     "typingPhrases": [
       "10倍速将创意转化为产品",
       "几分钟内交付生产级代码",
@@ -42,7 +42,7 @@
       },
       {
         "title": "专业级质量",
-        "description": "生产级代码——绝非一次性原型。30+技能保障从安全到SEO的全面质量。"
+        "description": "生产级代码——绝非一次性原型。33个技能保障从安全到SEO的全面质量。"
       },
       {
         "title": "节省 90%",
@@ -91,8 +91,8 @@
     "steps": [
       {
         "title": "安装",
-        "description": "复制一条命令到终端。\n30秒内完成。",
-        "code": "$ npx codymaster init"
+        "description": "添加marketplace然后安装插件。\n30秒内完成。",
+        "code": "claude plugin install cody-master@cody-master"
       },
       {
         "title": "聊天",
@@ -108,6 +108,17 @@
     "deepLabel": "底层原理",
     "deepTitle": "RARV 执行周期与六关质量体系",
     "deepSubtitle": "分配给 Cody Master 的每项任务都会经过一个自动化循环，确保代码符合生产环境标准。"
+  },
+  "install": {
+    "title": "30秒内准备就绪",
+    "subtitle": "一条命令安装全部33个技能。无需npm，无需配置——只是一个Claude Code插件。",
+    "oneliner": "一行命令（自动检测，多语言）",
+    "or": "— 或分步操作 —",
+    "step1": "添加marketplace",
+    "step2": "安装全部33个技能",
+    "step3": "开始入门导览",
+    "copy": "复制",
+    "detailedGuide": "完整安装指南"
   },
   "personas": {
     "label": "适用人群",
@@ -326,7 +337,7 @@
             "Can't prove ROI"
           ],
           "after": [
-            "30+ blog posts generated instantly",
+            "33 blog posts generated instantly",
             "Landing pages in 15 minutes",
             "Full pixel + CAPI + UTM tracking",
             "7 proven frameworks in every piece",
@@ -663,13 +674,13 @@
             "One universal format",
             "Full Claw ecosystem interop",
             "Switch freely, zero migration cost",
-            "30+ skills, instant cross-agent compatibility"
+            "33 skills, instant cross-agent compatibility"
           ]
         },
         "objections": [
           {
             "q": "I only use Cursor. Do I need this?",
-            "a": "Yes! Even on Cursor alone, you get 30+ battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
+            "a": "Yes! Even on Cursor alone, you get 33 battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
           },
           {
             "q": "What is the 'Claw Family' exactly?",
@@ -681,7 +692,7 @@
           }
         ],
         "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
-        "ctaSub": "30+ skills. Every Claw agent. Zero lock-in.",
+        "ctaSub": "33 skills. Every Claw agent. Zero lock-in.",
         "ctaButton": "Join the Claw Family →"
       }
     }
@@ -693,7 +704,7 @@
   },
   "skills": {
     "label": "技能库",
-    "title": "30+ 专业技能\n覆盖每个阶段",
+    "title": "33 专业技能\n覆盖每个阶段",
     "subtitle": "每个技能都是一位AI专家——从创意构思、设计、内容文案到安全和部署。",
     "categories": [
       "创意构思",
@@ -728,7 +739,7 @@
   "stats": {
     "items": [
       {
-        "number": "30+",
+        "number": "33",
         "label": "AI技能"
       },
       {
@@ -1227,9 +1238,9 @@
           "cm-skill-chain",
           "cm-how-it-work"
         ],
-        "problem": "Overwhelmed analyzing 30+ sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
+        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
         "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
-        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 30+ systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
+        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
         "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
         "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
         "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
@@ -1387,7 +1398,7 @@
   "startPage": {
     "meta": {
       "title": "开始使用 — Cody Master Kit",
-      "description": "2分钟内在Claude Code中安装Cody Master，获得33+个AI技能。"
+      "description": "2分钟内在Claude Code中安装Cody Master，获得33个AI技能。"
     },
     "hero": "2分钟完成安装",
     "heroSub": "Cody Master 是 Claude Code 插件 —— 无需 npm，无需额外工具。",
@@ -1523,7 +1534,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "30+ 语言",
+        "metric": "33 种语言",
         "metricLabel": "获得支持"
       },
       {
@@ -2010,7 +2021,7 @@
     "skillMapSection": {
       "label": "技能如何连接",
       "title": "技能地图",
-      "subtitle": "30+技能组织为5个群组。技能基于任务自动链接。",
+      "subtitle": "33个技能组织为5个群组。技能基于任务自动链接。",
       "swarms": [
         {
           "name": "🎯 Ideation",

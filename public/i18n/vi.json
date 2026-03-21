@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Cody Master Kit — Biến ý tưởng thành sản phẩm nhanh gấp 10 lần",
-    "description": "30+ AI Agent Skills giúp bạn đi từ ý tưởng đến thiết kế, lập trình và triển khai — không cần biết code."
+    "description": "33 AI Agent Skills giúp bạn đi từ ý tưởng đến thiết kế, lập trình và triển khai — không cần biết code."
   },
   "nav": {
     "features": "Tính năng",
@@ -16,7 +16,7 @@
     "brain": "Brain"
   },
   "hero": {
-    "badge": "30+ AI Skills · Mã nguồn mở · Miễn phí",
+    "badge": "33 Skills · Mã nguồn mở · Miễn phí",
     "typingPhrases": [
       "Biến Ý Tưởng Thành Sản Phẩm Nhanh Gấp 10 Lần",
       "Ship Code Production Chỉ Trong Vài Phút",
@@ -42,7 +42,7 @@
       },
       {
         "title": "Chất lượng Pro",
-        "description": "Code sẵn sàng production — không phải bản nháp vứt bỏ. 30+ skills đảm bảo chất lượng từ bảo mật đến SEO."
+        "description": "Code sẵn sàng production — không phải bản nháp vứt bỏ. 33 skills đảm bảo chất lượng từ bảo mật đến SEO."
       },
       {
         "title": "Tiết kiệm 90%",
@@ -91,8 +91,8 @@
     "steps": [
       {
         "title": "Cài đặt",
-        "description": "Copy một lệnh vào terminal.\nXong trong 30 giây.",
-        "code": "$ npx codymaster init"
+        "description": "Thêm marketplace rồi install plugin.\nXong trong 30 giây.",
+        "code": "claude plugin install cody-master@cody-master"
       },
       {
         "title": "Chat",
@@ -108,6 +108,17 @@
     "deepLabel": "CÔNG NGHỆ LÕI",
     "deepTitle": "Vòng Lặp RARV + Hệ Thống Chất Lượng 6 Cổng",
     "deepSubtitle": "Mỗi tác vụ giao cho Cody Master đều trải qua vòng lặp tự động đảm bảo code sẵn sàng chạy thực tế."
+  },
+  "install": {
+    "title": "Sẵn sàng trong 30 giây",
+    "subtitle": "Một lệnh cài đặt toàn bộ 33 kỹ năng. Không npm, không cấu hình — chỉ là plugin Claude Code.",
+    "oneliner": "One-liner (tự động nhận diện, đa ngôn ngữ)",
+    "or": "— hoặc từng bước —",
+    "step1": "Thêm marketplace",
+    "step2": "Cài đặt toàn bộ 33 kỹ năng",
+    "step3": "Bắt đầu tour hướng dẫn",
+    "copy": "Sao chép",
+    "detailedGuide": "Hướng dẫn cài đặt đầy đủ"
   },
   "personas": {
     "label": "DÀNH CHO AI?",
@@ -326,7 +337,7 @@
             "Không chứng minh được ROI"
           ],
           "after": [
-            "30+ bài blog tạo tức thì",
+            "33 bài blog tạo tức thì",
             "Landing page trong 15 phút",
             "Full pixel + CAPI + UTM tracking",
             "7 framework tích hợp mỗi bài",
@@ -663,13 +674,13 @@
             "Một format phổ quát",
             "Toàn bộ Claw ecosystem tương thích",
             "Đổi tự do, zero chi phí migration",
-            "30+ skill, cross-agent tức thì"
+            "33 skill, cross-agent tức thì"
           ]
         },
         "objections": [
           {
             "q": "Tôi chỉ dùng Cursor. Có cần không?",
-            "a": "Có! Trên Cursor thôi bạn đã có 30+ skill battle-tested. Và nếu muốn thử Claude hay Antigravity, toàn bộ thư viện skill theo bạn."
+            "a": "Có! Trên Cursor thôi bạn đã có 33 skill battle-tested. Và nếu muốn thử Claude hay Antigravity, toàn bộ thư viện skill theo bạn."
           },
           {
             "q": "'Gia đình Claw' chính xác là gì?",
@@ -681,7 +692,7 @@
           }
         ],
         "ctaTitle": "Tham gia hệ sinh thái skill phổ quát.\nViết một lần. Chạy mọi nơi.",
-        "ctaSub": "30+ skill. Mọi Claw agent. Zero lock-in.",
+        "ctaSub": "33 skill. Mọi Claw agent. Zero lock-in.",
         "ctaButton": "Gia Nhập Claw Family →"
       }
     }
@@ -693,7 +704,7 @@
   },
   "skills": {
     "label": "THƯ VIỆN KỸ NĂNG",
-    "title": "30+ Kỹ năng chuyên biệt\ncho mọi giai đoạn",
+    "title": "33 Kỹ năng chuyên biệt\ncho mọi giai đoạn",
     "subtitle": "Mỗi kỹ năng là một chuyên gia AI — từ lên ý tưởng, thiết kế, viết nội dung, đến bảo mật và triển khai.",
     "categories": [
       "Ý tưởng",
@@ -728,7 +739,7 @@
   "stats": {
     "items": [
       {
-        "number": "30+",
+        "number": "33",
         "label": "Kỹ năng AI"
       },
       {
@@ -765,7 +776,7 @@
     "modalBest": "Thực hành tốt nhất",
     "meta": {
       "title": "Thư viện Kỹ năng — Cody Master Kit",
-      "description": "Khám phá 30+ kỹ năng AI Agent chuyên biệt cho ý tưởng, thiết kế, nội dung, code, bảo mật và triển khai."
+      "description": "Khám phá 33 kỹ năng AI Agent chuyên biệt cho ý tưởng, thiết kế, nội dung, code, bảo mật và triển khai."
     },
     "hero": "Khám phá Thư viện Kỹ năng",
     "heroSub": "Mỗi kỹ năng là một chuyên gia AI riêng. Tìm kiếm, lọc và khám phá kỹ năng phù hợp.",
@@ -1229,7 +1240,7 @@
         ],
         "problem": "30 kỹ năng nhìn phát hoảng. Tôi muốn giải quyết vấn đề XYZ thì xài skill nào đây?",
         "solution": "Bách khoa toàn thư kiêm điều phối viên AI tư vấn ngược lại bạn.",
-        "whatIsIt": "Kỹ năng của các kỹ năng (Meta-skill). Nó đọc toàn bộ 30+ kỹ năng còn lại và am hiểu cách build một lệnh riêng biệt.",
+        "whatIsIt": "Kỹ năng của các kỹ năng (Meta-skill). Nó đọc toàn bộ 33 kỹ năng còn lại và am hiểu cách build một lệnh riêng biệt.",
         "whenToUse": "Khi bí đường, khi cần tư vấn cách thức thiết kế workflow AI cho doanh nghiệp bạn.",
         "whyToUse": "Bạn không cần thuộc lệnh. 'Cody, tìm tao cái nào chuyên check HTML giao diện nhanh'.",
         "bestPractice": "Mở nó ra ngay ngày đầu hoặc khi bạn định dạy cho AI nhà bạn một format làm việc chuẩn MCP mới."
@@ -1387,7 +1398,7 @@
   "startPage": {
     "meta": {
       "title": "Bắt đầu — Cody Master Kit",
-      "description": "Cài Cody Master vào Claude Code trong 2 phút. Hướng dẫn từng bước để có 33+ kỹ năng AI."
+      "description": "Cài Cody Master vào Claude Code trong 2 phút. Hướng dẫn từng bước để có 33 kỹ năng AI."
     },
     "hero": "Cài đặt trong 2 phút",
     "heroSub": "Cody Master là plugin cho Claude Code — không cần npm, không cần cài thêm gì.",
@@ -1406,7 +1417,7 @@
         "title": "Thêm Marketplace",
         "description": "Đăng ký nguồn plugin Cody Master vào Claude Code.",
         "code": "claude plugin marketplace add tody-agent/codymaster",
-        "output": "✓ Marketplace đã đăng ký: tody-agent/codymaster\n✓ 33+ kỹ năng sẵn sàng"
+        "output": "✓ Marketplace đã đăng ký: tody-agent/codymaster\n✓ 33 kỹ năng sẵn sàng"
       },
       {
         "title": "Cài gói kỹ năng",
@@ -1523,7 +1534,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "30+ ngôn ngữ",
+        "metric": "33 ngôn ngữ",
         "metricLabel": "hỗ trợ"
       },
       {
@@ -1655,7 +1666,7 @@
       "title": "Vậy Cody Master Là Gì?",
       "content": "Nó không phải plugin. Không phải prompt template.\n\nĐó là câu trả lời của một Product Manager không biết code, sau hàng trăm đêm không ngủ, cho câu hỏi duy nhất:",
       "question": "\"Làm sao để một người có ý tưởng nhưng không rành kỹ thuật có thể tạo ra sản phẩm world-class — từ landing page, full-stack app, documentation, tới self-onboarding — mà không phải đánh đổi bằng chất lượng?\"",
-      "punchline": "30+ skills. Mỗi skill là một bài học. Mỗi bài học là một đêm không ngủ.\n\nVà bây giờ, bạn không cần phải trải qua những đêm đó nữa."
+      "punchline": "33 skills. Mỗi skill là một bài học. Mỗi bài học là một đêm không ngủ.\n\nVà bây giờ, bạn không cần phải trải qua những đêm đó nữa."
     },
     "cta": "Bắt đầu hành trình của bạn →",
     "backHome": "← Về trang chủ"
@@ -2010,7 +2021,7 @@
     "skillMapSection": {
       "label": "CÁC KỸ NĂNG KẾT NỐI NHƯ THẾ NÀO",
       "title": "Bản Đồ Kỹ Năng",
-      "subtitle": "30+ kỹ năng tổ chức thành 5 nhóm. Kỹ năng tự động nối chuỗi dựa trên nhiệm vụ.",
+      "subtitle": "33 kỹ năng tổ chức thành 5 nhóm. Kỹ năng tự động nối chuỗi dựa trên nhiệm vụ.",
       "swarms": [
         {
           "name": "🎯 Ý Tưởng",

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cody Master Kit — Turn Ideas into Products 10x Faster</title>
-  <meta name="description" content="30+ AI Agent Skills that take you from idea to design to code to deploy — no coding required. Just chat.">
+  <meta name="description" content="33 AI Agent Skills that take you from idea to design to code to deploy — no coding required. Just chat.">
   <meta property="og:title" content="Cody Master Kit — Turn Ideas into Products 10x Faster">
-  <meta property="og:description" content="30+ AI Agent Skills that take you from idea to design to code to deploy — no coding required.">
+  <meta property="og:description" content="33 AI Agent Skills that take you from idea to design to code to deploy — no coding required.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
@@ -76,7 +76,7 @@
     <div class="hero__content">
       <div class="hero__badge">
         <span class="hero__badge-dot"></span>
-        <span class="hero__badge-text" data-i18n="hero.badge">30+ AI Skills · Open Source · Free</span>
+        <span class="hero__badge-text" data-i18n="hero.badge">33 Skills · Open Source · Free</span>
       </div>
 
       <h1 class="hero__headline" style="position: relative;"><span id="hero-hidden" style="visibility: hidden; opacity: 0; pointer-events: none; display: block;"></span><div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"><span class="hero__typing" id="hero-typing"></span><span class="hero__cursor">|</span></div></h1>
@@ -141,7 +141,7 @@ in a single kit</h2>
           <i data-lucide="shield-check"></i>
         </div>
         <h3 class="feature-card__title" data-i18n="features.cards.1.title">Pro Quality</h3>
-        <p class="feature-card__desc" data-i18n="features.cards.1.description">Production-ready code — not throwaway prototypes. 30+ skills ensure quality from security to SEO.</p>
+        <p class="feature-card__desc" data-i18n="features.cards.1.description">Production-ready code — not throwaway prototypes. 33 skills ensure quality from security to SEO.</p>
       </div>
 
       <!-- Card 3: Save -->
@@ -372,9 +372,9 @@ from zero to hero</h2>
       <div class="step-card reveal reveal-delay-1" data-step-index="0">
         <div class="step-card__number step-card__number--1">1</div>
         <h3 class="step-card__title" data-i18n="howItWorks.steps.0.title">Install</h3>
-        <p class="step-card__desc" data-i18n="howItWorks.steps.0.description">Copy one command into your terminal.
+        <p class="step-card__desc" data-i18n="howItWorks.steps.0.description">Add the marketplace then install the plugin.
 Done in 30 seconds.</p>
-        <div class="step-card__code step-card__code--command" data-i18n="howItWorks.steps.0.code">$ npx codymaster init</div>
+        <div class="step-card__code step-card__code--command" data-i18n="howItWorks.steps.0.code">claude plugin install cody-master@cody-master</div>
       </div>
 
       <!-- Step 2 -->
@@ -394,6 +394,63 @@ for my coffee shop"</div>
         <p class="step-card__desc" data-i18n="howItWorks.steps.2.description">Complete website, auto-deployed
 to the internet. Share the link instantly.</p>
         <div class="step-card__code step-card__code--live" data-i18n="howItWorks.steps.2.code">✓ yoursite.com is live!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ INSTALLATION ╔═══════════ -->
+  <section class="section section-alt" id="install">
+    <div class="section__header reveal">
+      <p class="section__label">QUICK INSTALL</p>
+      <h2 class="section__title" data-i18n="install.title">Ready in 30 seconds</h2>
+      <p class="section__subtitle" data-i18n="install.subtitle">One command installs all 33 skills. No npm, no config files — just a Claude Code plugin.</p>
+    </div>
+
+    <div class="install__tabs reveal" style="max-width:720px;margin:0 auto;">
+      <!-- Tab: One-Liner -->
+      <div class="install__method">
+        <div class="install__method-label">
+          <span class="install__badge">⚡ Fastest</span>
+          <span data-i18n="install.oneliner">One-liner (auto-detect all agents)</span>
+        </div>
+        <div class="install__code-block">
+          <code class="install__code">bash &lt;(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude</code>
+          <button class="install__copy" onclick="navigator.clipboard.writeText('bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude')" data-i18n="install.copy">Copy</button>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div style="text-align:center;color:var(--text-muted);margin:1.5rem 0;font-size:0.85rem;" data-i18n="install.or">— or manually —</div>
+
+      <!-- Tab: Manual Steps -->
+      <div class="install__steps-mini">
+        <div class="install__step-mini">
+          <span class="install__step-num">1</span>
+          <div>
+            <p class="install__step-label" data-i18n="install.step1">Add marketplace</p>
+            <code class="install__code install__code--sm">claude plugin marketplace add tody-agent/codymaster</code>
+          </div>
+        </div>
+        <div class="install__step-mini">
+          <span class="install__step-num">2</span>
+          <div>
+            <p class="install__step-label" data-i18n="install.step2">Install all 33 skills</p>
+            <code class="install__code install__code--sm">claude plugin install cody-master@cody-master</code>
+          </div>
+        </div>
+        <div class="install__step-mini">
+          <span class="install__step-num">3</span>
+          <div>
+            <p class="install__step-label" data-i18n="install.step3">Start the onboarding tour</p>
+            <code class="install__code install__code--sm">/cody-master:demo</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div style="text-align:center;margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="start.html" class="btn btn--primary" data-i18n="install.detailedGuide">Full Install Guide</a>
+        <a href="https://github.com/tody-agent/codymaster" class="btn btn--ghost" target="_blank">GitHub →</a>
       </div>
     </div>
   </section>
@@ -437,7 +494,7 @@ to the internet. Share the link instantly.</p>
   <section class="section" id="skills">
     <div class="section__header reveal">
       <p class="section__label" data-i18n="skills.label">SKILL LIBRARY</p>
-      <h2 class="section__title" data-i18n="skills.title">30+ Specialized Skills
+      <h2 class="section__title" data-i18n="skills.title">33 Specialized Skills
 for every stage</h2>
       <p class="section__subtitle" data-i18n="skills.subtitle">Each skill is an AI expert — from ideation, design, content writing, to security and deployment.</p>
     </div>
@@ -513,7 +570,7 @@ for every stage</h2>
         <div class="usecase-card__header">
           <div class="usecase-card__icon"><i data-lucide="book-open" style="stroke:white"></i></div>
           <div class="usecase-card__metric">
-            <span class="usecase-card__metric-value" data-i18n="useCases.cases.2.metric">30+ langs</span>
+            <span class="usecase-card__metric-value" data-i18n="useCases.cases.2.metric">33 langs</span>
             <span class="usecase-card__metric-label" data-i18n="useCases.cases.2.metricLabel">supported</span>
           </div>
         </div>
@@ -619,7 +676,7 @@ from your first product</h2>
   <footer class="footer">
     <span class="footer__logo">⚡ Cody Master</span>
     <ul class="footer__links" id="footerLinks">
-      <li><a href="https://github.com/omisocial/codymaster" class="footer__link" target="_blank">GitHub</a></li>
+      <li><a href="https://github.com/tody-agent/codymaster" class="footer__link" target="_blank">GitHub</a></li>
       <li><a href="#" class="footer__link">Discord</a></li>
     </ul>
     <span class="footer__copy" data-i18n="footer.copyright">© 2026 Cody Master · Made with AI</span>

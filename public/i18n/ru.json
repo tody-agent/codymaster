@@ -16,7 +16,7 @@
     "brain": "Мозг"
   },
   "hero": {
-    "badge": "30+ ИИ навыков · Открытый исходный код · Бесплатно",
+    "badge": "33 ИИ навыка · Открытый исходный код · Бесплатно",
     "typingPhrases": [
       "Превращайте идеи в продукт в 10 раз быстрее",
       "Шипьте продакшн код за минуты",
@@ -42,7 +42,7 @@
       },
       {
         "title": "Профессиональное качество",
-        "description": "Код уровня Production — никаких одноразовых прототипов. 30+ навыков гарантируют качество от безопасности до SEO."
+        "description": "Код уровня Production — никаких одноразовых прототипов. 33 навыка гарантируют качество от безопасности до SEO."
       },
       {
         "title": "Экономия 90%",
@@ -91,8 +91,8 @@
     "steps": [
       {
         "title": "Установка",
-        "description": "Скопируйте одну команду в терминал.\nОна выполнится за 30 секунд.",
-        "code": "$ npx codymaster init"
+        "description": "Добавьте marketplace, затем установите плагин.\nГотово за 30 секунд.",
+        "code": "claude plugin install cody-master@cody-master"
       },
       {
         "title": "Общение",
@@ -108,6 +108,17 @@
     "deepLabel": "КАК ЭТО РАБОТАЕТ ВНУТРИ",
     "deepTitle": "Цикл RARV и 6 Этапов Контроля Качества",
     "deepSubtitle": "Каждая задача, назначенная Cody Master, проходит через автоматический цикл, гарантирующий код готовый к продакшну."
+  },
+  "install": {
+    "title": "Готово за 30 секунд",
+    "subtitle": "Одна команда устанавливает все 33 навыка. Без npm, без конфигов — просто плагин Claude Code.",
+    "oneliner": "Одна строка (автоопределение, многоязычность)",
+    "or": "— или пошагово —",
+    "step1": "Добавить marketplace",
+    "step2": "Установить все 33 навыка",
+    "step3": "Начать обучение",
+    "copy": "Копировать",
+    "detailedGuide": "Полное руководство по установке"
   },
   "personas": {
     "label": "ДЛЯ КОГО ЭТО?",
@@ -326,7 +337,7 @@
             "Can't prove ROI"
           ],
           "after": [
-            "30+ blog posts generated instantly",
+            "33 blog posts generated instantly",
             "Landing pages in 15 minutes",
             "Full pixel + CAPI + UTM tracking",
             "7 proven frameworks in every piece",
@@ -663,13 +674,13 @@
             "One universal format",
             "Full Claw ecosystem interop",
             "Switch freely, zero migration cost",
-            "30+ skills, instant cross-agent compatibility"
+            "33 skills, instant cross-agent compatibility"
           ]
         },
         "objections": [
           {
             "q": "I only use Cursor. Do I need this?",
-            "a": "Yes! Even on Cursor alone, you get 30+ battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
+            "a": "Yes! Even on Cursor alone, you get 33 battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
           },
           {
             "q": "What is the 'Claw Family' exactly?",
@@ -681,7 +692,7 @@
           }
         ],
         "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
-        "ctaSub": "30+ skills. Every Claw agent. Zero lock-in.",
+        "ctaSub": "33 skills. Every Claw agent. Zero lock-in.",
         "ctaButton": "Join the Claw Family →"
       }
     }
@@ -693,7 +704,7 @@
   },
   "skills": {
     "label": "НАВЫКИ",
-    "title": "30+ экспертных навыков\nдля каждого этапа",
+    "title": "33 экспертных навыка\nдля каждого этапа",
     "subtitle": "Каждый навык — это свой ИИ-эксперт: от генерации идей и дизайна до написания текстов, защиты и деплоя.",
     "categories": [
       "Идеи",
@@ -728,7 +739,7 @@
   "stats": {
     "items": [
       {
-        "number": "30+",
+        "number": "33",
         "label": "ИИ навыков"
       },
       {
@@ -1227,9 +1238,9 @@
           "cm-skill-chain",
           "cm-how-it-work"
         ],
-        "problem": "Overwhelmed analyzing 30+ sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
+        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
         "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
-        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 30+ systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
+        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
         "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
         "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
         "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
@@ -1387,7 +1398,7 @@
   "startPage": {
     "meta": {
       "title": "Начать работу — Cody Master Kit",
-      "description": "Установите Cody Master в Claude Code за 2 минуты. 33+ AI-навыков сразу в деле."
+      "description": "Установите Cody Master в Claude Code за 2 минуты. 33 AI-навыков сразу в деле."
     },
     "hero": "Установка за 2 минуты",
     "heroSub": "Cody Master — плагин для Claude Code. Никакого npm, никаких лишних инструментов.",
@@ -1523,7 +1534,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "30+ языков",
+        "metric": "33 языка",
         "metricLabel": "поддерживается"
       },
       {
@@ -2010,7 +2021,7 @@
     "skillMapSection": {
       "label": "КАК НАВЫКИ СВЯЗАНЫ",
       "title": "Карта Навыков",
-      "subtitle": "30+ навыков организованы в 5 групп. Навыки автоматически связываются на основе задачи.",
+      "subtitle": "33 навыка организованы в 5 групп. Навыки автоматически связываются на основе задачи.",
       "swarms": [
         {
           "name": "🎯 Ideation",
