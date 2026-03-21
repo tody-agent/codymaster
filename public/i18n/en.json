@@ -714,26 +714,20 @@
       "Security"
     ],
     "cards": [
-      {
-        "icon": "lightbulb",
-        "name": "cm-brainstorm-idea",
-        "description": "Multi-dimensional idea analysis, validating feasibility before you start building"
-      },
-      {
-        "icon": "file-text",
-        "name": "cm-planning",
-        "description": "Detailed planning before coding — no wasting time on endless revisions"
-      },
-      {
-        "icon": "palette",
-        "name": "cm-ux-master",
-        "description": "UX-standard interface design — beautiful, easy to use, conversion-optimized"
-      },
-      {
-        "icon": "pen-tool",
-        "name": "cm-content-factory",
-        "description": "SEO-optimized content writing — from blogs to landing pages, AI writes like an expert"
-      }
+      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "categoryIndex": 0, "description": "Multi-dimensional idea analysis, validating feasibility before you start building" },
+      { "icon": "file-text", "name": "cm-planning", "categoryIndex": 0, "description": "Detailed planning before coding — no wasting time on endless revisions" },
+      { "icon": "users", "name": "cm-jtbd", "categoryIndex": 0, "description": "Jobs-To-Be-Done discovery — understand what customers actually hire your product to do" },
+      { "icon": "palette", "name": "cm-ux-master", "categoryIndex": 1, "description": "UX-standard interface design — beautiful, easy to use, conversion-optimized" },
+      { "icon": "monitor", "name": "cm-ui-preview", "categoryIndex": 1, "description": "AI-powered UI generation via Google Stitch — prototype in minutes, not days" },
+      { "icon": "pen-tool", "name": "cm-content-factory", "categoryIndex": 2, "description": "SEO-optimized content writing — from blogs to landing pages, AI writes like an expert" },
+      { "icon": "trending-up", "name": "cm-ads-tracker", "categoryIndex": 2, "description": "Complete conversion tracking — Facebook/Meta Pixel, TikTok, Google Ads, GTM" },
+      { "icon": "target", "name": "cro-methodology", "categoryIndex": 2, "description": "CRO audit — funnel mapping, persuasion assets, objection handling, A/B test design" },
+      { "icon": "check-square", "name": "cm-tdd", "categoryIndex": 3, "description": "Red-Green-Refactor cycle — no production code without a failing test first" },
+      { "icon": "bug", "name": "cm-debugging", "categoryIndex": 3, "description": "Systematic 5-phase root cause investigation — fix the problem, not the symptom" },
+      { "icon": "rocket", "name": "cm-safe-deploy", "categoryIndex": 3, "description": "Multi-gate deploy pipeline — secret scan → test → build → deploy → smoke test" },
+      { "icon": "git-pull-request", "name": "cm-code-review", "categoryIndex": 3, "description": "Full PR lifecycle — request reviews, handle feedback, complete branch integration" },
+      { "icon": "lock", "name": "cm-secret-shield", "categoryIndex": 4, "description": "Defense-in-depth secret management — pre-commit hooks, repo-wide leak detection" },
+      { "icon": "shield", "name": "cm-quality-gate", "categoryIndex": 4, "description": "Evidence-based verification — blind review, anti-sycophancy, security scan" }
     ]
   },
   "stats": {
@@ -1397,47 +1391,196 @@
   },
   "startPage": {
     "meta": {
-      "title": "Get Started — Cody Master Kit",
-      "description": "Install Cody Master on Claude Code in 2 minutes. Step-by-step guide from zero to 33 AI skills."
+      "title": "Get Started — Cody Master",
+      "description": "Install Cody Master on Claude Code, Gemini CLI, Cursor, Codex and more. Get 33 AI skills in under 2 minutes."
     },
-    "hero": "Install in 2 Minutes",
-    "heroSub": "Cody Master installs as a Claude Code plugin — no npm, no extra tools needed.",
-    "steps": [
-      {
-        "title": "Get Claude Code",
-        "description": "Cody Master is a Claude Code plugin. Install Claude Code CLI first.",
-        "items": [
-          "Download Claude Code from claude.ai/code",
-          "Open your terminal and verify: claude --version",
-          "Any OS — Mac, Linux, or Windows (WSL)"
-        ],
-        "note": "Already have Claude Code? Skip straight to Step 2."
-      },
-      {
-        "title": "Add the Marketplace",
-        "description": "Register the Cody Master plugin source in Claude Code.",
-        "code": "claude plugin marketplace add tody-agent/codymaster",
-        "output": "✓ Marketplace registered: tody-agent/codymaster\n✓ cody-master plugin available"
-      },
-      {
-        "title": "Install All Skills",
-        "description": "One command installs all 33 skills — TDD, debugging, deployment, UX, content, security, and more.",
-        "code": "claude plugin install cody-master@cody-master",
-        "output": "✓ cody-master installed\n📦 33 skills ready: cm-tdd, cm-debugging, cm-planning, cm-ux-master, cm-safe-deploy..."
-      },
-      {
-        "title": "Verify & Start Using",
-        "description": "Check the installation, then open Claude Code and ask it to use a skill.",
-        "code": "claude plugin list",
-        "output": "✓ cody-master (33 skills)\n✓ Ready — try: Use cm-planning to design my new feature"
-      }
-    ],
+    "hero": "Install on Your Platform",
+    "heroSub": "Choose your AI coding platform and get 33 skills in under 2 minutes.",
+    "recommended": "Recommended",
+    "onelineLabel": "⚡ One-liner (auto-detect & install)",
+    "orStepByStep": "— or step by step —",
     "copyButton": "Copy",
     "copiedButton": "Copied!",
-    "nextStep": "Next Step",
-    "prevStep": "Previous Step",
-    "finalCta": "You're ready! Start building something amazing.",
-    "finalButton": "Open Cody Master"
+    "finalCta": "You're ready. Start building.",
+    "finalButton": "Explore 33 Skills",
+    "platforms": [
+      {
+        "id": "claude-code",
+        "label": "Claude Code",
+        "emoji": "🟣",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ One-liner — auto-detect, multi-language",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
+        },
+        "steps": [
+          {
+            "title": "Get Claude Code",
+            "description": "Cody Master runs as a Claude Code plugin. You need the Claude Code CLI installed first.",
+            "items": [
+              "Download from claude.ai/code",
+              "Verify: claude --version (need 1.0+)",
+              "Works on Mac, Linux, and Windows (WSL)"
+            ],
+            "note": "Already have Claude Code 1.0+? Skip to Step 2."
+          },
+          {
+            "title": "Add the Marketplace",
+            "description": "Register the Cody Master plugin source so Claude Code can find it.",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ Marketplace registered: tody-agent/codymaster\n✓ cody-master plugin available"
+          },
+          {
+            "title": "Install All 33 Skills",
+            "description": "One command installs everything — TDD, debugging, deployment, UX, content, security and more.",
+            "code": "claude plugin install cody-master@cody-master",
+            "output": "✓ cody-master v3.4.0 installed\n📦 33 skills: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "Run Onboarding Tour",
+            "description": "Open Claude Code and run the interactive tour to see all 33 skills in action.",
+            "code": "/cody-master:demo",
+            "output": "🚀 Welcome to Cody Master! Let's explore all 33 skills..."
+          }
+        ]
+      },
+      {
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
+        "emoji": "💻",
+        "steps": [
+          {
+            "title": "Install Gemini CLI",
+            "description": "Make sure you have the Gemini CLI installed and authenticated.",
+            "items": [
+              "Install: npm install -g @google/gemini-cli",
+              "Verify: gemini --version",
+              "Authenticate with your Google account"
+            ]
+          },
+          {
+            "title": "Install Cody Master",
+            "description": "Install directly from GitHub — no npm package needed.",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master installed\n✓ 33 skills available in Gemini CLI"
+          },
+          {
+            "title": "Use Skills",
+            "description": "Skills activate automatically. Invoke explicitly with @[/skill-name] in any session.",
+            "code": "@[/cm-planning] Design a new feature for my app",
+            "note": "All 33 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
+          },
+          {
+            "title": "Update Later",
+            "description": "Keep Cody Master up to date with one command.",
+            "code": "gemini extensions update cody-master"
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor",
+        "emoji": "🔵",
+        "steps": [
+          {
+            "title": "Open Cursor Agent Chat",
+            "description": "Open Cursor and switch to Agent mode in the chat panel.",
+            "items": [
+              "Open Cursor IDE",
+              "Press Cmd+I (Mac) or Ctrl+I (Windows)",
+              "Switch to Agent mode"
+            ]
+          },
+          {
+            "title": "Install the Plugin",
+            "description": "Run the install command in Cursor agent chat — or search 'cody-master' in the marketplace.",
+            "code": "/add-plugin cody-master",
+            "note": "Or: Extensions → Search 'cody-master' → Install"
+          },
+          {
+            "title": "Use Skills",
+            "description": "Skills activate automatically based on context. Invoke explicitly with @mention.",
+            "code": "@cm-planning Design a new auth system for my app",
+            "note": "All 33 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "label": "Codex",
+        "emoji": "⬛",
+        "steps": [
+          {
+            "title": "Start a Codex Session",
+            "description": "Open your Codex environment in the project root.",
+            "items": [
+              "Open your terminal in the project root",
+              "Run: codex (or codex --model o4-mini)"
+            ]
+          },
+          {
+            "title": "Fetch Install Instructions",
+            "description": "Tell Codex to fetch and follow the install guide from GitHub.",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex reads, parses, and installs all 33 skills automatically"
+          },
+          {
+            "title": "Use Skills",
+            "description": "Skills are now in .codex/skills/ and activate automatically.",
+            "code": "@cm-tdd Implement user authentication with full test coverage",
+            "note": "All 33 skills: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
+        "emoji": "🟠",
+        "steps": [
+          {
+            "title": "Clone Cody Master",
+            "description": "Clone the repository once to your home directory.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Cloned — 33 SKILL.md files ready at ~/.cody-master/skills/"
+          },
+          {
+            "title": "Copy Skills to Your Platform",
+            "description": "Drop the SKILL.md files into your platform's rules or skills directory.",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/\n\n# Project-local\ncp -r ~/.cody-master/skills/* .windsurf/rules/"
+          },
+          {
+            "title": "Use Skills",
+            "description": "Open your editor and invoke any skill. Skills activate automatically when relevant.",
+            "code": "@cm-planning Help me design a new feature",
+            "note": "All 33 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "Any Platform",
+        "emoji": "⚙️",
+        "steps": [
+          {
+            "title": "Clone the Repository",
+            "description": "Clone Cody Master once to your home directory.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Cloned — 33 SKILL.md files ready at ~/.cody-master/skills/"
+          },
+          {
+            "title": "Copy to Your Platform",
+            "description": "Drop the universal SKILL.md files into any platform's skills directory.",
+            "code": "# Gemini (global)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# Gemini (project)\ncp -r ~/.cody-master/skills/* .gemini/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+          },
+          {
+            "title": "Verify & Use",
+            "description": "Open your AI agent and reference any skill. They activate automatically based on context.",
+            "code": "@cm-tdd Implement login with full test coverage",
+            "note": "Works on GitHub Copilot, Kiro, OpenCode, Windsurf, and any platform supporting custom instructions."
+          }
+        ]
+      }
+    ]
   },
   "demoPage": {
     "meta": {

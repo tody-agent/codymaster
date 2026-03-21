@@ -714,26 +714,20 @@
       "Bảo mật"
     ],
     "cards": [
-      {
-        "icon": "lightbulb",
-        "name": "cm-brainstorm-idea",
-        "description": "Phân tích ý tưởng đa chiều, đánh giá tính khả thi trước khi bắt tay xây dựng"
-      },
-      {
-        "icon": "file-text",
-        "name": "cm-planning",
-        "description": "Lên kế hoạch chi tiết trước khi code — không lãng phí thời gian sửa đi sửa lại"
-      },
-      {
-        "icon": "palette",
-        "name": "cm-ux-master",
-        "description": "Thiết kế giao diện chuẩn UX — đẹp, dễ dùng, tối ưu chuyển đổi"
-      },
-      {
-        "icon": "pen-tool",
-        "name": "cm-content-factory",
-        "description": "Viết nội dung chuẩn SEO — từ blog đến landing page, AI viết như chuyên gia"
-      }
+      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "categoryIndex": 0, "description": "Phân tích ý tưởng đa chiều, đánh giá tính khả thi trước khi bắt tay xây dựng" },
+      { "icon": "file-text", "name": "cm-planning", "categoryIndex": 0, "description": "Lên kế hoạch chi tiết trước khi code — không lãng phí thời gian sửa đi sửa lại" },
+      { "icon": "users", "name": "cm-jtbd", "categoryIndex": 0, "description": "Khám phá Jobs-To-Be-Done — hiểu khách hàng thực sự thuê sản phẩm để làm gì" },
+      { "icon": "palette", "name": "cm-ux-master", "categoryIndex": 1, "description": "Thiết kế giao diện chuẩn UX — đẹp, dễ dùng, tối ưu chuyển đổi" },
+      { "icon": "monitor", "name": "cm-ui-preview", "categoryIndex": 1, "description": "Tạo UI bằng AI qua Google Stitch — prototype trong vài phút, không phải vài ngày" },
+      { "icon": "pen-tool", "name": "cm-content-factory", "categoryIndex": 2, "description": "Viết nội dung chuẩn SEO — từ blog đến landing page, AI viết như chuyên gia" },
+      { "icon": "trending-up", "name": "cm-ads-tracker", "categoryIndex": 2, "description": "Tracking chuyển đổi toàn diện — Facebook/Meta Pixel, TikTok, Google Ads, GTM" },
+      { "icon": "target", "name": "cro-methodology", "categoryIndex": 2, "description": "Kiểm toán CRO — vẽ funnel, xử lý phản đối, thiết kế A/B test" },
+      { "icon": "check-square", "name": "cm-tdd", "categoryIndex": 3, "description": "Vòng lặp Red-Green-Refactor — không viết code production khi chưa có test thất bại" },
+      { "icon": "bug", "name": "cm-debugging", "categoryIndex": 3, "description": "Điều tra nguyên nhân gốc rễ 5 bước — sửa vấn đề thật, không chỉ triệu chứng" },
+      { "icon": "rocket", "name": "cm-safe-deploy", "categoryIndex": 3, "description": "Pipeline triển khai đa cổng — scan bí mật → test → build → deploy → smoke test" },
+      { "icon": "git-pull-request", "name": "cm-code-review", "categoryIndex": 3, "description": "Vòng đời PR đầy đủ — yêu cầu review, xử lý phản hồi, tích hợp branch hoàn chỉnh" },
+      { "icon": "lock", "name": "cm-secret-shield", "categoryIndex": 4, "description": "Bảo vệ bí mật đa lớp — pre-commit hooks, scan toàn repo, quản lý vòng đời token" },
+      { "icon": "shield", "name": "cm-quality-gate", "categoryIndex": 4, "description": "Xác minh dựa trên bằng chứng — blind review, chống sycophancy, quét bảo mật" }
     ]
   },
   "stats": {
@@ -1397,47 +1391,196 @@
   },
   "startPage": {
     "meta": {
-      "title": "Bắt đầu — Cody Master Kit",
-      "description": "Cài Cody Master vào Claude Code trong 2 phút. Hướng dẫn từng bước để có 33 kỹ năng AI."
+      "title": "Bắt đầu — Cody Master",
+      "description": "Cài Cody Master trên Claude Code, Gemini CLI, Cursor, Codex và nhiều hơn nữa. Có 33 kỹ năng AI trong dưới 2 phút."
     },
-    "hero": "Cài đặt trong 2 phút",
-    "heroSub": "Cody Master là plugin cho Claude Code — không cần npm, không cần cài thêm gì.",
-    "steps": [
-      {
-        "title": "Cài Claude Code",
-        "description": "Cody Master là plugin cho Claude Code. Cần cài Claude Code CLI trước.",
-        "items": [
-          "Tải Claude Code tại claude.ai/code",
-          "Mở terminal và kiểm tra: claude --version",
-          "Hỗ trợ Mac, Linux, Windows (WSL)"
-        ],
-        "note": "Đã có Claude Code? Bỏ qua sang Bước 2."
-      },
-      {
-        "title": "Thêm Marketplace",
-        "description": "Đăng ký nguồn plugin Cody Master vào Claude Code.",
-        "code": "claude plugin marketplace add tody-agent/codymaster",
-        "output": "✓ Marketplace đã đăng ký: tody-agent/codymaster\n✓ 33 kỹ năng sẵn sàng"
-      },
-      {
-        "title": "Cài gói kỹ năng",
-        "description": "Cài một hoặc tất cả năm gói. Bắt đầu với Engineering cho TDD, debug và quality gate.",
-        "code": "claude plugin install cody-master@cody-master",
-        "output": "✓ cm-engineering đã cài\n📦 Kỹ năng: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ Còn có: cm-operations, cm-product, cm-growth, cm-orchestration"
-      },
-      {
-        "title": "Xác minh & Sử dụng",
-        "description": "Kiểm tra các gói đã cài, sau đó mở Claude Code và nhờ dùng một kỹ năng.",
-        "code": "claude plugin list",
-        "output": "✓ cm-engineering (5 kỹ năng)\n✓ Sẵn sàng — thử: Dùng cm-planning để thiết kế tính năng mới của tôi"
-      }
-    ],
+    "hero": "Cài đặt trên nền tảng của bạn",
+    "heroSub": "Chọn AI coding platform và nhận 33 kỹ năng trong vòng 2 phút.",
+    "recommended": "Đề xuất",
+    "onelineLabel": "⚡ Lệnh một dòng (tự phát hiện & cài đặt)",
+    "orStepByStep": "— hoặc theo từng bước —",
     "copyButton": "Sao chép",
     "copiedButton": "Đã sao chép!",
-    "nextStep": "Bước tiếp",
-    "prevStep": "Bước trước",
-    "finalCta": "Bạn đã sẵn sàng! Hãy bắt đầu xây dựng điều tuyệt vời.",
-    "finalButton": "Mở Cody Master"
+    "finalCta": "Bạn đã sẵn sàng. Bắt đầu xây dựng.",
+    "finalButton": "Khám phá 33 kỹ năng",
+    "platforms": [
+      {
+        "id": "claude-code",
+        "label": "Claude Code",
+        "emoji": "🟣",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ Lệnh một dòng — tự phát hiện, đa ngôn ngữ",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
+        },
+        "steps": [
+          {
+            "title": "Cài Claude Code",
+            "description": "Cody Master chạy như plugin Claude Code. Cần cài Claude Code CLI trước.",
+            "items": [
+              "Tải tại claude.ai/code",
+              "Kiểm tra: claude --version (cần 1.0+)",
+              "Hỗ trợ Mac, Linux, Windows (WSL)"
+            ],
+            "note": "Đã có Claude Code 1.0+? Bỏ qua sang Bước 2."
+          },
+          {
+            "title": "Thêm Marketplace",
+            "description": "Đăng ký nguồn plugin Cody Master để Claude Code có thể tìm thấy.",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ Marketplace đã đăng ký: tody-agent/codymaster\n✓ cody-master plugin sẵn sàng"
+          },
+          {
+            "title": "Cài 33 kỹ năng",
+            "description": "Một lệnh cài tất cả — TDD, debug, deploy, UX, content, bảo mật và hơn nữa.",
+            "code": "claude plugin install cody-master@cody-master",
+            "output": "✓ cody-master v3.4.0 đã cài\n📦 33 kỹ năng: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "Chạy onboarding tour",
+            "description": "Mở Claude Code và chạy tour tương tác để xem tất cả 33 kỹ năng.",
+            "code": "/cody-master:demo",
+            "output": "🚀 Chào mừng đến Cody Master! Cùng khám phá 33 kỹ năng..."
+          }
+        ]
+      },
+      {
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
+        "emoji": "💻",
+        "steps": [
+          {
+            "title": "Cài Gemini CLI",
+            "description": "Đảm bảo đã cài và đăng nhập Gemini CLI.",
+            "items": [
+              "Cài: npm install -g @google/gemini-cli",
+              "Kiểm tra: gemini --version",
+              "Đăng nhập tài khoản Google"
+            ]
+          },
+          {
+            "title": "Cài Cody Master",
+            "description": "Cài trực tiếp từ GitHub — không cần npm package.",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master đã cài\n✓ 33 kỹ năng sẵn sàng trong Gemini CLI"
+          },
+          {
+            "title": "Sử dụng kỹ năng",
+            "description": "Kỹ năng tự kích hoạt. Gọi thủ công với @[/tên-kỹ-năng].",
+            "code": "@[/cm-planning] Thiết kế tính năng mới cho ứng dụng của tôi",
+            "note": "33 kỹ năng: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          },
+          {
+            "title": "Cập nhật sau này",
+            "description": "Cập nhật Cody Master bằng một lệnh.",
+            "code": "gemini extensions update cody-master"
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor",
+        "emoji": "🔵",
+        "steps": [
+          {
+            "title": "Mở Cursor Agent Chat",
+            "description": "Mở Cursor và chuyển sang chế độ Agent trong panel chat.",
+            "items": [
+              "Mở Cursor IDE",
+              "Nhấn Cmd+I (Mac) hoặc Ctrl+I (Windows)",
+              "Chuyển sang Agent mode"
+            ]
+          },
+          {
+            "title": "Cài plugin",
+            "description": "Chạy lệnh cài trong Cursor agent chat — hoặc tìm 'cody-master' trong marketplace.",
+            "code": "/add-plugin cody-master",
+            "note": "Hoặc: Extensions → Tìm 'cody-master' → Cài"
+          },
+          {
+            "title": "Sử dụng kỹ năng",
+            "description": "Kỹ năng tự kích hoạt theo ngữ cảnh. Gọi thủ công với @mention.",
+            "code": "@cm-planning Thiết kế hệ thống auth mới",
+            "note": "33 kỹ năng: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "label": "Codex",
+        "emoji": "⬛",
+        "steps": [
+          {
+            "title": "Khởi động Codex",
+            "description": "Mở môi trường Codex trong thư mục gốc của dự án.",
+            "items": [
+              "Mở terminal trong thư mục dự án",
+              "Chạy: codex (hoặc codex --model o4-mini)"
+            ]
+          },
+          {
+            "title": "Lấy hướng dẫn cài đặt",
+            "description": "Bảo Codex tải và làm theo hướng dẫn từ GitHub.",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex tự động đọc, phân tích và cài 33 kỹ năng"
+          },
+          {
+            "title": "Sử dụng kỹ năng",
+            "description": "Kỹ năng đã có trong .codex/skills/ và tự kích hoạt.",
+            "code": "@cm-tdd Implement user authentication với full test coverage",
+            "note": "33 kỹ năng: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
+        "emoji": "🟠",
+        "steps": [
+          {
+            "title": "Clone Cody Master",
+            "description": "Clone repository về thư mục home của bạn.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Đã clone — 33 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
+          },
+          {
+            "title": "Copy kỹ năng vào platform",
+            "description": "Sao chép SKILL.md vào thư mục rules hoặc skills của platform.",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/\n\n# Project-local\ncp -r ~/.cody-master/skills/* .windsurf/rules/"
+          },
+          {
+            "title": "Sử dụng kỹ năng",
+            "description": "Mở editor và gọi bất kỳ kỹ năng nào. Kỹ năng tự kích hoạt khi phù hợp.",
+            "code": "@cm-planning Giúp thiết kế tính năng mới",
+            "note": "33 kỹ năng: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "Nền tảng khác",
+        "emoji": "⚙️",
+        "steps": [
+          {
+            "title": "Clone repository",
+            "description": "Clone Cody Master về thư mục home.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Đã clone — 33 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
+          },
+          {
+            "title": "Copy vào platform của bạn",
+            "description": "Thả SKILL.md vào thư mục skills của bất kỳ platform nào. Format phổ quát — dùng ở đâu cũng được.",
+            "code": "# Gemini (global)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# Gemini (dự án)\ncp -r ~/.cody-master/skills/* .gemini/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+          },
+          {
+            "title": "Xác minh & Sử dụng",
+            "description": "Mở AI agent và tham chiếu bất kỳ kỹ năng nào. Chúng tự kích hoạt theo ngữ cảnh.",
+            "code": "@cm-tdd Implement login với full test coverage",
+            "note": "Hoạt động trên GitHub Copilot, Kiro, OpenCode, Windsurf và mọi platform hỗ trợ custom instructions."
+          }
+        ]
+      }
+    ]
   },
   "demoPage": {
     "meta": {

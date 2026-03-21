@@ -714,26 +714,20 @@
       "安全"
     ],
     "cards": [
-      {
-        "icon": "lightbulb",
-        "name": "cm-brainstorm-idea",
-        "description": "多维度的创意分析，在开始构建之前验证可行性"
-      },
-      {
-        "icon": "file-text",
-        "name": "cm-planning",
-        "description": "编码前的详细规划——不再把时间浪费在无休止的修改上"
-      },
-      {
-        "icon": "palette",
-        "name": "cm-ux-master",
-        "description": "符合UX标准的界面设计——美观、易用，且为转化率优化"
-      },
-      {
-        "icon": "pen-tool",
-        "name": "cm-content-factory",
-        "description": "SEO优化的内容创作——从博客到落地页，AI像专家一样写作"
-      }
+      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "categoryIndex": 0, "description": "多维度的创意分析，在开始构建之前验证可行性" },
+      { "icon": "file-text", "name": "cm-planning", "categoryIndex": 0, "description": "编码前的详细规划——不再把时间浪费在无休止的修改上" },
+      { "icon": "users", "name": "cm-jtbd", "categoryIndex": 0, "description": "Jobs-To-Be-Done 发现——了解客户真正雇用您的产品做什么" },
+      { "icon": "palette", "name": "cm-ux-master", "categoryIndex": 1, "description": "符合UX标准的界面设计——美观、易用，且为转化率优化" },
+      { "icon": "monitor", "name": "cm-ui-preview", "categoryIndex": 1, "description": "通过Google Stitch进行AI驱动的UI生成——分钟内完成原型" },
+      { "icon": "pen-tool", "name": "cm-content-factory", "categoryIndex": 2, "description": "SEO优化的内容创作——从博客到落地页，AI像专家一样写作" },
+      { "icon": "trending-up", "name": "cm-ads-tracker", "categoryIndex": 2, "description": "完整转化追踪——Facebook/Meta Pixel、TikTok、Google Ads、GTM" },
+      { "icon": "target", "name": "cro-methodology", "categoryIndex": 2, "description": "CRO审计——漏斗映射、异议处理、A/B测试设计" },
+      { "icon": "check-square", "name": "cm-tdd", "categoryIndex": 3, "description": "红-绿-重构循环——没有失败测试就不写生产代码" },
+      { "icon": "bug", "name": "cm-debugging", "categoryIndex": 3, "description": "系统性5阶段根本原因调查——解决问题，而非症状" },
+      { "icon": "rocket", "name": "cm-safe-deploy", "categoryIndex": 3, "description": "多门部署流水线——密钥扫描→测试→构建→部署→冒烟测试" },
+      { "icon": "git-pull-request", "name": "cm-code-review", "categoryIndex": 3, "description": "完整PR生命周期——请求审查、处理反馈、完成分支集成" },
+      { "icon": "lock", "name": "cm-secret-shield", "categoryIndex": 4, "description": "纵深防御密钥管理——预提交钩子、全仓库泄露检测" },
+      { "icon": "shield", "name": "cm-quality-gate", "categoryIndex": 4, "description": "基于证据的验证——盲审、反谄媚、安全扫描" }
     ]
   },
   "stats": {
@@ -1397,47 +1391,185 @@
   },
   "startPage": {
     "meta": {
-      "title": "开始使用 — Cody Master Kit",
-      "description": "2分钟内在Claude Code中安装Cody Master，获得33个AI技能。"
+      "title": "开始使用 — Cody Master",
+      "description": "在Claude Code、Gemini CLI、Cursor、Codex等平台安装Cody Master，2分钟内获得33个AI技能。"
     },
-    "hero": "2分钟完成安装",
-    "heroSub": "Cody Master 是 Claude Code 插件 —— 无需 npm，无需额外工具。",
-    "steps": [
-      {
-        "title": "安装 Claude Code",
-        "description": "Cody Master 是 Claude Code 插件，请先安装 Claude Code CLI。",
-        "items": [
-          "从 claude.ai/code 下载 Claude Code",
-          "打开终端验证：claude --version",
-          "支持 Mac、Linux、Windows（WSL）"
-        ],
-        "note": "已有 Claude Code？直接跳到第 2 步。"
-      },
-      {
-        "title": "添加技能市场",
-        "description": "在 Claude Code 中注册 Cody Master 插件源。",
-        "code": "claude plugin marketplace add tody-agent/codymaster",
-        "output": "✓ 市场已注册：tody-agent/codymaster\n✓ cody-master plugin 已就绪"
-      },
-      {
-        "title": "安装技能包",
-        "description": "安装一个或全部五个技能包。从 Engineering 开始，包含 TDD、调试和质量门禁。",
-        "code": "claude plugin install cody-master@cody-master",
-        "output": "✓ cm-engineering 安装完成\n📦 技能：cm-tdd、cm-debugging、cm-quality-gate、cm-code-review\n→ 还可安装：cm-operations、cm-product、cm-growth、cm-orchestration"
-      },
-      {
-        "title": "验证并开始使用",
-        "description": "检查已安装的技能包，然后打开 Claude Code 并请它使用某个技能。",
-        "code": "claude plugin list",
-        "output": "✓ cm-engineering（5 个技能）\n✓ 就绪 —— 试试：使用 cm-planning 设计我的新功能"
-      }
-    ],
+    "hero": "在您的平台上安装",
+    "heroSub": "选择您的AI编程平台，在2分钟内获得33个技能。",
+    "recommended": "推荐",
+    "onelineLabel": "⚡ 一键安装（自动检测）",
+    "orStepByStep": "— 或逐步操作 —",
     "copyButton": "复制",
     "copiedButton": "已复制!",
-    "nextStep": "下一步",
-    "prevStep": "上一步",
-    "finalCta": "准备就绪！开始构建令人惊叹的创作吧。",
-    "finalButton": "打开 Cody Master"
+    "finalCta": "准备就绪。开始构建吧。",
+    "finalButton": "探索33个技能",
+    "platforms": [
+      {
+        "id": "claude-code",
+        "label": "Claude Code",
+        "emoji": "🟣",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ 一键安装（自动检测，多语言）",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
+        },
+        "steps": [
+          {
+            "title": "安装 Claude Code",
+            "description": "Cody Master 是 Claude Code 插件，请先安装 Claude Code CLI。",
+            "items": [
+              "从 claude.ai/code 下载",
+              "验证：claude --version（需要 1.0+）",
+              "支持 Mac、Linux、Windows（WSL）"
+            ],
+            "note": "已有 Claude Code 1.0+？直接跳到第2步。"
+          },
+          {
+            "title": "添加插件市场",
+            "description": "在 Claude Code 中注册 Cody Master 插件源。",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ 市场已注册：tody-agent/codymaster\n✓ cody-master plugin 已就绪"
+          },
+          {
+            "title": "安装全部33个技能",
+            "description": "一个命令安装所有技能 —— TDD、调试、部署、UX、内容、安全等。",
+            "code": "claude plugin install cody-master@cody-master",
+            "output": "✓ cody-master v3.4.0 安装完成\n📦 33个技能：cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "运行入门导览",
+            "description": "打开 Claude Code 并运行互动导览，查看全部33个技能。",
+            "code": "/cody-master:demo",
+            "output": "🚀 欢迎使用 Cody Master！让我们探索全部33个技能..."
+          }
+        ]
+      },
+      {
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
+        "emoji": "💻",
+        "steps": [
+          {
+            "title": "安装 Gemini CLI",
+            "description": "确保已安装并登录 Gemini CLI。",
+            "items": [
+              "安装：npm install -g @google/gemini-cli",
+              "验证：gemini --version",
+              "使用 Google 账号登录"
+            ]
+          },
+          {
+            "title": "安装 Cody Master",
+            "description": "直接从 GitHub 安装 —— 无需 npm 包。",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master 安装完成\n✓ 33个技能在 Gemini CLI 中可用"
+          },
+          {
+            "title": "使用技能",
+            "description": "技能自动激活。用 @[/技能名] 显式调用。",
+            "code": "@[/cm-planning] 为我的应用设计新功能",
+            "note": "33个技能：@[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          },
+          { "title": "后续更新", "description": "一个命令更新 Cody Master。", "code": "gemini extensions update cody-master" }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor",
+        "emoji": "🔵",
+        "steps": [
+          {
+            "title": "打开 Cursor Agent 聊天",
+            "description": "打开 Cursor 并切换到 Agent 模式。",
+            "items": ["打开 Cursor IDE", "按 Cmd+I（Mac）或 Ctrl+I（Windows）", "切换到 Agent 模式"]
+          },
+          {
+            "title": "安装插件",
+            "description": "在 Cursor agent 聊天中运行安装命令，或在市场中搜索 cody-master。",
+            "code": "/add-plugin cody-master",
+            "note": "或：扩展 → 搜索 'cody-master' → 安装"
+          },
+          {
+            "title": "使用技能",
+            "description": "技能根据上下文自动激活。用 @mention 显式调用。",
+            "code": "@cm-planning 设计新的认证系统",
+            "note": "33个技能：@cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "label": "Codex",
+        "emoji": "⬛",
+        "steps": [
+          {
+            "title": "启动 Codex",
+            "description": "在项目根目录打开 Codex 环境。",
+            "items": ["在项目根目录打开终端", "运行：codex（或 codex --model o4-mini）"]
+          },
+          {
+            "title": "获取安装指南",
+            "description": "让 Codex 从 GitHub 获取并遵循安装指南。",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex 自动读取、解析并安装全部33个技能"
+          },
+          {
+            "title": "使用技能",
+            "description": "技能已在 .codex/skills/ 中，自动激活。",
+            "code": "@cm-tdd 用完整测试覆盖实现用户认证",
+            "note": "33个技能：@cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
+        "emoji": "🟠",
+        "steps": [
+          {
+            "title": "克隆 Cody Master",
+            "description": "将仓库克隆到您的主目录。",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ 已克隆 —— 33个 SKILL.md 就绪"
+          },
+          {
+            "title": "复制技能到平台",
+            "description": "将 SKILL.md 文件复制到平台的 rules 或 skills 目录。",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/"
+          },
+          {
+            "title": "使用技能",
+            "description": "打开编辑器，调用任意技能。技能在相关时自动激活。",
+            "code": "@cm-planning 帮我设计新功能",
+            "note": "33个技能：@cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "任意平台",
+        "emoji": "⚙️",
+        "steps": [
+          {
+            "title": "克隆仓库",
+            "description": "将 Cody Master 克隆到您的主目录。",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ 已克隆 —— 33个 SKILL.md 就绪"
+          },
+          {
+            "title": "复制到您的平台",
+            "description": "将通用 SKILL.md 文件放入任意平台的 skills 目录。",
+            "code": "# Gemini（全局）\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+          },
+          {
+            "title": "验证并使用",
+            "description": "打开 AI agent 并引用任意技能。它们根据上下文自动激活。",
+            "code": "@cm-tdd 用完整测试覆盖实现登录",
+            "note": "适用于 GitHub Copilot、Kiro、OpenCode、Windsurf 及所有支持自定义指令的平台。"
+          }
+        ]
+      }
+    ]
   },
   "demoPage": {
     "meta": {

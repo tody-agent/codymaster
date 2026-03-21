@@ -714,26 +714,20 @@
       "보안"
     ],
     "cards": [
-      {
-        "icon": "lightbulb",
-        "name": "cm-brainstorm-idea",
-        "description": "구축 전에 다각적 측면의 창의적 분석으로 검증"
-      },
-      {
-        "icon": "file-text",
-        "name": "cm-planning",
-        "description": "코드 작성 전 세부 계획 수립 - 재작업 시간 절감"
-      },
-      {
-        "icon": "palette",
-        "name": "cm-ux-master",
-        "description": "UX 기반 UI 디자인 - 아름답고 사용자 친화적이며 전환율 향상"
-      },
-      {
-        "icon": "pen-tool",
-        "name": "cm-content-factory",
-        "description": "SEO 기반 카피라이팅 - 블로그부터 페이지까지 전문가처럼 작성"
-      }
+      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "categoryIndex": 0, "description": "구축 전에 다각적 측면의 창의적 분석으로 검증" },
+      { "icon": "file-text", "name": "cm-planning", "categoryIndex": 0, "description": "코드 작성 전 세부 계획 수립 - 재작업 시간 절감" },
+      { "icon": "users", "name": "cm-jtbd", "categoryIndex": 0, "description": "Jobs-To-Be-Done 발견 — 고객이 제품을 고용하는 진짜 이유 파악" },
+      { "icon": "palette", "name": "cm-ux-master", "categoryIndex": 1, "description": "UX 기반 UI 디자인 - 아름답고 사용자 친화적이며 전환율 향상" },
+      { "icon": "monitor", "name": "cm-ui-preview", "categoryIndex": 1, "description": "Google Stitch를 통한 AI UI 생성 — 며칠이 아닌 분 단위 프로토타입" },
+      { "icon": "pen-tool", "name": "cm-content-factory", "categoryIndex": 2, "description": "SEO 기반 카피라이팅 - 블로그부터 페이지까지 전문가처럼 작성" },
+      { "icon": "trending-up", "name": "cm-ads-tracker", "categoryIndex": 2, "description": "완전한 전환 추적 — Facebook/Meta Pixel, TikTok, Google Ads, GTM" },
+      { "icon": "target", "name": "cro-methodology", "categoryIndex": 2, "description": "CRO 감사 — 퍼널 매핑, 이의 처리, A/B 테스트 설계" },
+      { "icon": "check-square", "name": "cm-tdd", "categoryIndex": 3, "description": "Red-Green-Refactor 사이클 — 실패하는 테스트 없이 프로덕션 코드 없음" },
+      { "icon": "bug", "name": "cm-debugging", "categoryIndex": 3, "description": "체계적인 5단계 근본 원인 분석 — 증상이 아닌 문제 해결" },
+      { "icon": "rocket", "name": "cm-safe-deploy", "categoryIndex": 3, "description": "다중 게이트 배포 파이프라인 — 스캔→테스트→빌드→배포→스모크 테스트" },
+      { "icon": "git-pull-request", "name": "cm-code-review", "categoryIndex": 3, "description": "완전한 PR 라이프사이클 — 리뷰 요청, 피드백 처리, 브랜치 통합 완료" },
+      { "icon": "lock", "name": "cm-secret-shield", "categoryIndex": 4, "description": "심층 방어 시크릿 관리 — 사전 커밋 훅, 저장소 전체 유출 탐지" },
+      { "icon": "shield", "name": "cm-quality-gate", "categoryIndex": 4, "description": "증거 기반 검증 — 블라인드 리뷰, 아첨 방지, 보안 스캔" }
     ]
   },
   "stats": {
@@ -1397,47 +1391,181 @@
   },
   "startPage": {
     "meta": {
-      "title": "시작 가이드 — Cody Master Kit",
-      "description": "2분 만에 Claude Code에 Cody Master 설치하기. 33개 이상의 AI 스킬을 바로 활용하세요."
+      "title": "시작하기 — Cody Master",
+      "description": "Claude Code, Gemini CLI, Cursor, Codex 등에 Cody Master 설치. 2분 안에 33개 AI 스킬."
     },
-    "hero": "2분 만에 설치 완료",
-    "heroSub": "Cody Master는 Claude Code 플러그인입니다 — npm 불필요, 별도 도구 없음.",
-    "steps": [
-      {
-        "title": "Claude Code 설치",
-        "description": "Cody Master는 Claude Code 플러그인입니다. 먼저 Claude Code CLI를 설치해 주세요.",
-        "items": [
-          "claude.ai/code에서 Claude Code 다운로드",
-          "터미널에서 확인: claude --version",
-          "Mac, Linux, Windows(WSL) 지원"
-        ],
-        "note": "이미 Claude Code가 있다면? 2단계로 바로 이동하세요."
-      },
-      {
-        "title": "마켓플레이스 추가",
-        "description": "Claude Code에 Cody Master 플러그인 소스를 등록합니다.",
-        "code": "claude plugin marketplace add tody-agent/codymaster",
-        "output": "✓ 마켓플레이스 등록 완료: tody-agent/codymaster\n✓ cody-master 플러그인 사용 가능"
-      },
-      {
-        "title": "스킬 번들 설치",
-        "description": "하나 또는 전체 5개 번들을 설치하세요. Engineering부터 시작하면 TDD, 디버깅, 품질 게이트를 바로 사용할 수 있습니다.",
-        "code": "claude plugin install cody-master@cody-master",
-        "output": "✓ cm-engineering 설치 완료\n📦 스킬: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ 추가 설치 가능: cm-operations, cm-product, cm-growth, cm-orchestration"
-      },
-      {
-        "title": "확인 및 사용 시작",
-        "description": "설치된 번들을 확인하고 Claude Code를 열어 스킬을 사용해 보세요.",
-        "code": "claude plugin list",
-        "output": "✓ cm-engineering (스킬 5개)\n✓ 준비 완료 — 시도해 보기: cm-planning으로 새 기능 설계하기"
-      }
-    ],
+    "hero": "플랫폼에 설치하기",
+    "heroSub": "AI 코딩 플랫폼을 선택하고 2분 안에 33개 스킬을 얻으세요.",
+    "recommended": "추천",
+    "onelineLabel": "⚡ 원라이너 (자동 감지 & 설치)",
+    "orStepByStep": "— 또는 단계별로 —",
     "copyButton": "복사하기",
-    "copiedButton": "클립보드 캐치!",
-    "nextStep": "다음 단계",
-    "prevStep": "이전",
-    "finalCta": "자 멋진 작품을 창조할 시간입니다.",
-    "finalButton": "Cody Master 오픈"
+    "copiedButton": "복사됨!",
+    "finalCta": "준비됐습니다. 만들어 보세요.",
+    "finalButton": "33개 스킬 탐색",
+    "platforms": [
+      {
+        "id": "claude-code",
+        "label": "Claude Code",
+        "emoji": "🟣",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ 원라이너 — 자동 감지, 다국어",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
+        },
+        "steps": [
+          {
+            "title": "Claude Code 설치",
+            "description": "Cody Master는 Claude Code 플러그인으로 실행됩니다. 먼저 Claude Code CLI가 필요합니다.",
+            "items": [
+              "claude.ai/code에서 다운로드",
+              "확인: claude --version (1.0+ 필요)",
+              "Mac, Linux, Windows(WSL) 지원"
+            ],
+            "note": "이미 Claude Code 1.0+가 있다면? 2단계로 바로 이동하세요."
+          },
+          {
+            "title": "마켓플레이스 추가",
+            "description": "Claude Code가 찾을 수 있도록 Cody Master 플러그인 소스를 등록합니다.",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ 마켓플레이스 등록: tody-agent/codymaster\n✓ cody-master 플러그인 사용 가능"
+          },
+          {
+            "title": "33개 스킬 모두 설치",
+            "description": "TDD, 디버깅, 배포, UX, 콘텐츠, 보안 등 모든 것을 한 번에 설치합니다.",
+            "code": "claude plugin install cody-master@cody-master",
+            "output": "✓ cody-master v3.4.0 설치 완료\n📦 33개 스킬: cm-tdd, cm-debugging, cm-planning..."
+          },
+          {
+            "title": "온보딩 투어 실행",
+            "description": "Claude Code를 열고 대화형 투어로 33개 스킬을 모두 확인하세요.",
+            "code": "/cody-master:demo",
+            "output": "🚀 Cody Master에 오신 것을 환영합니다! 33개 스킬을 탐색해 봅시다..."
+          }
+        ]
+      },
+      {
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
+        "emoji": "💻",
+        "steps": [
+          {
+            "title": "Gemini CLI 설치",
+            "description": "Gemini CLI가 설치되고 인증되었는지 확인하세요.",
+            "items": ["설치: npm install -g @google/gemini-cli", "확인: gemini --version", "Google 계정으로 인증"]
+          },
+          {
+            "title": "Cody Master 설치",
+            "description": "GitHub에서 직접 설치 — npm 패키지 불필요.",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master 설치 완료\n✓ Gemini CLI에서 33개 스킬 사용 가능"
+          },
+          {
+            "title": "스킬 사용",
+            "description": "스킬은 자동으로 활성화됩니다. @[/스킬명]으로 명시적으로 호출하세요.",
+            "code": "@[/cm-planning] 앱에 새 기능 설계",
+            "note": "33개 스킬: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          },
+          { "title": "나중에 업데이트", "description": "한 명령어로 Cody Master를 업데이트하세요.", "code": "gemini extensions update cody-master" }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor",
+        "emoji": "🔵",
+        "steps": [
+          {
+            "title": "Cursor Agent 채팅 열기",
+            "description": "Cursor를 열고 채팅 패널에서 Agent 모드로 전환하세요.",
+            "items": ["Cursor IDE 열기", "Cmd+I (Mac) 또는 Ctrl+I (Windows) 누르기", "Agent 모드로 전환"]
+          },
+          {
+            "title": "플러그인 설치",
+            "description": "Cursor agent 채팅에서 설치 명령을 실행하거나 마켓플레이스에서 검색하세요.",
+            "code": "/add-plugin cody-master",
+            "note": "또는: Extensions → 'cody-master' 검색 → 설치"
+          },
+          {
+            "title": "스킬 사용",
+            "description": "스킬은 컨텍스트에 따라 자동으로 활성화됩니다. @mention으로 명시적 호출.",
+            "code": "@cm-planning 새 인증 시스템 설계",
+            "note": "33개 스킬: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "label": "Codex",
+        "emoji": "⬛",
+        "steps": [
+          {
+            "title": "Codex 세션 시작",
+            "description": "프로젝트 루트에서 Codex 환경을 여세요.",
+            "items": ["프로젝트 루트에서 터미널 열기", "실행: codex (또는 codex --model o4-mini)"]
+          },
+          {
+            "title": "설치 지침 가져오기",
+            "description": "Codex에게 GitHub에서 설치 가이드를 가져와 따르도록 지시하세요.",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex가 33개 스킬을 자동으로 읽고 파싱하여 설치합니다"
+          },
+          {
+            "title": "스킬 사용",
+            "description": "스킬은 .codex/skills/에 있으며 자동으로 활성화됩니다.",
+            "code": "@cm-tdd 전체 테스트 커버리지로 사용자 인증 구현",
+            "note": "33개 스킬: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
+        "emoji": "🟠",
+        "steps": [
+          {
+            "title": "Cody Master 클론",
+            "description": "홈 디렉토리에 레포지토리를 클론하세요.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ 클론 완료 — 33개 SKILL.md 준비"
+          },
+          {
+            "title": "플랫폼에 스킬 복사",
+            "description": "SKILL.md 파일을 플랫폼의 rules 또는 skills 디렉토리에 복사하세요.",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/"
+          },
+          {
+            "title": "스킬 사용",
+            "description": "에디터를 열고 스킬을 호출하세요. 관련성이 있을 때 자동으로 활성화됩니다.",
+            "code": "@cm-planning 새 기능 설계 도움",
+            "note": "33개 스킬: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "모든 플랫폼",
+        "emoji": "⚙️",
+        "steps": [
+          {
+            "title": "레포지토리 클론",
+            "description": "홈 디렉토리에 Cody Master를 클론하세요.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ 클론 완료 — 33개 SKILL.md 준비"
+          },
+          {
+            "title": "플랫폼에 복사",
+            "description": "범용 SKILL.md 파일을 플랫폼의 skills 디렉토리에 넣으세요.",
+            "code": "# Gemini (전역)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+          },
+          {
+            "title": "확인 및 사용",
+            "description": "AI 에이전트를 열고 스킬을 참조하세요. 컨텍스트에 따라 자동으로 활성화됩니다.",
+            "code": "@cm-tdd 전체 테스트 커버리지로 로그인 구현",
+            "note": "GitHub Copilot, Kiro, OpenCode, Windsurf 등 커스텀 지침을 지원하는 모든 플랫폼에서 작동합니다."
+          }
+        ]
+      }
+    ]
   },
   "demoPage": {
     "meta": {

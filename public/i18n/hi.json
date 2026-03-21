@@ -714,26 +714,20 @@
       "सुरक्षा"
     ],
     "cards": [
-      {
-        "icon": "lightbulb",
-        "name": "cm-brainstorm-idea",
-        "description": "निर्माण से पहले विचारों को मान्य करने के लिए बहुआयामी रचनात्मक विश्लेषण"
-      },
-      {
-        "icon": "file-text",
-        "name": "cm-planning",
-        "description": "कोडिंग से पहले विस्तृत योजना-पुनर्लेखन के घंटों को बचाता है"
-      },
-      {
-        "icon": "palette",
-        "name": "cm-ux-master",
-        "description": "UX-संचालित UI डिज़ाइन-सुंदर, उपयोगकर्ता के अनुकूल और रूपांतरण के लिए ट्यून्ड"
-      },
-      {
-        "icon": "pen-tool",
-        "name": "cm-content-factory",
-        "description": "SEO-अनुकूलित कॉपीराइटिंग-ब्लॉग से लेकर पृष्ठों तक विशेषज्ञ की तरह लिखता है"
-      }
+      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "categoryIndex": 0, "description": "निर्माण से पहले विचारों को मान्य करने के लिए बहुआयामी रचनात्मक विश्लेषण" },
+      { "icon": "file-text", "name": "cm-planning", "categoryIndex": 0, "description": "कोडिंग से पहले विस्तृत योजना — पुनर्लेखन के घंटों को बचाता है" },
+      { "icon": "users", "name": "cm-jtbd", "categoryIndex": 0, "description": "Jobs-To-Be-Done खोज — समझें कि ग्राहक वास्तव में आपके उत्पाद को किसलिए चुनते हैं" },
+      { "icon": "palette", "name": "cm-ux-master", "categoryIndex": 1, "description": "UX-संचालित UI डिज़ाइन — सुंदर, उपयोगकर्ता के अनुकूल और रूपांतरण के लिए ट्यून्ड" },
+      { "icon": "monitor", "name": "cm-ui-preview", "categoryIndex": 1, "description": "Google Stitch के माध्यम से AI UI निर्माण — दिनों नहीं मिनटों में प्रोटोटाइप" },
+      { "icon": "pen-tool", "name": "cm-content-factory", "categoryIndex": 2, "description": "SEO-अनुकूलित कॉपीराइटिंग — ब्लॉग से लेकर पृष्ठों तक विशेषज्ञ की तरह लिखता है" },
+      { "icon": "trending-up", "name": "cm-ads-tracker", "categoryIndex": 2, "description": "पूर्ण रूपांतरण ट्रैकिंग — Facebook/Meta Pixel, TikTok, Google Ads, GTM" },
+      { "icon": "target", "name": "cro-methodology", "categoryIndex": 2, "description": "CRO ऑडिट — फ़नल मैपिंग, आपत्ति प्रबंधन, A/B परीक्षण डिज़ाइन" },
+      { "icon": "check-square", "name": "cm-tdd", "categoryIndex": 3, "description": "Red-Green-Refactor चक्र — विफल परीक्षण के बिना कोई प्रोडक्शन कोड नहीं" },
+      { "icon": "bug", "name": "cm-debugging", "categoryIndex": 3, "description": "व्यवस्थित 5-चरण मूल कारण जांच — समस्या ठीक करें, लक्षण नहीं" },
+      { "icon": "rocket", "name": "cm-safe-deploy", "categoryIndex": 3, "description": "मल्टी-गेट डिप्लॉय पाइपलाइन — स्कैन→टेस्ट→बिल्ड→डिप्लॉय→स्मोक टेस्ट" },
+      { "icon": "git-pull-request", "name": "cm-code-review", "categoryIndex": 3, "description": "पूर्ण PR जीवनचक्र — समीक्षा अनुरोध, प्रतिक्रिया प्रबंधन, शाखा एकीकरण" },
+      { "icon": "lock", "name": "cm-secret-shield", "categoryIndex": 4, "description": "गहन सुरक्षा — प्री-कमिट हुक, पूरे रेपो में रिसाव का पता लगाना" },
+      { "icon": "shield", "name": "cm-quality-gate", "categoryIndex": 4, "description": "साक्ष्य-आधारित सत्यापन — अंध समीक्षा, चापलूसी-विरोधी, सुरक्षा स्कैन" }
     ]
   },
   "stats": {
@@ -1397,47 +1391,181 @@
   },
   "startPage": {
     "meta": {
-      "title": "शुरू करें — Cody Master Kit",
-      "description": "2 मिनट में Claude Code पर Cody Master इंस्टॉल करें। 33 AI स्किल्स तुरंत उपलब्ध।"
+      "title": "शुरू करें — Cody Master",
+      "description": "Claude Code, Gemini CLI, Cursor, Codex पर Cody Master इंस्टॉल करें। 2 मिनट में 33 AI स्किल्स।"
     },
-    "hero": "2 मिनट में इंस्टॉलेशन",
-    "heroSub": "Cody Master, Claude Code का प्लगइन है — कोई npm नहीं, कोई अतिरिक्त टूल नहीं।",
-    "steps": [
-      {
-        "title": "Claude Code इंस्टॉल करें",
-        "description": "Cody Master एक Claude Code प्लगइन है। पहले Claude Code CLI इंस्टॉल करें।",
-        "items": [
-          "claude.ai/code से Claude Code डाउनलोड करें",
-          "टर्मिनल में जांचें: claude --version",
-          "Mac, Linux, Windows (WSL) सपोर्टेड"
-        ],
-        "note": "पहले से Claude Code है? सीधे चरण 2 पर जाएं।"
-      },
-      {
-        "title": "मार्केटप्लेस जोड़ें",
-        "description": "Claude Code में Cody Master प्लगइन सोर्स रजिस्टर करें।",
-        "code": "claude plugin marketplace add tody-agent/codymaster",
-        "output": "✓ मार्केटप्लेस रजिस्टर हुआ: tody-agent/codymaster\n✓ cody-master plugin उपलब्ध"
-      },
-      {
-        "title": "स्किल बंडल इंस्टॉल करें",
-        "description": "एक या सभी पांच बंडल इंस्टॉल करें। Engineering से शुरू करें — TDD, डिबगिंग और क्वालिटी गेट।",
-        "code": "claude plugin install cody-master@cody-master",
-        "output": "✓ cm-engineering इंस्टॉल हुआ\n📦 स्किल्स: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ और उपलब्ध: cm-operations, cm-product, cm-growth, cm-orchestration"
-      },
-      {
-        "title": "सत्यापन और उपयोग शुरू करें",
-        "description": "इंस्टॉल्ड बंडल चेक करें, फिर Claude Code खोलें और किसी स्किल का उपयोग करें।",
-        "code": "claude plugin list",
-        "output": "✓ cm-engineering (5 स्किल्स)\n✓ तैयार — आज़माएं: नई फीचर डिज़ाइन के लिए cm-planning उपयोग करें"
-      }
-    ],
+    "hero": "अपने प्लेटफ़ॉर्म पर इंस्टॉल करें",
+    "heroSub": "अपना AI कोडिंग प्लेटफ़ॉर्म चुनें और 2 मिनट में 33 स्किल्स पाएं।",
+    "recommended": "अनुशंसित",
+    "onelineLabel": "⚡ एक-लाइनर (ऑटो-डिटेक्ट)",
+    "orStepByStep": "— या चरण दर चरण —",
     "copyButton": "कॉपी करें",
-    "copiedButton": "क्लिपबोर्ड पर!",
-    "nextStep": "अगला कदम",
-    "prevStep": "पिछला",
-    "finalCta": "महान चीजें बनाने का समय आ गया है।",
-    "finalButton": "Cody Master खोलें"
+    "copiedButton": "कॉपी हुआ!",
+    "finalCta": "तैयार हैं। बनाना शुरू करें।",
+    "finalButton": "33 स्किल्स एक्सप्लोर करें",
+    "platforms": [
+      {
+        "id": "claude-code",
+        "label": "Claude Code",
+        "emoji": "🟣",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ एक-लाइनर — ऑटो-डिटेक्ट, मल्टी-लैंग्वेज",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
+        },
+        "steps": [
+          {
+            "title": "Claude Code इंस्टॉल करें",
+            "description": "Cody Master Claude Code प्लगइन के रूप में चलता है। पहले Claude Code CLI चाहिए।",
+            "items": [
+              "claude.ai/code से डाउनलोड करें",
+              "जांचें: claude --version (1.0+ चाहिए)",
+              "Mac, Linux, Windows (WSL) सपोर्टेड"
+            ],
+            "note": "पहले से Claude Code 1.0+ है? सीधे चरण 2 पर जाएं।"
+          },
+          {
+            "title": "मार्केटप्लेस जोड़ें",
+            "description": "Claude Code में Cody Master प्लगइन सोर्स रजिस्टर करें।",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ मार्केटप्लेस रजिस्टर हुआ: tody-agent/codymaster\n✓ cody-master plugin उपलब्ध"
+          },
+          {
+            "title": "सभी 33 स्किल्स इंस्टॉल करें",
+            "description": "एक कमांड से सब कुछ — TDD, डिबगिंग, डिप्लॉयमेंट, UX, कंटेंट, सिक्योरिटी।",
+            "code": "claude plugin install cody-master@cody-master",
+            "output": "✓ cody-master v3.4.0 इंस्टॉल हुआ\n📦 33 स्किल्स: cm-tdd, cm-debugging, cm-planning..."
+          },
+          {
+            "title": "ऑनबोर्डिंग टूर चलाएं",
+            "description": "Claude Code खोलें और सभी 33 स्किल्स देखने के लिए इंटरेक्टिव टूर चलाएं।",
+            "code": "/cody-master:demo",
+            "output": "🚀 Cody Master में आपका स्वागत! सभी 33 स्किल्स एक्सप्लोर करते हैं..."
+          }
+        ]
+      },
+      {
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
+        "emoji": "💻",
+        "steps": [
+          {
+            "title": "Gemini CLI इंस्टॉल करें",
+            "description": "सुनिश्चित करें Gemini CLI इंस्टॉल और ऑथेंटिकेटेड है।",
+            "items": ["इंस्टॉल: npm install -g @google/gemini-cli", "जांचें: gemini --version", "Google अकाउंट से लॉगिन करें"]
+          },
+          {
+            "title": "Cody Master इंस्टॉल करें",
+            "description": "GitHub से सीधे इंस्टॉल — npm पैकेज की ज़रूरत नहीं।",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master इंस्टॉल हुआ\n✓ Gemini CLI में 33 स्किल्स उपलब्ध"
+          },
+          {
+            "title": "स्किल्स उपयोग करें",
+            "description": "स्किल्स ऑटोमैटिक एक्टिवेट होते हैं। @[/skill-name] से एक्सप्लिसिट कॉल करें।",
+            "code": "@[/cm-planning] मेरे ऐप के लिए नई फीचर डिज़ाइन करो",
+            "note": "33 स्किल्स: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          },
+          { "title": "बाद में अपडेट करें", "description": "एक कमांड से Cody Master अपडेट करें।", "code": "gemini extensions update cody-master" }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor",
+        "emoji": "🔵",
+        "steps": [
+          {
+            "title": "Cursor Agent Chat खोलें",
+            "description": "Cursor खोलें और chat panel में Agent mode पर स्विच करें।",
+            "items": ["Cursor IDE खोलें", "Cmd+I (Mac) या Ctrl+I (Windows) दबाएं", "Agent mode में स्विच करें"]
+          },
+          {
+            "title": "प्लगइन इंस्टॉल करें",
+            "description": "Cursor agent chat में इंस्टॉल कमांड चलाएं या marketplace में सर्च करें।",
+            "code": "/add-plugin cody-master",
+            "note": "या: Extensions → 'cody-master' सर्च → Install"
+          },
+          {
+            "title": "स्किल्स उपयोग करें",
+            "description": "स्किल्स context के अनुसार ऑटो एक्टिवेट होते हैं। @mention से एक्सप्लिसिट कॉल।",
+            "code": "@cm-planning नई auth system डिज़ाइन करो",
+            "note": "33 स्किल्स: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "label": "Codex",
+        "emoji": "⬛",
+        "steps": [
+          {
+            "title": "Codex सेशन शुरू करें",
+            "description": "प्रोजेक्ट रूट में Codex environment खोलें।",
+            "items": ["प्रोजेक्ट रूट में टर्मिनल खोलें", "चलाएं: codex (या codex --model o4-mini)"]
+          },
+          {
+            "title": "इंस्टॉल इंस्ट्रक्शन फेच करें",
+            "description": "Codex को GitHub से install guide फेच करने और फॉलो करने को कहें।",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex ऑटोमैटिक सभी 33 स्किल्स पढ़ता, पार्स करता और इंस्टॉल करता है"
+          },
+          {
+            "title": "स्किल्स उपयोग करें",
+            "description": "स्किल्स .codex/skills/ में हैं और ऑटो एक्टिवेट होते हैं।",
+            "code": "@cm-tdd पूरे test coverage के साथ user authentication implement करो",
+            "note": "33 स्किल्स: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
+        "emoji": "🟠",
+        "steps": [
+          {
+            "title": "Cody Master क्लोन करें",
+            "description": "रिपॉजिटरी को home directory में क्लोन करें।",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ क्लोन हुआ — 33 SKILL.md तैयार"
+          },
+          {
+            "title": "प्लेटफ़ॉर्म पर स्किल्स कॉपी करें",
+            "description": "SKILL.md फाइल्स को प्लेटफ़ॉर्म की rules या skills directory में कॉपी करें।",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/"
+          },
+          {
+            "title": "स्किल्स उपयोग करें",
+            "description": "एडिटर खोलें और किसी भी स्किल को invoke करें। Relevant होने पर ऑटो एक्टिवेट होते हैं।",
+            "code": "@cm-planning नई फीचर डिज़ाइन में मदद करो",
+            "note": "33 स्किल्स: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "कोई भी प्लेटफ़ॉर्म",
+        "emoji": "⚙️",
+        "steps": [
+          {
+            "title": "रिपॉजिटरी क्लोन करें",
+            "description": "Cody Master को home directory में क्लोन करें।",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ क्लोन हुआ — 33 SKILL.md तैयार"
+          },
+          {
+            "title": "अपने प्लेटफ़ॉर्म पर कॉपी करें",
+            "description": "यूनिवर्सल SKILL.md फाइल्स किसी भी प्लेटफ़ॉर्म की skills directory में डालें।",
+            "code": "# Gemini (global)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+          },
+          {
+            "title": "जांचें और उपयोग करें",
+            "description": "AI agent खोलें और किसी स्किल को reference करें। Context के अनुसार ऑटो एक्टिवेट।",
+            "code": "@cm-tdd पूरे test coverage के साथ login implement करो",
+            "note": "GitHub Copilot, Kiro, OpenCode, Windsurf और custom instructions सपोर्ट करने वाले सभी प्लेटफ़ॉर्म पर काम करता है।"
+          }
+        ]
+      }
+    ]
   },
   "demoPage": {
     "meta": {

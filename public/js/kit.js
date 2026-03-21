@@ -164,14 +164,15 @@
   // ─── Skills Section ─────────────────────────────
   const Skills = {
     activeCategory: 0,
-    iconColors: ['lime', 'purple', 'blue', 'orange'],
-    iconNames: ['lightbulb', 'file-text', 'palette', 'pen-tool'],
+    allCards: [],
+    iconColors: ['lime', 'purple', 'blue', 'orange', 'cyan'],
 
     render(t) {
       if (!t?.skills) return;
 
+      this.allCards = t.skills.cards || [];
       this.renderTabs(t.skills.categories);
-      this.renderCards(t.skills.cards);
+      this.renderCards(this.allCards.filter(c => (c.categoryIndex ?? 0) === this.activeCategory));
     },
 
     renderTabs(categories) {
@@ -188,7 +189,7 @@
           container.querySelectorAll('.skills__tab').forEach((t, j) => {
             t.classList.toggle('active', j === i);
           });
-          // Could filter cards per category in a full implementation
+          this.renderCards(this.allCards.filter(c => (c.categoryIndex ?? 0) === i));
         });
         container.appendChild(btn);
       });
@@ -201,22 +202,29 @@
       container.innerHTML = '';
       cards.forEach((card, i) => {
         const color = this.iconColors[i % this.iconColors.length];
-        const iconName = card.icon || this.iconNames[i % this.iconNames.length];
+        const iconName = card.icon || 'zap';
+
+        const icon = document.createElement('i');
+        icon.dataset.lucide = iconName;
+        icon.className = `skill-card__icon skill-card__icon--${color}`;
+
+        const name = document.createElement('span');
+        name.className = 'skill-card__name';
+        name.textContent = card.name;
+
+        const desc = document.createElement('span');
+        desc.className = 'skill-card__desc';
+        desc.textContent = card.description;
 
         const el = document.createElement('div');
         el.className = 'skill-card';
-        el.innerHTML = `
-          <i data-lucide="${iconName}" class="skill-card__icon skill-card__icon--${color}"></i>
-          <span class="skill-card__name">${card.name}</span>
-          <span class="skill-card__desc">${card.description}</span>
-        `;
+        el.appendChild(icon);
+        el.appendChild(name);
+        el.appendChild(desc);
         container.appendChild(el);
       });
 
-      // Re-initialize Lucide icons for the new elements
-      if (window.lucide) {
-        lucide.createIcons();
-      }
+      if (window.lucide) lucide.createIcons();
     }
   };
 
@@ -239,13 +247,22 @@
       const learnMore = t.personas?.learnMore || en?.personas?.learnMore || 'Learn more →';
       const cards = t.personas.cards;
 
+      const urlMap = {
+        founder: 'for-founders.html',
+        cmo: 'for-cmos.html',
+        pm: 'for-pms.html',
+        dev: 'for-tech-teams.html',
+        designer: 'for-designers.html',
+        claw: 'for-claw-family.html'
+      };
+
       container.innerHTML = '';
       cards.forEach((card, i) => {
         const accent = this.accentColors[card.id] || '#22d3ee';
         const delay = i + 1;
 
         const el = document.createElement('a');
-        el.href = `persona.html?p=${card.id}`;
+        el.href = urlMap[card.id] || `persona.html?p=${card.id}`;
         el.className = `persona-home-card reveal reveal-delay-${delay}`;
         el.style.setProperty('--card-accent', accent);
         el.innerHTML = `

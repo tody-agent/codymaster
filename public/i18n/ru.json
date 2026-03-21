@@ -714,26 +714,20 @@
       "Безопасность"
     ],
     "cards": [
-      {
-        "icon": "lightbulb",
-        "name": "cm-brainstorm-idea",
-        "description": "Многомерный креативный анализ для проверки идей перед созданием"
-      },
-      {
-        "icon": "file-text",
-        "name": "cm-planning",
-        "description": "Детальное планирование до написания кода — избавляет от бесконечных переделок"
-      },
-      {
-        "icon": "palette",
-        "name": "cm-ux-master",
-        "description": "UX-ориентированный дизайн UI — красивый, удобный и настроенный на конверсию"
-      },
-      {
-        "icon": "pen-tool",
-        "name": "cm-content-factory",
-        "description": "SEO-копирайтинг — от блогов до лендингов, ИИ пишет как эксперт"
-      }
+      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "categoryIndex": 0, "description": "Многомерный анализ идей для проверки реализуемости до начала разработки" },
+      { "icon": "file-text", "name": "cm-planning", "categoryIndex": 0, "description": "Детальное планирование до написания кода — избавляет от бесконечных переделок" },
+      { "icon": "users", "name": "cm-jtbd", "categoryIndex": 0, "description": "Jobs-To-Be-Done — понять, для чего клиенты на самом деле используют ваш продукт" },
+      { "icon": "palette", "name": "cm-ux-master", "categoryIndex": 1, "description": "UX-ориентированный дизайн UI — красивый, удобный и настроенный на конверсию" },
+      { "icon": "monitor", "name": "cm-ui-preview", "categoryIndex": 1, "description": "AI-генерация UI через Google Stitch — прототип за минуты, не дни" },
+      { "icon": "pen-tool", "name": "cm-content-factory", "categoryIndex": 2, "description": "SEO-копирайтинг — от блогов до лендингов, ИИ пишет как эксперт" },
+      { "icon": "trending-up", "name": "cm-ads-tracker", "categoryIndex": 2, "description": "Полное отслеживание конверсий — Facebook/Meta Pixel, TikTok, Google Ads, GTM" },
+      { "icon": "target", "name": "cro-methodology", "categoryIndex": 2, "description": "CRO-аудит — картирование воронки, работа с возражениями, дизайн A/B-тестов" },
+      { "icon": "check-square", "name": "cm-tdd", "categoryIndex": 3, "description": "Цикл Red-Green-Refactor — никакого продакшн-кода без провального теста" },
+      { "icon": "bug", "name": "cm-debugging", "categoryIndex": 3, "description": "Систематическое 5-фазное расследование первопричин — лечим болезнь, не симптомы" },
+      { "icon": "rocket", "name": "cm-safe-deploy", "categoryIndex": 3, "description": "Многоуровневый пайплайн деплоя — сканирование→тесты→сборка→деплой→смок-тест" },
+      { "icon": "git-pull-request", "name": "cm-code-review", "categoryIndex": 3, "description": "Полный жизненный цикл PR — запрос ревью, обработка фидбека, интеграция ветки" },
+      { "icon": "lock", "name": "cm-secret-shield", "categoryIndex": 4, "description": "Глубокая защита секретов — pre-commit хуки, поиск утечек во всём репозитории" },
+      { "icon": "shield", "name": "cm-quality-gate", "categoryIndex": 4, "description": "Верификация на основе доказательств — слепое ревью, антисикофантия, скан безопасности" }
     ]
   },
   "stats": {
@@ -1397,47 +1391,181 @@
   },
   "startPage": {
     "meta": {
-      "title": "Начать работу — Cody Master Kit",
-      "description": "Установите Cody Master в Claude Code за 2 минуты. 33 AI-навыков сразу в деле."
+      "title": "Начать — Cody Master",
+      "description": "Установите Cody Master на Claude Code, Gemini CLI, Cursor, Codex. 33 AI-навыка за 2 минуты."
     },
-    "hero": "Установка за 2 минуты",
-    "heroSub": "Cody Master — плагин для Claude Code. Никакого npm, никаких лишних инструментов.",
-    "steps": [
-      {
-        "title": "Установите Claude Code",
-        "description": "Cody Master — плагин для Claude Code. Сначала установите Claude Code CLI.",
-        "items": [
-          "Скачайте Claude Code на claude.ai/code",
-          "Проверьте в терминале: claude --version",
-          "Поддерживается Mac, Linux, Windows (WSL)"
-        ],
-        "note": "Claude Code уже есть? Переходите сразу к шагу 2."
-      },
-      {
-        "title": "Добавьте маркетплейс",
-        "description": "Зарегистрируйте источник плагина Cody Master в Claude Code.",
-        "code": "claude plugin marketplace add tody-agent/codymaster",
-        "output": "✓ Маркетплейс зарегистрирован: tody-agent/codymaster\n✓ cody-master плагин доступен"
-      },
-      {
-        "title": "Установите пакеты навыков",
-        "description": "Установите один или все пять пакетов. Начните с Engineering — TDD, отладка и gate качества.",
-        "code": "claude plugin install cody-master@cody-master",
-        "output": "✓ cm-engineering установлен\n📦 Навыки: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ Ещё доступны: cm-operations, cm-product, cm-growth, cm-orchestration"
-      },
-      {
-        "title": "Проверка и первый запуск",
-        "description": "Проверьте установленные пакеты, затем откройте Claude Code и попросите использовать навык.",
-        "code": "claude plugin list",
-        "output": "✓ cm-engineering (5 навыков)\n✓ Готово — попробуйте: Используй cm-planning для проектирования новой функции"
-      }
-    ],
+    "hero": "Установка на вашей платформе",
+    "heroSub": "Выберите AI-платформу и получите 33 навыка менее чем за 2 минуты.",
+    "recommended": "Рекомендуется",
+    "onelineLabel": "⚡ Однострочник (автоопределение)",
+    "orStepByStep": "— или пошагово —",
     "copyButton": "Скопировать",
     "copiedButton": "Скопировано!",
-    "nextStep": "Следующий шаг",
-    "prevStep": "Предыдущий",
-    "finalCta": "Готовы! Пора строить великие вещи.",
-    "finalButton": "Открыть Cody Master"
+    "finalCta": "Готово. Начинайте строить.",
+    "finalButton": "Исследовать 33 навыка",
+    "platforms": [
+      {
+        "id": "claude-code",
+        "label": "Claude Code",
+        "emoji": "🟣",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ Однострочник — автоопределение, мультиязычный",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
+        },
+        "steps": [
+          {
+            "title": "Установите Claude Code",
+            "description": "Cody Master работает как плагин Claude Code. Сначала нужен Claude Code CLI.",
+            "items": [
+              "Скачать на claude.ai/code",
+              "Проверить: claude --version (нужна 1.0+)",
+              "Поддерживается Mac, Linux, Windows (WSL)"
+            ],
+            "note": "Claude Code 1.0+ уже есть? Переходите к шагу 2."
+          },
+          {
+            "title": "Добавьте маркетплейс",
+            "description": "Зарегистрируйте источник плагина Cody Master в Claude Code.",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ Маркетплейс зарегистрирован: tody-agent/codymaster\n✓ cody-master плагин доступен"
+          },
+          {
+            "title": "Установите все 33 навыка",
+            "description": "Одна команда устанавливает всё — TDD, отладка, деплой, UX, контент, безопасность.",
+            "code": "claude plugin install cody-master@cody-master",
+            "output": "✓ cody-master v3.4.0 установлен\n📦 33 навыка: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "Запустите вводный тур",
+            "description": "Откройте Claude Code и запустите интерактивный тур по всем 33 навыкам.",
+            "code": "/cody-master:demo",
+            "output": "🚀 Добро пожаловать в Cody Master! Давайте исследуем все 33 навыка..."
+          }
+        ]
+      },
+      {
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
+        "emoji": "💻",
+        "steps": [
+          {
+            "title": "Установите Gemini CLI",
+            "description": "Убедитесь, что Gemini CLI установлен и аутентифицирован.",
+            "items": ["Установить: npm install -g @google/gemini-cli", "Проверить: gemini --version", "Войти с аккаунтом Google"]
+          },
+          {
+            "title": "Установите Cody Master",
+            "description": "Установка напрямую с GitHub — npm-пакет не нужен.",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master установлен\n✓ 33 навыка доступны в Gemini CLI"
+          },
+          {
+            "title": "Используйте навыки",
+            "description": "Навыки активируются автоматически. Вызывайте явно через @[/имя-навыка].",
+            "code": "@[/cm-planning] Спроектируй новую функцию для моего приложения",
+            "note": "33 навыка: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          },
+          { "title": "Обновление", "description": "Обновите Cody Master одной командой.", "code": "gemini extensions update cody-master" }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor",
+        "emoji": "🔵",
+        "steps": [
+          {
+            "title": "Откройте Cursor Agent Chat",
+            "description": "Откройте Cursor и переключитесь в режим Agent в панели чата.",
+            "items": ["Открыть Cursor IDE", "Нажать Cmd+I (Mac) или Ctrl+I (Windows)", "Переключиться в Agent mode"]
+          },
+          {
+            "title": "Установите плагин",
+            "description": "Выполните команду в Cursor agent chat или найдите в маркетплейсе.",
+            "code": "/add-plugin cody-master",
+            "note": "Или: Extensions → поиск 'cody-master' → Установить"
+          },
+          {
+            "title": "Используйте навыки",
+            "description": "Навыки активируются автоматически по контексту. Явный вызов через @mention.",
+            "code": "@cm-planning Спроектируй новую систему аутентификации",
+            "note": "33 навыка: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "label": "Codex",
+        "emoji": "⬛",
+        "steps": [
+          {
+            "title": "Запустите сессию Codex",
+            "description": "Откройте среду Codex в корне проекта.",
+            "items": ["Открыть терминал в корне проекта", "Запустить: codex (или codex --model o4-mini)"]
+          },
+          {
+            "title": "Получите инструкции по установке",
+            "description": "Попросите Codex загрузить и следовать инструкциям с GitHub.",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex автоматически читает, парсит и устанавливает все 33 навыка"
+          },
+          {
+            "title": "Используйте навыки",
+            "description": "Навыки в .codex/skills/ и активируются автоматически.",
+            "code": "@cm-tdd Реализуй аутентификацию с полным покрытием тестами",
+            "note": "33 навыка: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
+        "emoji": "🟠",
+        "steps": [
+          {
+            "title": "Клонируйте Cody Master",
+            "description": "Клонируйте репозиторий в домашнюю директорию.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Склонировано — 33 SKILL.md готовы"
+          },
+          {
+            "title": "Скопируйте навыки на платформу",
+            "description": "Скопируйте SKILL.md в директорию rules или skills вашей платформы.",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/"
+          },
+          {
+            "title": "Используйте навыки",
+            "description": "Откройте редактор и вызовите любой навык. Активируются автоматически по контексту.",
+            "code": "@cm-planning Помоги спроектировать новую функцию",
+            "note": "33 навыка: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "Любая платформа",
+        "emoji": "⚙️",
+        "steps": [
+          {
+            "title": "Клонируйте репозиторий",
+            "description": "Клонируйте Cody Master в домашнюю директорию.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Склонировано — 33 SKILL.md готовы"
+          },
+          {
+            "title": "Скопируйте на платформу",
+            "description": "Поместите универсальные SKILL.md в директорию skills любой платформы.",
+            "code": "# Gemini (глобально)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+          },
+          {
+            "title": "Проверьте и используйте",
+            "description": "Откройте AI-агент и обратитесь к любому навыку. Активируются автоматически по контексту.",
+            "code": "@cm-tdd Реализуй вход с полным покрытием тестами",
+            "note": "Работает на GitHub Copilot, Kiro, OpenCode, Windsurf и любой платформе с кастомными инструкциями."
+          }
+        ]
+      }
+    ]
   },
   "demoPage": {
     "meta": {
