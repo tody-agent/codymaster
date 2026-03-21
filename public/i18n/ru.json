@@ -1387,44 +1387,38 @@
   "startPage": {
     "meta": {
       "title": "Начать работу — Cody Master Kit",
-      "description": "Установите Cody Master за 30 секунд. Шаги от нуля до готового продукта с ИИ."
+      "description": "Установите Cody Master в Claude Code за 2 минуты. 33+ AI-навыков сразу в деле."
     },
-    "hero": "Быстрый старт за 30 секунд",
-    "heroSub": "От пустого экрана к вашему первому AI-продукту.",
+    "hero": "Установка за 2 минуты",
+    "heroSub": "Cody Master — плагин для Claude Code. Никакого npm, никаких лишних инструментов.",
     "steps": [
       {
-        "title": "Предварительные требования",
-        "description": "Убедитесь, что у вас есть следующее на компьютере.",
+        "title": "Установите Claude Code",
+        "description": "Cody Master — плагин для Claude Code. Сначала установите Claude Code CLI.",
         "items": [
-          "VS Code или Cursor Editor",
-          "Node.js v18+",
-          "Терминал или командная строка"
+          "Скачайте Claude Code на claude.ai/code",
+          "Проверьте в терминале: claude --version",
+          "Поддерживается Mac, Linux, Windows (WSL)"
         ],
-        "note": "Нет Node.js? Скачайте на nodejs.org."
+        "note": "Claude Code уже есть? Переходите сразу к шагу 2."
       },
       {
-        "title": "Установка Cody Master",
-        "description": "Откройте терминал и вставьте одну команду.",
-        "code": "npx codymaster init",
-        "output": "✓ Initialization Complete\n✓ Loaded 30 Skills\n✓ All systems ready!"
+        "title": "Добавьте маркетплейс",
+        "description": "Зарегистрируйте источник плагина Cody Master в Claude Code.",
+        "code": "claude plugin marketplace add tody-agent/cody-master",
+        "output": "✓ Маркетплейс зарегистрирован: tody-agent/cody-master\n✓ Доступно 5 пакетов навыков"
       },
       {
-        "title": "Верификация",
-        "description": "Проверим, всё ли работает.",
-        "code": "codymaster status",
-        "output": "⚡ Cody Master v2.0\n📦 30 Active Skills\n✅ Ready"
+        "title": "Установите пакеты навыков",
+        "description": "Установите один или все пять пакетов. Начните с Engineering — TDD, отладка и gate качества.",
+        "code": "claude plugin install cm-engineering@cody-master",
+        "output": "✓ cm-engineering установлен\n📦 Навыки: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ Ещё доступны: cm-operations, cm-product, cm-growth, cm-orchestration"
       },
       {
-        "title": "Ваш первый чат",
-        "description": "Скажите ИИ, что вы хотите создать.",
-        "code": "codymaster chat \"Сделай лендинг для моей кофейни\"",
-        "output": "🧠 Planning... \n🎨 Designing layouts...\n💻 Generating code...\n✓ Done!"
-      },
-      {
-        "title": "Деплой и шэринг",
-        "description": "Публикация в сеть в один клик.",
-        "code": "codymaster deploy",
-        "output": "🚀 Deploying to Cloudflare Pages...\n✓ https://my-coffee-shop.pages.dev is LIVE!"
+        "title": "Проверка и первый запуск",
+        "description": "Проверьте установленные пакеты, затем откройте Claude Code и попросите использовать навык.",
+        "code": "claude plugin list",
+        "output": "✓ cm-engineering (5 навыков)\n✓ Готово — попробуйте: Используй cm-planning для проектирования новой функции"
       }
     ],
     "copyButton": "Скопировать",

@@ -1387,44 +1387,38 @@
   "startPage": {
     "meta": {
       "title": "Get Started — Cody Master Kit",
-      "description": "Install and start using Cody Master in 30 seconds. Step-by-step guide from zero to your first AI-built product."
+      "description": "Install Cody Master on Claude Code in 2 minutes. Step-by-step guide from zero to 33+ AI skills."
     },
-    "hero": "Get Started in 30 Seconds",
-    "heroSub": "From zero to your first AI-built product — follow these steps.",
+    "hero": "Install in 2 Minutes",
+    "heroSub": "Cody Master installs as a Claude Code plugin — no npm, no extra tools needed.",
     "steps": [
       {
-        "title": "Prerequisites",
-        "description": "Make sure you have these installed on your computer.",
+        "title": "Get Claude Code",
+        "description": "Cody Master is a Claude Code plugin. Install Claude Code CLI first.",
         "items": [
-          "VS Code or Cursor editor",
-          "Node.js 18 or later",
-          "A terminal app"
+          "Download Claude Code from claude.ai/code",
+          "Open your terminal and verify: claude --version",
+          "Any OS — Mac, Linux, or Windows (WSL)"
         ],
-        "note": "Don't have Node.js? Download it from nodejs.org — it's free."
+        "note": "Already have Claude Code? Skip straight to Step 2."
       },
       {
-        "title": "Install Cody Master",
-        "description": "Open your terminal and paste this single command.",
-        "code": "npx codymaster init",
-        "output": "✓ Cody Master Kit initialized\n✓ 30 skills loaded\n✓ Ready to go!"
+        "title": "Add the Marketplace",
+        "description": "Register the Cody Master plugin source in Claude Code.",
+        "code": "claude plugin marketplace add tody-agent/cody-master",
+        "output": "✓ Marketplace registered: tody-agent/cody-master\n✓ 5 skill bundles available"
       },
       {
-        "title": "Verify Installation",
-        "description": "Check that everything is working correctly.",
-        "code": "codymaster status",
-        "output": "⚡ Cody Master v2.0\n📦 30 skills active\n✅ All systems operational"
+        "title": "Install Skill Bundles",
+        "description": "Install one bundle or all five. Start with Engineering for TDD, debugging, and quality gates.",
+        "code": "claude plugin install cm-engineering@cody-master",
+        "output": "✓ cm-engineering installed\n📦 Skills: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ Also available: cm-operations, cm-product, cm-growth, cm-orchestration"
       },
       {
-        "title": "Your First Chat",
-        "description": "Tell AI what you want to build. Just type naturally.",
-        "code": "codymaster chat \"Create a landing page for my coffee shop with online ordering\"",
-        "output": "🧠 Using: cm-planning → cm-ux-master → cm-execution\n🎨 Designing layout...\n💻 Generating code...\n✓ Landing page created!"
-      },
-      {
-        "title": "Deploy & Share",
-        "description": "Your creation is ready. Deploy it to the internet with one command.",
-        "code": "codymaster deploy",
-        "output": "🚀 Deploying to Cloudflare Pages...\n✓ https://my-coffee-shop.pages.dev is live!"
+        "title": "Verify & Start Using",
+        "description": "Check installed bundles, then open Claude Code and ask it to use a skill.",
+        "code": "claude plugin list",
+        "output": "✓ cm-engineering (5 skills)\n✓ Ready — try: Use cm-planning to design my new feature"
       }
     ],
     "copyButton": "Copy",

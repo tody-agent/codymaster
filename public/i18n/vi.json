@@ -1387,44 +1387,38 @@
   "startPage": {
     "meta": {
       "title": "Bắt đầu — Cody Master Kit",
-      "description": "Cài đặt và sử dụng Cody Master trong 30 giây. Hướng dẫn từng bước từ zero đến sản phẩm AI đầu tiên."
+      "description": "Cài Cody Master vào Claude Code trong 2 phút. Hướng dẫn từng bước để có 33+ kỹ năng AI."
     },
-    "hero": "Bắt đầu trong 30 giây",
-    "heroSub": "Từ zero đến sản phẩm AI đầu tiên — chỉ cần làm theo các bước.",
+    "hero": "Cài đặt trong 2 phút",
+    "heroSub": "Cody Master là plugin cho Claude Code — không cần npm, không cần cài thêm gì.",
     "steps": [
       {
-        "title": "Yêu cầu chuẩn bị",
-        "description": "Đảm bảo bạn đã cài những thứ này trên máy.",
+        "title": "Cài Claude Code",
+        "description": "Cody Master là plugin cho Claude Code. Cần cài Claude Code CLI trước.",
         "items": [
-          "VS Code hoặc Cursor editor",
-          "Node.js phiên bản 18 trở lên",
-          "Ứng dụng Terminal"
+          "Tải Claude Code tại claude.ai/code",
+          "Mở terminal và kiểm tra: claude --version",
+          "Hỗ trợ Mac, Linux, Windows (WSL)"
         ],
-        "note": "Chưa có Node.js? Tải miễn phí tại nodejs.org"
+        "note": "Đã có Claude Code? Bỏ qua sang Bước 2."
       },
       {
-        "title": "Cài đặt Cody Master",
-        "description": "Mở terminal và dán lệnh này.",
-        "code": "npx codymaster init",
-        "output": "✓ Cody Master Kit đã khởi tạo\n✓ 30 kỹ năng đã tải\n✓ Sẵn sàng hoạt động!"
+        "title": "Thêm Marketplace",
+        "description": "Đăng ký nguồn plugin Cody Master vào Claude Code.",
+        "code": "claude plugin marketplace add tody-agent/cody-master",
+        "output": "✓ Marketplace đã đăng ký: tody-agent/cody-master\n✓ 5 gói kỹ năng sẵn sàng"
       },
       {
-        "title": "Xác minh cài đặt",
-        "description": "Kiểm tra mọi thứ hoạt động đúng.",
-        "code": "codymaster status",
-        "output": "⚡ Cody Master v2.0\n📦 30 kỹ năng hoạt động\n✅ Tất cả hệ thống sẵn sàng"
+        "title": "Cài gói kỹ năng",
+        "description": "Cài một hoặc tất cả năm gói. Bắt đầu với Engineering cho TDD, debug và quality gate.",
+        "code": "claude plugin install cm-engineering@cody-master",
+        "output": "✓ cm-engineering đã cài\n📦 Kỹ năng: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ Còn có: cm-operations, cm-product, cm-growth, cm-orchestration"
       },
       {
-        "title": "Chat đầu tiên",
-        "description": "Nói cho AI bạn muốn xây gì. Chỉ cần gõ tự nhiên.",
-        "code": "codymaster chat \"Tạo landing page cho quán cà phê có đặt hàng online\"",
-        "output": "🧠 Đang dùng: cm-planning → cm-ux-master → cm-execution\n🎨 Thiết kế layout...\n💻 Tạo code...\n✓ Landing page đã sẵn sàng!"
-      },
-      {
-        "title": "Triển khai & Chia sẻ",
-        "description": "Tác phẩm đã sẵn sàng. Đưa lên internet với một lệnh.",
-        "code": "codymaster deploy",
-        "output": "🚀 Đang triển khai lên Cloudflare Pages...\n✓ https://my-coffee-shop.pages.dev đã lên sóng!"
+        "title": "Xác minh & Sử dụng",
+        "description": "Kiểm tra các gói đã cài, sau đó mở Claude Code và nhờ dùng một kỹ năng.",
+        "code": "claude plugin list",
+        "output": "✓ cm-engineering (5 kỹ năng)\n✓ Sẵn sàng — thử: Dùng cm-planning để thiết kế tính năng mới của tôi"
       }
     ],
     "copyButton": "Sao chép",

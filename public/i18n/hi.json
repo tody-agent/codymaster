@@ -1387,44 +1387,38 @@
   "startPage": {
     "meta": {
       "title": "शुरू करें — Cody Master Kit",
-      "description": "30 सेकंड में इंस्टॉल करें और एक मास्टर बनें।"
+      "description": "2 मिनट में Claude Code पर Cody Master इंस्टॉल करें। 33+ AI स्किल्स तुरंत उपलब्ध।"
     },
-    "hero": "30 सेकंड में त्वरित प्रारंभ",
-    "heroSub": "AI उत्पाद तक शून्य से - इन चरणों का पालन करें।",
+    "hero": "2 मिनट में इंस्टॉलेशन",
+    "heroSub": "Cody Master, Claude Code का प्लगइन है — कोई npm नहीं, कोई अतिरिक्त टूल नहीं।",
     "steps": [
       {
-        "title": "पूर्वापेक्षाएँ",
-        "description": "कृपया निम्नलिखित को अपने कंप्यूटर पर सत्यापित करें।",
+        "title": "Claude Code इंस्टॉल करें",
+        "description": "Cody Master एक Claude Code प्लगइन है। पहले Claude Code CLI इंस्टॉल करें।",
         "items": [
-          "VS Code या Cursor संपादक",
-          "Node.js संस्करण 18+",
-          "टर्मिनल एमुलेटर"
+          "claude.ai/code से Claude Code डाउनलोड करें",
+          "टर्मिनल में जांचें: claude --version",
+          "Mac, Linux, Windows (WSL) सपोर्टेड"
         ],
-        "note": "Node.js नहीं है? nodejs.org से डाउनलोड करें।"
+        "note": "पहले से Claude Code है? सीधे चरण 2 पर जाएं।"
       },
       {
-        "title": "Cody Master इंस्टॉल करें",
-        "description": "टर्मिनल खोलें और एक आदेश दें।",
-        "code": "npx codymaster init",
-        "output": "✓ प्रारंभिक सेटअप पूर्ण\n✓ 30 एजेंट सफलतापूर्वक लोड हुए\n✓ स्टैंडबाय आगे बढ़ो!"
+        "title": "मार्केटप्लेस जोड़ें",
+        "description": "Claude Code में Cody Master प्लगइन सोर्स रजिस्टर करें।",
+        "code": "claude plugin marketplace add tody-agent/cody-master",
+        "output": "✓ मार्केटप्लेस रजिस्टर हुआ: tody-agent/cody-master\n✓ 5 स्किल बंडल उपलब्ध"
       },
       {
-        "title": "स्थिति सत्यापित करें",
-        "description": "क्या सभी एजेंट चल रहे हैं?",
-        "code": "codymaster status",
-        "output": "⚡ Cody Master v2.0\n📦 30 सक्रिय कौशल\n✅ तैयार"
+        "title": "स्किल बंडल इंस्टॉल करें",
+        "description": "एक या सभी पांच बंडल इंस्टॉल करें। Engineering से शुरू करें — TDD, डिबगिंग और क्वालिटी गेट।",
+        "code": "claude plugin install cm-engineering@cody-master",
+        "output": "✓ cm-engineering इंस्टॉल हुआ\n📦 स्किल्स: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ और उपलब्ध: cm-operations, cm-product, cm-growth, cm-orchestration"
       },
       {
-        "title": "अपनी पहली चैट",
-        "description": "AI को बस टाइप करके बताएं कि आपको क्या चाहिए।",
-        "code": "codymaster chat \"कॉफी शॉप के लिए एक वेबसाइट बनाना है\"",
-        "output": "🧠 योजना बना रहा है... \n🎨 लेआउट डिज़ाइन कर रहा है...\n💻 कोड उत्पन्न कर रहा है...\n✓ पूर्ण!"
-      },
-      {
-        "title": "परिनियोजन और साझा करें",
-        "description": "पूरी तरह से निर्मित वेबसाइट इंटरनेट पर तैयार है।",
-        "code": "codymaster deploy",
-        "output": "🚀 Cloudflare पर लागू हो रहा है...\n✓ https://my-coffee-shop.pages.dev LIVE!"
+        "title": "सत्यापन और उपयोग शुरू करें",
+        "description": "इंस्टॉल्ड बंडल चेक करें, फिर Claude Code खोलें और किसी स्किल का उपयोग करें।",
+        "code": "claude plugin list",
+        "output": "✓ cm-engineering (5 स्किल्स)\n✓ तैयार — आज़माएं: नई फीचर डिज़ाइन के लिए cm-planning उपयोग करें"
       }
     ],
     "copyButton": "कॉपी करें",

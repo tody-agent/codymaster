@@ -3,14 +3,14 @@
 # 🧠 CodyMaster
 
 **The Universal AI Agent Skills Framework**
-**27+ Skills · 10 Commands · 5 Domains · 7+ Platforms**
+**33+ Skills · 5 Plugin Bundles · 7 Domains · 7+ Platforms**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-3.3.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-27%2B-success.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-33%2B-success.svg" />
   <img alt="Commands" src="https://img.shields.io/badge/commands-10-orange.svg" />
   <img alt="Plugins" src="https://img.shields.io/badge/plugins-5-purple.svg" />
-  <a href="https://github.com/tody-agent/cody-master#readme" target="_blank">
+  <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
 </p>
@@ -25,6 +25,12 @@
 
 ### Claude Code (Recommended)
 
+**One-liner** — prints all commands for you:
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
+```
+
+**Or run manually:**
 ```bash
 # Step 1: Add the marketplace
 claude plugin marketplace add tody-agent/cody-master
@@ -40,7 +46,7 @@ claude plugin install cm-orchestration@cody-master
 ### Gemini CLI
 
 ```bash
-gemini extensions install https://github.com/tody-agent/cody-master
+gemini extensions install https://github.com/tody-agent/codymaster
 ```
 
 ### Cursor
@@ -55,21 +61,21 @@ Or search for "cody-master" in the Cursor plugin marketplace.
 
 Tell Codex:
 ```
-Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/cody-master/main/.codex/INSTALL.md
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
 ```
 
 ### OpenCode
 
 Tell OpenCode:
 ```
-Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/cody-master/main/.opencode/INSTALL.md
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
 ```
 
 ### Antigravity / Gemini (Manual)
 
 ```bash
 # Global install
-git clone https://github.com/tody-agent/cody-master.git ~/.cody-master
+git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
 cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 # Or per-project

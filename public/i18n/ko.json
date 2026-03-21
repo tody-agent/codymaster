@@ -1387,44 +1387,38 @@
   "startPage": {
     "meta": {
       "title": "시작 가이드 — Cody Master Kit",
-      "description": "설치하고 30초 내로 마스터가 되어보세요."
+      "description": "2분 만에 Claude Code에 Cody Master 설치하기. 33개 이상의 AI 스킬을 바로 활용하세요."
     },
-    "hero": "단 30초 만의 빠른 착수",
-    "heroSub": "설정에서 AI 제품 도달까지 — 이 절차를 따라 해보세요.",
+    "hero": "2분 만에 설치 완료",
+    "heroSub": "Cody Master는 Claude Code 플러그인입니다 — npm 불필요, 별도 도구 없음.",
     "steps": [
       {
-        "title": "필수 구성",
-        "description": "다음을 당신의 컴퓨터에 확인해주세요.",
+        "title": "Claude Code 설치",
+        "description": "Cody Master는 Claude Code 플러그인입니다. 먼저 Claude Code CLI를 설치해 주세요.",
         "items": [
-          "VS Code 나 Cursor 편집기",
-          "Node.js 버전 18+",
-          "터미널 에뮬레이터"
+          "claude.ai/code에서 Claude Code 다운로드",
+          "터미널에서 확인: claude --version",
+          "Mac, Linux, Windows(WSL) 지원"
         ],
-        "note": "Node.js가 없다구요? nodejs.org에서 다운로드 바랍니다."
+        "note": "이미 Claude Code가 있다면? 2단계로 바로 이동하세요."
       },
       {
-        "title": "Cody Master 인스톨",
-        "description": "터미널을 열고 명령어를 하나만 던지세요.",
-        "code": "npx codymaster init",
-        "output": "✓ 초기 설치 완료\n✓ 30개 에이전트 인가 성공\n✓ 스탠바이 렛츠고!"
+        "title": "마켓플레이스 추가",
+        "description": "Claude Code에 Cody Master 플러그인 소스를 등록합니다.",
+        "code": "claude plugin marketplace add tody-agent/cody-master",
+        "output": "✓ 마켓플레이스 등록 완료: tody-agent/cody-master\n✓ 5개 스킬 번들 사용 가능"
       },
       {
-        "title": "상태 확인",
-        "description": "모든 에이전트가 돌아가고 있는지 점검합니다.",
-        "code": "codymaster status",
-        "output": "⚡ Cody Master 버전 v2.0\n📦 30 작동 이상 무\n✅ 언제든 환영"
+        "title": "스킬 번들 설치",
+        "description": "하나 또는 전체 5개 번들을 설치하세요. Engineering부터 시작하면 TDD, 디버깅, 품질 게이트를 바로 사용할 수 있습니다.",
+        "code": "claude plugin install cm-engineering@cody-master",
+        "output": "✓ cm-engineering 설치 완료\n📦 스킬: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ 추가 설치 가능: cm-operations, cm-product, cm-growth, cm-orchestration"
       },
       {
-        "title": "대화 돌입하기",
-        "description": "AI에게 필요한 것을 그냥 타이핑하시면 됩니다.",
-        "code": "codymaster chat \"우리집 빵집의 웹사이트 제작 부탁해\"",
-        "output": "🧠 가동 중... \n🎨 디자인 레이아웃 형성...\n💻 코드 제너레이션...\n✓ 퍼펙트!"
-      },
-      {
-        "title": "오픈 및 뽐내기",
-        "description": "한 번의 버튼 터치로 공용 인터넷에 등재.",
-        "code": "codymaster deploy",
-        "output": "🚀 클라우드플레어 퍼블리싱 중...\n✓ https://my-bakery-shop.pages.dev 라이브!"
+        "title": "확인 및 사용 시작",
+        "description": "설치된 번들을 확인하고 Claude Code를 열어 스킬을 사용해 보세요.",
+        "code": "claude plugin list",
+        "output": "✓ cm-engineering (스킬 5개)\n✓ 준비 완료 — 시도해 보기: cm-planning으로 새 기능 설계하기"
       }
     ],
     "copyButton": "복사하기",

@@ -2,6 +2,10 @@
 
 # CodyMaster Skills Kit v3.3.0 - Universal Installer
 # Supports: Claude Code, Gemini CLI, Cursor, Codex, OpenCode, and manual copy
+#
+# Non-interactive flags:
+#   --claude    Print Claude Code plugin install instructions and exit
+#   --all       Print instructions for all platforms and exit
 
 set -e
 
@@ -14,11 +18,59 @@ RED='\033[0;31m'
 NC='\033[0m'
 BOLD='\033[1m'
 
-REPO_URL="https://github.com/tody-agent/cody-master"
+REPO_URL="https://github.com/tody-agent/codymaster"
 VERSION="3.3.0"
 
 echo -e "${CYAN}${BOLD}🧠 CodyMaster Skills Platform v${VERSION}${NC}"
 echo -e "${CYAN}=====================================================${NC}"
+
+# ── Non-interactive flags ───────────────────────────────────────────────────
+if [[ "$1" == "--claude" ]]; then
+  echo ""
+  echo -e "${PURPLE}${BOLD}Claude Code — Plugin Marketplace Install${NC}"
+  echo ""
+  echo "Open Claude Code and run these commands:"
+  echo ""
+  echo -e "  ${BOLD}Step 1:${NC} Add the marketplace"
+  echo -e "  ${CYAN}claude plugin marketplace add tody-agent/cody-master${NC}"
+  echo ""
+  echo -e "  ${BOLD}Step 2:${NC} Install skill bundles"
+  echo -e "  ${CYAN}claude plugin install cm-engineering@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-operations@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-product@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-growth@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-orchestration@cody-master${NC}"
+  echo ""
+  echo -e "${GREEN}${BOLD}✅ Done!${NC} — 33+ skills available in Claude Code"
+  echo -e "Documentation: ${CYAN}https://codymaster.pages.dev/docs${NC}"
+  exit 0
+fi
+
+if [[ "$1" == "--all" ]]; then
+  echo ""
+  echo -e "${PURPLE}${BOLD}Claude Code:${NC}"
+  echo -e "  ${CYAN}claude plugin marketplace add tody-agent/cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-engineering@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-operations@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-product@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-growth@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin install cm-orchestration@cody-master${NC}"
+  echo ""
+  echo -e "${CYAN}${BOLD}Gemini CLI:${NC}"
+  echo -e "  ${CYAN}gemini extensions install ${REPO_URL}${NC}"
+  echo ""
+  echo -e "${BLUE}${BOLD}Cursor:${NC}"
+  echo -e "  ${CYAN}/add-plugin cody-master${NC}"
+  echo ""
+  echo -e "${ORANGE}${BOLD}Codex:${NC}"
+  echo -e "  Tell Codex: Fetch and follow ${REPO_URL}/raw/main/.codex/INSTALL.md"
+  echo ""
+  echo -e "${GREEN}${BOLD}✅ Done!${NC}"
+  echo -e "Documentation: ${CYAN}https://codymaster.pages.dev/docs${NC}"
+  exit 0
+fi
+
+# ── Interactive menu ────────────────────────────────────────────────────────
 echo ""
 echo "Select installation method:"
 echo ""

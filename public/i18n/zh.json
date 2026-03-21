@@ -1387,44 +1387,38 @@
   "startPage": {
     "meta": {
       "title": "开始使用 — Cody Master Kit",
-      "description": "30秒内安装并开始使用Cody Master。"
+      "description": "2分钟内在Claude Code中安装Cody Master，获得33+个AI技能。"
     },
-    "hero": "30秒快速上手",
-    "heroSub": "从零开始到打造您的首个AI产品 —— 请遵循以下步骤。",
+    "hero": "2分钟完成安装",
+    "heroSub": "Cody Master 是 Claude Code 插件 —— 无需 npm，无需额外工具。",
     "steps": [
       {
-        "title": "先决条件",
-        "description": "请确保您的电脑上已安装以下各项。",
+        "title": "安装 Claude Code",
+        "description": "Cody Master 是 Claude Code 插件，请先安装 Claude Code CLI。",
         "items": [
-          "VS Code 或 Cursor 编辑器",
-          "Node.js 18 或更高版本",
-          "终端命令行工具"
+          "从 claude.ai/code 下载 Claude Code",
+          "打开终端验证：claude --version",
+          "支持 Mac、Linux、Windows（WSL）"
         ],
-        "note": "没有安装Node.js？可前往 nodejs.org 免费下载安装。"
+        "note": "已有 Claude Code？直接跳到第 2 步。"
       },
       {
-        "title": "安装 Cody Master",
-        "description": "打开您的终端，将以下单行命令粘贴进去。",
-        "code": "npx codymaster init",
-        "output": "✓ 初始化 Cody Master Kit 完成\n✓ 成功加载 30 个技能\n✓ 准备就绪！"
+        "title": "添加技能市场",
+        "description": "在 Claude Code 中注册 Cody Master 插件源。",
+        "code": "claude plugin marketplace add tody-agent/cody-master",
+        "output": "✓ 市场已注册：tody-agent/cody-master\n✓ 5 个技能包已就绪"
       },
       {
-        "title": "验证安装",
-        "description": "检查一切是否工作正常。",
-        "code": "codymaster status",
-        "output": "⚡ Cody Master v2.0\n📦 30 技能已激活\n✅ 全部系统运行正常"
+        "title": "安装技能包",
+        "description": "安装一个或全部五个技能包。从 Engineering 开始，包含 TDD、调试和质量门禁。",
+        "code": "claude plugin install cm-engineering@cody-master",
+        "output": "✓ cm-engineering 安装完成\n📦 技能：cm-tdd、cm-debugging、cm-quality-gate、cm-code-review\n→ 还可安装：cm-operations、cm-product、cm-growth、cm-orchestration"
       },
       {
-        "title": "完成您的首次对话",
-        "description": "告诉AI您想构建什么。自然输入即可。",
-        "code": "codymaster chat \"为我的咖啡店创建一个带在线点单功能的落地页\"",
-        "output": "🧠 调用技能...\n🎨 正在设计布局...\n💻 开始生成代码...\n✓ 落地页构建完成！"
-      },
-      {
-        "title": "部署与分享",
-        "description": "您的作品已就绪。一键部署到互联网。",
-        "code": "codymaster deploy",
-        "output": "🚀 正在部署到 Cloudflare Pages...\n✓ https://my-coffee-shop.pages.dev 已上线运行！"
+        "title": "验证并开始使用",
+        "description": "检查已安装的技能包，然后打开 Claude Code 并请它使用某个技能。",
+        "code": "claude plugin list",
+        "output": "✓ cm-engineering（5 个技能）\n✓ 就绪 —— 试试：使用 cm-planning 设计我的新功能"
       }
     ],
     "copyButton": "复制",

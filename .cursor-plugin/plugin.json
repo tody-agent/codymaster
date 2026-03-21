@@ -6,8 +6,8 @@
     "name": "Tody Agent",
     "url": "https://codymaster.pages.dev"
   },
-  "homepage": "https://github.com/tody-agent/cody-master",
-  "repository": "https://github.com/tody-agent/cody-master",
+  "homepage": "https://github.com/tody-agent/codymaster",
+  "repository": "https://github.com/tody-agent/codymaster",
   "license": "MIT",
   "keywords": ["skills", "tdd", "debugging", "deployment", "design", "i18n", "content", "automation"]
 }

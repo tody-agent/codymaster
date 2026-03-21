@@ -38,7 +38,7 @@ cm dashboard start
 ```
 
 ```bash [Clone & Build]
-git clone https://github.com/omisocial/cody-master.git
+git clone https://github.com/tody-agent/codymaster.git
 cd cody-master && npm install && npm run build
 cm dashboard start
 ```
@@ -119,5 +119,5 @@ Browse the full skill library with complete documentation: **[Skills Library →
 ## Links
 
 - 🌐 [Main Website](https://codymaster.pages.dev)
-- 📦 [GitHub Repository](https://github.com/omisocial/cody-master)
+- 📦 [GitHub Repository](https://github.com/tody-agent/codymaster)
 - 📖 [How It Works](./how-it-work.md)

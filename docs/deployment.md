@@ -29,7 +29,7 @@ After installation, the following commands are available:
 ### Option 2: Clone & Build
 
 ```bash
-git clone https://github.com/omisocial/cody-master.git
+git clone https://github.com/tody-agent/codymaster.git
 cd cody-master
 npm install
 npm run build

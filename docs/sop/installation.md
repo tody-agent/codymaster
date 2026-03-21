@@ -1,164 +1,182 @@
 ---
 title: "Installation & Setup"
-description: "Step-by-step guide to install and configure Cody Master from scratch."
-keywords: ["installation", "setup", "cody master"]
+description: "Step-by-step guide to install Cody Master on Claude Code and other AI platforms."
+keywords: ["installation", "setup", "cody master", "claude code plugin"]
 robots: "index, follow"
 ---
 
 # Installation & Setup
 
 > **Quick Reference**
-> - **Time**: ~5 minutes
-> - **Prerequisites**: Node.js 18+, npm
+> - **Time**: ~2 minutes
+> - **Prerequisites**: Claude Code CLI (or another supported AI platform)
 > - **Difficulty**: Beginner
 
-## Prerequisites
+## Method 1: Claude Code (Recommended)
 
-| Tool | Version | Check |
-|------|---------|-------|
-| Node.js | 18+ | `node --version` |
-| npm | 9+ | `npm --version` |
-| Git | Any | `git --version` |
+Cody Master installs as a Claude Code plugin bundle — no npm, no separate server, nothing to maintain.
 
-## Step 1: Install Cody Master
+### Step 1: Add the Marketplace
 
-::: code-group
-
-```bash [npm (recommended)]
-npm install -g cody-master
-```
-
-```bash [From source]
-git clone https://github.com/omisocial/cody-master.git
-cd cody-master
-npm install
-npm run build
-npm link  # Makes 'cm' command available globally
-```
-
-:::
-
-**Verify installation:**
+Open your terminal and run:
 
 ```bash
-cm --version
-# Expected: 3.2.0 or later
+claude plugin marketplace add tody-agent/cody-master
 ```
 
-## Step 2: Initialize a Project
+### Step 2: Install Skill Bundles
 
-Navigate to your project directory and initialize:
+Install all 5 bundles (recommended) or pick only what you need:
 
 ```bash
-cd /path/to/your/project
-cm init
+claude plugin install cm-engineering@cody-master
+claude plugin install cm-operations@cody-master
+claude plugin install cm-product@cody-master
+claude plugin install cm-growth@cody-master
+claude plugin install cm-orchestration@cody-master
 ```
 
-This creates the working memory directory:
+| Bundle | Skills included |
+|--------|----------------|
+| `cm-engineering` | cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review |
+| `cm-operations` | cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-secret-shield, cm-safe-i18n |
+| `cm-product` | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap, jobs-to-be-done |
+| `cm-growth` | cm-content-factory, cm-ads-tracker, cro-methodology |
+| `cm-orchestration` | cm-execution, cm-continuity, cm-deep-search, cm-skill-chain, cm-skill-mastery, cm-how-it-work |
 
-```
-.cm/
-├── CONTINUITY.md      # Session state
-├── config.yaml        # RARV settings
-└── memory/
-    ├── learnings.json  # Error patterns
-    └── decisions.json  # Architecture decisions
-```
-
-## Step 3: Start the Dashboard
+### Step 3: Verify
 
 ```bash
-cm dashboard start
-# or simply
-cm open
+claude plugin list
 ```
 
-The Kanban dashboard opens at `http://codymaster.localhost:48120`
+You should see all 5 bundles listed as installed.
 
-## Step 4: Install Skills for Your AI Platform
+### One-Liner Alternative
+
+If you prefer to see all commands at once without navigating menus:
 
 ```bash
-# For Google Antigravity (Gemini)
-cm install cm-tdd --platform gemini
-
-# For Claude Code
-cm install cm-tdd --platform claude
-
-# For Cursor
-cm install cm-tdd --platform cursor
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
 ```
 
-## Step 5: Create Your First Task
+---
 
-::: code-group
-
-```bash [CLI]
-cm task add "Set up authentication" --priority high
-```
-
-```bash [Dashboard]
-# Open http://codymaster.localhost:48120
-# Click "+ Add Task" in the Backlog column
-```
-
-:::
-
-## Step 6: Dispatch to an AI Agent
+## Method 2: Gemini CLI
 
 ```bash
-# Assign agent and skill first
-cm task add "Fix login bug" --agent antigravity --skill cm-debugging --priority high
-
-# Then dispatch
-cm task dispatch <task-id>
+gemini extensions install https://github.com/tody-agent/codymaster
 ```
 
-## Verification
+To update later:
+```bash
+gemini extensions update cody-master
+```
 
-After setup, verify everything works:
+---
+
+## Method 3: Cursor
+
+In Cursor Agent chat, run:
+```
+/add-plugin cody-master
+```
+
+Or search for `cody-master` in the Cursor plugin marketplace.
+
+---
+
+## Method 4: Codex
+
+Tell Codex:
+```
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
+
+---
+
+## Method 5: Manual / Any Platform
+
+Clone the repo and copy skills directly:
 
 ```bash
-# Check status
-cm status
+# Clone once
+git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
 
-# Expected output:
-# 📊 Status Overview
-# Projects: 1
-# Tasks: 1
-# Dashboard: RUNNING at http://codymaster.localhost:48120
+# Copy to your platform's skills directory
+cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/    # Gemini
+cp -r ~/.cody-master/skills/* .gemini/skills/                  # Project-local
+cp -r ~/.cody-master/skills/* .cursor/skills/                  # Cursor
+cp -r ~/.cody-master/skills/* .codex/skills/                   # Codex
+cp -r ~/.cody-master/skills/* .opencode/skills/                # OpenCode
+```
+
+---
+
+## Using Skills After Installation
+
+Once installed, invoke any skill in Claude Code by name:
+
+```
+Use cm-planning to plan my new feature
+Run cm-tdd before I write the implementation
+Apply cm-quality-gate before we deploy
+```
+
+Or use the `/` shorthand that Claude Code registers for installed plugins.
+
+## Updating
+
+```bash
+# Claude Code
+claude plugin update cm-engineering@cody-master
+# (repeat for each bundle)
+
+# Gemini CLI
+gemini extensions update cody-master
 ```
 
 ## Troubleshooting
 
 <details>
-<summary><strong>❌ "cm: command not found"</strong></summary>
+<summary><strong>❌ "Plugin not found" or marketplace error</strong></summary>
 
-Ensure the npm global bin is in your PATH:
+Make sure your Claude Code CLI is up to date:
 
 ```bash
-export PATH="$(npm config get prefix)/bin:$PATH"
+claude --version
+# Should be 1.0 or later
 ```
 
-Add this to your `~/.zshrc` or `~/.bashrc`.
-
-</details>
-
-<details>
-<summary><strong>❌ Dashboard port already in use</strong></summary>
-
+Then retry:
 ```bash
-# Use a different port
-cm dashboard start --port 3001
+claude plugin marketplace add tody-agent/cody-master
 ```
 
 </details>
 
 <details>
-<summary><strong>❌ "No projects found"</strong></summary>
+<summary><strong>❌ Skill not activating</strong></summary>
 
+Try invoking explicitly:
+```
+Use the cm-planning skill for this task
+```
+
+Or check that the bundle containing the skill is installed:
 ```bash
-# Create a project first
-cm project add "My Project" --path /my/project
+claude plugin list
+```
+
+</details>
+
+<details>
+<summary><strong>❌ curl installer not working</strong></summary>
+
+Download and inspect the script manually:
+```bash
+curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh -o install.sh
+bash install.sh --claude
 ```
 
 </details>
@@ -166,5 +184,5 @@ cm project add "My Project" --path /my/project
 ## Next Steps
 
 - [Using Skills →](./skills-usage.md) — Learn how to invoke and customize skills
-- [Dashboard Guide →](./dashboard.md) — Master the Kanban board
-- [Skills Library →](../skills/) — Browse all 30+ available skills
+- [Skills Library →](../skills/) — Browse all 33+ available skills
+- [Dashboard Guide →](./dashboard.md) — Task tracking with the Kanban board

@@ -5,14 +5,14 @@
 Tell OpenCode:
 
 ```
-Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/cody-master/main/.opencode/INSTALL.md
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
 ```
 
 ## Manual Setup
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/tody-agent/cody-master.git ~/.cody-master
+git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
 ```
 
 2. Copy skills to your OpenCode skills directory:
