@@ -12,7 +12,8 @@
     "skills": "Skills",
     "story": "Our Story",
     "getStarted": "Get Started",
-    "demo": "Demo"
+    "demo": "Demo",
+    "brain": "Brain"
   },
   "hero": {
     "badge": "30+ AI Skills · Open Source · Free",
@@ -1340,6 +1341,46 @@
         "whenToUse": "Commencing complex localized bespoke automated functional Bot protocols handling niche organizational internal rulebook mechanics reliably.",
         "whyToUse": "Abolishes the agonizing friction reviewing sprawling expansive external platform documentation endlessly. Empowers copying an inherently robust foundation operational dynamically efficiently instantly.",
         "bestPractice": "Mechanically duplicate the target directory skeleton completely, comprehensively update structural naming taxonomies, and aggressively inject definitive proprietary context parameters efficiently prior to deployment."
+      },
+      {
+        "id": "cro-methodology",
+        "name": "cro-methodology",
+        "category": "Content",
+        "icon": "trending-up",
+        "tagline": "Conversion Rate Optimization",
+        "problem": "Landing pages getting traffic but visitors aren't converting — unclear why they leave?",
+        "solution": "Evidence-based CRO audit using the CRE Methodology: funnel mapping, visitor research, objection handling, and statistically rigorous A/B tests.",
+        "description": "Scientific, customer-centric CRO using the CRE Methodology — funnel mapping, persuasion assets, and A/B testing.",
+        "whatIsIt": "A systematic CRO audit engine based on the CRE Methodology. Scores pages 0-10, maps funnel blockers, identifies visitor objections, and designs evidence-based experiments.",
+        "whenToUse": "Use when a landing page, checkout flow, or funnel is underperforming. Activates on: 'conversion rate', 'A/B test', 'why visitors leave', 'objection handling'.",
+        "whyToUse": "Random optimization fails. This skill forces visitor research before changing anything, ensuring every test is based on evidence rather than opinion.",
+        "prompt": "Audit my landing page for conversion issues",
+        "bestPractice": "Always research WHY visitors leave before testing solutions. Evidence from surveys, heatmaps, and session recordings beats best practices every time.",
+        "related": [
+          "cm-ads-tracker",
+          "cm-ux-master",
+          "cm-content-factory"
+        ]
+      },
+      {
+        "id": "jobs-to-be-done",
+        "name": "jobs-to-be-done",
+        "category": "Ideation",
+        "icon": "users",
+        "tagline": "Customer Discovery (JTBD)",
+        "problem": "Building features users don't care about because you're guessing what they actually want?",
+        "solution": "JTBD Switch Interviews + Canvas to uncover the functional, social, and emotional jobs customers hire your product to do.",
+        "description": "Customer discovery using Jobs-To-Be-Done theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring.",
+        "whatIsIt": "A structured customer discovery framework using JTBD theory. Runs Switch Interviews, builds job canvases, and scores outcome metrics to find underserved needs.",
+        "whenToUse": "Use before designing new features, when existing features aren't used, or when validating product-market fit. Activates on: 'customer discovery', 'JTBD', 'what do customers want'.",
+        "whyToUse": "People don't buy products — they hire them to get a job done. Understanding the job reveals what to build and what competitors you're actually fighting.",
+        "prompt": "Help me understand what job my users are hiring my product to do",
+        "bestPractice": "Focus on the Switch Interview: ask about the moment they decided to switch/buy, not hypotheticals. Past behavior beats future intent every time.",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-planning",
+          "cro-methodology"
+        ]
       }
     ]
   },
@@ -2070,6 +2111,132 @@
       "title": "Ready to solve your biggest\nproduct challenge?",
       "subtitle": "Pick your persona. Choose your use case. Start building.",
       "button": "Get Started Now →"
+    }
+  },
+  "brainPage": {
+    "hero": {
+      "badge": "Neuroscience × AI Engineering",
+      "title": "Smart brain, <span class=\"brain-hero__highlight\">self-learning.</span> Not a <span class=\"brain-hero__strike\">goldfish brain.</span>",
+      "subtitle": "CodyMaster is the only AI with <strong>smart memory</strong> inspired by neuroscience. Remembers past mistakes, forgets what's irrelevant, self-repairs when memory causes bugs. No repeating errors. No losing context. Doesn't get dumber over time."
+    },
+    "problem": {
+      "label": "THE PROBLEM",
+      "title": "AI Without Memory = Disaster",
+      "subtitle": "Most AI tools have a \"goldfish brain\" — every session starts from zero.",
+      "cards": [
+        {
+          "title": "Repeating the Same Mistakes",
+          "desc": "Fixed CORS once? It'll break it the exact same way next time. Zero learning."
+        },
+        {
+          "title": "Contradicting Itself",
+          "desc": "Session 1: \"Use REST.\" Session 2: \"Use GraphQL.\" No consistency, conflicting decisions."
+        },
+        {
+          "title": "Burning Tokens",
+          "desc": "Re-explaining the same project context every session = wasting tokens and money."
+        }
+      ]
+    },
+    "tiers": {
+      "label": "THREE-TIER MEMORY",
+      "title": "Our brain knows what to remember,\nwhat to forget, and what to keep forever.",
+      "subtitle": "Inspired by neuroscience: different memories have different lifespans.",
+      "cards": [
+        {
+          "title": "Sensory Memory",
+          "meta": "⏱ Seconds — Not stored",
+          "desc": "Temporary info within 1 command: \"file X has 200 lines.\" Forgotten immediately.",
+          "analogy": "🧠 Like hearing a phone number once — gone instantly"
+        },
+        {
+          "title": "Working Memory",
+          "meta": "⏱ 7 days — CONTINUITY.md",
+          "desc": "\"Currently fixing auth, goal is deploy.\" Remembers what you're thinking and doing.",
+          "analogy": "🧠 Like your grocery list today — needed now"
+        },
+        {
+          "title": "Long-Term Memory",
+          "meta": "⏱ 30–180 days — learnings.json",
+          "desc": "\"CORS error due to missing proxy.\" Lasting lessons — kept only if reinforced ≥ 2 times.",
+          "analogy": "🧠 Like riding a bike — never forgotten"
+        }
+      ]
+    },
+    "decay": {
+      "label": "EBBINGHAUS FORGETTING CURVE",
+      "title": "Forget smart, not forget everything.",
+      "subtitle": "Learnings not reinforced naturally expire. Reinforced ones last longer. Like the human brain."
+    },
+    "heal": {
+      "label": "SELF-HEALING MEMORY",
+      "title": "If memory causes bugs,\nit fixes itself.",
+      "subtitle": "Before debugging, CodyMaster checks whether its own memory is the source of the problem.",
+      "steps": [
+        {
+          "title": "Bug Detected",
+          "desc": "Test fails, deploy errors, or unexpected behavior detected."
+        },
+        {
+          "title": "Suspect Memory",
+          "desc": "Before blaming code, check: is outdated learning causing this?"
+        },
+        {
+          "title": "Investigate",
+          "desc": "Cross-reference learnings with actual codebase. Find conflicts."
+        },
+        {
+          "title": "Heal & Update",
+          "desc": "Delete or update wrong memory. Log the correction. Prevent loops."
+        }
+      ]
+    },
+    "compare": {
+      "label": "COMPARISON",
+      "title": "Standard AI vs CodyMaster Brain",
+      "headers": {
+        "scenario": "Scenario",
+        "standard": "🐟 Standard AI",
+        "brain": "🧠 CodyMaster Brain"
+      },
+      "rows": [
+        {
+          "scenario": "CORS error — fixed before",
+          "standard": "Tries from scratch again",
+          "brain": "Remembers exact fix → applies instantly"
+        },
+        {
+          "scenario": "New session starts",
+          "standard": "Forgets everything",
+          "brain": "Loads CONTINUITY.md → full context"
+        },
+        {
+          "scenario": "Outdated knowledge",
+          "standard": "Uses forever, causes bugs",
+          "brain": "Smart decay → auto-expires"
+        },
+        {
+          "scenario": "Memory causes bug",
+          "standard": "Infinite bug loop",
+          "brain": "Self-heals → updates memory"
+        },
+        {
+          "scenario": "50+ learnings exist",
+          "standard": "Loads all → slow & confused",
+          "brain": "Scope filter → loads only 2 relevant"
+        }
+      ]
+    },
+    "scope": {
+      "label": "SCOPE FILTERING",
+      "title": "Load only what matters.\nSave tokens, stay accurate.",
+      "subtitle": "Each learning is tagged (global, module:auth, file:routes.ts). Only relevant memories are loaded per task."
+    },
+    "cta": {
+      "title": "Give your AI a real brain.",
+      "subtitle": "AI without memory = goldfish that talks. CodyMaster Brain turns AI into a colleague who remembers, learns fast, and never repeats the same mistakes.",
+      "button": "Experience Brain Now",
+      "backHome": "← Back to Home"
     }
   }
 }

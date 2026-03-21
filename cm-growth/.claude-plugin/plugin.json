@@ -1,0 +1,12 @@
+{
+  "name": "cm-growth",
+  "version": "3.3.0",
+  "description": "Growth and marketing skills: AI content factory with multi-agent support, ad tracking setup (Facebook/Meta Pixel, TikTok Events API, Google Ads Enhanced Conversions), and CRO methodology with A/B testing.",
+  "author": {
+    "name": "Tody Agent",
+    "url": "https://codymaster.pages.dev"
+  },
+  "keywords": ["content", "marketing", "ads", "tracking", "cro", "growth-hacking"],
+  "homepage": "https://codymaster.pages.dev",
+  "license": "MIT"
+}

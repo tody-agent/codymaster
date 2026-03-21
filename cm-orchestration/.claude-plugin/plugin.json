@@ -1,0 +1,12 @@
+{
+  "name": "cm-orchestration",
+  "version": "3.3.0",
+  "description": "Orchestration and meta skills: execution modes (batch, parallel, subagent, RARV), working memory across sessions, skill chaining pipelines, progressive skill discovery, and skill creation mastery.",
+  "author": {
+    "name": "Tody Agent",
+    "url": "https://codymaster.pages.dev"
+  },
+  "keywords": ["orchestration", "execution", "memory", "workflow", "automation", "meta"],
+  "homepage": "https://codymaster.pages.dev",
+  "license": "MIT"
+}

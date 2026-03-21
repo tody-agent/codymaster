@@ -1,0 +1,1 @@
+../../commands/debug.md

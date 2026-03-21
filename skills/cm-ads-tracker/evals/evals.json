@@ -1,0 +1,55 @@
+{
+  "skill_name": "cm-ads-tracker",
+  "test_data_only": true,
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Tôi cần setup tracking cho shop bán quần áo online của tôi. Tôi đang chạy quảng cáo Facebook và TikTok, website dùng WordPress + WooCommerce. Pixel Facebook của tôi là 1234567890123456, TikTok Pixel ID là C8ABC12345DEF, GTM container là GTM-XWQR456. Tôi muốn track: mua hàng (purchase), thêm vào giỏ (add to cart), xem sản phẩm, và điền form liên hệ. Mục tiêu là biết kênh nào đem về doanh thu nhiều nhất, và xử lý được trường hợp khách click cả 2 kênh trước khi mua.",
+      "expected_output": "Complete tracking strategy document with: GTM tags/triggers/variables for Facebook + TikTok, event mapping table for all 4 conversion events, first-touch + last-touch attribution setup, cross-channel deduplication via order_id, UTM naming convention for both platforms, WooCommerce dataLayer push specifications, implementation checklist",
+      "files": [],
+      "expectations": [
+        "Document includes Facebook Pixel ID 1234567890123456 and TikTok Pixel ID C8ABC12345DEF",
+        "Document includes GTM container configuration with at least 4 conversion tags (Purchase, AddToCart, ViewContent, Lead)",
+        "Document explains first-touch cookie storage mechanism",
+        "Document addresses cross-channel attribution deduplication using order_id or event_id",
+        "Document includes UTM naming convention table for Facebook and TikTok",
+        "Document includes WooCommerce-specific dataLayer.push specifications",
+        "Document includes a QA/implementation checklist",
+        "Document is saved as a file (docx or md) in the workspace"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Help me set up Google Ads and Facebook tracking for my lead generation website. It's a custom HTML site for a real estate company. I have: Google Ads Conversion ID = AW-9876543210 with label = AbCdEfGhIj, Facebook Pixel = 9988776655443322, no GTM yet. Main conversions: phone call clicks, contact form submissions, and 'schedule a tour' button clicks. I want to understand which campaigns bring the most qualified leads and handle the case where the same lead converts through both Google and Facebook campaigns.",
+      "expected_output": "Full tracking strategy with GTM setup from scratch, Google Ads + Facebook event configuration, phone call click tracking setup, form submission tracking, cross-platform lead deduplication strategy, attribution comparison between Google and Facebook for lead gen, UTM conventions",
+      "files": [],
+      "expectations": [
+        "Document includes Google Ads Conversion ID AW-9876543210 and Facebook Pixel ID 9988776655443322",
+        "Document covers GTM installation from scratch (container snippet placement)",
+        "Document includes phone call click tracking setup (click trigger on tel: links)",
+        "Document includes form submission tracking for contact form and schedule tour button",
+        "Document addresses lead deduplication across Google and Facebook",
+        "Document includes lead gen specific attribution window recommendations",
+        "Document includes UTM naming conventions for Google Search and Facebook campaigns",
+        "Document is saved as a file in the workspace"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Tôi đang chạy quảng cáo trên Facebook, TikTok, Google Ads và cả Zalo Ads cho website landing page bán khóa học online (Shopify). GTM: GTM-KLP987, Facebook Pixel: 1122334455667788, TikTok: BCP98765QWER, Google Ads: AW-1122334455/XyZabc123, GA4: G-ABCD1234. Tôi muốn biết: kênh nào khách biết đến đầu tiên (first touch), kênh nào chốt sale (last touch), và cách xử lý khi khách click quảng cáo từ nhiều kênh trước khi mua. Conversion chính: mua khóa học, đăng ký trial, và xem trang pricing.",
+      "expected_output": "Multi-platform tracking strategy with all 5 platforms (FB, TikTok, Google Ads, Zalo, GA4), full attribution model including first-touch cookie, last-touch standard, cross-channel deduplication, Shopify-specific implementation notes, event taxonomy for course business (Purchase, Trial Signup, ViewContent for pricing), UTM conventions for all 4 ad platforms",
+      "files": [],
+      "expectations": [
+        "Document includes all provided tracking IDs: GTM-KLP987, Facebook Pixel 1122334455667788, TikTok BCP98765QWER, Google Ads AW-1122334455, GA4 G-ABCD1234",
+        "Document covers first-touch attribution via first-party cookie mechanism",
+        "Document covers last-touch attribution approach",
+        "Document addresses multi-platform overlap/deduplication scenario",
+        "Document mentions Shopify-specific implementation considerations",
+        "Document includes UTM naming conventions for all 4 ad platforms including Zalo Ads",
+        "Document includes event taxonomy for online course business (Purchase, Trial, ViewContent)",
+        "Document addresses GA4 integration alongside paid platform tracking",
+        "Document is saved as a file in the workspace"
+      ]
+    }
+  ]
+}

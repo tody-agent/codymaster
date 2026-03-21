@@ -1,0 +1,12 @@
+{
+  "name": "cm-product",
+  "version": "3.3.0",
+  "description": "Product design and planning skills: brainstorming with Design Thinking + TRIZ, UX/UI design intelligence (48 UX Laws, 37 Design Tests), AI-powered UI preview, project bootstrap, documentation generation, and audio reading mode.",
+  "author": {
+    "name": "Tody Agent",
+    "url": "https://codymaster.pages.dev"
+  },
+  "keywords": ["planning", "ux", "ui", "design", "brainstorming", "documentation", "bootstrap"],
+  "homepage": "https://codymaster.pages.dev",
+  "license": "MIT"
+}

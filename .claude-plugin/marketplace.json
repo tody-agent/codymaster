@@ -1,0 +1,42 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "cody-master",
+  "version": "3.3.0",
+  "description": "Universal AI agent skills framework: TDD, debugging, deployment, design, i18n, content — 30+ skills in 5 domains. One install = senior engineer discipline for your coding agent.",
+  "owner": {
+    "name": "Tody Agent",
+    "url": "https://codymaster.pages.dev"
+  },
+  "plugins": [
+    {
+      "name": "cm-engineering",
+      "description": "Engineering discipline skills: TDD, debugging, quality gates, test infrastructure, and code review — enforce Red-Green-Refactor and 6-gate verification.",
+      "source": "./cm-engineering",
+      "category": "software-development"
+    },
+    {
+      "name": "cm-operations",
+      "description": "Operations and deployment skills: multi-gate deploy pipeline, identity guard, git worktrees, terminal safety, secret scanning, and i18n extraction.",
+      "source": "./cm-operations",
+      "category": "software-development"
+    },
+    {
+      "name": "cm-product",
+      "description": "Product design and planning skills: brainstorming, UX/UI design, project bootstrap, documentation generation, and audio reading mode.",
+      "source": "./cm-product",
+      "category": "software-development"
+    },
+    {
+      "name": "cm-growth",
+      "description": "Growth and marketing skills: AI content factory, ad tracking setup (Facebook/TikTok/Google), and CRO methodology.",
+      "source": "./cm-growth",
+      "category": "marketing"
+    },
+    {
+      "name": "cm-orchestration",
+      "description": "Orchestration and meta skills: execution modes, working memory, skill chaining, progressive skill index, and skill mastery.",
+      "source": "./cm-orchestration",
+      "category": "software-development"
+    }
+  ]
+}

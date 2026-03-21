@@ -12,7 +12,8 @@
     "skills": "Kỹ năng",
     "story": "Câu chuyện",
     "getStarted": "Bắt đầu",
-    "demo": "Demo"
+    "demo": "Demo",
+    "brain": "Brain"
   },
   "hero": {
     "badge": "30+ AI Skills · Mã nguồn mở · Miễn phí",
@@ -1340,6 +1341,46 @@
         "whenToUse": "Lập trình viên viết Bot chuyên ngành (Ví dụ: Bot check thuế, Bot review đơn hàng kế toán).",
         "whyToUse": "Chỉ mất 2 phút copy cái ruột cấu trúc là đủ biến Claude/Cursor thành thiên tài nghiệp vụ nhà bạn thay vì phải dạy nó từ đầu tới cuối.",
         "bestPractice": "Clone thư mục này, sửa SKILL.md với dòng mô tả rõ mục đích vào rồi gọi tên nó đi làm."
+      },
+      {
+        "id": "cro-methodology",
+        "name": "cro-methodology",
+        "category": "Nội dung",
+        "icon": "trending-up",
+        "tagline": "Tối ưu Tỷ lệ Chuyển đổi",
+        "problem": "Landing page có traffic nhưng khách không convert — không biết tại sao họ rời đi?",
+        "solution": "Audit CRO dựa trên bằng chứng theo CRE Methodology: vẽ funnel, nghiên cứu khách truy cập, xử lý phản đối, và A/B test theo đúng quy trình thống kê.",
+        "description": "CRO khoa học, lấy khách hàng làm trung tâm — vẽ funnel, phân tích thuyết phục, A/B test.",
+        "whatIsIt": "Engine audit CRO hệ thống dựa trên CRE Methodology. Chấm điểm trang 0-10, xác định điểm chặn funnel, tìm hiểu phản đối của khách và thiết kế thử nghiệm.",
+        "whenToUse": "Dùng khi landing page, checkout hoặc funnel hoạt động kém. Kích hoạt với: 'tỷ lệ chuyển đổi', 'A/B test', 'khách rời đi', 'xử lý phản đối'.",
+        "whyToUse": "Tối ưu ngẫu nhiên thất bại. Skill này buộc phải nghiên cứu lý do khách rời đi trước khi thay đổi bất cứ điều gì.",
+        "prompt": "Audit landing page của tôi về vấn đề chuyển đổi",
+        "bestPractice": "Luôn nghiên cứu TẠI SAO khách rời đi trước khi test giải pháp. Bằng chứng từ survey và heatmap quan trọng hơn best practices.",
+        "related": [
+          "cm-ads-tracker",
+          "cm-ux-master",
+          "cm-content-factory"
+        ]
+      },
+      {
+        "id": "jobs-to-be-done",
+        "name": "jobs-to-be-done",
+        "category": "Ý tưởng",
+        "icon": "users",
+        "tagline": "Customer Discovery (JTBD)",
+        "problem": "Xây dựng tính năng người dùng không quan tâm vì bạn đang đoán mò họ thực sự muốn gì?",
+        "solution": "JTBD Switch Interviews + Canvas để tìm ra công việc chức năng, xã hội và cảm xúc mà khách thuê sản phẩm của bạn để làm.",
+        "description": "Customer discovery bằng lý thuyết Jobs-To-Be-Done — Switch Interviews, JTBD Canvas và Opportunity Scoring.",
+        "whatIsIt": "Framework customer discovery có cấu trúc dùng lý thuyết JTBD. Chạy Switch Interviews, xây canvas, và chấm điểm outcome để tìm nhu cầu chưa được đáp ứng.",
+        "whenToUse": "Dùng trước khi thiết kế tính năng mới, khi tính năng hiện tại không được dùng. Kích hoạt với: 'customer discovery', 'JTBD', 'khách hàng muốn gì'.",
+        "whyToUse": "Người dùng không mua sản phẩm — họ thuê chúng để hoàn thành một công việc. Hiểu công việc đó cho thấy nên xây gì.",
+        "prompt": "Giúp tôi hiểu công việc người dùng thuê sản phẩm của tôi để làm",
+        "bestPractice": "Tập trung vào Switch Interview: hỏi về khoảnh khắc họ quyết định chuyển đổi/mua, không hỏi giả thuyết. Hành vi quá khứ luôn quan trọng hơn ý định tương lai.",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-planning",
+          "cro-methodology"
+        ]
       }
     ]
   },
@@ -2070,6 +2111,132 @@
       "title": "Sẵn sàng giải quyết thách thức\nsản phẩm lớn nhất?",
       "subtitle": "Chọn persona. Chọn use case. Bắt đầu xây dựng.",
       "button": "Bắt Đầu Ngay →"
+    }
+  },
+  "brainPage": {
+    "hero": {
+      "badge": "Khoa Học Thần Kinh × AI Engineering",
+      "title": "Não xịn, <span class=\"brain-hero__highlight\">tự học hỏi.</span> Không phải <span class=\"brain-hero__strike\">não cá vàng.</span>",
+      "subtitle": "CodyMaster là AI duy nhất có <strong>bộ nhớ thông minh</strong> lấy cảm hứng từ khoa học thần kinh. Nhớ lỗi cũ, quên thứ không cần, tự sửa khi memory sai."
+    },
+    "problem": {
+      "label": "VẤN ĐỀ",
+      "title": "AI Không Có Não = Thảm Họa",
+      "subtitle": "Hầu hết AI có \"não cá vàng\" — mỗi session bắt đầu từ số 0.",
+      "cards": [
+        {
+          "title": "Lặp Đi Lặp Lại Lỗi Cũ",
+          "desc": "Fix CORS xong? Lần sau nó lại phá y hệt. Không học được gì."
+        },
+        {
+          "title": "Tự Mâu Thuẫn",
+          "desc": "Session 1: \"Dùng REST.\" Session 2: \"Dùng GraphQL.\" Mâu thuẫn kiến trúc."
+        },
+        {
+          "title": "Đốt Token",
+          "desc": "Giải thích lại context dự án mỗi session = tốn token và tiền."
+        }
+      ]
+    },
+    "tiers": {
+      "label": "BỘ NHỚ 3 TẦNG",
+      "title": "Não biết cái gì cần nhớ,\ncái gì nên quên, cái gì nhớ suốt đời.",
+      "subtitle": "Lấy cảm hứng từ khoa học thần kinh: bộ nhớ khác nhau có tuổi thọ khác nhau.",
+      "cards": [
+        {
+          "title": "Sensory Memory",
+          "meta": "⏱ Vài giây — Không lưu",
+          "desc": "Thông tin tạm trong 1 lệnh. Quên ngay.",
+          "analogy": "🧠 Giống nghe số điện thoại rồi quên liền"
+        },
+        {
+          "title": "Working Memory",
+          "meta": "⏱ 7 ngày — CONTINUITY.md",
+          "desc": "\"Đang fix auth, goal là deploy.\" Nhớ cái đang nghĩ, đang làm.",
+          "analogy": "🧠 Giống nhớ danh sách mua đồ hôm nay"
+        },
+        {
+          "title": "Long-Term Memory",
+          "meta": "⏱ 30-180 ngày — learnings.json",
+          "desc": "\"Lỗi CORS do thiếu proxy config.\" Kinh nghiệm lâu dài — chỉ giữ nếu lặp lại ≥ 2 lần.",
+          "analogy": "🧠 Giống nhớ cách đi xe đạp — không quên"
+        }
+      ]
+    },
+    "decay": {
+      "label": "ĐƯỜNG CONG QUÊN EBBINGHAUS",
+      "title": "Quên thông minh, không phải quên hết.",
+      "subtitle": "Learning không lặp sẽ tự hết hạn. Learning lặp nhiều lần nhớ lâu hơn. Giống não người."
+    },
+    "heal": {
+      "label": "TỰ SỬA SAI",
+      "title": "Nếu memory gây bug,\nnó tự sửa.",
+      "subtitle": "Trước khi debug, CodyMaster kiểm tra memory có phải nguồn gốc vấn đề không.",
+      "steps": [
+        {
+          "title": "Phát Hiện Bug",
+          "desc": "Test fail, deploy lỗi, behavior bất thường."
+        },
+        {
+          "title": "Nghi Ngờ Memory",
+          "desc": "Trước khi đổ lỗi code: có learning cũ gây ra bug?"
+        },
+        {
+          "title": "Điều Tra",
+          "desc": "So sánh learnings với codebase. Tìm mâu thuẫn."
+        },
+        {
+          "title": "Chữa Lành",
+          "desc": "Xóa hoặc cập nhật memory sai. Ghi log. Ngăn loop."
+        }
+      ]
+    },
+    "compare": {
+      "label": "SO SÁNH",
+      "title": "AI Thường vs CodyMaster Brain",
+      "headers": {
+        "scenario": "Tình huống",
+        "standard": "🐟 AI Thường",
+        "brain": "🧠 CodyMaster Brain"
+      },
+      "rows": [
+        {
+          "scenario": "Lỗi CORS — đã fix trước đó",
+          "standard": "Làm lại từ đầu",
+          "brain": "Nhớ cách fix → áp dụng ngay"
+        },
+        {
+          "scenario": "Session mới bắt đầu",
+          "standard": "Quên hết",
+          "brain": "Load CONTINUITY.md → đầy đủ context"
+        },
+        {
+          "scenario": "Kiến thức cũ",
+          "standard": "Dùng mãi, gây bug",
+          "brain": "Smart decay → tự hết hạn"
+        },
+        {
+          "scenario": "Memory gây bug",
+          "standard": "Vòng lặp bug vô tận",
+          "brain": "Tự chữa → cập nhật memory"
+        },
+        {
+          "scenario": "Có 50+ learnings",
+          "standard": "Load hết → chậm & rối",
+          "brain": "Scope filter → load 2 cái liên quan"
+        }
+      ]
+    },
+    "scope": {
+      "label": "LỌC PHẠM VI",
+      "title": "Chỉ load cái cần thiết.\nTiết kiệm token, chính xác hơn.",
+      "subtitle": "Mỗi learning được gắn tag. Chỉ load memory liên quan."
+    },
+    "cta": {
+      "title": "Cho AI bộ não xịn.",
+      "subtitle": "AI không có memory = cá vàng biết nói. CodyMaster Brain biến AI thành đồng nghiệp nhớ dai, học nhanh.",
+      "button": "Trải Nghiệm Brain Ngay",
+      "backHome": "← Về Trang Chủ"
     }
   }
 }

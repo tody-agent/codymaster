@@ -24,29 +24,46 @@
     </a>
 
     <ul class="nav__links" id="navLinks">
+      <li><a href="brain.html" class="nav__link nav__link--brain"><i data-lucide="brain"></i> <span data-i18n="nav.brain">Brain</span></a></li>
       <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
-      <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
       <li><a href="demo.html" class="nav__link" data-i18n="nav.demo">Demo</a></li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
+      <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
+      <li>
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
+            <span class="lang-btn-icon">🌍</span>
+            <span class="lang-btn-text" id="lang-btn-text">EN</span>
+            <span class="lang-btn-caret">▾</span>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
+          </div>
+        </div>
+      </li>
+      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
     </ul>
 
-    <!-- Language Switcher -->
-    <div class="lang-switcher">
-      <button id="lang-toggle" class="lang-toggle" aria-haspopup="true" aria-expanded="false">
-        <i data-lucide="globe" style="width:16px;height:16px"></i>
-        <span id="lang-btn-text">EN</span>
-        <i data-lucide="chevron-down" style="width:14px;height:14px"></i>
-      </button>
-      <div id="lang-menu" class="lang-menu" role="menu">
-        <button class="lang-option active" data-lang="en" role="menuitem">🇬🇧 English</button>
-        <button class="lang-option" data-lang="vi" role="menuitem">🇻🇳 Tiếng Việt</button>
-      </div>
-    </div>
-
-    <a href="start.html" class="nav__cta" data-i18n="nav.cta">Get Started</a>
-    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+    <div class="nav__hamburger" id="hamburger">
       <span></span><span></span><span></span>
-    </button>
+    </div>
   </nav>
 
   <!-- ═══════════╗ PERSONA HERO ╔═══════════ -->

@@ -12,7 +12,8 @@
     "skills": "कौशल",
     "story": "हमारी कहानी",
     "getStarted": "शुरू करें",
-    "demo": "डेमो"
+    "demo": "डेमो",
+    "brain": "ब्रेन"
   },
   "hero": {
     "badge": "30+ AI कौशल · ओपन-सोर्स · मुफ़्त",
@@ -1340,6 +1341,46 @@
         "whenToUse": "Commencing complex localized bespoke automated functional Bot protocols handling niche organizational internal rulebook mechanics reliably.",
         "whyToUse": "Abolishes the agonizing friction reviewing sprawling expansive external platform documentation endlessly. Empowers copying an inherently robust foundation operational dynamically efficiently instantly.",
         "bestPractice": "Mechanically duplicate the target directory skeleton completely, comprehensively update structural naming taxonomies, and aggressively inject definitive proprietary context parameters efficiently prior to deployment."
+      },
+      {
+        "id": "cro-methodology",
+        "name": "cro-methodology",
+        "category": "Content",
+        "icon": "trending-up",
+        "tagline": "Conversion Rate Optimization",
+        "problem": "Landing pages getting traffic but visitors aren't converting — unclear why they leave?",
+        "solution": "Evidence-based CRO audit using the CRE Methodology: funnel mapping, visitor research, objection handling, and statistically rigorous A/B tests.",
+        "description": "Scientific, customer-centric CRO using the CRE Methodology — funnel mapping, persuasion assets, and A/B testing.",
+        "whatIsIt": "A systematic CRO audit engine based on the CRE Methodology. Scores pages 0-10, maps funnel blockers, identifies visitor objections, and designs evidence-based experiments.",
+        "whenToUse": "Use when a landing page, checkout flow, or funnel is underperforming. Activates on: 'conversion rate', 'A/B test', 'why visitors leave', 'objection handling'.",
+        "whyToUse": "Random optimization fails. This skill forces visitor research before changing anything, ensuring every test is based on evidence rather than opinion.",
+        "prompt": "Audit my landing page for conversion issues",
+        "bestPractice": "Always research WHY visitors leave before testing solutions. Evidence from surveys, heatmaps, and session recordings beats best practices every time.",
+        "related": [
+          "cm-ads-tracker",
+          "cm-ux-master",
+          "cm-content-factory"
+        ]
+      },
+      {
+        "id": "jobs-to-be-done",
+        "name": "jobs-to-be-done",
+        "category": "Ideation",
+        "icon": "users",
+        "tagline": "Customer Discovery (JTBD)",
+        "problem": "Building features users don't care about because you're guessing what they actually want?",
+        "solution": "JTBD Switch Interviews + Canvas to uncover the functional, social, and emotional jobs customers hire your product to do.",
+        "description": "Customer discovery using Jobs-To-Be-Done theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring.",
+        "whatIsIt": "A structured customer discovery framework using JTBD theory. Runs Switch Interviews, builds job canvases, and scores outcome metrics to find underserved needs.",
+        "whenToUse": "Use before designing new features, when existing features aren't used, or when validating product-market fit. Activates on: 'customer discovery', 'JTBD', 'what do customers want'.",
+        "whyToUse": "People don't buy products — they hire them to get a job done. Understanding the job reveals what to build and what competitors you're actually fighting.",
+        "prompt": "Help me understand what job my users are hiring my product to do",
+        "bestPractice": "Focus on the Switch Interview: ask about the moment they decided to switch/buy, not hypotheticals. Past behavior beats future intent every time.",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-planning",
+          "cro-methodology"
+        ]
       }
     ]
   },
@@ -2070,6 +2111,132 @@
       "title": "Ready to solve your biggest\nproduct challenge?",
       "subtitle": "Pick your persona. Choose your use case. Start building.",
       "button": "Get Started Now →"
+    }
+  },
+  "brainPage": {
+    "hero": {
+      "badge": "तंत्रिका विज्ञान × AI इंजीनियरिंग",
+      "title": "स्मार्ट ब्रेन, <span class=\"brain-hero__highlight\">सेल्फ-लर्निंग।</span> <span class=\"brain-hero__strike\">गोल्डफिश ब्रेन</span> नहीं।",
+      "subtitle": "CodyMaster एकमात्र AI है जिसमें <strong>स्मार्ट मेमोरी</strong> है।"
+    },
+    "problem": {
+      "label": "समस्या",
+      "title": "बिना मेमोरी AI = आपदा",
+      "subtitle": "अधिकांश AI में \"गोल्डफिश ब्रेन\" — हर सेशन शून्य से।",
+      "cards": [
+        {
+          "title": "वही गलतियाँ",
+          "desc": "CORS ठीक किया? अगली बार वही तरीके से तोड़ेगा।"
+        },
+        {
+          "title": "विरोधाभास",
+          "desc": "सेशन 1: \"REST।\" सेशन 2: \"GraphQL।\""
+        },
+        {
+          "title": "टोकन बर्बादी",
+          "desc": "हर सेशन कॉन्टेक्स्ट = बर्बादी।"
+        }
+      ]
+    },
+    "tiers": {
+      "label": "तीन-स्तरीय मेमोरी",
+      "title": "ब्रेन जानता है क्या याद रखना है,\nक्या भूलना है, क्या हमेशा रखना है।",
+      "subtitle": "तंत्रिका विज्ञान से प्रेरित।",
+      "cards": [
+        {
+          "title": "सेंसरी मेमोरी",
+          "meta": "⏱ सेकंड — स्टोर नहीं",
+          "desc": "अस्थायी जानकारी।",
+          "analogy": "🧠 फोन नंबर सुनना — तुरंत भूलना"
+        },
+        {
+          "title": "वर्किंग मेमोरी",
+          "meta": "⏱ 7 दिन — CONTINUITY.md",
+          "desc": "\"Auth ठीक कर रहा, लक्ष्य deploy।\"",
+          "analogy": "🧠 आज की खरीदारी सूची"
+        },
+        {
+          "title": "लॉन्ग-टर्म",
+          "meta": "⏱ 30-180 दिन — learnings.json",
+          "desc": "\"CORS त्रुटि proxy से।\" स्थायी सबक।",
+          "analogy": "🧠 साइकिल चलाना — कभी नहीं भूलते"
+        }
+      ]
+    },
+    "decay": {
+      "label": "एबिंगहॉस वक्र",
+      "title": "स्मार्ट तरीके से भूलो।",
+      "subtitle": "दोहराई न गई सीख समाप्त। बार-बार दोहराई गई लंबे समय तक।"
+    },
+    "heal": {
+      "label": "स्व-उपचार",
+      "title": "अगर मेमोरी बग बनाती है,\nखुद ठीक करती है।",
+      "subtitle": "डीबगिंग से पहले मेमोरी जांचता है।",
+      "steps": [
+        {
+          "title": "बग मिला",
+          "desc": "टेस्ट फेल, डिप्लॉय एरर।"
+        },
+        {
+          "title": "मेमोरी संदेह",
+          "desc": "पुरानी सीख कारण?"
+        },
+        {
+          "title": "जांच",
+          "desc": "कोडबेस से क्रॉस-चेक।"
+        },
+        {
+          "title": "उपचार",
+          "desc": "गलत मेमोरी हटाएं या अपडेट करें।"
+        }
+      ]
+    },
+    "compare": {
+      "label": "तुलना",
+      "title": "सामान्य AI vs CodyMaster Brain",
+      "headers": {
+        "scenario": "परिदृश्य",
+        "standard": "🐟 सामान्य AI",
+        "brain": "🧠 CodyMaster Brain"
+      },
+      "rows": [
+        {
+          "scenario": "CORS — पहले ठीक की",
+          "standard": "शुरू से",
+          "brain": "फिक्स याद → तुरंत लागू"
+        },
+        {
+          "scenario": "नया सेशन",
+          "standard": "सब भूल जाता",
+          "brain": "CONTINUITY.md लोड"
+        },
+        {
+          "scenario": "पुराना ज्ञान",
+          "standard": "हमेशा उपयोग",
+          "brain": "स्मार्ट क्षय"
+        },
+        {
+          "scenario": "मेमोरी = बग",
+          "standard": "अनंत लूप",
+          "brain": "स्व-उपचार"
+        },
+        {
+          "scenario": "50+ सीखें",
+          "standard": "सब लोड → धीमा",
+          "brain": "फ़िल्टर → 2 संबंधित"
+        }
+      ]
+    },
+    "scope": {
+      "label": "स्कोप फ़िल्टरिंग",
+      "title": "केवल ज़रूरी लोड करो।",
+      "subtitle": "हर सीख को टैग। केवल प्रासंगिक।"
+    },
+    "cta": {
+      "title": "AI को असली दिमाग दो।",
+      "subtitle": "बिना मेमोरी AI = बोलने वाली गोल्डफिश।",
+      "button": "Brain अनुभव करें",
+      "backHome": "← होम"
     }
   }
 }

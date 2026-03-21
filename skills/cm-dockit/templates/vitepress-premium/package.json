@@ -1,0 +1,19 @@
+{
+  "name": "dockit-docs-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "test": "vitest run",
+    "test:gate": "vitest run --passWithNoTests",
+    "deploy": "wrangler pages deploy .vitepress/dist"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0-rc.31",
+    "vitest": "^1.5.0",
+    "vue": "^3.4.0"
+  }
+}

@@ -34,6 +34,13 @@ ALWAYS trigger for: chain, pipeline, workflow, multi-step, end-to-end,
 | `cody chain abort &lt;exec-id&gt;` | Cancel chain |
 | `cody chain history` | View past chain runs |
 
+## Naming Convention
+
+Step names use short-form identifiers — the `cm-` prefix is stripped by convention.
+Full skill names: `cm-brainstorm-idea`, `cm-planning`, `cm-tdd`, `cm-execution`, `cm-quality-gate`,
+`cm-safe-deploy`, `cm-debugging`, `cm-content-factory`, `cm-ads-tracker`, `cm-project-bootstrap`,
+`cm-code-review`. Exception: `cro-methodology` has no `cm-` prefix.
+
 ## Built-in Chains
 
 ### 🚀 feature-development (6 steps)
@@ -48,8 +55,8 @@ ALWAYS trigger for: chain, pipeline, workflow, multi-step, end-to-end,
 ### 🏗️ new-project (6 steps)
 `project-bootstrap → planning → tdd → execution → quality-gate → safe-deploy`
 
-### 🔍 code-review (3 steps)
-`code-review → quality-gate → safe-deploy`
+### 🔍 cm-code-review (3 steps)
+`cm-code-review → quality-gate → safe-deploy`
 
 ## Workflow
 

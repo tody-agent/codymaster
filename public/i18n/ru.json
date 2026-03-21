@@ -12,7 +12,8 @@
     "skills": "Навыки",
     "story": "Наша история",
     "getStarted": "Начать",
-    "demo": "Демонстрация"
+    "demo": "Демонстрация",
+    "brain": "Мозг"
   },
   "hero": {
     "badge": "30+ ИИ навыков · Открытый исходный код · Бесплатно",
@@ -1340,6 +1341,46 @@
         "whenToUse": "Commencing complex localized bespoke automated functional Bot protocols handling niche organizational internal rulebook mechanics reliably.",
         "whyToUse": "Abolishes the agonizing friction reviewing sprawling expansive external platform documentation endlessly. Empowers copying an inherently robust foundation operational dynamically efficiently instantly.",
         "bestPractice": "Mechanically duplicate the target directory skeleton completely, comprehensively update structural naming taxonomies, and aggressively inject definitive proprietary context parameters efficiently prior to deployment."
+      },
+      {
+        "id": "cro-methodology",
+        "name": "cro-methodology",
+        "category": "Content",
+        "icon": "trending-up",
+        "tagline": "Conversion Rate Optimization",
+        "problem": "Landing pages getting traffic but visitors aren't converting — unclear why they leave?",
+        "solution": "Evidence-based CRO audit using the CRE Methodology: funnel mapping, visitor research, objection handling, and statistically rigorous A/B tests.",
+        "description": "Scientific, customer-centric CRO using the CRE Methodology — funnel mapping, persuasion assets, and A/B testing.",
+        "whatIsIt": "A systematic CRO audit engine based on the CRE Methodology. Scores pages 0-10, maps funnel blockers, identifies visitor objections, and designs evidence-based experiments.",
+        "whenToUse": "Use when a landing page, checkout flow, or funnel is underperforming. Activates on: 'conversion rate', 'A/B test', 'why visitors leave', 'objection handling'.",
+        "whyToUse": "Random optimization fails. This skill forces visitor research before changing anything, ensuring every test is based on evidence rather than opinion.",
+        "prompt": "Audit my landing page for conversion issues",
+        "bestPractice": "Always research WHY visitors leave before testing solutions. Evidence from surveys, heatmaps, and session recordings beats best practices every time.",
+        "related": [
+          "cm-ads-tracker",
+          "cm-ux-master",
+          "cm-content-factory"
+        ]
+      },
+      {
+        "id": "jobs-to-be-done",
+        "name": "jobs-to-be-done",
+        "category": "Ideation",
+        "icon": "users",
+        "tagline": "Customer Discovery (JTBD)",
+        "problem": "Building features users don't care about because you're guessing what they actually want?",
+        "solution": "JTBD Switch Interviews + Canvas to uncover the functional, social, and emotional jobs customers hire your product to do.",
+        "description": "Customer discovery using Jobs-To-Be-Done theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring.",
+        "whatIsIt": "A structured customer discovery framework using JTBD theory. Runs Switch Interviews, builds job canvases, and scores outcome metrics to find underserved needs.",
+        "whenToUse": "Use before designing new features, when existing features aren't used, or when validating product-market fit. Activates on: 'customer discovery', 'JTBD', 'what do customers want'.",
+        "whyToUse": "People don't buy products — they hire them to get a job done. Understanding the job reveals what to build and what competitors you're actually fighting.",
+        "prompt": "Help me understand what job my users are hiring my product to do",
+        "bestPractice": "Focus on the Switch Interview: ask about the moment they decided to switch/buy, not hypotheticals. Past behavior beats future intent every time.",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-planning",
+          "cro-methodology"
+        ]
       }
     ]
   },
@@ -2070,6 +2111,132 @@
       "title": "Готовы решить свою самую большую\nпродуктовую проблему?",
       "subtitle": "Выберите персону. Выберите кейс. Начните строить.",
       "button": "Начать Сейчас →"
+    }
+  },
+  "brainPage": {
+    "hero": {
+      "badge": "Нейронаука × AI Инженерия",
+      "title": "Умный мозг, <span class=\"brain-hero__highlight\">самообучающийся.</span> Не <span class=\"brain-hero__strike\">мозг золотой рыбки.</span>",
+      "subtitle": "CodyMaster — единственный AI с <strong>умной памятью</strong>, вдохновлённой нейронаукой."
+    },
+    "problem": {
+      "label": "ПРОБЛЕМА",
+      "title": "AI без памяти = Катастрофа",
+      "subtitle": "У большинства AI \"мозг золотой рыбки\" — каждая сессия с нуля.",
+      "cards": [
+        {
+          "title": "Повторение ошибок",
+          "desc": "Исправили CORS? Следующий раз сломает так же."
+        },
+        {
+          "title": "Противоречит себе",
+          "desc": "Сессия 1: \"REST.\" Сессия 2: \"GraphQL.\""
+        },
+        {
+          "title": "Сжигание токенов",
+          "desc": "Объяснять контекст каждую сессию = тратить токены."
+        }
+      ]
+    },
+    "tiers": {
+      "label": "ТРЁХУРОВНЕВАЯ ПАМЯТЬ",
+      "title": "Мозг знает, что помнить,\nчто забыть, что хранить вечно.",
+      "subtitle": "Вдохновлено нейронаукой: разные воспоминания — разный срок жизни.",
+      "cards": [
+        {
+          "title": "Сенсорная память",
+          "meta": "⏱ Секунды — Не сохраняется",
+          "desc": "Временная информация. Забывается мгновенно.",
+          "analogy": "🧠 Как услышать номер — сразу забыл"
+        },
+        {
+          "title": "Рабочая память",
+          "meta": "⏱ 7 дней — CONTINUITY.md",
+          "desc": "\"Чиню auth, цель — деплой.\"",
+          "analogy": "🧠 Как список покупок — нужен сейчас"
+        },
+        {
+          "title": "Долговременная",
+          "meta": "⏱ 30-180 дней — learnings.json",
+          "desc": "\"CORS из-за proxy.\" Хранит при повторении ≥ 2 раз.",
+          "analogy": "🧠 Как езда на велосипеде"
+        }
+      ]
+    },
+    "decay": {
+      "label": "КРИВАЯ ЭББИНГАУЗА",
+      "title": "Забывать умно, не всё подряд.",
+      "subtitle": "Неподкреплённые знания истекают. Подкреплённые живут дольше."
+    },
+    "heal": {
+      "label": "САМОВОССТАНОВЛЕНИЕ",
+      "title": "Если память вызывает баги,\nона чинит себя.",
+      "subtitle": "Перед отладкой CodyMaster проверяет свою память.",
+      "steps": [
+        {
+          "title": "Баг обнаружен",
+          "desc": "Тест не прошёл, ошибка деплоя."
+        },
+        {
+          "title": "Подозрение",
+          "desc": "Устаревшее знание — причина?"
+        },
+        {
+          "title": "Расследование",
+          "desc": "Сопоставление знаний с кодом."
+        },
+        {
+          "title": "Исцеление",
+          "desc": "Удаление или обновление неверной памяти."
+        }
+      ]
+    },
+    "compare": {
+      "label": "СРАВНЕНИЕ",
+      "title": "Обычный AI vs CodyMaster Brain",
+      "headers": {
+        "scenario": "Сценарий",
+        "standard": "🐟 Обычный AI",
+        "brain": "🧠 CodyMaster Brain"
+      },
+      "rows": [
+        {
+          "scenario": "CORS — исправляли",
+          "standard": "Заново",
+          "brain": "Помнит → применяет мгновенно"
+        },
+        {
+          "scenario": "Новая сессия",
+          "standard": "Забывает всё",
+          "brain": "Загружает CONTINUITY.md"
+        },
+        {
+          "scenario": "Устаревшие знания",
+          "standard": "Вызывает баги",
+          "brain": "Умное затухание"
+        },
+        {
+          "scenario": "Память = баг",
+          "standard": "Бесконечный цикл",
+          "brain": "Самовосстановление"
+        },
+        {
+          "scenario": "50+ знаний",
+          "standard": "Загружает всё",
+          "brain": "Фильтр → 2 релевантных"
+        }
+      ]
+    },
+    "scope": {
+      "label": "ФИЛЬТРАЦИЯ",
+      "title": "Загружай только нужное.\nЭкономь токены.",
+      "subtitle": "Каждое знание помечено тегом. Загружаются только релевантные."
+    },
+    "cta": {
+      "title": "Дай AI настоящий мозг.",
+      "subtitle": "AI без памяти = говорящая золотая рыбка.",
+      "button": "Попробовать Brain",
+      "backHome": "← На главную"
     }
   }
 }

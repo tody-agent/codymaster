@@ -12,7 +12,8 @@
     "skills": "스킬",
     "story": "우리의 이야기",
     "getStarted": "시작하기",
-    "demo": "데모"
+    "demo": "데모",
+    "brain": "브레인"
   },
   "hero": {
     "badge": "30+ AI 스킬 · 오픈소스 · 무료",
@@ -1340,6 +1341,46 @@
         "whenToUse": "Commencing complex localized bespoke automated functional Bot protocols handling niche organizational internal rulebook mechanics reliably.",
         "whyToUse": "Abolishes the agonizing friction reviewing sprawling expansive external platform documentation endlessly. Empowers copying an inherently robust foundation operational dynamically efficiently instantly.",
         "bestPractice": "Mechanically duplicate the target directory skeleton completely, comprehensively update structural naming taxonomies, and aggressively inject definitive proprietary context parameters efficiently prior to deployment."
+      },
+      {
+        "id": "cro-methodology",
+        "name": "cro-methodology",
+        "category": "Content",
+        "icon": "trending-up",
+        "tagline": "Conversion Rate Optimization",
+        "problem": "Landing pages getting traffic but visitors aren't converting — unclear why they leave?",
+        "solution": "Evidence-based CRO audit using the CRE Methodology: funnel mapping, visitor research, objection handling, and statistically rigorous A/B tests.",
+        "description": "Scientific, customer-centric CRO using the CRE Methodology — funnel mapping, persuasion assets, and A/B testing.",
+        "whatIsIt": "A systematic CRO audit engine based on the CRE Methodology. Scores pages 0-10, maps funnel blockers, identifies visitor objections, and designs evidence-based experiments.",
+        "whenToUse": "Use when a landing page, checkout flow, or funnel is underperforming. Activates on: 'conversion rate', 'A/B test', 'why visitors leave', 'objection handling'.",
+        "whyToUse": "Random optimization fails. This skill forces visitor research before changing anything, ensuring every test is based on evidence rather than opinion.",
+        "prompt": "Audit my landing page for conversion issues",
+        "bestPractice": "Always research WHY visitors leave before testing solutions. Evidence from surveys, heatmaps, and session recordings beats best practices every time.",
+        "related": [
+          "cm-ads-tracker",
+          "cm-ux-master",
+          "cm-content-factory"
+        ]
+      },
+      {
+        "id": "jobs-to-be-done",
+        "name": "jobs-to-be-done",
+        "category": "Ideation",
+        "icon": "users",
+        "tagline": "Customer Discovery (JTBD)",
+        "problem": "Building features users don't care about because you're guessing what they actually want?",
+        "solution": "JTBD Switch Interviews + Canvas to uncover the functional, social, and emotional jobs customers hire your product to do.",
+        "description": "Customer discovery using Jobs-To-Be-Done theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring.",
+        "whatIsIt": "A structured customer discovery framework using JTBD theory. Runs Switch Interviews, builds job canvases, and scores outcome metrics to find underserved needs.",
+        "whenToUse": "Use before designing new features, when existing features aren't used, or when validating product-market fit. Activates on: 'customer discovery', 'JTBD', 'what do customers want'.",
+        "whyToUse": "People don't buy products — they hire them to get a job done. Understanding the job reveals what to build and what competitors you're actually fighting.",
+        "prompt": "Help me understand what job my users are hiring my product to do",
+        "bestPractice": "Focus on the Switch Interview: ask about the moment they decided to switch/buy, not hypotheticals. Past behavior beats future intent every time.",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-planning",
+          "cro-methodology"
+        ]
       }
     ]
   },
@@ -2070,6 +2111,132 @@
       "title": "Ready to solve your biggest\nproduct challenge?",
       "subtitle": "Pick your persona. Choose your use case. Start building.",
       "button": "Get Started Now →"
+    }
+  },
+  "brainPage": {
+    "hero": {
+      "badge": "신경과학 × AI 엔지니어링",
+      "title": "똑똑한 뇌, <span class=\"brain-hero__highlight\">자가 학습.</span> <span class=\"brain-hero__strike\">금붕어 뇌</span>가 아닙니다.",
+      "subtitle": "CodyMaster는 신경과학에서 영감받은 <strong>스마트 메모리</strong>를 가진 유일한 AI입니다."
+    },
+    "problem": {
+      "label": "문제점",
+      "title": "메모리 없는 AI = 재앙",
+      "subtitle": "대부분의 AI는 \"금붕어 뇌\" — 매 세션 제로에서 시작.",
+      "cards": [
+        {
+          "title": "같은 실수 반복",
+          "desc": "CORS 수정했나요? 다음에 똑같이 깨뜨립니다."
+        },
+        {
+          "title": "자기 모순",
+          "desc": "세션 1: \"REST.\" 세션 2: \"GraphQL.\""
+        },
+        {
+          "title": "토큰 낭비",
+          "desc": "매 세션 컨텍스트 재설명 = 낭비."
+        }
+      ]
+    },
+    "tiers": {
+      "label": "3단계 메모리",
+      "title": "뇌는 무엇을 기억하고,\n무엇을 잊고, 무엇을 영원히 보관할지 압니다.",
+      "subtitle": "신경과학에서 영감: 다른 기억은 다른 수명.",
+      "cards": [
+        {
+          "title": "감각 기억",
+          "meta": "⏱ 초 단위 — 저장 안함",
+          "desc": "임시 정보. 즉시 잊힘.",
+          "analogy": "🧠 전화번호 듣기 — 바로 잊음"
+        },
+        {
+          "title": "작업 기억",
+          "meta": "⏱ 7일 — CONTINUITY.md",
+          "desc": "\"인증 수정 중, 목표는 배포.\"",
+          "analogy": "🧠 오늘의 장보기 목록"
+        },
+        {
+          "title": "장기 기억",
+          "meta": "⏱ 30-180일 — learnings.json",
+          "desc": "\"CORS 오류는 프록시 누락.\" 2회 이상 강화 시 유지.",
+          "analogy": "🧠 자전거 타기 — 절대 잊지 않음"
+        }
+      ]
+    },
+    "decay": {
+      "label": "에빙하우스 망각 곡선",
+      "title": "똑똑하게 잊기, 모두 잊지 않기.",
+      "subtitle": "강화되지 않은 학습은 자연 만료. 여러 번 강화된 것은 더 오래."
+    },
+    "heal": {
+      "label": "자가 치유 메모리",
+      "title": "메모리가 버그를 유발하면,\n스스로 수리합니다.",
+      "subtitle": "디버깅 전 메모리가 문제인지 확인합니다.",
+      "steps": [
+        {
+          "title": "버그 감지",
+          "desc": "테스트 실패, 배포 오류."
+        },
+        {
+          "title": "메모리 의심",
+          "desc": "오래된 학습이 원인?"
+        },
+        {
+          "title": "조사",
+          "desc": "코드베이스와 교차 확인."
+        },
+        {
+          "title": "치유 및 업데이트",
+          "desc": "잘못된 메모리 삭제 또는 업데이트."
+        }
+      ]
+    },
+    "compare": {
+      "label": "비교",
+      "title": "일반 AI vs CodyMaster Brain",
+      "headers": {
+        "scenario": "시나리오",
+        "standard": "🐟 일반 AI",
+        "brain": "🧠 CodyMaster Brain"
+      },
+      "rows": [
+        {
+          "scenario": "CORS 오류 — 이전에 수정",
+          "standard": "처음부터",
+          "brain": "수정 방법 기억 → 즉시 적용"
+        },
+        {
+          "scenario": "새 세션 시작",
+          "standard": "모든 것 잊음",
+          "brain": "CONTINUITY.md 로드"
+        },
+        {
+          "scenario": "오래된 지식",
+          "standard": "영원히 사용",
+          "brain": "자동 만료"
+        },
+        {
+          "scenario": "메모리 = 버그",
+          "standard": "무한 루프",
+          "brain": "자가 치유"
+        },
+        {
+          "scenario": "50+ 학습",
+          "standard": "모두 로드 → 느림",
+          "brain": "범위 필터 → 2개만"
+        }
+      ]
+    },
+    "scope": {
+      "label": "범위 필터링",
+      "title": "필요한 것만 로드.\n토큰 절약.",
+      "subtitle": "각 학습에 태그. 관련 메모리만 로드."
+    },
+    "cta": {
+      "title": "AI에게 진짜 뇌를 주세요.",
+      "subtitle": "메모리 없는 AI = 말하는 금붕어.",
+      "button": "Brain 체험하기",
+      "backHome": "← 홈으로"
     }
   }
 }

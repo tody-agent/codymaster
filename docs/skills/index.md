@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Complete catalog of all 30+ Cody Master skills organized by swarm. Every skill is open source — full documentation visible."
+description: "Complete catalog of all 33+ Cody Master skills organized by swarm. Every skill is open source — full documentation visible."
 keywords: ["skills", "ai agent", "cody master", "skill library"]
 robots: "index, follow"
 ---
@@ -8,7 +8,7 @@ robots: "index, follow"
 # Skills Library
 
 > **Quick Reference**
-> - **Total Skills**: 30+ across 5 swarms
+> - **Total Skills**: 33+ across 7 swarms
 > - **Format**: Universal — works on any AI coding platform
 > - **Open Source**: Full SKILL.md content visible for every skill
 > - **License**: Open and transparent
@@ -60,6 +60,23 @@ Skills for content creation, marketing automation, and conversion tracking.
 |-------|-------------|-----------|
 | **cm-content-factory** | Self-learning content engine with StoryBrand, Cialdini, SUCCESs, Hook Model, JTBD, CRO frameworks. | [View →](./cm-content-factory.md) |
 | **cm-ads-tracker** | Complete conversion tracking — Facebook/Meta Pixel + CAPI, TikTok Pixel, Google Ads, GTM container. | [View →](./cm-ads-tracker.md) |
+| **cro-methodology** | Scientific CRO audit using the CRE Methodology — funnel mapping, visitor research, objection handling, and A/B testing. | [View →](./cro-methodology.md) |
+
+## 🔒 Security Swarm
+
+Skills for secret management, leak prevention, and security posture.
+
+| Skill | Description | Full Docs |
+|-------|-------------|-----------|
+| **cm-secret-shield** | Defense-in-depth security — pre-commit secret scanning (Gitleaks), repo-wide pattern detection, token lifecycle management. | [View →](./cm-secret-shield.md) |
+
+## 🧪 Specialized Skills
+
+Domain-specific skills for targeted workflows.
+
+| Skill | Description | Full Docs |
+|-------|-------------|-----------|
+| **jobs-to-be-done** | Customer discovery using JTBD theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring for evidence-based product decisions. | [View →](./jobs-to-be-done.md) |
 
 ## 🎯 Orchestration Swarm
 

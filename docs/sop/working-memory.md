@@ -8,26 +8,24 @@ robots: "index, follow"
 # Working Memory
 
 > **Quick Reference**
+> - **Architecture**: Tier 1 (Working Memory) of the [CodyMaster Brain](../brain.md)
 > - **Protocol**: CONTINUITY.md read at session start, updated at session end
 > - **Storage**: `.cm/` directory per project
-> - **Inspired by**: Loki Mode (Autonomi)
-> - **Data**: Session state + error patterns + architecture decisions
+> - **Data**: Session state + localized context
 
 ## Why Working Memory?
 
-AI agents have **amnesia** — every new session starts from zero. Without working memory:
+Standard AI agents have **"goldfish memory"** — every new session starts from zero, and appending everything to a single context window inevitably leads to context collapse. Working Memory acts as the first tier of the CodyMaster Brain. Without it:
 
-- ❌ Same bugs get re-introduced
-- ❌ Architecture decisions get forgotten
 - ❌ Context switches cause rework
 - ❌ Agent doesn't know what it was doing
+- ❌ The prompt bloats until the AI hallucinates
 
-With Cody Master's working memory:
+With Cody Master's working memory (Tier 1):
 
-- ✅ Context persists across sessions
-- ✅ Error patterns are captured and prevented
-- ✅ Decisions are documented and respected
-- ✅ AI picks up exactly where it left off
+- ✅ Context persists securely across sessions
+- ✅ The exact active task and immediate goals are tracked
+- ✅ AI picks up exactly where it left off without bloat
 
 ## Setup
 
@@ -48,23 +46,25 @@ cm continuity decisions
 cm continuity reset
 ```
 
-## Memory Hierarchy
+## The 3-Tier Memory Hierarchy
 
-```
+Working Memory is the foundational layer of the broader [CodyMaster Brain](../brain.md) architecture.
+
+```text
 .cm/
-├── CONTINUITY.md      # Working memory (current session)
+├── CONTINUITY.md      # Tier 1: Working Memory (active session)
 ├── config.yaml        # RARV cycle settings
 └── memory/
-    ├── learnings.json  # Error patterns (persists forever)
-    └── decisions.json  # Architecture decisions (persists forever)
+    ├── learnings.json  # Tier 2: Episodic Memory (error patterns)
+    └── decisions.json  # Tier 3: Semantic Memory (architecture)
 ```
 
-| Level | File | Purpose | Lifespan |
-|-------|------|---------|----------|
-| 1 | CONTINUITY.md | Current session state | Updated each session |
-| 2 | learnings.json | Extracted error patterns | Permanent |
-| 3 | decisions.json | Architecture decisions | Permanent |
-| 4 | cm-tasks.json | Task queue + RARV logs | Permanent |
+| Tier | Component | Purpose | Lifespan |
+|------|-----------|---------|----------|
+| **1: Working** | `CONTINUITY.md` | Tracks active task, goals, and current phase. | Ephemeral (Updated & cleared each session) |
+| **2: Episodic** | `learnings.json` | Stores synthesized bug fixes and anti-patterns. | Permanent (Subject to Smart Decay) |
+| **3: Semantic** | `decisions.json`, `AGENTS.md` | Core business rules and architectural constants. | Permanent |
+| **-** | `cm-tasks.json` | Task queue + RARV execution logs. | Permanent |
 
 ## The Protocol
 

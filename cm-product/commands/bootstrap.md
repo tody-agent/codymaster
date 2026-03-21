@@ -1,0 +1,1 @@
+../../commands/bootstrap.md

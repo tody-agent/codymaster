@@ -48,6 +48,8 @@ export default withMermaid(defineConfig({
           { text: '🔧 Engineering', link: '/skills/cm-tdd' },
           { text: '⚙️ Operations', link: '/skills/cm-safe-deploy' },
           { text: '🎨 Product', link: '/skills/cm-planning' },
+          { text: '📈 Growth', link: '/skills/cro-methodology' },
+          { text: '🔒 Security', link: '/skills/cm-secret-shield' },
           { text: '🎯 Orchestration', link: '/skills/cm-execution' },
         ]
       },
@@ -61,7 +63,7 @@ export default withMermaid(defineConfig({
         ]
       },
       { text: 'API', link: '/api/' },
-      { text: 'Website ↗', link: 'https://codymaster.pages.dev' },
+      { text: 'Website ↗', link: 'https://cody-master.pages.dev' },
     ],
     
     sidebar: {
@@ -78,6 +80,7 @@ export default withMermaid(defineConfig({
           text: 'Architecture',
           items: [
             { text: 'System Architecture', link: '/architecture' },
+            { text: 'CodyMaster Brain', link: '/brain' },
             { text: 'Data Flow', link: '/data-flow' },
             { text: 'Deployment', link: '/deployment' },
           ]
@@ -109,6 +112,13 @@ export default withMermaid(defineConfig({
               ]
             },
             {
+              text: '🔒 Security',
+              collapsed: true,
+              items: [
+                { text: 'cm-secret-shield', link: '/skills/cm-secret-shield' },
+              ]
+            },
+            {
               text: '🎨 Product',
               collapsed: true,
               items: [
@@ -127,6 +137,14 @@ export default withMermaid(defineConfig({
               items: [
                 { text: 'cm-content-factory', link: '/skills/cm-content-factory' },
                 { text: 'cm-ads-tracker', link: '/skills/cm-ads-tracker' },
+                { text: 'cro-methodology', link: '/skills/cro-methodology' },
+              ]
+            },
+            {
+              text: '🧪 Specialized',
+              collapsed: true,
+              items: [
+                { text: 'jobs-to-be-done', link: '/skills/jobs-to-be-done' },
               ]
             },
             {
@@ -189,6 +207,6 @@ export default withMermaid(defineConfig({
   },
   
   sitemap: {
-    hostname: 'https://codymaster.pages.dev/docs',
-  },
+    hostname: 'https://cody-master.pages.dev/docs'
+  }
 }))

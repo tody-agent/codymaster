@@ -159,6 +159,23 @@ img {
   box-shadow: 0 4px 16px rgba(196, 248, 42, 0.3);
 }
 
+/* Brain Nav Link */
+.nav__link--brain {
+  color: #c084fc !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav__link--brain:hover {
+  color: #a855f7 !important;
+}
+
+.nav__link--brain svg {
+  width: 16px;
+  height: 16px;
+}
+
 /* --- Language Dropdown --- */
 .lang-switcher { position: relative; }
 
@@ -1652,15 +1669,21 @@ img {
 
   .nav__links {
     display: none;
-    position: fixed;
-    inset: 0;
-    top: 60px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 60px);
     background: var(--bg-page);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
     gap: 32px;
     z-index: 99;
+    border-top: 1px solid var(--border-subtle);
+    overflow-y: auto;
   }
 
   .nav__links.open {
@@ -1669,6 +1692,17 @@ img {
 
   .nav__hamburger {
     display: flex;
+    z-index: 101;
+  }
+
+  .nav__hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav__hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav__hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   .hero {

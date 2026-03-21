@@ -2,237 +2,163 @@
 
 # 🧠 CodyMaster
 
-**The Universal AI Coding Automation & Skills Framework**
-**One Bootstrap → Configs for 7+ AI Agent Platforms**
+**The Universal AI Agent Skills Framework**
+**27+ Skills · 10 Commands · 5 Domains · 7+ Platforms**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-3.2.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-30%2B-success.svg" />
-  <img alt="Providers" src="https://img.shields.io/badge/providers-10-orange.svg" />
-  <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
+  <img alt="Version" src="https://img.shields.io/badge/version-3.3.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-27%2B-success.svg" />
+  <img alt="Commands" src="https://img.shields.io/badge/commands-10-orange.svg" />
+  <img alt="Plugins" src="https://img.shields.io/badge/plugins-5-purple.svg" />
+  <a href="https://github.com/tody-agent/cody-master#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/tody-agent/codymaster/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
 </p>
 
-# 🧠 CodyMaster
-
-> *The ultimate prompt library and workflow engine for AI-assisted software engineering. Turns Cursor, Cline, OpenClaw, and RooCode into autonomous senior developer agents.*
-
-CodyMaster provides **30+ built-in skills** representing specialized developer personas: from TDD experts and UX Researchers to Deployment Engineers and Knowledge Architects.
-
-<br/>
-<img src="./public/website/img/dashboard-kanban.png" alt="CodyMaster Interactive Dashboard" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
-<br/>
+> *Turns your AI coding agent into an autonomous senior developer with TDD discipline, systematic debugging, safe deployments, and working memory.*
 
 </div>
 
 ---
 
-## What is CodyMaster?
+## Installation
 
-CodyMaster is a **skills framework** that gives AI coding agents the discipline of a 10-year senior engineer. Instead of letting AI write spaghetti code, CodyMaster enforces:
-
-- 🔴 **TDD** (Test-Driven Development) — write tests before code
-- 🛡️ **6-Gate Quality System** — blind review, anti-sycophancy, security scan
-- 🧠 **Working Memory** — context persists across sessions via CONTINUITY.md
-- 🤖 **Judge Agent** — auto-detects stuck tasks, suggests pivots
-- 📊 **Real-time Dashboard** — Kanban board, agent logs, deployment tracking
-- 🔍 **Self-Enhancing** — auto-discovers & installs new skills from [skills.sh](https://skills.sh)
-- 🌐 **Universal Agent Bootstrap** — one AGENTS.md → configs for OpenClaw, Claude, Cursor, OpenFang, Manus, MaxClaw
-
-```
-Your Idea → CodyMaster Skills → Production-Ready Code
-```
-
----
-
-## Quick Start
-
-<br/>
-<img src="./public/website/img/cli-view.png" alt="CodyMaster CLI Execution" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
-<br/>
+### Claude Code (Recommended)
 
 ```bash
-# Install globally
-npm install -g cody-master
+# Step 1: Add the marketplace
+claude plugin marketplace add tody-agent/cody-master
 
-# Or clone and build
-git clone https://github.com/omisocial/cody-master.git
-cd cody-master && npm install && npm run build
-
-# Launch dashboard
-cm dashboard start
-
-# Initialize working memory for a project
-cm continuity init
+# Step 2: Install all plugins (or pick what you need)
+claude plugin install cm-engineering@cody-master
+claude plugin install cm-operations@cody-master
+claude plugin install cm-product@cody-master
+claude plugin install cm-growth@cody-master
+claude plugin install cm-orchestration@cody-master
 ```
 
----
-
-## 🎯 Supported AI Platforms
-
-| Platform | Status | Skill Prefix |
-|----------|--------|-------------|
-| 🟢 **Google Antigravity** (Gemini) | ✅ | `@[/skill-name]` |
-| 🟣 **Claude Code / Desktop** | ✅ | `/skill-name` |
-| 🔵 **Cursor** | ✅ | `@skill-name` |
-| 🟠 **Windsurf** | ✅ | `@skill-name` |
-| 🟤 **Cline / RooCode** | ✅ | `@skill-name` |
-| 🐈 **GitHub Copilot** | ✅ | `skill-name` |
-| 🐾 **OpenClaw / MaxClaw** | ✅ | `@skill-name` |
-| 🦷 **OpenFang** | ✅ | `@skill-name` |
-| 🤖 **Manus** | ✅ | `@skill-name` |
-| 💻 **Gemini CLI** | ✅ | `@[/skill-name]` |
-
----
-
-## 🧩 Skills Library (30+ Skills in 5 Swarms)
-
-Skills are organized into **5 swarms** for intelligent auto-selection:
-
-### 🔧 Engineering Swarm
-
-| Skill | Purpose |
-|-------|---------|
-| `cm-tdd` | Red-Green-Refactor cycle — test before code |
-| `cm-debugging` | 5-phase root cause investigation |
-| `cm-quality-gate` | 6-gate verification: static → blind review → security → ship |
-| `cm-test-gate` | Setup 4-layer test infrastructure for any project |
-| `cm-code-review` | Professional PR review lifecycle |
-
-### ⚙️ Operations Swarm
-
-| Skill | Purpose |
-|-------|---------|
-| `cm-safe-deploy` | Multi-gate deploy pipeline with rollback |
-| `cm-identity-guard` | Prevent wrong-account deploys |
-| `cm-git-worktrees` | Isolated feature branches |
-| `cm-terminal` | Safe terminal execution with output logging |
-
-### 🎨 Product Swarm
-
-| Skill | Purpose |
-|-------|---------|
-| `cm-planning` | Brainstorm intent → design → implementation plan |
-| `cm-brainstorm-idea` | Strategic analysis gate — Design Thinking + 9 Windows (TRIZ) |
-| `cm-ux-master` | 48 UX Laws + 37 Design Tests + Figma/Stitch |
-| `cm-ui-preview` | AI-powered UI preview with Stitch/Pencil MCP |
-| `cm-dockit` | Complete knowledge base from codebase |
-| `cm-readit` | Audio reading mode + voice CRO for any website |
-| `cm-project-bootstrap` | Full project setup: design system → CI → deploy + **universal agent configs** |
-
-### 📈 Growth Swarm
-
-| Skill | Purpose |
-|-------|---------|
-| `cm-content-factory` | AI content engine: research → generate → deploy |
-| `cm-ads-tracker` | Facebook/TikTok/Google tracking setup |
-
-### 🎯 Orchestration Swarm
-
-| Skill | Purpose |
-|-------|---------|
-| `cm-execution` | Execute plans: batch, parallel, subagent, or RARV |
-| `cm-continuity` | Working memory: read at start, update at end |
-| `cm-skill-chain` | Compose skills into automated multi-step pipelines |
-| `cm-skill-index` | Progressive disclosure — scan 30 skills in 100 tokens |
-| `cm-safe-i18n` | Multi-pass translation with 8 audit gates |
-| `cm-skill-mastery` | Meta: when to invoke skills, how to create new ones |
-| `cm-identity-guard` | Prevent wrong-account deploys across git/Cloudflare/Supabase |
-
----
-
-## 🧠 Working Memory (v3.2.0)
-
-CodyMaster maintains context across sessions through **CONTINUITY.md**:
+### Gemini CLI
 
 ```bash
-cm continuity init       # Create .cm/ working memory directory
-cm continuity status     # View current state
-cm continuity learnings  # View captured error patterns
-cm continuity decisions  # View architecture decisions
-cm continuity reset      # Clear state (preserves learnings)
+gemini extensions install https://github.com/tody-agent/cody-master
 ```
 
-The `.cm/` directory structure:
+### Cursor
+
 ```
-.cm/
-├── CONTINUITY.md          # Active goal, task, learnings
-├── config.yaml            # RARV cycle settings
-└── memory/
-    ├── learnings.json     # Error patterns (auto-captured)
-    └── decisions.json     # Architecture decisions
+/add-plugin cody-master
 ```
 
----
+Or search for "cody-master" in the Cursor plugin marketplace.
 
-## 🤖 Judge Agent
+### Codex
 
-The Judge Agent automatically evaluates task health:
+Tell Codex:
+```
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/cody-master/main/.codex/INSTALL.md
+```
 
-| Badge | Action | When |
-|-------|--------|------|
-| 🟢 | CONTINUE | Task progressing normally |
-| 🏁 | COMPLETE | All subtasks done |
-| ⚠️ | ESCALATE | Stuck >10 minutes without updates |
-| 🔄 | PIVOT | 3+ failures → suggests alternative approach |
+### OpenCode
+
+Tell OpenCode:
+```
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/cody-master/main/.opencode/INSTALL.md
+```
+
+### Antigravity / Gemini (Manual)
 
 ```bash
-# API endpoints
-curl http://codymaster.localhost:6969/api/judge                    # All tasks
-curl http://codymaster.localhost:6969/api/judge/:taskId             # Single task
-curl http://codymaster.localhost:6969/api/agents/suggest?skill=cm-tdd  # Best agent for skill
+# Global install
+git clone https://github.com/tody-agent/cody-master.git ~/.cody-master
+cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
+
+# Or per-project
+cp -r ~/.cody-master/skills/* .gemini/skills/
 ```
 
----
+### Other Assistants
 
-## 📊 Dashboard
-
-Real-time web dashboard at `http://codymaster.localhost:6969`:
-
-- **Kanban Board** — drag tasks across backlog → in-progress → review → done
-- **Agent Activity** — see what each AI agent is doing
-- **Deployment Tracking** — staging/production with rollback
-- **Changelog** — version history and release notes
-- **Working Memory** — CONTINUITY.md state per project
-- **Judge Badges** — 🟢🏁⚠️🔄 on every active task
+The `skills/*/SKILL.md` files follow the universal skill format and work with any AI tool that reads them:
 
 ```bash
-cm dashboard start           # Launch on port 6969
-cm dashboard start -p 8080   # Custom port
+cp -r skills/* .opencode/skills/    # OpenCode
+cp -r skills/* .cursor/skills/      # Cursor
+cp -r skills/* .codex/skills/       # Codex
+cp -r skills/* .kiro/skills/        # Kiro
 ```
 
 ---
 
-## 🔄 RARV Cycle (Autonomous Execution)
+## Available Plugins
 
-The enhanced RARV (Reason-Act-Reflect-Verify) cycle runs tasks autonomously:
+### 🔧 cm-engineering — Engineering Discipline
 
-```mermaid
-graph TD
-    O["0. ORIENT<br/>Read CONTINUITY.md<br/>Load past learnings"]
-    R["1. REASON<br/>Pick highest-priority task<br/>Update working memory"]
-    P["2. PRE-ACT ATTENTION<br/>🛡️ Goal alignment check<br/>3 questions"]
-    A["3. ACT<br/>Execute with assigned skill<br/>Git checkpoint"]
-    RE["4. REFLECT<br/>Update cm-tasks.json<br/>Update CONTINUITY.md"]
-    V["5. VERIFY<br/>Run quality gate<br/>6-gate check"]
-    D["✅ DONE<br/>Next task"]
-    F["❌ FAIL<br/>Self-correction loop"]
-    B["🚫 BLOCKED<br/>3+ failures → escalate"]
+Skills: `cm-tdd`, `cm-debugging`, `cm-quality-gate`, `cm-test-gate`, `cm-code-review`
+Commands: `/build`, `/review`, `/debug`
 
-    O --> R --> P
-    P -->|"Goal aligned"| A
-    P -->|"Drift detected ⚠️"| R
-    A --> RE --> V
-    V -->|"Pass"| D --> O
-    V -->|"Fail (attempt < 3)"| F --> O
-    V -->|"Fail (attempt ≥ 3)"| B
+### ⚙️ cm-operations — Deployment & Security
+
+Skills: `cm-safe-deploy`, `cm-identity-guard`, `cm-git-worktrees`, `cm-terminal`, `cm-secret-shield`, `cm-safe-i18n`
+Commands: `/deploy`
+
+### 🎨 cm-product — Design & Planning
+
+Skills: `cm-planning`, `cm-brainstorm-idea`, `cm-ux-master`, `cm-ui-preview`, `cm-dockit`, `cm-readit`, `cm-project-bootstrap`
+Commands: `/bootstrap`, `/plan`, `/ux`
+
+### 📈 cm-growth — Marketing & Content
+
+Skills: `cm-content-factory`, `cm-ads-tracker`, `cro-methodology`
+Commands: `/content`, `/track`
+
+### 🎯 cm-orchestration — Workflow & Memory
+
+Skills: `cm-execution`, `cm-continuity`, `cm-skill-chain`, `cm-skill-index`, `cm-skill-mastery`, `cm-deep-search`
+Commands: `/continuity`
+
+---
+
+## Start Here
+
+| Goal | Command |
+|------|---------|
+| New project? | `/bootstrap` |
+| Plan a feature? | `/plan` |
+| Build with TDD? | `/build` |
+| Debug an issue? | `/debug` |
+| Review code? | `/review` |
+| Deploy safely? | `/deploy` |
+| Design UI? | `/ux` |
+| Create content? | `/content` |
+| Setup tracking? | `/track` |
+| Resume session? | `/continuity read` |
+
+Skills activate automatically when relevant — no explicit invocation needed. Commands force specific workflows.
+
+---
+
+## How It Works
+
+**Skills** are the building blocks. Each skill gives your AI agent domain knowledge and a structured workflow for a specific task. Skills are loaded automatically when relevant.
+
+**Commands** are user-triggered workflows invoked with `/command-name`. They chain one or more skills into an end-to-end process.
+
+**Plugins** group related skills and commands into installable packages. Each plugin covers a domain — engineering, operations, product, growth, or orchestration.
+
+```
+Your Idea → /plan → /build (TDD) → /review → /deploy → Production
 ```
 
-**Key innovation:** PRE-ACT ATTENTION prevents goal drift — the #1 AI failure mode.
+---
+
+## Philosophy
+
+- **Test-Driven Development** — Write tests first, always
+- **Systematic over ad-hoc** — Process over guessing
+- **Complexity reduction** — Simplicity as primary goal
+- **Evidence over claims** — Verify before declaring success
+- **Defense-in-depth** — Multiple safety layers
+- **Working memory** — Context persists across sessions
 
 ---
 
@@ -240,23 +166,9 @@ graph TD
 
 | Doc | Description |
 |-----|-------------|
-| [How It Works](docs/how-it-work.md) | Mermaid workflow diagrams, use cases, exception handling |
-| [Showcase](docs/showcase.md) | Step-by-step examples with real commands |
-| [Skills Reference](skills/) | Full SKILL.md for each skill |
-
-### 🌐 Universal Agent Bootstrap (NEW in v3.0)
-
-`cm-project-bootstrap` now auto-generates platform-specific configs from a single `AGENTS.md`:
-
-| Platform | Generated Config |
-|----------|------------------|
-| AGENTS.md (Open Standard) | `AGENTS.md` — always generated, source of truth |
-| Claude Desktop / Claude Code | `CLAUDE.md` |
-| Cursor | `.cursor/rules/*.mdc` |
-| OpenClaw / MaxClaw | `IDENTITY.md`, `MEMORY.md`, `TOOLS.md`, `SHIELD.md` |
-| OpenFang | `HAND.toml` |
-| Manus | Project instructions |
-| Gemini / Antigravity | Uses `AGENTS.md` directly |
+| [Website](https://codymaster.pages.dev) | Landing page and overview |
+| [Docs](https://codymaster.pages.dev/docs) | Full documentation |
+| [Skills Reference](skills/) | All SKILL.md files |
 
 ---
 
@@ -264,19 +176,20 @@ graph TD
 
 1. Fork the repository
 2. Create a skill folder: `skills/your-skill-name/SKILL.md`
-3. Follow the structure in `cm-skill-mastery` and `skill-creator-ultra`
+3. Add it to the appropriate plugin directory
 4. Submit a Pull Request
+
+See `skills/cm-example/SKILL.md` for the universal skill format template.
 
 ---
 
 ## 📜 License
 
-MIT License — free to use, modify, and distribute for personal and commercial projects.
+MIT License — free to use, modify, and distribute.
 
 <div align="center">
 <br/>
 
-*Built with ❤️ for the vibe coding community.*  
-*Focus on solving business problems, not chasing UI bugs.*
+*Built with ❤️ for the vibe coding community.*
 
 </div>
