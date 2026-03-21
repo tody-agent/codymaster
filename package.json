@@ -4,9 +4,9 @@
   "description": "33 Skills. Ship 10x faster.",
   "main": "dist/index.js",
   "bin": {
-    "cody": "./dist/index.js",
-    "cm": "./dist/index.js",
-    "codymaster": "./dist/index.js"
+    "cody": "dist/index.js",
+    "cm": "dist/index.js",
+    "codymaster": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
