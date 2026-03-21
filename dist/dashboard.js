@@ -1,0 +1,777 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.launchDashboard = launchDashboard;
+const express_1 = __importDefault(require("express"));
+const chalk_1 = __importDefault(require("chalk"));
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+const crypto_1 = __importDefault(require("crypto"));
+const data_1 = require("./data");
+const agent_dispatch_1 = require("./agent-dispatch");
+const continuity_1 = require("./continuity");
+const judge_1 = require("./judge");
+const skill_chain_1 = require("./skill-chain");
+// ─── Dashboard Server ───────────────────────────────────────────────────────
+function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
+    const app = (0, express_1.default)();
+    app.use(express_1.default.json());
+    const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
+    app.use(express_1.default.static(publicDir));
+    // ─── Project API ────────────────────────────────────────────────────────
+    app.get('/api/projects', (_req, res) => {
+        const data = (0, data_1.loadData)();
+        const enriched = data.projects.map(p => {
+            const pt = data.tasks.filter(t => t.projectId === p.id);
+            return Object.assign(Object.assign({}, p), { taskCount: pt.length, doneCount: pt.filter(t => t.column === 'done').length, activeAgents: [...new Set(pt.map(t => t.agent).filter(Boolean))] });
+        });
+        res.json(enriched);
+    });
+    app.post('/api/projects', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const { name, path: pp, agents } = req.body;
+        if (!name || typeof name !== 'string') {
+            res.status(400).json({ error: 'Project name is required' });
+            return;
+        }
+        const project = { id: crypto_1.default.randomUUID(), name: name.trim(), path: (pp || '').trim(), agents: Array.isArray(agents) ? agents : [], createdAt: new Date().toISOString() };
+        data.projects.push(project);
+        (0, data_1.logActivity)(data, 'project_created', `Project "${project.name}" created`, project.id);
+        (0, data_1.saveData)(data);
+        res.status(201).json(project);
+    });
+    app.put('/api/projects/:id', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const idx = data.projects.findIndex(p => p.id === req.params.id);
+        if (idx === -1) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        const { name, path: pp, agents } = req.body;
+        if (name)
+            data.projects[idx].name = String(name).trim();
+        if (pp !== undefined)
+            data.projects[idx].path = String(pp).trim();
+        if (Array.isArray(agents))
+            data.projects[idx].agents = agents;
+        (0, data_1.saveData)(data);
+        res.json(data.projects[idx]);
+    });
+    app.delete('/api/projects/:id', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const idx = data.projects.findIndex(p => p.id === req.params.id);
+        if (idx === -1) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        const name = data.projects[idx].name;
+        data.projects.splice(idx, 1);
+        data.tasks = data.tasks.filter(t => t.projectId !== req.params.id);
+        (0, data_1.logActivity)(data, 'project_deleted', `Project "${name}" deleted`, req.params.id);
+        (0, data_1.saveData)(data);
+        res.status(204).send();
+    });
+    // ─── Task API ───────────────────────────────────────────────────────────
+    app.get('/api/tasks', (req, res) => {
+        const data = (0, data_1.loadData)();
+        let tasks = data.tasks;
+        if (req.query.projectId)
+            tasks = tasks.filter(t => t.projectId === req.query.projectId);
+        res.json(tasks);
+    });
+    app.post('/api/tasks', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const { title, description, column, priority, projectId, agent, skill } = req.body;
+        if (!title || typeof title !== 'string') {
+            res.status(400).json({ error: 'Title is required' });
+            return;
+        }
+        let rpid = projectId;
+        if (!rpid && data.projects.length > 0)
+            rpid = data.projects[0].id;
+        else if (!rpid) {
+            const dp = { id: crypto_1.default.randomUUID(), name: 'Default Project', path: process.cwd(), agents: agent ? [agent] : [], createdAt: new Date().toISOString() };
+            data.projects.push(dp);
+            rpid = dp.id;
+        }
+        const vc = ['backlog', 'in-progress', 'review', 'done'];
+        const tc = vc.includes(column) ? column : 'backlog';
+        const vp = ['low', 'medium', 'high', 'urgent'];
+        const tp = vp.includes(priority) ? priority : 'medium';
+        const ct = data.tasks.filter(t => t.column === tc && t.projectId === rpid);
+        const mo = ct.length > 0 ? Math.max(...ct.map(t => t.order)) : -1;
+        const now = new Date().toISOString();
+        const task = { id: crypto_1.default.randomUUID(), projectId: rpid, title: title.trim(), description: (description || '').trim(), column: tc, order: mo + 1, priority: tp, agent: (agent || '').trim(), skill: (skill || '').trim(), createdAt: now, updatedAt: now };
+        data.tasks.push(task);
+        if (agent) {
+            const project = data.projects.find(p => p.id === rpid);
+            if (project && !project.agents.includes(agent))
+                project.agents.push(agent);
+        }
+        (0, data_1.logActivity)(data, 'task_created', `Task "${task.title}" created`, rpid, agent || '', { taskId: task.id, column: tc });
+        (0, data_1.saveData)(data);
+        res.status(201).json(task);
+    });
+    app.post('/api/tasks/sync', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const { projectId, projectName, projectPath, agent, skill, tasks: incoming } = req.body;
+        if (!Array.isArray(incoming) || incoming.length === 0) {
+            res.status(400).json({ error: 'tasks array required' });
+            return;
+        }
+        let project = projectId ? data.projects.find(p => p.id === projectId) : data.projects.find(p => p.name === projectName || p.path === projectPath);
+        if (!project) {
+            project = { id: crypto_1.default.randomUUID(), name: projectName || 'Untitled', path: projectPath || '', agents: agent ? [agent] : [], createdAt: new Date().toISOString() };
+            data.projects.push(project);
+        }
+        if (agent && !project.agents.includes(agent))
+            project.agents.push(agent);
+        const now = new Date().toISOString();
+        const created = [];
+        for (const inc of incoming) {
+            const col = inc.column || 'backlog';
+            const ct = data.tasks.filter(t => t.column === col && t.projectId === project.id);
+            const mo = ct.length > 0 ? Math.max(...ct.map(t => t.order)) : -1;
+            const task = { id: crypto_1.default.randomUUID(), projectId: project.id, title: String(inc.title || '').trim(), description: String(inc.description || '').trim(), column: col, order: mo + 1, priority: inc.priority || 'medium', agent: agent || '', skill: skill || '', createdAt: now, updatedAt: now };
+            data.tasks.push(task);
+            created.push(task);
+        }
+        (0, data_1.logActivity)(data, 'task_created', `Synced ${created.length} tasks`, project.id, agent || '', { count: created.length });
+        (0, data_1.saveData)(data);
+        res.status(201).json({ project, tasks: created });
+    });
+    app.put('/api/tasks/:id', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const idx = data.tasks.findIndex(t => t.id === req.params.id);
+        if (idx === -1) {
+            res.status(404).json({ error: 'Task not found' });
+            return;
+        }
+        const { title, description, priority, agent, skill } = req.body;
+        if (title !== undefined)
+            data.tasks[idx].title = String(title).trim();
+        if (description !== undefined)
+            data.tasks[idx].description = String(description).trim();
+        if (agent !== undefined)
+            data.tasks[idx].agent = String(agent).trim();
+        if (skill !== undefined)
+            data.tasks[idx].skill = String(skill).trim();
+        const vp = ['low', 'medium', 'high', 'urgent'];
+        if (priority && vp.includes(priority))
+            data.tasks[idx].priority = priority;
+        data.tasks[idx].updatedAt = new Date().toISOString();
+        (0, data_1.logActivity)(data, 'task_updated', `Task "${data.tasks[idx].title}" updated`, data.tasks[idx].projectId, agent || '');
+        (0, data_1.saveData)(data);
+        res.json(data.tasks[idx]);
+    });
+    app.put('/api/tasks/:id/move', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const idx = data.tasks.findIndex(t => t.id === req.params.id);
+        if (idx === -1) {
+            res.status(404).json({ error: 'Task not found' });
+            return;
+        }
+        const { column, order } = req.body;
+        const vc = ['backlog', 'in-progress', 'review', 'done'];
+        if (!column || !vc.includes(column)) {
+            res.status(400).json({ error: 'Valid column required' });
+            return;
+        }
+        const task = data.tasks[idx];
+        const oldCol = task.column;
+        const newO = typeof order === 'number' ? order : 0;
+        task.column = column;
+        task.order = newO;
+        task.updatedAt = new Date().toISOString();
+        const tt = data.tasks.filter(t => t.column === column && t.id !== task.id && t.projectId === task.projectId).sort((a, b) => a.order - b.order);
+        tt.splice(newO, 0, task);
+        tt.forEach((t, i) => { t.order = i; });
+        if (oldCol !== column) {
+            data.tasks.filter(t => t.column === oldCol && t.projectId === task.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
+        }
+        const actType = column === 'done' ? 'task_done' : 'task_moved';
+        (0, data_1.logActivity)(data, actType, `Task "${task.title}" moved: ${oldCol} → ${column}`, task.projectId, task.agent, { from: oldCol, to: column });
+        (0, data_1.saveData)(data);
+        res.json(task);
+    });
+    // ─── Valid Transition Map ─────────────────────────────────────────────
+    const VALID_TRANSITIONS = {
+        'backlog': ['in-progress'],
+        'in-progress': ['review', 'done', 'backlog'],
+        'review': ['done', 'in-progress'],
+        'done': ['backlog'],
+    };
+    app.post('/api/tasks/:id/transition', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const idx = data.tasks.findIndex(t => t.id === req.params.id);
+        if (idx === -1) {
+            res.status(404).json({ error: 'Task not found' });
+            return;
+        }
+        const { column, reason } = req.body;
+        const vc = ['backlog', 'in-progress', 'review', 'done'];
+        if (!column || !vc.includes(column)) {
+            res.status(400).json({ error: 'Valid column required' });
+            return;
+        }
+        const task = data.tasks[idx];
+        const oldCol = task.column;
+        // Validate transition
+        const allowed = VALID_TRANSITIONS[oldCol] || [];
+        if (oldCol !== column && !allowed.includes(column)) {
+            res.status(400).json({
+                error: `Invalid transition: ${oldCol} → ${column}. Allowed: ${allowed.join(', ')}`,
+                errorCode: 'INVALID_TRANSITION',
+                allowed,
+            });
+            return;
+        }
+        if (oldCol === column) {
+            res.json(task);
+            return;
+        } // No-op
+        // Execute transition
+        const now = new Date().toISOString();
+        task.column = column;
+        task.updatedAt = now;
+        task.stuckSince = undefined; // Reset stuck tracker
+        // Reorder in target column
+        const targetTasks = data.tasks.filter(t => t.column === column && t.id !== task.id && t.projectId === task.projectId).sort((a, b) => a.order - b.order);
+        task.order = targetTasks.length;
+        // Reorder old column
+        data.tasks.filter(t => t.column === oldCol && t.projectId === task.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
+        const actType = column === 'done' ? 'task_done' : 'task_transitioned';
+        const msg = reason
+            ? `Task "${task.title}" transitioned: ${oldCol} → ${column} — ${reason}`
+            : `Task "${task.title}" transitioned: ${oldCol} → ${column}`;
+        (0, data_1.logActivity)(data, actType, msg, task.projectId, task.agent, { from: oldCol, to: column, reason: reason || '' });
+        (0, data_1.saveData)(data);
+        res.json(task);
+    });
+    app.post('/api/tasks/bulk-transition', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const { taskIds, column, reason } = req.body;
+        if (!Array.isArray(taskIds) || taskIds.length === 0) {
+            res.status(400).json({ error: 'taskIds array required' });
+            return;
+        }
+        const vc = ['backlog', 'in-progress', 'review', 'done'];
+        if (!column || !vc.includes(column)) {
+            res.status(400).json({ error: 'Valid column required' });
+            return;
+        }
+        const results = [];
+        const now = new Date().toISOString();
+        for (const tid of taskIds) {
+            const idx = data.tasks.findIndex(t => t.id === tid);
+            if (idx === -1) {
+                results.push({ id: tid, success: false, error: 'Not found' });
+                continue;
+            }
+            const task = data.tasks[idx];
+            const oldCol = task.column;
+            const allowed = VALID_TRANSITIONS[oldCol] || [];
+            if (oldCol !== column && !allowed.includes(column)) {
+                results.push({ id: tid, success: false, error: `Invalid: ${oldCol} → ${column}` });
+                continue;
+            }
+            if (oldCol === column) {
+                results.push({ id: tid, success: true });
+                continue;
+            }
+            task.column = column;
+            task.updatedAt = now;
+            task.stuckSince = undefined;
+            const targetTasks = data.tasks.filter(t => t.column === column && t.id !== task.id && t.projectId === task.projectId).sort((a, b) => a.order - b.order);
+            task.order = targetTasks.length;
+            const actType = column === 'done' ? 'task_done' : 'task_transitioned';
+            (0, data_1.logActivity)(data, actType, `Task "${task.title}" bulk-transitioned: ${oldCol} → ${column}`, task.projectId, task.agent, { from: oldCol, to: column, reason: reason || '', bulk: true });
+            results.push({ id: tid, success: true });
+        }
+        // Reorder all affected columns
+        const affectedCols = new Set(results.filter(r => r.success).map(r => { var _a; return (_a = data.tasks.find(t => t.id === r.id)) === null || _a === void 0 ? void 0 : _a.column; }).filter(Boolean));
+        for (const col of affectedCols) {
+            data.tasks.filter(t => t.column === col).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
+        }
+        (0, data_1.saveData)(data);
+        const successCount = results.filter(r => r.success).length;
+        res.json({ results, summary: `${successCount}/${taskIds.length} tasks transitioned to ${column}` });
+    });
+    app.get('/api/tasks/stuck', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const thresholdMs = parseInt(String(req.query.threshold)) || 30 * 60 * 1000; // default 30 min
+        const now = Date.now();
+        let tasks = data.tasks.filter(t => t.column === 'in-progress');
+        if (req.query.projectId)
+            tasks = tasks.filter(t => t.projectId === req.query.projectId);
+        const stuck = tasks.filter(t => {
+            const elapsed = now - new Date(t.updatedAt).getTime();
+            return elapsed > thresholdMs;
+        }).map(t => (Object.assign(Object.assign({}, t), { stuckMinutes: Math.round((now - new Date(t.updatedAt).getTime()) / 60000) })));
+        res.json(stuck);
+    });
+    app.delete('/api/tasks/:id', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const idx = data.tasks.findIndex(t => t.id === req.params.id);
+        if (idx === -1) {
+            res.status(404).json({ error: 'Task not found' });
+            return;
+        }
+        const [removed] = data.tasks.splice(idx, 1);
+        data.tasks.filter(t => t.column === removed.column && t.projectId === removed.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
+        (0, data_1.logActivity)(data, 'task_deleted', `Task "${removed.title}" deleted`, removed.projectId, removed.agent);
+        (0, data_1.saveData)(data);
+        res.status(204).send();
+    });
+    // ─── Task Dispatch API ──────────────────────────────────────────────────
+    app.post('/api/tasks/:id/dispatch', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const task = data.tasks.find(t => t.id === req.params.id);
+        if (!task) {
+            res.status(404).json({ error: 'Task not found' });
+            return;
+        }
+        const project = data.projects.find(p => p.id === task.projectId);
+        const force = req.query.force === 'true';
+        // Validate before dispatch
+        const validationError = (0, agent_dispatch_1.validateDispatch)(task, project, force);
+        if (validationError) {
+            const statusCode = validationError.errorCode === 'ALREADY_DISPATCHED' ? 409
+                : validationError.errorCode === 'WRITE_ERROR' ? 500 : 400;
+            res.status(statusCode).json({ error: validationError.error, errorCode: validationError.errorCode });
+            return;
+        }
+        // Dispatch
+        const result = (0, agent_dispatch_1.dispatchTaskToAgent)(task, project, force);
+        if (result.success) {
+            // Update task dispatch status
+            task.dispatchStatus = 'dispatched';
+            task.dispatchedAt = new Date().toISOString();
+            task.dispatchError = undefined;
+            task.updatedAt = task.dispatchedAt;
+            (0, data_1.logActivity)(data, 'task_dispatched', `Task "${task.title}" dispatched to ${task.agent}`, task.projectId, task.agent, {
+                taskId: task.id, filePath: result.filePath, skill: task.skill, force,
+            });
+            (0, data_1.saveData)(data);
+            res.json({ success: true, task, filePath: result.filePath, prompt: result.prompt, cliCommand: result.cliCommand });
+        }
+        else {
+            // Mark as failed
+            task.dispatchStatus = 'failed';
+            task.dispatchError = result.error;
+            task.updatedAt = new Date().toISOString();
+            (0, data_1.saveData)(data);
+            res.status(500).json({ error: result.error, errorCode: result.errorCode });
+        }
+    });
+    // ─── Activity API ──────────────────────────────────────────────────────
+    app.get('/api/activities', (req, res) => {
+        const data = (0, data_1.loadData)();
+        let activities = data.activities;
+        if (req.query.projectId)
+            activities = activities.filter(a => a.projectId === req.query.projectId);
+        const limit = parseInt(String(req.query.limit)) || 50;
+        res.json(activities.slice(0, limit));
+    });
+    // ─── Deployment API ────────────────────────────────────────────────────
+    app.get('/api/deployments', (req, res) => {
+        const data = (0, data_1.loadData)();
+        let deps = data.deployments;
+        if (req.query.projectId)
+            deps = deps.filter(d => d.projectId === req.query.projectId);
+        res.json(deps);
+    });
+    app.post('/api/deployments', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const { projectId, env, commit, branch, agent, message } = req.body;
+        if (!projectId || !env) {
+            res.status(400).json({ error: 'projectId and env required' });
+            return;
+        }
+        const validEnvs = ['staging', 'production'];
+        if (!validEnvs.includes(env)) {
+            res.status(400).json({ error: 'env must be staging or production' });
+            return;
+        }
+        const now = new Date().toISOString();
+        const dep = {
+            id: crypto_1.default.randomUUID(), projectId, env, status: 'success',
+            commit: commit || '', branch: branch || 'main',
+            agent: agent || '', message: message || `Deploy to ${env}`,
+            startedAt: now, finishedAt: now,
+        };
+        data.deployments.unshift(dep);
+        (0, data_1.logActivity)(data, env === 'staging' ? 'deploy_staging' : 'deploy_production', `Deployed to ${env}: ${dep.message}`, projectId, agent || '', { deploymentId: dep.id, commit, branch });
+        (0, data_1.saveData)(data);
+        res.status(201).json(dep);
+    });
+    app.put('/api/deployments/:id/status', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const dep = data.deployments.find(d => d.id === req.params.id);
+        if (!dep) {
+            res.status(404).json({ error: 'Deployment not found' });
+            return;
+        }
+        const { status } = req.body;
+        const vs = ['pending', 'running', 'success', 'failed', 'rolled_back'];
+        if (!vs.includes(status)) {
+            res.status(400).json({ error: 'Invalid status' });
+            return;
+        }
+        dep.status = status;
+        dep.finishedAt = new Date().toISOString();
+        if (status === 'failed')
+            (0, data_1.logActivity)(data, 'deploy_failed', `Deploy to ${dep.env} failed`, dep.projectId, dep.agent, { deploymentId: dep.id });
+        (0, data_1.saveData)(data);
+        res.json(dep);
+    });
+    app.post('/api/deployments/:id/rollback', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const dep = data.deployments.find(d => d.id === req.params.id);
+        if (!dep) {
+            res.status(404).json({ error: 'Deployment not found' });
+            return;
+        }
+        dep.status = 'rolled_back';
+        const now = new Date().toISOString();
+        const rollback = {
+            id: crypto_1.default.randomUUID(), projectId: dep.projectId, env: dep.env, status: 'success',
+            commit: '', branch: dep.branch, agent: req.body.agent || '', message: `Rollback of deploy ${dep.id.substring(0, 8)}`,
+            startedAt: now, finishedAt: now, rollbackOf: dep.id,
+        };
+        data.deployments.unshift(rollback);
+        (0, data_1.logActivity)(data, 'rollback', `Rolled back ${dep.env} deploy: ${dep.message}`, dep.projectId, req.body.agent || '', { originalDeployId: dep.id, rollbackId: rollback.id });
+        (0, data_1.saveData)(data);
+        res.status(201).json(rollback);
+    });
+    // ─── Changelog API ─────────────────────────────────────────────────────
+    app.get('/api/changelog', (req, res) => {
+        const data = (0, data_1.loadData)();
+        let entries = data.changelog;
+        if (req.query.projectId)
+            entries = entries.filter(c => c.projectId === req.query.projectId);
+        res.json(entries);
+    });
+    app.post('/api/changelog', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const { projectId, version, title, changes, deploymentId, agent } = req.body;
+        if (!version || !title) {
+            res.status(400).json({ error: 'version and title required' });
+            return;
+        }
+        const entry = {
+            id: crypto_1.default.randomUUID(), projectId: projectId || '', version, title,
+            changes: Array.isArray(changes) ? changes : [], deploymentId: deploymentId || '',
+            agent: agent || '', createdAt: new Date().toISOString(),
+        };
+        data.changelog.unshift(entry);
+        (0, data_1.logActivity)(data, 'changelog_added', `Changelog v${version}: ${title}`, projectId || '', agent || '', { changelogId: entry.id });
+        (0, data_1.saveData)(data);
+        res.status(201).json(entry);
+    });
+    // ─── Continuity / Working Memory API ───────────────────────────────────
+    app.get('/api/continuity', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const results = {};
+        for (const project of data.projects) {
+            if (project.path && (0, continuity_1.hasCmDir)(project.path)) {
+                results[project.id] = (0, continuity_1.getContinuityStatus)(project.path);
+            }
+        }
+        res.json(results);
+    });
+    app.get('/api/continuity/:projectId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found or no path' });
+            return;
+        }
+        if (!(0, continuity_1.hasCmDir)(project.path)) {
+            res.status(404).json({ error: 'Working memory not initialized. Run: cm continuity init' });
+            return;
+        }
+        const status = (0, continuity_1.getContinuityStatus)(project.path);
+        const state = (0, continuity_1.readContinuityState)(project.path);
+        res.json({ status, state });
+    });
+    app.post('/api/continuity/:projectId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        if (!(0, continuity_1.hasCmDir)(project.path))
+            (0, continuity_1.ensureCmDir)(project.path);
+        const state = req.body;
+        (0, continuity_1.writeContinuityMd)(project.path, state);
+        res.json({ success: true, state });
+    });
+    app.get('/api/learnings/:projectId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        const learnings = (0, continuity_1.hasCmDir)(project.path) ? (0, continuity_1.getLearnings)(project.path) : [];
+        res.json(learnings);
+    });
+    app.post('/api/learnings/:projectId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        if (!(0, continuity_1.hasCmDir)(project.path))
+            (0, continuity_1.ensureCmDir)(project.path);
+        const { whatFailed, whyFailed, howToPrevent, agent, taskId } = req.body;
+        if (!whatFailed) {
+            res.status(400).json({ error: 'whatFailed is required' });
+            return;
+        }
+        const learning = (0, continuity_1.addLearning)(project.path, {
+            whatFailed, whyFailed: whyFailed || '', howToPrevent: howToPrevent || '',
+            timestamp: new Date().toISOString(), agent: agent || '', taskId: taskId || '',
+        });
+        res.status(201).json(learning);
+    });
+    app.get('/api/decisions/:projectId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        const decisions = (0, continuity_1.hasCmDir)(project.path) ? (0, continuity_1.getDecisions)(project.path) : [];
+        res.json(decisions);
+    });
+    app.post('/api/decisions/:projectId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        if (!(0, continuity_1.hasCmDir)(project.path))
+            (0, continuity_1.ensureCmDir)(project.path);
+        const { decision, rationale, agent } = req.body;
+        if (!decision) {
+            res.status(400).json({ error: 'decision is required' });
+            return;
+        }
+        const entry = (0, continuity_1.addDecision)(project.path, {
+            decision, rationale: rationale || '', timestamp: new Date().toISOString(), agent: agent || '',
+        });
+        res.status(201).json(entry);
+    });
+    app.post('/api/continuity/:projectId/init', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        (0, continuity_1.ensureCmDir)(project.path);
+        const status = (0, continuity_1.getContinuityStatus)(project.path);
+        res.json({ success: true, status });
+    });
+    // ─── Judge Agent API ──────────────────────────────────────────────────
+    app.get('/api/judge', (req, res) => {
+        const data = (0, data_1.loadData)();
+        let tasks = data.tasks;
+        if (req.query.projectId) {
+            tasks = tasks.filter(t => t.projectId === req.query.projectId);
+        }
+        // Collect learnings from all projects
+        let allLearnings = [];
+        for (const project of data.projects) {
+            if (project.path && (0, continuity_1.hasCmDir)(project.path)) {
+                allLearnings = allLearnings.concat((0, continuity_1.getLearnings)(project.path));
+            }
+        }
+        const decisions = (0, judge_1.evaluateAllTasks)(tasks, allLearnings);
+        const result = {};
+        for (const [taskId, decision] of decisions) {
+            result[taskId] = decision;
+        }
+        res.json(result);
+    });
+    // ─── Transition Suggestion API (must be before :taskId) ────────────────
+    app.get('/api/judge/suggestions', (req, res) => {
+        const data = (0, data_1.loadData)();
+        let tasks = data.tasks;
+        if (req.query.projectId)
+            tasks = tasks.filter(t => t.projectId === req.query.projectId);
+        const suggestions = (0, judge_1.suggestTransitions)(tasks);
+        res.json(suggestions);
+    });
+    app.get('/api/judge/:taskId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const task = data.tasks.find(t => t.id === req.params.taskId);
+        if (!task) {
+            res.status(404).json({ error: 'Task not found' });
+            return;
+        }
+        const project = data.projects.find(p => p.id === task.projectId);
+        let learnings = [];
+        if ((project === null || project === void 0 ? void 0 : project.path) && (0, continuity_1.hasCmDir)(project.path)) {
+            learnings = (0, continuity_1.getLearnings)(project.path);
+        }
+        const decision = (0, judge_1.evaluateTaskState)(task, data.tasks, learnings);
+        res.json(Object.assign({ task: task.id }, decision));
+    });
+    // ─── Agent Suggestion API ─────────────────────────────────────────────
+    app.get('/api/agents/suggest', (req, res) => {
+        const skill = String(req.query.skill || '');
+        if (!skill) {
+            res.json({ agents: (0, judge_1.suggestAgentsForSkill)('cm-execution'), domain: 'orchestration' });
+            return;
+        }
+        const domain = (0, judge_1.getSkillDomain)(skill);
+        const agents = (0, judge_1.suggestAgentsForSkill)(skill);
+        res.json({ skill, domain, agents });
+    });
+    app.get('/api/agents/suggest/:taskId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const task = data.tasks.find(t => t.id === req.params.taskId);
+        if (!task) {
+            res.status(404).json({ error: 'Task not found' });
+            return;
+        }
+        const suggestions = (0, judge_1.suggestAgentsForTask)(task);
+        res.json({ taskId: task.id, skill: task.skill, suggestions });
+    });
+    // ─── Chain API ────────────────────────────────────────────────────────────
+    app.get('/api/chains', (_req, res) => {
+        res.json((0, skill_chain_1.listChains)());
+    });
+    app.get('/api/chains/:id', (req, res) => {
+        const chain = (0, skill_chain_1.findChain)(req.params.id);
+        if (!chain) {
+            res.status(404).json({ error: 'Chain not found' });
+            return;
+        }
+        res.json(chain);
+    });
+    app.get('/api/chain-executions', (req, res) => {
+        const data = (0, data_1.loadData)();
+        let execs = data.chainExecutions;
+        if (req.query.status)
+            execs = execs.filter(e => e.status === req.query.status);
+        if (req.query.projectId)
+            execs = execs.filter(e => e.projectId === req.query.projectId);
+        res.json(execs);
+    });
+    app.get('/api/chain-executions/:id', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const exec = data.chainExecutions.find(e => e.id === req.params.id);
+        if (!exec) {
+            res.status(404).json({ error: 'Chain execution not found' });
+            return;
+        }
+        res.json(exec);
+    });
+    app.post('/api/chain-executions', (req, res) => {
+        const { chainId, taskTitle, projectId, agent } = req.body;
+        if (!chainId || !taskTitle) {
+            res.status(400).json({ error: 'chainId and taskTitle required' });
+            return;
+        }
+        const chain = (0, skill_chain_1.findChain)(chainId);
+        if (!chain) {
+            res.status(404).json({ error: 'Chain not found' });
+            return;
+        }
+        const data = (0, data_1.loadData)();
+        const pid = projectId || (data.projects.length > 0 ? data.projects[0].id : undefined);
+        if (!pid) {
+            res.status(400).json({ error: 'No project available' });
+            return;
+        }
+        const execution = (0, skill_chain_1.createChainExecution)(chain, pid, taskTitle, agent || 'antigravity');
+        data.chainExecutions.push(execution);
+        (0, data_1.logActivity)(data, 'chain_started', `Chain "${chain.name}" started: "${taskTitle}"`, pid, agent || '', { chainId, executionId: execution.id });
+        (0, data_1.saveData)(data);
+        res.status(201).json(execution);
+    });
+    app.put('/api/chain-executions/:id/advance', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const exec = data.chainExecutions.find(e => e.id === req.params.id);
+        if (!exec) {
+            res.status(404).json({ error: 'Chain execution not found' });
+            return;
+        }
+        if (exec.status !== 'running') {
+            res.status(400).json({ error: `Chain is ${exec.status}` });
+            return;
+        }
+        const result = (0, skill_chain_1.advanceChain)(exec, req.body.output);
+        const actType = result.completed ? 'chain_completed' : 'chain_step_completed';
+        (0, data_1.logActivity)(data, actType, result.completed ? `Chain completed: "${exec.taskTitle}"` : `Chain step advanced: ${result.nextSkill}`, exec.projectId, exec.agent, { executionId: exec.id });
+        (0, data_1.saveData)(data);
+        res.json(Object.assign(Object.assign({}, result), { execution: exec }));
+    });
+    app.put('/api/chain-executions/:id/skip', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const exec = data.chainExecutions.find(e => e.id === req.params.id);
+        if (!exec) {
+            res.status(404).json({ error: 'Chain execution not found' });
+            return;
+        }
+        if (exec.status !== 'running') {
+            res.status(400).json({ error: `Chain is ${exec.status}` });
+            return;
+        }
+        const result = (0, skill_chain_1.skipChainStep)(exec, req.body.reason);
+        (0, data_1.saveData)(data);
+        res.json(Object.assign(Object.assign({}, result), { execution: exec }));
+    });
+    app.put('/api/chain-executions/:id/abort', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const exec = data.chainExecutions.find(e => e.id === req.params.id);
+        if (!exec) {
+            res.status(404).json({ error: 'Chain execution not found' });
+            return;
+        }
+        (0, skill_chain_1.abortChain)(exec, req.body.reason);
+        (0, data_1.logActivity)(data, 'chain_aborted', `Chain aborted: "${exec.taskTitle}"`, exec.projectId, exec.agent, { executionId: exec.id });
+        (0, data_1.saveData)(data);
+        res.json(exec);
+    });
+    app.get('/api/chains/suggest/:title', (req, res) => {
+        const chain = (0, skill_chain_1.matchChain)(req.params.title);
+        res.json(chain || { match: false });
+    });
+    // ─── Fallback ──────────────────────────────────────────────────────────
+    app.get('/{*path}', (_req, res) => {
+        res.sendFile(path_1.default.join(publicDir, 'index.html'));
+    });
+    // ─── Start Server ─────────────────────────────────────────────────────
+    const server = app.listen(port, () => {
+        try {
+            fs_1.default.writeFileSync(data_1.PID_FILE, String(process.pid));
+        }
+        catch (_a) { }
+        if (!silent) {
+            console.log(chalk_1.default.cyan(`\n🚀 Mission Control at http://codymaster.localhost:${port}`));
+            console.log(chalk_1.default.gray(`   Data: ${data_1.DATA_FILE}`));
+            console.log(chalk_1.default.gray(`   Press Ctrl+C to stop.\n`));
+        }
+        else {
+            // Silent auto-start: just a subtle hint
+            console.log(chalk_1.default.gray(`  📊 Dashboard auto-started → http://codymaster.localhost:${port}`));
+        }
+    });
+    const cleanup = () => { try {
+        fs_1.default.unlinkSync(data_1.PID_FILE);
+    }
+    catch (_a) { } };
+    process.on('SIGINT', () => { cleanup(); process.exit(0); });
+    process.on('SIGTERM', () => { cleanup(); process.exit(0); });
+    return server;
+}

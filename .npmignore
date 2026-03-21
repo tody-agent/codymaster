@@ -1,0 +1,12 @@
+src/
+tests/
+docs/
+public/
+scripts/
+projects/
+.cm/
+*.test.ts
+tsconfig.json
+vitest.config.ts
+.env
+.env.*
