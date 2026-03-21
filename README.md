@@ -3,13 +3,13 @@
 # 🧠 CodyMaster
 
 **The Universal AI Agent Skills Framework**
-**33+ Skills · 5 Plugin Bundles · 7 Domains · 7+ Platforms**
+**33+ Skills · 1 Plugin · 7 Domains · 7+ Platforms**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-3.3.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-33%2B-success.svg" />
   <img alt="Commands" src="https://img.shields.io/badge/commands-10-orange.svg" />
-  <img alt="Plugins" src="https://img.shields.io/badge/plugins-5-purple.svg" />
+  <img alt="Plugins" src="https://img.shields.io/badge/plugins-1-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -33,14 +33,10 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 **Or run manually:**
 ```bash
 # Step 1: Add the marketplace
-claude plugin marketplace add tody-agent/cody-master
+claude plugin marketplace add tody-agent/codymaster
 
-# Step 2: Install all plugins (or pick what you need)
-claude plugin install cm-engineering@cody-master
-claude plugin install cm-operations@cody-master
-claude plugin install cm-product@cody-master
-claude plugin install cm-growth@cody-master
-claude plugin install cm-orchestration@cody-master
+# Step 2: Install all 33+ skills in one go
+claude plugin install cody-master@cody-master
 ```
 
 ### Gemini CLI

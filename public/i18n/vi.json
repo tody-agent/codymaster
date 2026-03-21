@@ -1405,13 +1405,13 @@
       {
         "title": "Thêm Marketplace",
         "description": "Đăng ký nguồn plugin Cody Master vào Claude Code.",
-        "code": "claude plugin marketplace add tody-agent/cody-master",
-        "output": "✓ Marketplace đã đăng ký: tody-agent/cody-master\n✓ 5 gói kỹ năng sẵn sàng"
+        "code": "claude plugin marketplace add tody-agent/codymaster",
+        "output": "✓ Marketplace đã đăng ký: tody-agent/codymaster\n✓ 33+ kỹ năng sẵn sàng"
       },
       {
         "title": "Cài gói kỹ năng",
         "description": "Cài một hoặc tất cả năm gói. Bắt đầu với Engineering cho TDD, debug và quality gate.",
-        "code": "claude plugin install cm-engineering@cody-master",
+        "code": "claude plugin install cody-master@cody-master",
         "output": "✓ cm-engineering đã cài\n📦 Kỹ năng: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ Còn có: cm-operations, cm-product, cm-growth, cm-orchestration"
       },
       {

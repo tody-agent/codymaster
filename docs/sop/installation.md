@@ -24,25 +24,23 @@ Open your terminal and run:
 claude plugin marketplace add tody-agent/cody-master
 ```
 
-### Step 2: Install Skill Bundles
+### Step 2: Install All 33+ Skills
 
-Install all 5 bundles (recommended) or pick only what you need:
+One command installs everything:
 
 ```bash
-claude plugin install cm-engineering@cody-master
-claude plugin install cm-operations@cody-master
-claude plugin install cm-product@cody-master
-claude plugin install cm-growth@cody-master
-claude plugin install cm-orchestration@cody-master
+claude plugin install cody-master@cody-master
 ```
 
-| Bundle | Skills included |
-|--------|----------------|
-| `cm-engineering` | cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review |
-| `cm-operations` | cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-secret-shield, cm-safe-i18n |
-| `cm-product` | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap, jobs-to-be-done |
-| `cm-growth` | cm-content-factory, cm-ads-tracker, cro-methodology |
-| `cm-orchestration` | cm-execution, cm-continuity, cm-deep-search, cm-skill-chain, cm-skill-mastery, cm-how-it-work |
+All skills are included in a single plugin:
+
+| Domain | Skills |
+|--------|--------|
+| Engineering | cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review |
+| Operations | cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-secret-shield, cm-safe-i18n |
+| Product | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap, jobs-to-be-done |
+| Growth | cm-content-factory, cm-ads-tracker, cro-methodology |
+| Orchestration | cm-execution, cm-continuity, cm-deep-search, cm-skill-chain, cm-skill-mastery, cm-how-it-work |
 
 ### Step 3: Verify
 
@@ -50,7 +48,7 @@ claude plugin install cm-orchestration@cody-master
 claude plugin list
 ```
 
-You should see all 5 bundles listed as installed.
+You should see `cody-master` listed as installed.
 
 ### One-Liner Alternative
 

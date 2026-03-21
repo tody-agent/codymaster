@@ -1405,13 +1405,13 @@
       {
         "title": "Добавьте маркетплейс",
         "description": "Зарегистрируйте источник плагина Cody Master в Claude Code.",
-        "code": "claude plugin marketplace add tody-agent/cody-master",
-        "output": "✓ Маркетплейс зарегистрирован: tody-agent/cody-master\n✓ Доступно 5 пакетов навыков"
+        "code": "claude plugin marketplace add tody-agent/codymaster",
+        "output": "✓ Маркетплейс зарегистрирован: tody-agent/codymaster\n✓ cody-master плагин доступен"
       },
       {
         "title": "Установите пакеты навыков",
         "description": "Установите один или все пять пакетов. Начните с Engineering — TDD, отладка и gate качества.",
-        "code": "claude plugin install cm-engineering@cody-master",
+        "code": "claude plugin install cody-master@cody-master",
         "output": "✓ cm-engineering установлен\n📦 Навыки: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ Ещё доступны: cm-operations, cm-product, cm-growth, cm-orchestration"
       },
       {

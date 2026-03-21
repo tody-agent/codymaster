@@ -1405,20 +1405,20 @@
       {
         "title": "Add the Marketplace",
         "description": "Register the Cody Master plugin source in Claude Code.",
-        "code": "claude plugin marketplace add tody-agent/cody-master",
-        "output": "✓ Marketplace registered: tody-agent/cody-master\n✓ 5 skill bundles available"
+        "code": "claude plugin marketplace add tody-agent/codymaster",
+        "output": "✓ Marketplace registered: tody-agent/codymaster\n✓ cody-master plugin available"
       },
       {
-        "title": "Install Skill Bundles",
-        "description": "Install one bundle or all five. Start with Engineering for TDD, debugging, and quality gates.",
-        "code": "claude plugin install cm-engineering@cody-master",
-        "output": "✓ cm-engineering installed\n📦 Skills: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ Also available: cm-operations, cm-product, cm-growth, cm-orchestration"
+        "title": "Install All Skills",
+        "description": "One command installs all 33+ skills — TDD, debugging, deployment, UX, content, security, and more.",
+        "code": "claude plugin install cody-master@cody-master",
+        "output": "✓ cody-master installed\n📦 33+ skills ready: cm-tdd, cm-debugging, cm-planning, cm-ux-master, cm-safe-deploy..."
       },
       {
         "title": "Verify & Start Using",
-        "description": "Check installed bundles, then open Claude Code and ask it to use a skill.",
+        "description": "Check the installation, then open Claude Code and ask it to use a skill.",
         "code": "claude plugin list",
-        "output": "✓ cm-engineering (5 skills)\n✓ Ready — try: Use cm-planning to design my new feature"
+        "output": "✓ cody-master (33+ skills)\n✓ Ready — try: Use cm-planning to design my new feature"
       }
     ],
     "copyButton": "Copy",

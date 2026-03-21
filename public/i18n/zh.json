@@ -1405,13 +1405,13 @@
       {
         "title": "添加技能市场",
         "description": "在 Claude Code 中注册 Cody Master 插件源。",
-        "code": "claude plugin marketplace add tody-agent/cody-master",
-        "output": "✓ 市场已注册：tody-agent/cody-master\n✓ 5 个技能包已就绪"
+        "code": "claude plugin marketplace add tody-agent/codymaster",
+        "output": "✓ 市场已注册：tody-agent/codymaster\n✓ cody-master plugin 已就绪"
       },
       {
         "title": "安装技能包",
         "description": "安装一个或全部五个技能包。从 Engineering 开始，包含 TDD、调试和质量门禁。",
-        "code": "claude plugin install cm-engineering@cody-master",
+        "code": "claude plugin install cody-master@cody-master",
         "output": "✓ cm-engineering 安装完成\n📦 技能：cm-tdd、cm-debugging、cm-quality-gate、cm-code-review\n→ 还可安装：cm-operations、cm-product、cm-growth、cm-orchestration"
       },
       {

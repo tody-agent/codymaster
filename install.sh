@@ -27,19 +27,15 @@ echo -e "${CYAN}=====================================================${NC}"
 # ── Non-interactive flags ───────────────────────────────────────────────────
 if [[ "$1" == "--claude" ]]; then
   echo ""
-  echo -e "${PURPLE}${BOLD}Claude Code — Plugin Marketplace Install${NC}"
+  echo -e "${PURPLE}${BOLD}Claude Code — Install Cody Master${NC}"
   echo ""
-  echo "Open Claude Code and run these commands:"
+  echo "Open Claude Code and run these 2 commands:"
   echo ""
   echo -e "  ${BOLD}Step 1:${NC} Add the marketplace"
-  echo -e "  ${CYAN}claude plugin marketplace add tody-agent/cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin marketplace add tody-agent/codymaster${NC}"
   echo ""
-  echo -e "  ${BOLD}Step 2:${NC} Install skill bundles"
-  echo -e "  ${CYAN}claude plugin install cm-engineering@cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-operations@cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-product@cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-growth@cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-orchestration@cody-master${NC}"
+  echo -e "  ${BOLD}Step 2:${NC} Install all 33+ skills in one go"
+  echo -e "  ${CYAN}claude plugin install cody-master@cody-master${NC}"
   echo ""
   echo -e "${GREEN}${BOLD}✅ Done!${NC} — 33+ skills available in Claude Code"
   echo -e "Documentation: ${CYAN}https://codymaster.pages.dev/docs${NC}"
@@ -49,12 +45,8 @@ fi
 if [[ "$1" == "--all" ]]; then
   echo ""
   echo -e "${PURPLE}${BOLD}Claude Code:${NC}"
-  echo -e "  ${CYAN}claude plugin marketplace add tody-agent/cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-engineering@cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-operations@cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-product@cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-growth@cody-master${NC}"
-  echo -e "  ${CYAN}claude plugin install cm-orchestration@cody-master${NC}"
+  echo -e "  ${CYAN}claude plugin marketplace add tody-agent/codymaster${NC}"
+  echo -e "  ${CYAN}claude plugin install cody-master@cody-master${NC}"
   echo ""
   echo -e "${CYAN}${BOLD}Gemini CLI:${NC}"
   echo -e "  ${CYAN}gemini extensions install ${REPO_URL}${NC}"
@@ -74,19 +66,18 @@ fi
 echo ""
 echo "Select installation method:"
 echo ""
-echo -e "  ${PURPLE}${BOLD}1) 🟣 Claude Code (Marketplace — recommended)${NC}"
-echo -e "  ${PURPLE}2) 🟣 Claude Code (Individual plugins)${NC}"
-echo -e "  ${CYAN}3) 💎 Gemini CLI (Extension)${NC}"
-echo -e "  ${GREEN}4) 🟢 Antigravity / Gemini (Global skills)${NC}"
-echo -e "  ${GREEN}5) 🟢 Antigravity / Gemini (Workspace skills)${NC}"
-echo -e "  ${BLUE}6) 🔵 Cursor (Plugin Marketplace)${NC}"
-echo -e "  ${ORANGE}7) 🟠 Codex${NC}"
-echo -e "  8) 📦 OpenCode"
-echo -e "  9) 📋 Manual copy (any platform)"
+echo -e "  ${PURPLE}${BOLD}1) 🟣 Claude Code (Recommended)${NC}"
+echo -e "  ${CYAN}2) 💎 Gemini CLI (Extension)${NC}"
+echo -e "  ${GREEN}3) 🟢 Antigravity / Gemini (Global skills)${NC}"
+echo -e "  ${GREEN}4) 🟢 Antigravity / Gemini (Workspace skills)${NC}"
+echo -e "  ${BLUE}5) 🔵 Cursor (Plugin Marketplace)${NC}"
+echo -e "  ${ORANGE}6) 🟠 Codex${NC}"
+echo -e "  7) 📦 OpenCode"
+echo -e "  8) 📋 Manual copy (any platform)"
 echo -e "  0) ${RED}❌ Exit${NC}"
 echo ""
 
-read -p "Choose (0-9): " choice
+read -p "Choose (0-8): " choice
 
 case $choice in
     1)
@@ -96,35 +87,12 @@ case $choice in
         echo "Run these commands in Claude Code:"
         echo ""
         echo -e "  ${BOLD}Step 1:${NC} Add marketplace"
-        echo -e "  ${CYAN}claude plugin marketplace add tody-agent/cody-master${NC}"
+        echo -e "  ${CYAN}claude plugin marketplace add tody-agent/codymaster${NC}"
         echo ""
-        echo -e "  ${BOLD}Step 2:${NC} Install all plugins"
-        echo -e "  ${CYAN}claude plugin install cm-engineering@cody-master${NC}"
-        echo -e "  ${CYAN}claude plugin install cm-operations@cody-master${NC}"
-        echo -e "  ${CYAN}claude plugin install cm-product@cody-master${NC}"
-        echo -e "  ${CYAN}claude plugin install cm-growth@cody-master${NC}"
-        echo -e "  ${CYAN}claude plugin install cm-orchestration@cody-master${NC}"
-        echo ""
-        echo -e "  ${BOLD}Or install individual plugins as needed.${NC}"
+        echo -e "  ${BOLD}Step 2:${NC} Install all 33+ skills"
+        echo -e "  ${CYAN}claude plugin install cody-master@cody-master${NC}"
         ;;
     2)
-        echo ""
-        echo -e "${PURPLE}${BOLD}Claude Code — Pick Plugins${NC}"
-        echo ""
-        echo "Available plugins:"
-        echo -e "  ${BOLD}cm-engineering${NC}    — TDD, debugging, quality gates, code review"
-        echo -e "  ${BOLD}cm-operations${NC}     — Deploy, identity guard, git worktrees, secrets, i18n"
-        echo -e "  ${BOLD}cm-product${NC}        — Planning, brainstorm, UX/UI, bootstrap, docs"
-        echo -e "  ${BOLD}cm-growth${NC}         — Content factory, ads tracking, CRO"
-        echo -e "  ${BOLD}cm-orchestration${NC}  — Execution, continuity, skill chaining"
-        echo ""
-        echo "First add the marketplace:"
-        echo -e "  ${CYAN}claude plugin marketplace add tody-agent/cody-master${NC}"
-        echo ""
-        echo "Then install the plugins you want:"
-        echo -e "  ${CYAN}claude plugin install cm-engineering@cody-master${NC}"
-        ;;
-    3)
         echo ""
         echo -e "${CYAN}${BOLD}Gemini CLI — Extension Install${NC}"
         echo ""
@@ -134,7 +102,7 @@ case $choice in
         echo "To update:"
         echo -e "  ${CYAN}gemini extensions update cody-master${NC}"
         ;;
-    4)
+    3)
         echo ""
         echo -e "${GREEN}${BOLD}Antigravity / Gemini — Global Install${NC}"
         echo ""
@@ -154,7 +122,7 @@ case $choice in
         echo ""
         echo -e "${GREEN}Skills installed to ${SKILLS_DIR}${NC}"
         ;;
-    5)
+    4)
         echo ""
         echo -e "${GREEN}${BOLD}Antigravity / Gemini — Workspace Install${NC}"
         echo ""
@@ -175,7 +143,7 @@ case $choice in
         echo ""
         echo -e "${GREEN}Skills installed to ${SKILLS_DIR}${NC}"
         ;;
-    6)
+    5)
         echo ""
         echo -e "${BLUE}${BOLD}Cursor — Plugin Install${NC}"
         echo ""
@@ -184,21 +152,21 @@ case $choice in
         echo ""
         echo "Or search for \"cody-master\" in the plugin marketplace."
         ;;
-    7)
+    6)
         echo ""
         echo -e "${ORANGE}${BOLD}Codex — Install${NC}"
         echo ""
         echo "Tell Codex:"
         echo -e "  ${CYAN}Fetch and follow instructions from ${REPO_URL}/raw/main/.codex/INSTALL.md${NC}"
         ;;
-    8)
+    7)
         echo ""
         echo -e "${BOLD}OpenCode — Install${NC}"
         echo ""
         echo "Tell OpenCode:"
         echo -e "  ${CYAN}Fetch and follow instructions from ${REPO_URL}/raw/main/.opencode/INSTALL.md${NC}"
         ;;
-    9)
+    8)
         echo ""
         echo -e "${BOLD}Manual Copy — Any Platform${NC}"
         echo ""

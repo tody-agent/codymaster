@@ -1405,13 +1405,13 @@
       {
         "title": "मार्केटप्लेस जोड़ें",
         "description": "Claude Code में Cody Master प्लगइन सोर्स रजिस्टर करें।",
-        "code": "claude plugin marketplace add tody-agent/cody-master",
-        "output": "✓ मार्केटप्लेस रजिस्टर हुआ: tody-agent/cody-master\n✓ 5 स्किल बंडल उपलब्ध"
+        "code": "claude plugin marketplace add tody-agent/codymaster",
+        "output": "✓ मार्केटप्लेस रजिस्टर हुआ: tody-agent/codymaster\n✓ cody-master plugin उपलब्ध"
       },
       {
         "title": "स्किल बंडल इंस्टॉल करें",
         "description": "एक या सभी पांच बंडल इंस्टॉल करें। Engineering से शुरू करें — TDD, डिबगिंग और क्वालिटी गेट।",
-        "code": "claude plugin install cm-engineering@cody-master",
+        "code": "claude plugin install cody-master@cody-master",
         "output": "✓ cm-engineering इंस्टॉल हुआ\n📦 स्किल्स: cm-tdd, cm-debugging, cm-quality-gate, cm-code-review\n→ और उपलब्ध: cm-operations, cm-product, cm-growth, cm-orchestration"
       },
       {
