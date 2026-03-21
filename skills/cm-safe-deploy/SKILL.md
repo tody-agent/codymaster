@@ -78,19 +78,65 @@ digraph pipeline {
 | Local dev secrets | `.dev.vars` (gitignored) | ❌ `wrangler.jsonc` |
 | Build config (non-secret) | `wrangler.jsonc` | — |
 
-**Secret Hygiene Check:**
+**Secret Hygiene Check (Enhanced — Repo-Wide):**
+
+> Calls `cm-secret-shield` Layer 4 for deep scanning. Below is the essential check:
 
 ```bash
 node -e "
-const src = require('fs').readFileSync('wrangler.jsonc', 'utf-8');
-const dangerous = ['SERVICE_KEY', 'ANON_KEY', 'DB_PASSWORD', 'SECRET_KEY', 'PRIVATE_KEY'];
-const found = dangerous.filter(k => src.includes(k));
-if (found.length > 0) {
-  console.error('❌ DANGEROUS: Found potential secrets in wrangler.jsonc:', found);
-  console.error('  Fix: wrangler secret put KEY_NAME (then remove from wrangler.jsonc)');
+const fs = require('fs');
+const { execSync } = require('child_process');
+
+// 1. Check wrangler config for secrets
+const wranglerFiles = ['wrangler.jsonc', 'wrangler.toml', 'wrangler.json'];
+const dangerous = ['SERVICE_KEY', 'ANON_KEY', 'DB_PASSWORD', 'SECRET_KEY', 'PRIVATE_KEY', 'API_SECRET'];
+let failed = false;
+
+for (const wf of wranglerFiles) {
+  if (!fs.existsSync(wf)) continue;
+  const src = fs.readFileSync(wf, 'utf-8');
+  for (const key of dangerous) {
+    // Check for actual values, not just variable names
+    const valuePattern = new RegExp(key + '\\\\s*[=:]\\\\s*[\"\'][a-zA-Z0-9/+=]{20,}', 'g');
+    if (valuePattern.test(src)) {
+      console.error('❌ DANGEROUS: ' + wf + ' contains a ' + key + ' VALUE');
+      console.error('  Fix: wrangler secret put ' + key + ' (then remove from ' + wf + ')');
+      failed = true;
+    }
+  }
+}
+
+// 2. Check .gitignore has required patterns
+if (fs.existsSync('.gitignore')) {
+  const gi = fs.readFileSync('.gitignore', 'utf-8');
+  const required = ['.env', '.dev.vars'];
+  const missing = required.filter(r => !gi.includes(r));
+  if (missing.length > 0) {
+    console.error('❌ .gitignore missing: ' + missing.join(', '));
+    failed = true;
+  }
+} else {
+  console.error('❌ No .gitignore found!');
+  failed = true;
+}
+
+// 3. Check .env files aren't tracked by git
+try {
+  const tracked = execSync('git ls-files', { encoding: 'utf-8' });
+  const badFiles = ['.env', '.dev.vars', '.env.local', '.env.production'];
+  const trackedBad = badFiles.filter(f => tracked.split('\\n').includes(f));
+  if (trackedBad.length > 0) {
+    console.error('❌ CRITICAL: Secret files tracked by git: ' + trackedBad.join(', '));
+    console.error('   Fix: git rm --cached ' + trackedBad.join(' '));
+    failed = true;
+  }
+} catch (e) { /* not a git repo */ }
+
+if (failed) {
+  console.error('\\n🛡️ Gate 0 FAILED. Fix issues above before deploying.');
   process.exit(1);
 }
-console.log('✅ Gate 0 passed: no sensitive keys in wrangler.jsonc');
+console.log('✅ Gate 0 passed: repo-wide secret hygiene verified');
 "
 ```
 
@@ -423,8 +469,10 @@ Create `.agents/workflows/deploy.md`.
 | Skill | When |
 |-------|------|
 | `cm-quality-gate` | Setting up Gate 2 frontend tests and Test Gate |
+| `cm-secret-shield` | Gate 0 calls Secret Shield Layer 4 for deep scanning |
 | `cm-safe-i18n` | Adding i18n-specific gates |
 | `cm-terminal` | Monitoring gate commands |
+| `cm-identity-guard` | Gate 0 verifies deploy identity |
 
 ## The Bottom Line
 

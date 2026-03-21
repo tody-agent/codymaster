@@ -7,6 +7,32 @@ description: "Use when executing implementation plans — choose mode: batch exe
 
 > **Three modes, one skill.** Choose based on task structure.
 
+## Step 0: Load Working Memory (MANDATORY)
+
+Before choosing execution mode, ALWAYS:
+
+1. **Read** `.cm/CONTINUITY.md`
+2. **Run Memory Audit** — decay check + conflict detection + integrity scan (see `cm-continuity`)
+3. **Scope-filter learnings** — if working on module X:
+   - Load from `.cm/learnings.json` ONLY where `scope == "global"` or `scope == "module:X"`
+   - **NEVER** load `status = "invalidated"` (proven wrong — skip entirely)
+   - **CAUTION** with `status = "corrected"` (was wrong, verify before applying)
+   - **TRUST** high `reinforceCount` + recent `lastRelevant` (high confidence)
+   - **VERIFY** `reinforceCount = 0` + old `lastRelevant` (low confidence — don't blindly follow)
+   - SKIP learnings for other modules (reduces noise + saves tokens)
+4. **Check** "Next Actions" — pick up where you left off
+
+After EACH completed task, update CONTINUITY.md:
+- Move task from "Next Actions" to "Just Completed"
+- Record any new decisions in "Key Decisions" with scope tag
+- If recording learning, reinforce existing instead of duplicating
+
+> **Token savings:** Scope-filtered reading loads ~250 tokens instead of ~2,500.
+> **Error prevention:** Never repeats a mistake already recorded.
+> **Quality:** No stale/irrelevant learnings misleading the AI.
+
+---
+
 ## Mode Selection
 
 ```

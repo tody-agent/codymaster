@@ -47,6 +47,44 @@ Use for ANY technical issue:
 
 You MUST complete each phase before proceeding to the next.
 
+### Phase 0.5: Memory Integrity Check (BEFORE blaming code)
+
+> **BEFORE blaming code, ASK: "Could memory be causing this bug?"**
+
+1. **SUSPECT** — Identify relevant memories:
+   - What module/file is the bug in?
+   - Read `.cm/learnings.json` filtered by that scope
+   - List all active learnings + decisions for this area
+
+2. **INVESTIGATE** — Did AI follow a memory when writing buggy code?
+   - Check: Does the buggy code match a `prevention` pattern from any learning?
+   - Check: Does the buggy code follow a `decision` that may be outdated?
+   - If YES → that memory is a **suspect**
+
+3. **VERIFY** — Is the suspect memory still correct?
+   - Compare learning with current codebase (not when it was recorded)
+   - Has the dependency/pattern/architecture changed since learning was recorded?
+   - If memory is WRONG → proceed to HEAL
+
+4. **HEAL** (only if memory confirmed as cause):
+   - **Invalidate:** Set `status = "invalidated"` — learning is proven wrong
+   - **Correct:** Update `prevention` with correct info, set `status = "corrected"`
+   - **Scope-reduce:** Learning is right for smaller scope → narrow the scope
+   - **Record meta-learning** in `.cm/meta-learnings.json`
+
+```
+IF memory caused the bug:
+  → HEAL memory FIRST
+  → THEN proceed to Phase 1 to fix code
+  → The code fix will be correct because memory is now correct
+
+IF memory did NOT cause the bug:
+  → Proceed to Phase 1 normally
+```
+
+> **WHY PHASE 0.5?** Fix memory first → code fix will be correct.
+> Without fixing memory → bug will return next session (bug loop).
+
 ### Phase 1: Root Cause Investigation
 
 **BEFORE attempting ANY fix:**
@@ -181,6 +219,31 @@ You MUST complete each phase before proceeding to the next.
    **Discuss with your human partner before attempting more fixes**
 
    This is NOT a failed hypothesis - this is a wrong architecture.
+
+### Step 5: Record Learning (MANDATORY)
+
+After fixing any bug, ALWAYS write to `.cm/CONTINUITY.md` → "Mistakes & Learnings":
+
+```
+- What Failed:      [exact error message or behavior]
+- Why It Failed:    [root cause from Phase 1]
+- How to Prevent:   [concrete pattern to avoid]
+- Scope:            [global | module:{name} | file:{path}]
+```
+
+**Scope rules:** Choose the SMALLEST scope that applies.
+- Bug in one file → `file:src/api/routes.ts`
+- Bug in module pattern → `module:auth`
+- Bug in project-wide practice → `global`
+
+**Anti-duplicate:** If a similar learning already exists in `.cm/learnings.json`,
+reinforce it (reinforceCount++) instead of creating a new entry.
+
+> **Token savings:** Next time same error pattern appears, AI reads the learning
+> (~50 tokens) instead of repeating full 4-phase debug cycle (~3,000 tokens).
+> **This is the #1 token saver in the entire kit.**
+
+---
 
 ## Red Flags - STOP and Follow Process
 

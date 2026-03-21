@@ -244,7 +244,7 @@ Init → Detect → Inject Trigger Button
 | `synth.cancel()` fires onerror | Settings sheet closes immediately | Guard flag or check error type |
 | Voices not loaded | No voice available | Listen for `voiceschanged` event |
 | Chunk too large | Utterance fails silently | Max 2500 chars per chunk |
-| Reading CTA text | TTS reads "Đặt Lịch Ngay" | Strip non-content elements |
+| Reading CTA text | TTS reads "Book Now" button text | Strip non-content elements |
 | Autoplay blocked | Audio won't start on mobile | Require user interaction first |
 | Multiple audio conflicts | TTS + CRO play simultaneously | Mutual exclusion check |
 | No cleanup on nav | Audio keeps playing | `beforeunload` → `synth.cancel()` |

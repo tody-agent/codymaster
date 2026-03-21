@@ -130,9 +130,9 @@ Structure your prompt exactly like this:
    - **AI Insights:** [Any suggestions or notes returned by Stitch]
 
    What's next?
-   1. ✅ **Confirm (Chốt)** — I will write the code matching this design exactly.
-   2. ✏️ **Edit (Chỉnh sửa)** — Tell me what to change, I'll update the preview.
-   3. ⏭️ **Skip (Bỏ qua)** — Proceed straight to coding.
+   1. ✅ **Confirm** — I will write the code matching this design exactly.
+   2. ✏️ **Edit** — Tell me what to change, I'll update the preview.
+   3. ⏭️ **Skip** — Proceed straight to coding.
    ```
 
 ## Step 5: Finalization & Baton Pass

@@ -119,6 +119,24 @@ When implementation is complete and all tests pass.
 
 ---
 
+### Step FINAL: Record Review Learnings
+
+After processing review feedback, ALWAYS update `.cm/CONTINUITY.md`:
+
+- **Key Decisions:** If reviewer changed architecture approach, record with scope:
+  `[Decision]: [Rationale] — scope: [global|module:{name}]`
+- **Mistakes & Learnings:** If reviewer caught a pattern mistake, record with scope:
+  - What Failed: [the pattern that was wrong]
+  - How to Prevent: [correct pattern going forward]
+  - Scope: [global | module:{name} | file:{path}]
+
+**Anti-duplicate:** If similar learning exists, reinforce it instead of creating new.
+
+> **Token savings:** Future code reviews in same project avoid repeating
+> the same feedback. Reviewer patterns become accumulated knowledge.
+
+---
+
 ## Integration
 
 | Skill | Relationship |

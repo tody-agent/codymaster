@@ -132,23 +132,24 @@ When you encounter something you don't have a skill for:
 
 ---
 
-## The Cody Master Kit (13 skills)
+## The Cody Master Kit (14 skills)
 
 | # | Skill | Purpose |
 |---|-------|---------|
 | 1 | `cm-project-bootstrap` | Start new projects |
-| 2 | `cm-planning` | Brainstorm + write plans |
-| 3 | `cm-execution` | Execute plans (batch/subagent/parallel) |
-| 4 | `cm-tdd` | Test-driven development |
-| 5 | `cm-quality-gate` | Test + verify + frontend safety |
-| 6 | `cm-code-review` | Request + receive + finish branch |
-| 7 | `cm-safe-deploy` | 6-gate deploy pipeline |
-| 8 | `cm-safe-i18n` | i18n batching + safety |
-| 9 | `cm-debugging` | Systematic root-cause debugging |
-| 10 | `cm-terminal` | Terminal command monitoring |
-| 11 | `cm-git-worktrees` | Isolated workspaces |
-| 12 | `cm-skill-mastery` | This skill (meta) |
-| 13 | `cm-identity-guard` | Git/deploy identity safety |
+| 2 | `cm-brainstorm-idea` | Strategic analysis gate for enhancements (9 Windows + Double Diamond) |
+| 3 | `cm-planning` | Brainstorm + write plans |
+| 4 | `cm-execution` | Execute plans (batch/subagent/parallel) |
+| 5 | `cm-tdd` | Test-driven development |
+| 6 | `cm-quality-gate` | Test + verify + frontend safety |
+| 7 | `cm-code-review` | Request + receive + finish branch |
+| 8 | `cm-safe-deploy` | 6-gate deploy pipeline |
+| 9 | `cm-safe-i18n` | i18n batching + safety |
+| 10 | `cm-debugging` | Systematic root-cause debugging |
+| 11 | `cm-terminal` | Terminal command monitoring |
+| 12 | `cm-git-worktrees` | Isolated workspaces |
+| 13 | `cm-skill-mastery` | This skill (meta) |
+| 14 | `cm-identity-guard` | Git/deploy identity safety |
 
 ## The Bottom Line
 

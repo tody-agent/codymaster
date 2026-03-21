@@ -151,6 +151,45 @@ test('i18n files have identical key counts', () => {
 });
 ```
 
+#### Layer 5: Security Scan (`security-scan.test.ts`)
+This layer prevents secrets from being committed to the repository. Powered by `cm-secret-shield` patterns.
+
+```typescript
+import { test, expect } from 'vitest';
+import fs from 'fs';
+import { execSync } from 'child_process';
+
+test('no secret files tracked by git', () => {
+    const tracked = execSync('git ls-files', { encoding: 'utf-8' });
+    const badFiles = ['.env', '.dev.vars', '.env.local', '.env.production'];
+    const found = badFiles.filter(f => tracked.split('\n').includes(f));
+    expect(found, `Secret files tracked: ${found.join(', ')}`).toEqual([]);
+});
+
+test('.gitignore contains required security patterns', () => {
+    const gitignore = fs.readFileSync('.gitignore', 'utf-8');
+    expect(gitignore).toContain('.env');
+    expect(gitignore).toContain('.dev.vars');
+});
+
+test('no hardcoded secrets in source files', () => {
+    const dangerousPatterns = [
+        /SERVICE_KEY\s*[=:]\s*['"][a-zA-Z0-9/+=]{20,}/g,
+        /PRIVATE_KEY\s*[=:]\s*['"][a-zA-Z0-9/+=]{20,}/g,
+        /-----BEGIN.*PRIVATE KEY-----/g,
+    ];
+    const srcDir = 'src';
+    if (!fs.existsSync(srcDir)) return;
+    const files = fs.readdirSync(srcDir).filter(f => f.endsWith('.ts') || f.endsWith('.js'));
+    for (const file of files) {
+        const content = fs.readFileSync(`${srcDir}/${file}`, 'utf-8');
+        for (const pattern of dangerousPatterns) {
+            expect(content, `${file} contains potential secret`).not.toMatch(pattern);
+        }
+    }
+});
+```
+
 ### Phase 3: Script Wiring
 
 Wire these tests into `package.json` to make them easily executable by CI or other skills.
@@ -190,8 +229,9 @@ npm run test:gate
 | Skill | Relationship |
 |---|---|
 | `cm-safe-deploy` | `test:gate` is Gate 2 in the safe deploy pipeline. |
-| `cm-project-bootstrap` | Should invoke `cm-test-gate` during Phase 2 (Infrastructure Setup). |
+| `cm-project-bootstrap` | Should invoke `cm-test-gate` during Phase 7 (Infrastructure Setup). |
 | `cm-safe-i18n` | Relies on the i18n tests set up in Phase 2, Layer 4. |
+| `cm-secret-shield` | Layer 5 security scan uses Secret Shield patterns. |
 
 ## Red Flags - STOP and Fix
 

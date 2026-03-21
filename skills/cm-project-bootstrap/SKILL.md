@@ -21,19 +21,20 @@ EVERY PROJECT GETS AN AGENTS.MD. NO EXCEPTIONS.
 
 ---
 
-## 10-Phase Bootstrap Process
+## 11-Phase Bootstrap Process
 
 ```
-Phase 0:  Identity Lock           — WHO are you deploying as?
-Phase 1:  Project Type Detection   — WHAT kind of project?
-Phase 2:  Repository & Environments — WHERE does code live?
-Phase 3:  Design System Foundation — HOW does it look?
-Phase 4:  i18n From Day 1         — WHICH languages?
-Phase 5:  SEO Foundation          — HOW will people find it?
-Phase 6:  AGENTS.md + Git Safety  — HOW do agents collaborate?
-Phase 7:  Test Infrastructure     — HOW do we catch bugs?
-Phase 8:  Deploy Pipeline (8 Gates) — HOW does code ship?
-Phase 9:  Development Workflow    — HOW do we work daily?
+Phase 0:    Identity Lock           — WHO are you deploying as?
+Phase 0.5:  Security Foundation     — HOW do we prevent secret leaks?
+Phase 1:    Project Type Detection   — WHAT kind of project?
+Phase 2:    Repository & Environments — WHERE does code live?
+Phase 3:    Design System Foundation — HOW does it look?
+Phase 4:    i18n From Day 1         — WHICH languages?
+Phase 5:    SEO Foundation          — HOW will people find it?
+Phase 6:    AGENTS.md + Git Safety  — HOW do agents collaborate?
+Phase 7:    Test Infrastructure     — HOW do we catch bugs?
+Phase 8:    Deploy Pipeline (8 Gates) — HOW does code ship?
+Phase 9:    Development Workflow    — HOW do we work daily?
 ```
 
 ---
@@ -136,6 +137,96 @@ After creating `.project-identity.json`, update `~/.cm-identity-history.json`:
 
 ---
 
+## Phase 0.5: Security Foundation 🛡️
+
+> **NEW — Defense-in-depth from day 0. Secrets leak at project start when security is "later."**
+> **Calls `cm-secret-shield` for setup.**
+
+### Step 1: Create `.gitleaks.toml`
+
+Create project-level Gitleaks configuration:
+
+```toml
+# .gitleaks.toml — Secret Shield Config
+title = "CM Secret Shield"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "supabase-service-key"
+description = "Supabase Service Role Key"
+regex = '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+'''
+tags = ["supabase", "jwt"]
+
+[[rules]]
+id = "generic-high-entropy"
+description = "High entropy string that may be a secret"
+regex = '''(?i)(api[_-]?key|secret[_-]?key|access[_-]?token|private[_-]?key|auth[_-]?token)\s*[=:]\s*['"][a-zA-Z0-9/+=]{20,}['"]'''
+tags = ["generic"]
+
+[allowlist]
+paths = ['''\.gitleaks\.toml$''', '''\.dev\.vars\.example$''', '''node_modules/''', '''dist/''']
+```
+
+### Step 2: Setup Pre-Commit Hook
+
+```bash
+# Install git pre-commit hook for secret scanning
+mkdir -p .git/hooks
+cat > .git/hooks/pre-commit << 'EOF'
+#!/bin/sh
+echo "🛡️ Secret Shield: scanning staged files..."
+if command -v gitleaks &> /dev/null; then
+  gitleaks git --pre-commit --staged --verbose
+  if [ $? -ne 0 ]; then
+    echo "❌ SECRET DETECTED! Commit blocked."
+    exit 1
+  fi
+  echo "✅ No secrets detected"
+else
+  echo "⚠️ Gitleaks not installed. Running basic checks..."
+  STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+  PATTERNS="SERVICE_KEY|ANON_KEY|PRIVATE_KEY|DB_PASSWORD|SECRET_KEY|sk-[a-zA-Z0-9]{20,}"
+  for file in $STAGED; do
+    if echo "$file" | grep -qE '\.(js|ts|json|toml|yaml|env)$'; then
+      if git diff --cached "$file" | grep -qE "$PATTERNS"; then
+        echo "❌ Potential secret in: $file"
+        exit 1
+      fi
+    fi
+  done
+  echo "✅ Basic check passed"
+fi
+EOF
+chmod +x .git/hooks/pre-commit
+```
+
+### Step 3: Add Security Script
+
+Add to `package.json`:
+```json
+{
+  "scripts": {
+    "security:scan": "node scripts/security-scan.js || echo 'Create scripts/security-scan.js from cm-secret-shield'"
+  }
+}
+```
+
+### Step 4: Create `.dev.vars.example`
+
+```bash
+# .dev.vars.example — Template for local secrets (committed to repo)
+# Copy to .dev.vars and fill in real values
+SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+SUPABASE_SERVICE_KEY=your_service_key_here
+SUPABASE_ANON_KEY=your_anon_key_here
+```
+
+> **RULE:** `.dev.vars` = real secrets (gitignored). `.dev.vars.example` = template (committed).
+
+---
+
 ## Phase 1: Project Type Detection 🔍
 
 > **Detect project type → auto-select the right stack.**
@@ -162,8 +253,8 @@ Present these options to the user:
 
 These defaults apply UNLESS user explicitly says otherwise.
 Examples of overrides:
-  - "Dùng Ant Design" → switch to Ant Design
-  - "Không cần mobile" → skip mobile optimization
+  - "Use Ant Design" → switch to Ant Design
+  - "No mobile needed" → skip mobile optimization
   - "Desktop only" → desktop-first layout
 
 If user says nothing about UI → use shadcn/ui + mobile-first.
@@ -291,16 +382,33 @@ npx wrangler pages project create PROJECT_NAME --production-branch production
 
 > Adjust `./public` to match your build output directory based on project type.
 
-### Step 5: Create `.gitignore`
+### Step 5: Create `.gitignore` (Hardened)
 
 ```gitignore
+# === Secret Shield: Mandatory Ignores ===
+# Environment & secret files
+.env
+.env.*
+!.env.example
+!.env.test
+.dev.vars
+!.dev.vars.example
+.secret-lifecycle.json
+
+# Platform-specific secrets
+*.pem
+*.key
+*.p12
+
+# Build & dependencies
 node_modules/
 dist/
 .wrangler/
-.env
-.env.local
-*.log
+.next/
+
+# OS & IDE
 .DS_Store
+*.log
 ```
 
 ---
@@ -348,7 +456,7 @@ If the user has a previous design profile, **reuse it** for brand consistency.
 ```
 
 **Rules:**
-- If profile exists → load and apply. Ask user: "Tìm thấy design profile cho {orgName}. Dùng lại?"
+- If profile exists → load and apply. Ask user: "Found design profile for {orgName}. Reuse it?"
 - If no profile → ask user about brand/industry → create new profile
 - After bootstrap, **always save** the design profile to `~/.cm-design-profiles/`
 - Profile is updated with each new project that uses it
@@ -587,7 +695,7 @@ i18n/
 - Run i18n-sync test after every batch
 
 ❌ DON'T:
-- Hardcode strings: "Lưu" → use t('common.save')
+- Hardcode strings: "Save" → use t('common.save')
 - Add 600 strings in one shot → app crashes
 - Translate before primary language is complete
 - Skip audit gates between batches
@@ -611,12 +719,12 @@ Every page must include:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO: Title and Description -->
-  <title data-i18n="meta.title">Project Name — Mô tả ngắn</title>
-  <meta name="description" data-i18n-content="meta.description" content="Mô tả trang 150-160 ký tự">
+  <title data-i18n="meta.title">Project Name — Short description</title>
+  <meta name="description" data-i18n-content="meta.description" content="Page description 150-160 characters">
 
   <!-- SEO: Open Graph -->
   <meta property="og:title" content="Project Name">
-  <meta property="og:description" content="Mô tả trang">
+  <meta property="og:description" content="Page description">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yourdomain.com">
   <meta property="og:image" content="https://yourdomain.com/og-image.png">
@@ -624,7 +732,7 @@ Every page must include:
   <!-- SEO: Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Project Name">
-  <meta name="twitter:description" content="Mô tả trang">
+  <meta name="twitter:description" content="Page description">
 
   <!-- SEO: Canonical URL -->
   <link rel="canonical" href="https://yourdomain.com">
@@ -1175,6 +1283,49 @@ After completing a project, the bootstrap gets smarter:
 
 ---
 
+## Phase 9.5: Working Memory Init 🧠
+
+> **MANDATORY. Every project gets a CONTINUITY.md.**
+> **This is what makes AI remember context across sessions.**
+
+### Step 1: Create `.cm/` directory
+
+```bash
+mkdir -p .cm
+```
+
+### Step 2: Create CONTINUITY.md
+
+Write `.cm/CONTINUITY.md` using the template from `cm-continuity` skill:
+- Set `Project:` to the project name from `.project-identity.json`
+- Set `Current Phase:` to `bootstrapping`
+- Set `Active Goal:` to the user's stated project purpose
+- Leave `Mistakes & Learnings` empty (will be populated during development)
+
+### Step 3: Add to .gitignore
+
+`.cm/CONTINUITY.md` is **LOCAL working memory** — do NOT commit:
+
+```gitignore
+# Working memory (local only)
+.cm/
+```
+
+### Step 4: Add to AGENTS.md
+
+Add this line to the AGENTS.md "Important Rules" section:
+
+```markdown
+- Read `.cm/CONTINUITY.md` at the start of every session for context
+```
+
+### Why This Saves Tokens
+
+Next session, AI reads ~200 tokens from CONTINUITY.md instead of
+re-scanning 50+ files (~15,000 tokens). **Savings: ~97% on context loading.**
+
+---
+
 ## Anti-Patterns ❌
 
 | # | Anti-Pattern | Consequence | Prevention |
@@ -1202,10 +1353,13 @@ After bootstrap, the project MUST have:
 ✅ .project-identity.json     — Identity locked
 ✅ ~/.cm-identity-history.json — Identity saved for future suggestions
 ✅ ~/.cm-design-profiles/{org}.json — Brand design system saved
+✅ .gitleaks.toml             — Secret scanning config (Phase 0.5)
+✅ .git/hooks/pre-commit      — Secret Shield pre-commit hook (Phase 0.5)
+✅ .dev.vars.example          — Secret template (Phase 0.5)
 ✅ AGENTS.md                  — AI collaboration manifest
 ✅ .github/pull_request_template.md — PR template
-✅ .gitignore                 — Proper ignores
-✅ package.json               — With deploy:staging, deploy:production, test:gate
+✅ .gitignore                 — Hardened ignores (secrets, keys, env files)
+✅ package.json               — With deploy:staging, deploy:production, test:gate, security:scan
 ✅ shadcn/ui initialized      — (SPA/Fullstack) or design-tokens.css (Static)
 ✅ globals.css / style.css    — Brand tokens + mobile-first base styles
 ✅ i18n/vi.json               — Primary language file
@@ -1217,4 +1371,5 @@ After bootstrap, the project MUST have:
 ✅ main branch                — Staging deploys
 ✅ production branch          — Production deploys
 ✅ First commit               — "chore: bootstrap with cm-project-bootstrap v2.0"
+✅ .cm/CONTINUITY.md           — Working memory for AI context persistence
 ```

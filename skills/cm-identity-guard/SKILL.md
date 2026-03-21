@@ -284,6 +284,39 @@ git config user.email "dev@workdomain.com"
 
 ---
 
+## Phase 5: Token Lifecycle Management 🔄
+
+> **NEW — Secrets don't just need to be hidden. They need to be ROTATED.**
+> **Full rotation playbooks in `cm-secret-shield` Layer 5.**
+
+### Rotation Schedule
+
+| Platform | Token Type | Max Lifetime | Where to Rotate |
+|----------|-----------|-------------|----------------|
+| **Supabase** | `anon_key` | 90 days | Dashboard → Settings → API |
+| **Supabase** | `service_role_key` | 30 days | Dashboard → Settings → API |
+| **Cloudflare** | API Token | 90 days | Dashboard → My Profile → API Tokens |
+| **GitHub** | Personal Access Token | 90 days | Settings → Developer Settings → PAT |
+| **OpenAI/Gemini** | API Key | 90 days | Platform dashboard |
+
+### After Rotation
+
+```bash
+# 1. Update Cloudflare Secrets with new values
+wrangler secret put SUPABASE_ANON_KEY
+wrangler secret put SUPABASE_SERVICE_KEY
+
+# 2. Update local .dev.vars
+# 3. Redeploy
+npm run deploy:staging
+
+# 4. Verify: test staging URL
+```
+
+> For emergency rotation (leaked secret), see `cm-secret-shield` Emergency Rotation Playbook.
+
+---
+
 ## Red Flags — Identity Confusion
 
 ```
@@ -357,6 +390,7 @@ npm run deploy
 | `cm-project-bootstrap` | Identity lock is Phase 0 of every new project |
 | `cm-safe-deploy` | Gate 0 secret hygiene checks wrangler.jsonc |
 | `cm-test-gate` | Phase 4 secret hygiene in test gate setup |
+| `cm-secret-shield` | Layer 5 token lifecycle extends identity management |
 
 ## The Bottom Line
 

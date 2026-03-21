@@ -68,6 +68,17 @@ digraph tdd_cycle {
 }
 ```
 
+### Step 0: Check Working Memory
+
+Before writing ANY test, check `.cm/CONTINUITY.md`:
+
+- **"Mistakes & Learnings"** → Are there known edge cases for this area?
+- **"Working Context"** → What patterns/conventions are being followed?
+- **"Key Decisions"** → Any architecture choices that affect test design?
+
+> **Token savings:** Writes better tests on first try by knowing past failures.
+> **Quality boost:** Tests cover edge cases that caused bugs before.
+
 ### RED - Write Failing Test
 
 Write one minimal test showing what should happen.

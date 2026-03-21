@@ -63,7 +63,7 @@ Guarantees all language files have identical key counts.
 ### Protocol
 
 1.  **Check for skip override** (explicit user words only):
-    -   ✅ "skip tests", "bỏ qua test", "deploy without testing"
+    -   ✅ "skip tests", "skip testing", "deploy without testing"
     -   ❌ "deploy", "quick deploy", "just push it" (= tests required)
 
 2.  **Run test gate:**
@@ -151,6 +151,31 @@ test('app.js has valid syntax', () => {
 ```
 
 > This single test would have prevented the March 2026 white-screen incident.
+
+---
+
+### Gate 4: Update Working Memory
+
+After ALL gates pass, update `.cm/CONTINUITY.md`:
+- **Current Phase:** Set to `verified` or `ready-to-deploy`
+- **Just Completed:** Add `✅ Quality gate passed: [test count] tests, 0 failures`
+
+After ANY gate fails, **FIRST run Memory Integrity Check:**
+1. List active learnings/decisions for the failing module
+2. Ask: "Did AI follow a learning/decision that caused this failure?"
+3. If YES → HEAL memory (invalidate/correct/scope-reduce) BEFORE recording new learning
+4. Record meta-learning in `.cm/meta-learnings.json` if memory was the cause
+
+**Then** update `.cm/CONTINUITY.md`:
+- **Active Blockers:** Add the failing gate details
+- **Mistakes & Learnings:** Record what failed with scope tag:
+  - What Failed: [test/gate that failed]
+  - How to Prevent: [fix pattern]
+  - Scope: `module:{failing-module}` or `global` if systemic
+  - Memory-caused: [yes/no — was existing memory the root cause?]
+
+> **Token savings:** Next session instantly knows if last run passed or failed
+> without re-running the test suite just to check status.
 
 ---
 

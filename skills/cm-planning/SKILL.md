@@ -90,10 +90,27 @@ How to verify it works.
 - Over-engineer the plan itself
 ```
 
+### Step FINAL: Update Working Memory
+
+After writing an implementation plan, ALWAYS update `.cm/CONTINUITY.md`:
+
+```
+- Active Goal:    → Set to the plan's #Goal
+- Next Actions:   → Set to first 3 tasks from the plan
+- Current Phase:  → Set to "planning"
+- Working Context: → Key architecture decisions from the plan
+```
+
+> **Token savings:** Next session picks up from CONTINUITY.md (~200 tokens)
+> instead of re-reading the full plan (2,000+ tokens).
+
+---
+
 ## Integration
 
 | After planning... | Use skill |
 |-------------------|-----------|
+| Complex initiative/enhancement? | `cm-brainstorm-idea` (run BEFORE planning) |
 | Need isolated workspace | `cm-git-worktrees` |
 | Execute the plan (same session) | `cm-execution` |
 | Write tests first | `cm-tdd` |
