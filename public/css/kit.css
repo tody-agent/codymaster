@@ -229,7 +229,42 @@ img {
 .lang-flag { font-size: 16px; line-height: 1; }
 .lang-name { flex: 1; }
 
+/* --- Nav Dropdown (Generic) --- */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown__toggle {
+  display: flex; align-items: center; gap: 4px;
+  background: none; border: none; cursor: pointer;
+  font-family: inherit; font-size: 15px; font-weight: 500;
+  color: var(--text-secondary); transition: color var(--transition-fast);
+  padding: 0;
+}
+.nav-dropdown__toggle:hover { color: var(--text-primary); }
+.nav-dropdown__toggle i { transition: transform 0.2s ease; }
+.nav-dropdown:hover .nav-dropdown__toggle i { transform: rotate(180deg); }
 
+.nav-dropdown__menu {
+  position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-10px);
+  background: rgba(20, 20, 32, 0.95); backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+  padding: 8px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); z-index: 200;
+  min-width: 200px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+.nav-dropdown:hover .nav-dropdown__menu {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown__item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; color: var(--text-secondary);
+  font-size: 14px; border-radius: var(--radius-sm); cursor: pointer;
+  transition: all var(--transition-fast); font-weight: 500;
+}
+.nav-dropdown__item:hover {
+  background: rgba(255, 255, 255, 0.05); color: var(--text-primary);
+}
 /* Mobile Menu */
 .nav__hamburger {
   display: none;
@@ -1038,6 +1073,115 @@ img {
 
 .persona-pain-card__desc {
   font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --- Persona Detail — Guide (Authority) --- */
+.persona-guide {
+  background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
+  text-align: center;
+  padding: 100px var(--section-padding-x);
+}
+.persona-guide__container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.persona-guide__badge {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.1);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 1px;
+}
+.persona-guide__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+.persona-guide__desc {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --- Persona Detail — 3-Step Plan --- */
+.persona-plan__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.persona-plan__step {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform var(--transition-normal), border-color var(--transition-normal);
+}
+.persona-plan__step:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-lime);
+}
+.persona-plan__num {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent-lime);
+  margin-bottom: 24px;
+}
+.persona-plan__steptitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.persona-plan__stepdesc {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* --- Persona Detail — Failure (Cost of Inaction) --- */
+.persona-failure {
+  padding: 80px var(--section-padding-x);
+  background: var(--bg-page);
+}
+.persona-failure__box {
+  max-width: 800px;
+  margin: 0 auto;
+  border-left: 4px solid var(--accent-red);
+  padding: 32px 48px;
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.05) 0%, transparent 100%);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+.persona-failure__title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+.persona-failure__desc {
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.6;
 }

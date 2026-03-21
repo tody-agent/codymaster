@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cody Master Kit — For Tech Teams</title>
+  <meta name="description" content="Stop writing setup code. Start writing what matters. Cody Master handles the 80% of boilerplate while enforcing quality standards.">
+  <meta property="og:title" content="Cody Master Kit — For Tech Teams">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/kit.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root { --persona-accent: #60a5fa; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════╗ NAVIGATION ╔═══════════ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-icon">⚡</span>
+      <span>Cody Master</span>
+    </a>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="brain.html" class="nav__link nav__link--brain"><i data-lucide="brain"></i> <span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.personas">For You</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="for-founders.html" class="nav-dropdown__item"><span class="lang-flag">🚀</span> <span data-i18n="personas.cards.0.title">For Founders</span></a>
+          <a href="for-cmos.html" class="nav-dropdown__item"><span class="lang-flag">📢</span> <span data-i18n="personas.cards.1.title">For CMOs</span></a>
+          <a href="for-pms.html" class="nav-dropdown__item"><span class="lang-flag">📋</span> <span data-i18n="personas.cards.2.title">For PMs</span></a>
+          <a href="for-tech-teams.html" class="nav-dropdown__item"><span class="lang-flag">💻</span> <span data-i18n="personas.cards.3.title">For Tech Teams</span></a>
+          <a href="for-designers.html" class="nav-dropdown__item"><span class="lang-flag">🎨</span> <span data-i18n="personas.cards.4.title">For Designers</span></a>
+          <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
+        </div>
+      </li>
+      <li><a href="demo.html" class="nav__link" data-i18n="nav.demo">Demo</a></li>
+      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
+      <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
+      <li>
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
+            <span class="lang-btn-icon">🌍</span>
+            <span class="lang-btn-text" id="lang-btn-text">EN</span>
+            <span class="lang-btn-caret">▾</span>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
+          </div>
+        </div>
+      </li>
+      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
+    </ul>
+
+    <div class="nav__hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ═══════════╗ PERSONA HERO ╔═══════════ -->
+  <section class="persona-hero" id="personaHero">
+    <div class="persona-hero__content">
+      <h1 class="persona-hero__title" data-i18n="personas.details.dev.heroTitle">You have the idea.<br>You just need the 100 hands to build it.</h1>
+      <p class="persona-hero__subtitle" data-i18n="personas.details.dev.heroSub">Cody Master gives non-technical founders the power to build, design, and deploy production-ready products — without writing a single line of code.</p>
+    </div>
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+  </section>
+
+  <!-- ═══════════╗ PAIN POINTS ╔═══════════ -->
+  <section class="section persona-pains" id="personaPains">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="personas.details.dev.painLabel">THE WALLS YOU'RE HITTING</p>
+      <h2 class="section__title" data-i18n="personas.details.dev.painTitle">We know what's stopping you</h2>
+    </div>
+    <div class="persona-pains__grid">
+      <div class="persona-pain-card reveal">
+        <span class="persona-pain-card__icon">💸</span>
+        <h3 class="persona-pain-card__title" data-i18n="personas.details.dev.pains.0.title">Agencies drain your budget</h3>
+        <p class="persona-pain-card__desc" data-i18n="personas.details.dev.pains.0.desc">You've been quoted $30K-50K for an MVP. Weeks of meetings. Revisions that cost extra. And the result? A product that doesn't match your vision.</p>
+      </div>
+      <div class="persona-pain-card reveal">
+        <span class="persona-pain-card__icon">⏳</span>
+        <h3 class="persona-pain-card__title" data-i18n="personas.details.dev.pains.1.title">Ideas die waiting</h3>
+        <p class="persona-pain-card__desc" data-i18n="personas.details.dev.pains.1.desc">By the time you find a developer, negotiate contracts, and start building — your competitor already launched. Speed is everything in startup land.</p>
+      </div>
+      <div class="persona-pain-card reveal">
+        <span class="persona-pain-card__icon">🧱</span>
+        <h3 class="persona-pain-card__title" data-i18n="personas.details.dev.pains.2.title">No-code hits a wall</h3>
+        <p class="persona-pain-card__desc" data-i18n="personas.details.dev.pains.2.desc">Wix, Squarespace, Bubble — great for static pages, terrible for real products. You need auth, dashboards, APIs, databases. No-code can't do that.</p>
+      </div>
+      <div class="persona-pain-card reveal">
+        <span class="persona-pain-card__icon">🎯</span>
+        <h3 class="persona-pain-card__title" data-i18n="personas.details.dev.pains.3.title">You can't validate fast enough</h3>
+        <p class="persona-pain-card__desc" data-i18n="personas.details.dev.pains.3.desc">Every day without a live product is a day you're guessing instead of learning. You need to test the market NOW, not in 3 months.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ THE GUIDE (AUTHORITY) ╔═══════════ -->
+  <section class="section persona-guide" id="personaGuide">
+    <div class="persona-guide__container reveal">
+      <div class="persona-guide__badge" data-i18n="personas.details.dev.guide.badge">THE NEW REALITY</div>
+      <h2 class="persona-guide__title" data-i18n="personas.details.dev.guide.title">Build like the top 1% of tech startups, without the $100K budget.</h2>
+      <p class="persona-guide__desc" data-i18n="personas.details.dev.guide.desc">You don't need a CTO to build a revolutionary product anymore. Cody Master equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ 3-STEP PLAN ╔═══════════ -->
+  <section class="section persona-plan" id="personaPlan">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="personas.details.dev.planLabel">HOW TO LAUNCH</p>
+      <h2 class="section__title" data-i18n="personas.details.dev.planTitle">3 steps to your live product</h2>
+    </div>
+    <div class="persona-plan__grid">
+      <div class="persona-plan__step reveal">
+        <div class="persona-plan__num">1</div>
+        <h3 class="persona-plan__steptitle" data-i18n="personas.details.dev.plan.0.title">Instruct</h3>
+        <p class="persona-plan__stepdesc" data-i18n="personas.details.dev.plan.0.desc">Chat with the cm-planning agent in plain English. Describe your market, your users, and your dream app.</p>
+      </div>
+      <div class="persona-plan__step reveal">
+        <div class="persona-plan__num">2</div>
+        <h3 class="persona-plan__steptitle" data-i18n="personas.details.dev.plan.1.title">Review</h3>
+        <p class="persona-plan__stepdesc" data-i18n="personas.details.dev.plan.1.desc">Watch the UI generate in real-time. Give feedback on colors, layout, and copy just like talking to a human designer.</p>
+      </div>
+      <div class="persona-plan__step reveal">
+        <div class="persona-plan__num">3</div>
+        <h3 class="persona-plan__steptitle" data-i18n="personas.details.dev.plan.2.title">Deploy</h3>
+        <p class="persona-plan__stepdesc" data-i18n="personas.details.dev.plan.2.desc">Approve the code. The cm-safe-deploy agent runs 8 security gates and puts your app live on a global CDN instantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ SOLUTIONS ╔═══════════ -->
+  <section class="section section-alt persona-solutions" id="personaSolutions">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="personas.details.dev.solutionLabel">HOW CODY MASTER HELPS</p>
+      <h2 class="section__title" data-i18n="personas.details.dev.solutionTitle">Your AI co-founder that never sleeps</h2>
+    </div>
+    <div class="persona-solutions__grid">
+      <div class="persona-solution-card reveal">
+        <div class="persona-solution-card__skill">cm-planning</div>
+        <p class="persona-solution-card__benefit" data-i18n="personas.details.dev.solutions.0.benefit">Describe your idea in plain English. AI breaks it into an actionable plan.</p>
+      </div>
+      <div class="persona-solution-card reveal">
+        <div class="persona-solution-card__skill">cm-ux-master</div>
+        <p class="persona-solution-card__benefit" data-i18n="personas.details.dev.solutions.1.benefit">Get a professional design system — 48 UX Laws, 1032+ patterns.</p>
+      </div>
+      <div class="persona-solution-card reveal">
+        <div class="persona-solution-card__skill">cm-execution</div>
+        <p class="persona-solution-card__benefit" data-i18n="personas.details.dev.solutions.2.benefit">AI writes production code with tests. Not prototypes — real products.</p>
+      </div>
+      <div class="persona-solution-card reveal">
+        <div class="persona-solution-card__skill">cm-safe-deploy</div>
+        <p class="persona-solution-card__benefit" data-i18n="personas.details.dev.solutions.3.benefit">One command to deploy. 8-gate pipeline. Automatic rollback if anything breaks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ THE FAILURE (COST OF INACTION) ╔═══════════ -->
+  <section class="section persona-failure" id="personaFailure">
+    <div class="persona-failure__box reveal">
+      <p class="section__label" style="color:var(--accent-red);" data-i18n="personas.details.dev.failureLabel">THE COST OF WAITING</p>
+      <h2 class="persona-failure__title" data-i18n="personas.details.dev.failureTitle">Every day without a product is a day someone else takes your market share.</h2>
+      <p class="persona-failure__desc" data-i18n="personas.details.dev.failureDesc">If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ BEFORE / AFTER ╔═══════════ -->
+  <section class="section persona-ba" id="personaBA">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="personas.common.transformationLabel">TRANSFORMATION</p>
+      <h2 class="section__title" data-i18n="personas.common.transformationTitle">Before vs After</h2>
+    </div>
+    <div class="persona-ba__container reveal">
+      <div class="persona-ba__col persona-ba__col--before">
+        <h3 class="persona-ba__heading">❌ Before</h3>
+        <ul>
+          <li data-i18n="personas.details.dev.beforeAfter.before.0">$30K+ agency fees</li>
+          <li data-i18n="personas.details.dev.beforeAfter.before.1">3-6 months to launch</li>
+          <li data-i18n="personas.details.dev.beforeAfter.before.2">Product doesn't match your vision</li>
+          <li data-i18n="personas.details.dev.beforeAfter.before.3">Can't iterate quickly</li>
+        </ul>
+      </div>
+      <div class="persona-ba__col persona-ba__col--after">
+        <h3 class="persona-ba__heading">✅ After Cody Master</h3>
+        <ul>
+          <li data-i18n="personas.details.dev.beforeAfter.after.0">$0 — completely free</li>
+          <li data-i18n="personas.details.dev.beforeAfter.after.1">Days to launch, not months</li>
+          <li data-i18n="personas.details.dev.beforeAfter.after.2">You describe, AI builds exactly that</li>
+          <li data-i18n="personas.details.dev.beforeAfter.after.3">Iterate in real-time with chat</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ OBJECTIONS ╔═══════════ -->
+  <section class="section section-alt persona-objections" id="personaObjections">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="personas.common.objectionsLabel">STILL NOT SURE?</p>
+      <h2 class="section__title" data-i18n="personas.common.objectionsTitle">Common Questions</h2>
+    </div>
+    <div class="persona-objections__list">
+      <details class="persona-objection reveal">
+        <summary class="persona-objection__q" data-i18n="personas.details.dev.objections.0.q">Can AI really build production-quality products?</summary>
+        <div class="persona-objection__a" data-i18n="personas.details.dev.objections.0.a">Yes. Unlike ChatGPT copy-paste, Cody Master enforces TDD, quality gates, and security scans. Every line of code is tested before deploy.</div>
+      </details>
+      <details class="persona-objection reveal">
+        <summary class="persona-objection__q" data-i18n="personas.details.dev.objections.1.q">I literally don't know any code. Will this work for me?</summary>
+        <div class="persona-objection__a" data-i18n="personas.details.dev.objections.1.a">That's exactly who this is for. You chat naturally — AI handles everything from code to infrastructure.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ CTA ╔═══════════ -->
+  <section class="section persona-cta" id="personaCta">
+    <div class="persona-cta__content reveal">
+      <h2 class="persona-cta__title" data-i18n="personas.details.dev.ctaTitle">Your idea deserves to exist.<br>Stop waiting. Start building.</h2>
+      <p class="persona-cta__sub" data-i18n="personas.details.dev.ctaSub">Free. No credit card. From idea to live product today.</p>
+      <a href="start.html" class="btn btn--primary btn--lg" data-i18n="personas.details.dev.ctaButton">Build My MVP Now →</a>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ FOOTER ╔═══════════ -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo">⚡ Cody Master Kit</span>
+        <p class="footer__tagline" data-i18n="footer.tagline">Turn Ideas into Products 10x Faster</p>
+      </div>
+      <div class="footer__links">
+        <a href="index.html" data-i18n="footer.home">Home</a>
+        <a href="skills.html" data-i18n="footer.skills">Skills</a>
+        <a href="start.html" data-i18n="footer.start">Get Started</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p data-i18n="footer.copy">© 2026 Cody Master Kit. Free & Open Source.</p>
+    </div>
+  </footer>
+
+  <script src="js/kit.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

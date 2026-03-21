@@ -121,6 +121,12 @@
     "detailedGuide": "Full Install Guide"
   },
   "personas": {
+    "common": {
+      "transformationLabel": "TRANSFORMATION",
+      "transformationTitle": "Before vs After",
+      "objectionsLabel": "STILL NOT SURE?",
+      "objectionsTitle": "Common Questions"
+    },
     "label": "WHO IS IT FOR?",
     "title": "Built for every role on the team",
     "subtitle": "Cody Master understands YOUR specific challenges. Find your role, see how it solves YOUR problems.",
@@ -279,7 +285,31 @@
         ],
         "ctaTitle": "Your idea deserves to exist.\nStop waiting. Start building.",
         "ctaSub": "Free. No credit card. From idea to live product today.",
-        "ctaButton": "Build My MVP Now →"
+        "ctaButton": "Build My MVP Now →",
+        "guide": {
+          "badge": "THE NEW REALITY",
+          "title": "Build like the top 1% of tech startups, without the $100K budget.",
+          "desc": "You don't need a CTO to build a revolutionary product anymore. Cody Master equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment."
+        },
+        "planLabel": "HOW TO LAUNCH",
+        "planTitle": "3 steps to your live product",
+        "plan": [
+          {
+            "title": "Instruct",
+            "desc": "Chat with the cm-planning agent in plain English. Describe your market, your users, and your dream app."
+          },
+          {
+            "title": "Review",
+            "desc": "Watch the UI generate in real-time. Give feedback on colors, layout, and copy just like talking to a human designer."
+          },
+          {
+            "title": "Deploy",
+            "desc": "Approve the code. The cm-safe-deploy agent runs 8 security gates and puts your app live on a global CDN instantly."
+          }
+        ],
+        "failureLabel": "THE COST OF WAITING",
+        "failureTitle": "Every day without a product is a day someone else takes your market share.",
+        "failureDesc": "If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky."
       },
       "cmo": {
         "heroTitle": "Your content team can't keep up.\nCody Master can.",
@@ -360,7 +390,31 @@
         ],
         "ctaTitle": "Stop being the bottleneck.\nStart being the growth engine.",
         "ctaSub": "From content strategy to live campaigns — in minutes, not months.",
-        "ctaButton": "Supercharge My Marketing →"
+        "ctaButton": "Supercharge My Marketing →",
+        "guide": {
+          "badge": "THE CONTENT EDGE",
+          "title": "Scale your output without scaling your headcount.",
+          "desc": "Marketing at scale used to require massive teams of writers, designers, and developers. Now, Cody Master's Content Factory acts as your elite, autonomous marketing department—producing SEO articles, landing pages, and tracking setups perfectly aligned with Cialdini's principles."
+        },
+        "planLabel": "YOUR NEW WORKFLOW",
+        "planTitle": "From strategy to live campaign in hours",
+        "plan": [
+          {
+            "title": "Define",
+            "desc": "Tell the cm-content-factory your target audience, value proposition, and campaign goals."
+          },
+          {
+            "title": "Generate",
+            "desc": "AI writes the copy using StoryBrand frameworks, while cm-ux-master generates the high-converting UI."
+          },
+          {
+            "title": "Track",
+            "desc": "With cm-ads-tracker, automatically instrument Facebook Pixel, CAPI, and Google Ads before the page even goes live."
+          }
+        ],
+        "failureLabel": "THE BOTTLENECK PENALTY",
+        "failureTitle": "A marketing team that moves slow becomes irrelevant.",
+        "failureDesc": "While you wait 3 weeks for your dev team to build one landing page, your competitors are running 10 different A/B tests. Speed of execution is the only modern marketing advantage."
       },
       "pm": {
         "heroTitle": "AI gave you 100 hands.\nBut without discipline, those hands create chaos.",
@@ -441,7 +495,31 @@
         ],
         "ctaTitle": "You've managed chaos long enough.\nTime for discipline.",
         "ctaSub": "From AI chaos to production-ready products with enforced quality.",
-        "ctaButton": "Take Control Now →"
+        "ctaButton": "Take Control Now →",
+        "guide": {
+          "badge": "VALIDATION ENGINE",
+          "title": "Validate faster. Ship confidently. Prove ROI instantly.",
+          "desc": "Product management is about reducing risk. Cody Master removes the engineering bottleneck entirely, allowing you to spin up functional prototypes and MVPs in hours to gather real user data before committing months of your actual tech team's time."
+        },
+        "planLabel": "THE AGILE WAY",
+        "planTitle": "How to ship the right thing",
+        "plan": [
+          {
+            "title": "Scope",
+            "desc": "Use cm-planning to feed your PRDs into the AI. It instantly spots edge cases you might have missed."
+          },
+          {
+            "title": "Prototype",
+            "desc": "Don't just show Figma files. Let Cody Master build a live, clickable, coded prototype connected to a real database."
+          },
+          {
+            "title": "Validate",
+            "desc": "Put it in front of users. Track their behavior. Then, hand off the validated specifications to your dev team (or just deploy it)."
+          }
+        ],
+        "failureLabel": "THE FEATURE FACTORY TRAP",
+        "failureTitle": "Building features nobody wants burns your runway.",
+        "failureDesc": "60% of features built by software teams are rarely or never used. If you can't test ideas rapidly, you are gambling your company's resources on unvalidated assumptions."
       },
       "dev": {
         "heroTitle": "Stop writing setup code.\nStart writing what matters.",
@@ -531,7 +609,31 @@
         ],
         "ctaTitle": "Life is too short to write boilerplate.\nLet AI do the boring parts. You do the brilliant parts.",
         "ctaSub": "Free. Open source. Production-ready from day one.",
-        "ctaButton": "Start Building →"
+        "ctaButton": "Start Building →",
+        "guide": {
+          "badge": "ENGINEERING LEVERAGE",
+          "title": "Stop writing boilerplate. Start architecting systems.",
+          "desc": "Senior engineers shouldn't be centering divs or writing basic CRUD endpoints. Cody Master acts as your tireless junior developer, scaffolding apps, writing tests via cm-tdd, and executing repetitive tasks so you can focus on hard architectural problems."
+        },
+        "planLabel": "THE 10X PIPELINE",
+        "planTitle": "How elite teams use Cody",
+        "plan": [
+          {
+            "title": "Scaffold",
+            "desc": "Use cm-project-bootstrap. Within 60 seconds you have a Vite/React app with routing, Tailwind v4, i18n, and testing pre-configured."
+          },
+          {
+            "title": "Delegate",
+            "desc": "Assign complex logic to the cm-execution agent. It writes the code and the exhaustive unit tests simultaneously."
+          },
+          {
+            "title": "Review",
+            "desc": "The code isn't a black box. You review the PRs. Cody Master runs cm-quality-gate to catch regressions before you even look."
+          }
+        ],
+        "failureLabel": "THE TECH DEBT SPIRAL",
+        "failureTitle": "Technical debt grows faster than you can hire.",
+        "failureDesc": "If your team is bogged down in legacy maintenance and slow manual testing, innovation stops. Without AI leverage, your top talent will burn out and leave for companies that move faster."
       },
       "designer": {
         "heroTitle": "You designed the system.\nAI should respect it.",
@@ -612,7 +714,31 @@
         ],
         "ctaTitle": "Your design system deserves AI that listens.\nNot AI that ignores.",
         "ctaSub": "Design-first. Preview-first. Quality-first.",
-        "ctaButton": "Try Design-First AI →"
+        "ctaButton": "Try Design-First AI →",
+        "guide": {
+          "badge": "PIXEL PERFECT",
+          "title": "From Figma to React, skipping the translation loss.",
+          "desc": "The handoff is broken. You design something beautiful; development builds something that 'kind of' looks like it. Cody Master bridges that gap, reading your design intent via cm-ux-master and generating pixel-perfect code that honors spacing, typography, and UX laws."
+        },
+        "planLabel": "THE DESIGN-TO-CODE LOOP",
+        "planTitle": "Protect your design integrity",
+        "plan": [
+          {
+            "title": "Design",
+            "desc": "Create your concepts in Figma or directly instruct the cm-ui-preview skill with your visual requirements."
+          },
+          {
+            "title": "Generate",
+            "desc": "Cody Master translates your designs into clean Tailwind v4 utility classes and accessible DOM structures."
+          },
+          {
+            "title": "Refine",
+            "desc": "Tweak animations, focus states, and responsive breakpoints directly in the code with plain English commands."
+          }
+        ],
+        "failureLabel": "THE COMPROMISE",
+        "failureTitle": "Developers ruining your designs because handoffs are broken.",
+        "failureDesc": "If you don't control the implementation, your portfolio is full of 'what I designed' vs 'what they built'. Take back control of the final output."
       },
       "claw": {
         "heroTitle": "One skill kit.\nEvery AI agent in the family.",
@@ -693,7 +819,31 @@
         ],
         "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
         "ctaSub": "33 skills. Every Claw agent. Zero lock-in.",
-        "ctaButton": "Join the Claw Family →"
+        "ctaButton": "Join the Claw Family →",
+        "guide": {
+          "badge": "THE UNFAIR ADVANTAGE",
+          "title": "The ultimate edge for independent creators and builders.",
+          "desc": "The Claw Family builds differently. You don't ask for permission. You identify niches, build tools, and generate revenue. Cody Master is the ultimate multi-tool designed explicitly for indie hackers who need to move at warp speed."
+        },
+        "planLabel": "THE INDIE PLAYBOOK",
+        "planTitle": "From idea to revenue",
+        "plan": [
+          {
+            "title": "Spot",
+            "desc": "Identify a pain point. Use cm-brainstorm-idea to systematically break down the market opportunity and technical feasibility."
+          },
+          {
+            "title": "Build",
+            "desc": "Deploy the full cm-execution pipeline. Generate the SaaS, attach Auth, and wire up Stripe in a single evening."
+          },
+          {
+            "title": "Monetize",
+            "desc": "Use cm-ads-tracker to set up your conversion funnels, launch the ads, and watch the MRR grow."
+          }
+        ],
+        "failureLabel": "THE SIDE HUSTLE GRAVEYARD",
+        "failureTitle": "Working a 9-to-5 while your side-hustle gathers dust.",
+        "failureDesc": "You have 10 domains registered and 0 products launched. The longer you take to build, the more likely you are to lose motivation. Speed is life."
       }
     }
   },
@@ -714,20 +864,90 @@
       "Security"
     ],
     "cards": [
-      { "icon": "lightbulb", "name": "cm-brainstorm-idea", "categoryIndex": 0, "description": "Multi-dimensional idea analysis, validating feasibility before you start building" },
-      { "icon": "file-text", "name": "cm-planning", "categoryIndex": 0, "description": "Detailed planning before coding — no wasting time on endless revisions" },
-      { "icon": "users", "name": "cm-jtbd", "categoryIndex": 0, "description": "Jobs-To-Be-Done discovery — understand what customers actually hire your product to do" },
-      { "icon": "palette", "name": "cm-ux-master", "categoryIndex": 1, "description": "UX-standard interface design — beautiful, easy to use, conversion-optimized" },
-      { "icon": "monitor", "name": "cm-ui-preview", "categoryIndex": 1, "description": "AI-powered UI generation via Google Stitch — prototype in minutes, not days" },
-      { "icon": "pen-tool", "name": "cm-content-factory", "categoryIndex": 2, "description": "SEO-optimized content writing — from blogs to landing pages, AI writes like an expert" },
-      { "icon": "trending-up", "name": "cm-ads-tracker", "categoryIndex": 2, "description": "Complete conversion tracking — Facebook/Meta Pixel, TikTok, Google Ads, GTM" },
-      { "icon": "target", "name": "cro-methodology", "categoryIndex": 2, "description": "CRO audit — funnel mapping, persuasion assets, objection handling, A/B test design" },
-      { "icon": "check-square", "name": "cm-tdd", "categoryIndex": 3, "description": "Red-Green-Refactor cycle — no production code without a failing test first" },
-      { "icon": "bug", "name": "cm-debugging", "categoryIndex": 3, "description": "Systematic 5-phase root cause investigation — fix the problem, not the symptom" },
-      { "icon": "rocket", "name": "cm-safe-deploy", "categoryIndex": 3, "description": "Multi-gate deploy pipeline — secret scan → test → build → deploy → smoke test" },
-      { "icon": "git-pull-request", "name": "cm-code-review", "categoryIndex": 3, "description": "Full PR lifecycle — request reviews, handle feedback, complete branch integration" },
-      { "icon": "lock", "name": "cm-secret-shield", "categoryIndex": 4, "description": "Defense-in-depth secret management — pre-commit hooks, repo-wide leak detection" },
-      { "icon": "shield", "name": "cm-quality-gate", "categoryIndex": 4, "description": "Evidence-based verification — blind review, anti-sycophancy, security scan" }
+      {
+        "icon": "lightbulb",
+        "name": "cm-brainstorm-idea",
+        "categoryIndex": 0,
+        "description": "Multi-dimensional idea analysis, validating feasibility before you start building"
+      },
+      {
+        "icon": "file-text",
+        "name": "cm-planning",
+        "categoryIndex": 0,
+        "description": "Detailed planning before coding — no wasting time on endless revisions"
+      },
+      {
+        "icon": "users",
+        "name": "cm-jtbd",
+        "categoryIndex": 0,
+        "description": "Jobs-To-Be-Done discovery — understand what customers actually hire your product to do"
+      },
+      {
+        "icon": "palette",
+        "name": "cm-ux-master",
+        "categoryIndex": 1,
+        "description": "UX-standard interface design — beautiful, easy to use, conversion-optimized"
+      },
+      {
+        "icon": "monitor",
+        "name": "cm-ui-preview",
+        "categoryIndex": 1,
+        "description": "AI-powered UI generation via Google Stitch — prototype in minutes, not days"
+      },
+      {
+        "icon": "pen-tool",
+        "name": "cm-content-factory",
+        "categoryIndex": 2,
+        "description": "SEO-optimized content writing — from blogs to landing pages, AI writes like an expert"
+      },
+      {
+        "icon": "trending-up",
+        "name": "cm-ads-tracker",
+        "categoryIndex": 2,
+        "description": "Complete conversion tracking — Facebook/Meta Pixel, TikTok, Google Ads, GTM"
+      },
+      {
+        "icon": "target",
+        "name": "cro-methodology",
+        "categoryIndex": 2,
+        "description": "CRO audit — funnel mapping, persuasion assets, objection handling, A/B test design"
+      },
+      {
+        "icon": "check-square",
+        "name": "cm-tdd",
+        "categoryIndex": 3,
+        "description": "Red-Green-Refactor cycle — no production code without a failing test first"
+      },
+      {
+        "icon": "bug",
+        "name": "cm-debugging",
+        "categoryIndex": 3,
+        "description": "Systematic 5-phase root cause investigation — fix the problem, not the symptom"
+      },
+      {
+        "icon": "rocket",
+        "name": "cm-safe-deploy",
+        "categoryIndex": 3,
+        "description": "Multi-gate deploy pipeline — secret scan → test → build → deploy → smoke test"
+      },
+      {
+        "icon": "git-pull-request",
+        "name": "cm-code-review",
+        "categoryIndex": 3,
+        "description": "Full PR lifecycle — request reviews, handle feedback, complete branch integration"
+      },
+      {
+        "icon": "lock",
+        "name": "cm-secret-shield",
+        "categoryIndex": 4,
+        "description": "Defense-in-depth secret management — pre-commit hooks, repo-wide leak detection"
+      },
+      {
+        "icon": "shield",
+        "name": "cm-quality-gate",
+        "categoryIndex": 4,
+        "description": "Evidence-based verification — blind review, anti-sycophancy, security scan"
+      }
     ]
   },
   "stats": {
