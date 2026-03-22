@@ -594,9 +594,9 @@
   .home-feature-list { grid-template-columns: 1fr; }
   .home-install-block { flex-direction: column; gap: 16px; align-items: stretch; text-align: center; }
   .home-install-code { font-size: 13px; word-break: break-all; overflow-wrap: break-word; white-space: pre-wrap; display: block; overflow-x: auto; text-align: left; }
-  .home-table, .home-table tbody, .home-table tr, .home-table td, .home-table th { display: block; }
-  .home-table tr { margin-bottom: 24px; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 16px; }
-  .home-table td { border-bottom: none; padding: 8px 0; }
+  .home-table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; border-radius: 8px; }
+  .home-table tr { margin-bottom: 0; border: none; padding: 0; }
+  .home-table td, .home-table th { padding: 12px; }
   .home-supported__list { gap: 16px; justify-content: flex-start; }
   .home-manual-grid { grid-template-columns: 1fr; }
   
