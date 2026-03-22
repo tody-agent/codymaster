@@ -38,8 +38,8 @@
         "description": "Chat tự nhiên, AI hiểu và thực hiện. Không giao diện phức tạp, không cần học."
       },
       {
-        "title": "🔄 Legacy Rescue",
-        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
+        "title": "🔄 Giải Cứu Legacy",
+        "description": "Ngay cả khi sản phẩm của bạn đã cũ kỹ, ux-master có thể quét website, trích xuất design system và xây dựng lại tokens — mang lại sức sống mới cho các sản phẩm cũ mà không cần bắt đầu lại từ đầu."
       }
     ]
   },
@@ -226,13 +226,13 @@
   "install.globalDesc": "Tự động kết nối CodyMaster với tất cả IDE và CLI agent trên máy tính của bạn.",
   "install.copy": "Sao Chép",
   "install.detailedGuide": "Xem Hướng Dẫn Cài Đặt Chi Tiết",
-  "typewriter.m1": "CodyMaster làm nó thông minh hơn.",
-  "typewriter.m2": "33 kỹ năng. Tránh xa sự hỗn loạn.",
-  "typewriter.m3": "Từ ý tưởng đến deploy trong 1 nốt nhạc.",
-  "typewriter.m4": "Ra mắt sản phẩm, chứ không chỉ viết code.",
-  "typewriter.m5": "AI không bao giờ hỏng hai lần.",
-  "typewriter.m6": "Đội ngũ senior on-demand của bạn.",
-  "typewriter.m7": "Kỷ luật đến từ hệ thống. Chứ không phải ép buộc.",
+  "typewriter.m1": "CodyMaster — bậc thầy trí tuệ.",
+  "typewriter.m2": "33 kỹ năng. Không hỗn loạn.",
+  "typewriter.m3": "Ý tưởng → deploy. 1 nốt nhạc.",
+  "typewriter.m4": "Ra sản phẩm, không chỉ code.",
+  "typewriter.m5": "AI không hỏng hai lần.",
+  "typewriter.m6": "Đội senior on-demand của bạn.",
+  "typewriter.m7": "Kỷ luật từ hệ thống, không ép.",
   "ideSetup.antigravity.step1": "Sao chép bộ kit kỹ năng",
   "ideSetup.antigravity.step2": "Liên kết kỹ năng vào Antigravity",
   "ideSetup.antigravity.step3": "Thêm quy tắc GEMINI.md",
@@ -259,5 +259,95 @@
   "faq_auto_27": "Làm thế nào để cài đặt?",
   "faq_auto_28": "Sao chép",
   "why_cody_master_auto_17": "AI có thể viết mã. Nhưng nếu thiếu kỷ luật, nó sẽ tạo ra sự hỗn loạn. Đây là lý do tại sao bộ kỹ năng này thay đổi mọi thứ.",
-  "why_cody_master_auto_18": "Hiện nay mọi người đều đang sử dụng AI để lập trình."
+  "why_cody_master_auto_18": "Hiện nay mọi người đều đang sử dụng AI để lập trình.",
+  "session_id": "5d42f1dd-cd95-43bb-9d55-53245e781ecf",
+  "response": "{\n\"features.cards[4].title\":\"🔄 Giải Cứu Hệ Thống Cũ\",\n\"features.cards[4].description\":\"Ngay cả khi sản phẩm của bạn đã lỗi thời, ux-master có thể quét website, trích xuất hệ thống thiết kế và xây dựng lại các token — mang lại sức sống mới cho sản phẩm cũ mà không cần bắt đầu lại từ đầu.\",\n\"howItWorks.steps[0].code\":\"claude plugin install cm@codymaster\",\n\"howItWorks.steps[1].title\":\"Trò chuyện\",\n\"readme.vsGoodHeader\":\"🧠 CodyMaster\",\n\"usp.cards[0].icon\":\"kanban\",\n\"usp.cards[0].visual\":\"kanban\",\n\"usp.cards[1].icon\":\"eye\",\n\"usp.cards[1].visual\":\"preview\",\n\"usp.cards[2].icon\":\"sliders-horizontal\",\n\"usp.cards[2].visual\":\"controls\",\n\"usp.cards[3].icon\":\"component\",\n\"usp.cards[3].visual\":\"system\"\n}",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 2538
+        },
+        "tokens": {
+          "input": 2932,
+          "prompt": 2932,
+          "candidates": 127,
+          "total": 3461,
+          "cached": 0,
+          "thoughts": 402,
+          "tool": 0
+        },
+        "roles": {
+          "utility_router": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 2538,
+            "tokens": {
+              "input": 2932,
+              "prompt": 2932,
+              "candidates": 127,
+              "total": 3461,
+              "cached": 0,
+              "thoughts": 402,
+              "tool": 0
+            }
+          }
+        }
+      },
+      "gemini-3-flash-preview": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 9142
+        },
+        "tokens": {
+          "input": 181058,
+          "prompt": 195968,
+          "candidates": 236,
+          "total": 197172,
+          "cached": 14910,
+          "thoughts": 968,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 9142,
+            "tokens": {
+              "input": 181058,
+              "prompt": 195968,
+              "candidates": 236,
+              "total": 197172,
+              "cached": 14910,
+              "thoughts": 968,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 0,
+      "totalSuccess": 0,
+      "totalFail": 0,
+      "totalDurationMs": 0,
+      "totalDecisions": {
+        "accept": 0,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {}
+    },
+    "files": {
+      "totalLinesAdded": 0,
+      "totalLinesRemoved": 0
+    }
+  },
+  "readme": {
+    "vsGoodHeader": "🧠 CodyMaster"
+  }
 }

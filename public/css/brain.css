@@ -21,6 +21,9 @@
   padding: 100px var(--section-padding-x) 60px;
   overflow: hidden;
   text-align: center;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 50%);
 }
 
 .brain-hero__orbs {

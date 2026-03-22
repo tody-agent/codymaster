@@ -5,7 +5,7 @@
   "faq_auto_12": "🌍",
   "faq_auto_13": "EN",
   "faq_auto_14": "中文",
-  "faq_auto_15": "हिन्दी",
+  "faq_auto_15": "简体中文",
   "faq_auto_16": "❓ 帮助中心",
   "faq_auto_17": "常见问题",
   "faq_auto_2": "📢",
@@ -39,7 +39,7 @@
       },
       {
         "title": "🔄 Legacy Rescue",
-        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
+        "description": "即使您的产品非常陈旧，ux-master 也能扫描您的网站，提取设计系统并重建 tokens —— 让旧产品焕发新生，无需从零开始。"
       }
     ]
   },
@@ -88,7 +88,7 @@
   "index_auto_12": "🌍",
   "index_auto_13": "EN",
   "index_auto_14": "中文",
-  "index_auto_15": "हिन्दी",
+  "index_auto_15": "简体中文",
   "index_auto_16": "🚀 v3.4.0",
   "index_auto_17": "🧠 33 项技能",
   "index_auto_18": "⚡ 7+ 个平台",
@@ -150,7 +150,7 @@
   "why_cody_master_auto_12": "🌍",
   "why_cody_master_auto_13": "EN",
   "why_cody_master_auto_14": "中文",
-  "why_cody_master_auto_15": "हिन्दी",
+  "why_cody_master_auto_15": "简体中文",
   "why_cody_master_auto_16": "停止凭感觉编程。",
   "why_cody_master_auto_2": "📢",
   "why_cody_master_auto_3": "📋",
@@ -259,5 +259,95 @@
   "faq_auto_27": "如何安装？",
   "faq_auto_28": "复制",
   "why_cody_master_auto_17": "AI 确实可以编写代码。但如果缺乏严谨的约束，它只会制造混乱。这就是为什么“技能包”能彻底改变开发体验。",
-  "why_cody_master_auto_18": "如今，每个人都在使用 AI 辅助编程。"
+  "why_cody_master_auto_18": "如今，每个人都在使用 AI 辅助编程。",
+  "session_id": "5a2deecf-3d5a-4f99-be18-89e0a5afc790",
+  "response": "{\"faq_auto_15\":\"简体中文\",\"features.cards[4].title\":\"🔄 遗留系统救援\",\"features.cards[4].description\":\"即使您的产品已显陈旧，ux-master 也能扫描您的网站，提取设计系统并重新构建设计令牌 (Tokens) —— 无需从零开始即可让旧产品焕发新生。\",\"howItWorks.steps[0].code\":\"claude plugin install cm@codymaster\",\"index_auto_15\":\"简体中文\",\"readme.vsGoodHeader\":\"🧠 CodyMaster\",\"usp.cards[0].icon\":\"kanban\",\"usp.cards[0].visual\":\"kanban\",\"usp.cards[1].icon\":\"eye\",\"usp.cards[1].visual\":\"preview\",\"usp.cards[2].icon\":\"sliders-horizontal\",\"usp.cards[2].visual\":\"controls\",\"usp.cards[3].icon\":\"component\",\"usp.cards[3].visual\":\"system\",\"why_cody_master_auto_15\":\"简体中文\"}",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 2581
+        },
+        "tokens": {
+          "input": 2940,
+          "prompt": 2940,
+          "candidates": 113,
+          "total": 3437,
+          "cached": 0,
+          "thoughts": 384,
+          "tool": 0
+        },
+        "roles": {
+          "utility_router": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 2581,
+            "tokens": {
+              "input": 2940,
+              "prompt": 2940,
+              "candidates": 113,
+              "total": 3437,
+              "cached": 0,
+              "thoughts": 384,
+              "tool": 0
+            }
+          }
+        }
+      },
+      "gemini-3-flash-preview": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 15124
+        },
+        "tokens": {
+          "input": 195976,
+          "prompt": 195976,
+          "candidates": 216,
+          "total": 198061,
+          "cached": 0,
+          "thoughts": 1869,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 15124,
+            "tokens": {
+              "input": 195976,
+              "prompt": 195976,
+              "candidates": 216,
+              "total": 198061,
+              "cached": 0,
+              "thoughts": 1869,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 0,
+      "totalSuccess": 0,
+      "totalFail": 0,
+      "totalDurationMs": 0,
+      "totalDecisions": {
+        "accept": 0,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {}
+    },
+    "files": {
+      "totalLinesAdded": 0,
+      "totalLinesRemoved": 0
+    }
+  },
+  "readme": {
+    "vsGoodHeader": "🧠 CodyMaster"
+  }
 }

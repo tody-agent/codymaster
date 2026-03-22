@@ -53,8 +53,23 @@
 
     // Resolve nested key like "features.cards.0.title" or flat key with dot
     resolve(obj, path) {
+      // 1. Try exact full-path match (flat keys with dots)
       if (obj[path] !== undefined) return obj[path];
-      return path.split('.').reduce((acc, key) => acc?.[key], obj);
+      // 2. Try nested path resolution
+      const nested = path.split('.').reduce((acc, key) => acc?.[key], obj);
+      if (nested !== undefined) return nested;
+      // 3. Strip known namespace prefix and try flat key
+      //    Handles auto-extracted keys like "home.index_auto_20" → "index_auto_20"
+      const dotIdx = path.indexOf('.');
+      if (dotIdx > 0) {
+        const prefix = path.substring(0, dotIdx);
+        const knownNS = ['common', 'home', 'personas', 'skills', 'pages', 'vs'];
+        if (knownNS.includes(prefix)) {
+          const flatKey = path.substring(dotIdx + 1);
+          if (obj[flatKey] !== undefined) return obj[flatKey];
+        }
+      }
+      return undefined;
     },
 
     apply() {

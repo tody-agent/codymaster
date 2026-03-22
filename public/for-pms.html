@@ -21,9 +21,22 @@
     </a>
 
     <ul class="nav__links" id="navLinks">
-      <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.whyUs">Why Us</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="skills.html" class="nav-dropdown__item"><span class="lang-flag">🧠</span> <span data-i18n="nav.skills">Skills</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
+          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
+          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
+        </div>
+      </li>
       <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
-      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
           <span data-i18n="nav.personas">For You</span>
@@ -38,21 +51,9 @@
           <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
         </div>
       </li>
-      <li class="nav-dropdown">
-        <button class="nav-dropdown__toggle">
-          <span data-i18n="nav.whyUs">Why Us</span>
-          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
-        </button>
-        <div class="nav-dropdown__menu">
-          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
-          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
-          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
-          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
-        </div>
-      </li>
-      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
-      <li>
+    </ul>
+
+    <div class="nav__controls">
         <div class="lang-switcher" id="lang-switcher">
           <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
             <span class="lang-btn-icon">🌍</span>
@@ -80,17 +81,18 @@
             </button>
           </div>
         </div>
-      </li>
-      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
-    </ul>
-
-    <div class="nav__hamburger" id="hamburger">
+        <a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a>
+        <div class="nav__hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
+      </div>
   </nav>
 
   <!-- ═══════════╗ PERSONA HERO ╔═══════════ -->
   <section class="persona-hero" id="personaHero">
+    <div class="bg-mesh bg-mesh--cyan"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
     <div class="persona-hero__svg-bg">
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="10" y="10" width="80" height="80" rx="6" stroke="currentColor" stroke-width="0.5"></rect>
@@ -335,7 +337,7 @@
       <div class="persona-trust-strip">
         <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span><span data-i18n="personas.for_pms_auto_31">100% Free &amp; Open Source</span></span>
         <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span><span data-i18n="personas.for_pms_auto_16">Gets Smarter Every Day</span></span>
-        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Built by a PM, for Everyone</span>
+        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span><span data-i18n="personas.for_pms_auto_16">Built by a PM, for Everyone</span></span>
       </div>
     </div>
   </section>
@@ -368,7 +370,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free &amp; Open Source.</p>
       <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
     </div>
   </footer>

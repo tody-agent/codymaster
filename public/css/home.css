@@ -1,5 +1,5 @@
 /* ============================================
-   Home Page Styles (README Redesign)
+   Home Page Styles (Bento Grid Redesign)
    Mapped to kit.css design system
    ============================================ */
 
@@ -10,9 +10,20 @@
 }
 
 .home-hero {
-  padding: 160px 0 80px;
+  padding: 160px 24px 80px;
   text-align: center;
   position: relative;
+  overflow: hidden;
+  /* Break out of .home-container max-width */
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding-left: max(24px, calc(50vw - 600px));
+  padding-right: max(24px, calc(50vw - 600px));
+}
+
+.home-hero > *:not(.bg-mesh):not(.bg-grid):not(.bg-particles):not(.bg-noise) {
+  position: relative;
+  z-index: 2;
 }
 
 .home-hero__badges {
@@ -44,13 +55,17 @@
   line-height: 1.1;
   margin-bottom: 24px;
   color: var(--text-primary);
-  text-wrap: balance;
+  min-height: 1.1em;
 }
 
 /* Typewriter effect */
 .typewriter-line {
-  display: inline;
-  min-width: 20ch;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
 }
 .typewriter-cursor {
   display: inline-block;
@@ -115,38 +130,60 @@
 }
 
 /* Problem Box */
-.home-problem-card {
-  background: rgba(239, 68, 68, 0.05);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  border-radius: var(--radius-xl);
-  padding: 40px;
+.home-problem-list {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
   margin-bottom: 40px;
 }
 
-.home-problem-list {
-  display: grid;
-  gap: 32px;
+.home-problem-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
 }
 
-.home-problem-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--border-subtle);
+.home-problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: #EF4444; /* Red accent for problems */
+  opacity: 0.5;
+  transition: opacity var(--transition-normal);
 }
-.home-problem-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+
+.home-problem-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(239, 68, 68, 0.4);
+  background: var(--bg-card-hover);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.home-problem-card:hover::before {
+  opacity: 1;
 }
 
 .home-problem-col h4 {
-  font-size: 14px;
+  font-size: 13px;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   margin-bottom: 8px;
   letter-spacing: 0.05em;
   font-weight: 700;
+}
+
+.home-problem-col p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 .home-quote {
@@ -161,31 +198,7 @@
   margin: 60px 0;
 }
 
-/* Team Grid */
-.home-team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.home-team-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  padding: 32px;
-  text-align: center;
-  transition: all var(--transition-normal);
-}
-.home-team-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--border-hover);
-  background: var(--bg-card-hover);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.home-team-card__icon { font-size: 40px; margin-bottom: 20px; }
-.home-team-card__role { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
-.home-team-card__skills { font-family: monospace; font-size: 13px; color: var(--text-muted); }
+/* Team Grid uses personas__grid and persona-home-card from kit.css directly */
 
 /* Comparison Table */
 .home-table {
@@ -326,33 +339,68 @@
 .home-feature-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: 24px;
 }
 
 .home-feature-block {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 40px;
+  padding: 36px;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-feature-block:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .home-feature-block h3 {
-  font-size: 22px;
-  margin-bottom: 16px;
+  font-family: var(--font-display);
+  font-size: 20px;
   display: flex;
   align-items: center;
   gap: 12px;
   color: var(--text-primary);
+  font-weight: 700;
 }
 .home-feature-block p {
+  font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
 /* Lazy Check */
-.home-lazy-list p { font-size: 18px; color: var(--text-primary); margin-bottom: 16px; display:flex; align-items:center; gap: 12px; justify-content:center;}
-.home-lazy-list i { color: #10B981; width:24px; height:24px; }
-.home-lazy-list .bad-icon { color: #EF4444; }
+.home-lazy-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 900px !important;
+  margin: 0 auto;
+}
+.home-lazy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all var(--transition-normal);
+}
+.home-lazy-card:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+.home-lazy-card p { font-size: 16px; color: var(--text-primary); margin: 0; line-height: 1.5; }
+.home-lazy-card i { color: #10B981; width:24px; height:24px; flex-shrink: 0; margin-top: 2px;}
+.home-lazy-card .bad-icon { color: #EF4444; }
 
 /* How It Works Workflow */
 .home-workflow {
@@ -431,7 +479,7 @@
 .home-wf-arrow i { width: 20px; height: 20px; }
 
 @media (max-width: 768px) {
-  .home-wf-step { flex-direction: column; gap: 12px; padding: 20px; }
+  .home-wf-step { flex-direction: row; gap: 16px; padding: 24px 20px; align-items: flex-start; }
   .home-wf-num { width: 36px; height: 36px; font-size: 15px; }
 }
 
@@ -493,7 +541,12 @@
   margin-bottom: 32px;
 }
 .home-install-tab {
-  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  white-space: nowrap;
+  padding: 0 24px;
   border-radius: 30px;
   color: var(--text-secondary);
   font-weight: 600;
@@ -581,19 +634,19 @@
 @media (max-width: 768px) {
   html, body { overflow-x: hidden; width: 100%; position: relative; }
   .home-hero { padding: 100px 0 40px; }
-  .home-hero__title { font-size: clamp(28px, 8vw, 36px); line-height: 1.15; word-break: break-word; }
-  .typewriter-line { min-width: unset; display: inline-block; max-width: 100%; }
+  .home-hero__title { font-size: clamp(28px, 8vw, 36px); line-height: 1.15; min-height: 1.15em; }
+  .typewriter-line { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .home-hero__subtitle { font-size: 16px; padding: 0 10px; margin-bottom: 32px; }
   .home-hero__ctas { flex-direction: column; width: 100%; }
   .home-hero__ctas .btn { width: 100%; justify-content: center; }
   .home-section { padding: 60px 0; }
   .home-section__title { font-size: clamp(24px, 7vw, 28px); line-height: 1.25; margin-bottom: 12px; word-break: break-word; }
   .home-section__subtitle { font-size: 16px; margin-bottom: 40px; }
-  .home-problem-item { grid-template-columns: 1fr; gap: 16px; }
-  .home-team-grid { grid-template-columns: 1fr; }
+  .home-problem-list { grid-template-columns: 1fr; gap: 16px; }
+  .home-lazy-list { grid-template-columns: 1fr; }
   .home-feature-list { grid-template-columns: 1fr; }
   .home-install-block { flex-direction: column; gap: 16px; align-items: stretch; text-align: center; }
-  .home-install-code { font-size: 13px; word-break: break-all; overflow-wrap: break-word; white-space: pre-wrap; display: block; overflow-x: auto; text-align: left; }
+  .home-install-code { font-size: 13px; word-break: normal; white-space: pre; display: block; overflow-x: auto; text-align: left; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
   .home-table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; border-radius: 8px; }
   .home-table tr { margin-bottom: 0; border: none; padding: 0; }
   .home-table td, .home-table th { padding: 12px; }

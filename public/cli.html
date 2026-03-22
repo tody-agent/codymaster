@@ -215,9 +215,22 @@
     </a>
 
     <ul class="nav__links" id="navLinks">
-      <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.whyUs">Why Us</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="skills.html" class="nav-dropdown__item"><span class="lang-flag">🧠</span> <span data-i18n="nav.skills">Skills</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
+          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
+          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
+        </div>
+      </li>
       <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
-      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
           <span data-i18n="nav.personas">For You</span>
@@ -232,21 +245,9 @@
           <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
         </div>
       </li>
-      <li class="nav-dropdown">
-        <button class="nav-dropdown__toggle">
-          <span data-i18n="nav.whyUs">Why Us</span>
-          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
-        </button>
-        <div class="nav-dropdown__menu">
-          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
-          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
-          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
-          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
-        </div>
-      </li>
-      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
-      <li>
+    </ul>
+
+    <div class="nav__controls">
         <div class="lang-switcher" id="lang-switcher">
           <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
             <span class="lang-btn-icon">🌍</span>
@@ -274,17 +275,18 @@
             </button>
           </div>
         </div>
-      </li>
-      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
-    </ul>
-
-    <div class="nav__hamburger" id="hamburger">
+        <a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a>
+        <div class="nav__hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
+      </div>
   </nav>
 
   <!-- ═══════ HERO: CLI MOCKUP ═══════ -->
   <section class="cli-hero">
+    <div class="bg-mesh bg-mesh--lime"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
     <div class="hero__orbs">
       <div class="hero__orb hero__orb--purple"></div>
       <div class="hero__orb hero__orb--lime"></div>
@@ -292,7 +294,7 @@
     <div class="cli-hero__content">
       <div class="cli-hero__badge" data-i18n="pages.cli_auto_14">$ terminal</div>
       <h1 class="cli-hero__title"><span data-i18n="pages.cli_auto_15">The</span><span data-i18n="pages.cli_auto_16">CLI</span><span data-i18n="pages.cli_auto_17">Power Guide</span></h1>
-      <p class="cli-hero__sub">For developers who think in terminal commands. Every slash command, every workflow, all in one place.</p>
+      <p class="cli-hero__sub" data-i18n="pages.cli_auto_16">For developers who think in terminal commands. Every slash command, every workflow, all in one place.</p>
     </div>
 
     <div class="app-window text-left">
@@ -302,11 +304,11 @@
           <div class="app-window__dot app-window__dot--y"></div>
           <div class="app-window__dot app-window__dot--g"></div>
         </div>
-        <div class="app-window__title">codymaster — node /opt/homebrew/bin/cm</div>
+        <div class="app-window__title" data-i18n="pages.cli_auto_17">codymaster — node /opt/homebrew/bin/cm</div>
         <div class="app-window__right"></div>
       </div>
       <div class="term-body">
-        <div class="term-line term-line--gap"><span class="text-gray">[dev@macbook-pro ~/proj] %</span> cm</div>
+        <div class="term-line term-line--gap"><span class="text-gray" data-i18n="pages.cli_auto_18">[dev@macbook-pro ~/proj] %</span><span data-i18n="pages.cli_auto_19">cm</span></div>
         
         <div class="term-ascii">
  ██████╗ ██████╗ ██████╗ ██╗   ██╗
@@ -634,7 +636,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free &amp; Open Source.</p>
       <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
     </div>
   </footer>

@@ -30,6 +30,12 @@
         "description": "Jobs-To-Be-Done खोज — समझें कि ग्राहक वास्तव में आपके उत्पाद को किसलिए चुनते हैं"
       },
       {
+        "icon": "layers",
+        "name": "cm-design-system",
+        "categoryIndex": 1,
+        "description": "Design system builder and replication — ensure 100% brand consistency"
+      },
+      {
         "icon": "palette",
         "name": "cm-ux-master",
         "categoryIndex": 1,
@@ -176,6 +182,24 @@
         "whenToUse": "Drafting intensely persuasive content mediums: Lead generation funnels, blast emails, commercial blogs, or Facebook Ad hooks.",
         "whyToUse": "Moves away from generative dictionary-text into pure psychological maneuvers. It agitates exact user trauma points, weaponizes curiosity, and boosts global Conversion Rates (CRO).",
         "bestPractice": "Initially define the JTBD (Job-to-be-Done). Trigger the StoryBrand mode projecting your Customer strictly as the Hero, and your Brand as the Yoda-like Guide."
+      },
+      {
+        "id": "cm-design-system",
+        "name": "cm-design-system",
+        "category": "Design",
+        "icon": "layers",
+        "tagline": "Design System Builder",
+        "prompt": "Extract the design system from this website",
+        "related": [
+          "cm-ux-master",
+          "cm-ui-preview"
+        ],
+        "problem": "AI designs look inconsistent across screens and don't match your brand?",
+        "solution": "Extract and strictly enforce a centralized design system, ensuring absolute aesthetic consistency.",
+        "whatIsIt": "A dedicated design system librarian. Scrapes live sites, extracts visual tokens, and maps them to STITCH_TOKENS. Works natively with Pencil.dev and Google Stitch.",
+        "whenToUse": "Before generating any new UI component or when you want to migrate a legacy product to a standardized design system.",
+        "whyToUse": "Saves hundreds of hours manually correcting AI-generated button colors, padding inconsistencies, and wrong fonts. Also provides beautiful fallback themes (Shadcn, Halo).",
+        "bestPractice": "Always run this to generate a DESIGN.md before invoking cm-ui-preview. Rely on its fallback templates if you don't have a design."
       },
       {
         "id": "cm-ux-master",

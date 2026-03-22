@@ -18,9 +18,22 @@
     </a>
 
     <ul class="nav__links" id="navLinks">
-      <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.whyUs">Why Us</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="skills.html" class="nav-dropdown__item"><span class="lang-flag">🧠</span> <span data-i18n="nav.skills">Skills</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
+          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
+          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
+        </div>
+      </li>
       <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
-      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
           <span data-i18n="nav.personas">For You</span>
@@ -35,21 +48,9 @@
           <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
         </div>
       </li>
-      <li class="nav-dropdown">
-        <button class="nav-dropdown__toggle">
-          <span data-i18n="nav.whyUs">Why Us</span>
-          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
-        </button>
-        <div class="nav-dropdown__menu">
-          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
-          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
-          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
-          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
-        </div>
-      </li>
-      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
-      <li>
+    </ul>
+
+    <div class="nav__controls">
         <div class="lang-switcher" id="lang-switcher">
           <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
             <span class="lang-btn-icon">🌍</span>
@@ -77,26 +78,33 @@
             </button>
           </div>
         </div>
-      </li>
-      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
-    </ul>
-
-    <div class="nav__hamburger" id="hamburger">
+        <a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a>
+        <div class="nav__hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
+      </div>
   </nav>
 
   <main class="home-container">
     
     <!-- Hero Section -->
     <header class="home-hero reveal">
+      <!-- Background Effects -->
+      <div class="bg-mesh"></div>
+      <div class="bg-grid"></div>
+      <div class="bg-particles">
+        <div class="bg-particle"></div><div class="bg-particle"></div><div class="bg-particle"></div>
+        <div class="bg-particle"></div><div class="bg-particle"></div><div class="bg-particle"></div>
+        <div class="bg-particle"></div><div class="bg-particle"></div>
+      </div>
+      <div class="bg-noise"></div>
       <div class="home-hero__badges">
         <span class="home-badge" data-i18n="home.index_auto_16">🚀 v3.4.0</span>
         <span class="home-badge" data-i18n="home.index_auto_17">🧠 34 Skills</span>
         <span class="home-badge" data-i18n="home.index_auto_18">⚡ 7+ Platforms</span>
         <span class="home-badge" data-i18n="home.index_auto_19">🌍 Open Source</span>
       </div>
-      <h1 class="home-hero__title"><span data-i18n="home.index_auto_20">Your AI Agent is smart.</span><br>
+      <h1 class="home-hero__title">
         <span class="text-gradient typewriter-line" id="typewriter-text"></span>
         <span class="typewriter-cursor">|</span>
       </h1>
@@ -112,6 +120,9 @@
     </header>
 
     <!-- Dashboard Mockup -->
+    <div style="position: relative;">
+      <div class="bg-glow--center" style="background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.06) 0%, rgba(6, 182, 212, 0.04) 30%, transparent 60%);"></div>
+    </div>
     <div class="app-window reveal" style="max-width: 1200px; text-align: left; margin-bottom: 80px; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);">
       <div class="app-window__bar">
         <div class="app-window__dots">
@@ -119,7 +130,7 @@
           <div class="app-window__dot app-window__dot--y"></div>
           <div class="app-window__dot app-window__dot--g"></div>
         </div>
-        <div class="app-window__title">Dashboard</div>
+        <div class="app-window__title" data-i18n="home.index_auto_16">Dashboard</div>
         <div class="app-window__right"></div>
       </div>
   
@@ -129,92 +140,101 @@
     </div>
 
     <!-- The Problem Section -->
-    <section class="home-section reveal">
+    <section class="home-section reveal section-glow-divider">
       <h2 class="home-section__title" data-i18n="readme.problemTitle">🛑 The Problem Nobody Talks About</h2>
       <p class="home-section__subtitle" data-i18n="readme.problemSubtitle">You installed an AI coding agent. It writes code faster than any human. But then reality hits.</p>
 
-      <div class="home-problem-card">
-        <div class="home-problem-list">
-          <div class="home-problem-item">
-            <div class="home-problem-col">
-              <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
-              <p data-i18n="readme.prob1a">AI designs differently every single time — same brand, 3 different styles.</p>
-            </div>
-            <div class="home-problem-col">
-              <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
-              <p data-i18n="readme.prob1b">Clients think you're 3 different companies.</p>
-            </div>
+      <div class="home-problem-list">
+        <div class="home-problem-card">
+          <div class="home-problem-col">
+            <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
+            <p data-i18n="readme.prob1a">AI designs differently every single time — same brand, 3 different styles.</p>
           </div>
-          <div class="home-problem-item">
-            <div class="home-problem-col">
-              <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
-              <p data-i18n="readme.prob2a">AI fixes one bug, silently breaks 5 other things.</p>
-            </div>
-            <div class="home-problem-col">
-              <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
-              <p data-i18n="readme.prob2b">You redo the same work 3-4 times.</p>
-            </div>
+          <div class="home-problem-col">
+            <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
+            <p data-i18n="readme.prob1b">Clients think you're 3 different companies.</p>
           </div>
-          <div class="home-problem-item">
-            <div class="home-problem-col">
-              <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
-              <p data-i18n="readme.prob3a">AI writes zero tests, zero docs. Deploys to production = deploy and pray 🙏</p>
-            </div>
-            <div class="home-problem-col">
-              <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
-              <p data-i18n="readme.prob3b">Your codebase becomes a house of cards. Broken deploys at 2 AM.</p>
-            </div>
+        </div>
+        <div class="home-problem-card">
+          <div class="home-problem-col">
+            <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
+            <p data-i18n="readme.prob2a">AI fixes one bug, silently breaks 5 other things.</p>
+          </div>
+          <div class="home-problem-col">
+            <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
+            <p data-i18n="readme.prob2b">You redo the same work 3-4 times.</p>
+          </div>
+        </div>
+        <div class="home-problem-card">
+          <div class="home-problem-col">
+            <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
+            <p data-i18n="readme.prob3a">AI writes zero tests, zero docs. Deploys to production = deploy and pray 🙏</p>
+          </div>
+          <div class="home-problem-col">
+            <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
+            <p data-i18n="readme.prob3b">Your codebase becomes a house of cards. Broken deploys at 2 AM.</p>
           </div>
         </div>
       </div>
 
-      <div class="home-quote">
-        "AI gave me 100 hands. But without discipline, those hands created chaos."<br>
+      <div class="home-quote"><span data-i18n="home.index_auto_17">"AI gave me 100 hands. But without discipline, those hands created chaos."</span><br>
         <span style="font-size:14px;color:var(--text-muted);display:block;margin-top:10px;">— Tody Le, Head of Product · Creator of CodyMaster</span>
       </div>
     </section>
 
     <!-- The Solution Section -->
-    <section class="home-section reveal">
+    <section class="home-section reveal section-glow-divider">
       <h2 class="home-section__title" data-i18n="readme.solutionTitle">🟢 An Entire Senior Team in One Kit</h2>
       <p class="home-section__subtitle" data-i18n="readme.solutionSubtitle">CodyMaster acts as your senior counterpart, enforcing standards and shipping velocity across every discipline.</p>
 
-      <div class="home-team-grid">
-        <a href="for-founders.html" class="home-team-card" style="text-decoration:none;">
-          <div class="home-team-card__icon">🚀</div>
-          <div class="home-team-card__role" data-i18n="nav.forFounders">For Founders</div>
-          <div class="home-team-card__skills">Ship products, not just code</div>
+      <div class="personas__grid">
+        <a href="for-founders.html" class="persona-home-card">
+          <div class="persona-home-card__header">
+            <div class="persona-home-card__emoji">🚀</div>
+            <h3 class="skill-card__name" data-i18n="nav.forFounders">For Founders</h3>
+          </div>
+          <p class="skill-card__desc">Ship products, not just code</p>
         </a>
-        <a href="for-cmos.html" class="home-team-card" style="text-decoration:none;">
-          <div class="home-team-card__icon">📢</div>
-          <div class="home-team-card__role" data-i18n="nav.forCmos">For CMOs</div>
-          <div class="home-team-card__skills">Conversion tracking &amp; ROI</div>
+        <a href="for-cmos.html" class="persona-home-card">
+          <div class="persona-home-card__header">
+            <div class="persona-home-card__emoji">📢</div>
+            <h3 class="skill-card__name" data-i18n="nav.forCmos">For CMOs</h3>
+          </div>
+          <p class="skill-card__desc">Conversion tracking &amp; ROI</p>
         </a>
-        <a href="for-pms.html" class="home-team-card" style="text-decoration:none;">
-          <div class="home-team-card__icon">📋</div>
-          <div class="home-team-card__role" data-i18n="nav.forPms">For PMs</div>
-          <div class="home-team-card__skills">JTBD &amp; agile planning</div>
+        <a href="for-pms.html" class="persona-home-card">
+          <div class="persona-home-card__header">
+            <div class="persona-home-card__emoji">📋</div>
+            <h3 class="skill-card__name" data-i18n="nav.forPms">For PMs</h3>
+          </div>
+          <p class="skill-card__desc">JTBD &amp; agile planning</p>
         </a>
-        <a href="for-tech-teams.html" class="home-team-card" style="text-decoration:none;">
-          <div class="home-team-card__icon">💻</div>
-          <div class="home-team-card__role" data-i18n="nav.forTechTeams">For Tech Teams</div>
-          <div class="home-team-card__skills">TDD, architecture &amp; DevOps</div>
+        <a href="for-tech-teams.html" class="persona-home-card">
+          <div class="persona-home-card__header">
+            <div class="persona-home-card__emoji">💻</div>
+            <h3 class="skill-card__name" data-i18n="nav.forTechTeams">For Tech Teams</h3>
+          </div>
+          <p class="skill-card__desc">TDD, architecture &amp; DevOps</p>
         </a>
-        <a href="for-designers.html" class="home-team-card" style="text-decoration:none;">
-          <div class="home-team-card__icon">🎨</div>
-          <div class="home-team-card__role" data-i18n="nav.forDesigners">For Designers</div>
-          <div class="home-team-card__skills">UX heuristics &amp; UI preview</div>
+        <a href="for-designers.html" class="persona-home-card">
+          <div class="persona-home-card__header">
+            <div class="persona-home-card__emoji">🎨</div>
+            <h3 class="skill-card__name" data-i18n="nav.forDesigners">For Designers</h3>
+          </div>
+          <p class="skill-card__desc">UX heuristics &amp; UI preview</p>
         </a>
-        <a href="for-claw-family.html" class="home-team-card" style="text-decoration:none;">
-          <div class="home-team-card__icon">🦞</div>
-          <div class="home-team-card__role" data-i18n="nav.forClawFamily">For Claw Family</div>
-          <div class="home-team-card__skills">OpenClaw native integrations</div>
+        <a href="for-claw-family.html" class="persona-home-card">
+          <div class="persona-home-card__header">
+            <div class="persona-home-card__emoji">🦞</div>
+            <h3 class="skill-card__name" data-i18n="nav.forClawFamily">For Claw Family</h3>
+          </div>
+          <p class="skill-card__desc">OpenClaw native integrations</p>
         </a>
       </div>
     </section>
 
     <!-- Features Section -->
-    <section class="home-section reveal">
+    <section class="home-section reveal section-glow-divider">
       <h2 class="home-section__title" data-i18n="readme.featuresTitle">⚡ What Makes CodyMaster Different</h2>
       <p class="home-section__subtitle" data-i18n="readme.featuresSubtitle">Other skill packs give you loose tools. CodyMaster gives you an interconnected operating system for your AI.</p>
 
@@ -248,7 +268,6 @@
         <div class="home-wf-step">
           <div class="home-wf-num">1</div>
           <div class="home-wf-body">
-            <div class="home-wf-icon">💬</div>
             <h3 data-i18n="readme.how1Title">You Chat</h3>
             <p data-i18n="readme.how1Desc">Describe what you want in plain language. "Build me a booking SaaS" or "Fix the login bug". That's it.</p>
             <div class="home-wf-skills"><span>cm-start</span></div>
@@ -260,7 +279,6 @@
         <div class="home-wf-step">
           <div class="home-wf-num">2</div>
           <div class="home-wf-body">
-            <div class="home-wf-icon">🧠</div>
             <h3 data-i18n="readme.how2Title">AI Thinks &amp; Plans</h3>
             <p data-i18n="readme.how2Desc">CodyMaster analyzes your request, researches the problem space, and creates a detailed implementation plan — like a senior PM would.</p>
             <div class="home-wf-skills"><span>cm-brainstorm-idea</span><span>cm-planning</span><span>cm-jtbd</span></div>
@@ -272,7 +290,6 @@
         <div class="home-wf-step">
           <div class="home-wf-num">3</div>
           <div class="home-wf-body">
-            <div class="home-wf-icon">🎨</div>
             <h3 data-i18n="readme.how3Title">AI Designs</h3>
             <p data-i18n="readme.how3Desc">Applies 48 UX Laws and your brand's design system to create production-ready UI — no Figma needed.</p>
             <div class="home-wf-skills"><span>cm-design-system</span><span>cm-ux-master</span><span>cm-ui-preview</span></div>
@@ -284,7 +301,6 @@
         <div class="home-wf-step">
           <div class="home-wf-num">4</div>
           <div class="home-wf-body">
-            <div class="home-wf-icon">⚒️</div>
             <h3 data-i18n="readme.how4Title">AI Builds &amp; Tests</h3>
             <p data-i18n="readme.how4Desc">Writes code test-first (TDD), scans for security leaks, and debugs issues automatically. No broken code ships.</p>
             <div class="home-wf-skills"><span>cm-tdd</span><span>cm-debugging</span><span>cm-secret-shield</span></div>
@@ -349,11 +365,23 @@
     <!-- Lazy Check -->
     <section class="home-section reveal">
       <h2 class="home-section__title" data-i18n="readme.lazyTitle">🦥 Built For Lazy People (Seriously)</h2>
-      <div class="home-lazy-list" style="text-align:left; max-width: 600px; margin: 0 auto; line-height: 2;">
-        <p><i data-lucide="check-circle-2"></i> <span data-i18n="readme.lazy1">Type a chat message and get a <strong>working product</strong> back.</span></p>
-        <p><i data-lucide="check-circle-2"></i> <span data-i18n="readme.lazy2">Have your AI <strong>learn from its mistakes</strong> and get better every day.</span></p>
-        <p><i data-lucide="check-circle-2"></i> <span data-i18n="readme.lazy3">Never setup the same boilerplate twice.</span></p>
-        <p><i data-lucide="check-circle-2"></i> <span data-i18n="readme.lazy4">Deploy with <strong>confidence</strong> instead of praying.</span></p>
+      <div class="home-lazy-list">
+        <div class="home-lazy-card">
+          <i data-lucide="check-circle-2"></i>
+          <p data-i18n="readme.lazy1">Type a chat message and get a <strong>working product</strong> back.</p>
+        </div>
+        <div class="home-lazy-card">
+          <i data-lucide="check-circle-2"></i>
+          <p data-i18n="readme.lazy2">Have your AI <strong>learn from its mistakes</strong> and get better every day.</p>
+        </div>
+        <div class="home-lazy-card">
+          <i data-lucide="check-circle-2"></i>
+          <p data-i18n="readme.lazy3">Never setup the same boilerplate twice.</p>
+        </div>
+        <div class="home-lazy-card">
+          <i data-lucide="check-circle-2"></i>
+          <p data-i18n="readme.lazy4">Deploy with <strong>confidence</strong> instead of praying.</p>
+        </div>
       </div>
     </section>
 
@@ -378,7 +406,7 @@
 
       <!-- Global Install -->
       <div class="home-install-tabs">
-        <div class="home-install-tab active" data-target="global" data-i18n="install.tabGlobal">Global Install (Recommended)</div>
+        <div class="home-install-tab active" data-target="global" data-i18n="install.tabGlobal">Global Install</div>
         <div class="home-install-tab" data-target="manual" data-i18n="install.tabManual">Manual Setup</div>
       </div>
 
@@ -446,7 +474,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free &amp; Open Source.</p>
       <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
     </div>
   </footer>

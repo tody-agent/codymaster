@@ -30,6 +30,12 @@
         "description": "Jobs-To-Be-Done 发现——了解客户真正雇用您的产品做什么"
       },
       {
+        "icon": "layers",
+        "name": "cm-design-system",
+        "categoryIndex": 1,
+        "description": "设计系统构建与复制 — 确保 100% 的品牌一致性"
+      },
+      {
         "icon": "palette",
         "name": "cm-ux-master",
         "categoryIndex": 1,
@@ -98,10 +104,10 @@
     ]
   },
   "skillsPage": {
-    "modalWhat": "What is it?",
-    "modalWhen": "When to use?",
-    "modalWhy": "Why use it?",
-    "modalBest": "Best Practice",
+    "modalWhat": "这是什么？",
+    "modalWhen": "何时使用？",
+    "modalWhy": "为什么使用？",
+    "modalBest": "最佳实践",
     "meta": {
       "title": "技能库 — CodyMaster Kit",
       "description": "探索30多个涵盖创意、设计、内容、代码、安全和部署的专属AI代理技能。"
@@ -126,56 +132,74 @@
       {
         "id": "cm-brainstorm-idea",
         "name": "cm-brainstorm-idea",
-        "category": "Ideation",
+        "category": "构思 (Ideation)",
         "icon": "lightbulb",
-        "tagline": "Strategic Idea Analysis",
-        "prompt": "Analyze my e-commerce platform and suggest improvements",
+        "tagline": "战略构思分析",
+        "prompt": "分析我的电子商务平台并提出改进建议",
         "related": [
           "cm-planning",
           "cm-ux-master"
         ],
-        "problem": "Got a brilliant idea but paranoid about building the wrong thing and burning time?",
-        "solution": "Multi-dimensional analysis to architect the absolute best execution strategy before hardcoding.",
-        "whatIsIt": "A strategic analysis tactician acting as your Product Manager. Employs Design Thinking, TRIZ 9 Windows, and Double Diamond matrices to dissect mechanics, marketing, and business risks.",
-        "whenToUse": "Exclusively before bootstrapping major epics or refactoring chaotic multi-tiered legacy systems.",
-        "whyToUse": "Eviscerates the 'build fast but build wrong' illusion. Forces you into evaluating 2-3 structured strategic options (comparing Pros/Cons) rather than coding blindly.",
-        "bestPractice": "Feed it extensive raw User Profile contexts. Consistently execute this prior to invoking `cm-planning`."
+        "problem": "有了一个绝妙的想法，但担心构建了错误的东西并浪费时间？",
+        "solution": "在编写代码之前，进行多维度分析以制定最完美的执行策略。",
+        "whatIsIt": "一个担任产品经理角色的战略分析策略家。采用设计思维（Design Thinking）、TRIZ 9 宫格（9 Windows）和双钻石模型（Double Diamond）矩阵来剖析机制、营销和商业风险。",
+        "whenToUse": "专门用于启动重大史诗级项目或重构复杂的遗留系统之前。",
+        "whyToUse": "消除“构建虽快但方向错误”的错觉。强迫你在 2-3 个结构化的战略选项中进行评估（对比优缺点），而不是盲目编写代码。",
+        "bestPractice": "为其提供大量的原始用户画像背景。在调用 `cm-planning` 之前，始终先执行此操作。"
       },
       {
         "id": "cm-planning",
         "name": "cm-planning",
-        "category": "Ideation",
+        "category": "构思 (Ideation)",
         "icon": "map",
-        "tagline": "Implementation Planning",
-        "prompt": "Plan the implementation for user authentication",
+        "tagline": "实施计划",
+        "prompt": "计划用户身份验证的实施",
         "related": [
           "cm-brainstorm-idea",
           "cm-execution"
         ],
-        "problem": "Whenever the AI is commanded to code raw, it violently demolishes your stable architecture?",
-        "solution": "Force AI to formulate a comprehensive structural blueprint defining scope before keyboard hitting.",
-        "whatIsIt": "The supreme operational orchestrator. Pushes out an architectural blueprint (`implementation_plan.md`) documenting exactly what files undergo structural mutation.",
-        "whenToUse": "After the core idea hits green-light status (via `cm-brainstorm-idea`) and identically moments before physically coding.",
-        "whyToUse": "Shatters monolithic requests into micro-manageable step-nodes. Pre-reviewing this architectural snapshot rescues you from infinite debugging loops late night.",
-        "bestPractice": "Intensely scrutinize the `implementation_plan.md`. Command the AI to patch architectural flaws rigidly before ever approving movement to `cm-execution`."
+        "problem": "每当命令 AI 直接编写代码时，它都会粗暴地破坏你稳定的架构？",
+        "solution": "在动手之前，强迫 AI 制定一个涵盖范围的全面结构蓝图。",
+        "whatIsIt": "最高运营协调者。产出架构蓝图 (`implementation_plan.md`)，精确记录哪些文件将经历结构性演变。",
+        "whenToUse": "在核心想法通过（经由 `cm-brainstorm-idea`）并准备开始实际编码之前。",
+        "whyToUse": "将庞大的请求拆分为可微观管理的步骤节点。在深夜预审此架构快照，能将你从无限的调试循环中解救出来。",
+        "bestPractice": "严密审查 `implementation_plan.md`。在批准进入 `cm-execution` 之前，命令 AI 严格修补架构缺陷。"
       },
       {
         "id": "cm-content-factory",
         "name": "cm-content-factory",
-        "category": "Content",
+        "category": "内容 (Content)",
         "icon": "pen-tool",
-        "tagline": "AI Content Engine",
-        "prompt": "Write a blog post about remote work productivity",
+        "tagline": "AI 内容引擎",
+        "prompt": "写一篇关于远程工作效率的博客文章",
         "related": [
           "cm-readit",
           "cm-ux-master"
         ],
-        "problem": "Your landing page SEO content sounds incredibly robotic, driving bounce rates up and conversions down?",
-        "solution": "A psychological copywriting factory that mimics 8-figure conversion marketers flawlessly.",
-        "whatIsIt": "A self-improving content engine imbued with 8+ hypnotic psychological frameworks (StoryBrand SB7, Cialdini's Persuasion, SUCCESs vectors) for elite marketing campaigns.",
-        "whenToUse": "Drafting intensely persuasive content mediums: Lead generation funnels, blast emails, commercial blogs, or Facebook Ad hooks.",
-        "whyToUse": "Moves away from generative dictionary-text into pure psychological maneuvers. It agitates exact user trauma points, weaponizes curiosity, and boosts global Conversion Rates (CRO).",
-        "bestPractice": "Initially define the JTBD (Job-to-be-Done). Trigger the StoryBrand mode projecting your Customer strictly as the Hero, and your Brand as the Yoda-like Guide."
+        "problem": "你的落地页 SEO 内容听起来非常机械化，导致跳出率上升，转化率下降？",
+        "solution": "一个心理学文案工厂，能够完美模仿千万级收益的转化营销专家。",
+        "whatIsIt": "一个自我进化的内容引擎，融入了 8 种以上的心理学框架（StoryBrand SB7, Cialdini 说服力, SUCCESs 传播模型），用于打造精英级的营销活动。",
+        "whenToUse": "起草具有极强说服力的内容媒体：潜在客户转化漏洞、群发邮件、商业博客或 Facebook 广告钩子。",
+        "whyToUse": "从单纯的词典生成文本转向纯粹的心理战术。它能针对用户的痛点，利用好奇心，并提升全球转化率 (CRO)。",
+        "bestPractice": "首先定义 JTBD (Job-to-be-Done)。触发 StoryBrand 模式，严格将你的客户定位为“英雄”，而将你的品牌定位为像 Yoda 一样的“向导”。"
+      },
+      {
+        "id": "cm-design-system",
+        "name": "cm-design-system",
+        "category": "Design",
+        "icon": "layers",
+        "tagline": "Design System Builder",
+        "prompt": "从该网站提取设计系统",
+        "related": [
+          "cm-ux-master",
+          "cm-ui-preview"
+        ],
+        "problem": "AI 设计在不同屏幕间看起来不一致，且与您的品牌不匹配？",
+        "solution": "提取并严格执行集中化的设计系统，确保绝对的美学一致性。",
+        "whatIsIt": "专用的设计系统管理员。抓取实时网站，提取视觉 Token，并将其映射到 STITCH_TOKENS。原生支持 Pencil.dev 和 Google Stitch。",
+        "whenToUse": "在生成任何新 UI 组件之前，或当您想将遗留产品迁移到标准化设计系统时。",
+        "whyToUse": "节省数百小时手动纠正 AI 生成的按钮颜色、间距不一致和错误字体的时间。还提供精美备选主题（Shadcn, Halo）。",
+        "bestPractice": "在调用 cm-ui-preview 之前，务必运行此项以生成 DESIGN.md。如果您没有设计，请依赖其备选模板。"
       },
       {
         "id": "cm-ux-master",
@@ -183,17 +207,17 @@
         "category": "Design",
         "icon": "palette",
         "tagline": "UI/UX Design Intelligence",
-        "prompt": "Design a dashboard for a SaaS analytics app",
+        "prompt": "为 SaaS 分析应用设计仪表板",
         "related": [
           "cm-ui-preview",
           "cm-content-factory"
         ],
-        "problem": "Your interface is erratic, spacing grids clash, and the color hierarchies resemble a circus?",
-        "solution": "Instantly impose absolute UI/UX design compliance inherited from 48 universal laws and elite patterns.",
-        "whatIsIt": "The apex visual intelligence node. Integrates 48 strict UX Laws, thousands of component heuristics, deeply optimizing aesthetic A11y scaling and whitespace math.",
-        "whenToUse": "Prototyping new UI layouts from scratch, auditing broken checkout friction streams, or elevating UI consistency globally.",
-        "whyToUse": "Eradicates the dependency on highly expensive UX consultation. Acts as a draconian design gatekeeper verifying your aesthetic yields extreme polish and engagement.",
-        "bestPractice": "Always pair this engine sequentially with `cm-ui-preview` to visualize its conceptualized mockups before dropping into Tailwind syntax."
+        "problem": "您的界面不稳定，间距网格冲突，颜色层级看起来像马戏团？",
+        "solution": "立即强制执行源自 48 条通用法则和精英模式的绝对 UI/UX 设计合规性。",
+        "whatIsIt": "顶尖视觉智能节点。集成 48 条严格的 UX Laws，数千个组件启发式方法，深度优化美学 A11y 缩放和留白数学。",
+        "whenToUse": "从头开始制作新 UI 布局原型，审计损坏的结账摩擦流，或全局提升 UI 一致性。",
+        "whyToUse": "根除对昂贵 UX 咨询的依赖。作为严厉的设计守门员，验证您的美学是否产生极高的精致度和参与度。",
+        "bestPractice": "始终将此引擎与 `cm-ui-preview` 顺序配对，在进入 Tailwind 语法之前将其概念化的原型视觉化。"
       },
       {
         "id": "cm-ui-preview",
@@ -201,17 +225,17 @@
         "category": "Design",
         "icon": "monitor",
         "tagline": "Visual UI Preview",
-        "prompt": "Preview a mobile app login screen",
+        "prompt": "预览移动应用登录界面",
         "related": [
           "cm-ux-master",
           "cm-planning"
         ],
-        "problem": "A nightmare trying to conceptualize how an AI's code will visually render without compiling?",
-        "solution": "Render immediate hyper-realistic mockups strictly locking down design specs before HTML processing.",
-        "whatIsIt": "Seamlessly interlocks via Google Stitch/Pencil integration parameters producing live UI graphical snapshots instantaneously.",
-        "whenToUse": "Traversing the twilight zone between conceptual ideation and deep coding pipelines to physically validate concepts.",
-        "whyToUse": "Iterating graphical elements is hundreds of times cheaper token-wise and time-wise compared to endless CSS refactoring loops. 'Preview before producing'.",
-        "bestPractice": "Declare component demands precisely (Sidebar grids, Hero Call-to-actions). Demand exported screenshot renderings immediately traversing processing."
+        "problem": "在不编译的情况下尝试构思 AI 代码的视觉呈现简直是一场噩梦？",
+        "solution": "在 HTML 处理之前，立即渲染超写实原型，严格锁定设计规范。",
+        "whatIsIt": "通过 Google Stitch/Pencil 集成参数无缝互锁，瞬时生成实时 UI 图形快照。",
+        "whenToUse": "穿越概念构思与深度编码流水线之间的灰色地带，以物理方式验证概念。",
+        "whyToUse": "与无休止的 CSS 重构循环相比，迭代图形元素在 Token 和时间成本上要便宜数百倍。“先预览，后生产”。",
+        "bestPractice": "精确声明组件需求（Sidebar 网格，Hero Call-to-actions）。在处理过程中要求立即导出屏幕截图渲染图。"
       },
       {
         "id": "cm-execution",
@@ -219,17 +243,17 @@
         "category": "Code & Deploy",
         "icon": "play",
         "tagline": "Smart Code Execution",
-        "prompt": "Execute the implementation plan for the checkout feature",
+        "prompt": "执行结账功能的 implementation plan",
         "related": [
           "cm-planning",
           "cm-tdd"
         ],
-        "problem": "Unleashing an AI on gigantic changesheets causes token amnesia, breaking pristine logic boundaries?",
-        "solution": "Atomically partition operations, buffer saves, and intelligently string processing simultaneously.",
-        "whatIsIt": "The industrial-tier coding execution loop mechanism. Capable of intense batch processing trajectories, anomaly isolation, and non-stop operational perseverance.",
-        "whenToUse": "Armed explicitly with an `implementation_plan.md` and prepared to industrially construct the feature sets.",
-        "whyToUse": "It honors strict Dependency-First execution flow (E.g. generating DB schemas prior to UI consumption). Audits itself sequentially post-microstep.",
-        "bestPractice": "Monitor the `task.md` dashboard progress actively. Refrain arbitrarily interrupting the AI whilst locked in a Deep Execution state unless a nuclear error signals."
+        "problem": "让 AI 处理庞大的变更表会导致 Token 遗忘，破坏纯净的逻辑边界？",
+        "solution": "原子化划分操作，缓冲保存，并智能地同步字符串处理。",
+        "whatIsIt": "工业级编码执行循环机制。具备处理高强度批处理轨迹、异常隔离和不间断操作毅力的能力。",
+        "whenToUse": "明确配备 `implementation_plan.md` 并准备工业化构建功能集时。",
+        "whyToUse": "它遵循严格的 Dependency-First 执行流程（例如在 UI 消费之前生成 DB schemas）。在微步骤后顺序进行自我审计。",
+        "bestPractice": "积极监控 `task.md` 仪表板进度。除非发出核心错误信号，否则请勿在 AI 处于深度执行状态时随意中断。"
       },
       {
         "id": "cm-tdd",
@@ -237,107 +261,107 @@
         "category": "Quality",
         "icon": "check-square",
         "tagline": "Test-Driven Development",
-        "prompt": "Write tests for the payment processing module",
+        "prompt": "为支付处理模块编写测试",
         "related": [
           "cm-execution",
           "cm-quality-gate"
         ],
-        "problem": "App functions flawlessly initially, but collapses silently via regression every minor patch cycle?",
-        "solution": "Draconian enforcement of Test-Driven Development (TDD) engineering absolute structural shields.",
-        "whatIsIt": "Pure TDD dogma enforcer. Physically authors logical assertions (Unit/Integration) *before* spawning the core algorithm logic designed to clear the test constraints.",
-        "whenToUse": "Absolutely fundamental dictation when handling core mathematical layers, payment gateways, complex state mutations, or critical endpoints.",
-        "whyToUse": "Guarantees mission-critical infrastructure operates immune to silent regression creeping. Green test matrices equal zero-anxiety nocturnal deployments.",
-        "bestPractice": "Never disregard utility function coverage metrics. Command the AI to ingest your custom Jest/Vitest configuration specifications thoroughly."
+        "problem": "应用最初功能完美，但在每次微小补丁循环中都会因回归而无声崩溃？",
+        "solution": "严厉强制执行测试驱动开发 (TDD)，构建绝对的结构化盾牌。",
+        "whatIsIt": "纯粹的 TDD 教条执行者。在生成旨在通过测试约束的核心算法逻辑 *之前*，亲手编写逻辑断言（Unit/Integration）。",
+        "whenToUse": "处理核心数学层、支付网关、复杂状态变更或关键端点时，这是绝对基础的指令。",
+        "whyToUse": "确保关键任务基础设施在运行时免疫无声的回归爬行。绿色测试矩阵等于零焦虑的深夜部署。",
+        "bestPractice": "绝不要忽视工具函数的覆盖率指标。命令 AI 彻底摄取您的自定义 Jest/Vitest 配置规范。"
       },
       {
         "id": "cm-debugging",
         "name": "cm-debugging",
         "category": "Quality",
         "icon": "bug",
-        "tagline": "Root Cause Debugging",
-        "prompt": "Debug why the login page crashes on mobile",
+        "tagline": "根本原因调试 (Root Cause Debugging)",
+        "prompt": "调试为什么登录页面在移动端崩溃",
         "related": [
           "cm-tdd",
           "cm-terminal"
         ],
-        "problem": "Hitting an anomaly and the AI guesses wildly, altering stable dependencies while deteriorating the stack?",
-        "solution": "Implement surgical Root Cause methodologies replacing volatile wild-guess patchwork immediately.",
-        "whatIsIt": "A methodical trace forensics instrument. Recursively scans the data flow pipelines, unravels terminal output, and isolates exact structural node failures surgically.",
-        "whenToUse": "Confronted by visible UI rendering fracturing, terminal compilation panics, or logic chains returning catastrophic mutations.",
-        "whyToUse": "Standard unstructured debugging usually annihilates secondary logic clusters. This technique isolates the infection, deploying a single targeted patch conserving absolute context stability.",
-        "bestPractice": "Deliver raw unadulterated Error Stack Traces. Explicitly instruct it: 'Analyze Root Cause precisely' prior to ever granting file-write authorization."
+        "problem": "遇到异常时 AI 盲目猜测，在破坏技术栈的同时修改了稳定的依赖关系？",
+        "solution": "立即实施精准的 Root Cause 方法论，取代不稳定的盲目猜测修补。",
+        "whatIsIt": "一种系统的追踪取证工具。递归扫描数据流管道，解析终端输出，并精准隔离具体的结构化节点故障。",
+        "whenToUse": "面临可见的 UI 渲染破碎、终端编译 panic 或逻辑链返回灾难性变异时使用。",
+        "whyToUse": "标准的非结构化调试通常会破坏次要逻辑集群。此技术可隔离受影响区域，部署单个针对性补丁，从而保持绝对的上下文稳定性。",
+        "bestPractice": "提供原始未修改的 Error Stack Traces。在授予文件写入权限之前，明确指示它：“精确分析 Root Cause”。"
       },
       {
         "id": "cm-code-review",
         "name": "cm-code-review",
         "category": "Quality",
         "icon": "git-pull-request",
-        "tagline": "Code Review & Feedback",
-        "prompt": "Review the latest pull request for the API module",
+        "tagline": "代码审查与反馈 (Code Review & Feedback)",
+        "prompt": "审查 API 模块最新的 Pull Request",
         "related": [
           "cm-quality-gate",
           "cm-tdd"
         ],
-        "problem": "Terrified to merge foreign or rapid code injections out of fear they harbor security/technical decay?",
-        "solution": "Deploy a merciless automated Senior Engineer verification protocol gating your main branch.",
-        "whatIsIt": "An exhaustive Pull Request surveillance apparatus. Critiques invisible Code Smells, algorithm latency bottlenecks, reusability scaling, and security liabilities.",
-        "whenToUse": "Concluding feature isolation arcs, right before attempting branch merging matrices, or retro-auditing massive legacy refactors.",
-        "whyToUse": "Decimates the requirement for Senior human reviewers constantly standing by. Recommends intensely elegant structural refactoring permutations proactively decreasing Tech Debt.",
-        "bestPractice": "Ask the AI directly: 'Identify the top 3 Technical Debt consequences introducing this specific implementation will forge long-term'."
+        "problem": "害怕合并外部或快速的代码注入，担心它们潜藏安全风险或技术退化？",
+        "solution": "在 main 分支部署一套严苛的自动化 Senior Engineer 验证协议。",
+        "whatIsIt": "一个详尽的 Pull Request 监控机制。审查不可见的 Code Smells、算法延迟瓶颈、可重用性扩展和安全责任。",
+        "whenToUse": "在完成功能隔离周期、尝试分支合并矩阵之前，或对大规模遗留重构进行追溯审计时使用。",
+        "whyToUse": "大幅减少对 Senior 人员实时审查的需求。主动推荐极其优雅的结构化重构方案，降低 Tech Debt。",
+        "bestPractice": "直接询问 AI：“识别引入此特定实现将长期形成的排名前 3 的 Technical Debt 后果”。"
       },
       {
         "id": "cm-quality-gate",
         "name": "cm-quality-gate",
         "category": "Quality",
         "icon": "shield",
-        "tagline": "Deploy Quality Gate",
-        "prompt": "Run quality gate before deploying to production",
+        "tagline": "部署质量门禁 (Deploy Quality Gate)",
+        "prompt": "在部署到生产环境之前运行质量门禁",
         "related": [
           "cm-tdd",
           "cm-safe-deploy"
         ],
-        "problem": "The classic 'It runs perfect on my localhost!' transitioning into a blazing server collapse deployment?",
-        "solution": "The uncompromising iron Quality Gate checkpoint. Failure to pass = Absolute deployment prohibition.",
-        "whatIsIt": "The ultimate CI validation blockade. Enforces zero-leniency clears over Linting aesthetics, Test pass rates, TypeScript bindings, and Security vulnerability scanners.",
-        "whenToUse": "MANDATORY checkpoint directly preceding any activation of the `cm-safe-deploy` command or concluding your two-week Scrum Sprint cycles.",
-        "whyToUse": "Anchors the RARV (Review-Audit-Resolve-Verify) standard. Violently blocks humiliating service outages stemming from simple undefined tokens or broken logic gates.",
-        "bestPractice": "Never under any administrative pressure bypass the execution check of this QA Gate checkpoint."
+        "problem": "经典的“在我的 localhost 运行完美！”但在部署后导致服务器瞬间崩溃？",
+        "solution": "毫不妥协的铁律 Quality Gate 检查点。未通过 = 绝对禁止部署。",
+        "whatIsIt": "终极 CI 验证防线。强制对 Linting 规范、Test 通过率、TypeScript 绑定和 Security 漏洞扫描器进行零容忍清理。",
+        "whenToUse": "在激活 `cm-safe-deploy` 命令之前，或结束两周的 Scrum Sprint 周期时，必须进行的强制性检查。",
+        "whyToUse": "锚定 RARV (Review-Audit-Resolve-Verify) 标准。强力阻断因简单的 undefined tokens 或逻辑门损坏而导致的尴尬停机事故。",
+        "bestPractice": "无论面临何种管理压力，切勿绕过此 QA Gate 检查点的执行检查。"
       },
       {
         "id": "cm-test-gate",
         "name": "cm-test-gate",
         "category": "Quality",
         "icon": "clipboard-check",
-        "tagline": "Test Infrastructure",
-        "prompt": "Set up test infrastructure for my Next.js project",
+        "tagline": "测试基础设施 (Test Infrastructure)",
+        "prompt": "为我的 Next.js 项目设置测试基础设施",
         "related": [
           "cm-tdd",
           "cm-quality-gate"
         ],
-        "problem": "Acknowledging Testing is paramount but entirely lost configuring the sophisticated infrastructure properly?",
-        "solution": "Instantiate robust automated testing CI foundations systematically strictly by the book.",
-        "whatIsIt": "Testing infrastructure scaffolding authority. Sets up the backbone array (Vitest, Jest, Cypress), environment profiles, and Husky pre-commit defensive mechanisms.",
-        "whenToUse": "Booting an entirely fresh repository, or salvaging an older legacy codebase devoid of comprehensive structural verification standards.",
-        "whyToUse": "Integrating Test Gates on Day 1 catalyzes massive horizontal project scaling capability without internal fracturing. It pre-populates dummy specs mapping out behavior.",
-        "bestPractice": "Trigger this initialization explicitly early, normally as the direct sequential operational step after clearing `cm-project-bootstrap`."
+        "problem": "认同 Testing 至关重要，但在正确配置复杂的测试基础设施时完全不知所措？",
+        "solution": "严格按照规范系统地建立健壮的自动化测试 CI 基础。",
+        "whatIsIt": "测试基础设施脚手架权威。设置核心阵列 (Vitest, Jest, Cypress)、环境配置文件和 Husky pre-commit 防御机制。",
+        "whenToUse": "启动一个全新的仓库，或拯救缺乏全面结构化验证标准的旧遗留代码库时使用。",
+        "whyToUse": "从第 1 天起集成 Test Gates，可催化大规模的项目水平扩展能力，避免内部破碎。它会预先填充用于映射行为的 dummy specs。",
+        "bestPractice": "尽早显式触发此初始化，通常作为完成 `cm-project-bootstrap` 后的直接后续操作步骤。"
       },
       {
         "id": "cm-terminal",
         "name": "cm-terminal",
         "category": "DevOps",
         "icon": "terminal",
-        "tagline": "Terminal Management",
-        "prompt": "Run and monitor the build process",
+        "tagline": "终端管理 (Terminal Management)",
+        "prompt": "运行并监控构建过程",
         "related": [
           "cm-execution",
           "cm-debugging"
         ],
-        "problem": "Long-haul background compilations or terminal operations spew unnoticed critical warnings inducing invisible crashes?",
-        "solution": "Impose hyper-intelligent oversight spanning all terminal and shell execution processes instantly.",
-        "whatIsIt": "A dedicated supervisory overlay for Terminal executions—capturing NPM dependency installations, build engines, or headless daemon dev environments actively.",
-        "whenToUse": "Whenever authorizing heavily destructive directory commands or package cascades known to traditionally generate dense obscure warning streams.",
-        "whyToUse": "Aggressively checks AI 'fire and forget' tendencies. The unit methodically translates terminal feedback, pauses for process resolution, and neutralizes rogue exits carefully.",
-        "bestPractice": "Monitor and enforce its command restriction boundaries. Ask it dynamically to dump diagnostic log buffers if an unhandled backend process mysteriously evaporates."
+        "problem": "漫长的后台编译或终端操作喷出未被察觉的关键警告，从而引发隐形崩溃？",
+        "solution": "立即对所有终端和 shell 执行过程实施超智能监督。",
+        "whatIsIt": "一个专用于 Terminal 执行的监督层——主动捕获 NPM 依赖安装、构建引擎或 headless daemon 开发环境。",
+        "whenToUse": "凡是授权执行破坏性极强的目录命令或已知会产生密集模糊警告流的软件包级联操作时。",
+        "whyToUse": "强制检查 AI 的“即发即弃”倾向。该单元会系统地转换终端反馈，暂停以等待进程解决，并仔细中和异常退出。",
+        "bestPractice": "监控并执行其命令限制边界。如果某个未处理的后端进程莫名消失，请动态要求它转储诊断日志缓冲区。"
       },
       {
         "id": "cm-safe-deploy",
@@ -350,12 +374,12 @@
           "cm-quality-gate",
           "cm-identity-guard"
         ],
-        "problem": "Does triggering the 'Deploy' sequence invoke intense anxiety and fear of irreversible domain outages?",
-        "solution": "An 8-Gate verification deployment protocol verifying holistic integrity before superseding live data arrays.",
-        "whatIsIt": "Zero-downtime automated deployment orchestrator. Fluidly connects with Vercel, Cloudflare Pages, or custom raw VPS server configurations gracefully.",
-        "whenToUse": "Progressing verified staging code integrations over the threshold into global Production/Live environment status updates.",
-        "whyToUse": "Alleviates the immense psychological friction attached to shipping internet products. Prioritizes indestructible rollback systems instantaneously shielding users if a build is fundamentally toxic.",
-        "bestPractice": "Obligatorily sequence this protocol exclusively only after achieving a full-green certification run from your `cm-quality-gate`."
+        "problem": "触发“Deploy”序列是否会引发强烈的焦虑，以及对不可逆的域名停机的恐惧？",
+        "solution": "一个 8-Gate 验证部署协议，在覆盖线上数据阵列之前验证整体完整性。",
+        "whatIsIt": "零停机自动化部署编排器。优雅地流畅连接 Vercel、Cloudflare Pages 或自定义原生 VPS 服务器配置。",
+        "whenToUse": "将经过验证的 Staging 代码集成跨越阈值，推进到全局 Production/Live 环境状态更新。",
+        "whyToUse": "减轻发布互联网产品带来的巨大心理摩擦。优先考虑不可摧毁的 Rollback 系统，如果构建版本存在根本性问题，能瞬间保护用户。",
+        "bestPractice": "强制要求仅在 `cm-quality-gate` 运行并获得全绿认证后，才按顺序执行此协议。"
       },
       {
         "id": "cm-project-bootstrap",
@@ -368,12 +392,12 @@
           "cm-planning",
           "cm-safe-deploy"
         ],
-        "problem": "The introductory configurations feel like an endless repeating chore: tailwind, git, eslint, routing setup...",
-        "solution": "Instantiate total enterprise-grade structural configurations universally under a rapid minute.",
-        "whatIsIt": "Paramount project initialization scaffold. Bakes in structural directory perfection, staging profiles, pre-configured i18n support, SEO metadata layers out of the box.",
-        "whenToUse": "Ground Zero momentum initializing a completely empty project canvas.",
-        "whyToUse": "Constructing upon a shaky foundational structure guarantees collapse later. Executing this standard magnifies developmental agility 10x throughout subsequent development months.",
-        "bestPractice": "Ensure correct organizational nomenclature (Domain, Project Title) when prompted, allowing the Identity Guard mechanisms to calibrate seamlessly."
+        "problem": "初始配置感觉就像是没完没了的重复琐事：Tailwind、Git、ESLint、路由设置……",
+        "solution": "在一分钟内快速实例化完整的企业级结构配置。",
+        "whatIsIt": "卓越的项目初始化脚手架。内置完美的目录结构、Staging 配置、预配置的 i18n 支持，以及开箱即用的 SEO 元数据层。",
+        "whenToUse": "在完全空白的项目画布上进行零起点初始化。",
+        "whyToUse": "构建在不稳固的基础结构之上注定会导致以后的崩溃。执行此标准可使后续开发月份的开发敏捷性提升 10 倍。",
+        "bestPractice": "在提示时确保组织命名（Domain、项目标题）正确，使 Identity Guard 机制能够无缝校准。"
       },
       {
         "id": "cm-git-worktrees",
@@ -386,12 +410,12 @@
           "cm-code-review",
           "cm-execution"
         ],
-        "problem": "Halfway configuring deep logic when an immediate Live bug detonates; switching branches yields absolute Git apocalyptic conflicts?",
-        "solution": "Activate Git Worktree multiplexing, allowing multi-stream operations without shedding uncommitted code progress.",
-        "whatIsIt": "An elite branching parallelization tool. Worktrees instantiate isolated physical folder variants synchronized to a singular central git repository simultaneously.",
-        "whenToUse": "Extremely critical when forced to suspend highly-complex uncommitted algorithms to resolve catastrophic sudden high-tier organizational demands.",
-        "whyToUse": "Eradicates the volatile 'git stash' inferno. Eliminates excruciating `node_modules` reconfiguration wait-times. Operational context streams remain hermetically sealed and safe from tampering.",
-        "bestPractice": "Always prune and delete the isolated worktree directory securely once the temporary branch has achieved successful final merger integration to save SSD capacities."
+        "problem": "正在配置深度逻辑到一半时，突然爆发了一个紧急线上 Bug；切换分支会导致绝对的 Git 灾难性冲突？",
+        "solution": "激活 Git Worktree 多路复用，允许在不丢失未提交代码进度的情况下进行多流操作。",
+        "whatIsIt": "一个精英级的分支并行化工具。Worktree 同时实例化与单个中央 Git 仓库同步的隔离物理文件夹变体。",
+        "whenToUse": "当被迫暂停高度复杂的未提交算法以解决灾难性的突发高级组织需求时，这非常关键。",
+        "whyToUse": "根除不稳定的 `git stash` 炼狱。消除令人痛苦的 `node_modules` 重新配置等待时间。操作上下文流保持密封且不受篡改。",
+        "bestPractice": "一旦临时分支成功完成最终合并集成，务必安全地修剪并删除隔离的 Worktree 目录，以节省 SSD 空间。"
       },
       {
         "id": "cm-safe-i18n",
@@ -404,12 +428,12 @@
           "cm-content-factory",
           "cm-quality-gate"
         ],
-        "problem": "Generative AI multi-translation iterations capriciously obliterate core internal logic values or semantic HTML structures?",
-        "solution": "Absolute bulletproof localization matrices guaranteeing zero distortion in structural application frameworks.",
-        "whatIsIt": "Massive multi-pass array translation engine running distinct languages synchronously. Applies raw regex differential analysis ensuring structural components stay completely immaculate.",
-        "whenToUse": "Geographically scaling applications incorporating dense dual locales (E.g. processing Korean, Vietnamese, or custom English integrations globally).",
-        "whyToUse": "Forged directly directly in the fires of catastrophic AI-refactoring wipeouts. It integrates an 8-layer structural audit enforcing variables and DIV architectures stay entirely intact perpetually.",
-        "bestPractice": "Mandate parsing minimal JSON blocks strictly beneath 2,000 text lines to prevent extensive recursive hallucination tendencies in the LLM."
+        "problem": "生成式 AI 的多次翻译迭代是否会反复无常地抹除核心内部逻辑值或语义 HTML 结构？",
+        "solution": "绝对防弹的本地化矩阵，确保结构化应用框架零失真。",
+        "whatIsIt": "大规模多阶段数组翻译引擎，同步运行不同语言。应用原生 Regex 差异分析，确保结构组件保持完全无瑕。",
+        "whenToUse": "对包含密集双语本地化的应用进行地理扩展（例如，在全球范围内处理 Korean、Vietnamese 或自定义 English 集成）。",
+        "whyToUse": "直接在灾难性的 AI 重构毁灭之火中锻造而成。它集成了 8 层结构审核，强制要求变量和 DIV 架构永远保持完整。",
+        "bestPractice": "强制要求解析严格低于 2,000 行文本的最小 JSON 块，以防止 LLM 中出现广泛的递归幻觉倾向。"
       },
       {
         "id": "cm-readit",
@@ -422,66 +446,66 @@
           "cm-content-factory",
           "cm-ux-master"
         ],
-        "problem": "Text-heavy domain articles massively fatigue user optics culminating in devastating Bounce Rates rapidly?",
-        "solution": "Algorithmically transcribe dense typographical realms into digestible Podcast/Audio player modules proactively.",
-        "whatIsIt": "Fully loaded Text-to-Speech (TTS) module architecture equipped intricately with interface players and Voice Activation CRO optimization triggers.",
-        "whenToUse": "Across extensively formatted academic manuals, storytelling marketing landing paths, and dense analytical journalism sectors prioritizing distinct interactivity.",
-        "whyToUse": "Substantially augments User Retention metrics. Listening mandates passive involvement. Massively supports Web Accessibility A11y while distinguishing overall media interactions.",
-        "bestPractice": "Integrate refined seamless Web Speech Engine configurations, or synchronize precisely generated high-definition Voice Actor MP3 rendering arrays."
+        "problem": "文本密集的专业文章是否会造成严重的视觉疲劳，导致跳出率（Bounce Rates）迅速飙升？",
+        "solution": "主动通过算法将密集的排版领域转录为易于消化的 Podcast/音频播放器模块。",
+        "whatIsIt": "功能完备的 Text-to-Speech (TTS) 模块架构，错综复杂地配备了界面播放器和语音激活 CRO 优化触发器。",
+        "whenToUse": "适用于格式广泛的学术手册、讲故事的营销落地路径，以及优先考虑独特交互性的密集分析性新闻领域。",
+        "whyToUse": "显著提高用户留存（User Retention）指标。听觉需要被动参与。在区分整体媒体交互的同时，极大地支持了 Web Accessibility A11y。",
+        "bestPractice": "集成精炼且无缝的 Web Speech Engine 配置，或同步精确生成的高清配音演员 MP3 渲染阵列。"
       },
       {
         "id": "cm-secret-shield",
         "name": "cm-secret-shield",
         "category": "Security",
         "icon": "lock",
-        "tagline": "Secret Leak Prevention",
-        "prompt": "Scan the repo for exposed API keys",
+        "tagline": "密钥泄露预防",
+        "prompt": "扫描代码库以查找暴露的 API keys",
         "related": [
           "cm-identity-guard",
           "cm-safe-deploy"
         ],
-        "problem": "Routinely exposing private Cloud Database keys or Secret Tokens over to Public GitHub feeds triggering massive global breaches?",
-        "solution": "An impermeable early-warning barrier annihilating unencrypted credential anomalies natively at the push horizon.",
-        "whatIsIt": "A ubiquitous cryptographic scanner instrument armed with intense regex logic sniffing AWS, JWT tokens, Stripe Secrets systematically bound strictly the localized Git hook level.",
-        "whenToUse": "Perpetually active in stealth sequence. However, specifically deploy the manual forced scan protocol previous to substantial complex network merges.",
-        "whyToUse": "Revealing organizational logic hashes guarantees absolute vulnerability exploitation by rogue actors. This intelligence possesses absolute zero leniency for anomalous hex-chains.",
-        "bestPractice": "Evacuate all sensitive variable arrays into a distinct `.env` container, checking explicitly thrice that `.env` forms the bedrock of your `.gitignore` protocol."
+        "problem": "经常在公共 GitHub Feed 中暴露私有 Cloud Database 密钥或 Secret Tokens，从而引发大规模的全球泄露？",
+        "solution": "一个不可渗透的早期预警屏障，在 push 层面原生消除未加密的凭据异常。",
+        "whatIsIt": "一个无处不在的密码学扫描工具，配备强大的 regex 逻辑，系统地嗅探绑定在本地 Git hook 级别的 AWS、JWT tokens 和 Stripe Secrets。",
+        "whenToUse": "在隐身序列中永久激活。但在进行重大的复杂网络 merge 之前，请专门部署手动强制扫描协议。",
+        "whyToUse": "泄露组织逻辑 hashes 保证了恶意攻击者可以进行绝对的漏洞利用。这种智能对异常的 hex-chains 零容忍。",
+        "bestPractice": "将所有敏感变量数组撤离到独立的 `.env` 容器中，并显式检查三次 `.env` 是否构成了 `.gitignore` 协议的基石。"
       },
       {
         "id": "cm-identity-guard",
         "name": "cm-identity-guard",
         "category": "Security",
         "icon": "fingerprint",
-        "tagline": "Identity & Account Guard",
-        "prompt": "Verify git config before pushing to production",
+        "tagline": "身份与账户守卫",
+        "prompt": "在 push 到 production 之前验证 git config",
         "related": [
           "cm-secret-shield",
           "cm-safe-deploy"
         ],
-        "problem": "Co-mingling agency and individual workstation configurations leads to disastrously compromised corporate deployments to competing accounts?",
-        "solution": "Identity gating matrices verifying terminal profile identities correlate identically with organizational destination targets.",
-        "whatIsIt": "Total Git Configuration and structural credential lockdown engine. Unilaterally paralyses deployment scripts detecting profile mismatched variables (E.g. email mismatches).",
-        "whenToUse": "Triggered inherently upon executing `cm-safe-deploy`. Outstanding diagnostic layer for independent multi-client agency developers orchestrating synchronous configurations.",
-        "whyToUse": "Safeguards intellectual domains and proprietary organizational vectors. Ensures highly confidential SaaS algorithms NEVER mistakenly sync over external or unauthorized network hosts.",
-        "bestPractice": "Set up strict segregated environmental folders and uniquely assert `--local` configuration bounds specifically per isolated directory."
+        "problem": "机构和个人工作站配置混用，导致公司部署被错误地发布到竞争对手的账户，造成严重的安全性损害？",
+        "solution": "身份门控矩阵，验证终端 profile 身份与组织目标目的地完全一致。",
+        "whatIsIt": "全面的 Git Configuration 和结构化凭据锁定引擎。通过检测 profile 不匹配的变量（例如 email 不匹配）单方面瘫痪部署脚本。",
+        "whenToUse": "在执行 `cm-safe-deploy` 时固有触发。对于协调同步配置的独立多客户代理开发人员来说，是卓越的诊断层。",
+        "whyToUse": "保护知识产权领域和组织专有向量。确保高度机密的 SaaS 算法永远不会误同步到外部或未经授权的网络主机。",
+        "bestPractice": "设置严格隔离的环境文件夹，并专门为每个隔离目录唯一断言 `--local` 配置边界。"
       },
       {
         "id": "cm-ads-tracker",
         "name": "cm-ads-tracker",
         "category": "Content",
         "icon": "bar-chart-2",
-        "tagline": "Conversion Tracking",
-        "prompt": "Set up Facebook Pixel and Google Ads tracking",
+        "tagline": "转化跟踪",
+        "prompt": "设置 Facebook Pixel 和 Google Ads 跟踪",
         "related": [
           "cm-content-factory",
           "cm-ux-master"
         ],
-        "problem": "Bleeding advertising revenue blindly whilst Conversion Tracking fails inherently due to fragmented logic or external browser blockers?",
-        "solution": "Enterprise Standard Server-Side telemetry configurations structurally formulated instantaneously with clinical precision.",
-        "whatIsIt": "The CRO Data Telemetry Architect. In under moments, array Meta CAPI limits, TikTok Event interfaces, standardized Google TM parameters and unified Enhanced Conversions mappings.",
-        "whenToUse": "MANDATORY configuration before any digital product is subjected to inbound funnel advertisement campaigns requesting concrete ROI analytic generation.",
-        "whyToUse": "Without accurate data, AI Advertising Engines hallucinate targeting profiles. This utility engineers a pristine operational 'Datalayer' to capture signals unbreakably flawlessly.",
-        "bestPractice": "Input exact localized Pixel strings reliably; explicitly define to the algorithm specifically which interface elements signify a fundamental 'Lead' versus an ultimate 'Purchase'."
+        "problem": "在由于逻辑破碎或外部浏览器拦截器导致转化跟踪固有失效的情况下，盲目地流失广告收入？",
+        "solution": "瞬间以临床精度结构化制定的企业标准 Server-Side 遥测配置。",
+        "whatIsIt": "CRO Data Telemetry 架构师。在片刻之间，排列 Meta CAPI 限制、TikTok Event 接口、标准化的 Google TM 参数和统一的 Enhanced Conversions 映射。",
+        "whenToUse": "在任何数字产品接受要求生成具体 ROI 分析的入站漏斗广告活动之前的强制性配置。",
+        "whyToUse": "没有准确的数据，AI 广告引擎会对目标 profile 产生幻觉。该工具构建了一个原始的操作级 'Datalayer'，以完美无瑕地捕捉信号。",
+        "bestPractice": "可靠地输入精确的本地化 Pixel 字符串；向算法明确定义哪些界面元素代表基础的 'Lead' 与最终的 'Purchase'。"
       },
       {
         "id": "cm-continuity",
@@ -524,177 +548,177 @@
         "name": "cm-dockit",
         "category": "Content",
         "icon": "book-open",
-        "tagline": "Knowledge Docs Generator",
-        "prompt": "Generate documentation for my Frappe app",
+        "tagline": "知识文档生成器",
+        "prompt": "为我的 Frappe 应用生成文档",
         "related": [
           "cm-content-factory",
           "cm-planning"
         ],
-        "problem": "Handing off intricate enterprise apps bereft of operational manuals renders users helpless and obscures logic for consecutive engineers?",
-        "solution": "Automated code analysis matrix capable of manifesting exquisite technical manuals from A-Z effortlessly.",
-        "whatIsIt": "The internal Knowledge Platform creation bot. Synthesizes Markdown/VitePress formatting explaining deep backend API Reference tables, holistic Persona paths, and explicit SOP parameters intuitively.",
-        "whenToUse": "Scheduled across periodic enterprise scaling phases or strictly immediately preparatory for an inclusive public domain release horizon.",
-        "whyToUse": "End Users invariably rely on Documentation rather than analyzing chaotic syntax parameters directly. Superb systemic guides systematically decimate irrelevant mundane support tickets radically.",
-        "bestPractice": "Simultaneously commission the formulation of both an Internal Dev Reference Manual and an external simplified End-User Orientation Guide."
+        "problem": "交付复杂的企业级应用时缺乏操作手册，使用户无助并掩盖了后续工程师的逻辑？",
+        "solution": "能够毫不费力地从 A 到 Z 生成精美技术手册的自动化代码分析矩阵。",
+        "whatIsIt": "内部知识平台创建机器人。综合 Markdown/VitePress 格式，直观地解释深层后端 API Reference 表、整体 Persona 路径和显式 SOP 参数。",
+        "whenToUse": "安排在定期的企业扩张阶段，或在包容性的公有领域发布之前严格立即准备。",
+        "whyToUse": "最终用户总是依赖 Documentation，而不是直接分析混乱的语法参数。高超的系统指南能够从根本上系统地减少无关的平凡支持工单。",
+        "bestPractice": "同时委托制定内部开发参考手册（Internal Dev Reference Manual）和外部简化的最终用户入门指南（End-User Orientation Guide）。"
       },
       {
         "id": "cm-skill-chain",
         "name": "cm-skill-chain",
         "category": "DevOps",
         "icon": "link",
-        "tagline": "Skill Pipeline Engine",
-        "prompt": "Chain brainstorm → plan → execute for my feature",
+        "tagline": "技能流水线引擎",
+        "prompt": "为我的功能链式调用 brainstorm → plan → execute",
         "related": [
           "cm-skill-mastery",
           "cm-execution"
         ],
-        "problem": "Executing atomic capabilities sequentially incurs brutal operational friction and stagnates velocity?",
-        "solution": "Unify discrete functional workflows via algorithmic cascading sequences: Strategy -> Blueprint -> Full Autonomous Implementation.",
-        "whatIsIt": "The operational Skill Pipeline orchestrator tool. Programmatically strings complementary AI disciplines logically functioning via dynamically checked transitional parameters reliably.",
-        "whenToUse": "Activated upon mastering initial isolated competencies when targeting hands-free automation, allowing intense prolonged operational execution away from keyboard interactions.",
-        "whyToUse": "Maximizes exponential technological leverage securely. A single command sequences automated deployment cycles analyzing, building, validating, and globally staging millions of code interactions passively.",
-        "bestPractice": "Exclusively orchestrate inherently non-destructive analytical skills concurrently early on. Always invariably conclude massive chains by interlocking strictly securely into `cm-quality-gate` configurations."
+        "problem": "按顺序执行原子能力会产生严重的运行摩擦并导致速度停滞？",
+        "solution": "通过算法级联序列统一离散的功能工作流：Strategy -> Blueprint -> Full Autonomous Implementation。",
+        "whatIsIt": "运营级 Skill Pipeline 编排工具。通过动态检查的转换参数，以程序化方式逻辑连接互补的 AI 学科，确保可靠运行。",
+        "whenToUse": "在掌握初步的孤立能力并追求自动化时启用，允许在脱离键盘交互的情况下进行高强度的持续运营执行。",
+        "whyToUse": "安全地最大化指数级技术杠杆。单个命令即可排序自动部署周期，被动地分析、构建、验证并全局分阶段处理数百万次代码交互。",
+        "bestPractice": "在早期阶段，专门并发编排本质上非破坏性的分析类技能。务必通过将其严密安全地锁定到 `cm-quality-gate` 配置中来结束大规模链条。"
       },
       {
         "id": "cm-skill-mastery",
         "name": "cm-skill-mastery",
-        "category": "Ideation",
+        "category": "构思",
         "icon": "compass",
-        "tagline": "Skill Discovery",
-        "prompt": "Which skill should I use for UX audit?",
+        "tagline": "技能发现",
+        "prompt": "我应该使用哪个技能进行 UX 审计？",
         "related": [
           "cm-skill-chain",
           "cm-how-it-work"
         ],
-        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
-        "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
-        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
-        "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
-        "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
-        "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
+        "problem": "面对 33 个复杂的运营向量分析感到不知所措，难以辨别具体哪个引擎能解决特定的异常？",
+        "solution": "启用交互式内部百科全书式的 Index 图书管理员和面向 AI 的编排顾问。",
+        "whatIsIt": "顶级的 Meta-Skill。本质上理解构建所有后续 33 个系统的复杂能力，并全面掌握生成新型未编写协议的基础机制。",
+        "whenToUse": "在遇到认知障碍、尝试进行解决方案发现探索，或明确命令 AI 为商业封装编写原创定制分析算法时使用。",
+        "whyToUse": "无缝且彻底地消除对任意命令的记忆负担。例如：'Cody，定位一个能够专门分析我们结账网格无障碍模式的智能协议。'",
+        "bestPractice": "在早期启动导向环节中主动激活此节点，或明确指示其为机构自定义协议起草组织架构化的 `SKILL.md` 范式映射。"
       },
       {
         "id": "cm-skill-index",
         "name": "cm-skill-index",
         "category": "DevOps",
         "icon": "list",
-        "tagline": "Skill Index",
-        "prompt": "Show me a summary of all available skills",
+        "tagline": "技能索引",
+        "prompt": "显示所有可用技能的摘要",
         "related": [
           "cm-skill-mastery",
           "cm-skill-chain"
         ],
-        "problem": "Blindly processing expansive arrays of instructional payloads concurrently corrupts prompt stability through severe Token saturation constraints?",
-        "solution": "Adopt layered Progressive Disclosures mechanics ensuring deep Context loading occurs exclusively upon situational demand necessity.",
-        "whatIsIt": "An underlying silent infrastructural database registry. Systematically caches mere high-level indexing semantics (Layer 1), extracting massive operational execution parameters (Layer 3) precisely strictly when definitively mandated.",
-        "whenToUse": "Operates intrinsically bound within the AI’s autonomous structural mechanics; absolutely necessitates zero human operational intervention manually.",
-        "whyToUse": "Surgically guarantees unpolluted AI focal precision, suppressing tangential hallucinatory feedback and remarkably conserving extensive extraneous processing API financial overhead essentially.",
-        "bestPractice": "Assure rigidly that crucial configuration registry logic maps located in standard execution directories remain un-deleted and uninterrupted universally securely."
+        "problem": "在严重的 Token 饱和约束下，并发处理大量指令载荷会导致 Prompt 稳定性受损？",
+        "solution": "采用分层的 Progressive Disclosures 机制，确保仅在情境需求必要时才进行深度 Context 加载。",
+        "whatIsIt": "底层的静默基础设施数据库注册表。系统地缓存高级索引语义 (Layer 1)，仅在明确授权时精确提取大规模操作执行参数 (Layer 3)。",
+        "whenToUse": "本质上绑定在 AI 的自主结构机制中运行；完全无需人工干预。",
+        "whyToUse": "精准地保证 AI 焦点不被污染，抑制切向的幻觉反馈，并显著节省大量多余处理产生的 API 财务支出。",
+        "bestPractice": "严格确保位于标准执行目录中的关键配置注册表逻辑映射在全局范围内保持未删除且未中断的安全状态。"
       },
       {
         "id": "cm-how-it-work",
         "name": "cm-how-it-work",
-        "category": "Ideation",
+        "category": "构思",
         "icon": "help-circle",
-        "tagline": "Getting Started Guide",
-        "prompt": "How do I use CodyMaster for the first time?",
+        "tagline": "入门指南",
+        "prompt": "我该如何第一次使用 CodyMaster？",
         "related": [
           "cm-skill-mastery",
           "cm-project-bootstrap"
         ],
-        "problem": "Freshly initiated toward the CodyMaster architecture and deeply confused confronting esoteric terminal interfaces and workflow paradigms?",
-        "solution": "Immerse comprehensively directly into the central Vibe Coding operational foundation whitepaper natively.",
-        "whatIsIt": "An exhaustive induction manuscript actively translating the internal physics powering CodyMaster operations, pre-packaged distinctly featuring explicit operational scenario blueprints.",
-        "whenToUse": "Sequentially instantly subsequent to native baseline installation completions, or orchestrating technical induction processes introducing auxiliary Junior Developers into organizational standardized rhythms.",
-        "whyToUse": "Solidifies core operational philosophies intimately. Comprehending fundamental mechanisms equips a singular autonomous operative executing parallel production equalizing conventional development team cohorts.",
-        "bestPractice": "Chronologically explore sections initially mapping overarching physical directory matrices alongside strict cognitive iterations dictating the standard RARV automation methodologies."
+        "problem": "刚开始接触 CodyMaster 架构，面对晦涩的终端界面和工作流范式感到深切困惑？",
+        "solution": "直接全面沉浸在原生中央 Vibe Coding 运营基础白皮书中。",
+        "whatIsIt": "一份详尽的引导手册，积极转译驱动 CodyMaster 运营的内部物理机制，并特别包含明确的运营场景蓝图。",
+        "whenToUse": "在完成原生基准安装后立即使用，或在组织标准节奏中编排技术引导流程以引入辅助 Junior Developers。",
+        "whyToUse": "深入巩固核心运营理念。理解基础机制使单个自主操作员能够执行并行生产，效能等同于传统的开发团队。",
+        "bestPractice": "按时间顺序探索各章节，初步映射全局物理目录矩阵，并遵循规定标准 RARV 自动化方法论的严格认知迭代。"
       },
       {
         "id": "cm-dashboard",
         "name": "cm-dashboard",
         "category": "DevOps",
         "icon": "layout-dashboard",
-        "tagline": "Project Dashboard",
-        "prompt": "Show me the project dashboard",
+        "tagline": "项目仪表盘",
+        "prompt": "显示项目仪表盘",
         "related": [
           "cm-skill-chain",
           "cm-continuity"
         ],
-        "problem": "Struggling to track deep automated AI progressions tangibly resulting in dangerous operational disconnections across simultaneous executions?",
-        "solution": "Invoke graphical mission-command interface displays interpreting structural telemetry in tangible visual real-time.",
-        "whatIsIt": "A dedicated Radar UI console array structurally exposing macro Token combustions, executing Queue allocations, and continuous cascading Error Event matrices.",
-        "whenToUse": "Persistently anchor executing reliably active adjacent alongside complex Vibe Coding engagements handling numerous AI processing trajectories securely.",
-        "whyToUse": "Radically dissipates intrinsic 'Black-box' abstractions tangibly. Explicitly transparent visual feedback precisely denotes immediately exact processing allocations revealing latency obstacles effortlessly natively.",
-        "bestPractice": "Allocate specifically a secondary auxiliary monitor screen completely devoted explicitly exclusively towards keeping this systemic radar continuously operative."
+        "problem": "难以有形地跟踪深度的 AI 自动化进展，导致在同步执行过程中出现危险的操作脱节？",
+        "solution": "调用图形化任务控制界面，以有形的视觉实时方式解释结构化遥测数据。",
+        "whatIsIt": "专用的 Radar UI 控制台阵列，结构化地展示宏观 Token 消耗、执行 Queue 分配以及持续级联的 Error Event 矩阵。",
+        "whenToUse": "在处理多个 AI 处理轨迹的复杂 Vibe Coding 任务中，作为可靠的辅助界面持续保持运行。",
+        "whyToUse": "彻底消除了本质上的‘黑盒’抽象感。显式透明的视觉反馈能立即精准指出处理分配，轻松发现原生延迟障碍。",
+        "bestPractice": "专门分配一个辅助显示屏，完全用于保持此系统 Radar 的持续运行。"
       },
       {
         "id": "cm-start",
         "name": "cm-start",
-        "category": "Ideation",
+        "category": "构思",
         "icon": "power",
-        "tagline": "Quick Start",
-        "prompt": "Start working on my new feature",
+        "tagline": "快速开始",
+        "prompt": "开始开发我的新功能",
         "related": [
           "cm-planning",
           "cm-skill-mastery"
         ],
-        "problem": "Infuriated by perpetually articulating immensely verbose prompt incantations every explicit instance initiating standard procedural code modifications?",
-        "solution": "Trigger a rapid instantaneous universal execution macro immediately deciphering complex geographical active operational context implicitly.",
-        "whatIsIt": "Emergency execution launch pad module. Subconsciously interrogates ambient environmental editor logic deducing precise project situational trajectories instinctively without descriptive preamble required.",
-        "whenToUse": "Routinely deployed to aggressively jump-start algorithmic implementation logic refactors circumscribing long-winded tedious introductory exposition delays.",
-        "whyToUse": "Obliterates systematic preparation delays conclusively. Elicits focused tool deployments surgically relying minimally on brief un-nuanced directives.",
-        "bestPractice": "Ensuring the target explicit JS/CSS logic files are concurrently active focal points within your IDE immediately preceding launching this specific operational capability yields peak fidelity."
+        "problem": "厌烦于在每次启动标准程序化代码修改时，都要重复极其冗长的 Prompt 咒语？",
+        "solution": "触发一个快速瞬时的通用执行宏，立即隐式破译复杂的地理位置活跃运营上下文。",
+        "whatIsIt": "紧急执行启动台模块。潜意识地审视环境编辑器逻辑，本能地推断出精确的项目情境轨迹，无需描述性的前言。",
+        "whenToUse": "常用于积极启动算法实现逻辑重构，避开冗长乏味的介绍性说明延迟。",
+        "whyToUse": "彻底消除系统性的准备延迟。精确触发专注的工具部署，极少依赖简短、无细节的指令。",
+        "bestPractice": "在启动此特定操作功能之前，确保目标明确的 JS/CSS 逻辑文件是 IDE 中的当前活动焦点，可获得最高的保真度。"
       },
       {
         "id": "cm-status",
         "name": "cm-status",
         "category": "DevOps",
         "icon": "activity",
-        "tagline": "Project Status",
-        "prompt": "What's the current status of my project?",
+        "tagline": "项目状态",
+        "prompt": "我项目的当前状态是什么？",
         "related": [
           "cm-dashboard",
           "cm-quality-gate"
         ],
-        "problem": "Desperately lack verifiable aggregate reporting indices to empirically authenticate grand total project structural completion progression professionally?",
-        "solution": "Trigger high-velocity diagnostic status compilers synthesizing comprehensive holistic developmental metric snapshots definitively.",
-        "whatIsIt": "Algorithmic audit query mechanism. Computes concrete output detailing total TDD verification coverage matrix paths, analytical build stability variables, alongside impending outstanding priority Tasklist assignments.",
-        "whenToUse": "Routinely deployed facilitating scheduled Monday macro-evaluations, or functioning integrally beforehand organizing executive administrative progress presentations reliably.",
-        "whyToUse": "Delivers indisputably tangible analytical empirical transparency systematically. Evaluates production quality metrics explicitly displacing subjective abstract development assessment entirely.",
-        "bestPractice": "Execute comprehensively operating synergistically paired consistently alongside `cm-continuity` updates achieving permanently chronicled historical tracking datastore registries securely."
+        "problem": "迫切需要可验证的汇总报告指标，以专业地凭经验认证整个项目结构的完成进度？",
+        "solution": "触发高速诊断状态编译器，明确合成全面的整体开发指标快照。",
+        "whatIsIt": "算法审计查询机制。计算具体的输出，详细说明总的 TDD 验证覆盖矩阵路径、分析构建稳定性变量，以及即将到来的待办高优先级 Tasklist 任务。",
+        "whenToUse": "常用于辅助定期的周一宏观评估，或在组织高管行政进度演示前作为完整功能可靠运行。",
+        "whyToUse": "系统地提供无可争辩的切实分析经验透明度。明确评估生产质量指标，完全取代主观抽象的开发评估。",
+        "bestPractice": "全面执行，与 `cm-continuity` 更新协同配合，安全地实现永久记录的历史跟踪数据存储注册。"
       },
       {
         "id": "cm-example",
         "name": "cm-example",
         "category": "DevOps",
         "icon": "file-code",
-        "tagline": "Skill Template",
-        "prompt": "Show me how to create a new skill",
+        "tagline": "技能模板",
+        "prompt": "向我展示如何创建新技能",
         "related": [
           "cm-skill-mastery",
           "cm-skill-chain"
         ],
-        "problem": "Urgently need to engineer highly proprietary internalized AI command capacities exclusively suited uniquely for specific corporate workflows perfectly?",
-        "solution": "Exploit pre-hardened architectural boilerplate code matrices completely circumventing frustrating manual procedural baseline setup anomalies.",
-        "whatIsIt": "A flawless mock-up prototype script architecturally harmonized precisely aligned toward strict Antigravity and established MCP framework interface protocols certifying flawless operational recognition inherently.",
-        "whenToUse": "Commencing complex localized bespoke automated functional Bot protocols handling niche organizational internal rulebook mechanics reliably.",
-        "whyToUse": "Abolishes the agonizing friction reviewing sprawling expansive external platform documentation endlessly. Empowers copying an inherently robust foundation operational dynamically efficiently instantly.",
-        "bestPractice": "Mechanically duplicate the target directory skeleton completely, comprehensively update structural naming taxonomies, and aggressively inject definitive proprietary context parameters efficiently prior to deployment."
+        "problem": "急需设计高度专有的内部化 AI 命令能力，以完美适配特定的公司工作流？",
+        "solution": "利用预先强化的架构样板代码矩阵，完全规避令人沮丧的手动程序化基准设置异常。",
+        "whatIsIt": "一个完美的模拟原型脚本，在架构上与严格的 Antigravity 以及既定的 MCP 框架接口协议精确对齐，从本质上保证完美的运行识别。",
+        "whenToUse": "开始执行复杂的本地化定制自动化功能 Bot 协议，可靠地处理细分组织的内部规则机制。",
+        "whyToUse": "消除无休止地查阅庞大外部平台文档所带来的痛苦摩擦。能够立即动态、高效地复制一个本质健壮的操作基础。",
+        "bestPractice": "在部署前，机械地完整复制目标目录骨架，全面更新结构化命名分类，并积极、高效地注入明确的专有上下文参数。"
       },
       {
         "id": "cro-methodology",
         "name": "cro-methodology",
         "category": "Content",
         "icon": "trending-up",
-        "tagline": "Conversion Rate Optimization",
-        "problem": "Landing pages getting traffic but visitors aren't converting — unclear why they leave?",
-        "solution": "Evidence-based CRO audit using the CRE Methodology: funnel mapping, visitor research, objection handling, and statistically rigorous A/B tests.",
-        "description": "Scientific, customer-centric CRO using the CRE Methodology — funnel mapping, persuasion assets, and A/B testing.",
-        "whatIsIt": "A systematic CRO audit engine based on the CRE Methodology. Scores pages 0-10, maps funnel blockers, identifies visitor objections, and designs evidence-based experiments.",
-        "whenToUse": "Use when a landing page, checkout flow, or funnel is underperforming. Activates on: 'conversion rate', 'A/B test', 'why visitors leave', 'objection handling'.",
-        "whyToUse": "Random optimization fails. This skill forces visitor research before changing anything, ensuring every test is based on evidence rather than opinion.",
-        "prompt": "Audit my landing page for conversion issues",
-        "bestPractice": "Always research WHY visitors leave before testing solutions. Evidence from surveys, heatmaps, and session recordings beats best practices every time.",
+        "tagline": "转化率优化",
+        "problem": "落地页有流量但访客没有转化 —— 不清楚他们为什么离开？",
+        "solution": "使用 CRE Methodology 进行基于证据的 CRO 审计：漏斗映射、访客研究、异议处理以及统计严谨的 A/B 测试。",
+        "description": "使用 CRE Methodology 进行科学的、以客户为中心的 CRO —— 漏斗映射、说服资产和 A/B 测试。",
+        "whatIsIt": "基于 CRE Methodology 的系统化 CRO 审计引擎。对页面进行 0-10 分的评分，映射漏斗阻塞点，识别访客异议，并设计基于证据的实验。",
+        "whenToUse": "当落地页、结账流程或漏斗表现不佳时使用。触发词包括：“转化率”、“A/B 测试”、“访客离开原因”、“异议处理”。",
+        "whyToUse": "随机优化往往会失败。此技能强制在做出任何更改前进行访客研究，确保每次测试都基于证据而非观点。",
+        "prompt": "审计我落地页的转化问题",
+        "bestPractice": "在测试解决方案之前，务必研究访客离开的原因。来自问卷调查、热力图和会话录制的证据每次都优于“最佳实践”。",
         "related": [
           "cm-ads-tracker",
           "cm-ux-master",
@@ -706,15 +730,15 @@
         "name": "cm-jtbd",
         "category": "Ideation",
         "icon": "users",
-        "tagline": "Customer Discovery (JTBD)",
-        "problem": "Building features users don't care about because you're guessing what they actually want?",
-        "solution": "JTBD Switch Interviews + Canvas to uncover the functional, social, and emotional jobs customers hire your product to do.",
-        "description": "Customer discovery using Jobs-To-Be-Done theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring.",
-        "whatIsIt": "A structured customer discovery framework using JTBD theory. Runs Switch Interviews, builds job canvases, and scores outcome metrics to find underserved needs.",
-        "whenToUse": "Use before designing new features, when existing features aren't used, or when validating product-market fit. Activates on: 'customer discovery', 'JTBD', 'what do customers want'.",
-        "whyToUse": "People don't buy products — they hire them to get a job done. Understanding the job reveals what to build and what competitors you're actually fighting.",
-        "prompt": "Help me understand what job my users are hiring my product to do",
-        "bestPractice": "Focus on the Switch Interview: ask about the moment they decided to switch/buy, not hypotheticals. Past behavior beats future intent every time.",
+        "tagline": "客户发现 (JTBD)",
+        "problem": "因为在猜测用户实际想要什么，所以构建了他们并不关心的功能？",
+        "solution": "通过 JTBD Switch Interviews + 画布，揭示客户“雇佣”你的产品去完成的功能性、社会性和情感性工作。",
+        "description": "使用 Jobs-To-Be-Done 理论进行客户发现 —— Switch Interviews、JTBD 画布和机会评分。",
+        "whatIsIt": "使用 JTBD 理论的结构化客户发现框架。运行 Switch Interviews，构建工作画布，并对结果指标进行评分，以发现未被满足的需求。",
+        "whenToUse": "在设计新功能、现有功能未被使用或验证产品市场匹配度时使用。触发词包括：“客户发现”、“JTBD”、“用户想要什么”。",
+        "whyToUse": "人们不买产品 —— 他们雇佣产品来完成一项工作。了解这项工作可以揭示该构建什么，以及你实际上在与哪些竞争对手竞争。",
+        "prompt": "帮我理解用户雇佣我的产品去完成什么工作",
+        "bestPractice": "专注于 Switch Interview：询问他们决定切换/购买的那一刻，而不是假设性的问题。过去的行为每次都胜过未来的意图。",
         "related": [
           "cm-brainstorm-idea",
           "cm-planning",
@@ -729,7 +753,7 @@
   "skills_auto_12": "🌍",
   "skills_auto_13": "EN",
   "skills_auto_14": "中文",
-  "skills_auto_15": "हिन्दी",
+  "skills_auto_15": "简体中文",
   "skills_auto_16": "📖",
   "skills_auto_2": "📢",
   "skills_auto_3": "📋",

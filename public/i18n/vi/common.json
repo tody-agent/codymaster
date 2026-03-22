@@ -8,16 +8,17 @@
     "howItWorks": "Cách hoạt động",
     "deepDive": "Chi tiết",
     "personas": "Dành cho bạn",
-    "docs": "Tài liệu",
+    "docs": "Tri thức",
     "skills": "Kỹ năng",
     "story": "Câu chuyện",
     "whyCodyMaster": "Vì sao chọn CodyMaster",
+    "whyUs": "Tại sao",
     "vsOthers": "So sánh",
     "vsScrum": "vs Scrum",
     "getStarted": "Bắt đầu",
     "demo": "Demo",
-    "brain": "Brain",
-    "playbook": "Playbook",
+    "brain": "Thông thái",
+    "playbook": "Sổ Tay",
     "cli": "CLI"
   },
   "cta": {
@@ -42,28 +43,95 @@
     "worksWithLabel": "Tương thích mọi AI agent lớn"
   },
   "stats": {
-    "items": [
-      {
-        "number": "33",
-        "label": "Kỹ năng AI"
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 2159
+        },
+        "tokens": {
+          "input": 2808,
+          "prompt": 2808,
+          "candidates": 64,
+          "total": 3269,
+          "cached": 0,
+          "thoughts": 397,
+          "tool": 0
+        },
+        "roles": {
+          "utility_router": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 2159,
+            "tokens": {
+              "input": 2808,
+              "prompt": 2808,
+              "candidates": 64,
+              "total": 3269,
+              "cached": 0,
+              "thoughts": 397,
+              "tool": 0
+            }
+          }
+        }
       },
-      {
-        "number": "7+",
-        "label": "AI Agent hỗ trợ"
-      },
-      {
-        "number": "6",
-        "label": "Ngôn ngữ"
-      },
-      {
-        "number": "100%",
-        "label": "Miễn phí & Mã nguồn mở"
+      "gemini-3-flash-preview": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 18055
+        },
+        "tokens": {
+          "input": 195844,
+          "prompt": 195844,
+          "candidates": 39,
+          "total": 197837,
+          "cached": 0,
+          "thoughts": 1954,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 18055,
+            "tokens": {
+              "input": 195844,
+              "prompt": 195844,
+              "candidates": 39,
+              "total": 197837,
+              "cached": 0,
+              "thoughts": 1954,
+              "tool": 0
+            }
+          }
+        }
       }
-    ]
+    },
+    "tools": {
+      "totalCalls": 0,
+      "totalSuccess": 0,
+      "totalFail": 0,
+      "totalDurationMs": 0,
+      "totalDecisions": {
+        "accept": 0,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {}
+    },
+    "files": {
+      "totalLinesAdded": 0,
+      "totalLinesRemoved": 0
+    }
   },
   "claw": {
     "label": "TƯƠNG THÍCH TOÀN CẦU",
     "title": "Một Cấu Hình. Mọi AI Agent Cùng Tuân Thủ.",
     "subtitle": "Sức mạnh từ CodyMaster Claw. Viết hướng dẫn lệnh một lần, chạy ở mọi nơi."
-  }
+  },
+  "session_id": "31ba9bb8-93d6-403b-ba2c-7d170ceca297",
+  "response": "{\"nav.vsScrum\":\"So với Scrum\",\"nav.demo\":\"Bản Demo\",\"nav.brain\":\"Hệ thống Brain\",\"nav.playbook\":\"Cẩm nang Playbook\"}"
 }

@@ -382,55 +382,55 @@
         "ctaSub": "Miễn phí. Không cần thẻ. Từ ý tưởng đến sản phẩm live ngay hôm nay.",
         "ctaButton": "Xây MVP Ngay →",
         "guide": {
-          "badge": "THE NEW REALITY",
-          "title": "Build like the top 1% of tech startups, without the $100K budget.",
-          "desc": "You don't need a CTO to build a revolutionary product anymore. CodyMaster equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment."
+          "badge": "THỰC TẾ MỚI",
+          "title": "Xây dựng sản phẩm như top 1% startup công nghệ, mà không cần ngân sách $100K.",
+          "desc": "Bạn không còn cần một CTO để xây dựng một sản phẩm đột phá nữa. CodyMaster trang bị cho bạn các autonomous AI agents được đào tạo theo tiêu chuẩn Senior Engineer. Bạn cung cấp tầm nhìn; các agent sẽ viết code, chạy test và bảo mật triển khai."
         },
-        "planLabel": "HOW TO LAUNCH",
-        "planTitle": "3 steps to your live product",
+        "planLabel": "CÁCH RA MẮT",
+        "planTitle": "3 bước để sản phẩm của bạn lên sóng",
         "plan": [
           {
-            "title": "Instruct",
-            "desc": "Chat with the cm-planning agent in plain English. Describe your market, your users, and your dream app."
+            "title": "Chỉ dẫn",
+            "desc": "Trò chuyện với agent cm-planning bằng tiếng Anh đơn giản. Mô tả thị trường, người dùng và ứng dụng mơ ước của bạn."
           },
           {
-            "title": "Review",
-            "desc": "Watch the UI generate in real-time. Give feedback on colors, layout, and copy just like talking to a human designer."
+            "title": "Xem xét",
+            "desc": "Theo dõi giao diện UI tạo ra trong thời gian thực. Đưa ra phản hồi về màu sắc, bố cục và nội dung giống như đang nói chuyện với một designer thực thụ."
           },
           {
-            "title": "Deploy",
-            "desc": "Approve the code. The cm-safe-deploy agent runs 8 security gates and puts your app live on a global CDN instantly."
+            "title": "Triển khai",
+            "desc": "Phê duyệt mã nguồn. Agent cm-safe-deploy chạy 8 cổng bảo mật và đưa ứng dụng của bạn lên CDN toàn cầu ngay lập tức."
           }
         ],
-        "failureLabel": "THE COST OF WAITING",
-        "failureTitle": "Every day without a product is a day someone else takes your market share.",
-        "failureDesc": "If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky.",
-        "heroBadge": "Built by a PM with 10+ years · Free & Open Source",
+        "failureLabel": "CÁI GIÁ CỦA VIỆC CHỜ ĐỢI",
+        "failureTitle": "Mỗi ngày trôi qua mà không có sản phẩm là một ngày người khác chiếm mất thị phần của bạn.",
+        "failureDesc": "Nếu bạn dành 6 tháng tới để cố gắng gọi vốn nhằm thuê một agency, bạn sẽ mất đi lợi thế về thời điểm. Đừng hy vọng một technical co-founder sẽ tự nhiên từ trên trời rơi xuống nữa.",
+        "heroBadge": "Được xây dựng bởi một PM với hơn 10 năm kinh nghiệm · Miễn phí & Mã nguồn mở",
         "heroStats": [
           {
             "num": "33",
-            "label": "AI Skills"
+            "label": "Kỹ năng AI"
           },
           {
             "num": "$0",
-            "label": "Cost"
+            "label": "Chi phí"
           },
           {
-            "num": "10min",
-            "label": "To First Deploy"
+            "num": "10 phút",
+            "label": "Đến lần Deploy đầu tiên"
           }
         ],
         "fomo": [
-          "Founders are building right now",
-          "100% Free — no paywall, no credit card",
-          "Gets smarter every day you use it"
+          "Các Founder đang xây dựng ngay lúc này",
+          "Miễn phí 100% — không tường phí, không cần thẻ tín dụng",
+          "Trở nên thông minh hơn mỗi ngày bạn sử dụng"
         ],
         "costCallout": {
           "num": "$30K–$50K",
-          "label": "Average agency MVP cost. With CodyMaster: $0."
+          "label": "Chi phí trung bình cho một MVP từ agency. Với CodyMaster: $0."
         },
-        "failureWhile": "⏱️ While you're reading this, 3 other founders with the same idea are already building with AI.",
-        "ctaSecondary": "📖 Read the Story"
+        "failureWhile": "⏱️ Trong khi bạn đang đọc dòng này, 3 founder khác với cùng ý tưởng đã bắt đầu xây dựng bằng AI.",
+        "ctaSecondary": "📖 Đọc câu chuyện"
       },
       "cmo": {
         "heroTitle": "Đội content không kịp sản xuất.\nCodyMaster thì có thể.",
@@ -490,7 +490,7 @@
           "after": [
             "33 bài blog tạo tức thì",
             "Landing page trong 15 phút",
-            "Full pixel + CAPI + UTM tracking",
+            "Theo dõi đầy đủ pixel + CAPI + UTM",
             "7 framework tích hợp mỗi bài",
             "Dữ liệu attribution và ROAS đầy đủ"
           ]
@@ -513,30 +513,30 @@
         "ctaSub": "Từ chiến lược content đến campaign live — trong vài phút, không phải vài tháng.",
         "ctaButton": "Tăng Tốc Marketing →",
         "guide": {
-          "badge": "THE CONTENT EDGE",
-          "title": "Scale your output without scaling your headcount.",
-          "desc": "Marketing at scale used to require massive teams of writers, designers, and developers. Now, CodyMaster's Content Factory acts as your elite, autonomous marketing department—producing SEO articles, landing pages, and tracking setups perfectly aligned with Cialdini's principles."
+          "badge": "LỢI THẾ NỘI DUNG",
+          "title": "Mở rộng sản lượng mà không cần tăng nhân sự.",
+          "desc": "Marketing quy mô lớn từng đòi hỏi đội ngũ hùng hậu gồm người viết nội dung, designer và developer. Giờ đây, Content Factory của CodyMaster đóng vai trò như một phòng marketing tự vận hành tinh nhuệ — tạo ra các bài viết SEO, landing page và thiết lập theo dõi hoàn hảo dựa trên các nguyên tắc của Cialdini."
         },
-        "planLabel": "YOUR NEW WORKFLOW",
-        "planTitle": "From strategy to live campaign in hours",
+        "planLabel": "QUY TRÌNH LÀM VIỆC MỚI",
+        "planTitle": "Từ chiến lược đến chiến dịch thực tế chỉ trong vài giờ",
         "plan": [
           {
-            "title": "Define",
-            "desc": "Tell the cm-content-factory your target audience, value proposition, and campaign goals."
+            "title": "Xác định",
+            "desc": "Cho cm-content-factory biết đối tượng mục tiêu, tuyên ngôn giá trị và mục tiêu chiến dịch của bạn."
           },
           {
-            "title": "Generate",
-            "desc": "AI writes the copy using StoryBrand frameworks, while cm-ux-master generates the high-converting UI."
+            "title": "Tạo nội dung",
+            "desc": "AI viết nội dung bằng khung StoryBrand, trong khi cm-ux-master tạo ra giao diện UI có tỉ lệ chuyển đổi cao."
           },
           {
-            "title": "Track",
-            "desc": "With cm-ads-tracker, automatically instrument Facebook Pixel, CAPI, and Google Ads before the page even goes live."
+            "title": "Theo dõi",
+            "desc": "Với cm-ads-tracker, tự động thiết lập Facebook Pixel, CAPI và Google Ads ngay cả trước khi trang web lên sóng."
           }
         ],
-        "failureLabel": "THE BOTTLENECK PENALTY",
-        "failureTitle": "A marketing team that moves slow becomes irrelevant.",
-        "failureDesc": "While you wait 3 weeks for your dev team to build one landing page, your competitors are running 10 different A/B tests. Speed of execution is the only modern marketing advantage.",
-        "heroBadge": "7 Persuasion Frameworks · Full Pixel Tracking · Free",
+        "failureLabel": "HÌNH PHẠT CHO SỰ ĐIỂM NGHẼN",
+        "failureTitle": "Một đội ngũ marketing di chuyển chậm sẽ trở nên lỗi thời.",
+        "failureDesc": "Trong khi bạn chờ đợi 3 tuần để đội ngũ dev xây dựng một landing page, các đối thủ cạnh tranh của bạn đang chạy 10 thử nghiệm A/B khác nhau. Tốc độ thực thi là lợi thế marketing hiện đại duy nhất.",
+        "heroBadge": "7 Persuasion Frameworks · Theo dõi Pixel đầy đủ · Miễn phí",
         "heroStats": [
           {
             "num": "7",
@@ -544,24 +544,24 @@
           },
           {
             "num": "33x",
-            "label": "Content Speed"
+            "label": "Tốc độ nội dung"
           },
           {
-            "num": "15min",
-            "label": "To Landing Page"
+            "num": "15 phút",
+            "label": "Đến Landing Page"
           }
         ],
         "fomo": [
-          "Marketing teams scaling output 10x right now",
-          "Includes StoryBrand + Cialdini + SUCCESs",
-          "Complete ad tracking: Meta, TikTok, Google"
+          "Các đội ngũ marketing đang mở rộng quy mô đầu ra gấp 10 lần ngay bây giờ",
+          "Bao gồm StoryBrand + Cialdini + SUCCESs",
+          "Theo dõi quảng cáo hoàn chỉnh: Meta, TikTok, Google"
         ],
         "costCallout": {
-          "num": "180 hours/year",
-          "label": "Wasted on manual content and landing page workflows. Automated with CodyMaster."
+          "num": "180 giờ/năm",
+          "label": "Lãng phí vào quy trình làm nội dung và landing page thủ công. Tự động hóa với CodyMaster."
         },
-        "failureWhile": "⏱️ Your competitor just launched 3 A/B test variants while you're still waiting for the dev team.",
-        "ctaSecondary": "📖 See Content Factory"
+        "failureWhile": "⏱️ Đối thủ của bạn vừa ra mắt 3 biến thể thử nghiệm A/B trong khi bạn vẫn đang chờ đợi đội ngũ dev.",
+        "ctaSecondary": "📖 Xem Content Factory"
       },
       "pm": {
         "heroTitle": "AI cho bạn 100 cánh tay.\nNhưng thiếu kỷ luật, 100 cánh tay đó tạo hỗn loạn.",
@@ -614,7 +614,7 @@
           "before": [
             "Design hỗn loạn — mỗi lần một kiểu",
             "AI phá code hiện tại",
-            "Zero documentation",
+            "Không có tài liệu",
             "Không thấy AI đang làm gì",
             "Review chất lượng thủ công"
           ],
@@ -644,34 +644,34 @@
         "ctaSub": "Từ AI hỗn loạn đến sản phẩm production-ready với chất lượng bắt buộc.",
         "ctaButton": "Kiểm Soát Ngay →",
         "guide": {
-          "badge": "VALIDATION ENGINE",
-          "title": "Validate faster. Ship confidently. Prove ROI instantly.",
-          "desc": "Product management is about reducing risk. CodyMaster removes the engineering bottleneck entirely, allowing you to spin up functional prototypes and MVPs in hours to gather real user data before committing months of your actual tech team's time."
+          "badge": "CÔNG CỤ XÁC THỰC",
+          "title": "Xác thực nhanh hơn. Phát hành tự tin. Chứng minh ROI ngay lập tức.",
+          "desc": "Quản lý sản phẩm là về việc giảm thiểu rủi ro. CodyMaster loại bỏ hoàn toàn nút thắt cổ chai kỹ thuật, cho phép bạn tạo ra các bản mẫu prototype và MVP chức năng trong vài giờ để thu thập dữ liệu người dùng thực tế trước khi cam kết hàng tháng trời thời gian của đội ngũ công nghệ."
         },
-        "planLabel": "THE AGILE WAY",
-        "planTitle": "How to ship the right thing",
+        "planLabel": "PHƯƠNG PHÁP AGILE",
+        "planTitle": "Cách phát hành đúng thứ cần thiết",
         "plan": [
           {
-            "title": "Scope",
-            "desc": "Use cm-planning to feed your PRDs into the AI. It instantly spots edge cases you might have missed."
+            "title": "Phạm vi (Scope)",
+            "desc": "Sử dụng cm-planning để đưa PRDs của bạn vào AI. Nó sẽ ngay lập tức phát hiện các trường hợp biên (edge cases) mà bạn có thể đã bỏ lỡ."
           },
           {
-            "title": "Prototype",
-            "desc": "Don't just show Figma files. Let CodyMaster build a live, clickable, coded prototype connected to a real database."
+            "title": "Bản mẫu (Prototype)",
+            "desc": "Đừng chỉ trình bày các file Figma. Hãy để CodyMaster xây dựng một bản mẫu prototype sống động, có thể click, được lập trình và kết nối với cơ sở dữ liệu thực tế."
           },
           {
-            "title": "Validate",
-            "desc": "Put it in front of users. Track their behavior. Then, hand off the validated specifications to your dev team (or just deploy it)."
+            "title": "Xác thực (Validate)",
+            "desc": "Đưa sản phẩm đến trước mặt người dùng. Theo dõi hành vi của họ. Sau đó, bàn giao các thông số kỹ thuật đã được xác thực cho đội ngũ dev (hoặc chỉ việc triển khai nó)."
           }
         ],
-        "failureLabel": "THE FEATURE FACTORY TRAP",
-        "failureTitle": "Building features nobody wants burns your runway.",
-        "failureDesc": "60% of features built by software teams are rarely or never used. If you can't test ideas rapidly, you are gambling your company's resources on unvalidated assumptions.",
-        "heroBadge": "Built by a Head of Product · 10+ Years Experience",
+        "failureLabel": "BẪY XƯỞNG SẢN XUẤT TÍNH NĂNG",
+        "failureTitle": "Xây dựng những tính năng không ai muốn sẽ đốt cháy nguồn lực của bạn.",
+        "failureDesc": "60% các tính năng được xây dựng bởi các đội ngũ phần mềm hiếm khi hoặc không bao giờ được sử dụng. Nếu bạn không thể thử nghiệm các ý tưởng nhanh chóng, bạn đang đánh cược nguồn lực của công ty vào những giả định chưa được xác thực.",
+        "heroBadge": "Được xây dựng bởi một Trưởng phòng Sản phẩm · 10+ Năm kinh nghiệm",
         "heroStats": [
           {
             "num": "4",
-            "label": "Safety Layers"
+            "label": "Lớp bảo mật"
           },
           {
             "num": "6",
@@ -679,20 +679,20 @@
           },
           {
             "num": "∞",
-            "label": "Memory"
+            "label": "Bộ nhớ"
           }
         ],
         "fomo": [
-          "The creator is a PM who can't code — this kit IS the solution",
-          "AI that remembers mistakes and never repeats them",
-          "Auto-generates complete product documentation"
+          "Người tạo ra là một PM không biết lập trình — bộ kit này CHÍNH LÀ giải pháp",
+          "AI ghi nhớ các sai lầm và không bao giờ lặp lại chúng",
+          "Tự động tạo tài liệu sản phẩm đầy đủ"
         ],
         "costCallout": {
           "num": "60%",
-          "label": "of features built by teams are rarely or never used. Validate faster with CodyMaster."
+          "label": "các tính năng được xây dựng bởi các đội ngũ hiếm khi hoặc không bao giờ được sử dụng. Xác thực nhanh hơn với CodyMaster."
         },
-        "failureWhile": "⏱️ While you're debating in meetings, undisciplined AI is breaking your codebase.",
-        "ctaSecondary": "📖 Read Our Story"
+        "failureWhile": "⏱️ Trong khi bạn đang tranh luận trong các cuộc họp, AI thiếu kỷ luật đang làm hỏng codebase của bạn.",
+        "ctaSecondary": "📖 Đọc câu chuyện của chúng tôi"
       },
       "dev": {
         "heroTitle": "Ngừng viết code setup.\nBắt đầu viết thứ quan trọng.",
@@ -702,7 +702,7 @@
         "pains": [
           {
             "icon": "🔄",
-            "title": "Setup déjà vu",
+            "title": "Cảm giác thiết lập quen thuộc (déjà vu)",
             "desc": "Mỗi. Dự. Án. Git init, CI/CD config, test infra, linting, i18n, design tokens, deploy pipeline. Bạn đã làm 100 lần. Không bao giờ nhanh hơn."
           },
           {
@@ -784,30 +784,30 @@
         "ctaSub": "Miễn phí. Mã nguồn mở. Production-ready từ ngày một.",
         "ctaButton": "Bắt Đầu Xây →",
         "guide": {
-          "badge": "ENGINEERING LEVERAGE",
-          "title": "Stop writing boilerplate. Start architecting systems.",
-          "desc": "Senior engineers shouldn't be centering divs or writing basic CRUD endpoints. CodyMaster acts as your tireless junior developer, scaffolding apps, writing tests via cm-tdd, and executing repetitive tasks so you can focus on hard architectural problems."
+          "badge": "ĐÒN BẨY KỸ THUẬT",
+          "title": "Ngừng viết boilerplate. Bắt đầu kiến trúc hệ thống.",
+          "desc": "Các kỹ sư cấp cao không nên dành thời gian để căn giữa các thẻ div hoặc viết các endpoint CRUD cơ bản. CodyMaster đóng vai trò như một lập trình viên junior không biết mệt mỏi, scaffolding các ứng dụng, viết test qua cm-tdd, và thực hiện các nhiệm vụ lặp đi lặp lại để bạn có thể tập trung vào các vấn đề kiến trúc khó khăn."
         },
-        "planLabel": "THE 10X PIPELINE",
-        "planTitle": "How elite teams use Cody",
+        "planLabel": "QUY TRÌNH 10X",
+        "planTitle": "Cách các đội ngũ tinh nhuệ sử dụng Cody",
         "plan": [
           {
             "title": "Scaffold",
-            "desc": "Use cm-project-bootstrap. Within 60 seconds you have a Vite/React app with routing, Tailwind v4, i18n, and testing pre-configured."
+            "desc": "Sử dụng cm-project-bootstrap. Trong vòng 60 giây, bạn sẽ có một ứng dụng Vite/React với routing, Tailwind v4, i18n, và testing được cấu hình sẵn."
           },
           {
-            "title": "Delegate",
-            "desc": "Assign complex logic to the cm-execution agent. It writes the code and the exhaustive unit tests simultaneously."
+            "title": "Ủy quyền",
+            "desc": "Giao phó logic phức tạp cho agent cm-execution. Nó sẽ viết code và các unit test chi tiết đồng thời."
           },
           {
             "title": "Review",
-            "desc": "The code isn't a black box. You review the PRs. CodyMaster runs cm-quality-gate to catch regressions before you even look."
+            "desc": "Code không phải là một hộp đen. Bạn review các PR. CodyMaster chạy cm-quality-gate để phát hiện các lỗi regression trước khi bạn xem xét."
           }
         ],
-        "failureLabel": "THE TECH DEBT SPIRAL",
-        "failureTitle": "Technical debt grows faster than you can hire.",
-        "failureDesc": "If your team is bogged down in legacy maintenance and slow manual testing, innovation stops. Without AI leverage, your top talent will burn out and leave for companies that move faster.",
-        "heroBadge": "17 Frameworks · TDD Enforced · Multi-Gate Deploy",
+        "failureLabel": "VÒNG XOÁY NỢ KỸ THUẬT",
+        "failureTitle": "Technical debt tăng trưởng nhanh hơn khả năng tuyển dụng của bạn.",
+        "failureDesc": "Nếu đội ngũ của bạn sa lầy vào việc bảo trì legacy và testing thủ công chậm chạp, sự đổi mới sẽ dừng lại. Không có đòn bẩy AI, những tài năng hàng đầu của bạn sẽ kiệt sức và rời đi để đến với những công ty có tốc độ nhanh hơn.",
+        "heroBadge": "17 Frameworks · Bắt buộc TDD · Multi-Gate Deploy",
         "heroStats": [
           {
             "num": "17",
@@ -818,21 +818,21 @@
             "label": "Deploy Gates"
           },
           {
-            "num": "10min",
+            "num": "10 phút",
             "label": "Full Scaffold"
           }
         ],
         "fomo": [
-          "Senior devs are automating 80% of boilerplate",
-          "TDD-first: every feature has tests before code",
-          "Supports React, Vue, Next.js, Flutter, SwiftUI +12 more"
+          "Các Senior dev đang tự động hóa 80% boilerplate",
+          "Ưu tiên TDD: mọi tính năng đều có test trước khi viết code",
+          "Hỗ trợ React, Vue, Next.js, Flutter, SwiftUI +12 cái khác"
         ],
         "costCallout": {
-          "num": "2-3 days",
-          "label": "Wasted per project on setup boilerplate. With cm-project-bootstrap: 10 minutes."
+          "num": "2-3 ngày",
+          "label": "Bị lãng phí mỗi dự án cho việc thiết lập boilerplate. Với cm-project-bootstrap: 10 phút."
         },
-        "failureWhile": "⏱️ Tech debt grows faster than you can hire. Your best engineers are fixing bugs, not building features.",
-        "ctaSecondary": "🛠️ See All 33 Skills"
+        "failureWhile": "⏱️ Tech debt tăng trưởng nhanh hơn khả năng tuyển dụng của bạn. Những kỹ sư giỏi nhất của bạn đang phải fix bug thay vì xây dựng tính năng.",
+        "ctaSecondary": "🛠️ Xem tất cả 33 Skills"
       },
       "designer": {
         "heroTitle": "Bạn thiết kế hệ thống.\nAI phải tôn trọng nó.",
@@ -916,28 +916,28 @@
         "ctaButton": "Thử AI Design-First →",
         "guide": {
           "badge": "PIXEL PERFECT",
-          "title": "From Figma to React, skipping the translation loss.",
-          "desc": "The handoff is broken. You design something beautiful; development builds something that 'kind of' looks like it. CodyMaster bridges that gap, reading your design intent via cm-ux-master and generating pixel-perfect code that honors spacing, typography, and UX laws."
+          "title": "Từ Figma đến React, bỏ qua sự sai lệch khi chuyển đổi.",
+          "desc": "Quá trình handoff đang bị hỏng. Bạn thiết kế một thứ gì đó tuyệt đẹp; bộ phận phát triển lại xây dựng thứ gì đó 'trông có vẻ' giống nó. CodyMaster lấp đầy khoảng cách đó, đọc ý định thiết kế của bạn qua cm-ux-master và tạo ra code pixel-perfect tôn trọng khoảng cách, typography và các UX laws."
         },
-        "planLabel": "THE DESIGN-TO-CODE LOOP",
-        "planTitle": "Protect your design integrity",
+        "planLabel": "VÒNG LẶP DESIGN-TO-CODE",
+        "planTitle": "Bảo vệ tính nguyên bản trong thiết kế của bạn",
         "plan": [
           {
-            "title": "Design",
-            "desc": "Create your concepts in Figma or directly instruct the cm-ui-preview skill with your visual requirements."
+            "title": "Thiết kế",
+            "desc": "Tạo concept của bạn trong Figma hoặc hướng dẫn trực tiếp skill cm-ui-preview với các yêu cầu về hình ảnh của bạn."
           },
           {
-            "title": "Generate",
-            "desc": "CodyMaster translates your designs into clean Tailwind v4 utility classes and accessible DOM structures."
+            "title": "Khởi tạo",
+            "desc": "CodyMaster chuyển đổi thiết kế của bạn thành các utility classes Tailwind v4 sạch sẽ và cấu trúc DOM có khả năng truy cập (accessible)."
           },
           {
-            "title": "Refine",
-            "desc": "Tweak animations, focus states, and responsive breakpoints directly in the code with plain English commands."
+            "title": "Tinh chỉnh",
+            "desc": "Tinh chỉnh animations, focus states và các responsive breakpoints trực tiếp trong code bằng các câu lệnh tiếng Anh đơn giản."
           }
         ],
-        "failureLabel": "THE COMPROMISE",
-        "failureTitle": "Developers ruining your designs because handoffs are broken.",
-        "failureDesc": "If you don't control the implementation, your portfolio is full of 'what I designed' vs 'what they built'. Take back control of the final output.",
+        "failureLabel": "SỰ THỎA HIỆP",
+        "failureTitle": "Developer làm hỏng thiết kế của bạn vì quá trình handoff bị lỗi.",
+        "failureDesc": "Nếu bạn không kiểm soát việc triển khai, portfolio của bạn sẽ đầy rẫy những thứ 'tôi đã thiết kế' so với 'những gì họ đã xây dựng'. Hãy giành lại quyền kiểm soát kết quả cuối cùng.",
         "heroBadge": "Harvester v4 · 48 UX Laws · Figma → Code Pipeline",
         "heroStats": [
           {
@@ -954,16 +954,16 @@
           }
         ],
         "fomo": [
-          "Design-first AI that reads YOUR tokens",
-          "Preview in Google Stitch or Pencil.dev before any code",
-          "Extracts design systems from any existing website"
+          "AI ưu tiên thiết kế đọc các tokens của CHÍNH BẠN",
+          "Preview trong Google Stitch hoặc Pencil.dev trước khi viết code",
+          "Trích xuất design systems từ bất kỳ trang web hiện có nào"
         ],
         "costCallout": {
           "num": "80%",
-          "label": "of AI-generated code doesn't match the design. cm-ux-master makes it pixel-perfect."
+          "label": "code do AI tạo ra không khớp với thiết kế. cm-ux-master giúp nó đạt mức pixel-perfect."
         },
-        "failureWhile": "⏱️ Developers are shipping designs that don't match your vision. Again.",
-        "ctaSecondary": "🎨 See UX Master"
+        "failureWhile": "⏱️ Developer đang ship những bản thiết kế không khớp với tầm nhìn của bạn. Một lần nữa.",
+        "ctaSecondary": "🎨 Xem UX Master"
       },
       "claw": {
         "heroTitle": "Một bộ skill.\nMọi AI agent trong gia đình.",
@@ -1046,56 +1046,143 @@
         "ctaSub": "33 skill. Mọi Claw agent. Zero lock-in.",
         "ctaButton": "Gia Nhập Claw Family →",
         "guide": {
-          "badge": "THE UNFAIR ADVANTAGE",
-          "title": "The ultimate edge for independent creators and builders.",
-          "desc": "The Claw Family builds differently. You don't ask for permission. You identify niches, build tools, and generate revenue. CodyMaster is the ultimate multi-tool designed explicitly for indie hackers who need to move at warp speed."
+          "badge": "LỢI THẾ BẤT CÔNG",
+          "title": "Lợi thế tối thượng cho những nhà sáng tạo và người xây dựng độc lập.",
+          "desc": "Gia đình Claw xây dựng theo cách khác biệt. Bạn không xin phép bất kỳ ai. Bạn xác định ngách (niches), xây dựng công cụ và tạo ra doanh thu. CodyMaster là công cụ đa năng tối thượng được thiết kế dành riêng cho các indie hackers cần di chuyển với tốc độ ánh sáng."
         },
-        "planLabel": "THE INDIE PLAYBOOK",
-        "planTitle": "From idea to revenue",
+        "planLabel": "CẨM NANG INDIE",
+        "planTitle": "Từ ý tưởng đến doanh thu",
         "plan": [
           {
-            "title": "Spot",
-            "desc": "Identify a pain point. Use cm-brainstorm-idea to systematically break down the market opportunity and technical feasibility."
+            "title": "Xác định",
+            "desc": "Xác định một điểm đau (pain point). Sử dụng cm-brainstorm-idea để phân tích hệ thống cơ hội thị trường và tính khả thi kỹ thuật."
           },
           {
-            "title": "Build",
-            "desc": "Deploy the full cm-execution pipeline. Generate the SaaS, attach Auth, and wire up Stripe in a single evening."
+            "title": "Xây dựng",
+            "desc": "Triển khai toàn bộ pipeline cm-execution. Tạo SaaS, tích hợp Auth, và kết nối Stripe chỉ trong một buổi tối."
           },
           {
-            "title": "Monetize",
-            "desc": "Use cm-ads-tracker to set up your conversion funnels, launch the ads, and watch the MRR grow."
+            "title": "Kiếm tiền",
+            "desc": "Sử dụng cm-ads-tracker để thiết lập phễu chuyển đổi (conversion funnels), chạy quảng cáo và theo dõi chỉ số MRR tăng trưởng."
           }
         ],
-        "failureLabel": "THE SIDE HUSTLE GRAVEYARD",
-        "failureTitle": "Working a 9-to-5 while your side-hustle gathers dust.",
-        "failureDesc": "You have 10 domains registered and 0 products launched. The longer you take to build, the more likely you are to lose motivation. Speed is life.",
-        "heroBadge": "Universal Format · Every AI Agent · Zero Lock-in",
+        "failureLabel": "NGHĨA TRANG CỦA NHỮNG DỰ ÁN PHỤ",
+        "failureTitle": "Làm việc 9-đến-5 trong khi dự án phụ của bạn đang bám bụi.",
+        "failureDesc": "Bạn đã đăng ký 10 tên miền nhưng chưa ra mắt sản phẩm nào (0 product launched). Bạn càng mất nhiều thời gian để xây dựng, bạn càng dễ mất động lực. Tốc độ là sự sống.",
+        "heroBadge": "Định dạng phổ quát · Mọi AI Agent · Không bị ràng buộc",
         "heroStats": [
           {
             "num": "7+",
-            "label": "AI Platforms"
+            "label": "Nền tảng AI"
           },
           {
             "num": "33",
-            "label": "Universal Skills"
+            "label": "Kỹ năng Phổ quát"
           },
           {
             "num": "0",
-            "label": "Migration Cost"
+            "label": "Chi phí Chuyển đổi"
           }
         ],
         "fomo": [
-          "One SKILL.md works on Claude, Cursor, Gemini, and more",
-          "Switch AI agents freely — zero migration cost",
-          "Community growing with cross-agent compatibility"
+          "Một SKILL.md hoạt động trên Claude, Cursor, Gemini, và nhiều nền tảng khác",
+          "Tự do chuyển đổi AI agents — chi phí chuyển đổi bằng không",
+          "Cộng đồng đang phát triển với khả năng tương thích chéo giữa các agent"
         ],
         "costCallout": {
           "num": "100%",
-          "label": "of your existing prompts and rules are locked to one agent. CodyMaster gives you freedom."
+          "label": "các prompt và quy tắc hiện tại của bạn đang bị khóa vào một agent duy nhất. CodyMaster mang lại cho bạn sự tự do."
         },
-        "failureWhile": "⏱️ A better AI agent launches tomorrow. Without CodyMaster, you start from scratch. Again.",
-        "ctaSecondary": "🦞 Join the Family"
+        "failureWhile": "⏱️ Một AI agent tốt hơn sẽ ra mắt vào ngày mai. Nếu không có CodyMaster, bạn sẽ phải bắt đầu lại từ đầu. Một lần nữa.",
+        "ctaSecondary": "🦞 Gia nhập Gia đình"
       }
+    }
+  },
+  "session_id": "748ff81d-9865-42be-8d5a-30cd4e288d68",
+  "response": "{\"personas.details.dev.plan[1].title\":\"Ủy thác\",\"personas.details.dev.plan[1].desc\":\"Giao phó logic phức tạp cho agent cm-execution. Nó sẽ viết mã nguồn và các bài kiểm tra unit (unit tests) toàn diện cùng một lúc.\",\"personas.details.dev.plan[2].title\":\"Đánh giá\",\"personas.details.dev.plan[2].desc\":\"Mã nguồn không phải là một chiếc hộp đen. Bạn đánh giá các PR. CodyMaster chạy cm-quality-gate để phát hiện các lỗi hồi quy trước khi bạn kịp xem qua.\",\"personas.details.dev.failureLabel\":\"VÒNG XOÁY NỢ KỸ THUẬT\",\"personas.details.dev.failureTitle\":\"Nợ kỹ thuật tăng nhanh hơn tốc độ bạn có thể tuyển dụng.\",\"personas.details.dev.failureDesc\":\"Nếu đội ngũ của bạn sa lầy vào việc bảo trì hệ thống cũ và kiểm thử thủ công chậm chạp, sự đổi mới sẽ dừng lại. Thiếu đòn bẩy AI, những nhân tài hàng đầu của bạn sẽ kiệt sức và rời đi để đến với những công ty có tốc độ phát triển nhanh hơn.\",\"personas.details.dev.heroBadge\":\"17 Frameworks · Bắt buộc TDD · Triển khai đa tầng\",\"personas.details.dev.heroStats[0].label\":\"Frameworks\",\"personas.details.dev.heroStats[1].label\":\"Cổng triển khai\",\"personas.details.dev.heroStats[2].num\":\"10 phút\",\"personas.details.dev.heroStats[2].label\":\"Khởi tạo toàn diện\",\"personas.details.dev.fomo[0]\":\"Các lập trình viên cấp cao đang tự động hóa 80% mã nguồn lặp lại (boilerplate)\",\"personas.details.dev.fomo[1]\":\"Ưu tiên TDD: mọi tính năng đều có kiểm thử trước khi viết mã\",\"personas.details.dev.fomo[2]\":\"Hỗ trợ React, Vue, Next.js, Flutter, SwiftUI và thêm 12 nền tảng khác\",\"personas.details.dev.costCallout.num\":\"2-3 ngày\",\"personas.details.dev.costCallout.label\":\"Bị lãng phí cho mỗi dự án để thiết lập boilerplate. Với cm-project-bootstrap: chỉ 10 phút.\",\"personas.details.dev.failureWhile\":\"⏱️ Nợ kỹ thuật tăng nhanh hơn tốc độ tuyển dụng. Những kỹ sư giỏi nhất của bạn đang phải đi sửa lỗi thay vì xây dựng tính năng.\",\"personas.details.dev.ctaSecondary\":\"🛠️ Xem tất cả 33 Kỹ năng\",\"personas.details.designer.pains[1].icon\":\"👁️\",\"personas.details.designer.ctaSub\":\"Thiết kế trước. Xem trước. Chất lượng trên hết.\",\"personas.details.designer.guide.badge\":\"HOÀN HẢO TỪNG PIXEL\",\"personas.details.designer.guide.title\":\"Từ Figma đến React, loại bỏ sự sai lệch khi chuyển đổi.\",\"personas.details.designer.guide.desc\":\"The handoff is broken. Bạn thiết kế một thứ tuyệt đẹp; lập trình viên lại xây dựng một thứ 'trông có vẻ' giống như vậy. CodyMaster thu hẹp khoảng cách đó bằng cách đọc ý định thiết kế của bạn qua cm-ux-master và tạo ra mã nguồn hoàn hảo từng pixel, tuân thủ đúng khoảng cách, kiểu chữ và các luật UX.\",\"personas.details.designer.planLabel\":\"VÒNG LẶP TỪ THIẾT KẾ ĐẾN MÃ NGUỒN\",\"personas.details.designer.planTitle\":\"Bảo vệ tính toàn vẹn của thiết kế\",\"personas.details.designer.plan[0].title\":\"Thiết kế\",\"personas.details.designer.plan[0].desc\":\"Tạo ý tưởng của bạn trong Figma hoặc hướng dẫn trực tiếp kỹ năng cm-ui-preview với các yêu cầu về hình ảnh của bạn.\",\"personas.details.designer.plan[1].title\":\"Tạo mã\",\"personas.details.designer.plan[1].desc\":\"CodyMaster chuyển đổi thiết kế của bạn thành các lớp utility Tailwind v4 sạch sẽ và cấu trúc DOM dễ tiếp cận (accessible).\",\"personas.details.designer.plan[2].title\":\"Tinh chỉnh\",\"personas.details.designer.plan[2].desc\":\"Tinh chỉnh hoạt ảnh, trạng thái tiêu điểm và các điểm ngắt phản hồi (responsive breakpoints) trực tiếp trong mã nguồn bằng các câu lệnh tiếng Anh đơn giản.\",\"personas.details.designer.failureLabel\":\"SỰ THỎA HIỆP\",\"personas.details.designer.failureTitle\":\"Lập trình viên làm hỏng thiết kế của bạn vì quy trình bàn giao bị lỗi.\",\"personas.details.designer.failureDesc\":\"Nếu bạn không kiểm soát việc triển khai, danh mục đầu tư (portfolio) của bạn sẽ chỉ toàn là 'thứ tôi thiết kế' so với 'thứ họ xây dựng'. Hãy giành lại quyền kiểm soát sản phẩm cuối cùng.\",\"personas.details.designer.heroBadge\":\"Harvester v4 · 48 Luật UX · Quy trình Figma → Mã nguồn\",\"personas.details.designer.heroStats[0].label\":\"Luật UX\",\"personas.details.designer.heroStats[1].label\":\"Mẫu thiết kế\",\"personas.details.designer.heroStats[2].label\":\"Tokens đã trích xuất\",\"personas.details.designer.fomo[0]\":\"AI ưu tiên thiết kế, đọc đúng các tokens của RIÊNG BẠN\",\"personas.details.designer.fomo[1]\":\"Xem trước trong Google Stitch hoặc Pencil.dev trước khi viết mã\",\"personas.details.designer.fomo[2]\":\"Trích xuất hệ thống thiết kế (design systems) từ bất kỳ trang web hiện có nào\",\"personas.details.designer.costCallout.label\":\"mã nguồn do AI tạo ra không khớp với thiết kế. cm-ux-master giúp nó trở nên hoàn hảo từng pixel.\",\"personas.details.designer.failureWhile\":\"⏱️ Lập trình viên đang triển khai những thiết kế không khớp với tầm nhìn của bạn. Một lần nữa.\",\"personas.details.designer.ctaSecondary\":\"🎨 Xem UX Master\",\"personas.details.claw.guide.badge\":\"LỢI THẾ BẤT CÔNG\",\"personas.details.claw.guide.title\":\"Lợi thế tối thượng cho những nhà sáng tạo và người xây dựng độc lập.\",\"personas.details.claw.guide.desc\":\"Gia đình Claw xây dựng theo cách khác biệt. Bạn không xin phép. Bạn tìm kiếm thị trường ngách, xây dựng công cụ và tạo ra doanh thu. CodyMaster là công cụ đa năng tối thượng được thiết kế dành riêng cho các indie hackers cần di chuyển với tốc độ ánh sáng.\",\"personas.details.claw.planLabel\":\"CẨM NANG CHO INDIE\",\"personas.details.claw.planTitle\":\"Từ ý tưởng đến doanh thu\",\"personas.details.claw.plan[0].title\":\"Phát hiện\",\"personas.details.claw.plan[0].desc\":\"Xác định một điểm đau (pain point). Sử dụng cm-brainstorm-idea để phân tích hệ thống cơ hội thị trường và tính khả thi về kỹ thuật.\",\"personas.details.claw.plan[1].title\":\"Xây dựng\",\"personas.details.claw.plan[1].desc\":\"Triển khai toàn bộ quy trình cm-execution. Tạo sản phẩm SaaS, tích hợp Auth và kết nối Stripe chỉ trong một buổi tối.\",\"personas.details.claw.plan[2].title\":\"Kiếm tiền\",\"personas.details.claw.plan[2].desc\":\"Sử dụng cm-ads-tracker để thiết lập phễu chuyển đổi, chạy quảng cáo và theo dõi chỉ số MRR tăng trưởng.\",\"personas.details.claw.failureLabel\":\"NGHĨA TRANG CỦA NHỮNG DỰ ÁN PHỤ\",\"personas.details.claw.failureTitle\":\"Làm việc hành chính 8 tiếng trong khi dự án phụ của bạn đang bám bụi.\",\"personas.details.claw.failureDesc\":\"Bạn đã đăng ký 10 tên miền nhưng chưa có sản phẩm nào ra mắt. Bạn càng mất nhiều thời gian để xây dựng, bạn càng dễ mất đi động lực. Tốc độ là sự sống.\",\"personas.details.claw.heroBadge\":\"Định dạng toàn cầu · Mọi Agent AI · Không bị ràng buộc\",\"personas.details.claw.heroStats[0].label\":\"Nền tảng AI\",\"personas.details.claw.heroStats[1].label\":\"Kỹ năng toàn năng\",\"personas.details.claw.heroStats[2].label\":\"Chi phí chuyển đổi\",\"personas.details.claw.fomo[0]\":\"Một tệp SKILL.md hoạt động trên Claude, Cursor, Gemini và hơn thế nữa\",\"personas.details.claw.fomo[1]\":\"Chuyển đổi các agent AI tự do — không tốn chi phí chuyển đổi\",\"personas.details.claw.fomo[2]\":\"Cộng đồng đang phát triển với khả năng tương thích chéo giữa các agent\",\"personas.details.claw.costCallout.label\":\"các câu lệnh (prompts) và quy tắc hiện có của bạn bị khóa vào một agent duy nhất. CodyMaster mang lại cho bạn sự tự do.\",\"personas.details.claw.failureWhile\":\"⏱️ Một agent AI tốt hơn sẽ ra mắt vào ngày mai. Thiếu CodyMaster, bạn sẽ phải bắt đầu lại từ đầu. Một lần nữa.\",\"personas.details.claw.ctaSecondary\":\"🦞 Tham gia gia đình Claw\"}",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 2250
+        },
+        "tokens": {
+          "input": 4369,
+          "prompt": 4369,
+          "candidates": 97,
+          "total": 4862,
+          "cached": 0,
+          "thoughts": 396,
+          "tool": 0
+        },
+        "roles": {
+          "utility_router": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 2250,
+            "tokens": {
+              "input": 4369,
+              "prompt": 4369,
+              "candidates": 97,
+              "total": 4862,
+              "cached": 0,
+              "thoughts": 396,
+              "tool": 0
+            }
+          }
+        }
+      },
+      "gemini-3-flash-preview": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 28325
+        },
+        "tokens": {
+          "input": 197405,
+          "prompt": 197405,
+          "candidates": 2068,
+          "total": 203014,
+          "cached": 0,
+          "thoughts": 3541,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 28325,
+            "tokens": {
+              "input": 197405,
+              "prompt": 197405,
+              "candidates": 2068,
+              "total": 203014,
+              "cached": 0,
+              "thoughts": 3541,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 0,
+      "totalSuccess": 0,
+      "totalFail": 0,
+      "totalDurationMs": 0,
+      "totalDecisions": {
+        "accept": 0,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {}
+    },
+    "files": {
+      "totalLinesAdded": 0,
+      "totalLinesRemoved": 0
     }
   }
 }

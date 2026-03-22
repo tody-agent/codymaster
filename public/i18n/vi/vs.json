@@ -76,7 +76,7 @@
           "Lập Plan (1 giờ)",
           "Design (4 giờ)",
           "Code Build (5 ngày)",
-          "Test (auto)",
+          "Test (tự động)",
           "Deploy (30 phút)"
         ],
         "cost": "💰 ~$0 (Chỉ tốn phí API)",
@@ -131,7 +131,7 @@
         "icon": "💰",
         "number": "99%",
         "label": "Giảm Chi Phí",
-        "sub": "~$0 vs $500K-$1M"
+        "sub": "~$0 so với $500K-$1M"
       },
       {
         "icon": "👤",
@@ -421,7 +421,7 @@
   "vs_others_auto_124": "Tiên phong thiết kế 🔥",
   "vs_others_auto_125": "Mã nguồn mở",
   "vs_others_auto_17": "Cody Master không sinh ra từ hư vô. Chúng tôi đã học hỏi từ những nhà sáng tạo kiệt xuất - những người tiên phong trong lĩnh vực lập trình hỗ trợ bởi AI. Dưới đây là một bảng so sánh khách quan — và lời tri ân chân thành nhất từ chúng tôi.",
-  "vs_others_auto_93": "🔵 vs Replit",
+  "vs_others_auto_93": "🔵 so với Replit",
   "vs_others_auto_94": "Cloud IDE Toàn diện + AI Agent",
   "vs_others_auto_95": "Hỗ trợ 50+ ngôn ngữ, lập trình nhóm, Agent 4",
   "vs_others_auto_96": "$0–$100/tháng",
@@ -436,17 +436,17 @@
   "vs_replit_auto_15": "THẤU HIỂU CẢ HAI CÔNG CỤ",
   "vs_replit_auto_16": "Cloud IDE vs Bộ Kỹ Năng (Skill Kit)",
   "vs_replit_auto_17": "🔵 Replit là gì?",
-  "vs_others_auto_78": "💖 vs Lovable",
+  "vs_others_auto_78": "💖 so với Lovable",
   "vs_others_auto_79": "Trình tạo ứng dụng Full-Stack bằng AI",
   "vs_others_auto_80": "React + Supabase, triển khai chỉ với một cú nhấp chuột",
   "vs_others_auto_81": "$0–$1,875/tháng (dựa trên credit)",
   "vs_others_auto_82": "Xem so sánh chi tiết →",
-  "vs_others_auto_83": "⚙️ vs Bolt.new",
+  "vs_others_auto_83": "⚙️ so với Bolt.new",
   "vs_others_auto_84": "Trình duyệt IDE từ StackBlitz",
   "vs_others_auto_85": "WebContainers, nhập dữ liệu từ Figma",
   "vs_others_auto_86": "$0–$30/tháng (dựa trên token)",
   "vs_others_auto_87": "Xem so sánh chi tiết →",
-  "vs_others_auto_88": "🧪 vs Google AI Studio",
+  "vs_others_auto_88": "🧪 so với Google AI Studio",
   "vs_others_auto_89": "Môi trường thử nghiệm mô hình AI (Gemini)",
   "vs_others_auto_90": "Ngữ cảnh 2M, đa phương thức, Deep Research",
   "vs_others_auto_91": "Miễn phí → Thanh toán theo token",
@@ -473,5 +473,92 @@
   "vs_others_auto_74": "Hoàn toàn không ràng buộc",
   "vs_others_auto_75": "🔥 SO SÁNH VỚI CÁC CÔNG CỤ VIBE CODING HÀNG ĐẦU",
   "vs_others_auto_76": "Tìm hiểu sâu hơn — So sánh chi tiết",
-  "vs_others_auto_77": "Chúng tôi đã nghiên cứu các nền tảng lập trình tích hợp AI phổ biến nhất trên thị trường. Dưới đây là cách CodyMaster so sánh với từng đối thủ — một cách trung thực, khách quan và dựa trên dữ liệu đã được xác minh."
+  "vs_others_auto_77": "Chúng tôi đã nghiên cứu các nền tảng lập trình tích hợp AI phổ biến nhất trên thị trường. Dưới đây là cách CodyMaster so sánh với từng đối thủ — một cách trung thực, khách quan và dựa trên dữ liệu đã được xác minh.",
+  "session_id": "2a6653f0-56f3-49af-b69c-94fc3b63fa7f",
+  "response": "{\n  \"vsScrum.pains.cards[0].role\": \"CỔ ĐÔNG / CEO\",\n  \"vsScrum.pains.cards[1].role\": \"QUẢN LÝ SẢN PHẨM\",\n  \"vsScrum.pains.cards[2].role\": \"NHÀ THIẾT KẾ\",\n  \"vsScrum.pains.cards[3].role\": \"LẬP TRÌNH VIÊN\",\n  \"vsScrum.pains.cards[4].role\": \"QA / KIỂM THỬ\",\n  \"vsScrum.timeline.cm.phases[4]\": \"Kiểm thử (tự động)\",\n  \"vsScrum.roles.list[0].role\": \"👔 Cổ đông\",\n  \"vsScrum.roles.list[1].role\": \"📋 Quản lý Sản phẩm\",\n  \"vsScrum.roles.list[2].role\": \"🎨 Nhà thiết kế\",\n  \"vsScrum.roles.list[3].role\": \"💻 Lập trình viên\",\n  \"vsScrum.roles.list[4].role\": \"🧪 QA / Kiểm thử\",\n  \"vsScrum.stats[0].number\": \"12×\",\n  \"vsScrum.stats[1].sub\": \"~$0 so với $500K-$1M\",\n  \"vsScrum.stats[3].icon\": \"🛡️\",\n  \"vs_others_auto_29\": \"🎨 Vibe Coding\",\n  \"vs_others_auto_30\": \"★★★☆☆\",\n  \"vs_others_auto_31\": \"★★★☆☆\",\n  \"vs_others_auto_32\": \"★★★★☆\",\n  \"vs_others_auto_38\": \"✓ CONTINUITY.md\",\n  \"vs_others_auto_40\": \"✓ Pre-commit\",\n  \"vs_others_auto_49\": \"📈 CRO / Marketing\",\n  \"vs_others_auto_58\": \"✓ cm-dockit\",\n  \"vs_others_auto_64\": \"★★☆☆☆\",\n  \"vs_others_auto_65\": \"★★★☆☆\",\n  \"vs_others_auto_66\": \"★★★★☆\",\n  \"vs_others_auto_78\": \"💖 so với Lovable\",\n  \"vs_others_auto_83\": \"⚙️ so với Bolt.new\",\n  \"vs_others_auto_88\": \"🧪 so với Google AI Studio\",\n  \"vs_others_auto_93\": \"🔵 so với Replit\",\n  \"vs_scrum_auto_23\": \"🛡️\"\n}",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 2605
+        },
+        "tokens": {
+          "input": 3187,
+          "prompt": 3187,
+          "candidates": 101,
+          "total": 3799,
+          "cached": 0,
+          "thoughts": 511,
+          "tool": 0
+        },
+        "roles": {
+          "utility_router": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 2605,
+            "tokens": {
+              "input": 3187,
+              "prompt": 3187,
+              "candidates": 101,
+              "total": 3799,
+              "cached": 0,
+              "thoughts": 511,
+              "tool": 0
+            }
+          }
+        }
+      },
+      "gemini-3-flash-preview": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 18212
+        },
+        "tokens": {
+          "input": 196223,
+          "prompt": 196223,
+          "candidates": 617,
+          "total": 198780,
+          "cached": 0,
+          "thoughts": 1940,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 18212,
+            "tokens": {
+              "input": 196223,
+              "prompt": 196223,
+              "candidates": 617,
+              "total": 198780,
+              "cached": 0,
+              "thoughts": 1940,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 0,
+      "totalSuccess": 0,
+      "totalFail": 0,
+      "totalDurationMs": 0,
+      "totalDecisions": {
+        "accept": 0,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {}
+    },
+    "files": {
+      "totalLinesAdded": 0,
+      "totalLinesRemoved": 0
+    }
+  }
 }

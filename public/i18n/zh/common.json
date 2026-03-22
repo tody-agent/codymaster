@@ -14,11 +14,12 @@
     "getStarted": "开始使用",
     "demo": "演示",
     "brain": "大脑",
-    "whyCodyMaster": "Why CodyMaster",
-    "vsOthers": "vs Others",
-    "vsScrum": "vs Scrum",
-    "playbook": "Playbook",
-    "cli": "CLI"
+    "whyCodyMaster": "为什么选择 CodyMaster",
+    "vsOthers": "对比其他",
+    "vsScrum": "对比 Scrum",
+    "playbook": "实战指南",
+    "cli": "CLI",
+    "whyUs": "为什么选我们"
   },
   "cta": {
     "title": "别再计划了。开始构建。\n你的想法值得存在。",
@@ -42,28 +43,95 @@
     "worksWithLabel": "兼容所有主流 AI 代理"
   },
   "stats": {
-    "items": [
-      {
-        "number": "33",
-        "label": "AI技能"
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 2280
+        },
+        "tokens": {
+          "input": 2772,
+          "prompt": 2772,
+          "candidates": 62,
+          "total": 3217,
+          "cached": 0,
+          "thoughts": 383,
+          "tool": 0
+        },
+        "roles": {
+          "utility_router": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 2280,
+            "tokens": {
+              "input": 2772,
+              "prompt": 2772,
+              "candidates": 62,
+              "total": 3217,
+              "cached": 0,
+              "thoughts": 383,
+              "tool": 0
+            }
+          }
+        }
       },
-      {
-        "number": "7+",
-        "label": "支持的 AI 代理"
-      },
-      {
-        "number": "6",
-        "label": "语言"
-      },
-      {
-        "number": "100%",
-        "label": "免费开源"
+      "gemini-3-flash-preview": {
+        "api": {
+          "totalRequests": 1,
+          "totalErrors": 0,
+          "totalLatencyMs": 8111
+        },
+        "tokens": {
+          "input": 180899,
+          "prompt": 195808,
+          "candidates": 57,
+          "total": 196350,
+          "cached": 14909,
+          "thoughts": 485,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 1,
+            "totalErrors": 0,
+            "totalLatencyMs": 8111,
+            "tokens": {
+              "input": 180899,
+              "prompt": 195808,
+              "candidates": 57,
+              "total": 196350,
+              "cached": 14909,
+              "thoughts": 485,
+              "tool": 0
+            }
+          }
+        }
       }
-    ]
+    },
+    "tools": {
+      "totalCalls": 0,
+      "totalSuccess": 0,
+      "totalFail": 0,
+      "totalDurationMs": 0,
+      "totalDecisions": {
+        "accept": 0,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {}
+    },
+    "files": {
+      "totalLinesAdded": 0,
+      "totalLinesRemoved": 0
+    }
   },
   "claw": {
     "label": "全局兼容",
     "title": "一份配置，所有 AI 代理皆遵循。",
     "subtitle": "由 CodyMaster Claw 驱动。一次编写指令，随处运行。"
-  }
+  },
+  "session_id": "d2074988-0ba2-4ef5-b83d-1f4f1d3c6afd",
+  "response": "{\n  \"nav.whyCodyMaster\": \"为何选择 CodyMaster\",\n  \"nav.vsOthers\": \"对比其他\",\n  \"nav.vsScrum\": \"对比 Scrum\",\n  \"nav.playbook\": \"实战手册\"\n}"
 }
