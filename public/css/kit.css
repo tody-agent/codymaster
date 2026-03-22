@@ -1602,6 +1602,439 @@ img {
   border-radius: var(--radius-md);
 }
 
+/* --- Persona Enhanced — Trust Badge in Hero --- */
+.persona-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(196, 248, 42, 0.2);
+  background: rgba(196, 248, 42, 0.06);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-lime);
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.persona-hero__badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-lime);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* --- Persona Enhanced — Hero Stats Row --- */
+.persona-hero__stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 32px;
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+  flex-wrap: wrap;
+}
+
+.persona-hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.persona-hero__stat-num {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.persona-hero__stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Persona Enhanced — FOMO Social Proof Strip --- */
+.persona-fomo {
+  padding: 24px var(--section-padding-x);
+  background: linear-gradient(90deg, rgba(196, 248, 42, 0.04) 0%, rgba(124, 58, 237, 0.04) 100%);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.persona-fomo__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.persona-fomo__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.persona-fomo__item-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.persona-fomo__item--highlight {
+  color: var(--accent-lime);
+  font-weight: 700;
+}
+
+/* Animated pulse dot for "live" indicators */
+.persona-fomo__live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22C55E;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* --- Persona Enhanced — Pain Card with animated gradient border --- */
+.persona-pain-card {
+  position: relative;
+}
+
+.persona-pain-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent-red) 0%, rgba(239, 68, 68, 0.2) 100%);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.persona-pain-card:hover::before {
+  opacity: 1;
+}
+
+/* --- Persona Enhanced — Cost Calculator callout --- */
+.persona-cost-callout {
+  margin-top: 32px;
+  padding: 24px 32px;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.persona-cost-callout__num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent-red);
+  margin-bottom: 4px;
+}
+
+.persona-cost-callout__label {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --- Persona Enhanced — Plan Step Connectors (SVG arrows) --- */
+.persona-plan__grid {
+  position: relative;
+}
+
+.persona-plan__connector {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .persona-plan__connector {
+    display: block;
+    position: absolute;
+    top: 60px;
+    z-index: 2;
+    color: var(--accent-lime);
+    opacity: 0.5;
+  }
+  .persona-plan__connector--1 {
+    left: calc(33.33% - 16px);
+  }
+  .persona-plan__connector--2 {
+    left: calc(66.66% - 16px);
+  }
+}
+
+/* --- Persona Enhanced — Full-Width Gradient CTA --- */
+.persona-cta--enhanced {
+  padding: 100px var(--section-padding-x) 60px;
+  text-align: center;
+  background: linear-gradient(180deg,
+    var(--bg-page) 0%,
+    rgba(124, 58, 237, 0.12) 40%,
+    rgba(196, 248, 42, 0.06) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.persona-cta--enhanced::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.persona-cta__pulse-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 56px;
+  border-radius: var(--radius-md);
+  background: var(--accent-lime);
+  color: var(--bg-page);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 8px 32px rgba(196, 248, 42, 0.3);
+}
+
+.persona-cta__pulse-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 48px rgba(196, 248, 42, 0.5);
+}
+
+.persona-cta__pulse-btn::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 2px solid var(--accent-lime);
+  animation: ctaPulse 2s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.03); }
+}
+
+.persona-cta__secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.persona-cta__secondary:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.persona-cta__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* --- Persona Enhanced — Trust Strip below CTA --- */
+.persona-trust-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.persona-trust-strip__item {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.persona-trust-strip__item-icon {
+  color: var(--accent-lime);
+}
+
+/* --- Persona Enhanced — Animated SVG Background Shapes --- */
+.persona-hero__svg-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.persona-hero__svg-bg svg {
+  position: absolute;
+  opacity: 0.035;
+}
+
+.persona-hero__svg-bg svg:nth-child(1) {
+  top: 10%;
+  right: 5%;
+  width: 200px;
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.persona-hero__svg-bg svg:nth-child(2) {
+  bottom: 15%;
+  left: 8%;
+  width: 160px;
+  animation: floatSlow 15s ease-in-out infinite reverse;
+}
+
+.persona-hero__svg-bg svg:nth-child(3) {
+  top: 40%;
+  left: 60%;
+  width: 120px;
+  animation: floatSlow 10s ease-in-out infinite 3s;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(15px, -20px) rotate(5deg); }
+  50% { transform: translate(-10px, 10px) rotate(-3deg); }
+  75% { transform: translate(8px, -8px) rotate(2deg); }
+}
+
+/* --- Persona Enhanced — Guide section with credential icons --- */
+.persona-guide__credentials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.persona-guide__credential {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* --- Persona Enhanced — While-You-Read dynamic text --- */
+.persona-failure__while {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--accent-red);
+  font-weight: 600;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* --- Persona Enhanced — Mobile Overrides --- */
+@media (max-width: 768px) {
+  .persona-hero__stats {
+    gap: 20px;
+  }
+
+  .persona-hero__stat-num {
+    font-size: 22px;
+  }
+
+  .persona-fomo__inner {
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 8px;
+  }
+
+  .persona-cost-callout {
+    padding: 20px;
+  }
+
+  .persona-cost-callout__num {
+    font-size: 28px;
+  }
+
+  .persona-plan__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .persona-cta__pulse-btn {
+    padding: 16px 36px;
+    font-size: 16px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .persona-cta--enhanced {
+    padding: 60px 24px 40px;
+  }
+
+  .persona-trust-strip {
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  .persona-guide {
+    padding: 60px 24px;
+  }
+
+  .persona-guide__credentials {
+    gap: 8px;
+  }
+
+  .persona-failure__box {
+    padding: 24px;
+  }
+
+  .persona-hero__svg-bg svg {
+    opacity: 0.02;
+  }
+}
+
 /* --- USP Section — What Makes Us Different --- */
 .usp {
   background: linear-gradient(180deg, var(--bg-page) 0%, rgba(20, 20, 32, 0.6) 50%, var(--bg-page) 100%);

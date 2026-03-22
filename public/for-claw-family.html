@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodyMaster Kit — For Claw Family</title>
-  <meta name="description" content="One skill kit. Every AI agent in the family. CodyMaster's universal format means your skills work everywhere.">
+  <title>CodyMaster Kit — For the Claw Family</title>
+  <meta name="description" content="CodyMaster Kit — For the Claw Family">
   <meta property="og:title" content="CodyMaster Kit — For the Claw Family">
+  <meta property="og:description" content="From idea to live product in days, not months. No coding required.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="css/kit.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    :root { --persona-accent: #fb923c; }
+    :root { --persona-accent: #22d3ee; }
   </style>
 </head>
 <body>
@@ -60,24 +63,12 @@
             <span class="lang-btn-caret">▾</span>
           </button>
           <div class="lang-menu" id="lang-menu">
-            <button class="lang-option" data-lang="en">
-              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
-            </button>
-            <button class="lang-option" data-lang="vi">
-              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
-            </button>
-            <button class="lang-option" data-lang="zh">
-              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
-            </button>
-            <button class="lang-option" data-lang="ru">
-              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
-            </button>
-            <button class="lang-option" data-lang="ko">
-              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
-            </button>
-            <button class="lang-option" data-lang="hi">
-              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
-            </button>
+            <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span></button>
+            <button class="lang-option" data-lang="vi"><span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span></button>
+            <button class="lang-option" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span></button>
+            <button class="lang-option" data-lang="ru"><span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span></button>
+            <button class="lang-option" data-lang="ko"><span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span></button>
+            <button class="lang-option" data-lang="hi"><span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span></button>
           </div>
         </div>
       </li>
@@ -91,12 +82,76 @@
 
   <!-- ═══════════╗ PERSONA HERO ╔═══════════ -->
   <section class="persona-hero" id="personaHero">
+    <!-- Animated SVG Background -->
+    <div class="persona-hero__svg-bg">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="80" height="80" rx="8" stroke="currentColor" stroke-width="1"/>
+        <line x1="10" y1="30" x2="90" y2="30" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="16" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="40" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="64" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"/>
+        <circle cx="26" cy="20" r="3" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="16" y="54" width="20" height="8" rx="2" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="40" y="54" width="20" height="8" rx="2" stroke="currentColor" stroke-width="0.5"/>
+      </svg>
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.5"/>
+        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-width="0.5"/>
+        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="0.5"/>
+        <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.3"/>
+        <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="0.3"/>
+      </svg>
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 80 L50 20 L80 80 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="55" r="15" stroke="currentColor" stroke-width="0.5"/>
+      </svg>
+    </div>
+
     <div class="persona-hero__content">
+      <!-- Trust Badge -->
+      <div class="persona-hero__badge" data-i18n="personas.details.claw.heroBadge">
+        <span class="persona-hero__badge-dot"></span>
+        Built by a PM with 10+ years · Free & Open Source
+      </div>
       <h1 class="persona-hero__title" data-i18n="personas.details.claw.heroTitle">You have the idea.<br>You just need the 100 hands to build it.</h1>
       <p class="persona-hero__subtitle" data-i18n="personas.details.claw.heroSub">CodyMaster gives non-technical founders the power to build, design, and deploy production-ready products — without writing a single line of code.</p>
+
+      <!-- Hero Stats -->
+      <div class="persona-hero__stats">
+        <div class="persona-hero__stat">
+          <span class="persona-hero__stat-num" data-i18n="personas.details.claw.heroStats.0.num">33</span>
+          <span class="persona-hero__stat-label" data-i18n="personas.details.claw.heroStats.0.label">AI Skills</span>
+        </div>
+        <div class="persona-hero__stat">
+          <span class="persona-hero__stat-num" data-i18n="personas.details.claw.heroStats.1.num">$0</span>
+          <span class="persona-hero__stat-label" data-i18n="personas.details.claw.heroStats.1.label">Cost</span>
+        </div>
+        <div class="persona-hero__stat">
+          <span class="persona-hero__stat-num" data-i18n="personas.details.claw.heroStats.2.num">10min</span>
+          <span class="persona-hero__stat-label" data-i18n="personas.details.claw.heroStats.2.label">To First Deploy</span>
+        </div>
+      </div>
     </div>
     <div class="hero__orb hero__orb--1"></div>
     <div class="hero__orb hero__orb--2"></div>
+  </section>
+
+  <!-- ═══════════╗ FOMO SOCIAL PROOF STRIP ╔═══════════ -->
+  <section class="persona-fomo" id="personaFomo">
+    <div class="persona-fomo__inner">
+      <div class="persona-fomo__item">
+        <span class="persona-fomo__live-dot"></span>
+        <span data-i18n="personas.details.claw.fomo.0">Founders are building right now</span>
+      </div>
+      <div class="persona-fomo__item">
+        <span class="persona-fomo__item-icon">⭐</span>
+        <span data-i18n="personas.details.claw.fomo.1">100% Free — no paywall, no credit card</span>
+      </div>
+      <div class="persona-fomo__item persona-fomo__item--highlight">
+        <span class="persona-fomo__item-icon">🧠</span>
+        <span data-i18n="personas.details.claw.fomo.2">Gets smarter every day you use it</span>
+      </div>
+    </div>
   </section>
 
   <!-- ═══════════╗ PAIN POINTS ╔═══════════ -->
@@ -127,6 +182,11 @@
         <p class="persona-pain-card__desc" data-i18n="personas.details.claw.pains.3.desc">Every day without a live product is a day you're guessing instead of learning. You need to test the market NOW, not in 3 months.</p>
       </div>
     </div>
+    <!-- Cost Calculator Callout -->
+    <div class="persona-cost-callout reveal">
+      <div class="persona-cost-callout__num" data-i18n="personas.details.claw.costCallout.num">$30K–$50K</div>
+      <div class="persona-cost-callout__label" data-i18n="personas.details.claw.costCallout.label">Average agency MVP cost. With CodyMaster: $0.</div>
+    </div>
   </section>
 
   <!-- ═══════════╗ THE GUIDE (AUTHORITY) ╔═══════════ -->
@@ -135,6 +195,12 @@
       <div class="persona-guide__badge" data-i18n="personas.details.claw.guide.badge">THE NEW REALITY</div>
       <h2 class="persona-guide__title" data-i18n="personas.details.claw.guide.title">Build like the top 1% of tech startups, without the $100K budget.</h2>
       <p class="persona-guide__desc" data-i18n="personas.details.claw.guide.desc">You don't need a CTO to build a revolutionary product anymore. CodyMaster equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment.</p>
+      <div class="persona-guide__credentials">
+        <span class="persona-guide__credential">🧠 10+ Years PM Experience</span>
+        <span class="persona-guide__credential">🛡️ Multi-Layer Safety</span>
+        <span class="persona-guide__credential">🔄 Self-Learning AI</span>
+        <span class="persona-guide__credential">📝 Auto Documentation</span>
+      </div>
     </div>
   </section>
 
@@ -150,11 +216,15 @@
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.claw.plan.0.title">Instruct</h3>
         <p class="persona-plan__stepdesc" data-i18n="personas.details.claw.plan.0.desc">Chat with the cm-planning agent in plain English. Describe your market, your users, and your dream app.</p>
       </div>
+      <!-- Connector SVG Arrow -->
+      <svg class="persona-plan__connector persona-plan__connector--1" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div class="persona-plan__step reveal">
         <div class="persona-plan__num">2</div>
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.claw.plan.1.title">Review</h3>
         <p class="persona-plan__stepdesc" data-i18n="personas.details.claw.plan.1.desc">Watch the UI generate in real-time. Give feedback on colors, layout, and copy just like talking to a human designer.</p>
       </div>
+      <!-- Connector SVG Arrow -->
+      <svg class="persona-plan__connector persona-plan__connector--2" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div class="persona-plan__step reveal">
         <div class="persona-plan__num">3</div>
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.claw.plan.2.title">Deploy</h3>
@@ -195,6 +265,7 @@
       <p class="section__label" style="color:var(--accent-red);" data-i18n="personas.details.claw.failureLabel">THE COST OF WAITING</p>
       <h2 class="persona-failure__title" data-i18n="personas.details.claw.failureTitle">Every day without a product is a day someone else takes your market share.</h2>
       <p class="persona-failure__desc" data-i18n="personas.details.claw.failureDesc">If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky.</p>
+      <p class="persona-failure__while" data-i18n="personas.details.claw.failureWhile">⏱️ While you're reading this, 3 other founders with the same idea are already building with AI.</p>
     </div>
   </section>
 
@@ -212,6 +283,7 @@
           <li data-i18n="personas.details.claw.beforeAfter.before.1">3-6 months to launch</li>
           <li data-i18n="personas.details.claw.beforeAfter.before.2">Product doesn't match your vision</li>
           <li data-i18n="personas.details.claw.beforeAfter.before.3">Can't iterate quickly</li>
+          <li data-i18n="personas.details.claw.beforeAfter.before.4">Dependent on developers</li>
         </ul>
       </div>
       <div class="persona-ba__col persona-ba__col--after">
@@ -221,6 +293,7 @@
           <li data-i18n="personas.details.claw.beforeAfter.after.1">Days to launch, not months</li>
           <li data-i18n="personas.details.claw.beforeAfter.after.2">You describe, AI builds exactly that</li>
           <li data-i18n="personas.details.claw.beforeAfter.after.3">Iterate in real-time with chat</li>
+          <li data-i18n="personas.details.claw.beforeAfter.after.4">Full ownership, no dependency</li>
         </ul>
       </div>
     </div>
@@ -239,17 +312,29 @@
       </details>
       <details class="persona-objection reveal">
         <summary class="persona-objection__q" data-i18n="personas.details.claw.objections.1.q">I literally don't know any code. Will this work for me?</summary>
-        <div class="persona-objection__a" data-i18n="personas.details.claw.objections.1.a">That's exactly who this is for. You chat naturally — AI handles everything from code to infrastructure.</div>
+        <div class="persona-objection__a" data-i18n="personas.details.claw.objections.1.a">That's exactly who this is for. The creator of CodyMaster is a PM who can't code either. You chat naturally — AI handles everything.</div>
+      </details>
+      <details class="persona-objection reveal">
+        <summary class="persona-objection__q" data-i18n="personas.details.claw.objections.2.q">What if I need changes later?</summary>
+        <div class="persona-objection__a" data-i18n="personas.details.claw.objections.2.a">Chat again. Tell AI what to change. It remembers context (cm-continuity) and updates without breaking existing functionality.</div>
       </details>
     </div>
   </section>
 
-  <!-- ═══════════╗ CTA ╔═══════════ -->
-  <section class="section persona-cta" id="personaCta">
+  <!-- ═══════════╗ CTA (ENHANCED) ╔═══════════ -->
+  <section class="section persona-cta--enhanced" id="personaCta">
     <div class="persona-cta__content reveal">
       <h2 class="persona-cta__title" data-i18n="personas.details.claw.ctaTitle">Your idea deserves to exist.<br>Stop waiting. Start building.</h2>
       <p class="persona-cta__sub" data-i18n="personas.details.claw.ctaSub">Free. No credit card. From idea to live product today.</p>
-      <a href="start.html" class="btn btn--primary btn--lg" data-i18n="personas.details.claw.ctaButton">Build My MVP Now →</a>
+      <div class="persona-cta__buttons">
+        <a href="start.html" class="persona-cta__pulse-btn" data-i18n="personas.details.claw.ctaButton">Build My MVP Now →</a>
+        <a href="story.html" class="persona-cta__secondary" data-i18n="personas.details.claw.ctaSecondary">📖 Read the Story</a>
+      </div>
+      <div class="persona-trust-strip">
+        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> 100% Free & Open Source</span>
+        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Gets Smarter Every Day</span>
+        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Built by a PM, for Everyone</span>
+      </div>
     </div>
   </section>
 
@@ -298,6 +383,7 @@
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      
       if (window.lucide) lucide.createIcons();
     });
   </script>

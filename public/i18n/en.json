@@ -16,40 +16,44 @@
     "brain": "Brain"
   },
   "hero": {
-    "badge": "33 Skills · Open Source · Free",
-    "headlineStatic": "Build Real Products with AI",
+    "badge": "Built by a PM with 10+ years · 33 Skills · Free",
+    "headlineStatic": "Your AI Senior Team — From A to Z",
     "typingPhrases": [
-      "No Coding Required",
-      "Ship in Minutes, Not Months",
-      "From Idea to Live Product"
+      "For Lazy People Who Ship Fast 🧛",
+      "It Gets Smarter Every Day",
+      "One Kit. Entire Product Lifecycle."
     ],
-    "subtitle": "33 specialized AI skills that handle design, code, testing, and deployment.\nYou just chat. No coding required.",
+    "subtitle": "10 years of product experience + 6 months of relentless vibe coding = 33 AI skills that think like a full senior team.\nInstall once. It learns. It improves. It ships.",
     "ctaPrimary": "Start Building — Free",
     "ctaSecondary": "Watch Demo",
-    "trustNoCreditCard": "✓ No credit card needed",
-    "trust30Seconds": "✓ Setup in 30 seconds",
-    "trustOpenSource": "✓ 100% Open Source"
+    "trustNoCreditCard": "✓ For people who hate repetitive work",
+    "trust30Seconds": "✓ Gets smarter the more you use it",
+    "trustOpenSource": "✓ 100% Free & Open Source"
   },
   "features": {
-    "label": "WHY CODY MASTER",
-    "title": "Everything you need,\nin a single kit",
-    "subtitle": "No coding required. No need to hire developers. AI handles everything from A to Z.",
+    "label": "WHY THIS KIT",
+    "title": "Not scattered skills.\nOne integrated system.",
+    "subtitle": "Instead of installing 20 random AI skills that don't talk to each other — CodyMaster is one complete system where every skill connects, every workflow links.",
     "cards": [
       {
-        "title": "10x Faster",
-        "description": "From idea to a complete website in minutes. AI codes, designs, and deploys automatically — you just say what you want."
+        "title": "🧠 Learning Brain",
+        "description": "CodyMaster has a brain that learns. It remembers mistakes, draws lessons, and when it doesn't know something — it goes finding the right skill to upgrade itself. The more you use it, the smarter it gets."
       },
       {
-        "title": "Pro Quality",
-        "description": "Production-ready code — not throwaway prototypes. 33 skills ensure quality from security to SEO."
+        "title": "🛡️ Multi-Layer Safety",
+        "description": "Strict multi-layer controls on every deploy. Your codebase won't get destroyed. No more 'deploy and pray'. Every change passes through quality gates before reaching production."
       },
       {
-        "title": "Save 90%",
-        "description": "Compared to hiring agencies or freelancers, you save both time and money. One kit replaces an entire team."
+        "title": "👥 Your Senior Team",
+        "description": "Using this kit = leveraging 10 years of product experience + a complete senior team from design to code to testing to deployment. One person. Full team power."
       },
       {
-        "title": "Dead Simple",
-        "description": "Chat naturally, AI understands and delivers. No complex interfaces, no learning curve."
+        "title": "📄 Docs from Silence",
+        "description": "No documentation? No idea what the previous code does? cm-dockit generates complete technical docs AND user guides — from your existing code. Even the messiest legacy projects."
+      },
+      {
+        "title": "🔄 Legacy Rescue",
+        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
       }
     ]
   },
@@ -308,7 +312,33 @@
         ],
         "failureLabel": "THE COST OF WAITING",
         "failureTitle": "Every day without a product is a day someone else takes your market share.",
-        "failureDesc": "If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky."
+        "failureDesc": "If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky.",
+        "heroBadge": "Built by a PM with 10+ years · Free & Open Source",
+        "heroStats": [
+          {
+            "num": "33",
+            "label": "AI Skills"
+          },
+          {
+            "num": "$0",
+            "label": "Cost"
+          },
+          {
+            "num": "10min",
+            "label": "To First Deploy"
+          }
+        ],
+        "fomo": [
+          "Founders are building right now",
+          "100% Free — no paywall, no credit card",
+          "Gets smarter every day you use it"
+        ],
+        "costCallout": {
+          "num": "$30K–$50K",
+          "label": "Average agency MVP cost. With CodyMaster: $0."
+        },
+        "failureWhile": "⏱️ While you're reading this, 3 other founders with the same idea are already building with AI.",
+        "ctaSecondary": "📖 Read the Story"
       },
       "cmo": {
         "heroTitle": "Your content team can't keep up.\nCodyMaster can.",
@@ -413,7 +443,33 @@
         ],
         "failureLabel": "THE BOTTLENECK PENALTY",
         "failureTitle": "A marketing team that moves slow becomes irrelevant.",
-        "failureDesc": "While you wait 3 weeks for your dev team to build one landing page, your competitors are running 10 different A/B tests. Speed of execution is the only modern marketing advantage."
+        "failureDesc": "While you wait 3 weeks for your dev team to build one landing page, your competitors are running 10 different A/B tests. Speed of execution is the only modern marketing advantage.",
+        "heroBadge": "7 Persuasion Frameworks · Full Pixel Tracking · Free",
+        "heroStats": [
+          {
+            "num": "7",
+            "label": "Frameworks"
+          },
+          {
+            "num": "33x",
+            "label": "Content Speed"
+          },
+          {
+            "num": "15min",
+            "label": "To Landing Page"
+          }
+        ],
+        "fomo": [
+          "Marketing teams scaling output 10x right now",
+          "Includes StoryBrand + Cialdini + SUCCESs",
+          "Complete ad tracking: Meta, TikTok, Google"
+        ],
+        "costCallout": {
+          "num": "180 hours/year",
+          "label": "Wasted on manual content and landing page workflows. Automated with CodyMaster."
+        },
+        "failureWhile": "⏱️ Your competitor just launched 3 A/B test variants while you're still waiting for the dev team.",
+        "ctaSecondary": "📖 See Content Factory"
       },
       "pm": {
         "heroTitle": "AI gave you 100 hands.\nBut without discipline, those hands create chaos.",
@@ -518,7 +574,33 @@
         ],
         "failureLabel": "THE FEATURE FACTORY TRAP",
         "failureTitle": "Building features nobody wants burns your runway.",
-        "failureDesc": "60% of features built by software teams are rarely or never used. If you can't test ideas rapidly, you are gambling your company's resources on unvalidated assumptions."
+        "failureDesc": "60% of features built by software teams are rarely or never used. If you can't test ideas rapidly, you are gambling your company's resources on unvalidated assumptions.",
+        "heroBadge": "Built by a Head of Product · 10+ Years Experience",
+        "heroStats": [
+          {
+            "num": "4",
+            "label": "Safety Layers"
+          },
+          {
+            "num": "6",
+            "label": "Quality Gates"
+          },
+          {
+            "num": "∞",
+            "label": "Memory"
+          }
+        ],
+        "fomo": [
+          "The creator is a PM who can't code — this kit IS the solution",
+          "AI that remembers mistakes and never repeats them",
+          "Auto-generates complete product documentation"
+        ],
+        "costCallout": {
+          "num": "60%",
+          "label": "of features built by teams are rarely or never used. Validate faster with CodyMaster."
+        },
+        "failureWhile": "⏱️ While you're debating in meetings, undisciplined AI is breaking your codebase.",
+        "ctaSecondary": "📖 Read Our Story"
       },
       "dev": {
         "heroTitle": "Stop writing setup code.\nStart writing what matters.",
@@ -632,7 +714,33 @@
         ],
         "failureLabel": "THE TECH DEBT SPIRAL",
         "failureTitle": "Technical debt grows faster than you can hire.",
-        "failureDesc": "If your team is bogged down in legacy maintenance and slow manual testing, innovation stops. Without AI leverage, your top talent will burn out and leave for companies that move faster."
+        "failureDesc": "If your team is bogged down in legacy maintenance and slow manual testing, innovation stops. Without AI leverage, your top talent will burn out and leave for companies that move faster.",
+        "heroBadge": "17 Frameworks · TDD Enforced · Multi-Gate Deploy",
+        "heroStats": [
+          {
+            "num": "17",
+            "label": "Frameworks"
+          },
+          {
+            "num": "8",
+            "label": "Deploy Gates"
+          },
+          {
+            "num": "10min",
+            "label": "Full Scaffold"
+          }
+        ],
+        "fomo": [
+          "Senior devs are automating 80% of boilerplate",
+          "TDD-first: every feature has tests before code",
+          "Supports React, Vue, Next.js, Flutter, SwiftUI +12 more"
+        ],
+        "costCallout": {
+          "num": "2-3 days",
+          "label": "Wasted per project on setup boilerplate. With cm-project-bootstrap: 10 minutes."
+        },
+        "failureWhile": "⏱️ Tech debt grows faster than you can hire. Your best engineers are fixing bugs, not building features.",
+        "ctaSecondary": "🛠️ See All 33 Skills"
       },
       "designer": {
         "heroTitle": "You designed the system.\nAI should respect it.",
@@ -737,7 +845,33 @@
         ],
         "failureLabel": "THE COMPROMISE",
         "failureTitle": "Developers ruining your designs because handoffs are broken.",
-        "failureDesc": "If you don't control the implementation, your portfolio is full of 'what I designed' vs 'what they built'. Take back control of the final output."
+        "failureDesc": "If you don't control the implementation, your portfolio is full of 'what I designed' vs 'what they built'. Take back control of the final output.",
+        "heroBadge": "Harvester v4 · 48 UX Laws · Figma → Code Pipeline",
+        "heroStats": [
+          {
+            "num": "48",
+            "label": "UX Laws"
+          },
+          {
+            "num": "1032+",
+            "label": "Design Patterns"
+          },
+          {
+            "num": "120+",
+            "label": "Extracted Tokens"
+          }
+        ],
+        "fomo": [
+          "Design-first AI that reads YOUR tokens",
+          "Preview in Google Stitch or Pencil.dev before any code",
+          "Extracts design systems from any existing website"
+        ],
+        "costCallout": {
+          "num": "80%",
+          "label": "of AI-generated code doesn't match the design. cm-ux-master makes it pixel-perfect."
+        },
+        "failureWhile": "⏱️ Developers are shipping designs that don't match your vision. Again.",
+        "ctaSecondary": "🎨 See UX Master"
       },
       "claw": {
         "heroTitle": "One skill kit.\nEvery AI agent in the family.",
@@ -842,7 +976,33 @@
         ],
         "failureLabel": "THE SIDE HUSTLE GRAVEYARD",
         "failureTitle": "Working a 9-to-5 while your side-hustle gathers dust.",
-        "failureDesc": "You have 10 domains registered and 0 products launched. The longer you take to build, the more likely you are to lose motivation. Speed is life."
+        "failureDesc": "You have 10 domains registered and 0 products launched. The longer you take to build, the more likely you are to lose motivation. Speed is life.",
+        "heroBadge": "Universal Format · Every AI Agent · Zero Lock-in",
+        "heroStats": [
+          {
+            "num": "7+",
+            "label": "AI Platforms"
+          },
+          {
+            "num": "33",
+            "label": "Universal Skills"
+          },
+          {
+            "num": "0",
+            "label": "Migration Cost"
+          }
+        ],
+        "fomo": [
+          "One SKILL.md works on Claude, Cursor, Gemini, and more",
+          "Switch AI agents freely — zero migration cost",
+          "Community growing with cross-agent compatibility"
+        ],
+        "costCallout": {
+          "num": "100%",
+          "label": "of your existing prompts and rules are locked to one agent. CodyMaster gives you freedom."
+        },
+        "failureWhile": "⏱️ A better AI agent launches tomorrow. Without CodyMaster, you start from scratch. Again.",
+        "ctaSecondary": "🦞 Join the Family"
       }
     }
   },
@@ -978,9 +1138,9 @@
     "worksWithLabel": "Works with every major AI agent"
   },
   "cta": {
-    "title": "Stop planning. Start building.\nYour idea deserves to exist.",
-    "subtitle": "Free. No credit card. Setup in 30 seconds. Start building now.",
-    "button": "Start Building \u2014 Free"
+    "title": "Built for lazy people who ship great products. 🧛\nIf that's you — start now.",
+    "subtitle": "Free. No credit card. The more you use it, the smarter it gets.",
+    "button": "Be Lazy, Ship Fast 🧛"
   },
   "footer": {
     "links": [
@@ -1948,7 +2108,7 @@
       "description": "Experience CodyMaster in action. Chat with AI and watch it build a real product — right in your browser."
     },
     "topBar": "⚡ CodyMaster Demo",
-    "exitDemo": "← Back to Home",
+    "exitDemo": "← Home",
     "aiName": "CodyMaster AI",
     "welcomeMessage": "Hi! I'm CodyMaster. Tell me what you want to build, and I'll show you how I work. Try one of the suggestions below, or type your own idea!",
     "inputPlaceholder": "Type what you want to build...",
@@ -2195,7 +2355,7 @@
       }
     },
     "cta": "Start your journey →",
-    "backHome": "← Back to Home"
+    "backHome": "← Home"
   },
   "docsPage": {
     "meta": {
@@ -2767,7 +2927,7 @@
       "title": "Give your AI a real brain.",
       "subtitle": "AI without memory = goldfish that talks. CodyMaster Brain turns AI into a colleague who remembers, learns fast, and never repeats the same mistakes.",
       "button": "Experience Brain Now",
-      "backHome": "← Back to Home"
+      "backHome": "← Home"
     }
   }
 }
