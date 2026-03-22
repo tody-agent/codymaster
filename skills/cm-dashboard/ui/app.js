@@ -35,13 +35,13 @@
   const API = '/api';
   const AGENT_COLORS = {
     'antigravity': '#3fb950', 'claude-code': '#bc8cff', 'cursor': '#58a6ff',
-    'gemini-cli': '#d29922', 'windsurf': '#f97316', 'cline': '#a1887f',
-    'copilot': '#8b949e', 'manual': '#e6edf3',
+    'codex': '#ec4899', 'windsurf': '#f97316', 'cline': '#a1887f',
+    'copilot': '#8b949e', 'cli': '#d29922', 'gemini-cli': '#d29922', 'manual': '#e6edf3',
   };
   const AGENT_LABELS = {
     'antigravity': 'Antigravity', 'claude-code': 'Claude Code', 'cursor': 'Cursor',
-    'gemini-cli': 'Gemini CLI', 'windsurf': 'Windsurf', 'cline': 'Cline',
-    'copilot': 'Copilot', 'manual': 'Manual',
+    'codex': 'Codex', 'windsurf': 'Windsurf / Cline', 'cline': 'Windsurf / Cline',
+    'copilot': 'GitHub Copilot', 'cli': 'CLI', 'gemini-cli': 'CLI', 'manual': 'Manual',
   };
   const ACTIVITY_ICONS = {
     'task_created': '✨', 'task_moved': '↔️', 'task_done': '✅', 'task_deleted': '🗑️', 'task_updated': '✏️',
