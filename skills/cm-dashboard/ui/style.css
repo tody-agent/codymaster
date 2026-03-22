@@ -2,8 +2,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 /* ── Light Mode (default) ─────────── */
-:root{
-  color-scheme:light dark;
+:root, [data-theme="light"] {
+  color-scheme: light;
   --bg-body:#f6f8fa;--bg-sidebar:#ffffff;--bg-card:#ffffff;--bg-card-hover:#f3f4f6;
   --bg-column:#f0f2f5;--bg-input:#ffffff;--bg-modal:#ffffff;
   --text-primary:#1f2328;--text-secondary:#656d76;--text-muted:#8b949e;
@@ -23,6 +23,7 @@
 
 /* ── Dark Mode (Mockup theme) ──────── */
 [data-theme="dark"]{
+  color-scheme: dark;
   --bg-body:#000000;--bg-sidebar:#09090b;--bg-card:#18181b;--bg-card-hover:#27272a;
   --bg-column:#141417;--bg-input:#09090b;--bg-modal:#18181b;
   --text-primary:#f4f4f5;--text-secondary:#a1a1aa;--text-muted:#71717a;
@@ -43,7 +44,7 @@ body{display:flex;overflow:hidden}
 
 /* ── Sidebar ──────────────────────── */
 .sidebar{width:240px;min-width:240px;background:var(--bg-sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;transition:width .2s,min-width .2s;overflow:hidden}
-.sidebar.collapsed{width:0;min-width:0;border:none}
+.sidebar.collapsed{width:0!important;min-width:0!important;border:none!important;visibility:hidden;pointer-events:none}
 .sidebar-header{display:flex;align-items:center;gap:8px;padding:16px 16px 12px;position:relative}
 .sidebar-title{font-size:16px;font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:6px}
 .sidebar-subtitle{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);opacity:.8;padding-top:2px}
@@ -88,18 +89,10 @@ body{display:flex;overflow:hidden}
 /* ── Header Actions & Mobile Menu ─── */
 .hide-xs, .hide-sm { display: flex; align-items: center; }
 .header-actions-dropdown { position: relative; }
-.btn-more-menu { display: none; }
+button.btn-more-menu { display: none; }
 .header-actions { display: flex; align-items: center; gap: 8px; }
 
-/* ── Tab Navigation ───────────────── */
-.tab-nav{display:flex;gap:2px;padding:8px 20px 0;background:var(--bg-sidebar);border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto;scrollbar-width:none;}
-.tab-nav::-webkit-scrollbar{display:none;}
-.tab-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;font-size:13px;font-weight:500;font-family:var(--font);color:var(--text-secondary);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .15s;border-radius:var(--radius-sm) var(--radius-sm) 0 0}
-.tab-btn:hover{color:var(--text-primary);background:color-mix(in srgb,var(--accent) 6%,transparent)}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
-.tab-btn svg{opacity:.7}
-.tab-btn.active svg{opacity:1}
-
+/* Horizontal Tab rules removed since views are now in the sidebar */
 /* ── Agent Dispatch Modal ──────────────────────────── */
 .modal-lg { max-width: 800px; width: 95%; }
 .dispatch-content { display: flex; flex-direction: column; gap: 20px; padding: 10px 0; }
@@ -122,8 +115,8 @@ body{display:flex;overflow:hidden}
   color: var(--text-main);
 }
 .dispatch-cli-block {
-  background: #111;
-  color: #5af78e;
+  background: var(--bg-input);
+  color: var(--col-in-progress);
   padding: 12px 16px;
   border-radius: var(--radius);
   font-family: 'JetBrains Mono', monospace;

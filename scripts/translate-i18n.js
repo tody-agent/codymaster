@@ -17,21 +17,37 @@ const MAX_CONCURRENT_AGENTS = 5;
 
 // Run terminal command silently and return stdout
 function runGeminiCommand(prompt) {
-    return new Promise((resolve, reject) => {
-        // Escape quotes
+    return new Promise((resolve) => {
         const escapedPrompt = prompt.replace(/"/g, '\\"').replace(/\$/g, '\\$').replace(/`/g, '\\`');
-        const cmd = `gemini -y -p "${escapedPrompt}"`;
+        const cmd = `gemini -y -o json -p "${escapedPrompt}"`;
         
-        exec(cmd, { maxBuffer: 1024 * 1024 * 10 }, (error, stdout, stderr) => {
+        exec(cmd, { maxBuffer: 1024 * 1024 * 50 }, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Gemini CLI Error:`, stderr || error.message);
-                resolve(null);
-            } else {
-                resolve(stdout);
             }
+            
+            const output = stdout || stderr;
+            if (!output) {
+                return resolve(null);
+            }
+
+            try {
+                const jsonStart = output.indexOf('{\n  "session_id":');
+                if (jsonStart !== -1) {
+                    const jsonStr = output.substring(jsonStart);
+                    const parsed = JSON.parse(jsonStr);
+                    return resolve(parsed.response);
+                }
+            } catch (e) {
+                console.error("Failed to parse JSON output:", e.message);
+            }
+            
+            resolve(output);
         });
     });
 }
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Function to call LLM for translation
 async function translateBatchWithLLM(keys, enData, toLangFull) {
@@ -90,8 +106,27 @@ async function processTranslations() {
             const keysToTranslate = [];
             
             for (const key of Object.keys(enData)) {
-                if (targetData[key] && targetData[key] === enData[key]) {
-                    if (/^[0-9\s\.,\-\+\/]+$/.test(targetData[key]) || targetData[key].length <= 1) continue;
+                const tarVal = targetData[key];
+                const enVal = enData[key];
+                
+                let needsTranslation = false;
+                
+                if (tarVal === undefined || tarVal === null || tarVal === "") {
+                    needsTranslation = true;
+                } else if (tarVal === enVal) {
+                    const isNonTranslatable = 
+                        /^[0-9\s\.,\-\+\/\(\)\|\!\?\#\%\&\*\=\<\>]+$/.test(tarVal) || 
+                        /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/.test(tarVal) ||
+                        tarVal.length <= 1 || 
+                        tarVal.startsWith("cm-") ||
+                        ["CodyMaster", "GitHub", "VND", "USD", "EN", "English", "Vibe Coding", "Gemini", "Claude", "Cursor", "Discord", "中 文", "中文", "हिन्दी", "Русский", "한국어", "Tiếng Việt", "= init()"].includes(tarVal);
+
+                    if (!isNonTranslatable) {
+                        needsTranslation = true;
+                    }
+                }
+                
+                if (needsTranslation) {
                     keysToTranslate.push(key);
                 }
             }
@@ -149,6 +184,12 @@ async function processTranslations() {
                     console.log(`❌ Agent failed batch for [${task.langCode}] ${task.nsFile}`);
                 }
             }));
+            
+            if (tasks.length > 0) {
+                // Add a delay between concurrent batches
+                console.log(`  Waiting 10s for next set of agents...`);
+                await sleep(10000);
+            }
         }
     }
     

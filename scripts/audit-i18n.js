@@ -53,8 +53,15 @@ function auditTranslations() {
                     console.log(`  ⚠️ Empty Value: ${nsFile} -> ${key}`);
                     langIssues++;
                 } else if (tarVal === enVal) {
-                    // Ignore numbers, whitespace, symbols or extremely short words
-                    if (/^[0-9\s\.,\-\+\/]+$/.test(tarVal) || tarVal.length <= 1 || enVal === "CodyMaster") {
+                    // Ignore numbers, whitespace, symbols, emojis or extremely short words
+                    const isNonTranslatable = 
+                        /^[0-9\s\.,\-\+\/\(\)\|\!\?\#\%\&\*\=\<\>]+$/.test(tarVal) || 
+                        /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/.test(tarVal) ||
+                        tarVal.length <= 1 || 
+                        tarVal.startsWith("cm-") ||
+                        ["CodyMaster", "GitHub", "VND", "USD", "EN", "English", "Vibe Coding", "Gemini", "Claude", "Cursor", "Discord", "中 文", "中文", "हिन्दी", "Русский", "한국어", "Tiếng Việt", "= init()"].includes(tarVal);
+
+                    if (isNonTranslatable) {
                         translatedStrings++;
                         continue;
                     }

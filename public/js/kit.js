@@ -60,6 +60,7 @@
       const t = this.translations[this.currentLang];
       const en = this.translations['en'];
       if (!t) return;
+      window._i18nData = t;
 
       // Update all data-i18n elements
       document.querySelectorAll('[data-i18n]').forEach(el => {

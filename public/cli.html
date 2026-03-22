@@ -397,18 +397,22 @@
           </div>
           
           <div class="dash-section">
-            <div class="dash-section__label">Workspaces</div>
+            <div class="dash-section__label">Projects</div>
             <div class="dash-item active">
-              <div class="dash-item__left"><i data-lucide="box" style="width:16px;height:16px;"></i> codymaster-core</div>
+              <div class="dash-item__left"><i data-lucide="folder" style="width:16px;height:16px;"></i> All Projects</div>
+              <div class="dash-badge">20</div>
+            </div>
+            <div class="dash-item">
+              <div class="dash-item__left"><i data-lucide="package" style="width:16px;height:16px;"></i> boxme-scoring</div>
+              <div class="dash-badge">7</div>
+            </div>
+            <div class="dash-item">
+              <div class="dash-item__left"><i data-lucide="package" style="width:16px;height:16px;"></i> codymaster</div>
               <div class="dash-badge">9</div>
             </div>
             <div class="dash-item">
-              <div class="dash-item__left"><i data-lucide="layout" style="width:16px;height:16px;"></i> figma-to-code</div>
-              <div class="dash-badge">3</div>
-            </div>
-            <div class="dash-item">
-              <div class="dash-item__left"><i data-lucide="globe" style="width:16px;height:16px;"></i> i18n-engine</div>
-              <div class="dash-badge">5</div>
+              <div class="dash-item__left"><i data-lucide="package" style="width:16px;height:16px;"></i> Marketplace_Report</div>
+              <div class="dash-badge">4</div>
             </div>
           </div>
           
@@ -416,39 +420,49 @@
             <div class="dash-section__label">Active Agents</div>
             <div class="dash-item" style="color:#22c55e;">
               <div class="dash-item__left"><span style="display:inline-block;width:8px;height:8px;background:#22c55e;border-radius:50%;"></span> Antigravity</div>
-              <div class="dash-badge">4</div>
+              <div class="dash-badge">18</div>
             </div>
-            <div class="dash-item" style="color:#3b82f6;">
-              <div class="dash-item__left"><span style="display:inline-block;width:8px;height:8px;background:#3b82f6;border-radius:50%;"></span> Claude 3.7</div>
-              <div class="dash-badge">3</div>
-            </div>
-            <div class="dash-item" style="color:#a1a1aa;">
-              <div class="dash-item__left"><span style="display:inline-block;width:8px;height:8px;background:#71717a;border-radius:50%;"></span> Cursor</div>
-              <div class="dash-badge">2</div>
+            <div class="dash-item" style="color:#a78bfa;">
+              <div class="dash-item__left"><span style="display:inline-block;width:8px;height:8px;background:#a78bfa;border-radius:50%;"></span> Claude Code</div>
+              <div class="dash-badge">1</div>
             </div>
           </div>
-        </div>
 
-        <!-- Main Dash -->
+          <div class="dash-section" style="margin-top:auto;">
+            <div class="dash-section__label">Views</div>
+            <div class="dash-item active" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-radius: 6px;">
+              <div class="dash-item__left" style="margin-left:8px;">Kanban</div>
+            </div>
+            <div class="dash-item">
+              <div class="dash-item__left" style="margin-left:8px;">History</div>
+            </div>
+            <div class="dash-item">
+              <div class="dash-item__left" style="margin-left:8px;">Deploys</div>
+            </div>
+            <div class="dash-item">
+              <div class="dash-item__left" style="margin-left:8px;">Changelog</div>
+            </div>
+            <div class="dash-item">
+              <div class="dash-item__left" style="margin-left:8px;">🧠 Brain</div>
+            </div>
+          </div>
+        </div>\n\n        <!-- Main Dash -->
         <div class="dash-main">
           <div class="dash-header">
-            <div style="font-weight: 600; font-size: 16px; display:flex; gap:12px; align-items:center;">
-              <i data-lucide="menu" style="width:18px;height:18px;"></i>
-              codymaster-core Sprint
+            <div class="dash-header__tabs" style="align-items:center;">
+              <span style="font-size:16px; font-weight:600; color:#fff; display:flex; align-items:center; gap:8px;">
+                <i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i>
+                Mission Control
+              </span>
             </div>
-            <div class="dash-header__tabs">
-              <div class="dash-tab active"><i data-lucide="kanban-square" style="width:16px;height:16px;"></i> Kanban</div>
-              <div class="dash-tab"><i data-lucide="clock" style="width:16px;height:16px;"></i> History</div>
-              <div class="dash-tab"><i data-lucide="rocket" style="width:16px;height:16px;"></i> Deploys</div>
-              <div class="dash-tab"><i data-lucide="brain" style="width:16px;height:16px;color:#f472b6;"></i> Brain Network</div>
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#a1a1aa; display:none; @media(min-width:600px){display:flex;}">
+                <div style="width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow: 0 0 8px #22c55e;"></div>
+                System Synced
+              </div>
+              <button style="background:#27272a; border:1px solid #3f3f46; color:#e4e4e7; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;" onclick="location.reload()">Refresh Data</button>
             </div>
-            <div style="display: flex; align-items: center;">
-              <span style="font-size: 12px; color: #a1a1aa; margin-right: 16px; display: none; @media(min-width: 600px) { display: inline; }">● 2 active &nbsp; ● 4 done &nbsp; <span style="color:#22c55e;">● Live Sync</span></span>
-              <button style="background: #3b82f6; color: #fff; border:none; padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor:pointer;">+ Issue Command</button>
-            </div>
-          </div>
-
-          <!-- Board -->
+          </div>\n\n          <!-- Board -->
           <div class="kanban-board">
             
             <div class="kanban-column">

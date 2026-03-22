@@ -4,7 +4,7 @@
 
 # 🧠 CodyMaster
 
-### AI Agent của bạn thông minh. CodyMaster làm cho nó trở nên *sáng suốt*.
+### AI Agent của bạn thông minh. CodyMaster giúp nó trở nên *thông thái*.
 
 **33 Kỹ năng · 11 Lệnh · 1 Plugin · 7+ Nền tảng · 6 Ngôn ngữ**
 
@@ -20,46 +20,46 @@
 
 ![CodyMaster Kanban Dashboard](assets/images/dashboard.png)
 
-### 🌟 Nếu CodyMaster giúp bạn tiết kiệm thời gian, hãy tặng một [Star](https://github.com/tody-agent/codymaster)! 🌟
+### 🌟 Nếu CodyMaster giúp bạn tiết kiệm thời gian, hãy tặng nó một [Star](https://github.com/tody-agent/codymaster)! 🌟
 
 </div>
 
 ---
 
-## 🛑 Vấn đề mà không ai nhắc tới
+## 🛑 Vấn đề mà không ai nói đến
 
-Bạn đã cài đặt một AI coding agent. Nó thật *tuyệt vời*. Nó viết code nhanh hơn bất kỳ con người nào.
+Bạn đã cài đặt một AI coding agent. Nó *thật xuất sắc*. Nó viết code nhanh hơn bất kỳ con người nào.
 
-Nhưng rồi thực tế ập đến:
+Nhưng sau đó thực tế ập đến:
 
-| 😤 Điều gì thực sự xảy ra | 💀 Cái giá phải trả thực tế |
+| 😤 Điều thực sự xảy ra | 💀 Chi phí thực tế |
 |--------------------------|-----------------|
-| AI thiết kế **khác nhau mọi lúc** — cùng một thương hiệu, 3 phong cách khác nhau | Khách hàng nghĩ bạn là 3 công ty khác nhau |
+| AI thiết kế **khác nhau sau mỗi lần** — cùng một thương hiệu, 3 phong cách khác nhau | Khách hàng nghĩ bạn là 3 công ty khác nhau |
 | AI sửa một lỗi, **âm thầm làm hỏng 5 thứ khác** | Bạn phải làm lại cùng một công việc 3-4 lần |
-| AI **quên mọi thứ** giữa các phiên làm việc | Bạn phải giải thích lại cùng một codebase vào mỗi sáng |
-| AI viết không dòng test nào, không tài liệu nào | Codebase của bạn trở thành một "lâu đài trên cát" |
-| Bạn cài đặt 15 kỹ năng khác nhau — **không cái nào giao tiếp với nhau** | Bộ công cụ Frankenstein với con số không về sự cộng hưởng |
-| Deploy lên production = **deploy và cầu nguyện** 🙏 | Deploy bị hỏng lúc 2 giờ sáng, không có rollback |
+| AI **quên mọi thứ** giữa các phiên làm việc | Bạn phải giải thích lại cùng một codebase mỗi sáng |
+| AI không viết test, không viết tài liệu | Codebase của bạn trở nên mong manh như một ngôi nhà bằng bài |
+| Bạn cài đặt 15 kỹ năng khác nhau — **không cái nào giao tiếp với nhau** | Bộ công cụ Frankenstein không có sự hiệp đồng |
+| Triển khai lên production = **triển khai và cầu nguyện** 🙏 | Triển khai bị lỗi lúc 2 giờ sáng, không có rollback |
 
-> *"AI cho tôi 100 cánh tay. Nhưng nếu không có kỷ luật, những cánh tay đó chỉ tạo ra sự hỗn loạn."*
-> — **Tody Le**, Trưởng phòng Sản phẩm · 10+ năm kinh nghiệm · Người sáng tạo ra CodyMaster
+> *"AI đã cho tôi 100 bàn tay. Nhưng nếu không có kỷ luật, những bàn tay đó sẽ tạo ra sự hỗn loạn."*
+> — **Tody Le**, Head of Product · 10+ năm · Người sáng tạo CodyMaster
 
 ---
 
-## 🟢 Giải pháp: Một đội ngũ Senior toàn diện trong một Bộ công cụ
+## 🟢 Giải pháp: Cả một đội ngũ Senior trong một bộ công cụ
 
-CodyMaster không chỉ là "một gói kỹ năng AI khác." Đó là **hơn 10 năm kinh nghiệm quản lý sản phẩm + 6 tháng vibe coding đã qua thực chiến**, được đúc kết thành 33 kỹ năng liên kết với nhau, hoạt động như một **hệ thống tích hợp duy nhất**.
+CodyMaster không chỉ là "một gói kỹ năng AI khác." Đó là **10+ năm kinh nghiệm quản lý sản phẩm + 6 tháng lập trình theo phong cách "vibe coding" đã được thử thách qua thực tế**, được đúc kết thành 33 kỹ năng liên kết chặt chẽ với nhau, hoạt động như một **hệ thống tích hợp duy nhất**.
 
 Khi bạn cài đặt CodyMaster, bạn không chỉ thêm các kỹ năng.
 **Bạn đang thuê cả một đội ngũ senior:**
 
 ```mermaid
 graph TD
-    A["🧠 CodyMaster Kit"] --> B["👨‍💻 Senior Developer<br/><i>cm-tdd · cm-debugging · cm-code-review</i>"]
-    A --> C["🎨 UX Lead<br/><i>cm-ux-master · cm-ui-preview</i>"]
-    A --> D["📋 Product Manager<br/><i>cm-planning · cm-brainstorm-idea · cm-jtbd</i>"]
-    A --> E["🔒 DevOps Engineer<br/><i>cm-safe-deploy · cm-secret-shield · cm-identity-guard</i>"]
-    A --> F["📝 Technical Writer<br/><i>cm-dockit · cm-content-factory</i>"]
+    A["🧠 CodyMaster Kit"] --> B["👨‍💻 Lập trình viên Senior<br/><i>cm-tdd · cm-debugging · cm-code-review</i>"]
+    A --> C["🎨 Trưởng nhóm UX<br/><i>cm-ux-master · cm-ui-preview</i>"]
+    A --> D["📋 Quản lý Sản phẩm<br/><i>cm-planning · cm-brainstorm-idea · cm-jtbd</i>"]
+    A --> E["🔒 Kỹ sư DevOps<br/><i>cm-safe-deploy · cm-secret-shield · cm-identity-guard</i>"]
+    A --> F["📝 Người viết tài liệu kỹ thuật<br/><i>cm-dockit · cm-content-factory</i>"]
     A --> G["📈 Growth Marketer<br/><i>cm-ads-tracker · cro-methodology</i>"]
     style A fill:#fbc531,stroke:#e1b12c,color:#2f3640,stroke-width:3px
     classDef team fill:#2f3640,stroke:#dcdde1,stroke-width:1px,color:#fff;
@@ -68,20 +68,20 @@ graph TD
 
 ---
 
-## ⚡ Điều gì tạo nên sự khác biệt của CodyMaster
+## ⚡ Điều gì làm nên sự khác biệt của CodyMaster
 
-Các gói kỹ năng khác cung cấp cho bạn những công cụ rời rạc. CodyMaster cung cấp cho bạn một **hệ điều hành liên kết** cho AI của bạn.
+Các gói kỹ năng khác cung cấp cho bạn những công cụ rời rạc. CodyMaster cung cấp cho bạn một **hệ điều hành liên kết chặt chẽ** cho AI của bạn.
 
-### 🔄 Bao phủ toàn bộ vòng đời (Ý tưởng → Production)
+### 🔄 Bao phủ toàn bộ vòng đời (Ý tưởng → Sản xuất)
 
-Không có khoảng trống. Không bàn giao thủ công. Mọi giai đoạn đều được bao phủ:
+Không có lỗ hổng. Không cần bàn giao thủ công. Mọi giai đoạn đều được bao phủ:
 
 ```mermaid
 graph LR
     A["💡 Ý tưởng"] --> B["📋 Kế hoạch"]
     B --> C["🎨 Thiết kế"]
     C --> D["🧪 Kiểm thử trước"]
-    D --> E["💻 Viết code"]
+    D --> E["💻 Code"]
     E --> F["🔍 Gỡ lỗi"]
     F --> G["✅ Cổng chất lượng"]
     G --> H["🔒 Quét bảo mật"]
@@ -94,19 +94,17 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
-### 🧠 Một bộ não học hỏi từ sai lầm
+### 🧠 Một "Bộ não" học hỏi từ những sai lầm
 
 AI của bạn không chỉ thực thi — nó còn **ghi nhớ và cải thiện**:
 
-[English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)
-
 - **`cm-continuity`** — Bộ nhớ làm việc xuyên suốt các phiên làm việc. AI ghi nhớ những gì đã xảy ra lỗi và không bao giờ lặp lại cùng một sai lầm
-- **`cm-skill-mastery`** — Không biết cách làm điều gì đó? Nó sẽ **tự động tìm kỹ năng phù hợp** và tự nâng cấp chính mình
-- **`cm-deep-search`** — Bị lạc trong một cơ sở mã nguồn hơn 200 tệp? Tìm kiếm ngữ nghĩa trên mọi thứ chỉ trong vài giây
+- **`cm-skill-mastery`** — Không biết cách làm điều gì đó? Nó **tự động tìm thấy kỹ năng phù hợp** và tự nâng cấp chính mình
+- **`cm-deep-search`** — Bị lạc trong một cơ sở mã nguồn hơn 200 tệp? Tìm kiếm ngữ nghĩa trên tất cả mọi thứ trong vài giây
 
 ### 🛡️ Bảo vệ đa lớp (Cơ sở mã nguồn của bạn sẽ không bị phá hủy)
 
-Mọi dòng mã đều phải đi qua nhiều cổng an toàn trước khi đưa vào môi trường sản xuất (production):
+Mỗi dòng mã đều phải đi qua nhiều cổng an toàn trước khi đến môi trường production:
 
 ```mermaid
 flowchart LR
@@ -128,26 +126,26 @@ flowchart LR
     style G fill:#4cd137,stroke:#44bd32,color:#fff
 ```
 
-> **Kết quả:** Không rò rỉ bí mật. Không triển khai nhầm tài khoản. Không có lỗi kiểu "chạy tốt trên máy tôi".
+> **Kết quả:** Không rò rỉ bí mật. Không triển khai nhầm tài khoản. Không lỗi kiểu "chạy được trên máy tôi".
 
-### 🎨 Trích xuất Design System — Ngay cả từ các sản phẩm cũ
+### 🎨 Trích xuất hệ thống thiết kế — Ngay cả từ những sản phẩm cũ
 
-Bạn có một sản phẩm cũ không có hệ thống thiết kế (design system)? **`cm-ux-master`** sẽ quét trang web của bạn, trích xuất màu sắc, kiểu chữ, khoảng cách và các token, sau đó xây dựng lại một design system chuẩn chỉnh. Xem trước các thiết kế trực quan với **Pencil.dev** hoặc **Google Stitch** trước khi viết bất kỳ dòng mã nào.
+Bạn có một sản phẩm cũ không có hệ thống thiết kế? **`cm-ux-master`** quét trang web của bạn, trích xuất màu sắc, kiểu chữ, khoảng cách và các token, sau đó xây dựng lại một hệ thống thiết kế chuẩn chỉnh. Xem trước các thiết kế một cách trực quan với **Pencil.dev** hoặc **Google Stitch** trước khi viết bất kỳ dòng mã nào.
 
 ### 📝 Không có tài liệu? Không vấn đề gì.
 
-Không biết mã cũ làm gì? **`cm-dockit`** đọc toàn bộ cơ sở mã nguồn của bạn và tạo ra:
+Bạn không biết mã nguồn cũ thực hiện chức năng gì? **`cm-dockit`** đọc toàn bộ cơ sở mã của bạn và tạo ra:
 - 📚 Tài liệu kiến trúc kỹ thuật
-- 📖 Hướng dẫn sử dụng & SOPs
-- 🔌 Tài liệu tham khảo API
-- 🎯 Phân tích chân dung người dùng (Persona) & sơ đồ JTBD
+- 📖 Hướng dẫn sử dụng & SOP
+- 🔌 Tham chiếu API
+- 🎯 Phân tích chân dung người dùng & sơ đồ JTBD
 - 🌐 Đa ngôn ngữ. Tối ưu hóa SEO.
 
 **Một lần quét = Cơ sở tri thức hoàn chỉnh.**
 
 ### 📊 Bảng điều khiển trực quan — Xem mọi thứ trong nháy mắt
 
-Không còn phải đoán nữa. Theo dõi mọi nhiệm vụ, mọi tác nhân (agent), mọi đợt triển khai trên bảng Kanban thời gian thực. Tiến độ pipeline, theo dõi token, nhật ký sự kiện — tất cả trên một màn hình.
+Không còn phải đoán mò. Theo dõi mọi tác vụ, mọi agent, mọi lần triển khai trên bảng Kanban thời gian thực. Tiến độ pipeline, trình theo dõi token, nhật ký sự kiện — tất cả trên một màn hình.
 
 ---
 
@@ -155,33 +153,33 @@ Không còn phải đoán nữa. Theo dõi mọi nhiệm vụ, mọi tác nhân 
 
 | | 😵 15 Kỹ năng ngẫu nhiên | 🧠 CodyMaster |
 |---|---|---|
-| **Tích hợp** | Mỗi kỹ năng hoạt động riêng lẻ, không có ngữ cảnh chung | 33 kỹ năng có tính liên kết, chia sẻ bộ nhớ và giao tiếp với nhau |
-| **Vòng đời** | Chỉ bao gồm việc lập trình | Bao gồm Ý tưởng → Thiết kế → Mã nguồn → Kiểm thử → Triển khai → Tài liệu → Học hỏi |
+| **Tích hợp** | Mỗi kỹ năng là độc lập, không chia sẻ ngữ cảnh | 33 kỹ năng kết hợp thành chuỗi, chia sẻ bộ nhớ và giao tiếp |
+| **Vòng đời** | Chỉ bao gồm việc viết mã | Bao gồm Ý tưởng → Thiết kế → Mã nguồn → Kiểm thử → Triển khai → Tài liệu → Học hỏi |
 | **Bộ nhớ** | Quên mọi thứ giữa các phiên làm việc | Hệ thống bộ nhớ 4 tầng: Working → Episodic → Semantic → Deep Search |
-| **An toàn** | Triển khai kiểu YOLO | Bảo vệ 4 lớp: TDD → Security → Isolation → Multi-gate deploy |
-| **Thiết kế** | Giao diện ngẫu nhiên mỗi lần | Trích xuất & thực thi design system + xem trước trực quan |
-| **Tài liệu** | "Có lẽ sẽ viết README sau" | Tự động tạo tài liệu đầy đủ, SOPs, API refs từ mã nguồn |
-| **Tự cải thiện** | Tĩnh — những gì bạn cài đặt là những gì bạn nhận được | Học hỏi từ sai lầm, tự động khám phá kỹ năng mới, thông minh hơn mỗi ngày |
-| **Bảo trì** | Cập nhật 15 kho lưu trữ riêng biệt | Một lệnh `git pull` cập nhật tất cả mọi thứ |
+| **An toàn** | Triển khai kiểu YOLO | Bảo vệ 4 lớp: TDD → Bảo mật → Cô lập → Triển khai đa cổng |
+| **Thiết kế** | Giao diện ngẫu nhiên mỗi lần | Trích xuất & thực thi hệ thống thiết kế + xem trước trực quan |
+| **Tài liệu** | "Có lẽ sẽ viết README sau" | Tự động tạo tài liệu đầy đủ, SOP, tham chiếu API từ mã nguồn |
+| **Tự cải thiện** | Tĩnh — những gì bạn cài đặt là những gì bạn có | Học hỏi từ sai lầm, tự động khám phá các kỹ năng mới, thông minh hơn mỗi ngày |
+| **Bảo trì** | Cập nhật 15 repo riêng biệt | Một lệnh `git pull` cập nhật mọi thứ |
 
 ---
 
-## 🦥 Được xây dựng cho những người lười (Nghiêm túc đấy)
+## 🦥 Được xây dựng cho người lười (Nghiêm túc)
 
 Chúng tôi sẽ thành thật: **CodyMaster được xây dựng cho những người lười.**
 
 Nếu bạn muốn:
-- ✅ Nhập một tin nhắn chat và nhận lại một **sản phẩm đang hoạt động**
-- ✅ Để AI của bạn **học hỏi từ những sai lầm** và tốt hơn mỗi ngày
-- ✅ Không bao giờ phải thiết lập cùng một mã nguồn mẫu (boilerplate) hai lần
-- ✅ Triển khai với sự **tự tin** thay vì cầu nguyện
+- ✅ Gõ một tin nhắn chat và nhận lại một **sản phẩm hoạt động được**
+- ✅ Để AI của bạn **học hỏi từ những sai lầm** và trở nên tốt hơn mỗi ngày
+- ✅ Không bao giờ phải thiết lập cùng một boilerplate hai lần
+- ✅ Triển khai với **sự tự tin** thay vì cầu nguyện
 
-**→ CodyMaster là dành cho bạn.**
+**→ CodyMaster dành cho bạn.**
 
 Nếu bạn thích:
-- ❌ Xem xét thủ công từng dòng đầu ra của AI
-- ❌ Thực hiện cùng một quy trình thiết lập cho mọi dự án
-- ❌ Triển khai chậm, thủ công và không có lưới an toàn
+- ❌ Kiểm tra thủ công từng dòng đầu ra của AI
+- ❌ Thực hiện cùng một nghi thức thiết lập cho mọi dự án
+- ❌ Triển khai chậm chạp, thủ công mà không có lưới an toàn
 
 **→ CodyMaster KHÔNG dành cho bạn.**
 
@@ -189,7 +187,7 @@ Nếu bạn thích:
 
 ## 🚀 Cài đặt trong 1 phút
 
-### Claude Code (Khuyến nghị)
+### Claude Code (Được khuyến nghị)
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
 ```
@@ -199,21 +197,19 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 ```
 /add-plugin cody-master
 
-[English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)
-
 ### Gemini CLI / Antigravity
 ```bash
 gemini extensions install https://github.com/tody-agent/codymaster
 ```
 
 <details>
-<summary><b>Các nền tảng khác: Codex, OpenCode, Kiro, Copilot, Windsurf, Cline</b></summary>
+<summary><b>Nền tảng khác: Codex, OpenCode, Kiro, Copilot, Windsurf, Cline</b></summary>
 
 ```bash
-# Toàn cầu: clone một lần, sao chép vào bất kỳ nền tảng nào
+# Vạn năng: clone một lần, sao chép sang bất kỳ nền tảng nào
 git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
 
-# Sau đó đưa các skills vào thư mục của nền tảng của bạn:
+# Sau đó thả các skills vào thư mục của nền tảng:
 cp -r ~/.cody-master/skills/* .cursor/skills/
 cp -r ~/.cody-master/skills/* .codex/skills/
 cp -r ~/.cody-master/skills/* .kiro/steering/
@@ -233,46 +229,46 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 | 🎨 **Sản phẩm & UX** | `cm-planning` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **Tăng trưởng/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
 | 🎯 **Điều phối** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` |
-| 🖥️ **Quy trình** | `cm-start` `cm-dashboard` `cm-status` |
+| 🖥️ **Quy trình làm việc** | `cm-start` `cm-dashboard` `cm-status` |
 
 ---
 
-## 🎮 Các câu lệnh
+## 🎮 Lệnh
 
 ```
-/cm:demo         → Tour hướng dẫn tương tác
-/cm:bootstrap    → Khởi tạo dự án mới từ đầu
+/cm:demo         → Tour làm quen tương tác
+/cm:bootstrap    → Khởi tạo khung dự án mới từ đầu
 /cm:plan         → Lập kế hoạch tính năng kèm phân tích
 /cm:build        → Xây dựng với TDD nghiêm ngặt
-/cm:debug        → Debug có hệ thống
-/cm:ux           → Trích xuất design system & xem trước UI
-/cm:track        → Thiết lập marketing pixel & theo dõi
+/cm:debug        → Gỡ lỗi có hệ thống
+/cm:ux           → Trích xuất Design system & xem trước UI
+/cm:track        → Thiết lập pixel marketing & theo dõi
 ```
 
 ---
 
 ## 👤 Người xây dựng
 
-**Tody Le** — Head of Product với hơn 10 năm kinh nghiệm. Không biết viết code. Đã dùng AI để xây dựng các sản phẩm thực tế trong suốt 6 tháng liên tục. Mỗi kỹ năng trong bộ công cụ này đều ra đời từ những thất bại thực tế, đánh đổi bằng thời gian và cả nước mắt thực sự.
+**Tody Le** — Trưởng phòng Sản phẩm với hơn 10 năm kinh nghiệm. Không biết viết code. Đã sử dụng AI để xây dựng các sản phẩm thực tế trong 6 tháng liên tục. Mỗi skill trong bộ công cụ này được sinh ra từ một thất bại thực tế tiêu tốn thời gian thực và những giọt nước mắt thực.
 
-> *"33 kỹ năng. Mỗi kỹ năng là một bài học. Mỗi bài học là một đêm mất ngủ. Và giờ đây, bạn không cần phải trải qua những đêm đó nữa."*
+> *"33 skills. Mỗi skill là một bài học. Mỗi bài học là một đêm mất ngủ. Và giờ đây, bạn không cần phải trải qua những đêm đó nữa."*
 
-📖 [Đọc toàn bộ câu chuyện →](https://cody-master.pages.dev/story)
+📖 [Đọc câu chuyện đầy đủ →](https://cody-master.pages.dev/story)
 
 ---
 
-## 📚 Tài nguyên
+## 📚 Tài liệu
 
-- 🌍 [Website](https://cody-master.pages.dev) — Tổng quan & demo
-- 📖 [Tài liệu hướng dẫn](https://cody-master.pages.dev/docs) — Toàn bộ chi tiết
-- 🛠️ [Tham khảo Skills](skills/) — Xem tất cả 33 file SKILL.md
-- 📖 [Câu chuyện của chúng tôi](https://cody-master.pages.dev/story) — Tại sao dự án này tồn tại
+- 🌍 [Trang web](https://cody-master.pages.dev) — Tổng quan & bản demo
+- 📖 [Tài liệu hướng dẫn](https://cody-master.pages.dev/docs) — Phân tích chuyên sâu đầy đủ
+- 🛠️ [Tham chiếu Skills](skills/) — Duyệt qua tất cả 33 tệp SKILL.md
+- 📖 [Câu chuyện của chúng tôi](https://cody-master.pages.dev/story) — Tại sao công cụ này tồn tại
 
 ---
 
 ## 🤝 Đóng góp
 
-1. ⭐ **Star repo này** — giúp nhiều người xây dựng tìm thấy nó hơn
+1. ⭐ **Star repo này** — nó giúp nhiều nhà phát triển tìm thấy công cụ này hơn
 2. Fork → Tạo `skills/cm-your-skill/SKILL.md`
 3. Gửi một Pull Request
 
@@ -280,9 +276,9 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 <div align="center">
 
-*MIT License — Tự do sử dụng, sửa đổi và phân phối.* <br/>
+*Giấy phép MIT — Miễn phí sử dụng, sửa đổi và phân phối.* <br/>
 **Được xây dựng với ❤️ dành cho cộng đồng vibe coding.**
 
-*"Cody" = "Code Đi" (Tiếng Việt: "Go code!") — hãy bắt đầu xây dựng ngay.*
+*"Cody" = "Code Đi" (Tiếng Việt: "Go code!") — chỉ cần bắt đầu xây dựng.*
 
 </div>

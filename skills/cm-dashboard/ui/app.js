@@ -694,145 +694,226 @@
   function closeDeleteModal() { deleteOverlay.classList.remove('active'); deleteTaskId = null; }
 
   // ── Event Handlers ─────────────────────────
-  document.getElementById('btn-add-task').addEventListener('click', openAddModal);
-  document.getElementById('btn-sidebar-refresh').addEventListener('click', () => refreshData(false));
-  document.getElementById('btn-new-deploy').addEventListener('click', openDeployModal);
-  document.getElementById('btn-new-changelog').addEventListener('click', openChangelogModal);
-  refreshBtn.addEventListener('click', () => refreshData(false));
-  if (autoRefreshBtn) autoRefreshBtn.addEventListener('click', toggleAutoRefresh);
-  document.getElementById('sidebar-toggle').addEventListener('click', () => sidebar.classList.toggle('collapsed'));
-  const sidebarClose = document.getElementById('sidebar-close');
-  if (sidebarClose) {
-    sidebarClose.addEventListener('click', () => sidebar.classList.add('collapsed'));
-  }
+  function setupEventListeners() {
+    const btnAddTask = document.getElementById('btn-add-task');
+    if (btnAddTask) btnAddTask.addEventListener('click', openAddModal);
 
-  // Theme toggle
-  document.getElementById('theme-toggle').addEventListener('click', () => {
-    const current = getEffectiveTheme();
-    const next = current === 'dark' ? 'light' : 'dark';
-    localStorage.setItem(THEME_KEY, next);
-    applyTheme(next);
-  });
+    const sidebarRefreshBtn = document.getElementById('btn-sidebar-refresh');
+    if (sidebarRefreshBtn) sidebarRefreshBtn.addEventListener('click', () => refreshData(false));
 
-  // Close modals
-  document.getElementById('modal-close').addEventListener('click', closeModal);
-  document.getElementById('btn-cancel').addEventListener('click', closeModal);
-  modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+    const newDeployBtn = document.getElementById('btn-new-deploy');
+    if (newDeployBtn) newDeployBtn.addEventListener('click', openDeployModal);
 
-  document.getElementById('deploy-modal-close').addEventListener('click', closeDeployModal);
-  document.getElementById('deploy-cancel').addEventListener('click', closeDeployModal);
-  deployModalOverlay.addEventListener('click', e => { if (e.target === deployModalOverlay) closeDeployModal(); });
-  document.getElementById('changelog-modal-close').addEventListener('click', closeChangelogModal);
-  document.getElementById('cl-cancel').addEventListener('click', closeChangelogModal);
-  changelogModalOverlay.addEventListener('click', e => { if (e.target === changelogModalOverlay) closeChangelogModal(); });
-  document.getElementById('delete-close').addEventListener('click', closeDeleteModal);
-  document.getElementById('delete-cancel').addEventListener('click', closeDeleteModal);
-  deleteOverlay.addEventListener('click', e => { if (e.target === deleteOverlay) closeDeleteModal(); });
+    const newChangelogBtn = document.getElementById('btn-new-changelog');
+    if (newChangelogBtn) newChangelogBtn.addEventListener('click', openChangelogModal);
 
-  // Header Dropdown Toggle
-  const btnMoreMenu = document.getElementById('btn-more-menu');
-  const headerActions = document.getElementById('header-actions');
-  if (btnMoreMenu && headerActions) {
-    btnMoreMenu.addEventListener('click', (e) => {
-      e.stopPropagation();
-      headerActions.classList.toggle('active');
-    });
-    document.addEventListener('click', (e) => {
-      if (!headerActions.contains(e.target) && !btnMoreMenu.contains(e.target)) {
-        headerActions.classList.remove('active');
-      }
-    });
-  }
+    if (refreshBtn) refreshBtn.addEventListener('click', () => refreshData(false));
+    if (autoRefreshBtn) autoRefreshBtn.addEventListener('click', toggleAutoRefresh);
 
-  // Delete confirm
-  deleteConfirm.addEventListener('click', async () => {
-    if (!deleteTaskId) return;
-    try {
-      await fetchJSON(`${API}/tasks/${deleteTaskId}`, { method: 'DELETE' });
-      tasks = tasks.filter(t => t.id !== deleteTaskId);
-      renderBoard(); renderSidebar(); closeDeleteModal();
-      showToast('success', 'Task deleted');
-    } catch (err) { showToast('error', err.message); }
-  });
-
-  // Task form submit
-  taskForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const title = formTitle.value.trim(); if (!title) return;
-    const data = {
-      title, description: formDescription.value.trim(),
-      priority: formPriority.value, column: formColumn.value,
-      agent: formAgent.value, skill: formSkill.value,
-      projectId: selectedProjectId || undefined,
-    };
-    try {
-      if (formId.value) {
-        await fetchJSON(`${API}/tasks/${formId.value}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-        const et = tasks.find(t => t.id === formId.value);
-        if (et && et.column !== data.column) {
-          await fetchJSON(`${API}/tasks/${formId.value}/move`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ column: data.column, order: 0 }) });
-        }
-        showToast('success', 'Task updated');
-      } else {
-        await fetchJSON(`${API}/tasks`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-        showToast('success', 'Task created');
-      }
-      await loadAll(); renderBoard(); renderSidebar(); closeModal();
-    } catch (err) { showToast('error', err.message); }
-  });
-
-
-  // Deploy form submit
-  deployForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!selectedProjectId && projects.length === 0) { showToast('error', 'Create a project first'); return; }
-    const pid = selectedProjectId || (projects.length > 0 ? projects[0].id : '');
-    try {
-      await fetchJSON(`${API}/deployments`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectId: pid, env: document.getElementById('deploy-env').value,
-          message: document.getElementById('deploy-message').value.trim() || `Deploy to ${document.getElementById('deploy-env').value}`,
-          commit: document.getElementById('deploy-commit').value.trim(),
-          branch: document.getElementById('deploy-branch').value.trim() || 'main',
-        }),
+    // Sidebar toggles
+    const sbToggleBtn = document.getElementById('sidebar-toggle');
+    if (sbToggleBtn) {
+      sbToggleBtn.addEventListener('click', () => {
+        const sb = document.getElementById('sidebar');
+        if (sb) sb.classList.toggle('collapsed');
       });
-      await loadAll(); renderDeploys(); renderSidebar(); closeDeployModal();
-      showToast('success', 'Deployment recorded');
-    } catch (err) { showToast('error', err.message); }
-  });
-
-  // Changelog form submit
-  changelogForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const version = document.getElementById('cl-version').value.trim();
-    const title = document.getElementById('cl-title').value.trim();
-    if (!version || !title) return;
-    const changes = document.getElementById('cl-changes').value.split('\n').map(l => l.trim()).filter(Boolean);
-    const pid = selectedProjectId || (projects.length > 0 ? projects[0].id : '');
-    try {
-      await fetchJSON(`${API}/changelog`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ projectId: pid, version, title, changes }),
-      });
-      await loadAll(); renderChangelog(); closeChangelogModal();
-      showToast('success', 'Changelog entry added');
-    } catch (err) { showToast('error', err.message); }
-  });
-
-  // Keyboard shortcuts
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); closeDeployModal(); closeChangelogModal(); closeDeleteModal(); }
-    if ((e.ctrlKey || e.metaKey) && e.key === 'n') { e.preventDefault(); openAddModal(); }
-    if ((e.ctrlKey || e.metaKey) && e.key === 'r' && !e.shiftKey) { e.preventDefault(); refreshData(); }
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 't' || e.key === 'T')) {
-      e.preventDefault();
-      const current = getEffectiveTheme();
-      const next = current === 'dark' ? 'light' : 'dark';
-      localStorage.setItem(THEME_KEY, next);
-      applyTheme(next);
     }
-  });
+
+    const sbCloseBtn = document.getElementById('sidebar-close');
+    if (sbCloseBtn) {
+      sbCloseBtn.addEventListener('click', () => {
+        const sb = document.getElementById('sidebar');
+        if (sb) sb.classList.add('collapsed');
+      });
+    }
+
+    // Auto collapse on small screens
+    if (window.innerWidth <= 900) {
+      document.getElementById('sidebar')?.classList.add('collapsed');
+    }
+
+    // Theme toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const current = getEffectiveTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      });
+    }
+
+    // Close modals
+    const modalClose = document.getElementById('modal-close');
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    
+    const cancelBtn = document.getElementById('btn-cancel');
+    if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+    
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+    }
+
+    const deployClose = document.getElementById('deploy-modal-close');
+    if (deployClose) deployClose.addEventListener('click', closeDeployModal);
+    
+    const deployCancel = document.getElementById('deploy-cancel');
+    if (deployCancel) deployCancel.addEventListener('click', closeDeployModal);
+    
+    if (deployModalOverlay) {
+      deployModalOverlay.addEventListener('click', e => { if (e.target === deployModalOverlay) closeDeployModal(); });
+    }
+
+    const changelogClose = document.getElementById('cl-modal-close') || document.getElementById('changelog-modal-close');
+    if (changelogClose) changelogClose.addEventListener('click', closeChangelogModal);
+    
+    const changelogCancel = document.getElementById('cl-cancel') || document.getElementById('changelog-cancel');
+    if (changelogCancel) changelogCancel.addEventListener('click', closeChangelogModal);
+    
+    if (changelogModalOverlay) {
+      changelogModalOverlay.addEventListener('click', e => { if (e.target === changelogModalOverlay) closeChangelogModal(); });
+    }
+
+    const deleteClose = document.getElementById('delete-close') || document.getElementById('delete-modal-close');
+    if (deleteClose) deleteClose.addEventListener('click', closeDeleteModal);
+    
+    const deleteCancel = document.getElementById('delete-cancel');
+    if (deleteCancel) deleteCancel.addEventListener('click', closeDeleteModal);
+    
+    if (deleteOverlay) {
+      deleteOverlay.addEventListener('click', e => { if (e.target === deleteOverlay) closeDeleteModal(); });
+    }
+
+    if (deleteConfirm) {
+      deleteConfirm.addEventListener('click', async () => {
+        if (!deleteTaskId) return;
+        try {
+          await fetchJSON(`${API}/tasks/${deleteTaskId}`, { method: 'DELETE' });
+          tasks = tasks.filter(t => t.id !== deleteTaskId);
+          renderBoard(); renderSidebar(); closeDeleteModal();
+          showToast('success', 'Task deleted');
+        } catch (err) { showToast('error', err.message); }
+      });
+    }
+
+    // Dispatch
+    if (dispatchClose) dispatchClose.addEventListener('click', closeDispatchModal);
+    if (dispatchOverlay) {
+      dispatchOverlay.addEventListener('click', e => { if (e.target === dispatchOverlay) closeDispatchModal(); });
+    }
+    if (copyPromptBtn) {
+      copyPromptBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(dispatchPrompt.textContent);
+        showToast('success', 'Prompt copied');
+      });
+    }
+    if (copyCommandBtn) {
+      copyCommandBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(dispatchCommand.textContent);
+        showToast('success', 'Command copied');
+      });
+    }
+    if (dispatchDoneBtn) dispatchDoneBtn.addEventListener('click', closeDispatchModal);
+
+    // Form submission
+    const taskFormEl = document.getElementById('task-form');
+    if (taskFormEl) {
+      taskFormEl.addEventListener('submit', async e => {
+        e.preventDefault();
+        const title = formTitle.value.trim(); if (!title) return;
+        const data = {
+          title, description: formDescription.value.trim(),
+          priority: formPriority.value, column: formColumn.value,
+          agent: formAgent.value, skill: formSkill.value,
+          projectId: selectedProjectId || undefined,
+        };
+        try {
+          if (formId.value) {
+            await fetchJSON(`${API}/tasks/${formId.value}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            const et = tasks.find(t => t.id === formId.value);
+            if (et && et.column !== data.column) {
+              await fetchJSON(`${API}/tasks/${formId.value}/move`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ column: data.column, order: 0 }) });
+            }
+            showToast('success', 'Task updated');
+          } else {
+            await fetchJSON(`${API}/tasks`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            showToast('success', 'Task created');
+          }
+          await loadAll(); renderBoard(); renderSidebar(); closeModal();
+        } catch (err) { showToast('error', err.message); }
+      });
+    }
+
+    const deployFormEl = document.getElementById('deploy-form');
+    if (deployFormEl) {
+      deployFormEl.addEventListener('submit', async e => {
+        e.preventDefault();
+        const pid = selectedProjectId || (projects.length > 0 ? projects[0].id : '');
+        try {
+          await fetchJSON(`${API}/deployments`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              projectId: pid, env: document.getElementById('deploy-env').value,
+              message: document.getElementById('deploy-message').value.trim() || `Deploy to ${document.getElementById('deploy-env').value}`,
+              commit: document.getElementById('deploy-commit').value.trim(),
+              branch: document.getElementById('deploy-branch').value.trim() || 'main',
+            }),
+          });
+          await loadAll(); renderDeploys(); renderSidebar(); closeDeployModal();
+          showToast('success', 'Deployment recorded');
+        } catch (err) { showToast('error', err.message); }
+      });
+    }
+
+    const changelogFormEl = document.getElementById('changelog-form');
+    if (changelogFormEl) {
+      changelogFormEl.addEventListener('submit', async e => {
+        e.preventDefault();
+        const version = document.getElementById('cl-version')?.value.trim() || document.getElementById('changelog-version')?.value.trim();
+        const title = document.getElementById('cl-title')?.value.trim() || 'Release';
+        if (!version) return;
+        const changes = document.getElementById('cl-changes')?.value.split('\n').map(l => l.trim()).filter(Boolean) || [];
+        const pid = selectedProjectId || (projects.length > 0 ? projects[0].id : '');
+        try {
+          await fetchJSON(`${API}/changelog`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ projectId: pid, version, title, changes }),
+          });
+          await loadAll(); renderChangelog(); closeChangelogModal();
+          showToast('success', 'Changelog entry added');
+        } catch (err) { showToast('error', err.message); }
+      });
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeModal(); closeDeployModal(); closeChangelogModal(); closeDeleteModal(); }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'n') { e.preventDefault(); openAddModal(); }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'r' && !e.shiftKey) { e.preventDefault(); refreshData(); }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 't' || e.key === 'T')) {
+        e.preventDefault();
+        const current = getEffectiveTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+    });
+
+    // Header Dropdown Toggle
+    const btnMoreMenu = document.getElementById('btn-more-menu');
+    const headerActions = document.getElementById('header-actions');
+    if (btnMoreMenu && headerActions) {
+      btnMoreMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        headerActions.classList.toggle('active');
+      });
+      document.addEventListener('click', (e) => {
+        if (!headerActions.contains(e.target) && !btnMoreMenu.contains(e.target)) {
+          headerActions.classList.remove('active');
+        }
+      });
+    }
+  }
 
   // ── Toast System ───────────────────────────
   function showToast(type, message) {
@@ -1175,6 +1256,7 @@
       await loadAll();
       renderSidebar();
       renderCurrentTab();
+      setupEventListeners(); // Initialize listeners after first render
       lastSyncTime = Date.now();
       updateSyncStatus('synced');
       updateAutoRefreshUI();

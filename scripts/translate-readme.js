@@ -3,7 +3,11 @@ const path = require('path');
 const { exec, spawn } = require('child_process');
 
 const TARGET_LANGS = {
-    'vi': 'Vietnamese'
+    'vi': 'Vietnamese',
+    'zh': 'Simplified Chinese',
+    'ru': 'Russian',
+    'ko': 'Korean',
+    'hi': 'Hindi'
 };
 
 const readmeStr = fs.readFileSync(path.join(__dirname, '../README.md'), 'utf8');
@@ -23,7 +27,6 @@ function runGeminiCommand(prompt, langCode) {
             }
 
             try {
-                // Find the JSON part. It starts with { and contains session_id
                 const jsonStart = output.indexOf('{\n  "session_id":');
                 if (jsonStart !== -1) {
                     const jsonStr = output.substring(jsonStart);
@@ -42,7 +45,6 @@ function runGeminiCommand(prompt, langCode) {
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function translate() {
-    // Split readme into ~100 line chunks
     const lines = readmeStr.split('\n');
     const CHUNK_SIZE = 100;
     const chunks = [];
@@ -57,16 +59,18 @@ async function translate() {
 
         for (let i = 0; i < chunks.length; i++) {
             console.log(`  Processing chunk ${i + 1}/${chunks.length}...`);
-            const prompt = `Translate the following markdown text accurately into ${lang}. 
+            let prompt = `Translate the following markdown text accurately into ${lang}. 
 Rules:
 1. DO NOT translate any code blocks, URLs, HTML tags, or markdown formatting characters.
 2. DO NOT translate the names of tools, files, or brand names (e.g. 'CodyMaster', 'cm-ux-master', 'Pencil.dev').
 3. Preserve the exact layout and structure, including the mermaid graphs and emojis.
-4. Return ONLY the translated markdown, nothing else, no comments or conversational preamble.
-5. In the language switcher at the top, make sure it stays exactly like this: [English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)
+4. Return ONLY the translated markdown, nothing else, no comments or conversational preamble.`;
 
-Text to translate (Part ${i+1}):
-\n${chunks[i]}`;
+            if (i === 0) {
+                prompt += `\n5. In the language switcher at the top, make sure it stays exactly like this: [English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)`;
+            }
+
+            prompt += `\n\nText to translate (Part ${i+1}):\n${chunks[i]}`;
 
             const output = await runGeminiCommand(prompt, code);
             if (output && !output.includes('RESOURCE_EXHAUSTED') && !output.includes('Too Many Requests')) {
@@ -78,8 +82,6 @@ Text to translate (Part ${i+1}):
                 if (clean.endsWith('```')) clean = clean.substring(0, clean.length - 3);
                 
                 finalMd += clean.trim() + '\n\n';
-                
-                // Add a small delay between chunks to avoid rate limit
                 await sleep(5000);
             } else {
                 console.error(`  ❌ Failed on chunk ${i + 1}. Error: ${output?.substring(0, 100)}...`);

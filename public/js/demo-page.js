@@ -19,17 +19,28 @@
 
   const SCENARIO_KEYS = Object.keys(SCENARIOS);
 
+  async function loadLang(lang) {
+    const namespaces = ['common', 'home', 'personas', 'skills', 'pages', 'vs'];
+    try {
+      const promises = namespaces.map(ns => fetch(`i18n/${lang}/${ns}.json`).then(r => r.ok ? r.json() : {}));
+      const results = await Promise.all(promises);
+      const merged = {};
+      results.forEach(data => Object.assign(merged, data));
+      return merged;
+    } catch (e) {
+      console.warn(`Failed to load ${lang} translations`, e);
+      return {};
+    }
+  }
+
   async function init() {
     const lang = localStorage.getItem('kit-lang') ||
       (new URLSearchParams(window.location.search).get('lang')) ||
       (navigator.language?.startsWith('vi') ? 'vi' : 'en');
 
-    try {
-      const res = await fetch(`i18n/${lang}.json`);
-      translations = await res.json();
-    } catch (e) {
-      const res = await fetch('i18n/en.json');
-      translations = await res.json();
+    translations = await loadLang(lang);
+    if (Object.keys(translations).length === 0 && lang !== 'en') {
+      translations = await loadLang('en');
     }
 
     demoT = translations.demoPage || {};
