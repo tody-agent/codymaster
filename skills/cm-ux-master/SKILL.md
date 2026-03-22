@@ -233,91 +233,11 @@ python3 scripts/search.py "<keyword>" --stack html-tailwind
 
 Available: `html-tailwind`, `react`, `nextjs`, `astro`, `vue`, `nuxtjs`, `nuxt-ui`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`, `angular`, `htmx`, `electron`, `tauri`
 
-### Step 7: Extract Design System from Existing Site (NEW)
+### Step 7: Extract Design System 
 
-Analyze an existing website and extract its design tokens:
-
-```bash
-# From URL
-python3 scripts/extractor.py --url "https://example.com" -p "BrandName" --generate-skill --persist
-
-# From local project directory
-python3 scripts/extractor.py --directory ./src -p "MyApp" --generate-skill --persist
-
-# From CSS files
-python3 scripts/extractor.py --css style.css theme.css -p "MyProject" --format tailwind
-```
-
-Outputs: `EXTRACTED.md`, `BRAND-SKILL.md`, `tailwind.config.js`, `design-tokens.css`
-
-### Step 8: Multi-Project Registry + Multi-Page Harvest (v2) 🔒 PRO
-
-Manage multiple design system projects and scan multiple pages:
-
-```bash
-# Create a project
-python3 scripts/project_registry.py --create "Haravan" --url "https://showcase.myharavan.com"
-
-# List all projects
-python3 scripts/project_registry.py --list
-
-# Get project info
-python3 scripts/project_registry.py --get haravan
-
-# Add page harvest to project
-python3 scripts/project_registry.py --add-harvest haravan -i harvest.json
-
-# Token mapper with project (auto-saves to output/<slug>/)
-python3 scripts/token_mapper.py -i harvest.json --project haravan
-
-# Merge multiple harvest files
-python3 scripts/harvest_session.py page1.json page2.json page3.json -o merged.json --confidence
-```
-
-### Step 9: Design System Documentation Site (v2) 🔒 PRO
-
-Generate a self-contained HTML documentation page:
-
-```bash
-# From project
-python3 scripts/design_doc_generator.py --project haravan --open
-
-# From harvest file directly
-python3 scripts/design_doc_generator.py -i harvest.json -o design-system.html
-```
-
-Output includes: color palette swatches, typography specimens, geometry preview, component samples, token reference table, usage instructions, dark mode toggle.
-
-### Step 10: Harvester v3 — Comprehensive Design System Extraction 🔒 PRO
-
-Upgrade from basic extraction (~20 tokens) to comprehensive design system capture (50-80+ tokens):
-
-```bash
-# 1. Inject harvester_v3.js in browser console on target page
-#    Copy-paste scripts/harvester_v3.js → browser DevTools console → Enter
-#    Copy the JSON output
-
-# 2. Save raw harvest
-#    Paste JSON into output/<project>/harvest-v3-raw.json
-
-# 3. Map to Semi tokens (auto-detects v3 format)
-python3 scripts/token_mapper.py -i output/<project>/harvest-v3-raw.json --project <slug>
-
-# 4. Generate design system doc with all 9 sections
-python3 scripts/design_doc_generator.py --project <slug> --open
-```
-
-**v3 extracts:**
-- Color histogram + semantic colors (primary, success, warning, danger, info, link, disabled)
-- Neutral scale (10-shade gray ramp: 50→900)
-- Expanded surfaces (app, card, sidebar, header, modal, hover, selected, input)
-- Typography scale (heading+body families, 5-8 sizes, 4 weights)
-- Spacing system (padding/margin/gap → 8-step scale)
-- Border system (width, color, radius sm/md/lg/xl/full)
-- Shadow system (sm/md/lg classified by blur depth)
-- Layout metrics (sidebar width, header height, content max-width, grid gap)
-- Component blueprints (button, input, card, table, nav_item, tag)
-- Page type detection (dashboard/settings/report/orders)
+> [!IMPORTANT]
+> The Harvester extraction functionality has been moved to the specialized **`cm-design-system`** skill. 
+> When the user requests to extract, copy, or build a design system from a source, you MUST delegate to `cm-design-system`.
 
 ---
 
@@ -352,203 +272,12 @@ python3 scripts/design_doc_generator.py --project <slug> --open
 
 ---
 
-## 🚀 NEW: Harvester v4 — AI-Powered Visual Extraction
+## 🚀 Harvester Extraction (v4/v5)
 
-**Harvester v4** is a comprehensive upgrade with automatic design system extraction via browser automation and Semi Design architecture reconstruction.
-
-### New Features in v4
-
-| Feature | v3 | v4 |
-|---------|----|----|
-| Tokens | ~80 | **~120+** |
-| Browser Automation | ❌ | ✅ Auto-open |
-| Multi-page Crawl | ❌ | ✅ |
-| AI Visual Analysis | ❌ | ✅ Psychology |
-| Component Blueprints | Basic | ✅ Advanced |
-| Auto Component Gen | ❌ | ✅ React/Semi/Vue |
-| Design System Index | ❌ | ✅ Semi-architecture |
-| CLI Integration | ❌ | ✅ Unified CLI |
-
-### Quick Start v4
-
-```bash
-# 1. Quick workflow - Extract + Index + Generate
-cd /path/to/your/ux-master-project
-python3 scripts/harvester_cli.py quick https://example.com --framework semi
-
-# 2. Multi-page harvest with component generation
-python3 scripts/harvester_cli.py extract \
-  --url https://example.com \
-  --crawl --max-pages 5 \
-  --generate --framework react-tailwind
-
-# 3. Index existing harvest
-python3 scripts/harvester_cli.py index \
-  --input output/harvest.json \
-  --name "MyApp" --figma
-
-# 4. Generate components from design system
-python3 scripts/harvester_cli.py generate \
-  --input output/design-system.json \
-  --all --framework semi
-```
-
-### Harvester v4 Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│  Harvester v4 Workflow                                      │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐  │
-│  │   Extract    │───→│    Index     │───→│   Generate   │  │
-│  │  (Browser)   │    │ (Semi Arch)  │    │ (Components) │  │
-│  └──────────────┘    └──────────────┘    └──────────────┘  │
-│         │                   │                   │           │
-│    harvester_v4.js    design_system_      component_       │
-│    harvester_browser.py  indexer.py       generator.py      │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Step 11: Harvester v4 — Full Automation 🔥
-
-#### A. Browser Automation
-
-```bash
-# Single URL harvest
-python3 scripts/harvester_browser.py --url https://example.com --output ./output
-
-# With mobile viewport
-python3 scripts/harvester_browser.py --url https://example.com --mobile
-
-# Multi-page crawl
-python3 scripts/harvester_browser.py --url https://example.com --crawl --max-pages 10
-
-# Interactive mode
-python3 scripts/harvester_browser.py --interactive
-```
-
-**v4 extracts (120+ tokens):**
-- Visual element detection & classification
-- Color psychology analysis
-- Layout pattern recognition (grid, flex, sidebar)
-- Typography hierarchy with font pairing
-- Component relationship mapping
-- Animation & transition detection
-- Accessibility audit (contrast, labels)
-
-#### B. Design System Indexing (Semi Architecture)
-
-```bash
-# Index single harvest
-python3 scripts/design_system_indexer.py \
-  --input harvest.json \
-  --name "MyApp" \
-  --output ./design-system
-
-# Merge multiple harvests
-python3 scripts/design_system_indexer.py \
-  --multi ./harvests/page1.json ./harvests/page2.json \
-  --name "MergedSystem"
-
-# Generate Figma tokens
-python3 scripts/design_system_indexer.py \
-  --input harvest.json \
-  --name "MyApp" \
-  --figma
-```
-
-**Semi Design Architecture:**
-- Color System: Primary, Secondary, Tertiary, Neutrals (50-900)
-- Background: bg-0 → bg-4
-- Fill: fill-0 → fill-2  
-- Text: text-0 → text-3
-- Semantic: success, warning, danger, info, link
-- Spacing: none → super-loose (10 steps)
-- Border: radius xs → full
-- Shadow: sm → elevated → lg
-
-#### C. Component Generation
-
-```bash
-# Generate all components
-python3 scripts/component_generator.py \
-  --input design-system.json \
-  --all --output ./components
-
-# Generate specific component
-python3 scripts/component_generator.py \
-  --input design-system.json \
-  --component button \
-  --framework semi
-
-# Supported frameworks
-# --framework react-tailwind (default)
-# --framework semi (Semi Design)
-# --framework vue (Vue 3 + Tailwind)
-```
-
-**Generated components:**
-- Button (primary, secondary, outline, ghost, danger)
-- Card (default, bordered, elevated)
-- Input (text, password, textarea, select)
-- Badge/Tag (default, success, warning, danger, info)
-- Avatar (circle, square, sizes)
-- Alert (info, success, warning, error)
-- Modal/Dialog
-- Table
-- Tabs
-- Dropdown
-- Tooltip
-- Divider
-- Skeleton
-- Empty state
-
-#### D. Unified CLI
-
-```bash
-# Full workflow
-python3 scripts/harvester_cli.py quick https://example.com
-
-# Individual phases
-python3 scripts/harvester_cli.py extract --url https://example.com --generate
-python3 scripts/harvester_cli.py index --input harvest.json --name "MyApp"
-python3 scripts/harvester_cli.py generate --input design-system.json --all
-```
-
-### v4 Output Structure
-
-```
-output/
-├── harvest-raw.json           # Raw extraction data
-├── design-system.json         # Indexed design system
-├── design-system.css          # CSS variables (Semi spec)
-├── figma-tokens.json          # Figma Tokens Studio
-├── component-blueprints.json  # Component specs
-├── screenshot-desktop.png     # Visual reference
-├── screenshot-mobile.png      # Mobile viewport
-└── components/                # Generated components
-    ├── button/
-    │   ├── component.tsx
-    │   └── index.ts
-    ├── card/
-    ├── input/
-    └── ...
-```
-
-### Requirements
-
-```bash
-# Install Playwright for browser automation
-pip install playwright
-playwright install chromium
-
-# Or all browsers
-playwright install
-```
-
-> **Upgrade to Pro:** [ux-master.dev/pro](https://ux-master.dev/pro) — One-time payment, lifetime access, all future updates.
+> [!IMPORTANT]
+> The AI-Powered Visual Extraction, Multi-page Crawl, and Semi Architecture Design System generation are now fully managed by the **`cm-design-system`** skill.
+> 
+> Please use `cm-design-system` for any task relating to extracting STITCH JSON tokens, generating `DESIGN.md`, or working with Pencil.dev UI Kits (Shadcn, Halo, Lunaris, Nitro).
 
 ---
 
@@ -622,6 +351,27 @@ python3 scripts/search.py "real-time data chart" --stack react
 ```
 
 ### Step 5: Implement → Validate against Design Tests
+
+---
+
+### Step 5: Implement → Validate against Design Tests
+
+---
+
+## Universal Design Standard (DESIGN.md)
+
+Whenever `cm-ux-master` is used to build, extract, or establish a design system, it **MUST** output a `DESIGN.md` file in the root of the project (or inside `.stitch/DESIGN.md`).
+
+This file is the **Absolute Source of Truth** for AI design generation. It bridges the gap between extraction (`cm-ux-master`) and UI generation (`cm-ui-preview`).
+
+**CRITICAL:** You must follow the exact structure defined in `skills/cm-ux-master/DESIGN_STANDARD_TEMPLATE.md`. 
+1. **Markdown Structure:** Overview, Colors, Typography, Spacing & Shapes, Components, Do's and Don'ts.
+2. **JSON Tokens:** The file must conclude with the hidden JSON block wrapped exactly in `<!-- STITCH_TOKENS_START -->` and `<!-- STITCH_TOKENS_END -->`.
+
+If you are translating Harvester v4 tokens into `DESIGN.md`:
+- Map Harvester `semantic colors` to Stitch's `Primary, Secondary, Tertiary`.
+- Map Harvester `typography scale` to Stitch's `Headlines, Body, Labels`.
+- Write the extracted boundaries into the JSON token structure so Stitch engine generates accurate replicas.
 
 ---
 

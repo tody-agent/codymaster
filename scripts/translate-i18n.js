@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
+const { execFile } = require('child_process');
 
 const I18N_DIR = path.resolve(__dirname, '../public/i18n');
 const EN_DIR = path.join(I18N_DIR, 'en');
@@ -18,10 +18,9 @@ const MAX_CONCURRENT_AGENTS = 5;
 // Run terminal command silently and return stdout
 function runGeminiCommand(prompt) {
     return new Promise((resolve) => {
-        const escapedPrompt = prompt.replace(/"/g, '\\"').replace(/\$/g, '\\$').replace(/`/g, '\\`');
-        const cmd = `gemini -y -o json -p "${escapedPrompt}"`;
+        const args = ['-y', '-o', 'json', '-p', prompt];
         
-        exec(cmd, { maxBuffer: 1024 * 1024 * 50 }, (error, stdout, stderr) => {
+        execFile('gemini', args, { maxBuffer: 1024 * 1024 * 50 }, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Gemini CLI Error:`, stderr || error.message);
             }

@@ -65,17 +65,18 @@ This skill operates as a pipeline. **Do not skip steps.**
 Before assembly, you MUST establish the design constraints.
 
 **Look for:**
-- `.stitch/DESIGN.md` (Primary source for Stitch)
-- `design-system/MASTER.md` (From `cm-ux-master`)
+- `DESIGN.md` or `.stitch/DESIGN.md` (Primary source for Stitch)
+- `design-system/MASTER.md` (Legacy format from `cm-ux-master`)
 - `.cm/design-tokens.css` or Tailwind configs
 
-**If no design system exists:**
-*Suggest running `cm-ux-master` or create a `.stitch/DESIGN.md` baseline.*
-A baseline MUST contain:
-- Platform (Web/Mobile)
-- Primary/Secondary Colors (with hex codes)
-- Typography (Font families)
-- Component constraints (Rounded vs Sharp, Shadow levels)
+**CRITICAL STANDARD:**
+A valid Stitch design file MUST conform to the `skills/cm-ux-master/DESIGN_STANDARD_TEMPLATE.md` standard. It must include both:
+1. The Markdown structure (Overview, Colors, Typography, Spacing & Shapes, Components, Do's and Don'ts).
+2. The hidden JSON block delimited EXACTLY by `<!-- STITCH_TOKENS_START -->` and `<!-- STITCH_TOKENS_END -->`.
+
+**If no design system exists or it's in a legacy format:**
+You MUST fallback to the pre-built default design system: `skills/cm-design-system/resources/shadcn-default.md`. Read this file and inject its contents (including the `<!-- STITCH_TOKENS_START -->` block) into your prompt.
+*Suggest running `cm-design-system` if the user wants to extract a custom design instead of using the default Shadcn minimalist style.*
 
 ## Step 3: Prompt Enhancement Pipeline (CRITICAL)
 
@@ -88,10 +89,7 @@ Structure your prompt exactly like this:
 [Overall vibe, mood, and purpose of the page: e.g., "A modern fintech dashboard for B2B users. Professional, trustworthy, high data density, light mode."]
 
 **DESIGN SYSTEM (REQUIRED):**
-- Platform: Web Desktop-first
-- Palette: Primary Blue (#0F62FE), Secondary Gray (#F4F4F4), Danger Red (#DA1E28)
-- Typography: Inter for UI, Roboto Mono for numbers
-- Styles: 4px border radius, subtle drop shadows on cards
+[Inject the full contents of DESIGN.md here. It MUST include the <!-- STITCH_TOKENS_START --> ... <!-- STITCH_TOKENS_END --> block so the Stitch engine ingests the design tokens properly.]
 
 **PAGE STRUCTURE & FUNCTION:**
 ### 1. Dashboard Home

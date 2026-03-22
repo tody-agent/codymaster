@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Exact CSS matching cm-dashboard style.css */
+    :root {
+      /* Light theme default */
+      --bg-body: #f4f4f5;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-column: #f8fafc;
+      --bg-input: #f1f5f9;
+      --bg-modal: #ffffff;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      
+      --col-backlog: #64748b;
+      --col-in-progress: #3b82f6;
+      --col-review: #eab308;
+      --col-done: #22c55e;
+      --danger: #ef4444;
+
+      --radius: 8px;
+      --radius-sm: 6px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      
+      --card-agent-bg: rgba(0,0,0,0.04);
+    }
+
+    [data-theme="dark"] {
+      --bg-body: #000000;
+      --bg-sidebar: #09090b;
+      --bg-card: #18181b;
+      --bg-card-hover: #27272a;
+      --bg-column: #141417;
+      --bg-input: #09090b;
+      --bg-modal: #18181b;
+      
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      
+      --border: #27272a;
+      --border-light: #27272a;
+      
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
+      --card-agent-bg: rgba(255,255,255,0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html, body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Container wraps the entire view */
+    .dashboard-container {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ────────────────────────────────────────────── */
+    .sidebar {
+      width: 240px;
+      min-width: 240px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: width 0.2s, min-width 0.2s;
+      overflow: hidden;
+    }
+    
+    .sidebar-header {
+      padding: 16px 16px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo { font-size: 20px; }
+    .sidebar-title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .sidebar-subtitle {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+    }
+    .sidebar-close {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .sidebar-section {
+      padding: 0 12px 16px;
+    }
+    .sidebar-section-header {
+      padding: 0 4px 8px;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+    }
+    .sidebar-action-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      border-radius: 4px;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .project-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .project-item:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+    .project-item.active {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .project-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .project-task-count {
+      font-size: 11px;
+      background: var(--bg-card);
+      padding: 1px 6px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .agent-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 8px;
+    }
+    .agent-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      padding: 4px 10px;
+      color: var(--text-secondary);
+    }
+    .agent-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .agent-task-count {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ── Main Panel ─────────────────────────────────────────── */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--bg-body);
+    }
+
+    .header {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-sidebar);
+      z-index: 10;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-project-name {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .sidebar-toggle { display: none; }
+
+    .sync-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.15);
+    }
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--col-done);
+      box-shadow: 0 0 4px rgba(34, 197, 94, 0.4);
+    }
+    .sync-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    /* ── Kanban Board ───────────────────────────────────────── */
+    .tab-panel {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex: 1;
+    }
+    .board {
+      display: flex;
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 24px;
+      padding: 24px;
+      align-items: flex-start;
+    }
+
+    .column {
+      background: var(--bg-column);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      width: 320px;
+      min-width: 320px;
+      max-height: 100%;
+    }
+    .column-header {
+      padding: 16px 20px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .column-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .column-indicator.backlog { background: var(--col-backlog); }
+    .column-indicator.in-progress { background: var(--col-in-progress); }
+    .column-indicator.review { background: var(--col-review); }
+    .column-indicator.done { background: var(--col-done); }
+    
+    .column-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .column-count {
+      margin-left: auto;
+      font-size: 12px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 2px 8px;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .card-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ── Cards ──────────────────────────────────────────────── */
+    .task-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .card-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .card-agent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--card-agent-bg);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .card-agent-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+    }
+    .card-time {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .priority-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .priority-high { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+    .priority-urgent { background: rgba(188, 140, 255, 0.2); color: #bc8cff; }
+
+    /* ── Responsive Mobile ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 0;
+        min-width: 0;
+        position: fixed;
+        height: 100%;
+        z-index: 50;
+      }
+      .sidebar:not(.collapsed) {
+        width: 240px;
+        min-width: 240px;
+        box-shadow: var(--shadow);
+      }
+      .sidebar-toggle { display: flex; }
+      .sidebar-close { display: block; }
+      .board {
+        scroll-snap-type: x mandatory;
+        padding-bottom: 24px;
+      }
+      .column {
+        min-width: 85vw;
+        width: 85vw;
+        max-width: 320px;
+        scroll-snap-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="logo">🧠</span>
+          <h1 class="sidebar-title">Cody <span class="sidebar-subtitle">Mission Control</span></h1>
+        </div>
+        <button class="sidebar-close" id="sidebar-close">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M4 4l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-header" style="justify-content: space-between;">
+          <span class="sidebar-section-title">Projects</span>
+        </div>
+        <nav class="project-list">
+          <div class="project-item active">
+            <span class="project-name">All Projects</span>
+            <span class="project-task-count">20</span>
+          </div>
+          <div class="project-item">
+            <span class="project-name">codymaster</span>
+            <span class="project-task-count">9</span>
+          </div>
+          <div class="project-item">
+            <span class="project-name">boxme-scoring</span>
+            <span class="project-task-count">7</span>
+          </div>
+        </nav>
+      </div>
+
+      <div class="sidebar-section">
+        <span class="sidebar-section-title">Active Agents</span>
+        <div class="agent-list">
+          <div class="agent-badge">
+            <span class="agent-dot" style="background:#22c55e;"></span>
+            <span>Antigravity</span>
+            <span class="agent-task-count">18</span>
+          </div>
+          <div class="agent-badge">
+            <span class="agent-dot" style="background:#a78bfa;"></span>
+            <span>Claude Code</span>
+            <span class="agent-task-count">1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section" style="margin-top:auto;">
+        <span class="sidebar-section-title">Views</span>
+        <nav class="project-list">
+          <div class="project-item active"><span class="project-name">Kanban</span></div>
+          <div class="project-item"><span class="project-name">History</span></div>
+          <div class="project-item"><span class="project-name">Deploys</span></div>
+          <div class="project-item"><span class="project-name">Changelog</span></div>
+          <div class="project-item"><span class="project-name">🧠 Brain</span></div>
+        </nav>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="header">
+        <div class="header-left">
+          <button class="btn-icon sidebar-toggle" id="sidebar-toggle">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+          <h2 class="header-project-name">All Projects</h2>
+        </div>
+        <div class="header-right">
+          <div class="sync-status">
+            <span class="sync-dot synced"></span>
+            <span class="sync-label">Synced</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="tab-panel active">
+        <div class="board">
+          
+          <div class="column">
+            <div class="column-header">
+              <div class="column-indicator backlog"></div>
+              <h2 class="column-title">Backlog</h2>
+              <span class="column-count">1</span>
+            </div>
+            <div class="card-list">
+              <div class="task-card">
+                <div class="card-top">
+                  <div class="card-title">Stripe integration</div>
+                </div>
+                <div class="card-description">Setup webhooks and customer portal</div>
+                <div class="card-footer">
+                  <span class="priority-badge priority-high">HIGH</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="column-header">
+              <div class="column-indicator in-progress"></div>
+              <h2 class="column-title">In Progress</h2>
+              <span class="column-count">2</span>
+            </div>
+            <div class="card-list">
+              <div class="task-card">
+                <div class="card-top">
+                  <div class="card-title">Automating Marketplace Reports</div>
+                </div>
+                <div class="card-description">Extracting data from Seller Center using CloakBrowser stealth plugin.</div>
+                <div class="card-meta">
+                  <div class="card-agent-badge"><span class="card-agent-dot" style="background:#22c55e;"></span> Antigravity</div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-time">4d ago</span>
+                  <span class="priority-badge priority-high">HIGH</span>
+                </div>
+              </div>
+              <div class="task-card">
+                <div class="card-top">
+                  <div class="card-title">Build Kanban dashboard</div>
+                </div>
+                <div class="card-description">Implement Mission Control UI and CLI command link</div>
+                <div class="card-meta">
+                  <div class="card-agent-badge"><span class="card-agent-dot" style="background:#a78bfa;"></span> Claude Code</div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-time">1h ago</span>
+                  <span class="priority-badge priority-urgent">URGENT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="column-header">
+              <div class="column-indicator review"></div>
+              <h2 class="column-title">Review</h2>
+              <span class="column-count">0</span>
+            </div>
+            <div class="card-list">
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="column-header">
+              <div class="column-indicator done"></div>
+              <h2 class="column-title">Done</h2>
+              <span class="column-count">1</span>
+            </div>
+            <div class="card-list">
+              <div class="task-card" style="opacity:0.7;">
+                <div class="card-top">
+                  <div class="card-title" style="text-decoration:line-through;color:var(--text-muted);">Test Gate Setup</div>
+                </div>
+                <div class="card-description">Ensure reliable tests before deploy</div>
+                <div class="card-meta">
+                  <div class="card-agent-badge"><span class="card-agent-dot" style="background:#22c55e;"></span> Antigravity</div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-time">2d ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <script>
+    (function() {
+      const sbToggleBtn = document.getElementById('sidebar-toggle');
+      if (sbToggleBtn) {
+        sbToggleBtn.addEventListener('click', () => {
+          const sb = document.getElementById('sidebar');
+          if (sb) sb.classList.toggle('collapsed');
+        });
+      }
+
+      const sbCloseBtn = document.getElementById('sidebar-close');
+      if (sbCloseBtn) {
+        sbCloseBtn.addEventListener('click', () => {
+          const sb = document.getElementById('sidebar');
+          if (sb) sb.classList.add('collapsed');
+        });
+      }
+
+      if (window.innerWidth <= 900) {
+        document.getElementById('sidebar')?.classList.add('collapsed');
+      }
+    })();
+  </script>
+</body>
+</html>

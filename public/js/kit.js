@@ -51,8 +51,9 @@
       }
     },
 
-    // Resolve nested key like "features.cards.0.title"
+    // Resolve nested key like "features.cards.0.title" or flat key with dot
     resolve(obj, path) {
+      if (obj[path] !== undefined) return obj[path];
       return path.split('.').reduce((acc, key) => acc?.[key], obj);
     },
 

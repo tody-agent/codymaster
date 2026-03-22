@@ -6,11 +6,11 @@
 
 ### Your AI Agent is smart. CodyMaster makes it *wise*.
 
-**33 Skills · 11 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
+**34 Skills · 11 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-3.4.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-33-success.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-34-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
@@ -56,7 +56,7 @@ When you install CodyMaster, you're not adding skills.
 ```mermaid
 graph TD
     A["🧠 CodyMaster Kit"] --> B["👨‍💻 Senior Developer<br/><i>cm-tdd · cm-debugging · cm-code-review</i>"]
-    A --> C["🎨 UX Lead<br/><i>cm-ux-master · cm-ui-preview</i>"]
+    A --> C["🎨 UX Lead<br/><i>cm-design-system · cm-ux-master · cm-ui-preview</i>"]
     A --> D["📋 Product Manager<br/><i>cm-planning · cm-brainstorm-idea · cm-jtbd</i>"]
     A --> E["🔒 DevOps Engineer<br/><i>cm-safe-deploy · cm-secret-shield · cm-identity-guard</i>"]
     A --> F["📝 Technical Writer<br/><i>cm-dockit · cm-content-factory</i>"]
@@ -128,9 +128,9 @@ flowchart LR
 
 > **Result:** Zero leaked secrets. Zero wrong-account deploys. Zero "worked on my machine" failures.
 
-### 🎨 Design System Extraction — Even From Old Products
+### 🎨 Design System Builder — Even From Old Products
 
-Got a legacy product with no design system? **`cm-ux-master`** scans your website, extracts colors, typography, spacing, and tokens, then rebuilds a proper design system. Preview designs visually with **Pencil.dev** or **Google Stitch** before writing a single line of code.
+Got a legacy product with no design system? **cm-design-system** scans your website, extracts colors, typography, spacing, and tokens, then rebuilds a proper design system. Preview designs visually with **Pencil.dev** or **Google Stitch** before writing a single line of code.
 
 ### 📝 Zero Documentation? No Problem.
 
@@ -153,7 +153,7 @@ No more guessing. Track every task, every agent, every deployment on a real-time
 
 | | 😵 15 Random Skills | 🧠 CodyMaster |
 |---|---|---|
-| **Integration** | Each skill is standalone, no shared context | 33 skills that chain, share memory, and communicate |
+| **Integration** | Each skill is standalone, no shared context | 34 skills that chain, share memory, and communicate |
 | **Lifecycle** | Covers coding only | Covers Idea → Design → Code → Test → Deploy → Docs → Learn |
 | **Memory** | Forgets everything between sessions | 4-tier memory system: Working → Episodic → Semantic → Deep Search |
 | **Safety** | YOLO deploys | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
@@ -227,7 +227,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 |--------|--------|
 | 🔧 **Engineering** | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` |
 | ⚙️ **Operations** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
-| 🎨 **Product & UX** | `cm-planning` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
+| 🎨 **Product & UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **Growth/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
 | 🎯 **Orchestration** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` |
 | 🖥️ **Workflow** | `cm-start` `cm-dashboard` `cm-status` |
@@ -252,7 +252,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 **Tody Le** — Head of Product with 10+ years of experience. Can't write code. Used AI to build real products for 6 months straight. Every skill in this kit was born from a real failure that cost real time and real tears.
 
-> *"33 skills. Each skill is a lesson. Each lesson is a sleepless night. And now, you don't have to go through those nights."*
+> *"34 skills. Each skill is a lesson. Each lesson is a sleepless night. And now, you don't have to go through those nights."*
 
 📖 [Read the full story →](https://cody-master.pages.dev/story)
 
@@ -262,7 +262,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 - 🌍 [Website](https://cody-master.pages.dev) — Overview & demos
 - 📖 [Documentation](https://cody-master.pages.dev/docs) — Full deep-dive
-- 🛠️ [Skills Reference](skills/) — Browse all 33 SKILL.md files
+- 🛠️ [Skills Reference](skills/) — Browse all 34 SKILL.md files
 - 📖 [Our Story](https://cody-master.pages.dev/story) — Why this exists
 
 ---
