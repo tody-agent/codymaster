@@ -39,7 +39,7 @@
       },
       {
         "title": "🔄 Legacy Rescue",
-        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
+        "description": "Даже если ваш продукт устарел, ux-master может просканировать ваш сайт, извлечь design system и перестроить tokens — давая старым продуктам новую жизнь без необходимости начинать с нуля."
       }
     ]
   },
@@ -259,5 +259,20 @@
   "faq_auto_27": "Как мне его установить?",
   "faq_auto_28": "Скопируйте",
   "why_cody_master_auto_17": "ИИ может писать код. Но без дисциплины он пишет хаос. Вот почему набор навыков меняет всё.",
-  "why_cody_master_auto_18": "Сегодня все используют ИИ для написания кода."
+  "why_cody_master_auto_18": "Сегодня все используют ИИ для написания кода.",
+  "readme": {
+    "feat1Desc": "Без пробелов. Без ручных передач. Idea → Plan → Design → Test → Code → Debug → Deploy → Document. Каждая фаза охвачена систематически.",
+    "feat1Title": "🔄 Полный охват Lifecycle",
+    "feat2Title": "🧠 Мозг, который учится",
+    "feat3Title": "🛡️ Многоуровневая защита",
+    "feat4Title": "🎨 Извлечение Design System",
+    "featuresTitle": "⚡ Чем отличается CodyMaster",
+    "how2Desc": "CodyMaster анализирует ваш запрос, исследует проблему и создает детальный implementation plan — как настоящий senior PM.",
+    "how3Desc": "Применяет 48 UX Laws и design system вашего бренда для создания production-ready UI — Figma не требуется.",
+    "howTitle": "🔄 Как это работает",
+    "vs3Bad": "Статично — что установили, то и получили",
+    "vsBadHeader": "😵 15 случайных Skills",
+    "vsGoodHeader": "🧠 CodyMaster",
+    "vsTitle": "🆚 Разрозненные Skills против CodyMaster"
+  }
 }

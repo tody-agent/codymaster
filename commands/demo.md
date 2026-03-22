@@ -88,7 +88,7 @@ Ask the user to try ONE of these right now and offer to help:
 ## Step 7 — Useful Resources
 
 Show at the end:
-- 📚 Docs: https://cody-master.pages.dev/docs
+- 📚 Docs: https://cody-master-a5q.pages.dev/docs
 - 🔄 Update: `claude plugin update cm@codymaster`
 - 💬 All skills: `/cm:skills`
 - 🔁 Restart tour: `/cm:demo`

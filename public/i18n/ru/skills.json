@@ -33,7 +33,7 @@
         "icon": "layers",
         "name": "cm-design-system",
         "categoryIndex": 1,
-        "description": "Design system builder and replication — ensure 100% brand consistency"
+        "description": "Конструктор и репликация Design system — обеспечение 100% единообразия бренда"
       },
       {
         "icon": "palette",
@@ -104,9 +104,9 @@
     ]
   },
   "skillsPage": {
-    "modalWhat": "What is it?",
-    "modalWhen": "When to use?",
-    "modalWhy": "Why use it?",
+    "modalWhat": "Что это?",
+    "modalWhen": "Когда использовать?",
+    "modalWhy": "Зачем это использовать?",
     "modalBest": "Best Practice",
     "meta": {
       "title": "Навыки — CodyMaster Kit",
@@ -134,36 +134,36 @@
         "name": "cm-brainstorm-idea",
         "category": "Ideation",
         "icon": "lightbulb",
-        "tagline": "Strategic Idea Analysis",
-        "prompt": "Analyze my e-commerce platform and suggest improvements",
+        "tagline": "Стратегический анализ идей",
+        "prompt": "Проанализируй мою e-commerce платформу и предложи улучшения",
         "related": [
           "cm-planning",
           "cm-ux-master"
         ],
-        "problem": "Got a brilliant idea but paranoid about building the wrong thing and burning time?",
-        "solution": "Multi-dimensional analysis to architect the absolute best execution strategy before hardcoding.",
-        "whatIsIt": "A strategic analysis tactician acting as your Product Manager. Employs Design Thinking, TRIZ 9 Windows, and Double Diamond matrices to dissect mechanics, marketing, and business risks.",
-        "whenToUse": "Exclusively before bootstrapping major epics or refactoring chaotic multi-tiered legacy systems.",
-        "whyToUse": "Eviscerates the 'build fast but build wrong' illusion. Forces you into evaluating 2-3 structured strategic options (comparing Pros/Cons) rather than coding blindly.",
-        "bestPractice": "Feed it extensive raw User Profile contexts. Consistently execute this prior to invoking `cm-planning`."
+        "problem": "Есть гениальная идея, но боитесь создать не то и впустую потратить время?",
+        "solution": "Многомерный анализ для построения оптимальной стратегии реализации до начала написания кода.",
+        "whatIsIt": "Тактик стратегического анализа, выступающий в роли вашего Product Manager. Использует Design Thinking, TRIZ 9 Windows и матрицы Double Diamond для детального разбора механик, маркетинга и бизнес-рисков.",
+        "whenToUse": "Исключительно перед бутстрапом крупных эпиков или рефакторингом хаотичных многоуровневых legacy-систем.",
+        "whyToUse": "Разрушает иллюзию «делай быстро, но неправильно». Заставляет оценивать 2-3 структурированных стратегических варианта (сравнивая Pros/Cons) вместо слепого написания кода.",
+        "bestPractice": "Передавайте обширные необработанные контексты User Profile. Всегда выполняйте это перед вызовом `cm-planning`."
       },
       {
         "id": "cm-planning",
         "name": "cm-planning",
         "category": "Ideation",
         "icon": "map",
-        "tagline": "Implementation Planning",
-        "prompt": "Plan the implementation for user authentication",
+        "tagline": "Планирование реализации",
+        "prompt": "Спланируй реализацию аутентификации пользователей",
         "related": [
           "cm-brainstorm-idea",
           "cm-execution"
         ],
-        "problem": "Whenever the AI is commanded to code raw, it violently demolishes your stable architecture?",
-        "solution": "Force AI to formulate a comprehensive structural blueprint defining scope before keyboard hitting.",
-        "whatIsIt": "The supreme operational orchestrator. Pushes out an architectural blueprint (`implementation_plan.md`) documenting exactly what files undergo structural mutation.",
-        "whenToUse": "After the core idea hits green-light status (via `cm-brainstorm-idea`) and identically moments before physically coding.",
-        "whyToUse": "Shatters monolithic requests into micro-manageable step-nodes. Pre-reviewing this architectural snapshot rescues you from infinite debugging loops late night.",
-        "bestPractice": "Intensely scrutinize the `implementation_plan.md`. Command the AI to patch architectural flaws rigidly before ever approving movement to `cm-execution`."
+        "problem": "Каждый раз, когда ИИ получает команду писать код напрямую, он грубо разрушает вашу стабильную архитектуру?",
+        "solution": "Заставьте ИИ сформулировать всеобъемлющий структурный чертеж, определяющий scope перед началом работы.",
+        "whatIsIt": "Высший операционный оркестратор. Создает архитектурный чертеж (`implementation_plan.md`), документирующий, какие именно файлы подвергаются структурным изменениям.",
+        "whenToUse": "После того как основная идея получила одобрение (через `cm-brainstorm-idea`) и непосредственно перед началом написания кода.",
+        "whyToUse": "Разбивает монолитные запросы на управляемые микро-шаги. Предварительный обзор этого архитектурного снимка избавит вас от бесконечных циклов отладки поздно ночью.",
+        "bestPractice": "Внимательно изучайте `implementation_plan.md`. Требуйте от ИИ исправления архитектурных недостатков до того, как одобрить переход к `cm-execution`."
       },
       {
         "id": "cm-content-factory",
@@ -171,17 +171,17 @@
         "category": "Content",
         "icon": "pen-tool",
         "tagline": "AI Content Engine",
-        "prompt": "Write a blog post about remote work productivity",
+        "prompt": "Напиши пост для блога о продуктивности при удаленной работе",
         "related": [
           "cm-readit",
           "cm-ux-master"
         ],
-        "problem": "Your landing page SEO content sounds incredibly robotic, driving bounce rates up and conversions down?",
-        "solution": "A psychological copywriting factory that mimics 8-figure conversion marketers flawlessly.",
-        "whatIsIt": "A self-improving content engine imbued with 8+ hypnotic psychological frameworks (StoryBrand SB7, Cialdini's Persuasion, SUCCESs vectors) for elite marketing campaigns.",
-        "whenToUse": "Drafting intensely persuasive content mediums: Lead generation funnels, blast emails, commercial blogs, or Facebook Ad hooks.",
-        "whyToUse": "Moves away from generative dictionary-text into pure psychological maneuvers. It agitates exact user trauma points, weaponizes curiosity, and boosts global Conversion Rates (CRO).",
-        "bestPractice": "Initially define the JTBD (Job-to-be-Done). Trigger the StoryBrand mode projecting your Customer strictly as the Hero, and your Brand as the Yoda-like Guide."
+        "problem": "SEO-контент вашей посадочной страницы звучит слишком роботизированно, что повышает показатель отказов и снижает конверсию?",
+        "solution": "Фабрика психологического копирайтинга, которая безупречно имитирует маркетологов с многомиллионными оборотами.",
+        "whatIsIt": "Самосовершенствующийся контент-движок, использующий более 8 психологических фреймворков (StoryBrand SB7, Cialdini's Persuasion, векторы SUCCESs) для элитных маркетинговых кампаний.",
+        "whenToUse": "Подготовка убедительного контента: воронки лидогенерации, рассылки, коммерческие блоги или хуки для Facebook Ad.",
+        "whyToUse": "Переход от простого генеративного текста к чистым психологическим маневрам. Он воздействует на конкретные болевые точки пользователей, использует любопытство и повышает глобальные показатели конверсии (CRO).",
+        "bestPractice": "Сначала определите JTBD (Job-to-be-Done). Запустите режим StoryBrand, представляя своего Клиента строго в роли Героя, а ваш Бренд — как Наставника, подобного Йоде."
       },
       {
         "id": "cm-design-system",
@@ -194,12 +194,12 @@
           "cm-ux-master",
           "cm-ui-preview"
         ],
-        "problem": "AI designs look inconsistent across screens and don't match your brand?",
-        "solution": "Extract and strictly enforce a centralized design system, ensuring absolute aesthetic consistency.",
-        "whatIsIt": "A dedicated design system librarian. Scrapes live sites, extracts visual tokens, and maps them to STITCH_TOKENS. Works natively with Pencil.dev and Google Stitch.",
-        "whenToUse": "Before generating any new UI component or when you want to migrate a legacy product to a standardized design system.",
-        "whyToUse": "Saves hundreds of hours manually correcting AI-generated button colors, padding inconsistencies, and wrong fonts. Also provides beautiful fallback themes (Shadcn, Halo).",
-        "bestPractice": "Always run this to generate a DESIGN.md before invoking cm-ui-preview. Rely on its fallback templates if you don't have a design."
+        "problem": "Дизайн от AI выглядит непоследовательно на разных экранах и не соответствует вашему бренду?",
+        "solution": "Извлеките и строго соблюдайте централизованную дизайн-систему, обеспечивая абсолютную эстетическую целостность.",
+        "whatIsIt": "Специализированный библиотекарь дизайн-систем. Сканирует живые сайты, извлекает визуальные токены и сопоставляет их со STITCH_TOKENS. Работает нативно с Pencil.dev и Google Stitch.",
+        "whenToUse": "Перед созданием любого нового UI-компонента или когда вы хотите перевести устаревший продукт на стандартизированную дизайн-систему.",
+        "whyToUse": "Экономит сотни часов на ручном исправлении цветов кнопок, неточностей в отступах и неправильных шрифтов, сгенерированных AI. Также предоставляет красивые резервные темы (Shadcn, Halo).",
+        "bestPractice": "Всегда запускайте это для генерации DESIGN.md перед вызовом cm-ui-preview. Полагайтесь на встроенные резервные шаблоны, если у вас нет своего дизайна."
       },
       {
         "id": "cm-ux-master",
@@ -212,12 +212,12 @@
           "cm-ui-preview",
           "cm-content-factory"
         ],
-        "problem": "Your interface is erratic, spacing grids clash, and the color hierarchies resemble a circus?",
-        "solution": "Instantly impose absolute UI/UX design compliance inherited from 48 universal laws and elite patterns.",
-        "whatIsIt": "The apex visual intelligence node. Integrates 48 strict UX Laws, thousands of component heuristics, deeply optimizing aesthetic A11y scaling and whitespace math.",
-        "whenToUse": "Prototyping new UI layouts from scratch, auditing broken checkout friction streams, or elevating UI consistency globally.",
-        "whyToUse": "Eradicates the dependency on highly expensive UX consultation. Acts as a draconian design gatekeeper verifying your aesthetic yields extreme polish and engagement.",
-        "bestPractice": "Always pair this engine sequentially with `cm-ui-preview` to visualize its conceptualized mockups before dropping into Tailwind syntax."
+        "problem": "Ваш интерфейс хаотичен, сетки отступов конфликтуют, а иерархия цветов напоминает цирк?",
+        "solution": "Мгновенно примените абсолютное соответствие UI/UX дизайну, основанное на 48 универсальных законах и элитных паттернах.",
+        "whatIsIt": "Вершина узла визуального интеллекта. Интегрирует 48 строгих UX Laws, тысячи эвристик компонентов, глубоко оптимизируя эстетическое масштабирование A11y и математику свободного пространства.",
+        "whenToUse": "Прототипирование новых UI-макетов с нуля, аудит проблемных мест в процессе оформления заказа или глобальное повышение согласованности UI.",
+        "whyToUse": "Устраняет зависимость от дорогостоящих UX-консультаций. Действует как суровый контролер дизайна, гарантируя, что ваша эстетика обеспечивает исключительную отточенность и вовлеченность.",
+        "bestPractice": "Всегда используйте этот движок в связке с `cm-ui-preview`, чтобы визуализировать концептуальные макеты перед переходом к синтаксису Tailwind."
       },
       {
         "id": "cm-ui-preview",
@@ -230,12 +230,12 @@
           "cm-ux-master",
           "cm-planning"
         ],
-        "problem": "A nightmare trying to conceptualize how an AI's code will visually render without compiling?",
-        "solution": "Render immediate hyper-realistic mockups strictly locking down design specs before HTML processing.",
-        "whatIsIt": "Seamlessly interlocks via Google Stitch/Pencil integration parameters producing live UI graphical snapshots instantaneously.",
-        "whenToUse": "Traversing the twilight zone between conceptual ideation and deep coding pipelines to physically validate concepts.",
-        "whyToUse": "Iterating graphical elements is hundreds of times cheaper token-wise and time-wise compared to endless CSS refactoring loops. 'Preview before producing'.",
-        "bestPractice": "Declare component demands precisely (Sidebar grids, Hero Call-to-actions). Demand exported screenshot renderings immediately traversing processing."
+        "problem": "Попытки представить, как визуально будет выглядеть код от AI без компиляции, превращаются в кошмар?",
+        "solution": "Создавайте мгновенные гиперреалистичные макеты, строго фиксируя спецификации дизайна перед обработкой HTML.",
+        "whatIsIt": "Бесшовно стыкуется через параметры интеграции Google Stitch/Pencil, мгновенно создавая живые графические снимки UI.",
+        "whenToUse": "При переходе из зоны концептуального проектирования в глубокие конвейеры кодинга для физической проверки концепций.",
+        "whyToUse": "Итерация графических элементов в сотни раз дешевле с точки зрения использования токенов и времени по сравнению с бесконечными циклами рефакторинга CSS. «Превью перед производством».",
+        "bestPractice": "Точно формулируйте требования к компонентам (сетки Sidebar, Hero Call-to-actions). Требуйте экспорта отрендеренных скриншотов сразу после обработки."
       },
       {
         "id": "cm-execution",
@@ -248,12 +248,12 @@
           "cm-planning",
           "cm-tdd"
         ],
-        "problem": "Unleashing an AI on gigantic changesheets causes token amnesia, breaking pristine logic boundaries?",
-        "solution": "Atomically partition operations, buffer saves, and intelligently string processing simultaneously.",
-        "whatIsIt": "The industrial-tier coding execution loop mechanism. Capable of intense batch processing trajectories, anomaly isolation, and non-stop operational perseverance.",
-        "whenToUse": "Armed explicitly with an `implementation_plan.md` and prepared to industrially construct the feature sets.",
-        "whyToUse": "It honors strict Dependency-First execution flow (E.g. generating DB schemas prior to UI consumption). Audits itself sequentially post-microstep.",
-        "bestPractice": "Monitor the `task.md` dashboard progress actively. Refrain arbitrarily interrupting the AI whilst locked in a Deep Execution state unless a nuclear error signals."
+        "problem": "Запуск AI на гигантских листах изменений вызывает амнезию токенов, нарушая четкие границы логики?",
+        "solution": "Атомарно разделяйте операции, буферизируйте сохранения и интеллектуально выстраивайте цепочки обработки.",
+        "whatIsIt": "Механизм цикла исполнения кода промышленного уровня. Способен на интенсивные траектории пакетной обработки, изоляцию аномалий и непрерывную оперативную настойчивость.",
+        "whenToUse": "Когда на руках есть четкий `implementation_plan.md` и вы готовы к промышленной сборке наборов функций.",
+        "whyToUse": "Соблюдает строгий поток исполнения Dependency-First (например, генерация схем DB перед использованием в UI). Проводит самоаудит последовательно после каждого микрошага.",
+        "bestPractice": "Активно отслеживайте прогресс на дашборде `task.md`. Воздержитесь от произвольного прерывания AI, пока он находится в состоянии Deep Execution, если только не поступит сигнал о критической ошибке."
       },
       {
         "id": "cm-tdd",
@@ -266,12 +266,12 @@
           "cm-execution",
           "cm-quality-gate"
         ],
-        "problem": "App functions flawlessly initially, but collapses silently via regression every minor patch cycle?",
-        "solution": "Draconian enforcement of Test-Driven Development (TDD) engineering absolute structural shields.",
-        "whatIsIt": "Pure TDD dogma enforcer. Physically authors logical assertions (Unit/Integration) *before* spawning the core algorithm logic designed to clear the test constraints.",
-        "whenToUse": "Absolutely fundamental dictation when handling core mathematical layers, payment gateways, complex state mutations, or critical endpoints.",
-        "whyToUse": "Guarantees mission-critical infrastructure operates immune to silent regression creeping. Green test matrices equal zero-anxiety nocturnal deployments.",
-        "bestPractice": "Never disregard utility function coverage metrics. Command the AI to ingest your custom Jest/Vitest configuration specifications thoroughly."
+        "problem": "Приложение изначально работает безупречно, но незаметно ломается из-за регрессий при каждом цикле мелких патчей?",
+        "solution": "Бескомпромиссное соблюдение Test-Driven Development (TDD), создающее абсолютные структурные щиты инженерии.",
+        "whatIsIt": "Контролер чистой догмы TDD. Физически создает логические утверждения (Unit/Integration) *перед* порождением основной логики алгоритма, разработанной для прохождения тестов.",
+        "whenToUse": "Абсолютно фундаментальное требование при работе с основными математическими слоями, платежными шлюзами, сложными мутациями состояний или критическими эндпоинтами.",
+        "whyToUse": "Гарантирует, что критически важная инфраструктура работает невосприимчиво к скрытому накоплению регрессий. Матрицы пройденных тестов означают спокойное развертывание в любое время суток.",
+        "bestPractice": "Никогда не игнорируйте метрики покрытия функций утилит. Прикажите AI тщательно изучить ваши кастомные спецификации конфигурации Jest/Vitest."
       },
       {
         "id": "cm-debugging",
@@ -284,12 +284,12 @@
           "cm-tdd",
           "cm-terminal"
         ],
-        "problem": "Hitting an anomaly and the AI guesses wildly, altering stable dependencies while deteriorating the stack?",
-        "solution": "Implement surgical Root Cause methodologies replacing volatile wild-guess patchwork immediately.",
-        "whatIsIt": "A methodical trace forensics instrument. Recursively scans the data flow pipelines, unravels terminal output, and isolates exact structural node failures surgically.",
-        "whenToUse": "Confronted by visible UI rendering fracturing, terminal compilation panics, or logic chains returning catastrophic mutations.",
-        "whyToUse": "Standard unstructured debugging usually annihilates secondary logic clusters. This technique isolates the infection, deploying a single targeted patch conserving absolute context stability.",
-        "bestPractice": "Deliver raw unadulterated Error Stack Traces. Explicitly instruct it: 'Analyze Root Cause precisely' prior to ever granting file-write authorization."
+        "problem": "Столкнулись с аномалией, и AI гадает наугад, меняя стабильные зависимости и разрушая стек?",
+        "solution": "Немедленно внедрите хирургические методологии Root Cause, заменяя нестабильные «заплатки», сделанные наугад.",
+        "whatIsIt": "Инструмент методичной трассировочной криминалистики. Рекурсивно сканирует конвейеры потоков данных, распутывает вывод терминала и хирургически изолирует точные структурные сбои узлов.",
+        "whenToUse": "При обнаружении видимых дефектов рендеринга UI, паники при компиляции в терминале или когда логические цепочки возвращают катастрофические мутации.",
+        "whyToUse": "Стандартная неструктурированная отладка обычно уничтожает вторичные логические кластеры. Эта техника изолирует «инфекцию», развертывая единый целевой патч, сохраняющий абсолютную стабильность контекста.",
+        "bestPractice": "Предоставляйте необработанные чистые Error Stack Traces. Явно проинструктируйте: «Точно проанализируй Root Cause», прежде чем давать разрешение на запись в файл."
       },
       {
         "id": "cm-code-review",
@@ -302,12 +302,12 @@
           "cm-quality-gate",
           "cm-tdd"
         ],
-        "problem": "Terrified to merge foreign or rapid code injections out of fear they harbor security/technical decay?",
-        "solution": "Deploy a merciless automated Senior Engineer verification protocol gating your main branch.",
-        "whatIsIt": "An exhaustive Pull Request surveillance apparatus. Critiques invisible Code Smells, algorithm latency bottlenecks, reusability scaling, and security liabilities.",
-        "whenToUse": "Concluding feature isolation arcs, right before attempting branch merging matrices, or retro-auditing massive legacy refactors.",
-        "whyToUse": "Decimates the requirement for Senior human reviewers constantly standing by. Recommends intensely elegant structural refactoring permutations proactively decreasing Tech Debt.",
-        "bestPractice": "Ask the AI directly: 'Identify the top 3 Technical Debt consequences introducing this specific implementation will forge long-term'."
+        "problem": "Боитесь мержить чужой или быстро написанный код из опасения, что он несет в себе угрозы безопасности или технический регресс?",
+        "solution": "Разверните беспощадный автоматизированный протокол проверки уровня Senior Engineer, охраняющий вашу ветку main.",
+        "whatIsIt": "Аппарат исчерпывающего наблюдения за Pull Request. Критикует невидимые Code Smells, узкие места в задержке алгоритмов, масштабируемость переиспользования и обязательства по безопасности.",
+        "whenToUse": "При завершении циклов изоляции фич, непосредственно перед попыткой слияния веток или при ретро-аудите масштабных рефакторингов устаревшего кода.",
+        "whyToUse": "Устраняет необходимость в постоянном присутствии проверяющих уровня Senior. Проактивно рекомендует элегантные варианты структурного рефакторинга, снижая Tech Debt.",
+        "bestPractice": "Спросите AI напрямую: «Определи топ-3 последствий для Technical Debt, которые создаст внедрение этой конкретной реализации в долгосрочной перспективе»."
       },
       {
         "id": "cm-quality-gate",
@@ -320,12 +320,12 @@
           "cm-tdd",
           "cm-safe-deploy"
         ],
-        "problem": "The classic 'It runs perfect on my localhost!' transitioning into a blazing server collapse deployment?",
-        "solution": "The uncompromising iron Quality Gate checkpoint. Failure to pass = Absolute deployment prohibition.",
-        "whatIsIt": "The ultimate CI validation blockade. Enforces zero-leniency clears over Linting aesthetics, Test pass rates, TypeScript bindings, and Security vulnerability scanners.",
-        "whenToUse": "MANDATORY checkpoint directly preceding any activation of the `cm-safe-deploy` command or concluding your two-week Scrum Sprint cycles.",
-        "whyToUse": "Anchors the RARV (Review-Audit-Resolve-Verify) standard. Violently blocks humiliating service outages stemming from simple undefined tokens or broken logic gates.",
-        "bestPractice": "Never under any administrative pressure bypass the execution check of this QA Gate checkpoint."
+        "problem": "Классическое «На моем localhost все работает идеально!», переходящее в катастрофический крах сервера при деплое?",
+        "solution": "Бескомпромиссный железный чекпоинт Quality Gate. Непрохождение проверки = абсолютный запрет на деплой.",
+        "whatIsIt": "Ультимативная блокада валидации CI. Обеспечивает нулевую терпимость к ошибкам в эстетике Linting, показателях прохождения тестов, привязках TypeScript и сканерах уязвимостей безопасности.",
+        "whenToUse": "ОБЯЗАТЕЛЬНЫЙ чекпоинт непосредственно перед любой активацией команды `cm-safe-deploy` или по завершении двухнедельных циклов Scrum Sprint.",
+        "whyToUse": "Закрепляет стандарт RARV (Review-Audit-Resolve-Verify). Жестко блокирует унизительные простои сервиса, вызванные простыми неопределенными токенами или сломанными логическими затворами.",
+        "bestPractice": "Никогда, ни под каким административным давлением не обходите проверку исполнения этого чекпоинта QA Gate."
       },
       {
         "id": "cm-test-gate",
@@ -338,12 +338,12 @@
           "cm-tdd",
           "cm-quality-gate"
         ],
-        "problem": "Acknowledging Testing is paramount but entirely lost configuring the sophisticated infrastructure properly?",
-        "solution": "Instantiate robust automated testing CI foundations systematically strictly by the book.",
-        "whatIsIt": "Testing infrastructure scaffolding authority. Sets up the backbone array (Vitest, Jest, Cypress), environment profiles, and Husky pre-commit defensive mechanisms.",
-        "whenToUse": "Booting an entirely fresh repository, or salvaging an older legacy codebase devoid of comprehensive structural verification standards.",
-        "whyToUse": "Integrating Test Gates on Day 1 catalyzes massive horizontal project scaling capability without internal fracturing. It pre-populates dummy specs mapping out behavior.",
-        "bestPractice": "Trigger this initialization explicitly early, normally as the direct sequential operational step after clearing `cm-project-bootstrap`."
+        "problem": "Признаете, что тестирование первостепенно, но совершенно запутались в правильной настройке сложной инфраструктуры?",
+        "solution": "Систематически создавайте надежный фундамент автоматизированного тестирования CI строго «по учебнику».",
+        "whatIsIt": "Орган по созданию каркаса инфраструктуры тестирования. Настраивает основной массив (Vitest, Jest, Cypress), профили окружения и защитные механизмы Husky pre-commit.",
+        "whenToUse": "При запуске совершенно нового репозитория или при спасении старого легаси-кода, лишенного комплексных стандартов структурной проверки.",
+        "whyToUse": "Интеграция Test Gates в «День 1» катализирует возможности масштабного горизонтального масштабирования проекта без внутренних разрывов. Она заранее заполняет фиктивные спецификации, описывающие поведение.",
+        "bestPractice": "Запускайте эту инициализацию явно на раннем этапе, обычно как прямой последовательный операционный шаг после завершения `cm-project-bootstrap`."
       },
       {
         "id": "cm-terminal",
@@ -356,12 +356,12 @@
           "cm-execution",
           "cm-debugging"
         ],
-        "problem": "Long-haul background compilations or terminal operations spew unnoticed critical warnings inducing invisible crashes?",
-        "solution": "Impose hyper-intelligent oversight spanning all terminal and shell execution processes instantly.",
-        "whatIsIt": "A dedicated supervisory overlay for Terminal executions—capturing NPM dependency installations, build engines, or headless daemon dev environments actively.",
-        "whenToUse": "Whenever authorizing heavily destructive directory commands or package cascades known to traditionally generate dense obscure warning streams.",
-        "whyToUse": "Aggressively checks AI 'fire and forget' tendencies. The unit methodically translates terminal feedback, pauses for process resolution, and neutralizes rogue exits carefully.",
-        "bestPractice": "Monitor and enforce its command restriction boundaries. Ask it dynamically to dump diagnostic log buffers if an unhandled backend process mysteriously evaporates."
+        "problem": "Длительные фоновые компиляции или терминальные операции извергают незамеченные критические предупреждения, вызывающие невидимые сбои?",
+        "solution": "Установите сверхразумный надзор над всеми процессами выполнения в терминале и оболочке мгновенно.",
+        "whatIsIt": "Специализированный надзорный слой для выполнения в Terminal — активно захватывает установку зависимостей NPM, движки сборки или среды разработки безголовых демонов.",
+        "whenToUse": "Всякий раз, когда разрешаете выполнение деструктивных команд в директориях или каскадов пакетов, которые традиционно генерируют плотные потоки неясных предупреждений.",
+        "whyToUse": "Агрессивно проверяет склонности AI к принципу «выстрелил и забыл». Юнит методично транслирует обратную связь терминала, делает паузы для завершения процессов и аккуратно нейтрализует некорректные выходы.",
+        "bestPractice": "Мониторинг и соблюдение границ ограничений команд. Динамически запрашивайте дамп буферов диагностических логов, если необработанный backend-процесс таинственным образом исчезает."
       },
       {
         "id": "cm-safe-deploy",
@@ -369,17 +369,17 @@
         "category": "DevOps",
         "icon": "rocket",
         "tagline": "Safe Deployment Pipeline",
-        "prompt": "Deploy the staging build to Cloudflare Pages",
+        "prompt": "Развернуть staging-сборку на Cloudflare Pages",
         "related": [
           "cm-quality-gate",
           "cm-identity-guard"
         ],
-        "problem": "Does triggering the 'Deploy' sequence invoke intense anxiety and fear of irreversible domain outages?",
-        "solution": "An 8-Gate verification deployment protocol verifying holistic integrity before superseding live data arrays.",
-        "whatIsIt": "Zero-downtime automated deployment orchestrator. Fluidly connects with Vercel, Cloudflare Pages, or custom raw VPS server configurations gracefully.",
-        "whenToUse": "Progressing verified staging code integrations over the threshold into global Production/Live environment status updates.",
-        "whyToUse": "Alleviates the immense psychological friction attached to shipping internet products. Prioritizes indestructible rollback systems instantaneously shielding users if a build is fundamentally toxic.",
-        "bestPractice": "Obligatorily sequence this protocol exclusively only after achieving a full-green certification run from your `cm-quality-gate`."
+        "problem": "Вызывает ли запуск последовательности 'Deploy' сильную тревогу и страх необратимых сбоев домена?",
+        "solution": "Протокол развертывания с 8-Gate верификацией, проверяющий целостность системы перед обновлением активных массивов данных.",
+        "whatIsIt": "Оркестратор автоматизированного развертывания без простоев (Zero-downtime). Плавно подключается к Vercel, Cloudflare Pages или кастомным конфигурациям VPS серверов.",
+        "whenToUse": "Перевод проверенных интеграций кода из staging в глобальный Production/Live статус.",
+        "whyToUse": "Облегчает огромное психологическое напряжение при выпуске интернет-продуктов. Приоритезирует надежные системы rollback, мгновенно защищающие пользователей в случае критических ошибок в сборке.",
+        "bestPractice": "Обязательно запускайте этот протокол только после успешного прохождения всех тестов в `cm-quality-gate`."
       },
       {
         "id": "cm-project-bootstrap",
@@ -387,17 +387,17 @@
         "category": "DevOps",
         "icon": "folder-plus",
         "tagline": "Project Scaffold",
-        "prompt": "Bootstrap a new SaaS project with Next.js",
+        "prompt": "Инициализировать новый SaaS проект на Next.js",
         "related": [
           "cm-planning",
           "cm-safe-deploy"
         ],
-        "problem": "The introductory configurations feel like an endless repeating chore: tailwind, git, eslint, routing setup...",
-        "solution": "Instantiate total enterprise-grade structural configurations universally under a rapid minute.",
-        "whatIsIt": "Paramount project initialization scaffold. Bakes in structural directory perfection, staging profiles, pre-configured i18n support, SEO metadata layers out of the box.",
-        "whenToUse": "Ground Zero momentum initializing a completely empty project canvas.",
-        "whyToUse": "Constructing upon a shaky foundational structure guarantees collapse later. Executing this standard magnifies developmental agility 10x throughout subsequent development months.",
-        "bestPractice": "Ensure correct organizational nomenclature (Domain, Project Title) when prompted, allowing the Identity Guard mechanisms to calibrate seamlessly."
+        "problem": "Начальная конфигурация кажется бесконечной рутиной: настройка tailwind, git, eslint, роутинга...",
+        "solution": "Создание полной структурной конфигурации корпоративного уровня менее чем за минуту.",
+        "whatIsIt": "Первоклассный каркас для инициализации проекта. Включает идеальную структуру директорий, профили staging, преднастроенную поддержку i18n и слои SEO-метаданных \"из коробки\".",
+        "whenToUse": "Стартовый импульс при инициализации абсолютно пустого проекта.",
+        "whyToUse": "Строительство на шатком фундаменте гарантирует крах в будущем. Использование этого стандарта в 10 раз повышает гибкость разработки в последующие месяцы.",
+        "bestPractice": "При запросе указывайте правильную номенклатуру организации (Domain, Project Title), чтобы механизмы Identity Guard могли точно откалиброваться."
       },
       {
         "id": "cm-git-worktrees",
@@ -405,17 +405,17 @@
         "category": "DevOps",
         "icon": "git-branch",
         "tagline": "Git Worktree Manager",
-        "prompt": "Create a worktree for the new payment feature",
+        "prompt": "Создать worktree для новой функции оплаты",
         "related": [
           "cm-code-review",
           "cm-execution"
         ],
-        "problem": "Halfway configuring deep logic when an immediate Live bug detonates; switching branches yields absolute Git apocalyptic conflicts?",
-        "solution": "Activate Git Worktree multiplexing, allowing multi-stream operations without shedding uncommitted code progress.",
-        "whatIsIt": "An elite branching parallelization tool. Worktrees instantiate isolated physical folder variants synchronized to a singular central git repository simultaneously.",
-        "whenToUse": "Extremely critical when forced to suspend highly-complex uncommitted algorithms to resolve catastrophic sudden high-tier organizational demands.",
-        "whyToUse": "Eradicates the volatile 'git stash' inferno. Eliminates excruciating `node_modules` reconfiguration wait-times. Operational context streams remain hermetically sealed and safe from tampering.",
-        "bestPractice": "Always prune and delete the isolated worktree directory securely once the temporary branch has achieved successful final merger integration to save SSD capacities."
+        "problem": "Вы находитесь в процессе настройки сложной логики, когда внезапно обнаруживается баг на Live; переключение веток приводит к апокалиптическим конфликтам в Git?",
+        "solution": "Активируйте мультиплексирование Git Worktree, позволяющее выполнять многопоточные операции без потери прогресса в незафиксированном коде.",
+        "whatIsIt": "Элитный инструмент параллелизации веток. Worktree создают изолированные варианты физических папок, синхронизированные с единым центральным Git-репозиторием.",
+        "whenToUse": "Критически важно, когда необходимо приостановить работу над сложными алгоритмами для решения внезапных и важных задач.",
+        "whyToUse": "Избавляет от ада 'git stash'. Устраняет мучительное время ожидания переконфигурации `node_modules`. Потоки операционного контекста остаются герметичными и защищенными от вмешательства.",
+        "bestPractice": "Всегда удаляйте изолированную директорию worktree после успешного слияния временной ветки, чтобы сэкономить место на SSD."
       },
       {
         "id": "cm-safe-i18n",
@@ -423,17 +423,17 @@
         "category": "Content",
         "icon": "globe",
         "tagline": "Safe Internationalization",
-        "prompt": "Translate the app from English to Vietnamese",
+        "prompt": "Перевести приложение с English на Vietnamese",
         "related": [
           "cm-content-factory",
           "cm-quality-gate"
         ],
-        "problem": "Generative AI multi-translation iterations capriciously obliterate core internal logic values or semantic HTML structures?",
-        "solution": "Absolute bulletproof localization matrices guaranteeing zero distortion in structural application frameworks.",
-        "whatIsIt": "Massive multi-pass array translation engine running distinct languages synchronously. Applies raw regex differential analysis ensuring structural components stay completely immaculate.",
-        "whenToUse": "Geographically scaling applications incorporating dense dual locales (E.g. processing Korean, Vietnamese, or custom English integrations globally).",
-        "whyToUse": "Forged directly directly in the fires of catastrophic AI-refactoring wipeouts. It integrates an 8-layer structural audit enforcing variables and DIV architectures stay entirely intact perpetually.",
-        "bestPractice": "Mandate parsing minimal JSON blocks strictly beneath 2,000 text lines to prevent extensive recursive hallucination tendencies in the LLM."
+        "problem": "Итерации мульти-перевода Generative AI капризно уничтожают значения внутренней логики или семантические структуры HTML?",
+        "solution": "Абсолютно надежные матрицы локализации, гарантирующие отсутствие искажений в структурных фреймворках приложений.",
+        "whatIsIt": "Масштабный многопроходный движок перевода массивов, обрабатывающий разные языки синхронно. Применяет дифференциальный анализ через regex, гарантируя безупречное состояние структурных компонентов.",
+        "whenToUse": "Географическое масштабирование приложений с использованием нескольких локалей (например, обработка Korean, Vietnamese или кастомных English интеграций по всему миру).",
+        "whyToUse": "Создано в огне катастрофических последствий рефакторинга через AI. Включает 8-уровневый структурный аудит, обеспечивающий неизменность переменных и архитектуры DIV.",
+        "bestPractice": "Парсите JSON минимальными блоками (строго менее 2000 строк текста), чтобы предотвратить тенденции LLM к рекурсивным галлюцинациям."
       },
       {
         "id": "cm-readit",
@@ -441,71 +441,71 @@
         "category": "Content",
         "icon": "headphones",
         "tagline": "Audio & Voice CRO",
-        "prompt": "Add text-to-speech reading mode to my blog",
+        "prompt": "Добавить режим чтения Text-to-Speech в мой блог",
         "related": [
           "cm-content-factory",
           "cm-ux-master"
         ],
-        "problem": "Text-heavy domain articles massively fatigue user optics culminating in devastating Bounce Rates rapidly?",
-        "solution": "Algorithmically transcribe dense typographical realms into digestible Podcast/Audio player modules proactively.",
-        "whatIsIt": "Fully loaded Text-to-Speech (TTS) module architecture equipped intricately with interface players and Voice Activation CRO optimization triggers.",
-        "whenToUse": "Across extensively formatted academic manuals, storytelling marketing landing paths, and dense analytical journalism sectors prioritizing distinct interactivity.",
-        "whyToUse": "Substantially augments User Retention metrics. Listening mandates passive involvement. Massively supports Web Accessibility A11y while distinguishing overall media interactions.",
-        "bestPractice": "Integrate refined seamless Web Speech Engine configurations, or synchronize precisely generated high-definition Voice Actor MP3 rendering arrays."
+        "problem": "Объемные текстовые статьи сильно утомляют глаза пользователей, что приводит к резкому росту Bounce Rates?",
+        "solution": "Алгоритмическое преобразование плотных текстов в удобные модули Podcast/Audio плеера.",
+        "whatIsIt": "Полнофункциональная архитектура модуля Text-to-Speech (TTS), оснащенная интерфейсными плеерами и триггерами оптимизации Voice Activation CRO.",
+        "whenToUse": "В академических руководствах, маркетинговых лендингах и аналитических статьях, где важна интерактивность.",
+        "whyToUse": "Существенно повышает метрики User Retention. Прослушивание предполагает пассивное участие. Значительно улучшает Web Accessibility A11y и выделяет медиа-взаимодействие.",
+        "bestPractice": "Интегрируйте усовершенствованные конфигурации Web Speech Engine или синхронизируйте точно сгенерированные массивы рендеринга MP3 для Voice Actor высокого разрешения."
       },
       {
         "id": "cm-secret-shield",
         "name": "cm-secret-shield",
         "category": "Security",
         "icon": "lock",
-        "tagline": "Secret Leak Prevention",
-        "prompt": "Scan the repo for exposed API keys",
+        "tagline": "Предотвращение утечки секретов",
+        "prompt": "Просканируйте репозиторий на наличие открытых API keys",
         "related": [
           "cm-identity-guard",
           "cm-safe-deploy"
         ],
-        "problem": "Routinely exposing private Cloud Database keys or Secret Tokens over to Public GitHub feeds triggering massive global breaches?",
-        "solution": "An impermeable early-warning barrier annihilating unencrypted credential anomalies natively at the push horizon.",
-        "whatIsIt": "A ubiquitous cryptographic scanner instrument armed with intense regex logic sniffing AWS, JWT tokens, Stripe Secrets systematically bound strictly the localized Git hook level.",
-        "whenToUse": "Perpetually active in stealth sequence. However, specifically deploy the manual forced scan protocol previous to substantial complex network merges.",
-        "whyToUse": "Revealing organizational logic hashes guarantees absolute vulnerability exploitation by rogue actors. This intelligence possesses absolute zero leniency for anomalous hex-chains.",
-        "bestPractice": "Evacuate all sensitive variable arrays into a distinct `.env` container, checking explicitly thrice that `.env` forms the bedrock of your `.gitignore` protocol."
+        "problem": "Регулярно раскрываете ключи Cloud Database или Secret Tokens в публичных фидах GitHub, что приводит к масштабным глобальным взломам?",
+        "solution": "Непроницаемый барьер раннего предупреждения, уничтожающий аномалии незашифрованных учетных данных нативно на горизонте push.",
+        "whatIsIt": "Вездесущий инструмент криптографического сканирования, вооруженный интенсивной логикой regex, вычисляющий AWS, JWT tokens, Stripe Secrets, систематически привязанный строго к уровню локализованных Git hook.",
+        "whenToUse": "Постоянно активен в скрытом режиме. Однако специально развертывайте протокол ручного принудительного сканирования перед существенными сложными слияниями сетей.",
+        "whyToUse": "Раскрытие хэшей организационной логики гарантирует абсолютную эксплуатацию уязвимостей злоумышленниками. Этот интеллект обладает абсолютно нулевой терпимостью к аномальным hex-chains.",
+        "bestPractice": "Переместите все массивы конфиденциальных переменных в отдельный контейнер `.env`, трижды явно проверив, что `.env` является основой вашего протокола `.gitignore`."
       },
       {
         "id": "cm-identity-guard",
         "name": "cm-identity-guard",
         "category": "Security",
         "icon": "fingerprint",
-        "tagline": "Identity & Account Guard",
-        "prompt": "Verify git config before pushing to production",
+        "tagline": "Защита идентичности и аккаунтов",
+        "prompt": "Проверьте конфигурацию git перед отправкой в production",
         "related": [
           "cm-secret-shield",
           "cm-safe-deploy"
         ],
-        "problem": "Co-mingling agency and individual workstation configurations leads to disastrously compromised corporate deployments to competing accounts?",
-        "solution": "Identity gating matrices verifying terminal profile identities correlate identically with organizational destination targets.",
-        "whatIsIt": "Total Git Configuration and structural credential lockdown engine. Unilaterally paralyses deployment scripts detecting profile mismatched variables (E.g. email mismatches).",
-        "whenToUse": "Triggered inherently upon executing `cm-safe-deploy`. Outstanding diagnostic layer for independent multi-client agency developers orchestrating synchronous configurations.",
-        "whyToUse": "Safeguards intellectual domains and proprietary organizational vectors. Ensures highly confidential SaaS algorithms NEVER mistakenly sync over external or unauthorized network hosts.",
-        "bestPractice": "Set up strict segregated environmental folders and uniquely assert `--local` configuration bounds specifically per isolated directory."
+        "problem": "Смешивание конфигураций агентства и индивидуальных рабочих станций приводит к катастрофически скомпрометированным корпоративным развертываниям в конкурирующих аккаунтах?",
+        "solution": "Матрицы шлюзования идентичности, проверяющие, что идентификаторы профиля терминала идентично коррелируют с целями организации.",
+        "whatIsIt": "Движок полной блокировки конфигурации Git и структурных учетных данных. В одностороннем порядке парализует скрипты развертывания при обнаружении несоответствующих переменных профиля (например, несоответствие email).",
+        "whenToUse": "Запускается автоматически при выполнении `cm-safe-deploy`. Выдающийся диагностический слой для независимых разработчиков агентств с несколькими клиентами, организующих синхронные конфигурации.",
+        "whyToUse": "Защищает интеллектуальные домены и проприетарные организационные векторы. Гарантирует, что строго конфиденциальные алгоритмы SaaS НИКОГДА по ошибке не синхронизируются через внешние или неавторизованные сетевые хосты.",
+        "bestPractice": "Настройте строгие сегментированные папки окружения и уникально задайте границы конфигурации `--local` специально для каждого изолированного каталога."
       },
       {
         "id": "cm-ads-tracker",
         "name": "cm-ads-tracker",
         "category": "Content",
         "icon": "bar-chart-2",
-        "tagline": "Conversion Tracking",
-        "prompt": "Set up Facebook Pixel and Google Ads tracking",
+        "tagline": "Отслеживание конверсий",
+        "prompt": "Настройте отслеживание Facebook Pixel и Google Ads",
         "related": [
           "cm-content-factory",
           "cm-ux-master"
         ],
-        "problem": "Bleeding advertising revenue blindly whilst Conversion Tracking fails inherently due to fragmented logic or external browser blockers?",
-        "solution": "Enterprise Standard Server-Side telemetry configurations structurally formulated instantaneously with clinical precision.",
-        "whatIsIt": "The CRO Data Telemetry Architect. In under moments, array Meta CAPI limits, TikTok Event interfaces, standardized Google TM parameters and unified Enhanced Conversions mappings.",
-        "whenToUse": "MANDATORY configuration before any digital product is subjected to inbound funnel advertisement campaigns requesting concrete ROI analytic generation.",
-        "whyToUse": "Without accurate data, AI Advertising Engines hallucinate targeting profiles. This utility engineers a pristine operational 'Datalayer' to capture signals unbreakably flawlessly.",
-        "bestPractice": "Input exact localized Pixel strings reliably; explicitly define to the algorithm specifically which interface elements signify a fundamental 'Lead' versus an ultimate 'Purchase'."
+        "problem": "Теряете рекламный доход вслепую, пока Conversion Tracking дает сбои из-за фрагментированной логики или внешних блокировщиков браузеров?",
+        "solution": "Конфигурации телеметрии Server-Side корпоративного стандарта, структурно сформулированные мгновенно с клинической точностью.",
+        "whatIsIt": "Архитектор телеметрии данных CRO. За считанные мгновения настройте лимиты Meta CAPI, интерфейсы TikTok Event, стандартизированные параметры Google TM и унифицированные сопоставления Enhanced Conversions.",
+        "whenToUse": "ОБЯЗАТЕЛЬНАЯ конфигурация перед тем, как любой цифровой продукт будет подвергнут рекламным кампаниям во входящих воронках, требующих генерации конкретной аналитики ROI.",
+        "whyToUse": "Без точных данных рекламные движки AI галлюцинируют профилями таргетинга. Эта утилита создает безупречный операционный «Datalayer» для безошибочного захвата сигналов.",
+        "bestPractice": "Надежно вводите точные локализованные строки Pixel; четко определите алгоритму, какие именно элементы интерфейса означают фундаментальный «Lead», а какие — окончательную «Purchase»."
       },
       {
         "id": "cm-continuity",
@@ -548,36 +548,36 @@
         "name": "cm-dockit",
         "category": "Content",
         "icon": "book-open",
-        "tagline": "Knowledge Docs Generator",
-        "prompt": "Generate documentation for my Frappe app",
+        "tagline": "Генератор базы знаний",
+        "prompt": "Сгенерируйте документацию для моего приложения Frappe",
         "related": [
           "cm-content-factory",
           "cm-planning"
         ],
-        "problem": "Handing off intricate enterprise apps bereft of operational manuals renders users helpless and obscures logic for consecutive engineers?",
-        "solution": "Automated code analysis matrix capable of manifesting exquisite technical manuals from A-Z effortlessly.",
-        "whatIsIt": "The internal Knowledge Platform creation bot. Synthesizes Markdown/VitePress formatting explaining deep backend API Reference tables, holistic Persona paths, and explicit SOP parameters intuitively.",
-        "whenToUse": "Scheduled across periodic enterprise scaling phases or strictly immediately preparatory for an inclusive public domain release horizon.",
-        "whyToUse": "End Users invariably rely on Documentation rather than analyzing chaotic syntax parameters directly. Superb systemic guides systematically decimate irrelevant mundane support tickets radically.",
-        "bestPractice": "Simultaneously commission the formulation of both an Internal Dev Reference Manual and an external simplified End-User Orientation Guide."
+        "problem": "Передача сложных корпоративных приложений без руководств по эксплуатации делает пользователей беспомощными и скрывает логику для последующих инженеров?",
+        "solution": "Автоматизированная матрица анализа кода, способная без труда создавать изысканные технические руководства от А до Я.",
+        "whatIsIt": "Бот для создания внутренней платформы знаний. Синтезирует форматирование Markdown/VitePress, интуитивно объясняя подробные таблицы API Reference бэкенда, целостные пути Persona и явные параметры SOP.",
+        "whenToUse": "Запланировано в ходе периодических фаз масштабирования предприятия или строго непосредственно перед выпуском в публичный доступ.",
+        "whyToUse": "Конечные пользователи неизменно полагаются на документацию, а не на прямой анализ хаотичных параметров синтаксиса. Превосходные системные руководства радикально сокращают количество неактуальных рутинных тикетов в поддержку.",
+        "bestPractice": "Одновременно поручите разработку как внутреннего справочного руководства для разработчиков (Internal Dev Reference Manual), так и внешнего упрощенного руководства для конечных пользователей (End-User Orientation Guide)."
       },
       {
         "id": "cm-skill-chain",
         "name": "cm-skill-chain",
         "category": "DevOps",
         "icon": "link",
-        "tagline": "Skill Pipeline Engine",
-        "prompt": "Chain brainstorm → plan → execute for my feature",
+        "tagline": "Движок конвейера навыков",
+        "prompt": "Объедините brainstorm → plan → execute для моей функции",
         "related": [
           "cm-skill-mastery",
           "cm-execution"
         ],
-        "problem": "Executing atomic capabilities sequentially incurs brutal operational friction and stagnates velocity?",
-        "solution": "Unify discrete functional workflows via algorithmic cascading sequences: Strategy -> Blueprint -> Full Autonomous Implementation.",
-        "whatIsIt": "The operational Skill Pipeline orchestrator tool. Programmatically strings complementary AI disciplines logically functioning via dynamically checked transitional parameters reliably.",
-        "whenToUse": "Activated upon mastering initial isolated competencies when targeting hands-free automation, allowing intense prolonged operational execution away from keyboard interactions.",
-        "whyToUse": "Maximizes exponential technological leverage securely. A single command sequences automated deployment cycles analyzing, building, validating, and globally staging millions of code interactions passively.",
-        "bestPractice": "Exclusively orchestrate inherently non-destructive analytical skills concurrently early on. Always invariably conclude massive chains by interlocking strictly securely into `cm-quality-gate` configurations."
+        "problem": "Последовательное выполнение атомарных возможностей вызывает жесткое операционное трение и замедляет скорость?",
+        "solution": "Объединяйте разрозненные функциональные рабочие процессы через алгоритмические каскадные последовательности: Strategy -> Blueprint -> Full Autonomous Implementation.",
+        "whatIsIt": "Операционный инструмент оркестрации Skill Pipeline. Программно связывает взаимодополняющие AI дисциплины, логически функционирующие через динамически проверяемые переходные параметры с высокой надежностью.",
+        "whenToUse": "Активируется после освоения начальных изолированных компетенций при переходе к hands-free автоматизации, обеспечивая интенсивное длительное операционное выполнение без взаимодействия с клавиатурой.",
+        "whyToUse": "Максимизирует экспоненциальный технологический рычаг безопасным способом. Одна команда выстраивает в последовательность автоматизированные циклы развертывания, анализируя, собирая, валидируя и глобально подготавливая (staging) миллионы взаимодействий кода в пассивном режиме.",
+        "bestPractice": "На ранних этапах параллельно оркестрируйте исключительно неразрушающие аналитические навыки. Всегда завершайте масштабные цепочки строгой и безопасной интеграцией с конфигурациями `cm-quality-gate`."
       },
       {
         "id": "cm-skill-mastery",
@@ -590,12 +590,12 @@
           "cm-skill-chain",
           "cm-how-it-work"
         ],
-        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
-        "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
-        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
-        "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
-        "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
-        "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
+        "problem": "Перегружены анализом 33 сложных операционных векторов и парализованы выбором конкретного движка для устранения целевой аномалии?",
+        "solution": "Задействуйте интерактивного внутреннего энциклопедического библиотекаря индексов (Index Librarian) и AI-ориентированного консультанта по оркестрации.",
+        "whatIsIt": "Превосходный Meta-Skill. Глубинно понимает сложные возможности, структурирующие все последующие 33 системы, и всесторонне владеет фундаментальной механикой создания новых ненаписанных протоколов.",
+        "whenToUse": "При преодолении когнитивных барьеров, поиске решений или прямой команде AI закодировать оригинальный индивидуальный аналитический алгоритм для коммерческого использования.",
+        "whyToUse": "Полностью и бесшовно избавляет от необходимости запоминать произвольные команды. Пример: 'Cody, найди интеллектуальный протокол для специфического анализа паттернов доступности (accessibility) в нашей корзине оформления заказа'.",
+        "bestPractice": "Проактивно активируйте этот узел во время вводных сессий или дайте явное указание составить организационную структурную карту парадигмы `SKILL.md` для кастомных протоколов агентства."
       },
       {
         "id": "cm-skill-index",
@@ -608,12 +608,12 @@
           "cm-skill-mastery",
           "cm-skill-chain"
         ],
-        "problem": "Blindly processing expansive arrays of instructional payloads concurrently corrupts prompt stability through severe Token saturation constraints?",
-        "solution": "Adopt layered Progressive Disclosures mechanics ensuring deep Context loading occurs exclusively upon situational demand necessity.",
-        "whatIsIt": "An underlying silent infrastructural database registry. Systematically caches mere high-level indexing semantics (Layer 1), extracting massive operational execution parameters (Layer 3) precisely strictly when definitively mandated.",
-        "whenToUse": "Operates intrinsically bound within the AI’s autonomous structural mechanics; absolutely necessitates zero human operational intervention manually.",
-        "whyToUse": "Surgically guarantees unpolluted AI focal precision, suppressing tangential hallucinatory feedback and remarkably conserving extensive extraneous processing API financial overhead essentially.",
-        "bestPractice": "Assure rigidly that crucial configuration registry logic maps located in standard execution directories remain un-deleted and uninterrupted universally securely."
+        "problem": "Слепая одновременная обработка обширных массивов инструкций нарушает стабильность промптов из-за жестких ограничений по насыщению токенами (Token saturation)?",
+        "solution": "Внедрите многослойную механику Progressive Disclosures, гарантирующую, что глубокая загрузка Context происходит исключительно при ситуативной необходимости.",
+        "whatIsIt": "Базовый скрытый инфраструктурный реестр базы данных. Систематически кэширует высокоуровневую семантику индексации (Layer 1), извлекая массивные параметры операционного выполнения (Layer 3) строго тогда, когда это определено мандатом.",
+        "whenToUse": "Функционирует неразрывно с автономной структурной механикой AI; абсолютно не требует ручного вмешательства человека.",
+        "whyToUse": "Хирургически гарантирует чистоту фокуса и точность AI, подавляя побочные галлюцинации и значительно сокращая финансовые затраты на избыточную обработку API.",
+        "bestPractice": "Жестко следите за тем, чтобы критически важные логические карты реестра конфигураций в стандартных директориях выполнения оставались неудаленными и защищенными от внешних воздействий."
       },
       {
         "id": "cm-how-it-work",
@@ -626,12 +626,12 @@
           "cm-skill-mastery",
           "cm-project-bootstrap"
         ],
-        "problem": "Freshly initiated toward the CodyMaster architecture and deeply confused confronting esoteric terminal interfaces and workflow paradigms?",
-        "solution": "Immerse comprehensively directly into the central Vibe Coding operational foundation whitepaper natively.",
-        "whatIsIt": "An exhaustive induction manuscript actively translating the internal physics powering CodyMaster operations, pre-packaged distinctly featuring explicit operational scenario blueprints.",
-        "whenToUse": "Sequentially instantly subsequent to native baseline installation completions, or orchestrating technical induction processes introducing auxiliary Junior Developers into organizational standardized rhythms.",
-        "whyToUse": "Solidifies core operational philosophies intimately. Comprehending fundamental mechanisms equips a singular autonomous operative executing parallel production equalizing conventional development team cohorts.",
-        "bestPractice": "Chronologically explore sections initially mapping overarching physical directory matrices alongside strict cognitive iterations dictating the standard RARV automation methodologies."
+        "problem": "Только начали знакомство с архитектурой CodyMaster и сбиты с толку эзотерическими интерфейсами терминала и парадигмами рабочих процессов?",
+        "solution": "Всесторонне погрузитесь непосредственно в центральный документ по операционным основам Vibe Coding.",
+        "whatIsIt": "Исчерпывающее вводное руководство, описывающее внутреннюю физику операций CodyMaster, включающее готовые чертежи для конкретных операционных сценариев.",
+        "whenToUse": "Сразу после завершения базовой установки или при организации процесса технического обучения новых Junior Developers стандартным ритмам организации.",
+        "whyToUse": "Глубоко закрепляет основные операционные философии. Понимание фундаментальных механизмов позволяет одному автономному оператору выполнять параллельную разработку на уровне целых команд разработчиков.",
+        "bestPractice": "Хронологически изучайте разделы, начиная с карты матриц физических директорий и заканчивая строгими когнитивными итерациями стандартных методологий автоматизации RARV."
       },
       {
         "id": "cm-dashboard",
@@ -644,12 +644,12 @@
           "cm-skill-chain",
           "cm-continuity"
         ],
-        "problem": "Struggling to track deep automated AI progressions tangibly resulting in dangerous operational disconnections across simultaneous executions?",
-        "solution": "Invoke graphical mission-command interface displays interpreting structural telemetry in tangible visual real-time.",
-        "whatIsIt": "A dedicated Radar UI console array structurally exposing macro Token combustions, executing Queue allocations, and continuous cascading Error Event matrices.",
-        "whenToUse": "Persistently anchor executing reliably active adjacent alongside complex Vibe Coding engagements handling numerous AI processing trajectories securely.",
-        "whyToUse": "Radically dissipates intrinsic 'Black-box' abstractions tangibly. Explicitly transparent visual feedback precisely denotes immediately exact processing allocations revealing latency obstacles effortlessly natively.",
-        "bestPractice": "Allocate specifically a secondary auxiliary monitor screen completely devoted explicitly exclusively towards keeping this systemic radar continuously operative."
+        "problem": "Трудно наглядно отслеживать прогресс глубокой автоматизации AI, что приводит к опасным операционным разрывам при одновременном выполнении задач?",
+        "solution": "Вызовите графический командный интерфейс, интерпретирующий структурную телеметрию в визуальном режиме реального времени.",
+        "whatIsIt": "Специализированная Radar UI консоль, структурно отображающая макро-потребление токенов (Token combustion), распределение очереди выполнения (Queue) и матрицы каскадных событий ошибок (Error Event).",
+        "whenToUse": "Держите постоянно активным рядом при выполнении сложных задач Vibe Coding для безопасного управления множественными траекториями обработки AI.",
+        "whyToUse": "Радикально и наглядно устраняет абстракции 'Black-box'. Прозрачная визуальная обратная связь точно и мгновенно указывает на распределение процессов, легко выявляя задержки.",
+        "bestPractice": "Выделите отдельный вспомогательный монитор исключительно для постоянной работы этого системного радара."
       },
       {
         "id": "cm-start",
@@ -662,63 +662,63 @@
           "cm-planning",
           "cm-skill-mastery"
         ],
-        "problem": "Infuriated by perpetually articulating immensely verbose prompt incantations every explicit instance initiating standard procedural code modifications?",
-        "solution": "Trigger a rapid instantaneous universal execution macro immediately deciphering complex geographical active operational context implicitly.",
-        "whatIsIt": "Emergency execution launch pad module. Subconsciously interrogates ambient environmental editor logic deducing precise project situational trajectories instinctively without descriptive preamble required.",
-        "whenToUse": "Routinely deployed to aggressively jump-start algorithmic implementation logic refactors circumscribing long-winded tedious introductory exposition delays.",
-        "whyToUse": "Obliterates systematic preparation delays conclusively. Elicits focused tool deployments surgically relying minimally on brief un-nuanced directives.",
-        "bestPractice": "Ensuring the target explicit JS/CSS logic files are concurrently active focal points within your IDE immediately preceding launching this specific operational capability yields peak fidelity."
+        "problem": "Раздражены необходимостью постоянно формулировать многословные промпты-заклинания при каждом инициировании стандартных процедурных модификаций кода?",
+        "solution": "Запустите мгновенное универсальное макровыполнение, немедленно расшифровывающее сложный географический активный операционный контекст неявно.",
+        "whatIsIt": "Модуль экстренного запуска выполнения. Подсознательно опрашивает логику окружающего редактора среды, инстинктивно делая выводы о точных траекториях ситуации в проекте без необходимости в описательной преамбуле.",
+        "whenToUse": "Регулярно развертывается для агрессивного ускорения рефакторинга логики алгоритмической реализации, ограничивая затянутые и нудные задержки вводных экспозиций.",
+        "whyToUse": "Окончательно устраняет задержки систематической подготовки. Позволяет хирургически точно развертывать инструменты, минимально полагаясь на краткие директивы без нюансов.",
+        "bestPractice": "Обеспечение того, чтобы целевые явные файлы логики JS/CSS были одновременно активными точками фокуса в вашей IDE непосредственно перед запуском этой специфической операционной возможности, обеспечивает пиковую точность."
       },
       {
         "id": "cm-status",
         "name": "cm-status",
         "category": "DevOps",
         "icon": "activity",
-        "tagline": "Project Status",
-        "prompt": "What's the current status of my project?",
+        "tagline": "Статус проекта",
+        "prompt": "Каков текущий статус моего проекта?",
         "related": [
           "cm-dashboard",
           "cm-quality-gate"
         ],
-        "problem": "Desperately lack verifiable aggregate reporting indices to empirically authenticate grand total project structural completion progression professionally?",
-        "solution": "Trigger high-velocity diagnostic status compilers synthesizing comprehensive holistic developmental metric snapshots definitively.",
-        "whatIsIt": "Algorithmic audit query mechanism. Computes concrete output detailing total TDD verification coverage matrix paths, analytical build stability variables, alongside impending outstanding priority Tasklist assignments.",
-        "whenToUse": "Routinely deployed facilitating scheduled Monday macro-evaluations, or functioning integrally beforehand organizing executive administrative progress presentations reliably.",
-        "whyToUse": "Delivers indisputably tangible analytical empirical transparency systematically. Evaluates production quality metrics explicitly displacing subjective abstract development assessment entirely.",
-        "bestPractice": "Execute comprehensively operating synergistically paired consistently alongside `cm-continuity` updates achieving permanently chronicled historical tracking datastore registries securely."
+        "problem": "Остро не хватает проверяемых совокупных отчетных показателей для эмпирической профессиональной аутентификации прогресса завершения общей структуры проекта?",
+        "solution": "Запустите высокоскоростные компиляторы диагностического статуса, окончательно синтезирующие комплексные целостные снимки метрик разработки.",
+        "whatIsIt": "Механизм запросов алгоритмического аудита. Вычисляет конкретный результат, детализирующий пути общего охвата верификации TDD, переменные аналитической стабильности сборки, а также предстоящие невыполненные приоритетные назначения в Tasklist.",
+        "whenToUse": "Регулярно развертывается для содействия запланированным макро-оценкам по понедельникам или функционирует интегрально для надежной организации презентаций административного прогресса руководству.",
+        "whyToUse": "Систематически обеспечивает бесспорно осязаемую аналитическую эмпирическую прозрачность. Явно оценивает метрики качества производства, полностью заменяя субъективную абстрактную оценку разработки.",
+        "bestPractice": "Выполняйте комплексно, работая в синергии и в паре с обновлениями `cm-continuity` для безопасного достижения постоянно задокументированных реестров исторических хранилищ отслеживания."
       },
       {
         "id": "cm-example",
         "name": "cm-example",
         "category": "DevOps",
         "icon": "file-code",
-        "tagline": "Skill Template",
-        "prompt": "Show me how to create a new skill",
+        "tagline": "Шаблон навыка",
+        "prompt": "Покажи мне, как создать новый навык",
         "related": [
           "cm-skill-mastery",
           "cm-skill-chain"
         ],
-        "problem": "Urgently need to engineer highly proprietary internalized AI command capacities exclusively suited uniquely for specific corporate workflows perfectly?",
-        "solution": "Exploit pre-hardened architectural boilerplate code matrices completely circumventing frustrating manual procedural baseline setup anomalies.",
-        "whatIsIt": "A flawless mock-up prototype script architecturally harmonized precisely aligned toward strict Antigravity and established MCP framework interface protocols certifying flawless operational recognition inherently.",
-        "whenToUse": "Commencing complex localized bespoke automated functional Bot protocols handling niche organizational internal rulebook mechanics reliably.",
-        "whyToUse": "Abolishes the agonizing friction reviewing sprawling expansive external platform documentation endlessly. Empowers copying an inherently robust foundation operational dynamically efficiently instantly.",
-        "bestPractice": "Mechanically duplicate the target directory skeleton completely, comprehensively update structural naming taxonomies, and aggressively inject definitive proprietary context parameters efficiently prior to deployment."
+        "problem": "Срочно нужно разработать проприетарные внутренние командные возможности AI, идеально подходящие для конкретных корпоративных рабочих процессов?",
+        "solution": "Используйте предварительно укрепленные матрицы архитектурного шаблонного кода, полностью обходя утомительные аномалии базовой настройки ручных процедур.",
+        "whatIsIt": "Безупречный скрипт-прототип макета, архитектурно гармонизированный и точно выровненный по строгим протоколам интерфейса Antigravity и установленной фреймворк-структуры MCP, изначально подтверждающий безупречное операционное распознавание.",
+        "whenToUse": "Начало работы со сложными локализованными индивидуальными автоматизированными функциональными протоколами Bot, надежно обрабатывающими механику внутренних правил нишевых организаций.",
+        "whyToUse": "Устраняет мучительное трение при бесконечном изучении разветвленной документации внешних платформ. Дает возможность мгновенно и эффективно копировать изначально надежную динамическую операционную основу.",
+        "bestPractice": "Механически полностью дублируйте скелет целевого каталога, всесторонне обновляйте таксономии структурных имен и агрессивно вводите окончательные параметры проприетарного контекста перед развертыванием."
       },
       {
         "id": "cro-methodology",
         "name": "cro-methodology",
         "category": "Content",
         "icon": "trending-up",
-        "tagline": "Conversion Rate Optimization",
-        "problem": "Landing pages getting traffic but visitors aren't converting — unclear why they leave?",
-        "solution": "Evidence-based CRO audit using the CRE Methodology: funnel mapping, visitor research, objection handling, and statistically rigorous A/B tests.",
-        "description": "Scientific, customer-centric CRO using the CRE Methodology — funnel mapping, persuasion assets, and A/B testing.",
-        "whatIsIt": "A systematic CRO audit engine based on the CRE Methodology. Scores pages 0-10, maps funnel blockers, identifies visitor objections, and designs evidence-based experiments.",
-        "whenToUse": "Use when a landing page, checkout flow, or funnel is underperforming. Activates on: 'conversion rate', 'A/B test', 'why visitors leave', 'objection handling'.",
-        "whyToUse": "Random optimization fails. This skill forces visitor research before changing anything, ensuring every test is based on evidence rather than opinion.",
-        "prompt": "Audit my landing page for conversion issues",
-        "bestPractice": "Always research WHY visitors leave before testing solutions. Evidence from surveys, heatmaps, and session recordings beats best practices every time.",
+        "tagline": "Оптимизация коэффициента конверсии",
+        "problem": "Лендинги получают трафик, но посетители не конвертируются — непонятно, почему они уходят?",
+        "solution": "Аудит CRO на основе доказательств с использованием CRE Methodology: картирование воронки, исследование посетителей, обработка возражений и статистически строгие A/B тесты.",
+        "description": "Научный, клиентоориентированный CRO с использованием CRE Methodology — картирование воронки, persuasion assets и A/B тестирование.",
+        "whatIsIt": "Систематический механизм аудита CRO на основе CRE Methodology. Оценивает страницы от 0 до 10, выявляет блокировщики воронки, определяет возражения посетителей и проектирует эксперименты на основе доказательств.",
+        "whenToUse": "Используйте, когда лендинг, процесс оформления заказа или воронка работают неэффективно. Активируется по фразам: 'conversion rate', 'A/B test', 'почему посетители уходят', 'обработка возражений'.",
+        "whyToUse": "Случайная оптимизация не работает. Этот навык заставляет проводить исследование посетителей перед внесением любых изменений, гарантируя, что каждый тест основан на доказательствах, а не на мнении.",
+        "prompt": "Проведи аудит моего лендинга на предмет проблем с конверсией",
+        "bestPractice": "Всегда исследуйте, ПОЧЕМУ посетители уходят, прежде чем тестировать решения. Доказательства из опросов, тепловых карт и записей сессий всегда важнее, чем best practices.",
         "related": [
           "cm-ads-tracker",
           "cm-ux-master",
@@ -730,15 +730,15 @@
         "name": "cm-jtbd",
         "category": "Ideation",
         "icon": "users",
-        "tagline": "Customer Discovery (JTBD)",
-        "problem": "Building features users don't care about because you're guessing what they actually want?",
-        "solution": "JTBD Switch Interviews + Canvas to uncover the functional, social, and emotional jobs customers hire your product to do.",
-        "description": "Customer discovery using Jobs-To-Be-Done theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring.",
-        "whatIsIt": "A structured customer discovery framework using JTBD theory. Runs Switch Interviews, builds job canvases, and scores outcome metrics to find underserved needs.",
-        "whenToUse": "Use before designing new features, when existing features aren't used, or when validating product-market fit. Activates on: 'customer discovery', 'JTBD', 'what do customers want'.",
-        "whyToUse": "People don't buy products — they hire them to get a job done. Understanding the job reveals what to build and what competitors you're actually fighting.",
-        "prompt": "Help me understand what job my users are hiring my product to do",
-        "bestPractice": "Focus on the Switch Interview: ask about the moment they decided to switch/buy, not hypotheticals. Past behavior beats future intent every time.",
+        "tagline": "Исследование клиентов (JTBD)",
+        "problem": "Создаете функции, которые не нужны пользователям, потому что гадаете, чего они на самом деле хотят?",
+        "solution": "Интервью JTBD Switch + Canvas для выявления функциональных, социальных и эмоциональных задач, для выполнения которых клиенты «нанимают» ваш продукт.",
+        "description": "Исследование клиентов с использованием теории Jobs-To-Be-Done — Switch Interviews, JTBD Canvas и скоринг возможностей.",
+        "whatIsIt": "Структурированный фреймворк исследования клиентов с использованием теории JTBD. Проводит Switch Interviews, строит канвасы задач и оценивает метрики результатов для поиска неудовлетворенных потребностей.",
+        "whenToUse": "Используйте перед проектированием новых функций, когда существующие функции не используются или при проверке соответствия продукта рынку (product-market fit). Активируется по фразам: 'customer discovery', 'JTBD', 'чего хотят клиенты'.",
+        "whyToUse": "Люди не покупают продукты — они нанимают их для выполнения определенной работы. Понимание задачи (job) показывает, что именно нужно создавать и с какими конкурентами вы на самом деле боретесь.",
+        "prompt": "Помоги мне понять, для какой работы мои пользователи нанимают мой продукт",
+        "bestPractice": "Сосредоточьтесь на Switch Interview: спрашивайте о моменте, когда они решили сменить/купить продукт, а не о гипотезах. Прошлое поведение всегда важнее будущих намерений.",
         "related": [
           "cm-brainstorm-idea",
           "cm-planning",

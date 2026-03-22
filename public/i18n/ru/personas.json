@@ -217,195 +217,195 @@
   "persona_auto_9": "🔄",
   "personas": {
     "common": {
-      "transformationLabel": "TRANSFORMATION",
-      "transformationTitle": "Before vs After",
-      "objectionsLabel": "STILL NOT SURE?",
-      "objectionsTitle": "Common Questions"
+      "transformationLabel": "ТРАНСФОРМАЦИЯ",
+      "transformationTitle": "До и после",
+      "objectionsLabel": "ВСЕ ЕЩЕ НЕ УВЕРЕНЫ?",
+      "objectionsTitle": "Часто задаваемые вопросы"
     },
     "label": "ДЛЯ КОГО ЭТО?",
     "title": "Создано для каждой роли в команде",
-    "subtitle": "CodyMaster understands YOUR specific challenges. Find your role, see how it solves YOUR problems.",
-    "learnMore": "Learn more →",
+    "subtitle": "CodyMaster понимает ВАШИ конкретные задачи. Найдите свою роль и узнайте, как он решает ВАШИ проблемы.",
+    "learnMore": "Узнать больше →",
     "cards": [
       {
         "id": "founder",
         "emoji": "🚀",
-        "title": "For Founders",
-        "tagline": "Build your MVP without a dev team",
+        "title": "Для Основателей",
+        "tagline": "Создайте свой MVP без dev-команды",
         "pains": [
-          "Ideas stuck in your head for months",
-          "Agencies charge $30K-50K and take forever",
-          "No-code tools hit limits fast"
+          "Идеи застревают в голове на месяцы",
+          "Агентства берут $30K-50K и работают вечность",
+          "No-code инструменты быстро достигают пределов"
         ],
-        "dream": "From idea to live product in days, not months."
+        "dream": "От идеи до готового продукта за считанные дни, а не месяцы."
       },
       {
         "id": "cmo",
         "emoji": "📢",
-        "title": "For Marketing Expert",
-        "tagline": "Content, landing pages, and tracking — instantly",
+        "title": "Для Маркетинг-экспертов",
+        "tagline": "Контент, лендинги и трекинг — мгновенно",
         "pains": [
-          "Content team can't keep up with demand",
-          "Landing pages take weeks through dev pipeline",
-          "No conversion tracking = can't prove ROI"
+          "Контент-команда не успевает за спросом",
+          "Лендинги неделями проходят через dev pipeline",
+          "Нет трекинга конверсий = невозможно доказать ROI"
         ],
-        "dream": "SEO content + landing pages + full tracking in minutes."
+        "dream": "SEO-контент + лендинги + полный трекинг за считанные минуты."
       },
       {
         "id": "pm",
         "emoji": "📋",
-        "title": "For PMs, POs & BAs",
-        "tagline": "Ship features without the chaos",
+        "title": "Для PM, PO и BA",
+        "tagline": "Выпускайте фичи без хаоса",
         "pains": [
-          "AI writes code but breaks everything else",
-          "Design inconsistent across projects",
-          "No docs, no onboarding, users are lost"
+          "AI пишет код, но ломает все остальное",
+          "Дизайн непоследователен в разных проектах",
+          "Нет документации и онбординга, пользователи теряются"
         ],
-        "dream": "Disciplined AI that follows rules and ships quality."
+        "dream": "Дисциплинированный AI, который следует правилам и выдает качество."
       },
       {
         "id": "dev",
         "emoji": "💻",
-        "title": "For Tech Teams",
+        "title": "Для Технических команд",
         "tagline": "CTO · Tech Lead · FE/BE · Mobile · QC",
         "pains": [
-          "80% of time wasted on boilerplate setup",
-          "AI code has zero tests, zero security",
-          "Deploys are stressful with no rollback"
+          "80% времени тратится на настройку boilerplate",
+          "Код от AI без тестов и безопасности",
+          "Деплои вызывают стресс без возможности rollback"
         ],
-        "dream": "Focus on architecture. AI handles the rest — with quality gates."
+        "dream": "Сосредоточьтесь на архитектуре. AI сделает остальное — с quality gates."
       },
       {
         "id": "designer",
         "emoji": "🎨",
-        "title": "For Designers",
-        "tagline": "AI that respects your design system",
+        "title": "Для Дизайнеров",
+        "tagline": "AI, который уважает вашу дизайн-систему",
         "pains": [
-          "AI ignores your tokens and guidelines",
-          "Can't preview before coding starts",
-          "Every AI output looks different from your brand"
+          "AI игнорирует ваши токены и гайдлайны",
+          "Невозможно увидеть превью до начала написания кода",
+          "Каждый результат от AI не соответствует вашему бренду"
         ],
-        "dream": "Design-first workflow: preview → approve → code."
+        "dream": "Design-first workflow: превью → одобрение → код."
       },
       {
         "id": "claw",
         "emoji": "🦞",
-        "title": "For the Claw Family",
-        "tagline": "OpenClaw · NemoClaw · OpenFang · More",
+        "title": "Для семьи Claw",
+        "tagline": "OpenClaw · NemoClaw · OpenFang · и другие",
         "pains": [
-          "Skills locked to one AI agent only",
-          "Config doesn't transfer between tools",
-          "Fragmented ecosystem, no interop"
+          "Навыки привязаны только к одному AI-агенту",
+          "Конфигурация не переносится между инструментами",
+          "Фрагментированная экосистема, нет interop"
         ],
-        "dream": "One config. Every Claw agent obeys. Universal skills."
+        "dream": "Одна конфигурация. Каждый агент Claw подчиняется. Universal skills."
       }
     ],
     "details": {
       "founder": {
-        "heroTitle": "You have the idea.\nYou just need the 100 hands to build it.",
-        "heroSub": "CodyMaster gives non-technical founders the power to build, design, and deploy production-ready products — without writing a single line of code.",
-        "painLabel": "THE WALLS YOU'RE HITTING",
-        "painTitle": "We know what's stopping you",
+        "heroTitle": "У вас есть идея.\nВам просто нужны 100 рук, чтобы её воплотить.",
+        "heroSub": "CodyMaster дает нетехническим фаундерам возможность создавать, проектировать и развертывать production-ready продукты — без написания ни единой строки кода.",
+        "painLabel": "ПРЕПЯТСТВИЯ, С КОТОРЫМИ ВЫ СТАЛКИВАЕТЕСЬ",
+        "painTitle": "Мы знаем, что вас останавливает",
         "pains": [
           {
             "icon": "💸",
-            "title": "Agencies drain your budget",
-            "desc": "You've been quoted $30K-50K for an MVP. Weeks of meetings. Revisions that cost extra. And the result? A product that doesn't match your vision."
+            "title": "Агентства истощают ваш бюджет",
+            "desc": "Вам выставляют счета от $30К до $50К за MVP. Недели встреч. Доработки за отдельную плату. И результат? Продукт, который не соответствует вашему видению."
           },
           {
             "icon": "⏳",
-            "title": "Ideas die waiting",
-            "desc": "By the time you find a developer, negotiate contracts, and start building — your competitor already launched. Speed is everything in startup land."
+            "title": "Идеи умирают в ожидании",
+            "desc": "Пока вы ищете разработчика, ведете переговоры и начинаете разработку — ваш конкурент уже запустился. Скорость — это всё в мире стартапов."
           },
           {
             "icon": "🧱",
-            "title": "No-code hits a wall",
-            "desc": "Wix, Squarespace, Bubble — great for static pages, terrible for real products. You need auth, dashboards, APIs, databases. No-code can't do that."
+            "title": "No-code упирается в стену",
+            "desc": "Wix, Squarespace, Bubble — отлично подходят для статических страниц, но ужасны для реальных продуктов. Вам нужны auth, dashboards, APIs, базы данных. No-code этого не может."
           },
           {
             "icon": "🎯",
-            "title": "You can't validate fast enough",
-            "desc": "Every day without a live product is a day you're guessing instead of learning. You need to test the market NOW, not in 3 months."
+            "title": "Вы не можете достаточно быстро провести валидацию",
+            "desc": "Каждый день без рабочего продукта — это день гаданий вместо обучения. Вам нужно тестировать рынок СЕЙЧАС, а не через 3 месяца."
           }
         ],
-        "solutionLabel": "HOW CODY MASTER HELPS",
-        "solutionTitle": "Your AI co-founder that never sleeps",
+        "solutionLabel": "КАК ПОМОГАЕТ CODY MASTER",
+        "solutionTitle": "Ваш AI ко-фаундер, который никогда не спит",
         "solutions": [
           {
             "skill": "cm-planning",
-            "benefit": "Describe your idea in plain English. AI breaks it into an actionable plan."
+            "benefit": "Опишите свою идею на обычном английском. AI разобьет её на четкий план действий."
           },
           {
             "skill": "cm-ux-master",
-            "benefit": "Get a professional design system — 48 UX Laws, 1032+ patterns."
+            "benefit": "Получите профессиональную design system — 48 UX Laws, 1032+ patterns."
           },
           {
             "skill": "cm-execution",
-            "benefit": "AI writes production code with tests. Not prototypes — real products."
+            "benefit": "AI пишет production-код с тестами. Не прототипы, а реальные продукты."
           },
           {
             "skill": "cm-safe-deploy",
-            "benefit": "One command to deploy. 8-gate pipeline. Automatic rollback if anything breaks."
+            "benefit": "Одна команда для deploy. 8-gate pipeline. Автоматический rollback, если что-то пойдет не так."
           }
         ],
         "beforeAfter": {
           "before": [
-            "$30K+ agency fees",
-            "3-6 months to launch",
-            "Product doesn't match your vision",
-            "Can't iterate quickly",
-            "Dependent on developers"
+            "$30K+ гонорары агентствам",
+            "3–6 месяцев до запуска",
+            "Продукт не соответствует вашему видению",
+            "Невозможно быстро итерировать",
+            "Зависимость от разработчиков"
           ],
           "after": [
-            "$0 — completely free",
-            "Days to launch, not months",
-            "You describe, AI builds exactly that",
-            "Iterate in real-time with chat",
-            "Full ownership, no dependency"
+            "$0 — абсолютно бесплатно",
+            "Запуск за дни, а не месяцы",
+            "Вы описываете, AI строит именно это",
+            "Итерации в реальном времени через чат",
+            "Полное владение, никакой зависимости"
           ]
         },
         "objections": [
           {
-            "q": "Can AI really build production-quality products?",
-            "a": "Yes. Unlike ChatGPT copy-paste, CodyMaster enforces TDD, quality gates, and security scans. Every line of code is tested before deploy."
+            "q": "Может ли AI действительно создавать продукты уровня production?",
+            "a": "Да. В отличие от копипаста ChatGPT, CodyMaster обеспечивает соблюдение TDD, quality gates и сканирование безопасности. Каждая строка кода тестируется перед deploy."
           },
           {
-            "q": "I literally don't know any code. Will this work for me?",
-            "a": "That's exactly who this is for. The creator of CodyMaster is a PM who can't code either. You chat naturally — AI handles everything."
+            "q": "Я вообще не умею программировать. Подойдет ли это мне?",
+            "a": "Именно для этого он и создан. Создатель CodyMaster — PM, который тоже не умеет кодить. Вы общаетесь в обычном режиме — AI берет всё на себя."
           },
           {
-            "q": "What if I need changes later?",
-            "a": "Chat again. Tell AI what to change. It remembers context (cm-continuity) and updates without breaking existing functionality."
+            "q": "Что если мне понадобятся изменения позже?",
+            "a": "Просто напишите в чат снова. Скажите AI, что изменить. Он помнит контекст (cm-continuity) и вносит обновления, не нарушая существующую функциональность."
           }
         ],
-        "ctaTitle": "Your idea deserves to exist.\nStop waiting. Start building.",
-        "ctaSub": "Free. No credit card. From idea to live product today.",
-        "ctaButton": "Build My MVP Now →",
+        "ctaTitle": "Ваша идея заслуживает воплощения.\nХватит ждать. Начните строить.",
+        "ctaSub": "Бесплатно. Без кредитной карты. От идеи до рабочего продукта уже сегодня.",
+        "ctaButton": "Создать мой MVP сейчас →",
         "guide": {
-          "badge": "THE NEW REALITY",
-          "title": "Build like the top 1% of tech startups, without the $100K budget.",
-          "desc": "You don't need a CTO to build a revolutionary product anymore. CodyMaster equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment."
+          "badge": "НОВАЯ РЕАЛЬНОСТЬ",
+          "title": "Стройте как топ-1% технологических стартапов, без бюджета в $100K.",
+          "desc": "Вам больше не нужен CTO, чтобы создать революционный продукт. CodyMaster вооружает вас автономными AI-агентами, обученными стандартам Senior Engineer. Вы предоставляете видение; агенты пишут код, запускают тесты и обеспечивают безопасность развертывания."
         },
-        "planLabel": "HOW TO LAUNCH",
-        "planTitle": "3 steps to your live product",
+        "planLabel": "КАК ЗАПУСТИТЬСЯ",
+        "planTitle": "3 шага к вашему рабочему продукту",
         "plan": [
           {
-            "title": "Instruct",
-            "desc": "Chat with the cm-planning agent in plain English. Describe your market, your users, and your dream app."
+            "title": "Дайте инструкции",
+            "desc": "Общайтесь с агентом cm-planning на простом английском. Опишите свой рынок, пользователей и приложение вашей мечты."
           },
           {
-            "title": "Review",
-            "desc": "Watch the UI generate in real-time. Give feedback on colors, layout, and copy just like talking to a human designer."
+            "title": "Проверьте",
+            "desc": "Наблюдайте за генерацией UI в реальном времени. Дайте фидбэк по цветам, макету и текстам, как если бы вы говорили с живым дизайнером."
           },
           {
             "title": "Deploy",
-            "desc": "Approve the code. The cm-safe-deploy agent runs 8 security gates and puts your app live on a global CDN instantly."
+            "desc": "Утвердите код. Агент cm-safe-deploy проверит его через 8 шлюзов безопасности и мгновенно опубликует ваше приложение на глобальном CDN."
           }
         ],
-        "failureLabel": "THE COST OF WAITING",
-        "failureTitle": "Every day without a product is a day someone else takes your market share.",
-        "failureDesc": "If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky.",
-        "heroBadge": "Built by a PM with 10+ years · Free & Open Source",
+        "failureLabel": "ЦЕНА ОЖИДАНИЯ",
+        "failureTitle": "Каждый день без продукта — это день, когда кто-то другой забирает вашу долю рынка.",
+        "failureDesc": "Если вы потратите следующие 6 месяцев на поиск инвестиций для найма агентства, вы упустите преимущество во времени. Хватит надеяться, что технический сооснователь упадет вам с неба.",
+        "heroBadge": "Создано PM с опытом 10+ лет · Free & Open Source",
         "heroStats": [
           {
             "num": "33",
@@ -413,265 +413,265 @@
           },
           {
             "num": "$0",
-            "label": "Cost"
+            "label": "Стоимость"
           },
           {
-            "num": "10min",
-            "label": "To First Deploy"
+            "num": "10 мин",
+            "label": "До первого Deploy"
           }
         ],
         "fomo": [
-          "Founders are building right now",
-          "100% Free — no paywall, no credit card",
-          "Gets smarter every day you use it"
+          "Основатели создают продукты прямо сейчас",
+          "100% Бесплатно — без подписок и кредитных карт",
+          "Становится умнее с каждым днем использования"
         ],
         "costCallout": {
           "num": "$30K–$50K",
-          "label": "Average agency MVP cost. With CodyMaster: $0."
+          "label": "Средняя стоимость MVP в агентстве. С CodyMaster: $0."
         },
-        "failureWhile": "⏱️ While you're reading this, 3 other founders with the same idea are already building with AI.",
-        "ctaSecondary": "📖 Read the Story"
+        "failureWhile": "⏱️ Пока вы это читаете, 3 других основателя с той же идеей уже создают продукт с помощью AI.",
+        "ctaSecondary": "📖 Читать историю"
       },
       "cmo": {
-        "heroTitle": "Your content team can't keep up.\nCodyMaster can.",
-        "heroSub": "Generate SEO-optimized content, high-converting landing pages, and complete ad tracking setup — all powered by StoryBrand, Cialdini, and 7 proven frameworks.",
-        "painLabel": "THE BOTTLENECK",
-        "painTitle": "Marketing at scale is broken without the right tools",
+        "heroTitle": "Ваша контент-команда не справляется.\nCodyMaster может.",
+        "heroSub": "Создавайте SEO-оптимизированный контент, высококонверсионные посадочные страницы и полную настройку отслеживания рекламы — всё на базе StoryBrand, Cialdini и 7 проверенных фреймворков.",
+        "painLabel": "УЗКОЕ МЕСТО",
+        "painTitle": "Масштабирование маркетинга невозможно без правильных инструментов",
         "pains": [
           {
             "icon": "📝",
-            "title": "Content creation is too slow",
-            "desc": "Your writers produce 2 blog posts a week. You need 10. SEO specialists cost $5K/month. You're always behind the editorial calendar."
+            "title": "Создание контента идет слишком медленно",
+            "desc": "Ваши авторы пишут 2 статьи в неделю. Вам нужно 10. SEO-специалисты стоят $5K в месяц. Вы всегда отстаете от редакционного календаря."
           },
           {
             "icon": "🖥️",
-            "title": "Landing pages take forever",
-            "desc": "Every campaign needs a landing page. Designer → developer → QA → deploy. 2-3 weeks minimum. By then the campaign window has closed."
+            "title": "Создание Landing pages занимает вечность",
+            "desc": "Для каждой кампании нужен лендинг. Дизайнер → разработчик → QA → deploy. Минимум 2-3 недели. К этому времени окно возможностей кампании уже закрыто."
           },
           {
             "icon": "📊",
-            "title": "Can't prove ROI to the board",
-            "desc": "Facebook Pixel partially set up. Google Ads conversion tracking missing. UTM parameters are inconsistent. You're flying blind on ROAS."
+            "title": "Невозможно доказать ROI руководству",
+            "desc": "Facebook Pixel настроен частично. Отслеживание конверсий Google Ads отсутствует. Параметры UTM противоречивы. Вы работаете вслепую по ROAS."
           },
           {
             "icon": "🎯",
-            "title": "Content doesn't convert",
-            "desc": "Your content looks good but doesn't drive action. No persuasion framework. No CRO optimization. No A/B testing hooks. Just words on a page."
+            "title": "Контент не конвертирует",
+            "desc": "Ваш контент выглядит хорошо, но не побуждает к действию. Нет фреймворков убеждения. Нет CRO оптимизации. Нет хуков для A/B тестирования. Просто слова на странице."
           }
         ],
-        "solutionLabel": "YOUR NEW CONTENT ENGINE",
-        "solutionTitle": "7 persuasion frameworks. Zero content bottleneck.",
+        "solutionLabel": "ВАШ НОВЫЙ КОНТЕНТ-ДВИЖОК",
+        "solutionTitle": "7 фреймворков убеждения. Никаких задержек в контенте.",
         "solutions": [
           {
             "skill": "cm-content-factory",
-            "benefit": "StoryBrand + Cialdini + SUCCESs + STEPPS. AI writes content that converts, not just fills pages."
+            "benefit": "StoryBrand + Cialdini + SUCCESs + STEPPS. AI пишет контент, который конвертирует, а не просто заполняет страницы."
           },
           {
             "skill": "cm-ux-master",
-            "benefit": "Landing pages with CRO built in — hero sections, social proof, objection handling, urgency."
+            "benefit": "Landing pages со встроенным CRO — блоки hero, социальное доказательство, работа с возражениями, срочность."
           },
           {
             "skill": "cm-ads-tracker",
-            "benefit": "Complete tracking: Meta Pixel + CAPI, TikTok Events, Google Ads Enhanced Conversions, UTM attribution."
+            "benefit": "Полный трекинг: Meta Pixel + CAPI, TikTok Events, Google Ads Enhanced Conversions, атрибуция UTM."
           },
           {
             "skill": "cm-readit",
-            "benefit": "Turn any content into audio. TTS reading mode increases engagement and time-on-page."
+            "benefit": "Превращайте любой контент в аудио. Режим чтения TTS повышает вовлеченность и время на странице."
           }
         ],
         "beforeAfter": {
           "before": [
-            "2 blog posts per week",
-            "Landing pages take 2-3 weeks",
-            "No conversion tracking",
-            "Content without persuasion framework",
-            "Can't prove ROI"
+            "2 статьи в неделю",
+            "Создание лендинга занимает 2-3 недели",
+            "Нет отслеживания конверсий",
+            "Контент без фреймворков убеждения",
+            "Невозможно доказать ROI"
           ],
           "after": [
-            "33 blog posts generated instantly",
-            "Landing pages in 15 minutes",
-            "Full pixel + CAPI + UTM tracking",
-            "7 proven frameworks in every piece",
-            "Complete attribution and ROAS data"
+            "33 статьи создаются мгновенно",
+            "Landing pages за 15 минут",
+            "Полный трекинг Pixel + CAPI + UTM",
+            "7 проверенных фреймворков в каждом тексте",
+            "Полные данные по атрибуции и ROAS"
           ]
         },
         "objections": [
           {
-            "q": "Will AI content get penalized by Google?",
-            "a": "No. cm-content-factory generates original, SEO-optimized content with proper heading hierarchy, internal linking, and schema markup. It's not generic AI slop."
+            "q": "Будет ли Google пессимизировать AI-контент?",
+            "a": "Нет. cm-content-factory генерирует оригинальный, SEO-оптимизированный контент с правильной иерархией заголовков, внутренней перелинковкой и разметкой schema. Это не шаблонный AI-мусор."
           },
           {
-            "q": "Can it match our brand voice?",
-            "a": "Yes. Phase 0 asks about your brand, tone, style. It learns your voice and applies it consistently across all content."
+            "q": "Сможет ли он соответствовать стилю нашего бренда?",
+            "a": "Да. На этапе Phase 0 уточняются детали вашего бренда, тон и стиль. Система изучает ваш голос и последовательно применяет его во всем контенте."
           },
           {
-            "q": "We use complex multi-touch attribution. Can it handle that?",
+            "q": "Мы используем сложную мультиканальную атрибуцию. Он справится?",
             "a": "cm-ads-tracker sets up first-touch and last-touch attribution, cross-channel deduplication, and UTM conventions. Enterprise-grade tracking."
           }
         ],
-        "ctaTitle": "Stop being the bottleneck.\nStart being the growth engine.",
-        "ctaSub": "From content strategy to live campaigns — in minutes, not months.",
-        "ctaButton": "Supercharge My Marketing →",
+        "ctaTitle": "Перестаньте быть узким местом.\nСтаньте двигателем роста.",
+        "ctaSub": "От стратегии контента до живых кампаний — за считанные минуты, а не месяцы.",
+        "ctaButton": "Усильте мой маркетинг →",
         "guide": {
-          "badge": "THE CONTENT EDGE",
-          "title": "Scale your output without scaling your headcount.",
-          "desc": "Marketing at scale used to require massive teams of writers, designers, and developers. Now, CodyMaster's Content Factory acts as your elite, autonomous marketing department—producing SEO articles, landing pages, and tracking setups perfectly aligned with Cialdini's principles."
+          "badge": "ПРЕИМУЩЕСТВО В КОНТЕНТЕ",
+          "title": "Масштабируйте результаты без увеличения штата сотрудников.",
+          "desc": "Раньше масштабный маркетинг требовал огромных команд авторов, дизайнеров и разработчиков. Теперь Content Factory в CodyMaster работает как ваш элитный автономный отдел маркетинга — создавая SEO-статьи, лендинги и настройки отслеживания, идеально соответствующие принципам Cialdini."
         },
-        "planLabel": "YOUR NEW WORKFLOW",
-        "planTitle": "From strategy to live campaign in hours",
+        "planLabel": "ВАШ НОВЫЙ РАБОЧИЙ ПРОЦЕСС",
+        "planTitle": "От стратегии до запущенной кампании за часы",
         "plan": [
           {
-            "title": "Define",
-            "desc": "Tell the cm-content-factory your target audience, value proposition, and campaign goals."
+            "title": "Определение",
+            "desc": "Укажите в cm-content-factory вашу целевую аудиторию, ценностное предложение и цели кампании."
           },
           {
-            "title": "Generate",
-            "desc": "AI writes the copy using StoryBrand frameworks, while cm-ux-master generates the high-converting UI."
+            "title": "Генерация",
+            "desc": "ИИ пишет текст, используя фреймворки StoryBrand, а cm-ux-master создает UI с высокой конверсией."
           },
           {
-            "title": "Track",
-            "desc": "With cm-ads-tracker, automatically instrument Facebook Pixel, CAPI, and Google Ads before the page even goes live."
+            "title": "Отслеживание",
+            "desc": "С помощью cm-ads-tracker автоматически настраивайте Facebook Pixel, CAPI и Google Ads еще до того, как страница будет опубликована."
           }
         ],
-        "failureLabel": "THE BOTTLENECK PENALTY",
-        "failureTitle": "A marketing team that moves slow becomes irrelevant.",
-        "failureDesc": "While you wait 3 weeks for your dev team to build one landing page, your competitors are running 10 different A/B tests. Speed of execution is the only modern marketing advantage.",
-        "heroBadge": "7 Persuasion Frameworks · Full Pixel Tracking · Free",
+        "failureLabel": "ШТРАФ ЗА МЕДЛЕННОСТЬ",
+        "failureTitle": "Команда маркетинга, которая движется медленно, теряет актуальность.",
+        "failureDesc": "Пока вы ждете 3 недели, чтобы команда разработчиков создала один лендинг, ваши конкуренты проводят 10 различных A/B тестов. Скорость реализации — единственное современное преимущество в маркетинге.",
+        "heroBadge": "7 фреймворков убеждения · Полный Pixel Tracking · Бесплатно",
         "heroStats": [
           {
             "num": "7",
-            "label": "Frameworks"
+            "label": "Фреймворки"
           },
           {
             "num": "33x",
-            "label": "Content Speed"
+            "label": "Скорость создания контента"
           },
           {
-            "num": "15min",
-            "label": "To Landing Page"
+            "num": "15 мин",
+            "label": "До создания лендинга"
           }
         ],
         "fomo": [
-          "Marketing teams scaling output 10x right now",
-          "Includes StoryBrand + Cialdini + SUCCESs",
-          "Complete ad tracking: Meta, TikTok, Google"
+          "Команды маркетинга уже сейчас масштабируют результаты в 10 раз",
+          "Включает StoryBrand + Cialdini + SUCCESs",
+          "Полное отслеживание рекламы: Meta, TikTok, Google"
         ],
         "costCallout": {
-          "num": "180 hours/year",
-          "label": "Wasted on manual content and landing page workflows. Automated with CodyMaster."
+          "num": "180 часов в год",
+          "label": "Тратится впустую на ручную работу с контентом и лендингами. Автоматизировано с помощью CodyMaster."
         },
-        "failureWhile": "⏱️ Your competitor just launched 3 A/B test variants while you're still waiting for the dev team.",
-        "ctaSecondary": "📖 See Content Factory"
+        "failureWhile": "⏱️ Ваш конкурент только что запустил 3 варианта A/B теста, пока вы все еще ждете команду разработчиков.",
+        "ctaSecondary": "📖 Посмотреть Content Factory"
       },
       "pm": {
-        "heroTitle": "AI gave you 100 hands.\nBut without discipline, those hands create chaos.",
-        "heroSub": "CodyMaster is the control system for AI-powered product development. Enforced quality gates, design consistency, and auto-generated documentation.",
-        "painLabel": "THE CHAOS YOU KNOW TOO WELL",
-        "painTitle": "Sound familiar?",
+        "heroTitle": "ИИ дал вам 100 рук.\nНо без дисциплины эти руки создают хаос.",
+        "heroSub": "CodyMaster — это система контроля для разработки продуктов на базе ИИ. Обязательные quality gates, согласованность дизайна и автогенерация документации.",
+        "painLabel": "ХАОС, КОТОРЫЙ ВАМ ХОРОШО ЗНАКОМ",
+        "painTitle": "Знакомо?",
         "pains": [
           {
             "icon": "🎨",
-            "title": "Design is different every time",
-            "desc": "Same brand, same project, three different styles. AI forgets your design system between sessions. Stakeholders think it's three different products."
+            "title": "Дизайн каждый раз разный",
+            "desc": "Один бренд, один проект, три разных стиля. ИИ забывает вашу дизайн-систему между сессиями. Стейкхолдеры думают, что это три разных продукта."
           },
           {
             "icon": "💥",
-            "title": "AI breaks what already works",
-            "desc": "You ask AI to add a feature. It rewrites half the codebase. Working functionality disappears. You spend the next 2 days undoing the damage."
+            "title": "ИИ ломает то, что уже работает",
+            "desc": "Вы просите ИИ добавить функцию. Он переписывает половину кодовой базы. Работающая функциональность исчезает. Вы тратите следующие 2 дня на устранение ущерба."
           },
           {
             "icon": "📄",
-            "title": "No docs means no self-onboarding",
-            "desc": "Amazing product, zero documentation. Users flood support with basic questions. Your support team is drowning because nobody can self-serve."
+            "title": "Нет документации — нет самостоятельного входа",
+            "desc": "Отличный продукт, ноль документации. Пользователи засыпают поддержку элементарными вопросами. Ваша команда поддержки тонет, потому что никто не может разобраться сам."
           },
           {
             "icon": "🔍",
-            "title": "You can't see what AI is doing",
-            "desc": "Running 3 AI agents on 5 tasks. Which one is stuck? What deployed where? How many tokens were spent? You have zero visibility."
+            "title": "Вы не видите, что делает ИИ",
+            "desc": "Работают 3 ИИ-агента над 5 задачами. Кто из них застрял? Что и куда задеплоено? Сколько токенов потрачено? У вас нулевая видимость."
           }
         ],
-        "solutionLabel": "YOUR AI CONTROL SYSTEM",
-        "solutionTitle": "Discipline for AI. Peace of mind for you.",
+        "solutionLabel": "ВАША СИСТЕМА КОНТРОЛЯ ИИ",
+        "solutionTitle": "Дисциплина для ИИ. Спокойствие для вас.",
         "solutions": [
           {
             "skill": "cm-ux-master",
-            "benefit": "Design system enforced automatically. Same brand, same style, every single time."
+            "benefit": "Дизайн-система применяется автоматически. Тот же бренд, тот же стиль, каждый раз."
           },
           {
             "skill": "cm-quality-gate",
-            "benefit": "6-gate quality system. Nothing reaches production without passing tests, linting, and security."
+            "benefit": "Система качества из 6 этапов. Ничто не попадет в продакшн без прохождения тестов, линтинга и проверки безопасности."
           },
           {
             "skill": "cm-dockit",
-            "benefit": "Auto-generate complete docs from code: API reference, SOPs, user guides, personas, JTBD."
+            "benefit": "Автогенерация полной документации из кода: API reference, SOPs, руководства пользователя, персоны, JTBD."
           },
           {
             "skill": "cm-continuity",
-            "benefit": "Context persists across sessions. AI remembers mistakes and never repeats them."
+            "benefit": "Контекст сохраняется между сессиями. ИИ помнит ошибки и никогда их не повторяет."
           }
         ],
         "beforeAfter": {
           "before": [
-            "Design chaos — different every time",
-            "AI breaks existing code",
-            "Zero documentation",
-            "No visibility into AI activity",
-            "Manual quality reviews"
+            "Хаос в дизайне — каждый раз по-разному",
+            "ИИ ломает существующий код",
+            "Нулевая документация",
+            "Нет видимости активности AI",
+            "Ручные проверки качества"
           ],
           "after": [
-            "Design system enforced by AI",
-            "Multi-layer code protection",
-            "World-class docs auto-generated",
-            "Dashboard showing everything",
-            "Automated 6-gate quality"
+            "Design system контролируется AI",
+            "Многоуровневая защита кода",
+            "Автогенерация документации мирового уровня",
+            "Dashboard, показывающий всё",
+            "Автоматизированное качество через 6-gate"
           ]
         },
         "objections": [
           {
-            "q": "Won't quality gates slow things down?",
-            "a": "They save time. Catching a bug in the gate takes seconds. Catching it in production takes days. Net effect: you ship FASTER, not slower."
+            "q": "Не замедлят ли работу quality gates?",
+            "a": "Они экономят время. Поиск бага в gate занимает секунды. Поиск в production — дни. Итог: вы шипите БЫСТРЕЕ, а не медленнее."
           },
           {
-            "q": "I'm a PM, not a dev. Is this too technical?",
-            "a": "CodyMaster's creator is a PM too. Everything is designed for you to chat naturally. You say what you want, AI handles the technical details."
+            "q": "Я PM, а не разработчик. Это не слишком технически сложно?",
+            "a": "Создатель CodyMaster тоже PM. Всё разработано для естественного общения. Вы говорите, что хотите, а AI берет на себя технические детали."
           },
           {
-            "q": "We use Jira/Linear for task management. Does this replace them?",
-            "a": "No. CodyMaster complements your tools. It handles the AI execution part — the quality, consistency, and deployment that Jira can't enforce."
+            "q": "Мы используем Jira/Linear для управления задачами. Это их заменит?",
+            "a": "Нет. CodyMaster дополняет ваши инструменты. Он берет на себя часть исполнения через AI — качество, согласованность и deployment, которые Jira не может контролировать."
           }
         ],
-        "ctaTitle": "You've managed chaos long enough.\nTime for discipline.",
-        "ctaSub": "From AI chaos to production-ready products with enforced quality.",
-        "ctaButton": "Take Control Now →",
+        "ctaTitle": "Вы достаточно долго управляли хаосом.\nПришло время для дисциплины.",
+        "ctaSub": "От AI-хаоса к готовым к production продуктам с гарантированным качеством.",
+        "ctaButton": "Взять под контроль сейчас →",
         "guide": {
           "badge": "VALIDATION ENGINE",
-          "title": "Validate faster. Ship confidently. Prove ROI instantly.",
-          "desc": "Product management is about reducing risk. CodyMaster removes the engineering bottleneck entirely, allowing you to spin up functional prototypes and MVPs in hours to gather real user data before committing months of your actual tech team's time."
+          "title": "Проверяйте быстрее. Шипьте уверенно. Доказывайте ROI мгновенно.",
+          "desc": "Управление продуктом — это снижение рисков. CodyMaster полностью устраняет узкое место в разработке, позволяя создавать функциональные прототипы и MVP за часы, чтобы собрать реальные данные пользователей перед тем, как тратить месяцы времени вашей основной техкоманды."
         },
-        "planLabel": "THE AGILE WAY",
-        "planTitle": "How to ship the right thing",
+        "planLabel": "В СТИЛЕ AGILE",
+        "planTitle": "Как шипить правильные вещи",
         "plan": [
           {
             "title": "Scope",
-            "desc": "Use cm-planning to feed your PRDs into the AI. It instantly spots edge cases you might have missed."
+            "desc": "Используйте cm-planning, чтобы передать ваши PRD в AI. Он мгновенно определит граничные случаи, которые вы могли упустить."
           },
           {
             "title": "Prototype",
-            "desc": "Don't just show Figma files. Let CodyMaster build a live, clickable, coded prototype connected to a real database."
+            "desc": "Не ограничивайтесь Figma-файлами. Пусть CodyMaster создаст живой, кликабельный прототип в коде, подключенный к реальной базе данных."
           },
           {
             "title": "Validate",
-            "desc": "Put it in front of users. Track their behavior. Then, hand off the validated specifications to your dev team (or just deploy it)."
+            "desc": "Покажите его пользователям. Отслеживайте их поведение. Затем передайте проверенные спецификации вашей dev-команде (или просто задеплойте это)."
           }
         ],
-        "failureLabel": "THE FEATURE FACTORY TRAP",
-        "failureTitle": "Building features nobody wants burns your runway.",
-        "failureDesc": "60% of features built by software teams are rarely or never used. If you can't test ideas rapidly, you are gambling your company's resources on unvalidated assumptions.",
-        "heroBadge": "Built by a Head of Product · 10+ Years Experience",
+        "failureLabel": "ЛОВУШКА ФАБРИКИ ФИЧ",
+        "failureTitle": "Создание фич, которые никому не нужны, сжигает ваш runway.",
+        "failureDesc": "60% фич, созданных софтверными командами, используются редко или никогда. Если вы не можете быстро тестировать идеи, вы рискуете ресурсами компании, основываясь на непроверенных предположениях.",
+        "heroBadge": "Создано Head of Product · Опыт 10+ лет",
         "heroStats": [
           {
             "num": "4",
-            "label": "Safety Layers"
+            "label": "Слои безопасности"
           },
           {
             "num": "6",
@@ -679,135 +679,135 @@
           },
           {
             "num": "∞",
-            "label": "Memory"
+            "label": "Память"
           }
         ],
         "fomo": [
-          "The creator is a PM who can't code — this kit IS the solution",
-          "AI that remembers mistakes and never repeats them",
-          "Auto-generates complete product documentation"
+          "Создатель — PM, который не умеет кодить — этот кит И ЕСТЬ решение",
+          "AI, который помнит ошибки и никогда их не повторяет",
+          "Автогенерация полной документации продукта"
         ],
         "costCallout": {
           "num": "60%",
-          "label": "of features built by teams are rarely or never used. Validate faster with CodyMaster."
+          "label": "фич, созданных командами, используются редко или никогда. Проверяйте быстрее с CodyMaster."
         },
-        "failureWhile": "⏱️ While you're debating in meetings, undisciplined AI is breaking your codebase.",
-        "ctaSecondary": "📖 Read Our Story"
+        "failureWhile": "⏱️ Пока вы спорите на митингах, недисциплинированный AI ломает вашу кодовую базу.",
+        "ctaSecondary": "📖 Читать нашу историю"
       },
       "dev": {
-        "heroTitle": "Stop writing setup code.\nStart writing what matters.",
-        "heroSub": "For CTOs, Tech Leads, Frontend, Backend, Mobile devs, and QC engineers — CodyMaster handles the 80% of boilerplate while enforcing the quality standards you actually want.",
-        "painLabel": "THE DEVELOPER'S DAILY GRIND",
-        "painTitle": "Every dev knows this pain",
+        "heroTitle": "Хватит писать код настройки.\nНачните писать то, что важно.",
+        "heroSub": "Для CTO, техлидов, Frontend, Backend, Mobile разработчиков и QC инженеров — CodyMaster берет на себя 80% рутины, соблюдая те стандарты качества, которые вам действительно нужны.",
+        "painLabel": "БУДНИ РАЗРАБОТЧИКА",
+        "painTitle": "Каждый разработчик знает эту боль",
         "pains": [
           {
             "icon": "🔄",
-            "title": "Setup déjà vu",
-            "desc": "Every. Single. Project. Git init, CI/CD config, test infra, linting, i18n, design tokens, deploy pipeline. You've done this 100 times. It never gets faster."
+            "title": "Дежавю настройки",
+            "desc": "Каждый. Божий. Проект. Git init, конфиг CI/CD, тестовая инфраструктура, линтинг, i18n, design tokens, deploy pipeline. Вы делали это 100 раз. Это никогда не становится быстрее."
           },
           {
             "icon": "🧪",
-            "title": "AI code = zero test coverage",
-            "desc": "AI generates code fast. But no tests, no type safety, no error handling. You either rewrite it or ship and pray. Neither option is great."
+            "title": "AI-код = нулевое покрытие тестами",
+            "desc": "AI генерирует код быстро. Но без тестов, без типизации, без обработки ошибок. Вы либо переписываете его, либо шипите и молитесь. Оба варианта так себе."
           },
           {
             "icon": "🚀",
-            "title": "Deploy with fingers crossed",
-            "desc": "No staging environment. No rollback strategy. No quality gates. You push to main and check if production is still alive. Every time."
+            "title": "Деплой со скрещенными пальцами",
+            "desc": "Нет staging environment. Нет rollback strategy. Нет quality gates. Вы пушите в main и проверяете, жива ли еще production. Каждый раз."
           },
           {
             "icon": "🏗️",
-            "title": "Architecture decisions without context",
-            "desc": "AI doesn't understand your codebase's patterns. It generates code that conflicts with your architecture. You spend more time fixing than writing."
+            "title": "Architecture решения без context",
+            "desc": "AI не понимает patterns вашей codebase. Он генерирует код, который конфликтует с вашей architecture. Вы тратите больше времени на fixing, чем на написание кода."
           },
           {
             "icon": "🧑‍🤝‍🧑",
-            "title": "QC has no automated safety net",
-            "desc": "QC engineers manually test everything. No automated test gates, no regression checks, no security scans built into the pipeline."
+            "title": "У QC нет автоматизированной safety net",
+            "desc": "QC инженеры тестируют всё вручную. Никаких автоматизированных test gates, regression checks или security scans, встроенных в pipeline."
           }
         ],
-        "solutionLabel": "YOUR ENGINEERING MULTIPLIER",
-        "solutionTitle": "The discipline your codebase deserves",
+        "solutionLabel": "ВАШ ENGINEERING MULTIPLIER",
+        "solutionTitle": "Дисциплина, которой заслуживает ваша codebase",
         "solutions": [
           {
             "skill": "cm-project-bootstrap",
-            "benefit": "One command: design system, test infra, CI/CD, i18n, SEO, deploy pipeline. All wired up on day zero."
+            "benefit": "Одна команда: design system, test infra, CI/CD, i18n, SEO, deploy pipeline. Всё настроено в day zero."
           },
           {
             "skill": "cm-tdd",
-            "benefit": "Tests are written BEFORE implementation. Every feature has coverage from the start."
+            "benefit": "Tests пишутся ДО implementation. Каждая feature имеет coverage с самого начала."
           },
           {
             "skill": "cm-safe-deploy",
-            "benefit": "8-gate pipeline: lint → type check → test → build → security → preview → deploy → verify. Auto-rollback on failure."
+            "benefit": "8-gate pipeline: lint → type check → test → build → security → preview → deploy → verify. Auto-rollback при сбое."
           },
           {
             "skill": "cm-code-review",
-            "benefit": "Full review lifecycle with technical rigor. Catches issues before they become production incidents."
+            "benefit": "Полный review lifecycle с технической строгостью. Перехватывает проблемы до того, как они станут production incidents."
           },
           {
             "skill": "cm-quality-gate",
-            "benefit": "For QC engineers: automated test gates, evidence-based verification, frontend safety checks. No deploy without passing."
+            "benefit": "Для QC инженеров: автоматизированные test gates, evidence-based verification, frontend safety checks. Никакого deploy без их прохождения."
           }
         ],
         "beforeAfter": {
           "before": [
-            "2-3 days to set up each project",
-            "AI code with zero tests",
-            "No deploy safety net",
-            "Manual code reviews",
-            "QC tests everything by hand"
+            "2-3 дня на настройку каждого проекта",
+            "AI код с zero tests",
+            "Нет deploy safety net",
+            "Ручные code reviews",
+            "QC тестирует всё вручную"
           ],
           "after": [
-            "10 minutes to production-ready scaffold",
-            "TDD enforced — tests first",
-            "8-gate deploy + automatic rollback",
-            "AI-assisted reviews with rigor",
-            "Automated quality gates for QC"
+            "10 минут до production-ready scaffold",
+            "TDD принудительно — tests first",
+            "8-gate deploy + автоматический rollback",
+            "AI-assisted reviews со строгостью",
+            "Автоматизированные quality gates для QC"
           ]
         },
         "objections": [
           {
-            "q": "My stack is unusual. Will it work?",
-            "a": "CodyMaster supports 17 frameworks: React, Next.js, Astro, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, Angular, htmx, Electron, Tauri, and more."
+            "q": "Мой stack необычный. Это сработает?",
+            "a": "CodyMaster поддерживает 17 frameworks: React, Next.js, Astro, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, Angular, htmx, Electron, Tauri и другие."
           },
           {
-            "q": "I don't want AI writing my core logic.",
-            "a": "Then don't. Use CodyMaster for the 80% that's boring: scaffolding, tests, docs, deploy config. You write the 20% that requires your brain."
+            "q": "Я не хочу, чтобы AI писал мою core logic.",
+            "a": "Тогда не позволяйте. Используйте CodyMaster для 80% скучной работы: scaffolding, tests, docs, deploy config. Вы пишете те 20%, которые требуют вашего участия."
           },
           {
-            "q": "How does this work for a CTO managing a team?",
-            "a": "As CTO, you define the quality standards once. CodyMaster enforces them across every project, every developer, every AI agent. Consistency at scale."
+            "q": "Как это работает для CTO, управляющего командой?",
+            "a": "Как CTO, вы один раз определяете quality standards. CodyMaster внедряет их в каждом проекте, для каждого разработчика и каждого AI агента. Consistency в масштабе."
           }
         ],
-        "ctaTitle": "Life is too short to write boilerplate.\nLet AI do the boring parts. You do the brilliant parts.",
-        "ctaSub": "Free. Open source. Production-ready from day one.",
-        "ctaButton": "Start Building →",
+        "ctaTitle": "Жизнь слишком коротка, чтобы писать boilerplate.\nПусть AI делает скучную работу. Вы делайте блестящую работу.",
+        "ctaSub": "Бесплатно. Open source. Production-ready с day one.",
+        "ctaButton": "Начать разработку →",
         "guide": {
           "badge": "ENGINEERING LEVERAGE",
-          "title": "Stop writing boilerplate. Start architecting systems.",
-          "desc": "Senior engineers shouldn't be centering divs or writing basic CRUD endpoints. CodyMaster acts as your tireless junior developer, scaffolding apps, writing tests via cm-tdd, and executing repetitive tasks so you can focus on hard architectural problems."
+          "title": "Хватит писать boilerplate. Начните проектировать системы.",
+          "desc": "Senior engineers не должны центрировать div-ы или писать базовые CRUD endpoints. CodyMaster выступает как ваш неутомимый junior developer: делает scaffolding приложений, пишет тесты через cm-tdd и выполняет рутинные задачи, чтобы вы могли сосредоточиться на сложных архитектурных задачах."
         },
-        "planLabel": "THE 10X PIPELINE",
-        "planTitle": "How elite teams use Cody",
+        "planLabel": "10X PIPELINE",
+        "planTitle": "Как элитные команды используют Cody",
         "plan": [
           {
             "title": "Scaffold",
-            "desc": "Use cm-project-bootstrap. Within 60 seconds you have a Vite/React app with routing, Tailwind v4, i18n, and testing pre-configured."
+            "desc": "Используйте cm-project-bootstrap. Менее чем за 60 секунд у вас будет Vite/React приложение с routing, Tailwind v4, i18n и уже настроенным testing."
           },
           {
             "title": "Delegate",
-            "desc": "Assign complex logic to the cm-execution agent. It writes the code and the exhaustive unit tests simultaneously."
+            "desc": "Поручите сложную логику агенту cm-execution. Он одновременно пишет код и исчерпывающие unit tests."
           },
           {
             "title": "Review",
-            "desc": "The code isn't a black box. You review the PRs. CodyMaster runs cm-quality-gate to catch regressions before you even look."
+            "desc": "Код — это не черный ящик. Вы делаете review для PRs. CodyMaster запускает cm-quality-gate, чтобы поймать regressions до того, как вы начнете просмотр."
           }
         ],
-        "failureLabel": "THE TECH DEBT SPIRAL",
-        "failureTitle": "Technical debt grows faster than you can hire.",
-        "failureDesc": "If your team is bogged down in legacy maintenance and slow manual testing, innovation stops. Without AI leverage, your top talent will burn out and leave for companies that move faster.",
-        "heroBadge": "17 Frameworks · TDD Enforced · Multi-Gate Deploy",
+        "failureLabel": "СПИРАЛЬ ТЕХДОЛГА (TECHNICAL DEBT)",
+        "failureTitle": "Technical debt растет быстрее, чем вы успеваете нанимать людей.",
+        "failureDesc": "Если ваша команда погрязла в legacy maintenance и медленном ручном тестировании, инновации прекращаются. Без AI leverage ваши лучшие таланты выгорят и уйдут в компании, которые движутся быстрее.",
+        "heroBadge": "17 Frameworks · TDD принудительно · Multi-Gate Deploy",
         "heroStats": [
           {
             "num": "17",
@@ -818,283 +818,283 @@
             "label": "Deploy Gates"
           },
           {
-            "num": "10min",
-            "label": "Full Scaffold"
+            "num": "10 мин",
+            "label": "Полный Scaffold"
           }
         ],
         "fomo": [
-          "Senior devs are automating 80% of boilerplate",
-          "TDD-first: every feature has tests before code",
-          "Supports React, Vue, Next.js, Flutter, SwiftUI +12 more"
+          "Senior-разработчики автоматизируют 80% boilerplate-кода",
+          "TDD-first: каждая функция имеет тесты до написания кода",
+          "Поддержка React, Vue, Next.js, Flutter, SwiftUI и еще +12"
         ],
         "costCallout": {
-          "num": "2-3 days",
-          "label": "Wasted per project on setup boilerplate. With cm-project-bootstrap: 10 minutes."
+          "num": "2-3 дня",
+          "label": "Тратится на каждый проект на настройку boilerplate. С cm-project-bootstrap: 10 минут."
         },
-        "failureWhile": "⏱️ Tech debt grows faster than you can hire. Your best engineers are fixing bugs, not building features.",
-        "ctaSecondary": "🛠️ See All 33 Skills"
+        "failureWhile": "⏱️ Технический долг растет быстрее, чем вы нанимаете людей. Ваши лучшие инженеры исправляют баги, а не создают новые фичи.",
+        "ctaSecondary": "🛠️ Посмотреть все 33 Skills"
       },
       "designer": {
-        "heroTitle": "You designed the system.\nAI should respect it.",
-        "heroSub": "CodyMaster is the only AI toolkit that reads your design tokens, previews before coding, and enforces brand consistency — making AI your design partner, not your design enemy.",
-        "painLabel": "EVERY DESIGNER'S FRUSTRATION",
-        "painTitle": "AI should amplify your vision, not ignore it",
+        "heroTitle": "Вы спроектировали систему.\nAI должен её уважать.",
+        "heroSub": "CodyMaster — это единственный AI-инструментарий, который считывает ваши design tokens, делает превью перед написанием кода и обеспечивает согласованность бренда, превращая AI в вашего партнера, а не врага по дизайну.",
+        "painLabel": "ФРУСТРАЦИЯ КАЖДОГО ДИЗАЙНЕРА",
+        "painTitle": "AI должен усиливать ваше видение, а не игнорировать его",
         "pains": [
           {
             "icon": "🎨",
-            "title": "AI ignores your design tokens",
-            "desc": "You spent weeks defining your design system: colors, spacing, typography, components. AI doesn't read any of it. Every output looks random."
+            "title": "AI игнорирует ваши design tokens",
+            "desc": "Вы потратили недели на определение вашей design system: цвета, отступы, типографика, компоненты. AI ничего из этого не считывает. Каждый результат выглядит случайным."
           },
           {
             "icon": "👁️",
-            "title": "No preview before coding",
-            "desc": "With code-first AI tools, you can't see the design until it's already built. By then, 80% of the code needs to change to match your vision."
+            "title": "Нет превью перед написанием кода",
+            "desc": "С инструментами AI, ориентированными на код, вы не видите дизайн, пока он не будет построен. К тому времени 80% кода нужно изменить, чтобы он соответствовал вашему видению."
           },
           {
             "icon": "🔀",
-            "title": "Inconsistent output kills brand",
-            "desc": "Page A uses rounded corners, Page B uses sharp edges, Page C has a completely different color palette. Same project. Same AI. Zero consistency."
+            "title": "Несогласованный результат убивает бренд",
+            "desc": "Страница А использует скругленные углы, Страница Б — острые края, Страница В имеет совершенно другую цветовую палитру. Тот же проект. Тот же AI. Ноль последовательности."
           },
           {
             "icon": "🤝",
-            "title": "Dev handoff is broken",
-            "desc": "You design in Figma. AI codes from scratch, ignoring your meticulously crafted components. The gap between design and production is a canyon."
+            "title": "Dev handoff сломан",
+            "desc": "Вы проектируете в Figma. AI пишет код с нуля, игнорируя ваши тщательно проработанные компоненты. Разрыв между дизайном и продакшеном огромен."
           }
         ],
-        "solutionLabel": "YOUR DESIGN-FIRST WORKFLOW",
-        "solutionTitle": "Preview → Approve → Code. In that order.",
+        "solutionLabel": "ВАШ DESIGN-FIRST WORKFLOW",
+        "solutionTitle": "Превью → Одобрение → Код. Именно в таком порядке.",
         "solutions": [
           {
             "skill": "cm-ux-master",
-            "benefit": "Harvester v4 reads your existing design system. 48 UX Laws validate every component. 1032+ patterns for inspiration."
+            "benefit": "Harvester v4 считывает вашу существующую design system. 48 UX Laws проверяют каждый компонент. 1032+ паттерна для вдохновения."
           },
           {
             "skill": "cm-ui-preview",
-            "benefit": "See the UI before a single line of code is written. Powered by Google Stitch and Pencil.dev."
+            "benefit": "Увидьте UI до того, как будет написана хоть одна строка кода. Работает на Google Stitch и Pencil.dev."
           },
           {
             "skill": "cm-execution",
-            "benefit": "AI generates code that uses YOUR tokens, YOUR components, YOUR spacing. Not random defaults."
+            "benefit": "AI генерирует код, который использует ВАШИ токены, ВАШИ компоненты, ВАШИ отступы. А не случайные настройки по умолчанию."
           },
           {
             "skill": "cm-project-bootstrap",
-            "benefit": "Design system is set up from day one. Every project starts with your brand DNA."
+            "benefit": "Design system настраивается с первого дня. Каждый проект начинается с ДНК вашего бренда."
           }
         ],
         "beforeAfter": {
           "before": [
-            "AI ignores your design system",
-            "Code first, design second",
-            "Inconsistent brand output",
-            "Manual handoff gap",
-            "Redesign after every AI generation"
+            "AI игнорирует вашу design system",
+            "Сначала код, потом дизайн",
+            "Несогласованный результат бренда",
+            "Разрыв при ручной передаче",
+            "Редизайн после каждой AI-генерации"
           ],
           "after": [
-            "Design tokens are read and enforced",
-            "Design preview before any code",
-            "Pixel-perfect brand consistency",
-            "Design-to-code pipeline",
-            "Approve once, code matches perfectly"
+            "Design tokens считываются и применяются",
+            "Превью дизайна перед любым кодом",
+            "Pixel-perfect согласованность бренда",
+            "Design-to-code пайплайн",
+            "Одобрите один раз, код совпадает идеально"
           ]
         },
         "objections": [
           {
-            "q": "I use Figma. Can it read my Figma tokens?",
-            "a": "Yes. cm-ux-master Harvester extracts design tokens from existing sites, CSS files, and design systems. Export from Figma, import into CodyMaster."
+            "q": "Я использую Figma. Может ли он считывать мои Figma-токены?",
+            "a": "Да. Harvester из cm-ux-master извлекает design tokens из существующих сайтов, CSS-файлов и дизайн-систем. Экспортируйте из Figma, импортируйте в CodyMaster."
           },
           {
-            "q": "Does 'AI preview' actually look like proper design?",
+            "q": "Действительно ли 'AI-превью' выглядит как настоящий дизайн?",
             "a": "cm-ui-preview uses Google Stitch and Pencil.dev — professional design tools, not text mockups. You review real visual designs."
           },
           {
-            "q": "I'm not technical. Can I still control the output?",
-            "a": "That's the entire point. You describe the design in natural language, preview it visually, and approve before any code is generated."
+            "q": "Я не технарь. Могу ли я все еще контролировать результат?",
+            "a": "В этом и весь смысл. Вы описываете дизайн на естественном языке, просматриваете его визуально и одобряете перед генерацией кода."
           }
         ],
-        "ctaTitle": "Your design system deserves AI that listens.\nNot AI that ignores.",
+        "ctaTitle": "Ваша design system заслуживает AI, который слушает.\nА не AI, который игнорирует.",
         "ctaSub": "Design-first. Preview-first. Quality-first.",
-        "ctaButton": "Try Design-First AI →",
+        "ctaButton": "Попробовать Design-First AI →",
         "guide": {
           "badge": "PIXEL PERFECT",
-          "title": "From Figma to React, skipping the translation loss.",
-          "desc": "The handoff is broken. You design something beautiful; development builds something that 'kind of' looks like it. CodyMaster bridges that gap, reading your design intent via cm-ux-master and generating pixel-perfect code that honors spacing, typography, and UX laws."
+          "title": "Из Figma в React, минуя потери при переводе.",
+          "desc": "Handoff сломан. Вы проектируете что-то прекрасное; разработка строит что-то, что 'вроде как' похоже на это. CodyMaster сокращает этот разрыв, считывая ваше намерение по дизайну через cm-ux-master и генерируя pixel-perfect код, который соблюдает отступы, типографику и UX laws."
         },
-        "planLabel": "THE DESIGN-TO-CODE LOOP",
-        "planTitle": "Protect your design integrity",
+        "planLabel": "ЦИКЛ DESIGN-TO-CODE",
+        "planTitle": "Защитите целостность вашего дизайна",
         "plan": [
           {
-            "title": "Design",
-            "desc": "Create your concepts in Figma or directly instruct the cm-ui-preview skill with your visual requirements."
+            "title": "Дизайн",
+            "desc": "Создавайте концепты в Figma или напрямую давайте инструкции навыку cm-ui-preview с вашими визуальными требованиями."
           },
           {
-            "title": "Generate",
-            "desc": "CodyMaster translates your designs into clean Tailwind v4 utility classes and accessible DOM structures."
+            "title": "Генерация",
+            "desc": "CodyMaster переводит ваши дизайны в чистые утилитарные классы Tailwind v4 и доступные структуры DOM."
           },
           {
-            "title": "Refine",
-            "desc": "Tweak animations, focus states, and responsive breakpoints directly in the code with plain English commands."
+            "title": "Доработка",
+            "desc": "Настраивайте анимации, состояния фокуса и адаптивные точки остановки напрямую в коде с помощью простых команд на английском языке."
           }
         ],
-        "failureLabel": "THE COMPROMISE",
-        "failureTitle": "Developers ruining your designs because handoffs are broken.",
-        "failureDesc": "If you don't control the implementation, your portfolio is full of 'what I designed' vs 'what they built'. Take back control of the final output.",
+        "failureLabel": "КОМПРОМИСС",
+        "failureTitle": "Разработчики портят ваши дизайны из-за нарушенного процесса передачи (handoff).",
+        "failureDesc": "Если вы не контролируете реализацию, ваше портфолио полно примеров «что я спроектировал» против «что они построили». Верните себе контроль над финальным результатом.",
         "heroBadge": "Harvester v4 · 48 UX Laws · Figma → Code Pipeline",
         "heroStats": [
           {
             "num": "48",
-            "label": "UX Laws"
+            "label": "Законы UX"
           },
           {
             "num": "1032+",
-            "label": "Design Patterns"
+            "label": "Паттерны дизайна"
           },
           {
             "num": "120+",
-            "label": "Extracted Tokens"
+            "label": "Извлеченные токены"
           }
         ],
         "fomo": [
-          "Design-first AI that reads YOUR tokens",
-          "Preview in Google Stitch or Pencil.dev before any code",
-          "Extracts design systems from any existing website"
+          "Design-first AI, который читает ВАШИ токены",
+          "Предпросмотр в Google Stitch или Pencil.dev перед написанием кода",
+          "Извлекает дизайн-системы с любого существующего сайта"
         ],
         "costCallout": {
           "num": "80%",
-          "label": "of AI-generated code doesn't match the design. cm-ux-master makes it pixel-perfect."
+          "label": "сгенерированного ИИ кода не соответствует дизайну. cm-ux-master делает его pixel-perfect."
         },
-        "failureWhile": "⏱️ Developers are shipping designs that don't match your vision. Again.",
-        "ctaSecondary": "🎨 See UX Master"
+        "failureWhile": "⏱️ Разработчики выпускают дизайн, который не соответствует вашему видению. Снова.",
+        "ctaSecondary": "🎨 Посмотреть UX Master"
       },
       "claw": {
-        "heroTitle": "One skill kit.\nEvery AI agent in the family.",
-        "heroSub": "Whether you use Cursor, Claude Desktop, Antigravity, OpenClaw, NemoClaw, or OpenFang — CodyMaster's universal format means your skills work everywhere, instantly.",
-        "painLabel": "THE FRAGMENTATION PROBLEM",
-        "painTitle": "Tired of rewriting rules for every agent?",
+        "heroTitle": "Один набор навыков.\nДля каждого ИИ-агента в семействе.",
+        "heroSub": "Используете ли вы Cursor, Claude Desktop, Antigravity, OpenClaw, NemoClaw или OpenFang — универсальный формат CodyMaster означает, что ваши навыки работают везде мгновенно.",
+        "painLabel": "ПРОБЛЕМА ФРАГМЕНТАЦИИ",
+        "painTitle": "Устали переписывать правила для каждого агента?",
         "pains": [
           {
             "icon": "🔒",
-            "title": "Locked into one agent",
-            "desc": "You built custom prompts and rules for Cursor. Now you want to try Claude Desktop. Start from scratch. All your work? Doesn't transfer."
+            "title": "Привязка к одному агенту",
+            "desc": "Вы создали кастомные промпты и правила для Cursor. Теперь вы хотите попробовать Claude Desktop. Начинайте с нуля. Вся ваша работа? Она не переносится."
           },
           {
             "icon": "🧩",
-            "title": "Config files don't transfer",
-            "desc": ".cursorrules, claude_desktop_config.json, .windsurfrules — every agent has a different format. Your knowledge is fragmented across incompatible files."
+            "title": "Файлы конфигурации не переносятся",
+            "desc": ".cursorrules, claude_desktop_config.json, .windsurfrules — у каждого агента свой формат. Ваши знания фрагментированы по несовместимым файлам."
           },
           {
             "icon": "🌐",
-            "title": "No universal skill format",
-            "desc": "You learned to write skills for one agent. But the Claw ecosystem (OpenClaw, NemoClaw, OpenFang) needs interoperability. No standard exists."
+            "title": "Нет универсального формата навыков",
+            "desc": "Вы научились писать навыки для одного агента. Но экосистема Claw (OpenClaw, NemoClaw, OpenFang) нуждается в операционной совместимости. Стандарта не существует."
           },
           {
             "icon": "🔄",
-            "title": "Switching agents = starting over",
-            "desc": "A new, better agent launches. You want to try it. But migration means re-creating everything. Lock-in by configuration complexity."
+            "title": "Смена агента = начало с нуля",
+            "desc": "Выходит новый, лучший агент. Вы хотите его попробовать. Но миграция означает создание всего заново. Зависимость из-за сложности конфигурации."
           }
         ],
-        "solutionLabel": "THE UNIVERSAL STANDARD",
-        "solutionTitle": "Write once. Run anywhere. The Claw way.",
+        "solutionLabel": "УНИВЕРСАЛЬНЫЙ СТАНДАРТ",
+        "solutionTitle": "Пишите один раз. Запускайте где угодно. В стиле Claw.",
         "solutions": [
           {
             "skill": "CodyMaster Claw",
-            "benefit": "A universal adapter that translates your skills into any agent's format. One SKILL.md, every agent reads it."
+            "benefit": "Универсальный адаптер, который переводит ваши навыки в формат любого агента. Один SKILL.md, каждый агент его читает."
           },
           {
             "skill": "cm-skill-mastery",
-            "benefit": "Meta-skill that knows your entire skill library. Ask which skill to use — it routes instantly."
+            "benefit": "Мета-навык, который знает всю вашу библиотеку навыков. Спросите, какой навык использовать — он мгновенно направит вас."
           },
           {
             "skill": "cm-skill-chain",
-            "benefit": "Chain skills into automated pipelines. Works the same across Cursor, Claude, Antigravity, OpenClaw, and more."
+            "benefit": "Объединяйте навыки в автоматизированные цепочки (pipelines). Работает одинаково в Cursor, Claude, Antigravity, OpenClaw и других."
           },
           {
             "skill": "cm-example",
-            "benefit": "Universal skill template. Create once, compatible with Antigravity, Claude, Cursor, OpenClaw, NemoClaw, and OpenFang."
+            "benefit": "Универсальный шаблон навыков. Создайте один раз, совместим с Antigravity, Claude, Cursor, OpenClaw, NemoClaw и OpenFang."
           }
         ],
         "beforeAfter": {
           "before": [
-            "Skills locked to one agent",
-            "Different config format per tool",
-            "No interoperability",
-            "Switching = starting over",
-            "Community skills don't work cross-agent"
+            "Навыки привязаны к одному агенту",
+            "Разный формат конфигов для каждого инструмента",
+            "Нет операционной совместимости",
+            "Переключение = начало с нуля",
+            "Навыки сообщества не работают между агентами"
           ],
           "after": [
-            "Skills work on every agent",
-            "One universal format",
-            "Full Claw ecosystem interop",
-            "Switch freely, zero migration cost",
-            "33 skills, instant cross-agent compatibility"
+            "Навыки работают в каждом агенте",
+            "Один универсальный формат",
+            "Полная совместимость в экосистеме Claw",
+            "Свободное переключение, нулевая стоимость миграции",
+            "33 навыка, мгновенная кросс-агентная совместимость"
           ]
         },
         "objections": [
           {
-            "q": "I only use Cursor. Do I need this?",
-            "a": "Yes! Even on Cursor alone, you get 33 battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
+            "q": "Я использую только Cursor. Нужно ли мне это?",
+            "a": "Да! Даже используя только Cursor, вы получаете 33 проверенных в боях навыка. И если вы когда-нибудь захотите попробовать Claude или Antigravity, вся ваша библиотека навыков перейдет вместе с вами."
           },
           {
-            "q": "What is the 'Claw Family' exactly?",
-            "a": "It's the ecosystem of AI agent tools that share the Open Claw interop philosophy: OpenClaw, NemoClaw, OpenFang, and others. CodyMaster speaks their language natively."
+            "q": "Что именно представляет собой «Claw Family»?",
+            "a": "Это экосистема инструментов AI agent, разделяющих философию совместимости Open Claw: OpenClaw, NemoClaw, OpenFang и другие. CodyMaster нативно говорит на их языке."
           },
           {
-            "q": "Can I create my own skills in this format?",
-            "a": "Absolutely. cm-skill-mastery and skill-creator-ultra help you create custom skills that work across ALL Claw-compatible agents instantly."
+            "q": "Могу ли я создавать свои собственные навыки в этом формате?",
+            "a": "Безусловно. cm-skill-mastery и skill-creator-ultra помогут вам создавать пользовательские навыки, которые мгновенно начинают работать во ВСЕХ Claw-совместимых агентах."
           }
         ],
-        "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
-        "ctaSub": "33 skills. Every Claw agent. Zero lock-in.",
-        "ctaButton": "Join the Claw Family →",
+        "ctaTitle": "Присоединяйтесь к универсальной экосистеме навыков.\nПишите один раз. Используйте везде.",
+        "ctaSub": "33 навыка. Любой Claw-агент. Никакой привязки к платформе.",
+        "ctaButton": "Присоединиться к Claw Family →",
         "guide": {
-          "badge": "THE UNFAIR ADVANTAGE",
-          "title": "The ultimate edge for independent creators and builders.",
-          "desc": "The Claw Family builds differently. You don't ask for permission. You identify niches, build tools, and generate revenue. CodyMaster is the ultimate multi-tool designed explicitly for indie hackers who need to move at warp speed."
+          "badge": "НЕСПРАВЕДЛИВОЕ ПРЕИМУЩЕСТВО",
+          "title": "Абсолютное преимущество для независимых создателей и разработчиков.",
+          "desc": "В Claw Family строят иначе. Вы не просите разрешения. Вы находите ниши, создаете инструменты и генерируете доход. CodyMaster — это идеальный мультитул, созданный специально для indie hackers, которым нужно двигаться на сверхсветовой скорости."
         },
-        "planLabel": "THE INDIE PLAYBOOK",
-        "planTitle": "From idea to revenue",
+        "planLabel": "ИНДИ-ПЛАН",
+        "planTitle": "От идеи до прибыли",
         "plan": [
           {
-            "title": "Spot",
-            "desc": "Identify a pain point. Use cm-brainstorm-idea to systematically break down the market opportunity and technical feasibility."
+            "title": "Поиск",
+            "desc": "Найдите болевую точку. Используйте cm-brainstorm-idea, чтобы систематически проанализировать рыночные возможности и техническую осуществимость."
           },
           {
-            "title": "Build",
-            "desc": "Deploy the full cm-execution pipeline. Generate the SaaS, attach Auth, and wire up Stripe in a single evening."
+            "title": "Сборка",
+            "desc": "Запустите полный цикл cm-execution. Создайте SaaS, подключите Auth и привяжите Stripe за один вечер."
           },
           {
-            "title": "Monetize",
-            "desc": "Use cm-ads-tracker to set up your conversion funnels, launch the ads, and watch the MRR grow."
+            "title": "Монетизация",
+            "desc": "Используйте cm-ads-tracker для настройки воронки конверсии, запускайте рекламу и наблюдайте, как растет MRR."
           }
         ],
-        "failureLabel": "THE SIDE HUSTLE GRAVEYARD",
-        "failureTitle": "Working a 9-to-5 while your side-hustle gathers dust.",
-        "failureDesc": "You have 10 domains registered and 0 products launched. The longer you take to build, the more likely you are to lose motivation. Speed is life.",
-        "heroBadge": "Universal Format · Every AI Agent · Zero Lock-in",
+        "failureLabel": "КЛАДБИЩЕ ПОБОЧНЫХ ПРОЕКТОВ",
+        "failureTitle": "Работа в офисе с 9 до 5, пока ваш проект пылится на полке.",
+        "failureDesc": "У вас зарегистрировано 10 доменов и запущено 0 продуктов. Чем дольше вы строите, тем выше вероятность потерять мотивацию. Скорость — это жизнь.",
+        "heroBadge": "Универсальный формат · Любой AI Agent · Без привязки к платформе",
         "heroStats": [
           {
             "num": "7+",
-            "label": "AI Platforms"
+            "label": "AI-платформы"
           },
           {
             "num": "33",
-            "label": "Universal Skills"
+            "label": "Универсальные навыки"
           },
           {
             "num": "0",
-            "label": "Migration Cost"
+            "label": "Стоимость миграции"
           }
         ],
         "fomo": [
-          "One SKILL.md works on Claude, Cursor, Gemini, and more",
-          "Switch AI agents freely — zero migration cost",
-          "Community growing with cross-agent compatibility"
+          "Один SKILL.md работает в Claude, Cursor, Gemini и других",
+          "Свободно меняйте AI-агентов — нулевая стоимость миграции",
+          "Сообщество растет благодаря кросс-агентской совместимости"
         ],
         "costCallout": {
           "num": "100%",
-          "label": "of your existing prompts and rules are locked to one agent. CodyMaster gives you freedom."
+          "label": "ваших существующих промптов и правил привязаны к одному агенту. CodyMaster дает вам свободу."
         },
-        "failureWhile": "⏱️ A better AI agent launches tomorrow. Without CodyMaster, you start from scratch. Again.",
-        "ctaSecondary": "🦞 Join the Family"
+        "failureWhile": "⏱️ Завтра выйдет лучший AI-агент. Без CodyMaster вы начнете с нуля. Снова.",
+        "ctaSecondary": "🦞 Стать частью семьи"
       }
     }
   }

@@ -253,16 +253,16 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 > *"34 kỹ năng. Mỗi kỹ năng là một bài học. Mỗi bài học là một đêm mất ngủ. Và giờ đây, bạn không cần phải trải qua những đêm đó nữa."*
 
-📖 [Đọc toàn bộ câu chuyện →](https://cody-master.pages.dev/story)
+📖 [Đọc toàn bộ câu chuyện →](https://cody-master-a5q.pages.dev/story)
 
 ---
 
 ## 📚 Tài nguyên
 
-- 🌍 [Website](https://cody-master.pages.dev) — Tổng quan & bản demo
-- 📖 [Tài liệu](https://cody-master.pages.dev/docs) — Phân tích chuyên sâu toàn diện
+- 🌍 [Website](https://cody-master-a5q.pages.dev) — Tổng quan & bản demo
+- 📖 [Tài liệu](https://cody-master-a5q.pages.dev/docs) — Phân tích chuyên sâu toàn diện
 - 🛠️ [Tham khảo kỹ năng](skills/) — Xem toàn bộ 34 tệp SKILL.md
-- 📖 [Câu chuyện của chúng tôi](https://cody-master.pages.dev/story) — Tại sao công cụ này tồn tại
+- 📖 [Câu chuyện của chúng tôi](https://cody-master-a5q.pages.dev/story) — Tại sao công cụ này tồn tại
 
 ---
 

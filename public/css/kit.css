@@ -159,6 +159,10 @@ img {
   box-shadow: 0 4px 16px rgba(196, 248, 42, 0.3);
 }
 
+@media (max-width: 768px) {
+  .nav__cta { display: none !important; }
+}
+
 /* Brain Nav Link */
 .nav__link--brain {
   color: #c084fc !important;
@@ -2543,8 +2547,13 @@ img {
   }
 
   .btn {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     justify-content: center;
+    padding: 14px 20px !important;
+    white-space: normal !important;
+    text-align: center;
   }
 
   .hero__trust {

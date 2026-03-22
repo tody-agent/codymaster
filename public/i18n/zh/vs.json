@@ -1,122 +1,122 @@
 {
   "vsScrum": {
     "meta": {
-      "title": "Agile is Dead — Scrum Team vs CodyMaster + AI",
-      "description": "Why traditional Scrum/Agile teams can't compete with AI-first development. Compare 6-month sprints vs 2-week SaaS delivery with CodyMaster."
+      "title": "Agile已死 — Scrum团队 vs CodyMaster + AI",
+      "description": "为什么传统的Scrum/Agile团队无法与AI-First开发竞争。对比CodyMaster实现的6个月Sprint与2周SaaS交付。"
     },
     "hero": {
-      "badge": "From Someone Who Lived It",
-      "title": "Agile is <span class=\"dead\">Dead</span>.<br>\n        AI-First is <span class=\"alive\">Alive</span>.",
-      "sub": "I spent years in tech companies believing Agile was the answer. Sprint planning, standups, retros — the whole ritual. Then I watched a single person with AI build in 2 weeks what my 8-person Scrum team built in 6 months. That's when I knew: <strong>the game has changed</strong>.",
-      "author": "Written by a PM who broke free — now building 10x faster"
+      "badge": "来自亲历者的感悟",
+      "title": "Agile已<span class=\"dead\">死</span>。<br>\n        AI-First<span class=\"alive\">永生</span>。",
+      "sub": "我曾在科技公司工作多年，深信Agile就是答案。Sprint计划、每日站会、回顾 —— 一整套仪式感。直到我看到一个人利用AI在2周内构建出了我那8人Scrum团队需要6个月才能完成的东西。那一刻我明白了：<strong>游戏规则已经改变</strong>。",
+      "author": "由一位成功突围、目前构建速度提升10倍的PM撰写"
     },
     "intro": {
-      "quote": "\"I used to admire Agile. Now I see it for what it is: <strong>a bureaucratic layer that slows down talented people</strong>. Even 1-week sprints are too slow when your competitor ships in a day. The improvement cycle is glacial. And the cost? Don't get me started — <strong>$500K to $1M for an MVP that might not even work</strong>.\""
+      "quote": "“我曾经崇拜Agile。现在我看到了它的本质：<strong>一个拖慢天才效率的官僚层</strong>。即使是1周的Sprint，在1天就能出货的竞争对手面前也太慢了。改进周期慢如冰川。至于成本？别提了 —— <strong>为了一个甚至可能行不通的MVP花费50万到100万美元</strong>。”"
     },
     "pains": {
-      "label": "😤 THE REAL PAIN",
-      "title": "Why Agile is Dying",
-      "sub": "Every role in a Scrum team suffers. Here's what nobody talks about at Agile conferences.",
+      "label": "😤 真实的痛点",
+      "title": "为什么Agile正在消亡",
+      "sub": "Scrum团队中的每个角色都在受苦。这是Agile会议上没人会告诉你的真相。",
       "cards": [
         {
-          "role": "STAKEHOLDER / CEO",
-          "title": "Decision Bottleneck",
-          "desc": "Stakeholders are busy with 10 departments. They don't have time to review every feature request deeply. So they delay. Or approve without enough context. Either way — the product suffers. And when the cost per feature is $50K+, every \"yes\" feels risky."
+          "role": "利益相关者 / CEO",
+          "title": "决策瓶颈",
+          "desc": "利益相关者忙于处理10个部门的事务。他们没时间深入审查每个功能请求。所以他们拖延，或者在缺乏足够背景的情况下批准。无论哪种方式 —— 产品都会受损。当每个功能的成本超过5万美元时，每一个“Yes”都感觉像是冒险。"
         },
         {
-          "role": "PRODUCT MANAGER",
-          "title": "The Endless Loop",
-          "desc": "Research customer needs. Interview users. Write specs. Discuss with design. Arguments back and forth. Then explain to devs in weekly syncs. If it doesn't work? Start the entire cycle again. Sometimes features get killed after weeks of work. Stakeholders and customers lose faith."
+          "role": "产品经理 (PM)",
+          "title": "无尽的循环",
+          "desc": "研究客户需求。访谈用户。撰写规格说明。与设计讨论。来回争论。然后在每周同步会上向开发解释。如果行不通？重新开始整个循环。有时功能在工作数周后被砍掉。利益相关者和客户失去了信心。"
         },
         {
-          "role": "DESIGNER",
-          "title": "Design by Committee",
-          "desc": "Iterate on mockups that get torn apart in review. Redesign based on \"feedback\" that's really just opinions. Wait for dev to implement — then watch them butcher the design. Pixel-perfect in Figma, broken in production."
+          "role": "设计师",
+          "title": "委员会式设计",
+          "desc": "不断迭代那些在评审中被拆解得支离破碎的原型。基于所谓的“反馈”（其实只是个人见解）重新设计。等待开发实现 —— 然后眼睁睁看着他们毁掉设计。在Figma中像素级完美，在生产环境中一团糟。"
         },
         {
-          "role": "DEVELOPER",
-          "title": "Crushed by Deadlines",
-          "desc": "Don't understand why features are needed. Can barely contribute ideas. Crushed by sprint deadlines. If you rush — bugs everywhere, fix them on weekends. If you're careful — you're \"too slow\". And now AI threatens your entire career. The future feels terrifying."
+          "role": "开发人员",
+          "title": "被截止日期碾压",
+          "desc": "不理解为什么需要这些功能。几乎无法贡献想法。被Sprint截止日期压得喘不过气。如果你赶工 —— Bug无处不在，周末加班修复。如果你谨慎 —— 你又被嫌“太慢”。现在AI还威胁着你的整个职业生涯。未来让人感到恐惧。"
         },
         {
-          "role": "QA / TESTER",
-          "title": "The Repetition Trap",
-          "desc": "Test the same feature hundreds of times a year. If product analysis is poor or dev code is sloppy? Your life becomes a nightmare of regression testing. When PM + Dev do good work, it's fine. When they don't — you're the one staying late."
+          "role": "QA / 测试人员",
+          "title": "重复陷阱",
+          "desc": "一年内对同一个功能进行数百次测试。如果产品分析不到位或开发代码马虎？你的生活将变成回归测试的噩梦。当PM和开发工作出色时，一切还好。当他们表现不佳时 —— 留下来加班的人总是你。"
         },
         {
-          "role": "THE COMPANY",
-          "title": "$500K–$1M for an MVP",
-          "desc": "8 people × 6 months = enormous burn rate. An MVP that actually works in the market costs $500K to $1M. And that's just the START. Meanwhile, a solo founder with AI ships a competitor in 2 weeks for near-zero cost. Who wins?"
+          "role": "公司",
+          "title": "100万美元做一个MVP",
+          "desc": "8个人 × 6个月 = 巨大的烧钱率。一个在市场上真正奏效的MVP成本在50万到100万美元之间。而这仅仅是开始。与此同时，一个利用AI的个人创始人只需2周就能推出一个竞争产品，成本几乎为零。谁会赢？"
         }
       ]
     },
     "timeline": {
-      "label": "⏱️ TIME TO MARKET",
-      "title": "6 Months vs 2 Weeks",
+      "label": "⏱️ 上市时间",
+      "title": "6个月 vs 2周",
       "agile": {
-        "label": "👥 Traditional Scrum Team (8 people)",
-        "bar": "6 months — 24 sprints",
+        "label": "👥 传统Scrum团队 (8人)",
+        "bar": "6个月 — 24个Sprints",
         "phases": [
-          "Discovery (4w)",
-          "Analysis (3w)",
-          "Design (4w)",
-          "Dev Sprint 1-8 (8w)",
-          "QA (3w)",
-          "Fix Bugs (2w)",
-          "Deploy (1w)"
+          "探索阶段 (4周)",
+          "分析阶段 (3周)",
+          "设计阶段 (4周)",
+          "开发 Sprint 1-8 (8周)",
+          "QA测试 (3周)",
+          "修复Bug (2周)",
+          "部署 (1周)"
         ],
         "cost": "💰 $500K – $1M",
-        "time": "~26 weeks total"
+        "time": "总计约26周"
       },
       "cm": {
-        "label": "⚡ CodyMaster + AI (1 person)",
-        "bar": "1-2 weeks",
+        "label": "⚡ CodyMaster + AI (1人)",
+        "bar": "1-2周",
         "phases": [
-          "Brainstorm (2h)",
-          "Plan (1h)",
-          "Design (4h)",
-          "Build (5d)",
-          "Test (auto)",
-          "Deploy (30m)"
+          "Brainstorm (2小时)",
+          "Plan (1小时)",
+          "Design (4小时)",
+          "Build (5天)",
+          "Test (自动)",
+          "Deploy (30分钟)"
         ],
-        "cost": "💰 ~$0 (just API costs)",
-        "time": "~1-2 weeks total"
+        "cost": "💰 约$0 (仅API成本)",
+        "time": "总计约 1-2 周"
       }
     },
     "roles": {
-      "label": "👥 ROLE BY ROLE",
-      "title": "How Every Role Changes",
-      "sub": "It's not about replacing people. It's about removing friction.",
+      "label": "👥 角色对比",
+      "title": "每个角色如何转变",
+      "sub": "这不是为了取代人，而是为了消除摩擦。",
       "headers": {
-        "role": "Role",
-        "scrum": "❌ In Scrum Team",
-        "cm": "⚡ With CodyMaster + AI"
+        "role": "角色",
+        "scrum": "❌ 在 Scrum 团队中",
+        "cm": "⚡ 使用 CodyMaster + AI"
       },
       "list": [
         {
           "role": "👔 Stakeholder",
-          "scrum": "Reviews proposals they don't fully understand. Delays decisions because cost per feature is high and risk is unclear.<br><span class=\"role-pain\">⚠️ Bottleneck for the entire team</span>",
-          "cm": "Sees working prototypes in days, not slides. Decisions are cheaper — try it, iterate, or kill it fast. Near-zero cost to experiment.<br><span class=\"role-win\">✓ Decides with evidence, not guesswork</span>"
+          "scrum": "审查他们并不完全理解的提案。由于每个功能的成本高昂且风险不明，导致决策延迟。<br><span class=\"role-pain\">⚠️ 整个团队的瓶颈</span>",
+          "cm": "在几天内看到可运行的原型，而不是 slides。决策成本更低——快速尝试、迭代或放弃。实验成本几近为零。<br><span class=\"role-win\">✓ 凭证据决策，而非凭空猜测</span>"
         },
         {
           "role": "📋 Product Manager",
-          "scrum": "Weeks of research, interviews, specs. Debates with design and dev. Features get stalled or killed. Endless handoff cycles.<br><span class=\"role-pain\">⚠️ Months of work can be wasted</span>",
-          "cm": "AI handles research (cm-jtbd, cm-brainstorm-idea). Specs are auto-generated. Prototype in hours. PM focuses on strategy, not paperwork.<br><span class=\"role-win\">✓ From bureaucrat to strategist</span>"
+          "scrum": "数周的研究、采访和规范说明。与设计和开发部门反复争论。功能停滞或夭折。无休止的交付周期。<br><span class=\"role-pain\">⚠️ 数月的工作可能付诸东流</span>",
+          "cm": "AI 处理研究 (cm-jtbd, cm-brainstorm-idea)。规范自动生成。数小时内产出原型。PM 专注于战略，而非文书工作。<br><span class=\"role-win\">✓ 从官僚转变为战略家</span>"
         },
         {
           "role": "🎨 Designer",
-          "scrum": "Creates mockups that get endlessly revised by committee. Hands off to dev, watches design get butchered. Pixel-perfect in Figma, broken in production.<br><span class=\"role-pain\">⚠️ Creative vision dies in implementation</span>",
-          "cm": "AI generates UI from design system (cm-ux-master, 48 UX Laws). Design-to-code is immediate. Designer becomes creative director.<br><span class=\"role-win\">✓ Create, don't argue about pixels</span>"
+          "scrum": "创建的 mockups 被委员会无休止地修改。交付给开发后，眼睁睁看着设计被破坏。Figma 中像素级完美，生产环境中却一塌糊涂。<br><span class=\"role-pain\">⚠️ 创意愿景在实现过程中夭折</span>",
+          "cm": "AI 根据设计系统生成 UI (cm-ux-master, 48 UX Laws)。设计到代码的转化是即时的。设计师成为创意总监。<br><span class=\"role-win\">✓ 创造，而非为像素争论</span>"
         },
         {
           "role": "💻 Developer",
-          "scrum": "Doesn't understand \"why\" behind features. Crushed by deadlines. Bugs → OT → weekends. Fears AI will make them obsolete.<br><span class=\"role-pain\">⚠️ Burned out, anxious, undervalued</span>",
-          "cm": "AI writes code with TDD, quality gates, and 8-gate deploy pipeline. Dev becomes architect — reviewing, guiding, and solving hard problems.<br><span class=\"role-win\">✓ From code monkey to architect</span>"
+          "scrum": "不理解功能背后的“为什么”。被截止日期压得喘不过气。Bugs → 加班 → 周末。担心 AI 会让他们被淘汰。<br><span class=\"role-pain\">⚠️ 职业倦怠、焦虑、价值被低估</span>",
+          "cm": "AI 使用 TDD、质量门禁和 8-gate deploy pipeline 编写代码。Dev 成为架构师——负责审查、指导和解决难题。<br><span class=\"role-win\">✓ 从 code monkey 转变为架构师</span>"
         },
         {
           "role": "🧪 QA / Tester",
-          "scrum": "Tests same features hundreds of times a year. If PM/Dev are sloppy, QA suffers most. Manual regression is soul-crushing.<br><span class=\"role-pain\">⚠️ Repetitive, thankless, first to be cut</span>",
-          "cm": "AI writes and runs tests automatically (cm-tdd, cm-test-gate). QA focuses on exploratory testing and user experience validation.<br><span class=\"role-win\">✓ From robot to quality champion</span>"
+          "scrum": "一年内对相同功能进行数百次测试。如果 PM/开发疏忽，QA 受害最深。手动回归测试令人心碎。<br><span class=\"role-pain\">⚠️ 重复、费力不讨好、裁员首选</span>",
+          "cm": "AI 自动编写并运行测试 (cm-tdd, cm-test-gate)。QA 专注于探索性测试和用户体验验证。<br><span class=\"role-win\">✓ 从机器人转变为质量捍卫者</span>"
         }
       ]
     },
@@ -124,102 +124,102 @@
       {
         "icon": "⚡",
         "number": "12×",
-        "label": "Faster to Market",
-        "sub": "2 weeks vs 6 months"
+        "label": "更快的上市速度",
+        "sub": "2 周 vs 6 个月"
       },
       {
         "icon": "💰",
         "number": "99%",
-        "label": "Cost Reduction",
-        "sub": "~$0 vs $500K-$1M"
+        "label": "成本降低",
+        "sub": "~$0 vs $50万-$100万"
       },
       {
         "icon": "👤",
         "number": "1",
-        "label": "Person = Full Team",
-        "sub": "1 person vs 8+ specialists"
+        "label": "一人即全队",
+        "sub": "1 人 vs 8+ specialists"
       },
       {
         "icon": "🛡️",
         "number": "33+",
-        "label": "AI Expert Skills",
+        "label": "AI 专家技能",
         "sub": "PM, Design, Dev, QA, Deploy"
       }
     ],
     "skills": {
-      "label": "🧠 YOUR AI TEAM",
-      "title": "33+ Expert Skills, Zero Meetings",
-      "sub": "Every skill that an 8-person team would need — automated, disciplined, available 24/7.",
+      "label": "🧠 您的 AI 团队",
+      "title": "33+ 专家技能，零会议",
+      "sub": "8 人团队所需的每一项技能——自动化、纪律严明、24/7 全天候可用。",
       "list": [
         {
           "name": "cm-brainstorm-idea",
-          "desc": "Strategic analysis (replaces PM research)"
+          "desc": "战略分析（取代 PM 研究）"
         },
         {
           "name": "cm-planning",
-          "desc": "Implementation plans (replaces sprint planning)"
+          "desc": "实施计划（取代 sprint 计划）"
         },
         {
           "name": "cm-ux-master",
-          "desc": "48 UX Laws + design system (replaces designer)"
+          "desc": "48 UX Laws + 设计系统（取代设计师）"
         },
         {
           "name": "cm-tdd",
-          "desc": "Test-first development (replaces QA regression)"
+          "desc": "测试先行开发（取代 QA 回归测试）"
         },
         {
           "name": "cm-secret-shield",
-          "desc": "Security scanning (replaces security review)"
+          "desc": "安全扫描（取代安全审查）"
         },
         {
           "name": "cm-safe-deploy",
-          "desc": "8-gate pipeline (replaces DevOps)"
+          "desc": "8-gate pipeline（取代 DevOps）"
         },
         {
           "name": "cm-dockit",
-          "desc": "Auto documentation (replaces tech writer)"
+          "desc": "自动文档生成（取代技术作家）"
         },
         {
           "name": "cm-content-factory",
-          "desc": "Content engine (replaces marketing team)"
+          "desc": "内容引擎（取代营销团队）"
         },
         {
           "name": "cm-safe-i18n",
-          "desc": "Multi-language (replaces localization team)"
+          "desc": "多语言支持（取代本地化团队）"
         },
         {
           "name": "cm-debugging",
-          "desc": "Root cause analysis (replaces bug triage)"
+          "desc": "根因分析（取代 bug triage）"
         },
         {
           "name": "cm-quality-gate",
-          "desc": "Evidence-based QA (replaces manual testing)"
+          "desc": "循证 QA（取代手动测试）"
         },
         {
           "name": "cm-jtbd",
-          "desc": "Customer discovery (replaces user research)"
+          "desc": "客户发现（取代用户研究）"
         }
       ]
     },
     "manifesto": {
-      "label": "💜 THE TRUTH",
-      "title": "It's Not About Replacing People",
-      "cardTitle": "It's About Setting Them Free",
-      "cardText": "PMs shouldn't spend weeks writing specs no one reads. Designers shouldn't argue about pixels in meetings. Developers shouldn't fear for their careers. QA shouldn't test the same button 300 times.<br><br><strong>AI handles the repetitive work. Humans do what humans do best</strong> — think strategically, empathize with users, make creative leaps, and build things that matter.",
+      "label": "💜 真相",
+      "title": "这不是为了取代人",
+      "cardTitle": "而是为了让他们获得自由",
+      "cardText": "PMs 不应该花费数周时间编写没人阅读的 specs。设计师不应该在会议上争论 pixels。开发者不应该为职业生涯感到恐惧。QA 不应该对同一个按钮测试 300 次。<br><br><strong>AI 处理重复性工作。人类做人类最擅长的事情</strong> —— 战略思考、与用户共情、创意飞跃，并构建真正重要的东西。",
       "points": [
-        "<strong>PMs</strong> become strategists",
-        "<strong>Designers</strong> become directors",
-        "<strong>Developers</strong> become architects"
+        "<strong>PMs</strong> 成为战略家",
+        "<strong>设计师</strong> 成为导演",
+        "<strong>开发者</strong> 成为架构师"
       ]
     },
     "cta": {
-      "title": "Stop Sprinting in Circles.<br><span>Start Building at Light Speed.</span>",
-      "sub": "Free. Open source. 33+ skills. One person. Infinite output.",
-      "btn": "Get Started →",
+      "title": "停止循环冲刺。<br><span>开始以光速构建。</span>",
+      "sub": "免费。开源。33+ skills。一个人。无限产出。",
+      "btn": "立即开始 →",
       "links": [
-        "Compare with AI coding tools →",
-        "Why you need a skill kit →",
-        "Read our story →"
+        "与 AI coding tools 比较 →",
+        "为什么你需要 skill kit →",
+        "阅读我们的故事 →"
       ]
     }
   },

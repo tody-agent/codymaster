@@ -1207,7 +1207,7 @@
   "start_auto_12": "🌍",
   "start_auto_13": "EN",
   "start_auto_14": "中文",
-  "start_auto_15": "हिन्दी",
+  "start_auto_15": "印地语",
   "start_auto_16": "免费 · 开源 · 支持 Mac, Linux 和 Windows",
   "start_auto_17": "⚡ CodyMaster Kit",
   "start_auto_18": "GitHub",
@@ -1310,18 +1310,18 @@
       "punchline": "这就三十多个技能构成的屏障武器库。每门学问皆是鲜血痛楚总结。以后你无须重蹈黑夜覆辙，这副套件把往后的路都铺好了。"
     },
     "brand": {
-      "title": "Why \"CodyMaster\"?",
+      "title": "为什么叫 \"CodyMaster\"？",
       "wordplay": {
-        "label": "The Wordplay",
-        "desc": "\"Cody\" comes from <strong>\"Code Đi\"</strong> (Cô-đi) — Vietnamese for <strong>\"Go code!\"</strong> An invitation to just start building, stop overthinking."
+        "label": "文字游戏",
+        "desc": "\"Cody\" 源自 <strong>\"Code Đi\"</strong> (Cô-đi) —— 越南语意为 <strong>\"去写代码！\"</strong> 这是一个邀请，旨在鼓励立即开始构建，停止过度思考。"
       },
       "heart": {
-        "label": "The Heart",
-        "desc": "Cody is also the name of the creator's child. This kit carries personal meaning — every skill was crafted with the same care and dedication as raising a child."
+        "label": "核心初衷",
+        "desc": "Cody 也是创作者孩子的名字。这个工具包承载着个人情感 —— 每一项技能的打磨都倾注了如同抚养孩子般的细致关怀与奉献。"
       },
       "philosophy": {
-        "label": "The Philosophy",
-        "desc": "<strong>CodyMaster = Code like an expert.</strong> Not just write code, but master the craft — with discipline, testing, planning, and quality at every step."
+        "label": "哲学理念",
+        "desc": "<strong>CodyMaster = 像专家一样写代码。</strong> 不仅仅是编写代码，更是精通这项手艺 —— 在每一步都保持纪律、进行测试、周密规划并确保质量。"
       }
     },
     "cta": "这就启程，揭开不凡之路的序幕 →",
@@ -1333,11 +1333,11 @@
   "story_auto_12": "🌍",
   "story_auto_13": "EN",
   "story_auto_14": "中文",
-  "story_auto_15": "हिन्दी",
+  "story_auto_15": "印地语",
   "story_auto_16": "👨‍💼",
   "story_auto_17": "❤️",
   "story_auto_18": "🏆",
-  "story_auto_19": "⚡ CodyMaster Kit",
+  "story_auto_19": "⚡ CodyMaster 工具包",
   "story_auto_2": "📢",
   "story_auto_20": "GitHub",
   "story_auto_21": "Discord",

@@ -253,16 +253,16 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 > *"34개의 스킬. 각 스킬은 하나의 교훈입니다. 각 교훈은 잠 못 이루는 밤이었습니다. 이제 여러분은 그 밤들을 겪지 않아도 됩니다."*
 
-📖 [전체 이야기 읽기 →](https://cody-master.pages.dev/story)
+📖 [전체 이야기 읽기 →](https://cody-master-a5q.pages.dev/story)
 
 ---
 
 ## 📚 리소스
 
-- 🌍 [웹사이트](https://cody-master.pages.dev) — 개요 및 데모
-- 📖 [문서](https://cody-master.pages.dev/docs) — 상세 가이드
+- 🌍 [웹사이트](https://cody-master-a5q.pages.dev) — 개요 및 데모
+- 📖 [문서](https://cody-master-a5q.pages.dev/docs) — 상세 가이드
 - 🛠️ [스킬 레퍼런스](skills/) — 34개의 모든 SKILL.md 파일 찾아보기
-- 📖 [스토리](https://cody-master.pages.dev/story) — 이것이 존재하는 이유
+- 📖 [스토리](https://cody-master-a5q.pages.dev/story) — 이것이 존재하는 이유
 
 ---
 

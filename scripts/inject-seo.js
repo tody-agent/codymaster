@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const publicDir = path.join(__dirname, '../public');
-const baseUrl = 'https://cody-master.pages.dev';
+const baseUrl = 'https://cody-master-a5q.pages.dev';
 
 const getSeoBlock = (file, title, description) => {
   const canonicalPath = file === 'index.html' ? '' : file;
