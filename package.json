@@ -13,7 +13,7 @@
     "prepare": "npm run build",
     "start": "ts-node src/index.ts",
     "test:gate": "vitest run --reporter=verbose",
-    "build:html": "node scripts/inject-header.js && node scripts/inject-footer.js",
+    "build:html": "node scripts/inject-header.js && node scripts/inject-footer.js && node scripts/inject-ga.js",
     "docs:build": "cd docs && npx vitepress build && rm -rf ../public/docs && cp -r .vitepress/dist ../public/docs",
     "docs:dev": "cd docs && npx vitepress dev",
     "deploy": "npm run build:html && npm run docs:build && export $(grep -v '^#' .env | xargs) && wrangler pages deploy public"
