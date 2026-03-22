@@ -144,7 +144,7 @@ The landing page is deployed to Cloudflare Pages:
 ### wrangler.toml Configuration
 
 ```toml
-name = "codymaster"
+name = "cody-master"
 pages_build_output_dir = "./public"
 ```
 
@@ -152,17 +152,17 @@ pages_build_output_dir = "./public"
 
 ```bash
 # Deploy to production
-npx wrangler pages deploy ./public --project-name=codymaster
+npx wrangler pages deploy ./public --project-name=cody-master
 
 # Deploy preview
-npx wrangler pages deploy ./public --project-name=codymaster --branch=preview
+npx wrangler pages deploy ./public --project-name=cody-master --branch=preview
 ```
 
 ### DNS Setup
 
 | Record | Name | Value |
 |--------|------|-------|
-| CNAME | `codymaster.pages.dev` | Cloudflare Pages auto-configured |
+| CNAME | `cody-master.pages.dev` | Cloudflare Pages auto-configured |
 | Custom | Your domain | Point to Cloudflare Pages |
 
 ## File Structure for Deployment

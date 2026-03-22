@@ -1,0 +1,1276 @@
+{
+  "beforeAfter": {
+    "label": "ТРАНСФОРМАЦИЯ",
+    "title": "До и После",
+    "before": {
+      "title": "Без CodyMaster ИИ",
+      "items": [
+        "Дизайн каждый раз разный",
+        "AI забывает всё между сессиями",
+        "Секреты утекают на GitHub",
+        "Нет документации, нет онбординга",
+        "Недели ручной работы",
+        "Деплой и молитва",
+        "Невозможно найти старые спеки в 200+ файлах"
+      ]
+    },
+    "after": {
+      "title": "С CodyMaster ИИ",
+      "items": [
+        "Дизайн-система контролируется AI",
+        "4-уровневая память — никогда не теряет контекст",
+        "Сканирование секретов при каждом коммите",
+        "Автоматически сгенерированная документация мирового класса",
+        "От идеи до продакшена за минуты",
+        "8-уровневый пайплайн деплоя + откат",
+        "Семантический поиск по всей кодовой базе"
+      ]
+    }
+  },
+  "bornFromPain": {
+    "label": "ПРИЧИНА СОЗДАНИЯ",
+    "title": "Рожден из реальной боли",
+    "subtitle": "Каждый навык в этом наборе существует из-за боли, которая стоила нам сотен часов и слез.",
+    "quote": "\"Я не умею программировать. ИИ подарил мне 100 рук, но без строгого контроля эти 100 рук натворят одни беды.\"",
+    "authorName": "Tody Le",
+    "authorRole": "Product Manager · Создатель CodyMaster",
+    "cards": [
+      {
+        "icon": "palette",
+        "title": "Дизайн-Хаос",
+        "pain": "ИИ каждый раз меняет дизайн и бренд-стиль. Все проекты выглядят по-разному.",
+        "solution": "Навык cm-ux-master + cm-ui-preview"
+      },
+      {
+        "icon": "trash-2",
+        "title": "ИИ удалил мой код",
+        "pain": "Из-за потери контекста ИИ однажды удалил весь мой код за целую неделю работы. Переделывал 4 раза.",
+        "solution": "Навык cm-safe-i18n + cm-tdd"
+      },
+      {
+        "icon": "file-question",
+        "title": "Сделал продукт, а документации нет",
+        "pain": "Отличный продукт, который никто не может понять. Писать самому тысячу страниц инструкции после бессонной ночи с кодом — невыносимо.",
+        "solution": "Навык cm-dockit + cm-content-factory"
+      },
+      {
+        "icon": "brain",
+        "title": "AI That Never Learns",
+        "pain": "Same mistake every session. Explain the same codebase every morning. AI has zero memory, zero growth. It's like training a new intern every single day.",
+        "solution": "cm-continuity + cm-skill-mastery + cm-deep-search"
+      }
+    ],
+    "readStory": "Читать полную историю →"
+  },
+  "brainPage": {
+    "hero": {
+      "badge": "Нейронаука × AI Инженерия",
+      "title": "Умный мозг, <span class=\"brain-hero__highlight\">самообучающийся.</span> Не <span class=\"brain-hero__strike\">мозг золотой рыбки.</span>",
+      "subtitle": "CodyMaster — единственный AI с <strong>умной памятью</strong>, вдохновлённой нейронаукой."
+    },
+    "problem": {
+      "label": "ПРОБЛЕМА",
+      "title": "AI без памяти = Катастрофа",
+      "subtitle": "У большинства AI \"мозг золотой рыбки\" — каждая сессия с нуля.",
+      "cards": [
+        {
+          "title": "Повторение ошибок",
+          "desc": "Исправили CORS? Следующий раз сломает так же."
+        },
+        {
+          "title": "Противоречит себе",
+          "desc": "Сессия 1: \"REST.\" Сессия 2: \"GraphQL.\""
+        },
+        {
+          "title": "Сжигание токенов",
+          "desc": "Объяснять контекст каждую сессию = тратить токены."
+        }
+      ]
+    },
+    "tiers": {
+      "label": "ТРЁХУРОВНЕВАЯ ПАМЯТЬ",
+      "title": "Мозг знает, что помнить,\nчто забыть, что хранить вечно.",
+      "subtitle": "Вдохновлено нейронаукой: разные воспоминания — разный срок жизни.",
+      "cards": [
+        {
+          "title": "Сенсорная память",
+          "meta": "⏱ Секунды — Не сохраняется",
+          "desc": "Временная информация. Забывается мгновенно.",
+          "analogy": "🧠 Как услышать номер — сразу забыл"
+        },
+        {
+          "title": "Рабочая память",
+          "meta": "⏱ 7 дней — CONTINUITY.md",
+          "desc": "\"Чиню auth, цель — деплой.\"",
+          "analogy": "🧠 Как список покупок — нужен сейчас"
+        },
+        {
+          "title": "Долговременная",
+          "meta": "⏱ 30-180 дней — learnings.json",
+          "desc": "\"CORS из-за proxy.\" Хранит при повторении ≥ 2 раз.",
+          "analogy": "🧠 Как езда на велосипеде"
+        }
+      ]
+    },
+    "decay": {
+      "label": "КРИВАЯ ЭББИНГАУЗА",
+      "title": "Забывать умно, не всё подряд.",
+      "subtitle": "Неподкреплённые знания истекают. Подкреплённые живут дольше."
+    },
+    "heal": {
+      "label": "САМОВОССТАНОВЛЕНИЕ",
+      "title": "Если память вызывает баги,\nона чинит себя.",
+      "subtitle": "Перед отладкой CodyMaster проверяет свою память.",
+      "steps": [
+        {
+          "title": "Баг обнаружен",
+          "desc": "Тест не прошёл, ошибка деплоя."
+        },
+        {
+          "title": "Подозрение",
+          "desc": "Устаревшее знание — причина?"
+        },
+        {
+          "title": "Расследование",
+          "desc": "Сопоставление знаний с кодом."
+        },
+        {
+          "title": "Исцеление",
+          "desc": "Удаление или обновление неверной памяти."
+        }
+      ]
+    },
+    "compare": {
+      "label": "СРАВНЕНИЕ",
+      "title": "Обычный AI vs CodyMaster Brain",
+      "headers": {
+        "scenario": "Сценарий",
+        "standard": "🐟 Обычный AI",
+        "brain": "🧠 CodyMaster Brain"
+      },
+      "rows": [
+        {
+          "scenario": "CORS — исправляли",
+          "standard": "Заново",
+          "brain": "Помнит → применяет мгновенно"
+        },
+        {
+          "scenario": "Новая сессия",
+          "standard": "Забывает всё",
+          "brain": "Загружает CONTINUITY.md"
+        },
+        {
+          "scenario": "Устаревшие знания",
+          "standard": "Вызывает баги",
+          "brain": "Умное затухание"
+        },
+        {
+          "scenario": "Память = баг",
+          "standard": "Бесконечный цикл",
+          "brain": "Самовосстановление"
+        },
+        {
+          "scenario": "50+ знаний",
+          "standard": "Загружает всё",
+          "brain": "Фильтр → 2 релевантных"
+        }
+      ]
+    },
+    "scope": {
+      "label": "ФИЛЬТРАЦИЯ",
+      "title": "Загружай только нужное.\nЭкономь токены.",
+      "subtitle": "Каждое знание помечено тегом. Загружаются только релевантные."
+    },
+    "cta": {
+      "title": "Дай AI настоящий мозг.",
+      "subtitle": "AI без памяти = говорящая золотая рыбка.",
+      "button": "Попробовать Brain",
+      "backHome": "← На главную"
+    }
+  },
+  "brain_auto_1": "🚀",
+  "brain_auto_10": "📖",
+  "brain_auto_11": "▶️",
+  "brain_auto_12": "🌍",
+  "brain_auto_13": "EN",
+  "brain_auto_14": "中文",
+  "brain_auto_15": "хинди",
+  "brain_auto_16": "Долгосрочный",
+  "brain_auto_17": "Работающий",
+  "brain_auto_18": "сенсорный",
+  "brain_auto_19": "Аудит",
+  "brain_auto_2": "📢",
+  "brain_auto_20": "1× использованный",
+  "brain_auto_21": "Срок жизни: 30 дней",
+  "brain_auto_22": "Автоматическое истечение срока действия",
+  "brain_auto_23": "2× использовано",
+  "brain_auto_24": "Срок жизни: 60 дней",
+  "brain_auto_25": "Расширенный",
+  "brain_auto_26": "3× использовано",
+  "brain_auto_27": "Срок жизни: 90 дней",
+  "brain_auto_28": "Полупостоянный",
+  "brain_auto_29": "5×+ б/у",
+  "brain_auto_3": "📋",
+  "brain_auto_30": "Срок жизни: 180 дней",
+  "brain_auto_31": "Вечная мудрость",
+  "brain_auto_32": "память-loader.ts",
+  "brain_auto_33": "// Задача: исправить промежуточное ПО аутентификации",
+  "brain_auto_34": "// Область действия: модуль:аутентификация",
+  "brain_auto_35": "→ Сканирование 50 знаний...",
+  "brain_auto_36": "✗ global:cors-config (не актуально)",
+  "brain_auto_37": "✗ модуль:оплата (не актуально)",
+  "brain_auto_38": "✓ модуль:auth — «JWT должен включать утверждение роли»",
+  "brain_auto_39": "✓ модуль:auth — «Всегда проверять срок действия токена»",
+  "brain_auto_4": "💻",
+  "brain_auto_40": "✗ файл:footer.tsx (не актуально)",
+  "brain_auto_41": "→ Загружено 2/50 знаний · Сэкономлено ~100 токенов",
+  "brain_auto_42": "⚡ Комплект КодиМастер",
+  "brain_auto_43": "GitHub",
+  "brain_auto_44": "Раздор",
+  "brain_auto_5": "🎨",
+  "brain_auto_6": "🦞",
+  "brain_auto_7": "💡",
+  "brain_auto_8": "🤺",
+  "brain_auto_9": "🔄",
+  "cli_auto_1": "🚀",
+  "cli_auto_10": "📖",
+  "cli_auto_11": "▶️",
+  "cli_auto_12": "🌍",
+  "cli_auto_13": "EN",
+  "cli_auto_14": "$ терминал",
+  "cli_auto_15": "",
+  "cli_auto_2": "📢",
+  "cli_auto_3": "📋",
+  "cli_auto_4": "💻",
+  "cli_auto_5": "🎨",
+  "cli_auto_6": "🦞",
+  "cli_auto_7": "💡",
+  "cli_auto_8": "🤺",
+  "cli_auto_9": "🔄",
+  "demoPage": {
+    "meta": {
+      "title": "Демонстрация — Интерактивный CodyMaster",
+      "description": "Почувствуйте мощь вживую. Общайтесь и смотрите, как он строит."
+    },
+    "topBar": "⚡ Демонстрация CodyMaster",
+    "exitDemo": "← Назад домой",
+    "aiName": "Cody ИИ",
+    "welcomeMessage": "Привет! Я ИИ CodyMaster. Скажите, что построить, и я покажу, как я работаю. Используйте предложенные фразы или придумайте свою!",
+    "inputPlaceholder": "Введите, что хотите построить...",
+    "sendButton": "Отправить",
+    "suggestions": [
+      "Сделай лендинг для моей кофейни",
+      "Собери личный сайт-портфолио",
+      "Дизайн панели администратора",
+      "Напиши SEO-статью в мой блог"
+    ],
+    "phases": {
+      "thinking": "Анализирую ваш запрос...",
+      "planning": "Планирую архитектуру...",
+      "designing": "Проектирую UX/UI дизайн...",
+      "coding": "Пишу production-код...",
+      "deploying": "Деплой на серверы интернета...",
+      "done": "Проект успешно опубликован! 🎉"
+    },
+    "skillsUsed": "Активированные навыки:",
+    "resultTitle": "Проект готов!",
+    "resultCta": "Удивлены результату? Установите сейчас →",
+    "tryAnother": "Попробовать другой запрос"
+  },
+  "demo_auto_1": "🌍",
+  "demo_auto_2": "EN",
+  "demo_auto_3": "中文",
+  "demo_auto_4": "хинди",
+  "docsPage": {
+    "meta": {
+      "title": "Полное руководство — CodyMaster Kit | Персоны, JTBD, Кейсы",
+      "description": "Полное руководство по CodyMaster Kit: 5 персон, 5 задач JTBD, 8 реальных кейсов."
+    },
+    "hero": "Полное Руководство",
+    "heroSub": "Для кого CodyMaster? Какие проблемы решает? Как работает? Всё что нужно знать — на одной странице.",
+    "tocTitle": "На Этой Странице",
+    "toc": [
+      "Персоны",
+      "Задачи JTBD",
+      "Кейсы",
+      "Карта Навыков",
+      "FAQ"
+    ],
+    "personasSection": {
+      "label": "ДЛЯ КОГО?",
+      "title": "5 Персон Пользователей",
+      "subtitle": "CodyMaster создан для реальных людей с реальными проблемами. Найдите себя ниже.",
+      "personas": [
+        {
+          "emoji": "🚀",
+          "role": "The Non-Technical Founder",
+          "tagline": "Has ideas. No dev team. No coding skills.",
+          "demographics": "Solo founders, bootstrappers, first-time entrepreneurs. Age 25-45. No technical background.",
+          "painPoints": [
+            "Can't turn ideas into working products without a developer",
+            "Agencies charge $10K-50K and take months",
+            "AI tools produce throwaway prototypes, not production code",
+            "No way to maintain quality or consistency across projects"
+          ],
+          "dreamOutcome": "Build and launch a professional product — landing page, SaaS app, or content site — in days, not months, without writing a single line of code.",
+          "skills": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "When I have a product idea but no technical skills, I want to describe it in plain language and get a production-ready product, so I can test the market before competitors move."
+        },
+        {
+          "emoji": "📋",
+          "role": "The Overwhelmed PM",
+          "tagline": "Manages AI agents. Drowning in chaos.",
+          "demographics": "Product Managers, Business Owners with 5-15 years experience. Use AI daily but struggle with consistency.",
+          "painPoints": [
+            "AI designs every project differently — same brand, 3 different styles",
+            "AI loses context and breaks existing code during refactors",
+            "No documentation for products, users can't self-onboard",
+            "Can't track what multiple AI agents are doing simultaneously"
+          ],
+          "dreamOutcome": "A disciplined AI system that follows rules, maintains brand consistency, protects code, generates docs, and shows progress on a single dashboard.",
+          "skills": [
+            "cm-ux-master",
+            "cm-continuity",
+            "cm-dockit",
+            "cm-quality-gate"
+          ],
+          "jtbd": "When AI writes code inconsistently and breaks things, I want enforced quality standards and design system compliance, so nothing reaches production without passing quality gates."
+        },
+        {
+          "emoji": "💻",
+          "role": "The Solo Developer",
+          "tagline": "Tired of boilerplate. Wants to ship faster.",
+          "demographics": "Full-stack developers, freelancers. 3-10 years experience. Work solo or in small teams.",
+          "painPoints": [
+            "80% of time spent on boilerplate setup, not actual features",
+            "Every new project: setup git, deploy, i18n, test infra — from scratch",
+            "AI-generated code has no tests, no security scans",
+            "Deploying is stressful — no rollback, no quality gates"
+          ],
+          "dreamOutcome": "Focus on architecture and business logic while AI handles boilerplate, tests, deploys, and documentation — with quality gates at every step.",
+          "skills": [
+            "cm-project-bootstrap",
+            "cm-tdd",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "When I start a new project, I want automated scaffolding with test infra, CI/CD, and design system from day one, so I can focus on business logic instead of setup."
+        },
+        {
+          "emoji": "📢",
+          "role": "The Marketing Director",
+          "tagline": "Needs content and landing pages. Yesterday.",
+          "demographics": "Marketing managers, growth hackers, content strategists. Manage brands and campaigns across channels.",
+          "painPoints": [
+            "Content team can't produce articles fast enough",
+            "Landing pages take weeks through designers and developers",
+            "SEO optimization requires expensive specialists",
+            "No conversion tracking setup — can't measure ROAS"
+          ],
+          "dreamOutcome": "Generate SEO-optimized content, high-converting landing pages, and complete tracking setup — all in minutes, using proven frameworks like StoryBrand and Cialdini.",
+          "skills": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-ux-master",
+            "cm-readit"
+          ],
+          "jtbd": "When I need content marketing assets quickly, I want AI that writes using proven persuasion frameworks with SEO built in, so I can drive traffic without hiring a full content team."
+        },
+        {
+          "emoji": "🏢",
+          "role": "The Agency / Freelancer",
+          "tagline": "Building for multiple clients. Needs efficiency.",
+          "demographics": "Digital agencies, freelance developers, consultants. Juggling 3-10 client projects simultaneously.",
+          "painPoints": [
+            "Every client project needs unique setup — repeating the same work",
+            "Design inconsistency across client projects damages credibility",
+            "Secret management nightmare — risk deploying to wrong client's account",
+            "Documentation and handoff takes longer than building"
+          ],
+          "dreamOutcome": "One kit that bootstraps every client project with the same quality standard, enforces brand consistency, prevents cross-project contamination, and auto-generates handoff docs.",
+          "skills": [
+            "cm-project-bootstrap",
+            "cm-identity-guard",
+            "cm-dockit",
+            "cm-safe-deploy"
+          ],
+          "jtbd": "When I manage multiple client projects, I want a standardized toolkit that prevents cross-project mistakes and auto-generates documentation, so I can deliver faster with higher quality."
+        }
+      ]
+    },
+    "jtbdSection": {
+      "label": "КАКИЕ ПРОБЛЕМЫ РЕШАЕТ?",
+      "title": "5 Задач JTBD",
+      "subtitle": "Каждый навык в CodyMaster существует потому, что реальные люди нуждаются в выполнении реальной работы.",
+      "forceLabels": {
+        "push": "Толчок (Текущая Боль)",
+        "pull": "Притяжение (Мечта)",
+        "habit": "Привычка (Текущее Поведение)",
+        "anxiety": "Тревога (Страх Перемен)"
+      },
+      "jobs": [
+        {
+          "number": "01",
+          "situation": "When I have a product idea but no technical skills...",
+          "motivation": "I want to describe what I need in plain language and get a production-ready result...",
+          "outcome": "So I can test the market before competitors move, without spending months or $50K on agencies.",
+          "functional": "Build a working product from a text description",
+          "emotional": "Feel empowered and capable despite not knowing code",
+          "social": "Be seen as a competent founder who ships fast",
+          "push": "Ideas stay in my head for months. Agencies are too expensive. No-code tools are too limited.",
+          "pull": "Describe → Design → Code → Deploy in one session. Professional quality. Full ownership.",
+          "habit": "Hiring freelancers, using Wix/Squarespace, or giving up on the idea entirely.",
+          "anxiety": "Will the AI-generated code actually be production-ready? Can I maintain it long-term?",
+          "skills": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-execution",
+            "cm-safe-deploy",
+            "cm-project-bootstrap"
+          ]
+        },
+        {
+          "number": "02",
+          "situation": "When AI writes code inconsistently and breaks existing work...",
+          "motivation": "I want enforced quality standards, design system compliance, and multi-layer protections...",
+          "outcome": "So nothing breaks in production and every project maintains brand consistency.",
+          "functional": "Enforce code quality, design rules, and testing automatically",
+          "emotional": "Sleep well knowing the deployment pipeline catches errors",
+          "social": "Deliver professional, consistent work every time",
+          "push": "AI designs every project differently. Refactors delete existing code. No tests means no safety net.",
+          "pull": "6-gate quality system. Design system enforcement. Auto-rollback on failure.",
+          "habit": "Manually reviewing AI output, redoing work 3-4 times, avoiding refactors.",
+          "anxiety": "Will adding quality gates slow down my workflow? Is the overhead worth it?",
+          "skills": [
+            "cm-ux-master",
+            "cm-tdd",
+            "cm-quality-gate",
+            "cm-safe-i18n",
+            "cm-safe-deploy"
+          ]
+        },
+        {
+          "number": "03",
+          "situation": "When I build great products that nobody knows how to use...",
+          "motivation": "I want auto-generated documentation — API reference, SOPs, user guides, personas...",
+          "outcome": "So users can self-onboard, support team isn't overwhelmed, and the product thrives.",
+          "functional": "Generate documentation from codebase analysis automatically",
+          "emotional": "Remove the dread of writing docs after exhausting coding sessions",
+          "social": "Be recognized for having world-class documentation",
+          "push": "No docs = no self-service = support team drowning. Writing docs after coding is torture.",
+          "pull": "One scan of the codebase = complete knowledge base. Multi-language. SEO-optimized.",
+          "habit": "Skipping docs entirely, or writing minimal README files.",
+          "anxiety": "Will auto-generated docs be accurate enough? Will they match the codebase?",
+          "skills": [
+            "cm-dockit",
+            "cm-content-factory",
+            "cm-safe-i18n"
+          ]
+        },
+        {
+          "number": "04",
+          "situation": "When I run multiple AI agents across multiple projects...",
+          "motivation": "I want a single control center to monitor progress, token usage, and deployment status...",
+          "outcome": "So I don't lose track and can maximize productivity across all my work.",
+          "functional": "Visual dashboard showing all agents, tasks, and deployments",
+          "emotional": "Feel in control even when running 5+ projects simultaneously",
+          "social": "Demonstrate operational maturity to clients and stakeholders",
+          "push": "Can't see what's happening. Which agent is stuck? How many tokens spent? What deployed where?",
+          "pull": "One screen shows everything: pipeline progress, task queue, token tracker, event log.",
+          "habit": "Checking logs manually, running CLI commands, losing hours to context switching.",
+          "anxiety": "Will the dashboard add complexity? Do I need to learn a new tool?",
+          "skills": [
+            "cm-continuity",
+            "cm-skill-chain",
+            "cm-terminal"
+          ]
+        },
+        {
+          "number": "05",
+          "situation": "When I need content marketing assets but can't hire a full team...",
+          "motivation": "I want AI that writes using proven persuasion frameworks with SEO built in...",
+          "outcome": "So I can drive traffic, generate leads, and scale content without hiring writers.",
+          "functional": "Generate SEO blog posts, landing pages, ad copy, email campaigns",
+          "emotional": "Confidence that content follows proven frameworks (not random AI output)",
+          "social": "Build authority in the niche through consistent, high-quality publishing",
+          "push": "Content team can't keep up. SEO specialists cost $5K/month. Tracking is a mess.",
+          "pull": "StoryBrand + Cialdini + 7 frameworks combined. Auto-SEO. Complete tracking setup.",
+          "habit": "Writing sporadically, no framework, no tracking, hoping for organic growth.",
+          "anxiety": "Will AI-written content feel generic? Will Google penalize it?",
+          "skills": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-readit",
+            "cm-ux-master"
+          ]
+        }
+      ]
+    },
+    "useCasesSection": {
+      "label": "КАК ЭТО РАБОТАЕТ НА ПРАКТИКЕ?",
+      "title": "8 Реальных Кейсов",
+      "subtitle": "Не теория. Реальные сценарии показывающие какие навыки активируются, в каком порядке, и что вы получите.",
+      "cases": [
+        {
+          "emoji": "🌐",
+          "title": "Launch a Landing Page in 15 Minutes",
+          "scenario": "You have a coffee shop and need a professional website with online ordering. You describe it to CodyMaster in plain English.",
+          "chain": [
+            "cm-planning",
+            "cm-ux-master",
+            "cm-content-factory",
+            "cm-safe-deploy"
+          ],
+          "outcome": "A fully responsive, SEO-optimized landing page with CRO elements, deployed to a live URL.",
+          "timeSaved": "2 weeks → 15 min",
+          "costSaved": "$5,000 → $0"
+        },
+        {
+          "emoji": "🏗️",
+          "title": "Build a SaaS MVP in One Day",
+          "scenario": "You're validating a B2B idea — need auth, dashboard, API, and database. You describe the features and let CodyMaster plan and execute.",
+          "chain": [
+            "cm-brainstorm-idea",
+            "cm-planning",
+            "cm-tdd",
+            "cm-execution",
+            "cm-safe-deploy"
+          ],
+          "outcome": "A full-stack application with user authentication, admin dashboard, REST API, and PostgreSQL — tested and deployed.",
+          "timeSaved": "3 months → 1 day",
+          "costSaved": "$30,000 → $0"
+        },
+        {
+          "emoji": "📚",
+          "title": "Auto-Generate Complete Documentation",
+          "scenario": "Your SaaS product has 50+ features but zero documentation. Users can't self-onboard. Support tickets are piling up.",
+          "chain": [
+            "cm-dockit",
+            "cm-safe-i18n",
+            "cm-content-factory"
+          ],
+          "outcome": "Full documentation site: API reference, user guides, SOPs, personas, JTBD analysis, process flows. Multi-language. SEO-optimized.",
+          "timeSaved": "2 months → 1 hour",
+          "costSaved": "$15,000 → $0"
+        },
+        {
+          "emoji": "📈",
+          "title": "Run a Content Marketing Campaign",
+          "scenario": "You need 30 blog posts, 5 landing pages, and conversion tracking across Facebook, Google, and TikTok — all optimized for SEO.",
+          "chain": [
+            "cm-content-factory",
+            "cm-ads-tracker",
+            "cm-readit",
+            "cm-safe-deploy"
+          ],
+          "outcome": "30 SEO-optimized articles, 5 high-converting landing pages, complete pixel setup with UTM tracking and attribution.",
+          "timeSaved": "3 months → 1 week",
+          "costSaved": "$20,000 → $0"
+        },
+        {
+          "emoji": "🌍",
+          "title": "Migrate to Multi-Language Safely",
+          "scenario": "Your app is English-only. You need Vietnamese, Chinese, and Russian — but the last i18n attempt broke everything.",
+          "chain": [
+            "cm-safe-i18n",
+            "cm-quality-gate",
+            "cm-tdd"
+          ],
+          "outcome": "Complete multi-language support with 8 audit gates, HTML integrity checks, and zero regression. All tests pass.",
+          "timeSaved": "2 weeks → 2 hours",
+          "costSaved": "$8,000 → $0"
+        },
+        {
+          "emoji": "🛡️",
+          "title": "Security Audit and Safe Deploy",
+          "scenario": "Before launching v2.0, you need to ensure no secrets are leaked, all dependencies are secure, and deploy has rollback.",
+          "chain": [
+            "cm-secret-shield",
+            "cm-identity-guard",
+            "cm-quality-gate",
+            "cm-safe-deploy"
+          ],
+          "outcome": "Complete security audit: secret scanning, dependency check, identity verification, 8-gate deploy pipeline with automatic rollback.",
+          "timeSaved": "1 week → 30 min",
+          "costSaved": "$10,000 → $0"
+        },
+        {
+          "emoji": "🏭",
+          "title": "Bootstrap a New Client Project",
+          "scenario": "You're a freelancer starting a new client project. You need design system, test infrastructure, CI/CD, i18n, SEO — the works.",
+          "chain": [
+            "cm-project-bootstrap",
+            "cm-planning",
+            "cm-ux-master",
+            "cm-safe-deploy"
+          ],
+          "outcome": "Complete project scaffold: design system, test infra, deploy pipeline, i18n support, SEO foundation, AGENTS.md manifest — all in one command.",
+          "timeSaved": "3 days → 10 min",
+          "costSaved": "$3,000 → $0"
+        },
+        {
+          "emoji": "🎨",
+          "title": "Enforce Design System Across Projects",
+          "scenario": "Your brand has a design system but AI ignores it. Every AI-generated page looks different from your brand guidelines.",
+          "chain": [
+            "cm-ux-master",
+            "cm-ui-preview",
+            "cm-execution"
+          ],
+          "outcome": "AI reads your design tokens, components, and brand guidelines. Preview designs before coding. Every page matches your brand perfectly.",
+          "timeSaved": "Ongoing — saves redesign cycles",
+          "costSaved": "Prevents brand damage"
+        }
+      ]
+    },
+    "skillMapSection": {
+      "label": "КАК НАВЫКИ СВЯЗАНЫ",
+      "title": "Карта Навыков",
+      "subtitle": "33 навыка организованы в 5 групп. Навыки автоматически связываются на основе задачи.",
+      "swarms": [
+        {
+          "name": "🎯 Ideation",
+          "color": "purple",
+          "skills": [
+            "cm-brainstorm-idea",
+            "cm-planning",
+            "cm-skill-mastery",
+            "cm-how-it-work",
+            "cm-start"
+          ]
+        },
+        {
+          "name": "🎨 Design",
+          "color": "blue",
+          "skills": [
+            "cm-ux-master",
+            "cm-ui-preview"
+          ]
+        },
+        {
+          "name": "📝 Content",
+          "color": "lime",
+          "skills": [
+            "cm-content-factory",
+            "cm-dockit",
+            "cm-safe-i18n",
+            "cm-readit",
+            "cm-ads-tracker"
+          ]
+        },
+        {
+          "name": "⚡ Code & Deploy",
+          "color": "orange",
+          "skills": [
+            "cm-execution",
+            "cm-tdd",
+            "cm-debugging",
+            "cm-code-review",
+            "cm-quality-gate",
+            "cm-test-gate",
+            "cm-safe-deploy",
+            "cm-project-bootstrap"
+          ]
+        },
+        {
+          "name": "🛡️ Security & Ops",
+          "color": "red",
+          "skills": [
+            "cm-secret-shield",
+            "cm-identity-guard",
+            "cm-terminal",
+            "cm-git-worktrees",
+            "cm-continuity",
+            "cm-skill-chain",
+            "cm-skill-index"
+          ]
+        }
+      ]
+    },
+    "faqSection": {
+      "label": "ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ",
+      "title": "FAQ",
+      "questions": [
+        {
+          "q": "Do I need to know how to code?",
+          "a": "No. CodyMaster is designed for people who can't code. You describe what you want in plain language — AI handles the rest."
+        },
+        {
+          "q": "Is this free?",
+          "a": "Yes, CodyMaster is open source and free. You only pay for the AI provider (Gemini, Claude, etc.) you choose to use."
+        },
+        {
+          "q": "Which AI agents does it work with?",
+          "a": "All major AI coding agents: Google Antigravity (Gemini), Claude, Cursor, Windsurf, Cline/RooCode, GitHub Copilot, OpenClaw, and more."
+        },
+        {
+          "q": "Can I use my existing design system?",
+          "a": "Yes! cm-ux-master reads your existing design tokens, components, and brand guidelines — then builds with them."
+        },
+        {
+          "q": "How is this different from v0, Bolt, or Lovable?",
+          "a": "Those tools generate one-off prototypes. CodyMaster is a complete skills framework — it enforces TDD, quality gates, security scans, design consistency, documentation, and safe deployment. It's production-ready from day one."
+        },
+        {
+          "q": "Can I create my own skills?",
+          "a": "Absolutely! Use cm-skill-mastery or skill-creator-ultra to create custom skills. The format is compatible with Antigravity, Claude, Cursor, and OpenClaw."
+        }
+      ]
+    },
+    "ctaSection": {
+      "title": "Готовы решить свою самую большую\nпродуктовую проблему?",
+      "subtitle": "Выберите персону. Выберите кейс. Начните строить.",
+      "button": "Начать Сейчас →"
+    }
+  },
+  "playbook_auto_1": "🚀",
+  "playbook_auto_10": "📖",
+  "playbook_auto_11": "▶️",
+  "playbook_auto_12": "🌍",
+  "playbook_auto_13": "EN",
+  "playbook_auto_14": "中文",
+  "playbook_auto_15": "хинди",
+  "playbook_auto_16": "📖 Операционное руководство",
+  "playbook_auto_17": "Навык",
+  "playbook_auto_2": "📢",
+  "playbook_auto_3": "📋",
+  "playbook_auto_4": "💻",
+  "playbook_auto_5": "🎨",
+  "playbook_auto_6": "🦞",
+  "playbook_auto_7": "💡",
+  "playbook_auto_8": "🤺",
+  "playbook_auto_9": "🔄",
+  "startPage": {
+    "meta": {
+      "title": "Начать — CodyMaster",
+      "description": "Установите CodyMaster на Claude Code, Gemini CLI, Cursor, Codex. 33 AI-навыка за 2 минуты."
+    },
+    "hero": "Установка на вашей платформе",
+    "heroSub": "Выберите AI-платформу и получите 33 навыка менее чем за 2 минуты.",
+    "recommended": "Рекомендуется",
+    "onelineLabel": "⚡ Однострочник (автоопределение)",
+    "orStepByStep": "— или пошагово —",
+    "copyButton": "Скопировать",
+    "copiedButton": "Скопировано!",
+    "finalCta": "Готово. Начинайте строить.",
+    "finalButton": "Исследовать 33 навыка",
+    "platforms": [
+      {
+        "id": "claude-code",
+        "label": "Claude Code",
+        "emoji": "🟣",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ Однострочник — автоопределение, мультиязычный",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
+        },
+        "steps": [
+          {
+            "title": "Установите Claude Code",
+            "description": "CodyMaster работает как плагин Claude Code. Сначала нужен Claude Code CLI.",
+            "items": [
+              "Скачать на claude.ai/code",
+              "Проверить: claude --version (нужна 1.0+)",
+              "Поддерживается Mac, Linux, Windows (WSL)"
+            ],
+            "note": "Claude Code 1.0+ уже есть? Переходите к шагу 2."
+          },
+          {
+            "title": "Добавьте маркетплейс",
+            "description": "Зарегистрируйте источник плагина CodyMaster в Claude Code.",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ Маркетплейс зарегистрирован: tody-agent/codymaster\n✓ cody-master плагин доступен"
+          },
+          {
+            "title": "Установите все 33 навыка",
+            "description": "Одна команда устанавливает всё — TDD, отладка, деплой, UX, контент, безопасность.",
+            "code": "claude plugin install cody-master@cody-master",
+            "output": "✓ cody-master v3.4.0 установлен\n📦 33 навыка: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "Запустите вводный тур",
+            "description": "Откройте Claude Code и запустите интерактивный тур по всем 33 навыкам.",
+            "code": "/cm:demo",
+            "output": "🚀 Добро пожаловать в CodyMaster! Давайте исследуем все 33 навыка..."
+          }
+        ]
+      },
+      {
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
+        "emoji": "💻",
+        "steps": [
+          {
+            "title": "Установите Gemini CLI",
+            "description": "Убедитесь, что Gemini CLI установлен и аутентифицирован.",
+            "items": [
+              "Установить: npm install -g @google/gemini-cli",
+              "Проверить: gemini --version",
+              "Войти с аккаунтом Google"
+            ]
+          },
+          {
+            "title": "Установите CodyMaster",
+            "description": "Установка напрямую с GitHub — npm-пакет не нужен.",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master установлен\n✓ 33 навыка доступны в Gemini CLI"
+          },
+          {
+            "title": "Используйте навыки",
+            "description": "Навыки активируются автоматически. Вызывайте явно через @[/имя-навыка].",
+            "code": "@[/cm-planning] Спроектируй новую функцию для моего приложения",
+            "note": "33 навыка: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          },
+          {
+            "title": "Обновление",
+            "description": "Обновите CodyMaster одной командой.",
+            "code": "gemini extensions update cody-master"
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor",
+        "emoji": "🔵",
+        "steps": [
+          {
+            "title": "Откройте Cursor Agent Chat",
+            "description": "Откройте Cursor и переключитесь в режим Agent в панели чата.",
+            "items": [
+              "Открыть Cursor IDE",
+              "Нажать Cmd+I (Mac) или Ctrl+I (Windows)",
+              "Переключиться в Agent mode"
+            ]
+          },
+          {
+            "title": "Установите плагин",
+            "description": "Выполните команду в Cursor agent chat или найдите в маркетплейсе.",
+            "code": "/add-plugin cody-master",
+            "note": "Или: Extensions → поиск 'cody-master' → Установить"
+          },
+          {
+            "title": "Используйте навыки",
+            "description": "Навыки активируются автоматически по контексту. Явный вызов через @mention.",
+            "code": "@cm-planning Спроектируй новую систему аутентификации",
+            "note": "33 навыка: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "label": "Codex",
+        "emoji": "⬛",
+        "steps": [
+          {
+            "title": "Запустите сессию Codex",
+            "description": "Откройте среду Codex в корне проекта.",
+            "items": [
+              "Открыть терминал в корне проекта",
+              "Запустить: codex (или codex --model o4-mini)"
+            ]
+          },
+          {
+            "title": "Получите инструкции по установке",
+            "description": "Попросите Codex загрузить и следовать инструкциям с GitHub.",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex автоматически читает, парсит и устанавливает все 33 навыка"
+          },
+          {
+            "title": "Используйте навыки",
+            "description": "Навыки в .codex/skills/ и активируются автоматически.",
+            "code": "@cm-tdd Реализуй аутентификацию с полным покрытием тестами",
+            "note": "33 навыка: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
+        "emoji": "🟠",
+        "steps": [
+          {
+            "title": "Клонируйте CodyMaster",
+            "description": "Клонируйте репозиторий в домашнюю директорию.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Склонировано — 33 SKILL.md готовы"
+          },
+          {
+            "title": "Скопируйте навыки на платформу",
+            "description": "Скопируйте SKILL.md в директорию rules или skills вашей платформы.",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/"
+          },
+          {
+            "title": "Используйте навыки",
+            "description": "Откройте редактор и вызовите любой навык. Активируются автоматически по контексту.",
+            "code": "@cm-planning Помоги спроектировать новую функцию",
+            "note": "33 навыка: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "Любая платформа",
+        "emoji": "⚙️",
+        "steps": [
+          {
+            "title": "Клонируйте репозиторий",
+            "description": "Клонируйте CodyMaster в домашнюю директорию.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Склонировано — 33 SKILL.md готовы"
+          },
+          {
+            "title": "Скопируйте на платформу",
+            "description": "Поместите универсальные SKILL.md в директорию skills любой платформы.",
+            "code": "# Gemini (глобально)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+          },
+          {
+            "title": "Проверьте и используйте",
+            "description": "Откройте AI-агент и обратитесь к любому навыку. Активируются автоматически по контексту.",
+            "code": "@cm-tdd Реализуй вход с полным покрытием тестами",
+            "note": "Работает на GitHub Copilot, Kiro, OpenCode, Windsurf и любой платформе с кастомными инструкциями."
+          }
+        ]
+      },
+      {
+        "id": "opencode",
+        "label": "OpenCode",
+        "emoji": "📦",
+        "steps": [
+          {
+            "title": "Установить OpenCode",
+            "description": "Убедитесь, что OpenCode установлен и авторизован.",
+            "items": [
+              "Установить: npm install -g opencode-ai (или brew install opencode)",
+              "Проверить: opencode --version",
+              "Запустить: opencode в директории проекта"
+            ]
+          },
+          {
+            "title": "Добавить навыки через npx",
+            "description": "Используйте CLI CodyMaster для установки навыков в проект OpenCode.",
+            "code": "npx codymaster add --all --platform opencode",
+            "output": "📦 opencode — Устанавливаю все 33 навыка\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (всего 33)\n✅ 33 навыка установлены → ./.opencode/skills/"
+          },
+          {
+            "title": "Или клонировать вручную",
+            "description": "Клонируйте репозиторий и скопируйте навыки в OpenCode.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
+            "output": "✓ 33 файла SKILL.md готовы в .opencode/skills/"
+          },
+          {
+            "title": "Использование навыков",
+            "description": "Навыки активируются автоматически. Вызывайте по имени в сессии OpenCode.",
+            "code": "@[/cm-planning] Разработать новую функцию для моего приложения",
+            "note": "Все 33 навыка: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+          }
+        ]
+      },
+      {
+        "id": "kiro",
+        "label": "Kiro",
+        "emoji": "🔶",
+        "steps": [
+          {
+            "title": "Установить Kiro",
+            "description": "Скачайте и установите Kiro — AI IDE от AWS. Доступно на kiro.dev.",
+            "items": [
+              "Скачать Kiro с kiro.dev",
+              "Войти с AWS Builder ID",
+              "Открыть проект в Kiro"
+            ]
+          },
+          {
+            "title": "Добавить навыки через npx",
+            "description": "Используйте CLI для установки навыков CodyMaster в директорию steering Kiro.",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — Устанавливаю все 33 навыка\n  ✅ cm-tdd\n  ... (всего 33)\n✅ 33 навыка установлены → ./.kiro/steering/"
+          },
+          {
+            "title": "Или клонировать вручную",
+            "description": "Клонируйте репозиторий и скопируйте в steering Kiro.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 33 файла SKILL.md готовы в .kiro/steering/"
+          },
+          {
+            "title": "Использование навыков",
+            "description": "Kiro автоматически читает steering документы. Навыки активируются по контексту.",
+            "code": "@cm-tdd Реализовать аутентификацию с полным покрытием тестами",
+            "note": "Все 33 навыка: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+          }
+        ]
+      },
+      {
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
+        "emoji": "🐙",
+        "steps": [
+          {
+            "title": "Включить GitHub Copilot",
+            "description": "Убедитесь, что GitHub Copilot активен в VS Code.",
+            "items": [
+              "Подписаться на github.com/features/copilot",
+              "Установить расширение GitHub Copilot в VS Code",
+              "Войти с аккаунтом GitHub"
+            ]
+          },
+          {
+            "title": "Добавить навыки через npx",
+            "description": "CodyMaster добавляет ссылки на навыки в .github/copilot-instructions.md.",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 33 навыка добавлены в .github/copilot-instructions.md\n   GitHub Copilot будет автоматически использовать их как контекст."
+          },
+          {
+            "title": "Или добавить вручную",
+            "description": "Добавьте ссылки на CodyMaster в copilot-instructions.md.",
+            "code": "# .github/copilot-instructions.md\n\n## Доступные AI навыки\nПроект использует навыки CodyMaster:\n- cm-tdd, cm-debugging, cm-planning\n# Полный список: https://github.com/tody-agent/codymaster"
+          },
+          {
+            "title": "Использование навыков",
+            "description": "Запросите использование любого навыка по имени в Copilot Chat.",
+            "code": "Используй cm-tdd для реализации аутентификации с полным покрытием тестами",
+            "note": "Лучше всего работает в Copilot Chat (Cmd+I). Все 33 навыка доступны."
+          }
+        ]
+      },
+      {
+        "id": "npx-cli",
+        "label": "npx / CLI",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ Однострочная команда — установить все 33 навыка, автоопределение платформы",
+          "code": "npx codymaster add --all"
+        },
+        "steps": [
+          {
+            "title": "Установить через npx (без глобальной установки)",
+            "description": "Работает на любой машине с Node.js 18+. Глобальная установка не нужна.",
+            "code": "npx codymaster add --all",
+            "output": "🧠 CodyMaster v3.4.0\n   Определение платформы... ✅ Обнаружен Claude Code\n   Установка 33 навыков..."
+          },
+          {
+            "title": "Установить конкретный навык",
+            "description": "Устанавливайте только нужные навыки. Платформа определяется автоматически.",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd"
+          },
+          {
+            "title": "Указать платформу явно",
+            "description": "Переопределить автоопределение и установить в любой AI инструмент.",
+            "code": "npx codymaster add --all --platform claude\nnpx codymaster add --all --platform gemini\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+          },
+          {
+            "title": "Просмотр и поиск навыков",
+            "description": "Перечислить все 33 навыка или искать по домену.",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
+          }
+        ]
+      }
+    ]
+  },
+  "start_auto_1": "🚀",
+  "start_auto_10": "📖",
+  "start_auto_11": "▶️",
+  "start_auto_12": "🌍",
+  "start_auto_13": "EN",
+  "start_auto_14": "中文",
+  "start_auto_15": "хинди",
+  "start_auto_16": "Бесплатно · С открытым исходным кодом · Работает на Mac, Linux и Windows",
+  "start_auto_17": "⚡ Комплект КодиМастер",
+  "start_auto_18": "GitHub",
+  "start_auto_19": "Раздор",
+  "start_auto_2": "📢",
+  "start_auto_3": "📋",
+  "start_auto_4": "💻",
+  "start_auto_5": "🎨",
+  "start_auto_6": "🦞",
+  "start_auto_7": "💡",
+  "start_auto_8": "🤺",
+  "start_auto_9": "🔄",
+  "storyPage": {
+    "meta": {
+      "title": "История — CodyMaster",
+      "description": "История, зародившаяся из слез продакт-менеджера"
+    },
+    "hero": "Подлинная История создания",
+    "heroSub": "Никакого маркетинга, только суровая реальность.",
+    "founderIntro": "Я простой продакт-менеджер. Отсутствие навыков программирования всегда было огромной стеной на моем пути.",
+    "chapters": [
+      {
+        "number": "01",
+        "title": "ИИ подарил мне 100 рук",
+        "content": "Внезапно появился ИИ. И как будто бы человек, всю жизнь ездивший на велосипеде, внезапно полетел на ракете. Но ракета без систем управления — это просто летящая бомба.",
+        "skills": []
+      },
+      {
+        "number": "02",
+        "title": "Дизайн Хаос",
+        "content": "Создавая разные проекты, ИИ каждый раз менял стиль и шрифты. Выглядело это так, словно их делали 3 разные компании. ИИ отлично придумывает дизайн, но просто ужасен в соблюдении одних и тех же правил.",
+        "skills": [
+          "cm-ux-master",
+          "cm-ui-preview",
+          "tailwind-mastery"
+        ],
+        "quote": "ИИ прекрасен в дизайне, но ужасно забывчив."
+      },
+      {
+        "number": "03",
+        "title": "Неделя удаленного кода",
+        "content": "Самая больная рана. ИИ словил глюк контекста и просто стер в ноль огромный пласт кода, который мы писали целую неделю. Мне пришлось переделывать это 4 раза. 4 бессонные ночи. Я понял, что так доверять систему искусственному интеллекту нельзя.",
+        "skills": [
+          "cm-tdd",
+          "cm-safe-i18n",
+          "cm-quality-gate",
+          "cm-safe-deploy",
+          "cm-secret-shield",
+          "cm-identity-guard"
+        ],
+        "quote": "Я стер код 4 раза. После этого я возвел многослойную защиту."
+      },
+      {
+        "number": "04",
+        "title": "Философия лени",
+        "content": "Любая проблема, встреченная мной дважды, в третий раз обязана стать полностью автоматизированной кнопкой.",
+        "skills": [
+          "cm-project-bootstrap",
+          "cm-execution",
+          "cm-skill-chain"
+        ],
+        "quote": "Не повторяйся."
+      },
+      {
+        "number": "05",
+        "title": "Продукты-призраки",
+        "content": "Какой толк в крутом приложении, если люди не знают, как им пользоваться? Документация — страшный сон разработчика. Поэтому я придумал cm-dockit.",
+        "skills": [
+          "cm-dockit",
+          "cm-content-factory"
+        ],
+        "quote": "Хороший продукт умрет сам, если о нем молчать."
+      },
+      {
+        "number": "06",
+        "title": "Панель управления",
+        "content": "Нельзя управлять тем, чего не видишь. Я сделал визуальный Dashboard для всех запущенных ИИ-агентов.",
+        "skills": [
+          "cm-dashboard",
+          "cm-status"
+        ],
+        "quote": "Видимость - залог контроля."
+      },
+      {
+        "number": "07",
+        "title": "Спасибо сообществу",
+        "content": "Все навыки — это квинтэссенция трудов энтузиастов со всего мира. Это ум многих людей.",
+        "skills": [
+          "cm-skill-mastery",
+          "cm-continuity",
+          "cm-how-it-work"
+        ],
+        "quote": "Стоя на плечах гигантов."
+      }
+    ],
+    "closing": {
+      "title": "Так что же такое CodyMaster?",
+      "content": "Это не просто шаблон ответа на промпт. Это кровь и пот, превращенные в скрипт и алгоритм.",
+      "question": "Как человеку с идеей, но без навыков программирования создать приложение мечты?",
+      "punchline": "У вас теперь есть все инструменты. Вы не должны переживать те же бессонные ночи, что пережил я."
+    },
+    "brand": {
+      "title": "Why \"CodyMaster\"?",
+      "wordplay": {
+        "label": "The Wordplay",
+        "desc": "\"Cody\" comes from <strong>\"Code Đi\"</strong> (Cô-đi) — Vietnamese for <strong>\"Go code!\"</strong> An invitation to just start building, stop overthinking."
+      },
+      "heart": {
+        "label": "The Heart",
+        "desc": "Cody is also the name of the creator's child. This kit carries personal meaning — every skill was crafted with the same care and dedication as raising a child."
+      },
+      "philosophy": {
+        "label": "The Philosophy",
+        "desc": "<strong>CodyMaster = Code like an expert.</strong> Not just write code, but master the craft — with discipline, testing, planning, and quality at every step."
+      }
+    },
+    "cta": "Начать свой путь →",
+    "backHome": "← Назад"
+  },
+  "story_auto_1": "🚀",
+  "story_auto_10": "📖",
+  "story_auto_11": "▶️",
+  "story_auto_12": "🌍",
+  "story_auto_13": "EN",
+  "story_auto_14": "中文",
+  "story_auto_15": "хинди",
+  "story_auto_16": "👨‍💼",
+  "story_auto_17": "❤️",
+  "story_auto_18": "🏆",
+  "story_auto_19": "⚡ Комплект КодиМастер",
+  "story_auto_2": "📢",
+  "story_auto_20": "GitHub",
+  "story_auto_21": "Раздор",
+  "story_auto_3": "📋",
+  "story_auto_4": "💻",
+  "story_auto_5": "🎨",
+  "story_auto_6": "🦞",
+  "story_auto_7": "💡",
+  "story_auto_8": "🤺",
+  "story_auto_9": "🔄",
+  "useCases": {
+    "label": "ЧТО ВЫ МОЖЕТЕ СОЗДАТЬ",
+    "title": "От идеи до производства",
+    "subtitle": "Посмотрите на реальное применение инструмента.",
+    "cases": [
+      {
+        "icon": "globe",
+        "title": "Лендинги с высокой конверсией",
+        "description": "Страницы продаж с внедренным SEO и оптимизацией конверсии.",
+        "skills": [
+          "cm-ux-master",
+          "cm-content-factory",
+          "cm-safe-deploy"
+        ],
+        "metric": "< 15 минут",
+        "metricLabel": "время создания"
+      },
+      {
+        "icon": "layout-dashboard",
+        "title": "SaaS Приложения",
+        "description": "Аутентификация, базы данных, интерфейс управления. Full-stack.",
+        "skills": [
+          "cm-planning",
+          "cm-execution",
+          "cm-tdd"
+        ],
+        "metric": "Full-stack",
+        "metricLabel": "архитектура"
+      },
+      {
+        "icon": "book-open",
+        "title": "Сайты документации",
+        "description": "Мультиязычная автосгенерированная документация из вашего кода.",
+        "skills": [
+          "cm-dockit",
+          "cm-safe-i18n",
+          "cm-content-factory"
+        ],
+        "metric": "33 языка",
+        "metricLabel": "поддерживается"
+      },
+      {
+        "icon": "megaphone",
+        "title": "Контент и Маркетинг",
+        "description": "Автономный генератор статей и постов с техниками StoryBrand.",
+        "skills": [
+          "cm-content-factory",
+          "cm-ads-tracker",
+          "cm-readit"
+        ],
+        "metric": "7 правил",
+        "metricLabel": "на борту"
+      }
+    ]
+  }
+}

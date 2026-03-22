@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" data-lang="en">
-<head>
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CodyMaster Kit — For You</title>
@@ -25,6 +23,7 @@
 
     <ul class="nav__links" id="navLinks">
       <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
       <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
@@ -47,9 +46,10 @@
         </button>
         <div class="nav-dropdown__menu">
           <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
           <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
           <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="demo.html" class="nav-dropdown__item"><span class="lang-flag">▶️</span> <span data-i18n="nav.demo">Demo</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
         </div>
       </li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
@@ -93,7 +93,7 @@
   <!-- ═══════════╗ PERSONA HERO ╔═══════════ -->
   <section class="persona-hero" id="personaHero">
     <div class="persona-hero__content">
-      <h1 class="persona-hero__title" id="personaHeroTitle">Loading...</h1>
+      <h1 class="persona-hero__title" id="personaHeroTitle" data-i18n="personas.persona_auto_16">Loading...</h1>
       <p class="persona-hero__subtitle" id="personaHeroSub"></p>
     </div>
     <div class="hero__orb hero__orb--1"></div>
@@ -125,16 +125,16 @@
   <!-- ═══════════╗ BEFORE / AFTER ╔═══════════ -->
   <section class="section persona-ba" id="personaBA">
     <div class="section__header reveal">
-      <p class="section__label">TRANSFORMATION</p>
-      <h2 class="section__title">Before vs After</h2>
+      <p class="section__label" data-i18n="personas.persona_auto_17">TRANSFORMATION</p>
+      <h2 class="section__title" data-i18n="personas.persona_auto_18">Before vs After</h2>
     </div>
     <div class="persona-ba__container reveal">
       <div class="persona-ba__col persona-ba__col--before">
-        <h3 class="persona-ba__heading">❌ Before</h3>
+        <h3 class="persona-ba__heading" data-i18n="personas.persona_auto_19">❌ Before</h3>
         <ul id="personaBefore"></ul>
       </div>
       <div class="persona-ba__col persona-ba__col--after">
-        <h3 class="persona-ba__heading">✅ After CodyMaster</h3>
+        <h3 class="persona-ba__heading" data-i18n="personas.persona_auto_20">✅ After CodyMaster</h3>
         <ul id="personaAfter"></ul>
       </div>
     </div>
@@ -143,8 +143,8 @@
   <!-- ═══════════╗ OBJECTIONS ╔═══════════ -->
   <section class="section section-alt persona-objections" id="personaObjections">
     <div class="section__header reveal">
-      <p class="section__label">STILL NOT SURE?</p>
-      <h2 class="section__title">Common Questions</h2>
+      <p class="section__label" data-i18n="personas.persona_auto_21">STILL NOT SURE?</p>
+      <h2 class="section__title" data-i18n="personas.persona_auto_22">Common Questions</h2>
     </div>
     <div class="persona-objections__list" id="personaObjectionsList">
       <!-- Populated by JS -->
@@ -156,7 +156,7 @@
     <div class="persona-cta__content reveal">
       <h2 class="persona-cta__title" id="personaCtaTitle"></h2>
       <p class="persona-cta__sub" id="personaCtaSub"></p>
-      <a href="start.html" class="btn btn--primary btn--lg" id="personaCtaButton">Get Started →</a>
+      <a href="start.html" class="btn btn--primary btn--lg" id="personaCtaButton" data-i18n="personas.persona_auto_23">Get Started →</a>
     </div>
   </section>
 
@@ -179,7 +179,7 @@
         <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
         <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
         <a href="story.html" data-i18n="nav.story">Our Story</a>
-        <a href="demo.html" data-i18n="nav.demo">Demo</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
@@ -194,5 +194,6 @@
   </footer>
 
   <script src="js/persona-page.js"></script>
-</body>
-</html>
+
+
+</body></html>

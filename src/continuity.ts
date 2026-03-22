@@ -12,6 +12,7 @@ export interface Learning {
   timestamp: string;
   agent: string;
   taskId: string;
+  module?: string;
 }
 
 export interface Decision {
@@ -333,6 +334,20 @@ export function getLearnings(projectPath: string): Learning[] {
   }
 }
 
+export function deleteLearning(projectPath: string, learningId: string): boolean {
+  const learningsPath = path.join(getCmDir(projectPath), LEARNINGS_FILE);
+  try {
+    const learnings: Learning[] = JSON.parse(fs.readFileSync(learningsPath, 'utf-8'));
+    const idx = learnings.findIndex(l => l.id === learningId);
+    if (idx === -1) return false;
+    learnings.splice(idx, 1);
+    fs.writeFileSync(learningsPath, JSON.stringify(learnings, null, 2));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // ─── Decisions Management ───────────────────────────────────────────────────
 
 export function addDecision(projectPath: string, decision: Omit<Decision, 'id'>): Decision {
@@ -368,6 +383,20 @@ export function getDecisions(projectPath: string): Decision[] {
     return JSON.parse(fs.readFileSync(decisionsPath, 'utf-8'));
   } catch {
     return [];
+  }
+}
+
+export function deleteDecision(projectPath: string, decisionId: string): boolean {
+  const decisionsPath = path.join(getCmDir(projectPath), DECISIONS_FILE);
+  try {
+    const decisions: Decision[] = JSON.parse(fs.readFileSync(decisionsPath, 'utf-8'));
+    const idx = decisions.findIndex(d => d.id === decisionId);
+    if (idx === -1) return false;
+    decisions.splice(idx, 1);
+    fs.writeFileSync(decisionsPath, JSON.stringify(decisions, null, 2));
+    return true;
+  } catch {
+    return false;
   }
 }
 

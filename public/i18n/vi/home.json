@@ -1,0 +1,163 @@
+{
+  "faq_auto_1": "🚀",
+  "faq_auto_10": "📖",
+  "faq_auto_11": "▶️",
+  "faq_auto_12": "🌍",
+  "faq_auto_13": "Tiếng Anh",
+  "faq_auto_14": "Tiếng Trung",
+  "faq_auto_15": "Tiếng Hindi",
+  "faq_auto_16": "❓ Trung tâm trợ giúp",
+  "faq_auto_17": "Câu hỏi thường gặp",
+  "faq_auto_2": "📢",
+  "faq_auto_3": "📋",
+  "faq_auto_4": "💻",
+  "faq_auto_5": "🎨",
+  "faq_auto_6": "🦞",
+  "faq_auto_7": "💡",
+  "faq_auto_8": "🤺",
+  "faq_auto_9": "🔄",
+  "features": {
+    "label": "TẠI SAO CHỌN CODY MASTER",
+    "title": "Tất cả những gì bạn cần,\ntrong một bộ kit",
+    "subtitle": "Không cần biết code. Không cần thuê lập trình viên. AI lo từ A đến Z.",
+    "cards": [
+      {
+        "title": "Nhanh 10 lần",
+        "description": "Từ ý tưởng đến website hoàn chỉnh trong vài phút. AI code, thiết kế và triển khai tự động — bạn chỉ cần nói."
+      },
+      {
+        "title": "Chất lượng Pro",
+        "description": "Code sẵn sàng production — không phải bản nháp vứt bỏ. 33 skills đảm bảo chất lượng từ bảo mật đến SEO."
+      },
+      {
+        "title": "Tiết kiệm 90%",
+        "description": "So với thuê agency hay freelancer, bạn tiết kiệm cả thời gian lẫn tiền bạc. Một bộ kit thay thế cả đội."
+      },
+      {
+        "title": "Đơn giản tuyệt đối",
+        "description": "Chat tự nhiên, AI hiểu và thực hiện. Không giao diện phức tạp, không cần học."
+      },
+      {
+        "title": "🔄 Legacy Rescue",
+        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
+      }
+    ]
+  },
+  "hero": {
+    "badge": "33 Skills · Mã nguồn mở · Miễn phí",
+    "headlineStatic": "Xây Sản Phẩm Thật Với AI",
+    "typingPhrases": [
+      "Không Cần Biết Code",
+      "Ship Trong Vài Phút",
+      "Từ Ý Tưởng Đến Sản Phẩm"
+    ],
+    "subtitle": "33 kỹ năng AI chuyên biệt xử lý thiết kế, code, testing, và triển khai.\nBạn chỉ cần chat. Không cần biết lập trình.",
+    "ctaPrimary": "Bắt Đầu Xây — Miễn Phí",
+    "ctaSecondary": "Xem Demo",
+    "trustNoCreditCard": "✓ Không cần thẻ tín dụng",
+    "trust30Seconds": "✓ Cài đặt trong 30 giây",
+    "trustOpenSource": "✓ 100% Mã nguồn mở"
+  },
+  "howItWorks": {
+    "label": "CÁCH HOẠT ĐỘNG",
+    "title": "3 bước đơn giản,\ntừ zero đến hero",
+    "steps": [
+      {
+        "title": "Cài đặt",
+        "description": "Thêm marketplace rồi install plugin.\nXong trong 30 giây.",
+        "code": "claude plugin install cm@codymaster"
+      },
+      {
+        "title": "Chat",
+        "description": "Nói cho AI bạn muốn gì.\nBằng tiếng Việt, như nói chuyện với bạn bè.",
+        "code": "\"Tạo landing page\ncho quán cà phê của tôi\""
+      },
+      {
+        "title": "Ra mắt",
+        "description": "Website hoàn chỉnh, tự động triển khai\nlên internet. Chia sẻ link ngay lập tức.",
+        "code": "✓ yoursite.com đã lên sóng!"
+      }
+    ],
+    "deepLabel": "CÔNG NGHỆ LÕI",
+    "deepTitle": "Vòng Lặp RARV + Hệ Thống Chất Lượng 6 Cổng",
+    "deepSubtitle": "Mỗi tác vụ giao cho CodyMaster đều trải qua vòng lặp tự động đảm bảo code sẵn sàng chạy thực tế."
+  },
+  "index_auto_1": "🚀",
+  "index_auto_10": "📖",
+  "index_auto_11": "▶️",
+  "index_auto_12": "🌍",
+  "index_auto_13": "Tiếng Anh",
+  "index_auto_14": "Tiếng Trung",
+  "index_auto_15": "Tiếng Hindi",
+  "index_auto_16": "🚀 v3.4.0",
+  "index_auto_17": "🧠 33 Kỹ năng",
+  "index_auto_18": "⚡ 7+ Nền tảng",
+  "index_auto_19": "🌍 Mã nguồn mở",
+  "index_auto_2": "📢",
+  "index_auto_20": "Tác nhân AI của bạn rất thông minh.",
+  "index_auto_3": "📋",
+  "index_auto_4": "💻",
+  "index_auto_5": "🎨",
+  "index_auto_6": "🦞",
+  "index_auto_7": "💡",
+  "index_auto_8": "🤺",
+  "index_auto_9": "🔄",
+  "install": {
+    "title": "Sẵn sàng trong 30 giây",
+    "subtitle": "Một lệnh cài đặt toàn bộ 33 kỹ năng. Không npm, không cấu hình — chỉ là plugin Claude Code.",
+    "oneliner": "One-liner (tự động nhận diện, đa ngôn ngữ)",
+    "or": "— hoặc từng bước —",
+    "step1": "Thêm marketplace",
+    "step2": "Cài đặt toàn bộ 33 kỹ năng",
+    "step3": "Bắt đầu tour hướng dẫn",
+    "copy": "Sao chép",
+    "detailedGuide": "Hướng dẫn cài đặt đầy đủ"
+  },
+  "usp": {
+    "label": "ĐIỂM KHÁC BIỆT",
+    "title": "Không chỉ là công cụ AI.\nĐây là engine thiết kế trước tiên.",
+    "subtitle": "CodyMaster không chỉ viết code — nó thiết kế, cho xem trước, và tôn trọng design system hiện tại của bạn.",
+    "cards": [
+      {
+        "icon": "kanban",
+        "title": "Dashboard Kanban",
+        "description": "Quản lý toàn bộ dự án trực quan. Theo dõi task, pipeline kỹ năng và deploy real-time — tất cả từ một trung tâm điều khiển.",
+        "visual": "kanban"
+      },
+      {
+        "icon": "eye",
+        "title": "Xem thiết kế trước khi Code",
+        "description": "Xem chính xác giao diện sẽ trông như thế nào trước khi viết một dòng code. Lặp lại thiết kế cùng AI — không bất ngờ.",
+        "visual": "preview"
+      },
+      {
+        "icon": "sliders-horizontal",
+        "title": "Kiểm soát Phong cách Thiết kế",
+        "description": "Chọn phong cách riêng — typography, màu sắc, spacing, animation. AI tuân theo hướng thiết kế CỦA BẠN, không dùng mặc định.",
+        "visual": "controls"
+      },
+      {
+        "icon": "component",
+        "title": "Tương thích Design System của bạn",
+        "description": "Đã có design system? CodyMaster đọc tokens, components và brand guidelines hiện tại — rồi xây dựng theo, không chống lại.",
+        "visual": "system"
+      }
+    ]
+  },
+  "why_cody_master_auto_1": "🚀",
+  "why_cody_master_auto_10": "📖",
+  "why_cody_master_auto_11": "▶️",
+  "why_cody_master_auto_12": "🌍",
+  "why_cody_master_auto_13": "Tiếng Anh",
+  "why_cody_master_auto_14": "Tiếng Trung",
+  "why_cody_master_auto_15": "Tiếng Hindi",
+  "why_cody_master_auto_16": "Dừng mã hóa Vibe.",
+  "why_cody_master_auto_2": "📢",
+  "why_cody_master_auto_3": "📋",
+  "why_cody_master_auto_4": "💻",
+  "why_cody_master_auto_5": "🎨",
+  "why_cody_master_auto_6": "🦞",
+  "why_cody_master_auto_7": "💡",
+  "why_cody_master_auto_8": "🤺",
+  "why_cody_master_auto_9": "🔄"
+}

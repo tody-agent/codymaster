@@ -34,9 +34,16 @@
     },
 
     async loadLang(lang) {
+      const namespaces = ['common', 'home', 'personas', 'skills', 'pages', 'vs'];
       try {
-        const res = await fetch(`i18n/${lang}.json`);
-        return await res.json();
+        const promises = namespaces.map(ns => fetch(`i18n/${lang}/${ns}.json`).then(r => r.ok ? r.json() : {}));
+        const results = await Promise.all(promises);
+        
+        const merged = {};
+        for (const data of results) {
+          Object.assign(merged, data);
+        }
+        return Object.keys(merged).length > 0 ? merged : {};
       } catch (e) {
         console.warn(`Failed to load ${lang} translations`, e);
         return {};

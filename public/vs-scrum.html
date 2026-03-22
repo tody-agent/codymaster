@@ -1,0 +1,1090 @@
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agile is Dead — Scrum Team vs CodyMaster + AI</title>
+  <meta name="description" content="Why traditional Scrum/Agile teams can't compete with AI-first development. Compare 6-month sprints vs 2-week SaaS delivery with CodyMaster.">
+  <meta property="og:title" content="Scrum Team vs CodyMaster + AI — The New Reality">
+  <meta property="og:description" content="$500K and 6 months vs $0 and 2 weeks. See why Agile is dead.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/kit.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ── Hero ── */
+    .scrum-hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      overflow: hidden;
+    }
+    .scrum-hero__content { position: relative; z-index: 1; max-width: 800px; }
+    .scrum-hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.08);
+      margin-bottom: 24px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    .scrum-hero__badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-red);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .scrum-hero__badge-text {
+      font-size: 13px; font-weight: 600; color: var(--accent-red);
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .scrum-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      line-height: 1.15;
+      text-wrap: balance;
+    }
+    .scrum-hero__title .dead {
+      background: linear-gradient(135deg, #EF4444, #F97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .scrum-hero__title .alive {
+      background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .scrum-hero__sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 650px;
+      margin: 0 auto 28px;
+      text-wrap: balance;
+    }
+    .scrum-hero__author {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .scrum-hero__author-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+
+    /* ── Intro Quote ── */
+    .scrum-intro {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+    }
+    .scrum-intro__quote {
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.06), rgba(249, 115, 22, 0.04));
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      border-left: 4px solid var(--accent-red);
+      border-radius: var(--radius-md);
+    }
+    .scrum-intro__quote p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .scrum-intro__quote strong {
+      color: var(--text-primary);
+    }
+
+    /* ── Pain Points ── */
+    .scrum-pains {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .scrum-pains__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .pain-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #EF4444, #F97316);
+      opacity: 0.6;
+    }
+    .pain-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+    .pain-card__role {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 12px;
+      background: rgba(239, 68, 68, 0.1);
+      color: #FCA5A5;
+      letter-spacing: 0.5px;
+    }
+    .pain-card__icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .pain-card__title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .pain-card__desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── Timeline Comparison ── */
+    .scrum-timeline {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .timeline__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .timeline-row {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      transition: all 0.3s;
+    }
+    .timeline-row:hover {
+      border-color: var(--border-hover);
+    }
+    .timeline-row__label {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .timeline-row--agile .timeline-row__label { color: #FCA5A5; }
+    .timeline-row--cm .timeline-row__label { color: var(--accent-lime); }
+
+    .timeline-bar-wrap {
+      position: relative;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+    .timeline-bar {
+      height: 100%;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      position: relative;
+      animation: barGrow 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      width: 0;
+    }
+    .timeline-bar--agile {
+      background: linear-gradient(90deg, rgba(239, 68, 68, 0.3), rgba(249, 115, 22, 0.2));
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #FCA5A5;
+      --bar-width: 100%;
+    }
+    .timeline-bar--cm {
+      background: linear-gradient(90deg, rgba(196, 248, 42, 0.2), rgba(6, 214, 160, 0.15));
+      border: 1px solid rgba(196, 248, 42, 0.3);
+      color: var(--accent-lime);
+      --bar-width: 8%;
+    }
+    .timeline-bar.animated { width: var(--bar-width); }
+
+    .timeline-phases {
+      display: flex;
+      gap: 4px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .timeline-phase {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+    .timeline-row--agile .timeline-phase {
+      background: rgba(239, 68, 68, 0.08);
+      color: #FCA5A5;
+      border: 1px solid rgba(239, 68, 68, 0.15);
+    }
+    .timeline-row--cm .timeline-phase {
+      background: rgba(196, 248, 42, 0.08);
+      color: var(--accent-lime);
+      border: 1px solid rgba(196, 248, 42, 0.15);
+    }
+    .timeline-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      font-size: 0.85rem;
+    }
+    .timeline-meta__cost {
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .timeline-row--agile .timeline-meta__cost { color: #FCA5A5; }
+    .timeline-row--cm .timeline-meta__cost { color: var(--accent-lime); }
+    .timeline-meta__time { color: var(--text-muted); }
+
+    @keyframes barGrow {
+      from { width: 0; }
+      to { width: var(--bar-width); }
+    }
+
+    /* ── Role Comparison ── */
+    .scrum-roles {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .roles-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .roles-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+    .roles-table thead th {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 16px 14px;
+      background: var(--bg-card);
+      border-bottom: 2px solid var(--border-subtle);
+      color: var(--text-primary);
+    }
+    .roles-table thead th:first-child {
+      text-align: left;
+      min-width: 120px;
+    }
+    .roles-table thead th:nth-child(2) {
+      color: #FCA5A5;
+    }
+    .roles-table thead th:nth-child(3) {
+      color: var(--accent-lime);
+      background: rgba(196, 248, 42, 0.04);
+    }
+    .roles-table tbody td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .roles-table tbody td:first-child {
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      white-space: nowrap;
+    }
+    .roles-table tbody td:nth-child(3) {
+      background: rgba(196, 248, 42, 0.02);
+    }
+    .roles-table tbody tr {
+      transition: background 0.2s;
+    }
+    .roles-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .role-pain { color: #FCA5A5; font-size: 0.8rem; display: block; margin-top: 4px; font-style: italic; }
+    .role-win { color: var(--accent-lime); font-size: 0.8rem; display: block; margin-top: 4px; font-weight: 600; }
+
+    /* ── Impact Stats ── */
+    .scrum-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .scrum-stat {
+      text-align: center;
+      padding: 36px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .scrum-stat::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(196, 248, 42, 0.03), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .scrum-stat:hover::before { opacity: 1; }
+    .scrum-stat:hover {
+      border-color: rgba(196, 248, 42, 0.3);
+      transform: translateY(-5px);
+    }
+    .scrum-stat__icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .scrum-stat__number {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .scrum-stat__label {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .scrum-stat__sub {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ── Manifesto ── */
+    .scrum-manifesto {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .manifesto-card {
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(196, 248, 42, 0.04));
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .manifesto-card__icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+    .manifesto-card__title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .manifesto-card__text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .manifesto-card__text strong { color: var(--text-primary); }
+    .manifesto-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+      text-align: center;
+    }
+    .manifesto-point {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+    .manifesto-point__icon { font-size: 1.5rem; margin-bottom: 8px; display: block; }
+    .manifesto-point__text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── What You Get ── */
+    .scrum-skills {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .skills-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+    }
+    .skill-item:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+    .skill-item__icon { font-size: 1.2rem; flex-shrink: 0; }
+    .skill-item__name {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent-lime);
+    }
+    .skill-item__desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── CTA ── */
+    .scrum-cta {
+      text-align: center;
+      padding: 60px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .scrum-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      line-height: 1.3;
+      text-wrap: balance;
+    }
+    .scrum-cta__title span {
+      background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .scrum-cta__sub {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+      max-width: 500px;
+      text-wrap: balance;
+    }
+    .scrum-cta__links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .scrum-cta__link {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .scrum-cta__link:hover { color: var(--text-primary); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .scrum-hero { padding: 100px 20px 40px; }
+      .scrum-hero__title { font-size: 2rem; line-height: 1.15; }
+      .scrum-hero__sub { font-size: 1rem; line-height: 1.5; margin-bottom: 24px; padding: 0 10px; }
+      .section__header { padding: 0 10px; }
+      .section__title { font-size: 28px !important; text-wrap: balance; line-height: 1.25; margin-bottom: 12px; }
+      .scrum-cta__title { font-size: 1.8rem; }
+      .scrum-pains__grid { grid-template-columns: 1fr; }
+      .scrum-stats { grid-template-columns: repeat(2, 1fr); }
+      .manifesto-points { grid-template-columns: 1fr; }
+      .roles-table { font-size: 0.75rem; }
+      .roles-table thead th,
+      .roles-table tbody td { padding: 10px 8px; }
+      .skills-showcase { grid-template-columns: 1fr; }
+      .timeline-bar { font-size: 0.75rem; padding: 0 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════╗ NAVIGATION ╔═══════════ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-icon">⚡</span>
+      <span>CodyMaster</span>
+    </a>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
+      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.personas">For You</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="for-founders.html" class="nav-dropdown__item"><span class="lang-flag">🚀</span> <span data-i18n="personas.cards.0.title">For Founders</span></a>
+          <a href="for-cmos.html" class="nav-dropdown__item"><span class="lang-flag">📢</span> <span data-i18n="personas.cards.1.title">For CMOs</span></a>
+          <a href="for-pms.html" class="nav-dropdown__item"><span class="lang-flag">📋</span> <span data-i18n="personas.cards.2.title">For PMs</span></a>
+          <a href="for-tech-teams.html" class="nav-dropdown__item"><span class="lang-flag">💻</span> <span data-i18n="personas.cards.3.title">For Tech Teams</span></a>
+          <a href="for-designers.html" class="nav-dropdown__item"><span class="lang-flag">🎨</span> <span data-i18n="personas.cards.4.title">For Designers</span></a>
+          <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.whyUs">Why Us</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
+          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
+          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
+        </div>
+      </li>
+      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
+      <li>
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
+            <span class="lang-btn-icon">🌍</span>
+            <span class="lang-btn-text" id="lang-btn-text">EN</span>
+            <span class="lang-btn-caret">▾</span>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
+          </div>
+        </div>
+      </li>
+      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
+    </ul>
+
+    <div class="nav__hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ═══════════╗ HERO ╔═══════════ -->
+  <section class="scrum-hero" id="scrumHero">
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="scrum-hero__content">
+      <div class="scrum-hero__badge">
+        <span class="scrum-hero__badge-dot"></span>
+        <span class="scrum-hero__badge-text" data-i18n="vsScrum.hero.badge">From Someone Who Lived It</span>
+      </div>
+      <h1 class="scrum-hero__title" data-i18n="vsScrum.hero.title">
+        Agile is <span class="dead">Dead</span>.<br>
+        AI-First is <span class="alive">Alive</span>.
+      </h1>
+      <p class="scrum-hero__sub" data-i18n="vsScrum.hero.sub">
+        I spent years in tech companies believing Agile was the answer. Sprint planning, standups, retros — the whole ritual. Then I watched a single person with AI build in 2 weeks what my 8-person Scrum team built in 6 months. That's when I knew: <strong>the game has changed</strong>.
+      </p>
+      <div class="scrum-hero__author">
+        <span class="scrum-hero__author-avatar">⚡</span>
+        <span data-i18n="vsScrum.hero.author">Written by a PM who broke free — now building 10x faster</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ INTRO QUOTE ╔═══════════ -->
+  <section class="scrum-intro reveal" id="scrumIntro">
+    <div class="scrum-intro__quote">
+      <p data-i18n="vsScrum.intro.quote">"I used to admire Agile. Now I see it for what it is: <strong>a bureaucratic layer that slows down talented people</strong>. Even 1-week sprints are too slow when your competitor ships in a day. The improvement cycle is glacial. And the cost? Don't get me started — <strong>$500K to $1M for an MVP that might not even work</strong>."</p>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ THE PAIN ╔═══════════ -->
+  <section class="scrum-pains" id="scrumPains">
+    <div class="section__header reveal">
+      <p class="section__label" style="color: var(--accent-red);" data-i18n="vsScrum.pains.label">😤 THE REAL PAIN</p>
+      <h2 class="section__title" data-i18n="vsScrum.pains.title">Why Agile is Dying</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 12px auto 0; font-size: 0.95rem; line-height: 1.6;" data-i18n="vsScrum.pains.sub">Every role in a Scrum team suffers. Here's what nobody talks about at Agile conferences.</p>
+    </div>
+
+    <div class="scrum-pains__grid">
+      <div class="pain-card reveal">
+        <span class="pain-card__role" data-i18n="vsScrum.pains.cards.0.role">STAKEHOLDER / CEO</span>
+        <span class="pain-card__icon">⏳</span>
+        <h3 class="pain-card__title" data-i18n="vsScrum.pains.cards.0.title">Decision Bottleneck</h3>
+        <p class="pain-card__desc" data-i18n="vsScrum.pains.cards.0.desc">Stakeholders are busy with 10 departments. They don't have time to review every feature request deeply. So they delay. Or approve without enough context. Either way — the product suffers. And when the cost per feature is $50K+, every "yes" feels risky.</p>
+      </div>
+
+      <div class="pain-card reveal">
+        <span class="pain-card__role" data-i18n="vsScrum.pains.cards.1.role">PRODUCT MANAGER</span>
+        <span class="pain-card__icon" data-i18n="vs.vs_scrum_auto_16">🔄</span>
+        <h3 class="pain-card__title" data-i18n="vsScrum.pains.cards.1.title">The Endless Loop</h3>
+        <p class="pain-card__desc" data-i18n="vsScrum.pains.cards.1.desc">Research customer needs. Interview users. Write specs. Discuss with design. Arguments back and forth. Then explain to devs in weekly syncs. If it doesn't work? Start the entire cycle again. Sometimes features get killed after weeks of work. Stakeholders and customers lose faith.</p>
+      </div>
+
+      <div class="pain-card reveal">
+        <span class="pain-card__role" data-i18n="vsScrum.pains.cards.2.role">DESIGNER</span>
+        <span class="pain-card__icon" data-i18n="vs.vs_scrum_auto_17">🎨</span>
+        <h3 class="pain-card__title" data-i18n="vsScrum.pains.cards.2.title">Design by Committee</h3>
+        <p class="pain-card__desc" data-i18n="vsScrum.pains.cards.2.desc">Iterate on mockups that get torn apart in review. Redesign based on "feedback" that's really just opinions. Wait for dev to implement — then watch them butcher the design. Pixel-perfect in Figma, broken in production.</p>
+      </div>
+
+      <div class="pain-card reveal">
+        <span class="pain-card__role" data-i18n="vsScrum.pains.cards.3.role">DEVELOPER</span>
+        <span class="pain-card__icon" data-i18n="vs.vs_scrum_auto_18">💀</span>
+        <h3 class="pain-card__title" data-i18n="vsScrum.pains.cards.3.title">Crushed by Deadlines</h3>
+        <p class="pain-card__desc" data-i18n="vsScrum.pains.cards.3.desc">Don't understand why features are needed. Can barely contribute ideas. Crushed by sprint deadlines. If you rush — bugs everywhere, fix them on weekends. If you're careful — you're "too slow". And now AI threatens your entire career. The future feels terrifying.</p>
+      </div>
+
+      <div class="pain-card reveal">
+        <span class="pain-card__role" data-i18n="vsScrum.pains.cards.4.role">QA / TESTER</span>
+        <span class="pain-card__icon" data-i18n="vs.vs_scrum_auto_19">🔁</span>
+        <h3 class="pain-card__title" data-i18n="vsScrum.pains.cards.4.title">The Repetition Trap</h3>
+        <p class="pain-card__desc" data-i18n="vsScrum.pains.cards.4.desc">Test the same feature hundreds of times a year. If product analysis is poor or dev code is sloppy? Your life becomes a nightmare of regression testing. When PM + Dev do good work, it's fine. When they don't — you're the one staying late.</p>
+      </div>
+
+      <div class="pain-card reveal">
+        <span class="pain-card__role" data-i18n="vsScrum.pains.cards.5.role">THE COMPANY</span>
+        <span class="pain-card__icon" data-i18n="vs.vs_scrum_auto_20">💸</span>
+        <h3 class="pain-card__title" data-i18n="vsScrum.pains.cards.5.title">$500K–$1M for an MVP</h3>
+        <p class="pain-card__desc" data-i18n="vsScrum.pains.cards.5.desc">8 people × 6 months = enormous burn rate. An MVP that actually works in the market costs $500K to $1M. And that's just the START. Meanwhile, a solo founder with AI ships a competitor in 2 weeks for near-zero cost. Who wins?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ TIMELINE COMPARISON ╔═══════════ -->
+  <section class="scrum-timeline" id="scrumTimeline">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="vsScrum.timeline.label">⏱️ TIME TO MARKET</p>
+      <h2 class="section__title" data-i18n="vsScrum.timeline.title">6 Months vs 2 Weeks</h2>
+    </div>
+
+    <div class="timeline__grid">
+      <!-- Agile Timeline -->
+      <div class="timeline-row timeline-row--agile reveal">
+        <div class="timeline-row__label" data-i18n="vsScrum.timeline.agile.label">
+          <span>👥</span> Traditional Scrum Team (8 people)
+        </div>
+        <div class="timeline-bar-wrap">
+          <div class="timeline-bar timeline-bar--agile" id="barAgile" data-i18n="vsScrum.timeline.agile.bar">
+            6 months — 24 sprints
+          </div>
+        </div>
+        <div class="timeline-phases">
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.agile.phases.0">Discovery (4w)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.agile.phases.1">Analysis (3w)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.agile.phases.2">Design (4w)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.agile.phases.3">Dev Sprint 1-8 (8w)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.agile.phases.4">QA (3w)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.agile.phases.5">Fix Bugs (2w)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.agile.phases.6">Deploy (1w)</span>
+        </div>
+        <div class="timeline-meta">
+          <span class="timeline-meta__cost" data-i18n="vsScrum.timeline.agile.cost">💰 $500K – $1M</span>
+          <span class="timeline-meta__time" data-i18n="vsScrum.timeline.agile.time">~26 weeks total</span>
+        </div>
+      </div>
+
+      <!-- CodyMaster Timeline -->
+      <div class="timeline-row timeline-row--cm reveal">
+        <div class="timeline-row__label" data-i18n="vsScrum.timeline.cm.label">
+          <span>⚡</span> CodyMaster + AI (1 person)
+        </div>
+        <div class="timeline-bar-wrap">
+          <div class="timeline-bar timeline-bar--cm" id="barCM" data-i18n="vsScrum.timeline.cm.bar">
+            1-2 weeks
+          </div>
+        </div>
+        <div class="timeline-phases">
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.cm.phases.0">Brainstorm (2h)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.cm.phases.1">Plan (1h)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.cm.phases.2">Design (4h)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.cm.phases.3">Build (5d)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.cm.phases.4">Test (auto)</span>
+          <span class="timeline-phase" data-i18n="vsScrum.timeline.cm.phases.5">Deploy (30m)</span>
+        </div>
+        <div class="timeline-meta">
+          <span class="timeline-meta__cost" data-i18n="vsScrum.timeline.cm.cost">💰 ~$0 (just API costs)</span>
+          <span class="timeline-meta__time" data-i18n="vsScrum.timeline.cm.time">~1-2 weeks total</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ ROLE COMPARISON ╔═══════════ -->
+  <section class="scrum-roles" id="scrumRoles">
+    <div class="section__header reveal">
+      <p class="section__label" style="color: var(--accent-cyan);" data-i18n="vsScrum.roles.label">👥 ROLE BY ROLE</p>
+      <h2 class="section__title" data-i18n="vsScrum.roles.title">How Every Role Changes</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 12px auto 0; font-size: 0.95rem;" data-i18n="vsScrum.roles.sub">It's not about replacing people. It's about removing friction.</p>
+    </div>
+
+    <div class="roles-table-wrap reveal">
+      <table class="roles-table">
+        <thead>
+          <tr>
+            <th data-i18n="vsScrum.roles.headers.role">Role</th>
+            <th data-i18n="vsScrum.roles.headers.scrum">❌ In Scrum Team</th>
+            <th data-i18n="vsScrum.roles.headers.cm">⚡ With CodyMaster + AI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="vsScrum.roles.list.0.role">👔 Stakeholder</td>
+            <td data-i18n="vsScrum.roles.list.0.scrum">
+              Reviews proposals they don't fully understand. Delays decisions because cost per feature is high and risk is unclear.
+              <span class="role-pain">⚠️ Bottleneck for the entire team</span>
+            </td>
+            <td data-i18n="vsScrum.roles.list.0.cm">
+              Sees working prototypes in days, not slides. Decisions are cheaper — try it, iterate, or kill it fast. Near-zero cost to experiment.
+              <span class="role-win">✓ Decides with evidence, not guesswork</span>
+            </td>
+          </tr>
+          <tr>
+            <td data-i18n="vsScrum.roles.list.1.role">📋 Product Manager</td>
+            <td data-i18n="vsScrum.roles.list.1.scrum">
+              Weeks of research, interviews, specs. Debates with design and dev. Features get stalled or killed. Endless handoff cycles.
+              <span class="role-pain">⚠️ Months of work can be wasted</span>
+            </td>
+            <td data-i18n="vsScrum.roles.list.1.cm">
+              AI handles research (cm-jtbd, cm-brainstorm-idea). Specs are auto-generated. Prototype in hours. PM focuses on strategy, not paperwork.
+              <span class="role-win">✓ From bureaucrat to strategist</span>
+            </td>
+          </tr>
+          <tr>
+            <td data-i18n="vsScrum.roles.list.2.role">🎨 Designer</td>
+            <td data-i18n="vsScrum.roles.list.2.scrum">
+              Creates mockups that get endlessly revised by committee. Hands off to dev, watches design get butchered. Pixel-perfect in Figma, broken in production.
+              <span class="role-pain">⚠️ Creative vision dies in implementation</span>
+            </td>
+            <td data-i18n="vsScrum.roles.list.2.cm">
+              AI generates UI from design system (cm-ux-master, 48 UX Laws). Design-to-code is immediate. Designer becomes creative director.
+              <span class="role-win">✓ Create, don't argue about pixels</span>
+            </td>
+          </tr>
+          <tr>
+            <td data-i18n="vsScrum.roles.list.3.role">💻 Developer</td>
+            <td data-i18n="vsScrum.roles.list.3.scrum">
+              Doesn't understand "why" behind features. Crushed by deadlines. Bugs → OT → weekends. Fears AI will make them obsolete.
+              <span class="role-pain">⚠️ Burned out, anxious, undervalued</span>
+            </td>
+            <td data-i18n="vsScrum.roles.list.3.cm">
+              AI writes code with TDD, quality gates, and 8-gate deploy pipeline. Dev becomes architect — reviewing, guiding, and solving hard problems.
+              <span class="role-win">✓ From code monkey to architect</span>
+            </td>
+          </tr>
+          <tr>
+            <td data-i18n="vsScrum.roles.list.4.role">🧪 QA / Tester</td>
+            <td data-i18n="vsScrum.roles.list.4.scrum">
+              Tests same features hundreds of times a year. If PM/Dev are sloppy, QA suffers most. Manual regression is soul-crushing.
+              <span class="role-pain">⚠️ Repetitive, thankless, first to be cut</span>
+            </td>
+            <td data-i18n="vsScrum.roles.list.4.cm">
+              AI writes and runs tests automatically (cm-tdd, cm-test-gate). QA focuses on exploratory testing and user experience validation.
+              <span class="role-win">✓ From robot to quality champion</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ IMPACT STATS ╔═══════════ -->
+  <section class="scrum-stats reveal" id="scrumStats">
+    <div class="scrum-stat">
+      <span class="scrum-stat__icon">⚡</span>
+      <span class="scrum-stat__number" data-i18n="vsScrum.stats.0.number">12×</span>
+      <span class="scrum-stat__label" data-i18n="vsScrum.stats.0.label">Faster to Market</span>
+      <span class="scrum-stat__sub" data-i18n="vsScrum.stats.0.sub">2 weeks vs 6 months</span>
+    </div>
+    <div class="scrum-stat">
+      <span class="scrum-stat__icon" data-i18n="vs.vs_scrum_auto_21">💰</span>
+      <span class="scrum-stat__number" data-i18n="vsScrum.stats.1.number">99%</span>
+      <span class="scrum-stat__label" data-i18n="vsScrum.stats.1.label">Cost Reduction</span>
+      <span class="scrum-stat__sub" data-i18n="vsScrum.stats.1.sub">~$0 vs $500K-$1M</span>
+    </div>
+    <div class="scrum-stat">
+      <span class="scrum-stat__icon" data-i18n="vs.vs_scrum_auto_22">👤</span>
+      <span class="scrum-stat__number" data-i18n="vsScrum.stats.2.number">1</span>
+      <span class="scrum-stat__label" data-i18n="vsScrum.stats.2.label">Person = Full Team</span>
+      <span class="scrum-stat__sub" data-i18n="vsScrum.stats.2.sub">1 person vs 8+ specialists</span>
+    </div>
+    <div class="scrum-stat">
+      <span class="scrum-stat__icon" data-i18n="vs.vs_scrum_auto_23">🛡️</span>
+      <span class="scrum-stat__number" data-i18n="vsScrum.stats.3.number">33+</span>
+      <span class="scrum-stat__label" data-i18n="vsScrum.stats.3.label">AI Expert Skills</span>
+      <span class="scrum-stat__sub" data-i18n="vsScrum.stats.3.sub">PM, Design, Dev, QA, Deploy</span>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ WHAT CODYMASTER REPLACES ╔═══════════ -->
+  <section class="scrum-skills" id="scrumSkills">
+    <div class="section__header reveal">
+      <p class="section__label" data-i18n="vsScrum.skills.label">🧠 YOUR AI TEAM</p>
+      <h2 class="section__title" data-i18n="vsScrum.skills.title">33+ Expert Skills, Zero Meetings</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 12px auto 0; font-size: 0.95rem;" data-i18n="vsScrum.skills.sub">Every skill that an 8-person team would need — automated, disciplined, available 24/7.</p>
+    </div>
+
+    <div class="skills-showcase reveal">
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_24">🧠</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_25">cm-brainstorm-idea</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.0.desc">Strategic analysis (replaces PM research)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_26">📋</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_27">cm-planning</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.1.desc">Implementation plans (replaces sprint planning)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_28">🎨</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_29">cm-ux-master</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.2.desc">48 UX Laws + design system (replaces designer)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_30">🧪</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_31">cm-tdd</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.3.desc">Test-first development (replaces QA regression)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_32">🔒</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_33">cm-secret-shield</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.4.desc">Security scanning (replaces security review)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_34">🚀</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_35">cm-safe-deploy</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.5.desc">8-gate pipeline (replaces DevOps)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_36">📖</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_37">cm-dockit</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.6.desc">Auto documentation (replaces tech writer)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_38">📈</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_39">cm-content-factory</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.7.desc">Content engine (replaces marketing team)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_40">🌐</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_41">cm-safe-i18n</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.8.desc">Multi-language (replaces localization team)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_42">🐛</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_43">cm-debugging</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.9.desc">Root cause analysis (replaces bug triage)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_44">📊</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_45">cm-quality-gate</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.10.desc">Evidence-based QA (replaces manual testing)</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-item__icon" data-i18n="vs.vs_scrum_auto_46">💡</span>
+        <div>
+          <div class="skill-item__name" data-i18n="vs.vs_scrum_auto_47">cm-jtbd</div>
+          <div class="skill-item__desc" data-i18n="vsScrum.skills.list.11.desc">Customer discovery (replaces user research)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ MANIFESTO ╔═══════════ -->
+  <section class="scrum-manifesto" id="scrumManifesto">
+    <div class="section__header reveal">
+      <p class="section__label" style="color: var(--accent-purple);" data-i18n="vsScrum.manifesto.label">💜 THE TRUTH</p>
+      <h2 class="section__title" data-i18n="vsScrum.manifesto.title">It's Not About Replacing People</h2>
+    </div>
+
+    <div class="manifesto-card reveal">
+      <span class="manifesto-card__icon" data-i18n="vs.vs_scrum_auto_48">🤝</span>
+      <h3 class="manifesto-card__title" data-i18n="vsScrum.manifesto.cardTitle">It's About Setting Them Free</h3>
+      <p class="manifesto-card__text" data-i18n="vsScrum.manifesto.cardText">
+        PMs shouldn't spend weeks writing specs no one reads. Designers shouldn't argue about pixels in meetings. Developers shouldn't fear for their careers. QA shouldn't test the same button 300 times.
+        <br><br>
+        <strong>AI handles the repetitive work. Humans do what humans do best</strong> — think strategically, empathize with users, make creative leaps, and build things that matter.
+      </p>
+      <div class="manifesto-points">
+        <div class="manifesto-point">
+          <span class="manifesto-point__icon" data-i18n="vs.vs_scrum_auto_49">🧠</span>
+          <span class="manifesto-point__text" data-i18n="vsScrum.manifesto.points.0"><strong>PMs</strong> become strategists</span>
+        </div>
+        <div class="manifesto-point">
+          <span class="manifesto-point__icon" data-i18n="vs.vs_scrum_auto_50">🎨</span>
+          <span class="manifesto-point__text" data-i18n="vsScrum.manifesto.points.1"><strong>Designers</strong> become directors</span>
+        </div>
+        <div class="manifesto-point">
+          <span class="manifesto-point__icon" data-i18n="vs.vs_scrum_auto_51">💻</span>
+          <span class="manifesto-point__text" data-i18n="vsScrum.manifesto.points.2"><strong>Developers</strong> become architects</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ CTA ╔═══════════ -->
+  <section class="scrum-cta reveal" id="scrumCta">
+    <h2 class="scrum-cta__title" data-i18n="vsScrum.cta.title">Stop Sprinting in Circles.<br><span>Start Building at Light Speed.</span></h2>
+    <p class="scrum-cta__sub" data-i18n="vsScrum.cta.sub">Free. Open source. 33+ skills. One person. Infinite output.</p>
+    <a href="start.html" class="btn btn--primary btn--large" data-i18n="vsScrum.cta.btn">Get Started →</a>
+    <div class="scrum-cta__links">
+      <a href="vs-others.html" class="scrum-cta__link" data-i18n="vsScrum.cta.links.0">Compare with AI coding tools →</a>
+      <a href="why-cody-master.html" class="scrum-cta__link" data-i18n="vsScrum.cta.links.1">Why you need a skill kit →</a>
+      <a href="story.html" class="scrum-cta__link" data-i18n="vsScrum.cta.links.2">Read our story →</a>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ FOOTER ╔═══════════ -->
+  <footer class="footer" id="siteFooter">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo">⚡ CodyMaster Kit</span>
+        <p class="footer__tagline" data-i18n="footer.tagline">Turn Ideas into Products 10x Faster</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.product">Product</h4>
+        <a href="brain.html" data-i18n="nav.brain">Brain</a>
+        <a href="skills.html" data-i18n="nav.skills">Skills</a>
+        <a href="start.html" data-i18n="nav.getStarted">Get Started</a>
+        <a href="/docs/" data-i18n="nav.docs">Docs</a>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.whyUs">Why Us</h4>
+        <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
+        <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
+        <a href="story.html" data-i18n="nav.story">Our Story</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
+        <a href="https://github.com/tody-agent/codymaster" target="_blank">GitHub</a>
+        <a href="#" target="_blank">Discord</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
+      <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
+    </div>
+  </footer>
+
+  <script src="js/kit.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Reveal animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+
+            // Animate timeline bars when visible
+            const bars = entry.target.querySelectorAll('.timeline-bar');
+            bars.forEach(bar => bar.classList.add('animated'));
+
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Also observe individual timeline rows for bar animation
+      document.querySelectorAll('.timeline-row').forEach(row => {
+        const barObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.querySelectorAll('.timeline-bar').forEach(bar => {
+                bar.classList.add('animated');
+              });
+              barObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        barObserver.observe(row);
+      });
+
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+
+
+</body></html>

@@ -1,0 +1,304 @@
+{
+  "vsScrum": {
+    "meta": {
+      "title": "Agile is Dead — Scrum Team vs CodyMaster + AI",
+      "description": "Why traditional Scrum/Agile teams can't compete with AI-first development. Compare 6-month sprints vs 2-week SaaS delivery with CodyMaster."
+    },
+    "hero": {
+      "badge": "From Someone Who Lived It",
+      "title": "Agile is <span class=\"dead\">Dead</span>.<br>\n        AI-First is <span class=\"alive\">Alive</span>.",
+      "sub": "I spent years in tech companies believing Agile was the answer. Sprint planning, standups, retros — the whole ritual. Then I watched a single person with AI build in 2 weeks what my 8-person Scrum team built in 6 months. That's when I knew: <strong>the game has changed</strong>.",
+      "author": "Written by a PM who broke free — now building 10x faster"
+    },
+    "intro": {
+      "quote": "\"I used to admire Agile. Now I see it for what it is: <strong>a bureaucratic layer that slows down talented people</strong>. Even 1-week sprints are too slow when your competitor ships in a day. The improvement cycle is glacial. And the cost? Don't get me started — <strong>$500K to $1M for an MVP that might not even work</strong>.\""
+    },
+    "pains": {
+      "label": "😤 THE REAL PAIN",
+      "title": "Why Agile is Dying",
+      "sub": "Every role in a Scrum team suffers. Here's what nobody talks about at Agile conferences.",
+      "cards": [
+        {
+          "role": "STAKEHOLDER / CEO",
+          "title": "Decision Bottleneck",
+          "desc": "Stakeholders are busy with 10 departments. They don't have time to review every feature request deeply. So they delay. Or approve without enough context. Either way — the product suffers. And when the cost per feature is $50K+, every \"yes\" feels risky."
+        },
+        {
+          "role": "PRODUCT MANAGER",
+          "title": "The Endless Loop",
+          "desc": "Research customer needs. Interview users. Write specs. Discuss with design. Arguments back and forth. Then explain to devs in weekly syncs. If it doesn't work? Start the entire cycle again. Sometimes features get killed after weeks of work. Stakeholders and customers lose faith."
+        },
+        {
+          "role": "DESIGNER",
+          "title": "Design by Committee",
+          "desc": "Iterate on mockups that get torn apart in review. Redesign based on \"feedback\" that's really just opinions. Wait for dev to implement — then watch them butcher the design. Pixel-perfect in Figma, broken in production."
+        },
+        {
+          "role": "DEVELOPER",
+          "title": "Crushed by Deadlines",
+          "desc": "Don't understand why features are needed. Can barely contribute ideas. Crushed by sprint deadlines. If you rush — bugs everywhere, fix them on weekends. If you're careful — you're \"too slow\". And now AI threatens your entire career. The future feels terrifying."
+        },
+        {
+          "role": "QA / TESTER",
+          "title": "The Repetition Trap",
+          "desc": "Test the same feature hundreds of times a year. If product analysis is poor or dev code is sloppy? Your life becomes a nightmare of regression testing. When PM + Dev do good work, it's fine. When they don't — you're the one staying late."
+        },
+        {
+          "role": "THE COMPANY",
+          "title": "$500K–$1M for an MVP",
+          "desc": "8 people × 6 months = enormous burn rate. An MVP that actually works in the market costs $500K to $1M. And that's just the START. Meanwhile, a solo founder with AI ships a competitor in 2 weeks for near-zero cost. Who wins?"
+        }
+      ]
+    },
+    "timeline": {
+      "label": "⏱️ TIME TO MARKET",
+      "title": "6 Months vs 2 Weeks",
+      "agile": {
+        "label": "👥 Traditional Scrum Team (8 people)",
+        "bar": "6 months — 24 sprints",
+        "phases": [
+          "Discovery (4w)",
+          "Analysis (3w)",
+          "Design (4w)",
+          "Dev Sprint 1-8 (8w)",
+          "QA (3w)",
+          "Fix Bugs (2w)",
+          "Deploy (1w)"
+        ],
+        "cost": "💰 $500K – $1M",
+        "time": "~26 weeks total"
+      },
+      "cm": {
+        "label": "⚡ CodyMaster + AI (1 person)",
+        "bar": "1-2 weeks",
+        "phases": [
+          "Brainstorm (2h)",
+          "Plan (1h)",
+          "Design (4h)",
+          "Build (5d)",
+          "Test (auto)",
+          "Deploy (30m)"
+        ],
+        "cost": "💰 ~$0 (just API costs)",
+        "time": "~1-2 weeks total"
+      }
+    },
+    "roles": {
+      "label": "👥 ROLE BY ROLE",
+      "title": "How Every Role Changes",
+      "sub": "It's not about replacing people. It's about removing friction.",
+      "headers": {
+        "role": "Role",
+        "scrum": "❌ In Scrum Team",
+        "cm": "⚡ With CodyMaster + AI"
+      },
+      "list": [
+        {
+          "role": "👔 Stakeholder",
+          "scrum": "Reviews proposals they don't fully understand. Delays decisions because cost per feature is high and risk is unclear.<br><span class=\"role-pain\">⚠️ Bottleneck for the entire team</span>",
+          "cm": "Sees working prototypes in days, not slides. Decisions are cheaper — try it, iterate, or kill it fast. Near-zero cost to experiment.<br><span class=\"role-win\">✓ Decides with evidence, not guesswork</span>"
+        },
+        {
+          "role": "📋 Product Manager",
+          "scrum": "Weeks of research, interviews, specs. Debates with design and dev. Features get stalled or killed. Endless handoff cycles.<br><span class=\"role-pain\">⚠️ Months of work can be wasted</span>",
+          "cm": "AI handles research (cm-jtbd, cm-brainstorm-idea). Specs are auto-generated. Prototype in hours. PM focuses on strategy, not paperwork.<br><span class=\"role-win\">✓ From bureaucrat to strategist</span>"
+        },
+        {
+          "role": "🎨 Designer",
+          "scrum": "Creates mockups that get endlessly revised by committee. Hands off to dev, watches design get butchered. Pixel-perfect in Figma, broken in production.<br><span class=\"role-pain\">⚠️ Creative vision dies in implementation</span>",
+          "cm": "AI generates UI from design system (cm-ux-master, 48 UX Laws). Design-to-code is immediate. Designer becomes creative director.<br><span class=\"role-win\">✓ Create, don't argue about pixels</span>"
+        },
+        {
+          "role": "💻 Developer",
+          "scrum": "Doesn't understand \"why\" behind features. Crushed by deadlines. Bugs → OT → weekends. Fears AI will make them obsolete.<br><span class=\"role-pain\">⚠️ Burned out, anxious, undervalued</span>",
+          "cm": "AI writes code with TDD, quality gates, and 8-gate deploy pipeline. Dev becomes architect — reviewing, guiding, and solving hard problems.<br><span class=\"role-win\">✓ From code monkey to architect</span>"
+        },
+        {
+          "role": "🧪 QA / Tester",
+          "scrum": "Tests same features hundreds of times a year. If PM/Dev are sloppy, QA suffers most. Manual regression is soul-crushing.<br><span class=\"role-pain\">⚠️ Repetitive, thankless, first to be cut</span>",
+          "cm": "AI writes and runs tests automatically (cm-tdd, cm-test-gate). QA focuses on exploratory testing and user experience validation.<br><span class=\"role-win\">✓ From robot to quality champion</span>"
+        }
+      ]
+    },
+    "stats": [
+      {
+        "icon": "⚡",
+        "number": "12×",
+        "label": "Faster to Market",
+        "sub": "2 weeks vs 6 months"
+      },
+      {
+        "icon": "💰",
+        "number": "99%",
+        "label": "Cost Reduction",
+        "sub": "~$0 vs $500K-$1M"
+      },
+      {
+        "icon": "👤",
+        "number": "1",
+        "label": "Person = Full Team",
+        "sub": "1 person vs 8+ specialists"
+      },
+      {
+        "icon": "🛡️",
+        "number": "33+",
+        "label": "AI Expert Skills",
+        "sub": "PM, Design, Dev, QA, Deploy"
+      }
+    ],
+    "skills": {
+      "label": "🧠 YOUR AI TEAM",
+      "title": "33+ Expert Skills, Zero Meetings",
+      "sub": "Every skill that an 8-person team would need — automated, disciplined, available 24/7.",
+      "list": [
+        {
+          "name": "cm-brainstorm-idea",
+          "desc": "Strategic analysis (replaces PM research)"
+        },
+        {
+          "name": "cm-planning",
+          "desc": "Implementation plans (replaces sprint planning)"
+        },
+        {
+          "name": "cm-ux-master",
+          "desc": "48 UX Laws + design system (replaces designer)"
+        },
+        {
+          "name": "cm-tdd",
+          "desc": "Test-first development (replaces QA regression)"
+        },
+        {
+          "name": "cm-secret-shield",
+          "desc": "Security scanning (replaces security review)"
+        },
+        {
+          "name": "cm-safe-deploy",
+          "desc": "8-gate pipeline (replaces DevOps)"
+        },
+        {
+          "name": "cm-dockit",
+          "desc": "Auto documentation (replaces tech writer)"
+        },
+        {
+          "name": "cm-content-factory",
+          "desc": "Content engine (replaces marketing team)"
+        },
+        {
+          "name": "cm-safe-i18n",
+          "desc": "Multi-language (replaces localization team)"
+        },
+        {
+          "name": "cm-debugging",
+          "desc": "Root cause analysis (replaces bug triage)"
+        },
+        {
+          "name": "cm-quality-gate",
+          "desc": "Evidence-based QA (replaces manual testing)"
+        },
+        {
+          "name": "cm-jtbd",
+          "desc": "Customer discovery (replaces user research)"
+        }
+      ]
+    },
+    "manifesto": {
+      "label": "💜 THE TRUTH",
+      "title": "It's Not About Replacing People",
+      "cardTitle": "It's About Setting Them Free",
+      "cardText": "PMs shouldn't spend weeks writing specs no one reads. Designers shouldn't argue about pixels in meetings. Developers shouldn't fear for their careers. QA shouldn't test the same button 300 times.<br><br><strong>AI handles the repetitive work. Humans do what humans do best</strong> — think strategically, empathize with users, make creative leaps, and build things that matter.",
+      "points": [
+        "<strong>PMs</strong> become strategists",
+        "<strong>Designers</strong> become directors",
+        "<strong>Developers</strong> become architects"
+      ]
+    },
+    "cta": {
+      "title": "Stop Sprinting in Circles.<br><span>Start Building at Light Speed.</span>",
+      "sub": "Free. Open source. 33+ skills. One person. Infinite output.",
+      "btn": "Get Started →",
+      "links": [
+        "Compare with AI coding tools →",
+        "Why you need a skill kit →",
+        "Read our story →"
+      ]
+    }
+  },
+  "vs_bolt_auto_1": "⚡ बनाम ⚙️ · विस्तृत तुलना",
+  "vs_bolt_auto_2": "कोडीमास्टर बनाम",
+  "vs_google_ai_studio_auto_1": "⚡ बनाम 🧪 · विस्तृत तुलना",
+  "vs_google_ai_studio_auto_2": "कोडीमास्टर बनाम",
+  "vs_lovable_auto_1": "⚡ बनाम 💖 · विस्तृत तुलना",
+  "vs_lovable_auto_2": "कोडीमास्टर बनाम",
+  "vs_others_auto_1": "🚀",
+  "vs_others_auto_10": "📖",
+  "vs_others_auto_11": "▶️",
+  "vs_others_auto_12": "🌍",
+  "vs_others_auto_13": "EN",
+  "vs_others_auto_14": "中文",
+  "vs_others_auto_15": "हिन्दी",
+  "vs_others_auto_16": "पर खड़ा है",
+  "vs_others_auto_2": "📢",
+  "vs_others_auto_3": "📋",
+  "vs_others_auto_4": "💻",
+  "vs_others_auto_5": "🎨",
+  "vs_others_auto_6": "🦞",
+  "vs_others_auto_7": "💡",
+  "vs_others_auto_8": "🤺",
+  "vs_others_auto_9": "🔄",
+  "vs_replit_auto_1": "⚡ बनाम 🔵 · विस्तृत तुलना",
+  "vs_replit_auto_2": "कोडीमास्टर बनाम",
+  "vs_scrum_auto_1": "🚀",
+  "vs_scrum_auto_10": "📖",
+  "vs_scrum_auto_11": "▶️",
+  "vs_scrum_auto_12": "🌍",
+  "vs_scrum_auto_13": "EN",
+  "vs_scrum_auto_14": "中文",
+  "vs_scrum_auto_15": "हिन्दी",
+  "vs_scrum_auto_16": "🔄",
+  "vs_scrum_auto_17": "🎨",
+  "vs_scrum_auto_18": "💀",
+  "vs_scrum_auto_19": "🔁",
+  "vs_scrum_auto_2": "📢",
+  "vs_scrum_auto_20": "💸",
+  "vs_scrum_auto_21": "💰",
+  "vs_scrum_auto_22": "👤",
+  "vs_scrum_auto_23": "🛡️",
+  "vs_scrum_auto_24": "🧠",
+  "vs_scrum_auto_25": "सेमी-मंथन-विचार",
+  "vs_scrum_auto_26": "📋",
+  "vs_scrum_auto_27": "सेमी-योजना",
+  "vs_scrum_auto_28": "🎨",
+  "vs_scrum_auto_29": "सेमी-यूएक्स-मास्टर",
+  "vs_scrum_auto_3": "📋",
+  "vs_scrum_auto_30": "🧪",
+  "vs_scrum_auto_31": "सेमी-टीडीडी",
+  "vs_scrum_auto_32": "🔒",
+  "vs_scrum_auto_33": "सेमी-गुप्त-शील्ड",
+  "vs_scrum_auto_34": "🚀",
+  "vs_scrum_auto_35": "सेमी-सुरक्षित-तैनाती",
+  "vs_scrum_auto_36": "📖",
+  "vs_scrum_auto_37": "सेमी-डॉकिट",
+  "vs_scrum_auto_38": "📈",
+  "vs_scrum_auto_39": "सेमी-सामग्री-फ़ैक्टरी",
+  "vs_scrum_auto_4": "💻",
+  "vs_scrum_auto_40": "🌐",
+  "vs_scrum_auto_41": "सेमी-सुरक्षित-i18n",
+  "vs_scrum_auto_42": "🐛",
+  "vs_scrum_auto_43": "सेमी-डीबगिंग",
+  "vs_scrum_auto_44": "📊",
+  "vs_scrum_auto_45": "सेमी-गुणवत्ता-द्वार",
+  "vs_scrum_auto_46": "💡",
+  "vs_scrum_auto_47": "सेमी-jtbd",
+  "vs_scrum_auto_48": "🤝",
+  "vs_scrum_auto_49": "🧠",
+  "vs_scrum_auto_5": "🎨",
+  "vs_scrum_auto_50": "🎨",
+  "vs_scrum_auto_51": "💻",
+  "vs_scrum_auto_52": "⚡ कोडीमास्टर किट",
+  "vs_scrum_auto_53": "GitHub",
+  "vs_scrum_auto_54": "कलह",
+  "vs_scrum_auto_6": "🦞",
+  "vs_scrum_auto_7": "💡",
+  "vs_scrum_auto_8": "🤺",
+  "vs_scrum_auto_9": "🔄"
+}

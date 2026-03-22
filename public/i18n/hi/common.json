@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "CodyMaster Kit — 10 गुना तेज़ी से उत्पाद बनाएं",
+    "description": "33 AI एजेंट कौशल जो आपको विचार से लेकर डिज़ाइन, कोडिंग और परिनियोजन तक ले जाते हैं—बिना कोडिंग के। बस बात करें।"
+  },
+  "nav": {
+    "features": "विशेषताएँ",
+    "howItWorks": "यह कैसे काम करता है",
+    "deepDive": "विस्तृत जानकारी",
+    "personas": "आपके लिए",
+    "docs": "Docs",
+    "skills": "कौशल",
+    "story": "हमारी कहानी",
+    "getStarted": "शुरू करें",
+    "demo": "डेमो",
+    "brain": "ब्रेन",
+    "whyCodyMaster": "Why CodyMaster",
+    "vsOthers": "vs Others",
+    "vsScrum": "vs Scrum",
+    "playbook": "Playbook",
+    "cli": "CLI"
+  },
+  "cta": {
+    "title": "प्लानिंग बंद करें। बनाना शुरू करें।\nआपके विचार को अस्तित्व में आने का हक़ है।",
+    "subtitle": "मुफ़्त। क्रेडिट कार्ड नहीं। 30 सेकंड में सेटअप। अभी बनाना शुरू करें।",
+    "button": "बनाना शुरू करें — मुफ़्त"
+  },
+  "footer": {
+    "links": [
+      "GitHub",
+      "प्रलेखन",
+      "Discord समुदाय"
+    ],
+    "copyright": "© 2026 CodyMaster · AI-Powered"
+  },
+  "socialProof": {
+    "label": "विश्वसनीय",
+    "title": "दुनिया भर की टीमें और सोलो बिल्डर इस्तेमाल करते हैं",
+    "starOnGithub": "GitHub पर Star",
+    "openSource": "100% मुफ़्त & ओपन सोर्स",
+    "languages": "6 भाषाएँ समर्थित",
+    "worksWithLabel": "सभी प्रमुख AI एजेंट के साथ काम करता है"
+  },
+  "stats": {
+    "items": [
+      {
+        "number": "33",
+        "label": "AI कौशल"
+      },
+      {
+        "number": "7+",
+        "label": "समर्थित AI एजेंट"
+      },
+      {
+        "number": "6",
+        "label": "भाषाएँ"
+      },
+      {
+        "number": "100%",
+        "label": "मुफ़्त & ओपन सोर्स"
+      }
+    ]
+  },
+  "claw": {
+    "label": "सार्वभौमिक संगतता",
+    "title": "एक कॉन्फ़िगरेशन। हर AI एजेंट मानता है।",
+    "subtitle": "CodyMaster Claw द्वारा संचालित। एक बार निर्देश लिखें, कहीं भी चलाएं।"
+  }
+}

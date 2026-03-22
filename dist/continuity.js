@@ -9,8 +9,10 @@ exports.readContinuityState = readContinuityState;
 exports.writeContinuityMd = writeContinuityMd;
 exports.addLearning = addLearning;
 exports.getLearnings = getLearnings;
+exports.deleteLearning = deleteLearning;
 exports.addDecision = addDecision;
 exports.getDecisions = getDecisions;
+exports.deleteDecision = deleteDecision;
 exports.getContinuityStatus = getContinuityStatus;
 exports.resetContinuity = resetContinuity;
 exports.hasCmDir = hasCmDir;
@@ -275,6 +277,21 @@ function getLearnings(projectPath) {
         return [];
     }
 }
+function deleteLearning(projectPath, learningId) {
+    const learningsPath = path_1.default.join(getCmDir(projectPath), LEARNINGS_FILE);
+    try {
+        const learnings = JSON.parse(fs_1.default.readFileSync(learningsPath, 'utf-8'));
+        const idx = learnings.findIndex(l => l.id === learningId);
+        if (idx === -1)
+            return false;
+        learnings.splice(idx, 1);
+        fs_1.default.writeFileSync(learningsPath, JSON.stringify(learnings, null, 2));
+        return true;
+    }
+    catch (_a) {
+        return false;
+    }
+}
 // ─── Decisions Management ───────────────────────────────────────────────────
 function addDecision(projectPath, decision) {
     const fullDecision = Object.assign(Object.assign({}, decision), { id: crypto_1.default.randomUUID() });
@@ -304,6 +321,21 @@ function getDecisions(projectPath) {
     }
     catch (_a) {
         return [];
+    }
+}
+function deleteDecision(projectPath, decisionId) {
+    const decisionsPath = path_1.default.join(getCmDir(projectPath), DECISIONS_FILE);
+    try {
+        const decisions = JSON.parse(fs_1.default.readFileSync(decisionsPath, 'utf-8'));
+        const idx = decisions.findIndex(d => d.id === decisionId);
+        if (idx === -1)
+            return false;
+        decisions.splice(idx, 1);
+        fs_1.default.writeFileSync(decisionsPath, JSON.stringify(decisions, null, 2));
+        return true;
+    }
+    catch (_a) {
+        return false;
     }
 }
 function getContinuityStatus(projectPath) {

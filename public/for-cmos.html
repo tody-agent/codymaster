@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" data-lang="en">
-<head>
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CodyMaster Kit — For Marketing Expert</title>
@@ -24,6 +22,7 @@
 
     <ul class="nav__links" id="navLinks">
       <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
       <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
@@ -46,9 +45,10 @@
         </button>
         <div class="nav-dropdown__menu">
           <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
           <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
           <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="demo.html" class="nav-dropdown__item"><span class="lang-flag">▶️</span> <span data-i18n="nav.demo">Demo</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
         </div>
       </li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
@@ -60,12 +60,24 @@
             <span class="lang-btn-caret">▾</span>
           </button>
           <div class="lang-menu" id="lang-menu">
-            <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span></button>
-            <button class="lang-option" data-lang="vi"><span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span></button>
-            <button class="lang-option" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span></button>
-            <button class="lang-option" data-lang="ru"><span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span></button>
-            <button class="lang-option" data-lang="ko"><span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span></button>
-            <button class="lang-option" data-lang="hi"><span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span></button>
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
           </div>
         </div>
       </li>
@@ -81,23 +93,23 @@
   <section class="persona-hero" id="personaHero">
     <div class="persona-hero__svg-bg">
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="15" y="15" width="70" height="50" rx="4" stroke="currentColor" stroke-width="0.5"/>
-        <line x1="15" y1="30" x2="85" y2="30" stroke="currentColor" stroke-width="0.3"/>
-        <rect x="20" y="35" width="25" height="4" rx="1" stroke="currentColor" stroke-width="0.4"/>
-        <rect x="20" y="42" width="18" height="4" rx="1" stroke="currentColor" stroke-width="0.4"/>
-        <rect x="55" y="35" width="25" height="25" rx="2" stroke="currentColor" stroke-width="0.4"/>
-        <path d="M60 75 L75 75 L67.5 68 Z" stroke="currentColor" stroke-width="0.4" fill="none"/>
+        <rect x="15" y="15" width="70" height="50" rx="4" stroke="currentColor" stroke-width="0.5"></rect>
+        <line x1="15" y1="30" x2="85" y2="30" stroke="currentColor" stroke-width="0.3"></line>
+        <rect x="20" y="35" width="25" height="4" rx="1" stroke="currentColor" stroke-width="0.4"></rect>
+        <rect x="20" y="42" width="18" height="4" rx="1" stroke="currentColor" stroke-width="0.4"></rect>
+        <rect x="55" y="35" width="25" height="25" rx="2" stroke="currentColor" stroke-width="0.4"></rect>
+        <path d="M60 75 L75 75 L67.5 68 Z" stroke="currentColor" stroke-width="0.4" fill="none"></path>
       </svg>
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 80 C30 40, 50 60, 60 30 C70 10, 80 40, 90 20" stroke="currentColor" stroke-width="0.7" fill="none"/>
-        <line x1="20" y1="80" x2="90" y2="80" stroke="currentColor" stroke-width="0.3"/>
-        <line x1="20" y1="80" x2="20" y2="20" stroke="currentColor" stroke-width="0.3"/>
-        <circle cx="60" cy="30" r="3" stroke="currentColor" stroke-width="0.5"/>
+        <path d="M20 80 C30 40, 50 60, 60 30 C70 10, 80 40, 90 20" stroke="currentColor" stroke-width="0.7" fill="none"></path>
+        <line x1="20" y1="80" x2="90" y2="80" stroke="currentColor" stroke-width="0.3"></line>
+        <line x1="20" y1="80" x2="20" y2="20" stroke="currentColor" stroke-width="0.3"></line>
+        <circle cx="60" cy="30" r="3" stroke="currentColor" stroke-width="0.5"></circle>
       </svg>
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="0.5"/>
-        <path d="M50 15 L50 50 L75 50" stroke="currentColor" stroke-width="0.5"/>
-        <path d="M50 50 L35 75" stroke="currentColor" stroke-width="0.3"/>
+        <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="0.5"></circle>
+        <path d="M50 15 L50 50 L75 50" stroke="currentColor" stroke-width="0.5"></path>
+        <path d="M50 50 L35 75" stroke="currentColor" stroke-width="0.3"></path>
       </svg>
     </div>
 
@@ -140,7 +152,7 @@
         <span data-i18n="personas.details.cmo.fomo.1">Includes StoryBrand + Cialdini + SUCCESs</span>
       </div>
       <div class="persona-fomo__item persona-fomo__item--highlight">
-        <span class="persona-fomo__item-icon">🧠</span>
+        <span class="persona-fomo__item-icon" data-i18n="personas.for_cmos_auto_16">🧠</span>
         <span data-i18n="personas.details.cmo.fomo.2">Complete ad tracking: Meta, TikTok, Google</span>
       </div>
     </div>
@@ -154,22 +166,22 @@
     </div>
     <div class="persona-pains__grid">
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">📝</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_cmos_auto_17">📝</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.cmo.pains.0.title">Content creation is too slow</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.cmo.pains.0.desc">Your writers produce 2 blog posts a week. You need 10. SEO specialists cost $5K/month. You're always behind the editorial calendar.</p>
       </div>
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">🖥️</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_cmos_auto_18">🖥️</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.cmo.pains.1.title">Landing pages take forever</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.cmo.pains.1.desc">Every campaign needs a landing page. Designer → developer → QA → deploy. 2-3 weeks minimum. By then the campaign window has closed.</p>
       </div>
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">📊</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_cmos_auto_19">📊</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.cmo.pains.2.title">Can't prove ROI to the board</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.cmo.pains.2.desc">Facebook Pixel partially set up. Google Ads conversion tracking missing. UTM parameters are inconsistent. You're flying blind on ROAS.</p>
       </div>
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">🎯</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_cmos_auto_20">🎯</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.cmo.pains.3.title">Content doesn't convert</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.cmo.pains.3.desc">Your content looks good but doesn't drive action. No persuasion framework. No CRO optimization. No A/B testing hooks. Just words on a page.</p>
       </div>
@@ -187,10 +199,10 @@
       <h2 class="persona-guide__title" data-i18n="personas.details.cmo.guide.title">Scale your output without scaling your headcount.</h2>
       <p class="persona-guide__desc" data-i18n="personas.details.cmo.guide.desc">Marketing at scale used to require massive teams of writers, designers, and developers. Now, CodyMaster's Content Factory acts as your elite, autonomous marketing department—producing SEO articles, landing pages, and tracking setups perfectly aligned with Cialdini's principles.</p>
       <div class="persona-guide__credentials">
-        <span class="persona-guide__credential">📊 7 Persuasion Frameworks</span>
-        <span class="persona-guide__credential">🎯 Full Conversion Tracking</span>
-        <span class="persona-guide__credential">✍️ StoryBrand + Cialdini</span>
-        <span class="persona-guide__credential">📈 Proven ROI Attribution</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_cmos_auto_21">📊 7 Persuasion Frameworks</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_cmos_auto_22">🎯 Full Conversion Tracking</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_cmos_auto_23">✍️ StoryBrand + Cialdini</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_cmos_auto_24">📈 Proven ROI Attribution</span>
       </div>
     </div>
   </section>
@@ -208,14 +220,14 @@
         <p class="persona-plan__stepdesc" data-i18n="personas.details.cmo.plan.0.desc">Tell the cm-content-factory your target audience, value proposition, and campaign goals.</p>
       </div>
       <!-- Connector SVG Arrow -->
-      <svg class="persona-plan__connector persona-plan__connector--1" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="persona-plan__connector persona-plan__connector--1" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <div class="persona-plan__step reveal">
         <div class="persona-plan__num">2</div>
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.cmo.plan.1.title">Generate</h3>
         <p class="persona-plan__stepdesc" data-i18n="personas.details.cmo.plan.1.desc">AI writes the copy using StoryBrand frameworks, while cm-ux-master generates the high-converting UI.</p>
       </div>
       <!-- Connector SVG Arrow -->
-      <svg class="persona-plan__connector persona-plan__connector--2" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="persona-plan__connector persona-plan__connector--2" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <div class="persona-plan__step reveal">
         <div class="persona-plan__num">3</div>
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.cmo.plan.2.title">Track</h3>
@@ -232,19 +244,19 @@
     </div>
     <div class="persona-solutions__grid">
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-content-factory</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_cmos_auto_25">cm-content-factory</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.cmo.solutions.0.benefit">StoryBrand + Cialdini + SUCCESs + STEPPS. AI writes content that converts, not just fills pages.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-ux-master</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_cmos_auto_26">cm-ux-master</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.cmo.solutions.1.benefit">Landing pages with CRO built in — hero sections, social proof, objection handling, urgency.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-ads-tracker</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_cmos_auto_27">cm-ads-tracker</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.cmo.solutions.2.benefit">Complete tracking: Meta Pixel + CAPI, TikTok Events, Google Ads Enhanced Conversions, UTM attribution.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-readit</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_cmos_auto_28">cm-readit</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.cmo.solutions.3.benefit">Turn any content into audio. TTS reading mode increases engagement and time-on-page.</p>
       </div>
     </div>
@@ -268,7 +280,7 @@
     </div>
     <div class="persona-ba__container reveal">
       <div class="persona-ba__col persona-ba__col--before">
-        <h3 class="persona-ba__heading">❌ Before</h3>
+        <h3 class="persona-ba__heading" data-i18n="personas.for_cmos_auto_29">❌ Before</h3>
         <ul>
           <li data-i18n="personas.details.cmo.beforeAfter.before.0">2 blog posts per week</li>
           <li data-i18n="personas.details.cmo.beforeAfter.before.1">Landing pages take 2-3 weeks</li>
@@ -278,7 +290,7 @@
         </ul>
       </div>
       <div class="persona-ba__col persona-ba__col--after">
-        <h3 class="persona-ba__heading">✅ After CodyMaster</h3>
+        <h3 class="persona-ba__heading" data-i18n="personas.for_cmos_auto_30">✅ After CodyMaster</h3>
         <ul>
           <li data-i18n="personas.details.cmo.beforeAfter.after.0">33 blog posts generated instantly</li>
           <li data-i18n="personas.details.cmo.beforeAfter.after.1">Landing pages in 15 minutes</li>
@@ -322,7 +334,7 @@
         <a href="story.html" class="persona-cta__secondary" data-i18n="personas.details.cmo.ctaSecondary">📖 See Content Factory</a>
       </div>
       <div class="persona-trust-strip">
-        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> 100% Free &amp; Open Source</span>
+        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span><span data-i18n="personas.for_cmos_auto_31">100% Free &amp; Open Source</span></span>
         <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Gets Smarter Every Day</span>
         <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Built by a PM, for Everyone</span>
       </div>
@@ -348,7 +360,7 @@
         <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
         <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
         <a href="story.html" data-i18n="nav.story">Our Story</a>
-        <a href="demo.html" data-i18n="nav.demo">Demo</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
@@ -357,7 +369,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free &amp; Open Source.</p>
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
       <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
     </div>
   </footer>
@@ -378,5 +390,6 @@
       if (window.lucide) lucide.createIcons();
     });
   </script>
-</body>
-</html>
+
+
+</body></html>

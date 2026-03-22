@@ -94,6 +94,7 @@
   line-height: 1.1;
   letter-spacing: -1px;
   animation: fadeInUp 0.6s ease-out 0.1s both;
+  text-wrap: balance;
 }
 
 .brain-hero__highlight {
@@ -118,6 +119,7 @@
   line-height: 1.7;
   max-width: 700px;
   animation: fadeInUp 0.6s ease-out 0.2s both;
+  text-wrap: balance;
 }
 
 .brain-hero__subtitle strong {
@@ -591,12 +593,14 @@
   font-size: clamp(28px, 3vw, 40px);
   font-weight: 700;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 .brain-cta__subtitle {
   font-size: 18px;
   color: var(--text-secondary);
   max-width: 600px;
+  text-wrap: balance;
 }
 
 .btn--brain {
@@ -644,8 +648,16 @@
   }
 
   .brain-hero {
-    padding: 80px 24px 40px;
+    padding: 100px 24px 40px;
     min-height: auto;
+  }
+
+  .brain-hero__title {
+    font-size: 32px;
+  }
+
+  .section__title {
+    font-size: 28px !important; text-wrap: balance; line-height: 1.25; margin-bottom: 12px;
   }
 
   .brain-viz {

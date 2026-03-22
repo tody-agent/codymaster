@@ -78,13 +78,6 @@ Skills that coordinate workflows, manage memory, and enable autonomous execution
 | **cm-skill-mastery** | Meta-skill: when to invoke which skill, how to create new skills, skill discovery guide. | [View →](./cm-skill-mastery.md) |
 | **cm-deep-search** | Semantic search via qmd — BM25 + Vector + LLM re-ranking for large codebases (>200 src files). | [View →](./cm-deep-search.md) |
 | **cm-how-it-work** | Complete vibe coding guide — 6 phases, 33 skills, 9 golden rules. Read this first if you're new. | [View →](./cm-how-it-work.md) |
-
-## 🖥️ Workflow Commands
-
-Orchestration entry points — slash commands that activate full workflows.
-
-| Skill | Description | Full Docs |
-|-------|-------------|-----------|
 | **cm-start** | Start the full CM workflow from objective → plan → TDD implement → verify → done. | — |
 | **cm-dashboard** | Render Kanban board from `cm-tasks.json` — visual TO DO / IN PROGRESS / DONE view. | — |
 | **cm-status** | Ultra-concise 1-2 sentence progress: what's done, what's next, what's blocked. | — |

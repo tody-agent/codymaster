@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" data-lang="en">
-<head>
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CodyMaster vs Others — Honest Comparison</title>
@@ -342,6 +340,11 @@
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
+      .vs-hero__title { text-wrap: balance; font-size: clamp(2rem, 8vw, 2.5rem); }
+      .vs-cta__title { text-wrap: balance; font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
+      .section__title { text-wrap: balance; font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
+      .vs-hero__sub, .vs-cta__sub { text-wrap: balance; }
+      
       .vs-gratitude__grid { grid-template-columns: 1fr; }
       .vs-decision__grid { grid-template-columns: 1fr; }
       .vs-table { font-size: 0.75rem; }
@@ -361,6 +364,7 @@
 
     <ul class="nav__links" id="navLinks">
       <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
       <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
@@ -383,9 +387,10 @@
         </button>
         <div class="nav-dropdown__menu">
           <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
           <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
           <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="demo.html" class="nav-dropdown__item"><span class="lang-flag">▶️</span> <span data-i18n="nav.demo">Demo</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
         </div>
       </li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
@@ -431,7 +436,7 @@
     <div class="hero__orb hero__orb--1"></div>
     <div class="hero__orb hero__orb--2"></div>
     <div class="vs-hero__content">
-      <h1 class="vs-hero__title">Standing on the<br><span>Shoulders of Giants</span></h1>
+      <h1 class="vs-hero__title"><span data-i18n="vs.vs_others_auto_16">Standing on the</span><br><span>Shoulders of Giants</span></h1>
       <p class="vs-hero__sub">CodyMaster didn't emerge from nothing. We learned from incredible creators who pioneered AI-assisted coding. Here's an honest comparison — and our heartfelt thank you.</p>
     </div>
   </section>
@@ -754,7 +759,7 @@
         <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
         <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
         <a href="story.html" data-i18n="nav.story">Our Story</a>
-        <a href="demo.html" data-i18n="nav.demo">Demo</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
@@ -783,5 +788,6 @@
       if (window.lucide) lucide.createIcons();
     });
   </script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" data-lang="en">
-<head>
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CodyMaster Kit — For the Claw Family</title>
@@ -24,6 +22,7 @@
 
     <ul class="nav__links" id="navLinks">
       <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
       <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
@@ -46,9 +45,10 @@
         </button>
         <div class="nav-dropdown__menu">
           <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
           <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
           <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="demo.html" class="nav-dropdown__item"><span class="lang-flag">▶️</span> <span data-i18n="nav.demo">Demo</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
         </div>
       </li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
@@ -60,12 +60,24 @@
             <span class="lang-btn-caret">▾</span>
           </button>
           <div class="lang-menu" id="lang-menu">
-            <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span></button>
-            <button class="lang-option" data-lang="vi"><span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span></button>
-            <button class="lang-option" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span></button>
-            <button class="lang-option" data-lang="ru"><span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span></button>
-            <button class="lang-option" data-lang="ko"><span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span></button>
-            <button class="lang-option" data-lang="hi"><span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span></button>
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
           </div>
         </div>
       </li>
@@ -81,25 +93,25 @@
   <section class="persona-hero" id="personaHero">
     <div class="persona-hero__svg-bg">
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="35" r="20" stroke="currentColor" stroke-width="0.5"/>
-        <circle cx="25" cy="70" r="12" stroke="currentColor" stroke-width="0.5"/>
-        <circle cx="75" cy="70" r="12" stroke="currentColor" stroke-width="0.5"/>
-        <line x1="50" y1="55" x2="32" y2="62" stroke="currentColor" stroke-width="0.3"/>
-        <line x1="50" y1="55" x2="68" y2="62" stroke="currentColor" stroke-width="0.3"/>
+        <circle cx="50" cy="35" r="20" stroke="currentColor" stroke-width="0.5"></circle>
+        <circle cx="25" cy="70" r="12" stroke="currentColor" stroke-width="0.5"></circle>
+        <circle cx="75" cy="70" r="12" stroke="currentColor" stroke-width="0.5"></circle>
+        <line x1="50" y1="55" x2="32" y2="62" stroke="currentColor" stroke-width="0.3"></line>
+        <line x1="50" y1="55" x2="68" y2="62" stroke="currentColor" stroke-width="0.3"></line>
       </svg>
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="15" y="25" width="30" height="20" rx="3" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="55" y="25" width="30" height="20" rx="3" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="15" y="55" width="30" height="20" rx="3" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="55" y="55" width="30" height="20" rx="3" stroke="currentColor" stroke-width="0.5"/>
-        <line x1="45" y1="35" x2="55" y2="35" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2"/>
-        <line x1="45" y1="65" x2="55" y2="65" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2"/>
-        <line x1="30" y1="45" x2="30" y2="55" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2"/>
-        <line x1="70" y1="45" x2="70" y2="55" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2"/>
+        <rect x="15" y="25" width="30" height="20" rx="3" stroke="currentColor" stroke-width="0.5"></rect>
+        <rect x="55" y="25" width="30" height="20" rx="3" stroke="currentColor" stroke-width="0.5"></rect>
+        <rect x="15" y="55" width="30" height="20" rx="3" stroke="currentColor" stroke-width="0.5"></rect>
+        <rect x="55" y="55" width="30" height="20" rx="3" stroke="currentColor" stroke-width="0.5"></rect>
+        <line x1="45" y1="35" x2="55" y2="35" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2"></line>
+        <line x1="45" y1="65" x2="55" y2="65" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2"></line>
+        <line x1="30" y1="45" x2="30" y2="55" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2"></line>
+        <line x1="70" y1="45" x2="70" y2="55" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2"></line>
       </svg>
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 50 Q50 20 70 50 Q50 80 30 50 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
-        <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="0.4"/>
+        <path d="M30 50 Q50 20 70 50 Q50 80 30 50 Z" stroke="currentColor" stroke-width="0.5" fill="none"></path>
+        <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="0.4"></circle>
       </svg>
     </div>
 
@@ -142,7 +154,7 @@
         <span data-i18n="personas.details.claw.fomo.1">Switch AI agents freely — zero migration cost</span>
       </div>
       <div class="persona-fomo__item persona-fomo__item--highlight">
-        <span class="persona-fomo__item-icon">🧠</span>
+        <span class="persona-fomo__item-icon" data-i18n="personas.for_claw_family_auto_16">🧠</span>
         <span data-i18n="personas.details.claw.fomo.2">Community growing with cross-agent compatibility</span>
       </div>
     </div>
@@ -156,22 +168,22 @@
     </div>
     <div class="persona-pains__grid">
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">🔒</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_claw_family_auto_17">🔒</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.claw.pains.0.title">Locked into one agent</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.claw.pains.0.desc">You built custom prompts and rules for Cursor. Now you want to try Claude Desktop. Start from scratch. All your work? Doesn't transfer.</p>
       </div>
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">🧩</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_claw_family_auto_18">🧩</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.claw.pains.1.title">Config files don't transfer</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.claw.pains.1.desc">.cursorrules, claude_desktop_config.json, .windsurfrules — every agent has a different format. Your knowledge is fragmented across incompatible files.</p>
       </div>
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">🌐</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_claw_family_auto_19">🌐</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.claw.pains.2.title">No universal skill format</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.claw.pains.2.desc">You learned to write skills for one agent. But the Claw ecosystem (OpenClaw, NemoClaw, OpenFang) needs interoperability. No standard exists.</p>
       </div>
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">🔄</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_claw_family_auto_20">🔄</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.claw.pains.3.title">Switching agents = starting over</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.claw.pains.3.desc">A new, better agent launches. You want to try it. But migration means re-creating everything. Lock-in by configuration complexity.</p>
       </div>
@@ -189,10 +201,10 @@
       <h2 class="persona-guide__title" data-i18n="personas.details.claw.guide.title">The ultimate edge for independent creators and builders.</h2>
       <p class="persona-guide__desc" data-i18n="personas.details.claw.guide.desc">The Claw Family builds differently. You don't ask for permission. You identify niches, build tools, and generate revenue. CodyMaster is the ultimate multi-tool designed explicitly for indie hackers who need to move at warp speed.</p>
       <div class="persona-guide__credentials">
-        <span class="persona-guide__credential">🌐 7+ AI Platform Support</span>
-        <span class="persona-guide__credential">📝 One Universal SKILL.md Format</span>
-        <span class="persona-guide__credential">🔄 Zero Migration Cost</span>
-        <span class="persona-guide__credential">🤝 Cross-Agent Interop</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_claw_family_auto_21">🌐 7+ AI Platform Support</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_claw_family_auto_22">📝 One Universal SKILL.md Format</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_claw_family_auto_23">🔄 Zero Migration Cost</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_claw_family_auto_24">🤝 Cross-Agent Interop</span>
       </div>
     </div>
   </section>
@@ -210,14 +222,14 @@
         <p class="persona-plan__stepdesc" data-i18n="personas.details.claw.plan.0.desc">Identify a pain point. Use cm-brainstorm-idea to systematically break down the market opportunity and technical feasibility.</p>
       </div>
       <!-- Connector SVG Arrow -->
-      <svg class="persona-plan__connector persona-plan__connector--1" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="persona-plan__connector persona-plan__connector--1" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <div class="persona-plan__step reveal">
         <div class="persona-plan__num">2</div>
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.claw.plan.1.title">Build</h3>
         <p class="persona-plan__stepdesc" data-i18n="personas.details.claw.plan.1.desc">Deploy the full cm-execution pipeline. Generate the SaaS, attach Auth, and wire up Stripe in a single evening.</p>
       </div>
       <!-- Connector SVG Arrow -->
-      <svg class="persona-plan__connector persona-plan__connector--2" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="persona-plan__connector persona-plan__connector--2" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <div class="persona-plan__step reveal">
         <div class="persona-plan__num">3</div>
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.claw.plan.2.title">Monetize</h3>
@@ -234,19 +246,19 @@
     </div>
     <div class="persona-solutions__grid">
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">CodyMaster Claw</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_claw_family_auto_25">CodyMaster Claw</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.claw.solutions.0.benefit">A universal adapter that translates your skills into any agent's format. One SKILL.md, every agent reads it.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-skill-mastery</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_claw_family_auto_26">cm-skill-mastery</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.claw.solutions.1.benefit">Meta-skill that knows your entire skill library. Ask which skill to use — it routes instantly.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-skill-chain</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_claw_family_auto_27">cm-skill-chain</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.claw.solutions.2.benefit">Chain skills into automated pipelines. Works the same across Cursor, Claude, Antigravity, OpenClaw, and more.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-example</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_claw_family_auto_28">cm-example</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.claw.solutions.3.benefit">Universal skill template. Create once, compatible with Antigravity, Claude, Cursor, OpenClaw, NemoClaw, and OpenFang.</p>
       </div>
     </div>
@@ -270,7 +282,7 @@
     </div>
     <div class="persona-ba__container reveal">
       <div class="persona-ba__col persona-ba__col--before">
-        <h3 class="persona-ba__heading">❌ Before</h3>
+        <h3 class="persona-ba__heading" data-i18n="personas.for_claw_family_auto_29">❌ Before</h3>
         <ul>
           <li data-i18n="personas.details.claw.beforeAfter.before.0">Skills locked to one agent</li>
           <li data-i18n="personas.details.claw.beforeAfter.before.1">Different config format per tool</li>
@@ -280,7 +292,7 @@
         </ul>
       </div>
       <div class="persona-ba__col persona-ba__col--after">
-        <h3 class="persona-ba__heading">✅ After CodyMaster</h3>
+        <h3 class="persona-ba__heading" data-i18n="personas.for_claw_family_auto_30">✅ After CodyMaster</h3>
         <ul>
           <li data-i18n="personas.details.claw.beforeAfter.after.0">Skills work on every agent</li>
           <li data-i18n="personas.details.claw.beforeAfter.after.1">One universal format</li>
@@ -324,7 +336,7 @@
         <a href="story.html" class="persona-cta__secondary" data-i18n="personas.details.claw.ctaSecondary">🦞 Join the Family</a>
       </div>
       <div class="persona-trust-strip">
-        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> 100% Free &amp; Open Source</span>
+        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span><span data-i18n="personas.for_claw_family_auto_31">100% Free &amp; Open Source</span></span>
         <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Gets Smarter Every Day</span>
         <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Built by a PM, for Everyone</span>
       </div>
@@ -350,7 +362,7 @@
         <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
         <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
         <a href="story.html" data-i18n="nav.story">Our Story</a>
-        <a href="demo.html" data-i18n="nav.demo">Demo</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
@@ -359,7 +371,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free &amp; Open Source.</p>
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
       <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
     </div>
   </footer>
@@ -380,5 +392,6 @@
       if (window.lucide) lucide.createIcons();
     });
   </script>
-</body>
-</html>
+
+
+</body></html>

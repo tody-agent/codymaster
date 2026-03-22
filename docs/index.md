@@ -127,7 +127,7 @@ Browse the full skill library with complete documentation: **[Skills Library →
 
 ## Links
 
-- 🌐 [Main Website](https://codymaster.pages.dev)
+- 🌐 [Main Website](https://cody-master.pages.dev)
 - 📦 [GitHub Repository](https://github.com/tody-agent/codymaster)
 - 📖 [How It Works](./how-it-work.md)
 - 🚀 [Installation Guide](./sop/installation.md)

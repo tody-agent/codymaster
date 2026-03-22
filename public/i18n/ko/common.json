@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "CodyMaster Kit — 10배 빠른 아이디어 제품화",
+    "description": "30개 이상의 AI 에이전트 기술이 아이디어부터 디자인, 코딩, 배포까지 안내합니다. 코딩이 필요 없습니다. 채팅만 하세요."
+  },
+  "nav": {
+    "features": "주요 기능",
+    "howItWorks": "작동 방식",
+    "deepDive": "상세 분석",
+    "personas": "적용 대상",
+    "docs": "Docs",
+    "skills": "스킬",
+    "story": "우리의 이야기",
+    "getStarted": "시작하기",
+    "demo": "데모",
+    "brain": "브레인",
+    "whyCodyMaster": "Why CodyMaster",
+    "vsOthers": "vs Others",
+    "vsScrum": "vs Scrum",
+    "playbook": "Playbook",
+    "cli": "CLI"
+  },
+  "cta": {
+    "title": "계획하지 마세요. 만드세요.\n당신의 아이디어는 존재할 자격이 있습니다.",
+    "subtitle": "무료. 신용카드 불필요. 30초 셋업. 지금 바로 시작.",
+    "button": "구축 시작 — 무료"
+  },
+  "footer": {
+    "links": [
+      "GitHub",
+      "문서",
+      "Discord 커뮤니티"
+    ],
+    "copyright": "© 2026 CodyMaster · AI-Powered"
+  },
+  "socialProof": {
+    "label": "신뢰받는 도구",
+    "title": "전 세계 팀과 솔로 빌더가 사용",
+    "starOnGithub": "GitHub에서 Star",
+    "openSource": "100% 무료 & 오픈소스",
+    "languages": "6개 언어 지원",
+    "worksWithLabel": "모든 주요 AI 에이전트와 호환"
+  },
+  "stats": {
+    "items": [
+      {
+        "number": "33",
+        "label": "AI 스킬"
+      },
+      {
+        "number": "7+",
+        "label": "지원 AI 에이전트"
+      },
+      {
+        "number": "6",
+        "label": "언어"
+      },
+      {
+        "number": "100%",
+        "label": "무료 & 오픈소스"
+      }
+    ]
+  },
+  "claw": {
+    "label": "완벽한 호환성",
+    "title": "단일 구성. 모든 AI 에이전트 지원.",
+    "subtitle": "CodyMaster Claw 플러그인. 한 번 지침을 작성하고 모든 솔루션에서 실행하세요."
+  }
+}

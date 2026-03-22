@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" data-lang="en">
-<head>
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodyMaster Kit — Build Real Products with AI, No Coding Required</title>
-  <meta name="description" content="33 AI Agent Skills that handle design, code, testing, and deployment. You just chat. Free & open source.">
-  <meta property="og:title" content="CodyMaster Kit — Build Real Products with AI, No Coding Required">
-  <meta property="og:description" content="33 AI Agent Skills that handle design, code, testing, and deployment. You just chat.">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <title>CodyMaster | Your AI Agent is smart. CodyMaster makes it wise.</title>
+  <meta name="description" content="33 AI Agent Skills that handle design, code, testing, and deployment. You just chat. Free &amp; open source.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="css/kit.css">
-  <!-- Lucide Icons -->
+  <link rel="stylesheet" href="css/home.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+<body class="home-page">
 
-  <!-- ═══════════╗ NAVIGATION ╔═══════════ -->
+  <!-- ================= INJECTED HEADER ================= -->
   <nav class="nav" id="nav">
     <a href="index.html" class="nav__logo">
       <span class="nav__logo-icon">⚡</span>
@@ -25,6 +19,7 @@
 
     <ul class="nav__links" id="navLinks">
       <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
       <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
@@ -47,9 +42,10 @@
         </button>
         <div class="nav-dropdown__menu">
           <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
           <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
           <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="demo.html" class="nav-dropdown__item"><span class="lang-flag">▶️</span> <span data-i18n="nav.demo">Demo</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
         </div>
       </li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
@@ -90,537 +86,528 @@
     </div>
   </nav>
 
-  <!-- ═══════════╗ HERO ╔═══════════ -->
-  <section class="hero" id="hero">
-    <div class="hero__orbs">
-      <div class="hero__orb hero__orb--purple"></div>
-      <div class="hero__orb hero__orb--lime"></div>
-    </div>
-
-    <div class="hero__content">
-      <div class="hero__badge">
-        <span class="hero__badge-dot"></span>
-        <span class="hero__badge-text" data-i18n="hero.badge">33 Skills · Open Source · Free</span>
+  <main class="home-container">
+    
+    <!-- Hero Section -->
+    <header class="home-hero reveal">
+      <div class="home-hero__badges">
+        <span class="home-badge" data-i18n="home.index_auto_16">🚀 v3.4.0</span>
+        <span class="home-badge" data-i18n="home.index_auto_17">🧠 33 Skills</span>
+        <span class="home-badge" data-i18n="home.index_auto_18">⚡ 7+ Platforms</span>
+        <span class="home-badge" data-i18n="home.index_auto_19">🌍 Open Source</span>
       </div>
-
-      <h1 class="hero__headline">
-        <span class="hero__headline-static" data-i18n="hero.headlineStatic">Build Real Products with AI</span><br>
-        <span class="hero__typing-wrap"><span class="hero__typing" id="hero-typing"></span><span class="hero__cursor">|</span></span>
+      <h1 class="home-hero__title"><span data-i18n="home.index_auto_20">Your AI Agent is smart.</span><br>
+        <span class="text-gradient typewriter-line" id="typewriter-text"></span>
+        <span class="typewriter-cursor">|</span>
       </h1>
-
-      <p class="hero__subtitle" data-i18n="hero.subtitle">33 specialized AI skills that handle design, code, testing, and deployment.
-You just chat. No coding required.</p>
-
-      <div class="hero__ctas">
-        <a href="start.html" class="btn btn--primary">
-          <span data-i18n="hero.ctaPrimary">Start Building — Free</span>
-          <span>→</span>
-        </a>
-        <a href="demo.html" class="btn btn--secondary">
-          <span data-i18n="hero.ctaSecondary">Watch Demo</span>
-          <i data-lucide="play" style="width:18px;height:18px"></i>
+      <p class="home-hero__subtitle" data-i18n="readme.heroSubtitle">
+        Turn your chaotic AI into a disciplined, 33-skill senior engineering team. No random UI. No broken deploys. Just working products.
+      </p>
+      <div class="home-hero__ctas">
+        <a href="#install" class="btn btn--primary" data-i18n="readme.ctaInstall">1-Minute Install</a>
+        <a href="https://github.com/tody-agent/codymaster" target="_blank" class="btn btn--secondary" data-i18n="readme.ctaGithub">
+          <i data-lucide="github" style="width:18px;height:18px"></i> View on GitHub
         </a>
       </div>
+    </header>
 
-      <div class="hero__trust">
-        <span class="hero__trust-item" data-i18n="hero.trustNoCreditCard">✓ No credit card needed</span>
-        <span class="hero__trust-item" data-i18n="hero.trust30Seconds">✓ Setup in 30 seconds</span>
-        <span class="hero__trust-item" data-i18n="hero.trustOpenSource">✓ 100% Open Source</span>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════╗ SECTION 2: BORN FROM PAIN (Emotional Hook) ╔═══════════ -->
-  <section class="section born-pain" id="bornFromPain">
-    <div class="section__header reveal">
-      <p class="section__label" data-i18n="bornFromPain.label">WHY WE BUILT THIS</p>
-      <h2 class="section__title" data-i18n="bornFromPain.title">Born from real pain,\nnot a business plan</h2>
-      <p class="section__subtitle" data-i18n="bornFromPain.subtitle">Every skill in this kit exists because of a real problem that cost real time and real tears.</p>
-    </div>
-
-    <div class="born-pain__quote reveal">
-      <div class="born-pain__author">
-        <span class="born-pain__avatar">👤</span>
-        <div>
-          <span class="born-pain__name" data-i18n="bornFromPain.authorName">Tody Le</span>
-          <span class="born-pain__role" data-i18n="bornFromPain.authorRole">Product Manager · Creator of CodyMaster</span>
+    <!-- Dashboard Mockup -->
+    <div class="app-window reveal" style="max-width: 1200px; text-align: left; margin-bottom: 80px; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);">
+      <div class="app-window__bar">
+        <div class="app-window__dots">
+          <div class="app-window__dot app-window__dot--r"></div>
+          <div class="app-window__dot app-window__dot--y"></div>
+          <div class="app-window__dot app-window__dot--g"></div>
         </div>
+        <div class="app-window__title">localhost:6969 - CodyMaster Dashboard</div>
+        <div class="app-window__right"></div>
       </div>
-      <p class="born-pain__quote-text" data-i18n="bornFromPain.quote">"I'm a Product Manager with 10+ years of experience. I can't code. AI gave me 100 hands — but without discipline, those hands created chaos."</p>
-    </div>
-
-    <div class="born-pain__grid">
-      <!-- Pain Card 1 -->
-      <div class="pain-card reveal reveal-delay-1" data-pain-index="0">
-        <div class="pain-card__icon"><i data-lucide="palette"></i></div>
-        <h3 class="pain-card__title" data-i18n="bornFromPain.cards.0.title">Design Chaos</h3>
-        <p class="pain-card__pain" data-i18n="bornFromPain.cards.0.pain">AI designed every project differently. Same brand, 3 different styles.</p>
-        <span class="pain-card__solution" data-i18n="bornFromPain.cards.0.solution">cm-ux-master + cm-ui-preview</span>
-      </div>
-
-      <!-- Pain Card 2 -->
-      <div class="pain-card reveal reveal-delay-2" data-pain-index="1">
-        <div class="pain-card__icon"><i data-lucide="trash-2"></i></div>
-        <h3 class="pain-card__title" data-i18n="bornFromPain.cards.1.title">The Week AI Deleted Everything</h3>
-        <p class="pain-card__pain" data-i18n="bornFromPain.cards.1.pain">During an i18n refactor, AI lost context and deleted a week's worth of code.</p>
-        <span class="pain-card__solution" data-i18n="bornFromPain.cards.1.solution">cm-safe-i18n + cm-tdd + cm-quality-gate</span>
-      </div>
-
-      <!-- Pain Card 3 -->
-      <div class="pain-card reveal reveal-delay-3" data-pain-index="2">
-        <div class="pain-card__icon"><i data-lucide="file-question"></i></div>
-        <h3 class="pain-card__title" data-i18n="bornFromPain.cards.2.title">Great Product, Zero Users</h3>
-        <p class="pain-card__pain" data-i18n="bornFromPain.cards.2.pain">Built amazing apps but nobody knew how to use them.</p>
-        <span class="pain-card__solution" data-i18n="bornFromPain.cards.2.solution">cm-dockit + cm-content-factory</span>
-      </div>
-    </div>
-
-    <div class="born-pain__cta reveal">
-      <a href="story.html" class="born-pain__link" data-i18n="bornFromPain.readStory">Read the full story →</a>
-    </div>
-  </section>
-
-
-  <!-- ═══════════╗ SECTION 3: BEFORE / AFTER (Transformation) ╔═══════════ -->
-  <section class="section before-after" id="beforeAfter">
-    <div class="section__header reveal">
-      <p class="section__label" data-i18n="beforeAfter.label">THE TRANSFORMATION</p>
-      <h2 class="section__title" data-i18n="beforeAfter.title">Before vs After</h2>
-    </div>
-
-    <div class="before-after__grid">
-      <!-- Before -->
-      <div class="ba-column ba-column--before reveal reveal-delay-1">
-        <h3 class="ba-column__title" data-i18n="beforeAfter.before.title">❌ Without CodyMaster</h3>
-        <ul class="ba-column__list">
-          <li class="ba-column__item" data-i18n="beforeAfter.before.items.0">Design inconsistent every time</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.before.items.1">AI breaks code when context is lost</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.before.items.2">Secrets leaked to GitHub</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.before.items.3">No docs, no onboarding</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.before.items.4">Weeks of manual work</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.before.items.5">Deploy and pray</li>
-        </ul>
-      </div>
-
-      <!-- After -->
-      <div class="ba-column ba-column--after reveal reveal-delay-2">
-        <h3 class="ba-column__title" data-i18n="beforeAfter.after.title">✅ With CodyMaster</h3>
-        <ul class="ba-column__list">
-          <li class="ba-column__item" data-i18n="beforeAfter.after.items.0">Design system enforced by AI</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.after.items.1">Multi-layer protection prevents breakage</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.after.items.2">Secret scanning on every commit</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.after.items.3">Auto-generated world-class docs</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.after.items.4">Minutes from idea to production</li>
-          <li class="ba-column__item" data-i18n="beforeAfter.after.items.5">8-gate deploy pipeline + rollback</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════╗ SECTION 4: FEATURES ╔═══════════ -->
-  <section class="section" id="features">
-    <div class="section__header reveal">
-      <p class="section__label" data-i18n="features.label">WHY CODY MASTER</p>
-      <h2 class="section__title" data-i18n="features.title">Everything you need,
-in a single kit</h2>
-      <p class="section__subtitle" data-i18n="features.subtitle">No coding required. No need to hire developers. AI handles everything from A to Z.</p>
-    </div>
-
-    <div class="features__grid" id="featuresGrid">
-      <!-- Card 1: Speed -->
-      <div class="feature-card reveal reveal-delay-1" data-feature-index="0">
-        <div class="feature-card__icon feature-card__icon--speed">
-          <i data-lucide="zap" style="stroke:white"></i>
-        </div>
-        <h3 class="feature-card__title" data-i18n="features.cards.0.title">10x Faster</h3>
-        <p class="feature-card__desc" data-i18n="features.cards.0.description">From idea to a complete website in minutes. AI codes, designs, and deploys automatically — you just say what you want.</p>
-      </div>
-
-      <!-- Card 2: Quality -->
-      <div class="feature-card reveal reveal-delay-2" data-feature-index="1">
-        <div class="feature-card__icon feature-card__icon--quality">
-          <i data-lucide="shield-check"></i>
-        </div>
-        <h3 class="feature-card__title" data-i18n="features.cards.1.title">Pro Quality</h3>
-        <p class="feature-card__desc" data-i18n="features.cards.1.description">Production-ready code — not throwaway prototypes. 33 skills ensure quality from security to SEO.</p>
-      </div>
-
-      <!-- Card 3: Save -->
-      <div class="feature-card reveal reveal-delay-3" data-feature-index="2">
-        <div class="feature-card__icon feature-card__icon--save">
-          <i data-lucide="piggy-bank" style="stroke:white"></i>
-        </div>
-        <h3 class="feature-card__title" data-i18n="features.cards.2.title">Save 90%</h3>
-        <p class="feature-card__desc" data-i18n="features.cards.2.description">Compared to hiring agencies or freelancers, you save both time and money. One kit replaces an entire team.</p>
-      </div>
-
-      <!-- Card 4: Simple -->
-      <div class="feature-card reveal reveal-delay-4" data-feature-index="3">
-        <div class="feature-card__icon feature-card__icon--simple">
-          <i data-lucide="message-circle" style="stroke:white"></i>
-        </div>
-        <h3 class="feature-card__title" data-i18n="features.cards.3.title">Dead Simple</h3>
-        <p class="feature-card__desc" data-i18n="features.cards.3.description">Chat naturally, AI understands and delivers. No complex interfaces, no learning curve.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════╗ SECTION 5: HOW IT WORKS ╔═══════════ -->
-  <section class="section how" id="how">
-    <div class="section__header reveal">
-      <p class="section__label" data-i18n="howItWorks.label">HOW IT WORKS</p>
-      <h2 class="section__title" data-i18n="howItWorks.title">3 simple steps,
-from zero to hero</h2>
-    </div>
-
-    <div class="how__steps">
-      <!-- Step 1 -->
-      <div class="step-card reveal reveal-delay-1" data-step-index="0">
-        <div class="step-card__number step-card__number--1">1</div>
-        <h3 class="step-card__title" data-i18n="howItWorks.steps.0.title">Install</h3>
-        <p class="step-card__desc" data-i18n="howItWorks.steps.0.description">Add the marketplace then install the plugin.
-Done in 30 seconds.</p>
-        <div class="step-card__code step-card__code--command" data-i18n="howItWorks.steps.0.code">claude plugin install cm@codymaster</div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="step-card reveal reveal-delay-2" data-step-index="1">
-        <div class="step-card__number step-card__number--2">2</div>
-        <h3 class="step-card__title" data-i18n="howItWorks.steps.1.title">Chat</h3>
-        <p class="step-card__desc" data-i18n="howItWorks.steps.1.description">Tell AI what you want.
-In plain English, like chatting with a friend.</p>
-        <div class="step-card__code step-card__code--chat" data-i18n="howItWorks.steps.1.code">"Create a landing page
-for my coffee shop"</div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="step-card reveal reveal-delay-3" data-step-index="2">
-        <div class="step-card__number step-card__number--3">3</div>
-        <h3 class="step-card__title" data-i18n="howItWorks.steps.2.title">Launch</h3>
-        <p class="step-card__desc" data-i18n="howItWorks.steps.2.description">Complete website, auto-deployed
-to the internet. Share the link instantly.</p>
-        <div class="step-card__code step-card__code--live" data-i18n="howItWorks.steps.2.code">✓ yoursite.com is live!</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════╗ SECTION 6: USP — WHAT MAKES US DIFFERENT ╔═══════════ -->
-  <section class="section usp" id="usp">
-    <div class="section__header reveal">
-      <p class="section__label" data-i18n="usp.label">WHAT MAKES US DIFFERENT</p>
-      <h2 class="section__title" data-i18n="usp.title">Not just another AI tool.
-This is a design-first engine.</h2>
-      <p class="section__subtitle" data-i18n="usp.subtitle">CodyMaster doesn't just write code — it designs, previews, and respects your existing design system.</p>
-    </div>
-
-    <div class="usp__grid">
-      <!-- USP 1: Kanban Dashboard -->
-      <div class="usp-card reveal reveal-delay-1" data-usp-index="0">
-        <div class="usp-card__content">
-          <div class="usp-card__icon usp-card__icon--kanban">
-            <i data-lucide="kanban" style="stroke:white"></i>
+  
+      <div class="dash-body">
+        <!-- Sidebar -->
+        <div class="dash-sidebar">
+          <div class="dash-sidebar__title">
+            <span style="font-size: 24px;">🧠</span> Cody
           </div>
-          <h3 class="usp-card__title" data-i18n="usp.cards.0.title">Kanban Dashboard</h3>
-          <p class="usp-card__desc" data-i18n="usp.cards.0.description">Manage your entire project visually. Track tasks, skill pipelines, and deployments in real-time — all from one command center.</p>
-        </div>
-        <div class="usp-card__visual usp-visual--kanban">
-          <div class="kanban-mock">
-            <div class="kanban-col">
-              <div class="kanban-col__header">To Do</div>
-              <div class="kanban-item kanban-item--purple">Design UI</div>
-              <div class="kanban-item kanban-item--blue">Write API</div>
+          
+          <div class="dash-section">
+            <div class="dash-section__label">Workspaces</div>
+            <div class="dash-item active">
+              <div class="dash-item__left"><i data-lucide="box" style="width:16px;height:16px;"></i> codymaster-core</div>
+              <div class="dash-badge">9</div>
             </div>
-            <div class="kanban-col">
-              <div class="kanban-col__header">In Progress</div>
-              <div class="kanban-item kanban-item--lime">Auth Flow</div>
+            <div class="dash-item">
+              <div class="dash-item__left"><i data-lucide="layout" style="width:16px;height:16px;"></i> figma-to-code</div>
+              <div class="dash-badge">3</div>
             </div>
-            <div class="kanban-col">
-              <div class="kanban-col__header">Done ✓</div>
-              <div class="kanban-item kanban-item--green">Deploy v1</div>
-              <div class="kanban-item kanban-item--green">SEO Audit</div>
+            <div class="dash-item">
+              <div class="dash-item__left"><i data-lucide="globe" style="width:16px;height:16px;"></i> i18n-engine</div>
+              <div class="dash-badge">5</div>
+            </div>
+          </div>
+          
+          <div class="dash-section">
+            <div class="dash-section__label">Active Agents</div>
+            <div class="dash-item" style="color:#22c55e;">
+              <div class="dash-item__left"><span style="display:inline-block;width:8px;height:8px;background:#22c55e;border-radius:50%;"></span> Antigravity</div>
+              <div class="dash-badge">4</div>
+            </div>
+            <div class="dash-item" style="color:#3b82f6;">
+              <div class="dash-item__left"><span style="display:inline-block;width:8px;height:8px;background:#3b82f6;border-radius:50%;"></span> Claude 3.7</div>
+              <div class="dash-badge">3</div>
+            </div>
+            <div class="dash-item" style="color:#a1a1aa;">
+              <div class="dash-item__left"><span style="display:inline-block;width:8px;height:8px;background:#71717a;border-radius:50%;"></span> Cursor</div>
+              <div class="dash-badge">2</div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- USP 2: Preview Design Before Code -->
-      <div class="usp-card reveal reveal-delay-2" data-usp-index="1">
-        <div class="usp-card__content">
-          <div class="usp-card__icon usp-card__icon--preview">
-            <i data-lucide="eye" style="stroke:white"></i>
-          </div>
-          <h3 class="usp-card__title" data-i18n="usp.cards.1.title">Preview Design Before Code</h3>
-          <p class="usp-card__desc" data-i18n="usp.cards.1.description">See exactly what your UI will look like before a single line of code is written. Iterate on design with AI — no surprises.</p>
-        </div>
-        <div class="usp-card__visual usp-visual--preview">
-          <div class="preview-mock">
-            <div class="preview-mock__toolbar">
-              <div class="preview-dot preview-dot--red"></div>
-              <div class="preview-dot preview-dot--yellow"></div>
-              <div class="preview-dot preview-dot--green"></div>
-              <span class="preview-mock__url">preview.localhost</span>
+  
+        <!-- Main Dash -->
+        <div class="dash-main">
+          <div class="dash-header">
+            <div style="font-weight: 600; font-size: 16px; display:flex; gap:12px; align-items:center;">
+              <i data-lucide="menu" style="width:18px;height:18px;"></i>
+              codymaster-core Sprint
             </div>
-            <div class="preview-mock__body">
-              <div class="preview-nav-mock"></div>
-              <div class="preview-hero-mock">
-                <div class="preview-text-mock preview-text-mock--title"></div>
-                <div class="preview-text-mock preview-text-mock--subtitle"></div>
-                <div class="preview-btn-mock"></div>
+            <div class="dash-header__tabs">
+              <div class="dash-tab active"><i data-lucide="kanban-square" style="width:16px;height:16px;"></i> Kanban</div>
+              <div class="dash-tab"><i data-lucide="clock" style="width:16px;height:16px;"></i> History</div>
+              <div class="dash-tab"><i data-lucide="rocket" style="width:16px;height:16px;"></i> Deploys</div>
+              <div class="dash-tab"><i data-lucide="brain" style="width:16px;height:16px;color:#f472b6;"></i> Brain Network</div>
+            </div>
+            <div style="display: flex; align-items: center;">
+              <span style="font-size: 12px; color: #a1a1aa; margin-right: 16px; display: none; @media(min-width: 600px) { display: inline; }">● 2 active &nbsp; ● 4 done &nbsp; <span style="color:#22c55e;">● Live Sync</span></span>
+              <button style="background: #3b82f6; color: #fff; border:none; padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor:pointer;">+ Issue Command</button>
+            </div>
+          </div>
+  
+          <!-- Board -->
+          <div class="kanban-board">
+            
+            <div class="kanban-column">
+              <div class="kanban-column__header">
+                <div class="kanban-column__title col-backlog">Brainstorming</div>
+                <div class="dash-badge">2</div>
               </div>
-              <div class="preview-cards-mock">
-                <div class="preview-card-mock"></div>
-                <div class="preview-card-mock"></div>
-                <div class="preview-card-mock"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- USP 3: Full Design Control -->
-      <div class="usp-card reveal reveal-delay-3" data-usp-index="2">
-        <div class="usp-card__content">
-          <div class="usp-card__icon usp-card__icon--controls">
-            <i data-lucide="sliders-horizontal" style="stroke:white"></i>
-          </div>
-          <h3 class="usp-card__title" data-i18n="usp.cards.2.title">Full Design Control</h3>
-          <p class="usp-card__desc" data-i18n="usp.cards.2.description">Choose your aesthetic — typography, colors, spacing, animations. AI follows YOUR design direction, not random defaults.</p>
-        </div>
-        <div class="usp-card__visual usp-visual--controls">
-          <div class="controls-mock">
-            <div class="control-row">
-              <span class="control-label">Font</span>
-              <span class="control-value">Space Grotesk</span>
-            </div>
-            <div class="control-row">
-              <span class="control-label">Primary</span>
-              <div class="control-colors">
-                <span class="control-swatch" style="background:#C4F82A"></span>
-                <span class="control-swatch" style="background:#7C3AED"></span>
-                <span class="control-swatch control-swatch--active" style="background:#2563EB"></span>
-                <span class="control-swatch" style="background:#F97316"></span>
-              </div>
-            </div>
-            <div class="control-row">
-              <span class="control-label">Radius</span>
-              <div class="control-slider">
-                <div class="control-slider__track">
-                  <div class="control-slider__fill"></div>
-                  <div class="control-slider__thumb"></div>
+              <div class="kanban-cards">
+                <div class="kanban-card">
+                  <div class="kanban-card__title">React/Next.js UI Gen</div>
+                  <div class="kanban-card__desc">Integrate `cm-ui-preview` with Google Stitch MCP to build components directly from Figma.</div>
+                  <div class="kanban-card__footer">
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #a1a1aa;"><span style="width: 6px; height: 6px; background: #71717a; border-radius: 50%;"></span> Unassigned</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag" style="background:rgba(59,130,246,0.2);color:#60a5fa;">INNOVATION</span>
+                    </div>
+                  </div>
                 </div>
-                <span class="control-value">12px</span>
+                <div class="kanban-card">
+                  <div class="kanban-card__title">Multi-Agent Swarm</div>
+                  <div class="kanban-card__desc">Allow Claude and Antigravity to collaborate on the same repo concurrently with shared brain context.</div>
+                  <div class="kanban-card__footer">
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #a1a1aa;"><span style="width: 6px; height: 6px; background: #71717a; border-radius: 50%;"></span> Unassigned</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag" style="background:rgba(234,179,8,0.2);color:#facc15;">RESEARCH</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="control-row">
-              <span class="control-label">Style</span>
-              <span class="control-badge">Modern Dark</span>
+            
+            <div class="kanban-column">
+              <div class="kanban-column__header">
+                <div class="kanban-column__title col-progress">In Progress</div>
+                <div class="dash-badge">2</div>
+              </div>
+              <div class="kanban-cards">
+                <div class="kanban-card">
+                  <div class="kanban-card__title">Self-Healing Memory</div>
+                  <div class="kanban-card__desc">Implement TTL decay and scoped loading for `cm-continuity`. Prevent long-term context limits easily.</div>
+                  <div class="kanban-card__footer">
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #3b82f6;"><span style="width: 6px; height: 6px; background: #3b82f6; border-radius: 50%;"></span> Claude</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag tag-urgent" style="margin-right:4px;">CORE</span>
+                      <span class="kanban-tag tag-urgent">BRAIN</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-card">
+                  <div class="kanban-card__title">Frappe App Automation</div>
+                  <div class="kanban-card__desc">Upgrade the ERPNext integration to auto-generate custom DocTypes, Webhooks, and API Endpoints.</div>
+                  <div class="kanban-card__footer">
+                    <div class="kanban-agent">Antigravity</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag tag-high">HIGH</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="kanban-column">
+              <div class="kanban-column__header">
+                <div class="kanban-column__title col-review">Test Gates</div>
+                <div class="dash-badge">1</div>
+              </div>
+              <div class="kanban-cards">
+                <div class="kanban-card">
+                  <div class="kanban-card__title">100% Secret-Shield Pre-commit</div>
+                  <div class="kanban-card__desc">Review Gitleaks & regex patterns preventing API keys from being pushed. Verification 8/10.</div>
+                  <div class="kanban-card__footer">
+                    <div class="kanban-agent">Antigravity</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag" style="background:rgba(239,68,68,0.2);color:#fca5a5;">SECURITY</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="kanban-column">
+              <div class="kanban-column__header">
+                <div class="kanban-column__title col-done">Shipped (USPs)</div>
+                <div class="dash-badge">4</div>
+              </div>
+              <div class="kanban-cards">
+                <div class="kanban-card">
+                  <div class="kanban-card__title">TDD & Deploy Gate Matrix</div>
+                  <div class="kanban-card__desc">Zero-config 8-gate test framework. Code is stable and safe before CI/CD ever triggers.</div>
+                  <div class="kanban-card__footer">
+                    <div class="kanban-agent">Antigravity</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag" style="background:rgba(34,197,94,0.2);color:#86efac;">STABLE</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-card">
+                  <div class="kanban-card__title">Automated i18n Factory</div>
+                  <div class="kanban-card__desc">Extract, translate, and verify 6+ languages dynamically using the multi-pass batch skill.</div>
+                  <div class="kanban-card__footer">
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #3b82f6;"><span style="width: 6px; height: 6px; background: #3b82f6; border-radius: 50%;"></span> Claude</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag" style="background:rgba(34,197,94,0.2);color:#86efac;">STABLE</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-card">
+                  <div class="kanban-card__title">Deep Semantic Search</div>
+                  <div class="kanban-card__desc">`cm-deep-search` operational. Over 700 project files indexed for instant RAG-style context.</div>
+                  <div class="kanban-card__footer">
+                    <div class="kanban-agent">Antigravity</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag" style="background:rgba(34,197,94,0.2);color:#86efac;">STABLE</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-card" style="margin-bottom:0;">
+                  <div class="kanban-card__title">33+ Turn-key Skills</div>
+                  <div class="kanban-card__desc">Integrated full skill set. UX tests, booking calendars, and 30 others live on local context.</div>
+                  <div class="kanban-card__footer">
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #a1a1aa;"><span style="width: 6px; height: 6px; background: #71717a; border-radius: 50%;"></span> System</div>
+                    <div class="kanban-tags">
+                      <span class="kanban-tag" style="background:rgba(34,197,94,0.2);color:#86efac;">STABLE</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Problem Section -->
+    <section class="home-section reveal">
+      <h2 class="home-section__title" data-i18n="readme.problemTitle">🛑 The Problem Nobody Talks About</h2>
+      <p class="home-section__subtitle" data-i18n="readme.problemSubtitle">You installed an AI coding agent. It writes code faster than any human. But then reality hits.</p>
+
+      <div class="home-problem-card">
+        <div class="home-problem-list">
+          <div class="home-problem-item">
+            <div class="home-problem-col">
+              <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
+              <p data-i18n="readme.prob1a">AI designs differently every single time — same brand, 3 different styles.</p>
+            </div>
+            <div class="home-problem-col">
+              <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
+              <p data-i18n="readme.prob1b">Clients think you're 3 different companies.</p>
+            </div>
+          </div>
+          <div class="home-problem-item">
+            <div class="home-problem-col">
+              <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
+              <p data-i18n="readme.prob2a">AI fixes one bug, silently breaks 5 other things.</p>
+            </div>
+            <div class="home-problem-col">
+              <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
+              <p data-i18n="readme.prob2b">You redo the same work 3-4 times.</p>
+            </div>
+          </div>
+          <div class="home-problem-item">
+            <div class="home-problem-col">
+              <h4 data-i18n="readme.probWhat">What Actually Happens 😵</h4>
+              <p data-i18n="readme.prob3a">AI writes zero tests, zero docs. Deploys to production = deploy and pray 🙏</p>
+            </div>
+            <div class="home-problem-col">
+              <h4 data-i18n="readme.probCost">The Real Cost 💀</h4>
+              <p data-i18n="readme.prob3b">Your codebase becomes a house of cards. Broken deploys at 2 AM.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- USP 4: Works with Your Design System -->
-      <div class="usp-card reveal reveal-delay-4" data-usp-index="3">
-        <div class="usp-card__content">
-          <div class="usp-card__icon usp-card__icon--system">
-            <i data-lucide="component" style="stroke:white"></i>
-          </div>
-          <h3 class="usp-card__title" data-i18n="usp.cards.3.title">Works with Your Design System</h3>
-          <p class="usp-card__desc" data-i18n="usp.cards.3.description">Already have a design system? CodyMaster reads your existing tokens, components, and brand guidelines — then builds with them.</p>
+      <div class="home-quote">
+        "AI gave me 100 hands. But without discipline, those hands created chaos."<br>
+        <span style="font-size:14px;color:var(--text-muted);display:block;margin-top:10px;">— Tody Le, Head of Product · Creator of CodyMaster</span>
+      </div>
+    </section>
+
+    <!-- The Solution Section -->
+    <section class="home-section reveal">
+      <h2 class="home-section__title" data-i18n="readme.solutionTitle">🟢 An Entire Senior Team in One Kit</h2>
+      <p class="home-section__subtitle" data-i18n="readme.solutionSubtitle">CodyMaster acts as your senior counterpart, enforcing standards and shipping velocity across every discipline.</p>
+
+      <div class="home-team-grid">
+        <a href="for-founders.html" class="home-team-card" style="text-decoration:none;">
+          <div class="home-team-card__icon">🚀</div>
+          <div class="home-team-card__role" data-i18n="nav.forFounders">For Founders</div>
+          <div class="home-team-card__skills">Ship products, not just code</div>
+        </a>
+        <a href="for-cmos.html" class="home-team-card" style="text-decoration:none;">
+          <div class="home-team-card__icon">📢</div>
+          <div class="home-team-card__role" data-i18n="nav.forCmos">For CMOs</div>
+          <div class="home-team-card__skills">Conversion tracking &amp; ROI</div>
+        </a>
+        <a href="for-pms.html" class="home-team-card" style="text-decoration:none;">
+          <div class="home-team-card__icon">📋</div>
+          <div class="home-team-card__role" data-i18n="nav.forPms">For PMs</div>
+          <div class="home-team-card__skills">JTBD &amp; agile planning</div>
+        </a>
+        <a href="for-tech-teams.html" class="home-team-card" style="text-decoration:none;">
+          <div class="home-team-card__icon">💻</div>
+          <div class="home-team-card__role" data-i18n="nav.forTechTeams">For Tech Teams</div>
+          <div class="home-team-card__skills">TDD, architecture &amp; DevOps</div>
+        </a>
+        <a href="for-designers.html" class="home-team-card" style="text-decoration:none;">
+          <div class="home-team-card__icon">🎨</div>
+          <div class="home-team-card__role" data-i18n="nav.forDesigners">For Designers</div>
+          <div class="home-team-card__skills">UX heuristics &amp; UI preview</div>
+        </a>
+        <a href="for-claw-family.html" class="home-team-card" style="text-decoration:none;">
+          <div class="home-team-card__icon">🦞</div>
+          <div class="home-team-card__role" data-i18n="nav.forClawFamily">For Claw Family</div>
+          <div class="home-team-card__skills">OpenClaw native integrations</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="home-section reveal">
+      <h2 class="home-section__title" data-i18n="readme.featuresTitle">⚡ What Makes CodyMaster Different</h2>
+      <p class="home-section__subtitle" data-i18n="readme.featuresSubtitle">Other skill packs give you loose tools. CodyMaster gives you an interconnected operating system for your AI.</p>
+
+      <div class="home-feature-list">
+        <div class="home-feature-block">
+          <h3 data-i18n="readme.feat1Title">🔄 Full Lifecycle Coverage</h3>
+          <p data-i18n="readme.feat1Desc">No gaps. No manual handoffs. Idea → Plan → Design → Test → Code → Debug → Deploy → Document. Every single phase is covered systematically.</p>
         </div>
-        <div class="usp-card__visual usp-visual--system">
-          <div class="system-mock">
-            <div class="system-tree">
-              <div class="system-node system-node--root">
-                <span class="system-node__icon">📐</span>
-                <span>Design System</span>
-              </div>
-              <div class="system-node system-node--child">
-                <span class="system-node__icon">🎨</span>
-                <span>Tokens</span>
-                <span class="system-node__badge">24</span>
-              </div>
-              <div class="system-node system-node--child">
-                <span class="system-node__icon">🧩</span>
-                <span>Components</span>
-                <span class="system-node__badge">18</span>
-              </div>
-              <div class="system-node system-node--child system-node--active">
-                <span class="system-node__icon">✅</span>
-                <span>Compatible</span>
-              </div>
-            </div>
-          </div>
+        <div class="home-feature-block">
+          <h3 data-i18n="readme.feat2Title">🧠 A Brain That Learns</h3>
+          <p data-i18n="readme.feat2Desc">Your AI remembers what went wrong and never repeats the same mistake via <strong>cm-continuity</strong>. It auto-discovers skills and searches massive codebases in seconds.</p>
+        </div>
+        <div class="home-feature-block">
+          <h3 data-i18n="readme.feat3Title">🛡️ Multi-Layer Protection</h3>
+          <p data-i18n="readme.feat3Desc">Every line of code passes through 4 safety gates: Test-Driven Development, Security Leak Scans, Git Isolation, and a Quality Gate before deployment.</p>
+        </div>
+        <div class="home-feature-block">
+          <h3 data-i18n="readme.feat4Title">🎨 Design System Extraction</h3>
+          <p data-i18n="readme.feat4Desc">Got a legacy product? <strong>cm-ux-master</strong> scans your site, extracts tokens, and builds a strict design system. Your AI builds beautiful interfaces that match your brand.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- How It Works Section -->
+    <section class="home-section reveal">
+      <h2 class="home-section__title" data-i18n="readme.howTitle">🔄 How It Works</h2>
+      <p class="home-section__subtitle" data-i18n="readme.howSubtitle">You chat. CodyMaster orchestrates 33 skills behind the scenes. Here's the flow.</p>
 
-  <!-- ═══════════╗ SECTION 7: SOCIAL PROOF ╔═══════════ -->
-  <section class="section social-proof" id="socialProof">
-    <div class="section__header reveal">
-      <p class="section__label" data-i18n="socialProof.label">TRUSTED BY BUILDERS</p>
-      <h2 class="section__title" data-i18n="socialProof.title">Used by teams and solo builders worldwide</h2>
-    </div>
-
-    <div class="social-proof__badges reveal">
-      <a href="https://github.com/tody-agent/codymaster" target="_blank" class="social-proof__github">
-        <i data-lucide="github" style="width:24px;height:24px"></i>
-        <span data-i18n="socialProof.starOnGithub">Star on GitHub</span>
-        <span class="social-proof__star-icon">⭐</span>
-      </a>
-      <span class="social-proof__badge">
-        <i data-lucide="download" style="width:18px;height:18px"></i>
-        <span data-i18n="socialProof.openSource">100% Free & Open Source</span>
-      </span>
-      <span class="social-proof__badge">
-        <i data-lucide="globe" style="width:18px;height:18px"></i>
-        <span data-i18n="socialProof.languages">6 Languages Supported</span>
-      </span>
-    </div>
-
-    <div class="social-proof__agents reveal">
-      <span class="social-proof__agents-label" data-i18n="socialProof.worksWithLabel">Works with every major AI agent</span>
-      <div class="social-proof__agents-grid">
-        <span class="social-proof__agent"><i data-lucide="rocket" style="width:18px;height:18px"></i> Antigravity</span>
-        <span class="social-proof__agent"><i data-lucide="terminal" style="width:18px;height:18px"></i> Cursor</span>
-        <span class="social-proof__agent"><i data-lucide="code" style="width:18px;height:18px"></i> OpenCode</span>
-        <span class="social-proof__agent"><i data-lucide="zap" style="width:18px;height:18px"></i> OpenFang</span>
-        <span class="social-proof__agent"><i data-lucide="bot" style="width:18px;height:18px"></i> Claude</span>
-        <span class="social-proof__agent"><i data-lucide="code-2" style="width:18px;height:18px"></i> Windsurf / Roo</span>
-        <span class="social-proof__agent"><i data-lucide="command" style="width:18px;height:18px"></i> CLI</span>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════╗ SECTION 8: SKILLS SHOWCASE ╔═══════════ -->
-  <section class="section" id="skills">
-    <div class="section__header reveal">
-      <p class="section__label" data-i18n="skills.label">SKILL LIBRARY</p>
-      <h2 class="section__title" data-i18n="skills.title">33 Specialized Skills
-for every stage</h2>
-      <p class="section__subtitle" data-i18n="skills.subtitle">Each skill is an AI expert — from ideation, design, content writing, to security and deployment.</p>
-    </div>
-
-    <div class="skills__tabs reveal" id="skillsTabs">
-      <!-- Populated by JS -->
-    </div>
-
-    <div class="skills__grid reveal" id="skillsGrid">
-      <!-- Populated by JS -->
-    </div>
-  </section>
-
-
-  <!-- ═══════════╗ SECTION 9: BUILT FOR EVERY ROLE ╔═══════════ -->
-  <section class="section section-alt personas" id="personas">
-    <div class="section__header reveal">
-      <p class="section__label" data-i18n="personas.label">WHO IS IT FOR?</p>
-      <h2 class="section__title" data-i18n="personas.title">Built for every role on the team</h2>
-      <p class="section__subtitle" data-i18n="personas.subtitle">CodyMaster understands YOUR specific challenges. Find your role, see how it solves YOUR problems.</p>
-    </div>
-    <div class="personas__grid" id="personasGrid">
-      <!-- Populated by JS from i18n personas.cards data -->
-    </div>
-  </section>
-
-
-  <!-- ═══════════╗ SECTION 10: INSTALLATION ╔═══════════ -->
-  <section class="section section-alt" id="install">
-    <div class="section__header reveal">
-      <p class="section__label">QUICK INSTALL</p>
-      <h2 class="section__title" data-i18n="install.title">Ready in 30 seconds</h2>
-      <p class="section__subtitle" data-i18n="install.subtitle">One command installs all 33 skills. No npm, no config files — just a Claude Code plugin.</p>
-    </div>
-
-    <div class="install__tabs reveal" style="max-width:720px;margin:0 auto;">
-      <!-- Tab: One-Liner -->
-      <div class="install__method">
-        <div class="install__method-label">
-          <span class="install__badge">⚡ Fastest</span>
-          <span data-i18n="install.oneliner">One-liner (auto-detect all agents)</span>
-        </div>
-        <div class="install__code-block">
-          <code class="install__code">bash &lt;(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude</code>
-          <button class="install__copy" onclick="navigator.clipboard.writeText('bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude')" data-i18n="install.copy">Copy</button>
-        </div>
-      </div>
-
-      <!-- Divider -->
-      <div style="text-align:center;color:var(--text-muted);margin:1.5rem 0;font-size:0.85rem;" data-i18n="install.or">— or manually —</div>
-
-      <!-- Tab: Manual Steps -->
-      <div class="install__steps-mini">
-        <div class="install__step-mini">
-          <span class="install__step-num">1</span>
-          <div>
-            <p class="install__step-label" data-i18n="install.step1">Add marketplace</p>
-            <code class="install__code install__code--sm">claude plugin marketplace add tody-agent/codymaster</code>
+      <div class="home-workflow">
+        <!-- Step 1 -->
+        <div class="home-wf-step">
+          <div class="home-wf-num">1</div>
+          <div class="home-wf-body">
+            <div class="home-wf-icon">💬</div>
+            <h3 data-i18n="readme.how1Title">You Chat</h3>
+            <p data-i18n="readme.how1Desc">Describe what you want in plain language. "Build me a booking SaaS" or "Fix the login bug". That's it.</p>
+            <div class="home-wf-skills"><span>cm-start</span></div>
           </div>
         </div>
-        <div class="install__step-mini">
-          <span class="install__step-num">2</span>
-          <div>
-            <p class="install__step-label" data-i18n="install.step2">Install all 33 skills</p>
-            <code class="install__code install__code--sm">claude plugin install cm@codymaster</code>
+        <div class="home-wf-arrow"><i data-lucide="chevron-down"></i></div>
+
+        <!-- Step 2 -->
+        <div class="home-wf-step">
+          <div class="home-wf-num">2</div>
+          <div class="home-wf-body">
+            <div class="home-wf-icon">🧠</div>
+            <h3 data-i18n="readme.how2Title">AI Thinks &amp; Plans</h3>
+            <p data-i18n="readme.how2Desc">CodyMaster analyzes your request, researches the problem space, and creates a detailed implementation plan — like a senior PM would.</p>
+            <div class="home-wf-skills"><span>cm-brainstorm-idea</span><span>cm-planning</span><span>cm-jtbd</span></div>
           </div>
         </div>
-        <div class="install__step-mini">
-          <span class="install__step-num">3</span>
-          <div>
-            <p class="install__step-label" data-i18n="install.step3">Start the onboarding tour</p>
-            <code class="install__code install__code--sm">/cm:demo</code>
+        <div class="home-wf-arrow"><i data-lucide="chevron-down"></i></div>
+
+        <!-- Step 3 -->
+        <div class="home-wf-step">
+          <div class="home-wf-num">3</div>
+          <div class="home-wf-body">
+            <div class="home-wf-icon">🎨</div>
+            <h3 data-i18n="readme.how3Title">AI Designs</h3>
+            <p data-i18n="readme.how3Desc">Applies 48 UX Laws and your brand's design system to create production-ready UI — no Figma needed.</p>
+            <div class="home-wf-skills"><span>cm-ux-master</span><span>cm-ui-preview</span></div>
+          </div>
+        </div>
+        <div class="home-wf-arrow"><i data-lucide="chevron-down"></i></div>
+
+        <!-- Step 4 -->
+        <div class="home-wf-step">
+          <div class="home-wf-num">4</div>
+          <div class="home-wf-body">
+            <div class="home-wf-icon">⚒️</div>
+            <h3 data-i18n="readme.how4Title">AI Builds &amp; Tests</h3>
+            <p data-i18n="readme.how4Desc">Writes code test-first (TDD), scans for security leaks, and debugs issues automatically. No broken code ships.</p>
+            <div class="home-wf-skills"><span>cm-tdd</span><span>cm-debugging</span><span>cm-secret-shield</span></div>
+          </div>
+        </div>
+        <div class="home-wf-arrow"><i data-lucide="chevron-down"></i></div>
+
+        <!-- Step 5 -->
+        <div class="home-wf-step home-wf-step--final">
+          <div class="home-wf-num">5</div>
+          <div class="home-wf-body">
+            <div class="home-wf-icon">🚀</div>
+            <h3 data-i18n="readme.how5Title">Ship with Confidence</h3>
+            <p data-i18n="readme.how5Desc">8-gate deploy pipeline checks everything before going live. Auto-generates docs, i18n, and rollback strategy.</p>
+            <div class="home-wf-skills"><span>cm-safe-deploy</span><span>cm-quality-gate</span><span>cm-dockit</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Links -->
-      <div style="text-align:center;margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-        <a href="start.html" class="btn btn--primary" data-i18n="install.detailedGuide">Full Install Guide</a>
-        <a href="https://github.com/tody-agent/codymaster" class="btn btn--ghost" target="_blank">GitHub →</a>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="start.html" class="btn btn--primary" data-i18n="readme.howCta">Try It Now — Free</a>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- Comparison Section -->
+    <section class="home-section reveal">
+      <h2 class="home-section__title" data-i18n="readme.vsTitle">🆚 Scattered Skills vs CodyMaster</h2>
+      
+      <table class="home-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th data-i18n="readme.vsBadHeader">😵 15 Random Skills</th>
+            <th class="good" data-i18n="readme.vsGoodHeader">🧠 CodyMaster</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="readme.vsCol1">Integration</td>
+            <td class="bad" data-i18n="readme.vs1Bad">Standalone, no shared context</td>
+            <td class="good" data-i18n="readme.vs1Good">33 skills that chain and communicate</td>
+          </tr>
+          <tr>
+            <td data-i18n="readme.vsCol2">Safety</td>
+            <td class="bad" data-i18n="readme.vs2Bad">YOLO deploys directly to main</td>
+            <td class="good" data-i18n="readme.vs2Good">4-layer protection (TDD, Security, Git, CI)</td>
+          </tr>
+          <tr>
+            <td data-i18n="readme.vsCol3">Self-improvement</td>
+            <td class="bad" data-i18n="readme.vs3Bad">Static — what you install is what you get</td>
+            <td class="good" data-i18n="readme.vs3Good">Learns from mistakes, upgrades itself</td>
+          </tr>
+          <tr>
+            <td data-i18n="readme.vsCol4">Documentation</td>
+            <td class="bad" data-i18n="readme.vs4Bad">"Maybe write a README later"</td>
+            <td class="good" data-i18n="readme.vs4Good">Auto-generates complete docs &amp; SOPs</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-  <!-- ═══════════╗ STATS ╔═══════════ -->
-  <section class="stats reveal" id="stats">
-    <div class="stat">
-      <span class="stat__number stat__number--lime" data-count="33" data-suffix="">0</span>
-      <span class="stat__label" data-i18n="stats.items.0.label">AI Skills</span>
-    </div>
-    <div class="stat">
-      <span class="stat__number stat__number--purple" data-count="7" data-suffix="+">0</span>
-      <span class="stat__label" data-i18n="stats.items.1.label">Supported AI Agents</span>
-    </div>
-    <div class="stat">
-      <span class="stat__number stat__number--blue" data-count="6" data-suffix="">0</span>
-      <span class="stat__label" data-i18n="stats.items.2.label">Languages</span>
-    </div>
-    <div class="stat">
-      <span class="stat__number stat__number--orange" data-count="100" data-suffix="%">0</span>
-      <span class="stat__label" data-i18n="stats.items.3.label">Free & Open Source</span>
-    </div>
-  </section>
+    <!-- Lazy Check -->
+    <section class="home-section reveal">
+      <h2 class="home-section__title" data-i18n="readme.lazyTitle">🦥 Built For Lazy People (Seriously)</h2>
+      <div class="home-lazy-list" style="text-align:left; max-width: 600px; margin: 0 auto; line-height: 2;">
+        <p><i data-lucide="check-circle-2"></i> <span data-i18n="readme.lazy1">Type a chat message and get a <strong>working product</strong> back.</span></p>
+        <p><i data-lucide="check-circle-2"></i> <span data-i18n="readme.lazy2">Have your AI <strong>learn from its mistakes</strong> and get better every day.</span></p>
+        <p><i data-lucide="check-circle-2"></i> <span data-i18n="readme.lazy3">Never setup the same boilerplate twice.</span></p>
+        <p><i data-lucide="check-circle-2"></i> <span data-i18n="readme.lazy4">Deploy with <strong>confidence</strong> instead of praying.</span></p>
+      </div>
+    </section>
 
-  <!-- ═══════════╗ FINAL CTA ╔═══════════ -->
-  <section class="final-cta reveal" id="cta">
-    <h2 class="final-cta__title" data-i18n="cta.title">Stop planning. Start building.
-Your idea deserves to exist.</h2>
-    <p class="final-cta__subtitle" data-i18n="cta.subtitle">Free. No credit card. Setup in 30 seconds. Start building now.</p>
-    <a href="start.html" class="btn btn--primary btn--large">
-      <span data-i18n="cta.button">Start Building — Free</span>
-      <i data-lucide="arrow-right" style="width:20px;height:20px"></i>
-    </a>
-  </section>
+    <!-- Install Section -->
+    <section class="home-section reveal" id="install">
+      <h2 class="home-section__title" data-i18n="readme.installTitle">🚀 1-Minute Install</h2>
+      <p class="home-section__subtitle" data-i18n="install.universalSubtitle">One command to rule them all. Auto-detects and installs across all your AI agents and IDEs.</p>
+      
+      <!-- Supported Platforms Bar -->
+      <div class="home-supported">
+        <p class="home-supported__title" data-i18n="install.supported">SUPPORTED AGENTS &amp; IDES</p>
+        <div class="home-supported__list">
+          <span class="home-supported__item"><i data-lucide="rocket"></i> Antigravity</span>
+          <span class="home-supported__item"><i data-lucide="terminal-square"></i> Cursor</span>
+          <span class="home-supported__item"><i data-lucide="code-xml"></i> OpenCode</span>
+          <span class="home-supported__item"><i data-lucide="zap"></i> OpenFang</span>
+          <span class="home-supported__item"><i data-lucide="bot"></i> Claude</span>
+          <span class="home-supported__item"><i data-lucide="code-2"></i> Windsurf / Roo</span>
+          <span class="home-supported__item"><i data-lucide="command"></i> CLI</span>
+        </div>
+      </div>
 
-  <!-- ═══════════╗ FOOTER ╔═══════════ -->
+      <!-- Global Install -->
+      <div class="home-install-tabs">
+        <div class="home-install-tab active" data-target="global" data-i18n="install.tabGlobal">Global Install (Recommended)</div>
+        <div class="home-install-tab" data-target="manual" data-i18n="install.tabManual">Manual Setup</div>
+      </div>
+
+      <div class="home-install-content active" id="install-global">
+        <p class="home-install-desc" data-i18n="install.globalDesc">Automatically connects CodyMaster to all detected IDEs and CLI agents on your machine.</p>
+        <div class="home-install-block">
+          <code class="home-install-code">bash &lt;(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all</code>
+          <button class="btn btn--secondary" onclick="navigator.clipboard.writeText('bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all')" data-i18n="install.copy">Copy</button>
+        </div>
+      </div>
+
+      <div class="home-install-content" id="install-manual">
+        <div class="home-manual-grid">
+          <div class="home-manual-card">
+            <h4><i data-lucide="bot"></i> Claude Code</h4>
+            <code>claude plugin install cm@codymaster</code>
+          </div>
+          <div class="home-manual-card">
+            <h4><i data-lucide="terminal-square"></i> Cursor IDE</h4>
+            <code>cp -r ~/.cody-master/skills/* .cursor/skills/</code>
+          </div>
+          <div class="home-manual-card">
+            <h4><i data-lucide="rocket"></i> Antigravity / Gemini</h4>
+            <code>gemini extensions install https://github.com/tody-agent/codymaster</code>
+          </div>
+          <div class="home-manual-card">
+            <h4><i data-lucide="code-xml"></i> Global / Others</h4>
+            <code>git clone https://github.com/tody-agent/codymaster.git ~/.cody-master</code>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="start.html" class="btn btn--outline" data-i18n="install.detailedGuide">View Full Installation Guide</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= INJECTED FOOTER ================= -->
   <footer class="footer" id="siteFooter">
     <div class="footer__grid">
       <div class="footer__brand">
@@ -639,7 +626,7 @@ Your idea deserves to exist.</h2>
         <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
         <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
         <a href="story.html" data-i18n="nav.story">Our Story</a>
-        <a href="demo.html" data-i18n="nav.demo">Demo</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
@@ -654,5 +641,200 @@ Your idea deserves to exist.</h2>
   </footer>
 
   <script src="js/kit.js"></script>
-</body>
-</html>
+  <script>
+    // Re-trigger lucide icons just in case
+    if(typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // ── Install Tab Switching (Global / Manual) ──
+    document.querySelectorAll('.home-install-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active from all tabs and panels
+        document.querySelectorAll('.home-install-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.home-install-content').forEach(c => c.classList.remove('active'));
+        // Set active
+        tab.classList.add('active');
+        const target = tab.dataset.target; // 'global' or 'manual'
+        const panel = document.getElementById('install-' + target);
+        if (panel) panel.classList.add('active');
+        // Hide IDE instructions when switching tabs
+        const idePanel = document.getElementById('ide-instructions');
+        if (idePanel) idePanel.style.display = 'none';
+        document.querySelectorAll('.home-supported__item').forEach(i => i.classList.remove('active'));
+      });
+    });
+
+    // ── Per-IDE Setup Instructions ──
+    const ideInstructions = {
+      'Antigravity': {
+        title: '🚀 Antigravity / Gemini CLI',
+        steps: [
+          { label: 'Clone the skill kit', code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+          { label: 'Symlink skills into Antigravity', code: 'ln -sf ~/.cody-master/skills ~/.gemini/antigravity/skills' },
+          { label: 'Add GEMINI.md rules', code: 'cp ~/.cody-master/GEMINI.md ~/your-project/GEMINI.md' },
+          { label: 'Or use the auto-installer', code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity' }
+        ]
+      },
+      'Cursor': {
+        title: '🖥️ Cursor IDE',
+        steps: [
+          { label: 'Clone (if not done)', code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+          { label: 'Copy skills to your project', code: 'cp -r ~/.cody-master/skills .cursor/skills/' },
+          { label: 'Copy rules file', code: 'cp ~/.cody-master/.cursorrules .cursorrules' },
+          { label: 'Or use the auto-installer', code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --cursor' }
+        ]
+      },
+      'OpenCode': {
+        title: '💻 OpenCode',
+        steps: [
+          { label: 'Clone (if not done)', code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+          { label: 'Symlink skills', code: 'ln -sf ~/.cody-master/skills ~/.opencode/skills' },
+          { label: 'Copy instructions', code: 'cp ~/.cody-master/AGENTS.md .opencode/AGENTS.md' },
+          { label: 'Or use the auto-installer', code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --opencode' }
+        ]
+      },
+      'OpenFang': {
+        title: '⚡ OpenFang',
+        steps: [
+          { label: 'Clone (if not done)', code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+          { label: 'Symlink skills', code: 'ln -sf ~/.cody-master/skills ~/.openfang/skills' },
+          { label: 'Copy instructions', code: 'cp ~/.cody-master/AGENTS.md .openfang/AGENTS.md' },
+          { label: 'Or use the auto-installer', code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --openfang' }
+        ]
+      },
+      'Claude': {
+        title: '🤖 Claude Code',
+        steps: [
+          { label: 'Clone (if not done)', code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+          { label: 'Copy CLAUDE.md to your project', code: 'cp ~/.cody-master/CLAUDE.md ~/your-project/CLAUDE.md' },
+          { label: 'Copy skills', code: 'cp -r ~/.cody-master/skills ~/your-project/.claude/skills/' },
+          { label: 'Or use the auto-installer', code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude' }
+        ]
+      },
+      'Windsurf / Roo': {
+        title: '🌊 Windsurf / Roo',
+        steps: [
+          { label: 'Clone (if not done)', code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+          { label: 'Copy skills', code: 'cp -r ~/.cody-master/skills .windsurf/skills/' },
+          { label: 'Copy rules', code: 'cp ~/.cody-master/.windsurfrules .windsurfrules' },
+          { label: 'Or use the auto-installer', code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --windsurf' }
+        ]
+      },
+      'CLI': {
+        title: '⌨️ CLI (Global)',
+        steps: [
+          { label: 'Install globally with one command', code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all' },
+          { label: 'Or clone manually', code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+          { label: 'Add to PATH (optional)', code: 'echo \'export PATH="$HOME/.cody-master/bin:$PATH"\' >> ~/.zshrc && source ~/.zshrc' }
+        ]
+      }
+    };
+
+    // Create IDE instructions panel (hidden by default)
+    const idePanel = document.createElement('div');
+    idePanel.id = 'ide-instructions';
+    idePanel.style.display = 'none';
+    idePanel.className = 'home-install-content active';
+    // Insert after install-manual div
+    const manualDiv = document.getElementById('install-manual');
+    manualDiv.parentNode.insertBefore(idePanel, manualDiv.nextSibling);
+
+    // Make supported items clickable
+    document.querySelectorAll('.home-supported__item').forEach(item => {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', () => {
+        const name = item.textContent.trim();
+        const info = ideInstructions[name];
+        if (!info) return;
+
+        // Highlight selected IDE
+        document.querySelectorAll('.home-supported__item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        // Switch to manual tab style (deactivate install tabs)
+        document.querySelectorAll('.home-install-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.home-install-content').forEach(c => c.classList.remove('active'));
+
+        // Build instructions
+        let html = '<h3 style="text-align:center;font-family:var(--font-display);font-size:1.4rem;color:var(--text-primary);margin-bottom:24px;">' + info.title + '</h3>';
+        html += '<div class="home-manual-grid" style="grid-template-columns:1fr;">';
+        info.steps.forEach((step, i) => {
+          html += '<div class="home-manual-card">';
+          html += '<h4><span style="background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">' + (i + 1) + '</span> ' + step.label + '</h4>';
+          html += '<code>' + step.code + '</code>';
+          html += '</div>';
+        });
+        html += '</div>';
+
+        idePanel.innerHTML = html;
+        idePanel.style.display = 'block';
+
+        // Scroll to instructions
+        idePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        // Re-create lucide icons if needed
+        if (window.lucide) lucide.createIcons();
+      });
+    });
+  </script>
+
+  <!-- Typewriter USP Rotation -->
+  <script>
+  (function() {
+    const messages = [
+      "CodyMaster makes it wise.",
+      "33 skills. Zero chaos.",
+      "From idea to deploy. One chat.",
+      "Ship products, not just code.",
+      "AI that never breaks twice.",
+      "Your senior team, on demand.",
+      "Discipline built in. Not bolted on."
+    ];
+    const el = document.getElementById('typewriter-text');
+    if (!el) return;
+
+    const TYPING_SPEED   = 45;   // ms per char typing
+    const ERASING_SPEED   = 25;   // ms per char erasing
+    const PAUSE_AFTER     = 2400; // ms to hold the full message
+    const PAUSE_BEFORE    = 400;  // ms before typing next
+
+    let msgIdx = 0;
+
+    function typeMessage(text, cb) {
+      let i = 0;
+      function tick() {
+        el.textContent = text.slice(0, ++i);
+        if (text.length > i) setTimeout(tick, TYPING_SPEED);
+        else setTimeout(cb, PAUSE_AFTER);
+      }
+      tick();
+    }
+
+    function eraseMessage(cb) {
+      let txt = el.textContent;
+      function tick() {
+        txt = txt.slice(0, -1);
+        el.textContent = txt;
+        if (txt.length > 0) setTimeout(tick, ERASING_SPEED);
+        else setTimeout(cb, PAUSE_BEFORE);
+      }
+      tick();
+    }
+
+    function loop() {
+      typeMessage(messages[msgIdx], function() {
+        eraseMessage(function() {
+          msgIdx = (msgIdx + 1) % messages.length;
+          loop();
+        });
+      });
+    }
+
+    loop();
+  })();
+  </script>
+
+
+
+</body></html>

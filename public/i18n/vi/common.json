@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "CodyMaster Kit — Biến ý tưởng thành sản phẩm nhanh gấp 10 lần",
+    "description": "33 AI Agent Skills giúp bạn đi từ ý tưởng đến thiết kế, lập trình và triển khai — không cần biết code."
+  },
+  "nav": {
+    "features": "Tính năng",
+    "howItWorks": "Cách hoạt động",
+    "deepDive": "Chi tiết",
+    "personas": "Dành cho bạn",
+    "docs": "Tài liệu",
+    "skills": "Kỹ năng",
+    "story": "Câu chuyện",
+    "whyCodyMaster": "Vì sao chọn CodyMaster",
+    "vsOthers": "So sánh",
+    "vsScrum": "vs Scrum",
+    "getStarted": "Bắt đầu",
+    "demo": "Demo",
+    "brain": "Brain",
+    "playbook": "Playbook",
+    "cli": "CLI"
+  },
+  "cta": {
+    "title": "Ngừng lên kế hoạch. Bắt đầu xây dựng.\nÝ tưởng của bạn xứng đáng tồn tại.",
+    "subtitle": "Miễn phí. Không cần thẻ. Cài đặt trong 30 giây. Bắt đầu xây ngay.",
+    "button": "Bắt Đầu Xây — Miễn Phí"
+  },
+  "footer": {
+    "links": [
+      "GitHub",
+      "Tài liệu",
+      "Discord"
+    ],
+    "copyright": "© 2026 CodyMaster · Được tạo bởi AI"
+  },
+  "socialProof": {
+    "label": "ĐƯỢC TIN TƯỞNG BỞI BUILDERS",
+    "title": "Được sử dụng bởi các đội nhóm và builders solo toàn cầu",
+    "starOnGithub": "Star trên GitHub",
+    "openSource": "100% Miễn phí & Mã nguồn mở",
+    "languages": "Hỗ trợ 6 ngôn ngữ",
+    "worksWithLabel": "Tương thích mọi AI agent lớn"
+  },
+  "stats": {
+    "items": [
+      {
+        "number": "33",
+        "label": "Kỹ năng AI"
+      },
+      {
+        "number": "7+",
+        "label": "AI Agent hỗ trợ"
+      },
+      {
+        "number": "6",
+        "label": "Ngôn ngữ"
+      },
+      {
+        "number": "100%",
+        "label": "Miễn phí & Mã nguồn mở"
+      }
+    ]
+  },
+  "claw": {
+    "label": "TƯƠNG THÍCH TOÀN CẦU",
+    "title": "Một Cấu Hình. Mọi AI Agent Cùng Tuân Thủ.",
+    "subtitle": "Sức mạnh từ CodyMaster Claw. Viết hướng dẫn lệnh một lần, chạy ở mọi nơi."
+  }
+}

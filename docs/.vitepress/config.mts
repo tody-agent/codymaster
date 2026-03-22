@@ -109,6 +109,7 @@ export default withMermaid(defineConfig({
                 { text: 'cm-identity-guard', link: '/skills/cm-identity-guard' },
                 { text: 'cm-git-worktrees', link: '/skills/cm-git-worktrees' },
                 { text: 'cm-terminal', link: '/skills/cm-terminal' },
+                { text: 'cm-safe-i18n', link: '/skills/cm-safe-i18n' },
               ]
             },
             {
@@ -129,6 +130,7 @@ export default withMermaid(defineConfig({
                 { text: 'cm-dockit', link: '/skills/cm-dockit' },
                 { text: 'cm-readit', link: '/skills/cm-readit' },
                 { text: 'cm-project-bootstrap', link: '/skills/cm-project-bootstrap' },
+                { text: 'cm-jtbd', link: '/skills/cm-jtbd' },
               ]
             },
             {
@@ -141,23 +143,20 @@ export default withMermaid(defineConfig({
               ]
             },
             {
-              text: '🧪 Specialized',
-              collapsed: true,
-              items: [
-                { text: 'cm-jtbd', link: '/skills/cm-jtbd' },
-              ]
-            },
-            {
               text: '🎯 Orchestration',
               collapsed: true,
               items: [
                 { text: 'cm-execution', link: '/skills/cm-execution' },
                 { text: 'cm-continuity', link: '/skills/cm-continuity' },
                 { text: 'cm-skill-chain', link: '/skills/cm-skill-chain' },
+                { text: 'cm-skill-index', link: '/skills/cm-skill-index' },
                 { text: 'cm-skill-mastery', link: '/skills/cm-skill-mastery' },
-                { text: 'cm-safe-i18n', link: '/skills/cm-safe-i18n' },
+                { text: 'cm-deep-search', link: '/skills/cm-deep-search' },
                 { text: 'cm-how-it-work', link: '/skills/cm-how-it-work' },
                 { text: 'cm-example', link: '/skills/cm-example' },
+                { text: 'cm-start', link: '/skills/cm-start' },
+                { text: 'cm-dashboard', link: '/skills/cm-dashboard' },
+                { text: 'cm-status', link: '/skills/cm-status' },
               ]
             },
           ]
@@ -184,7 +183,7 @@ export default withMermaid(defineConfig({
     },
     
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/omisocial/cody-master' },
+      { icon: 'github', link: 'https://github.com/tody-agent/codymaster' },
     ],
     
     search: {
@@ -201,7 +200,7 @@ export default withMermaid(defineConfig({
     },
     
     editLink: {
-      pattern: 'https://github.com/omisocial/cody-master/edit/main/docs/:path',
+      pattern: 'https://github.com/tody-agent/codymaster/edit/main/docs/:path',
       text: 'Edit this page on GitHub',
     },
   },

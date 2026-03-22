@@ -1,0 +1,304 @@
+{
+  "vsScrum": {
+    "meta": {
+      "title": "Sự Khác Biệt — Agile Team vs CodyMaster + AI",
+      "description": "Tại sao các nhóm Scrum/Agile truyền thống không thể cạnh tranh với quy trình AI-first. So sánh 6 tháng vs 2 tuần hoàn thành dự án với CodyMaster."
+    },
+    "hero": {
+      "badge": "Từ Một Người Đã Từng Trải",
+      "title": "Agile Đã <span class=\"dead\">Chết</span>.<br>\n        AI-First Là <span class=\"alive\">Bây Giờ</span>.",
+      "sub": "Tôi đã từng tin Agile là chân lý trong nhiều năm. Họp plan, standup, retro — đủ mọi quy trình. Cho đến khi tôi thấy một người cầm AI xây trong 2 tuần những gì team Scrum 8 người của tôi mất 6 tháng. Đó là lúc tôi hiểu: <strong>cuộc chơi đã thay đổi</strong>.",
+      "author": "Từ một PM nay đã xây sản phẩm nhanh gấp 10 lần"
+    },
+    "intro": {
+      "quote": "\"Tôi từng ngưỡng mộ Agile. Giờ tôi thấy rõ bản chất của nó: <strong>một lớp quản lý quan liêu làm chậm người tài</strong>. Ngay cả sprint 1 tuần cũng là quá chậm khi đối thủ ra mắt tính năng trong một ngày. Một MVP <strong>tốn $500K - $1M mà chưa chắc đã có ai dùng</strong>.\""
+    },
+    "pains": {
+      "label": "😤 NỖI ĐAU THỰC SỰ",
+      "title": "Vì sao Agile đang dần chết",
+      "sub": "Mọi vai trò trong team Scrum đều đang chịu khổ. Đây là những điều không ai nói ở các hội thảo Agile.",
+      "cards": [
+        {
+          "role": "STAKEHOLDER / CEO",
+          "title": "Cổ Chai Quyết Định",
+          "desc": "Sếp quá bận với 10 phòng ban khác. Không có thời gian review kỹ mọi feature. Quyết định chậm lại. Không đủ thông tin mà vẫn duyệt. Dù thế nào, sản phẩm đều chịu hậu quả. Khi mỗi feature giá $50K, mọi chữ 'Yes' đều quá mạo hiểm."
+        },
+        {
+          "role": "PRODUCT MANAGER",
+          "title": "Vòng Lặp Vô Tận",
+          "desc": "Khảo sát nhu cầu. Phỏng vấn khách hàng. Viết specs. Ban bệ với Design. Cãi nhau lên xuống. Rồi giải thích cho Dev mỗi tuần. Nếu sai? Làm lại từ đầu. Có khi feature bị bỏ đi sau nhiều tuần. Stakeholder mất lòng tin."
+        },
+        {
+          "role": "DESIGNER",
+          "title": "Hội đồng Thẩm định",
+          "desc": "Sửa đi sửa lại bản thiết kế bị mổ xẻ lúc review. Redesign dựa trên 'feedback' mà thực chất chỉ là ý kiến cá nhân. Đợi mòn mỏi Dev code — rồi nhìn design bị băm nát. Figma đẹp bao nhiêu, production nát bấy nhiêu."
+        },
+        {
+          "role": "DEVELOPER",
+          "title": "Bị Deadline Đè Bẹp",
+          "desc": "Không hiểu feature sinh ra làm gì. Chả mấy khi được góp ý tưởng. Bị đè bẹp bởi deadline mỗi sprint. Làm gấp thì lỗi, cuối tuần phải sửa. Làm cẩn thận thì bị chê 'quá chậm'. Và giờ AI còn đang đe dọa cả sự nghiệp."
+        },
+        {
+          "role": "QA / TESTER",
+          "title": "Vòng Tròn Lặp Lại",
+          "desc": "Test cùng một feature hàng trăm lần mỗi năm. Nếu PM phân tích kém hoặc Dev code ẩu? Cuộc sống bị kẹt trong những vòng regression testing ác mộng. Khi team khác làm tốt, bạn ổn. Khi họ làm ẩu — bạn là người phải thức khuya dọn dẹp."
+        },
+        {
+          "role": "CÔNG TY",
+          "title": "10 Tỷ Đồng Cho Một MVP",
+          "desc": "Team 8 người × 6 tháng = ngốn tiền kinh khủng. 500K tới 1M USD để xong cái MVP - và đó mới chỉ bắt đầu. Trong khi đó, một Founder dùng AI có thể ship sản phẩm đối thủ trong 2 tuần, gần như 0Đ. Ai sẽ thắng?"
+        }
+      ]
+    },
+    "timeline": {
+      "label": "⏱️ THỜI GIAN ĐƯA RA THỊ TRƯỜNG",
+      "title": "6 Tháng vs 2 Tuần",
+      "agile": {
+        "label": "👥 Team Scrum Truyền Thống (8 người)",
+        "bar": "6 tháng — 24 sprints",
+        "phases": [
+          "Discovery (4 tuần)",
+          "Phân tích (3 tuần)",
+          "Thiết kế (4 tuần)",
+          "Dev Sprint 1-8 (8 tuần)",
+          "QA (3 tuần)",
+          "Sửa Bugs (2 tuần)",
+          "Deploy (1 tuần)"
+        ],
+        "cost": "💰 Tốn $500K – $1M",
+        "time": "~26 tuần tổng"
+      },
+      "cm": {
+        "label": "⚡ CodyMaster + AI (1 người)",
+        "bar": "1-2 tuần",
+        "phases": [
+          "Brainstorm (2 giờ)",
+          "Lập Plan (1 giờ)",
+          "Design (4 giờ)",
+          "Code Build (5 ngày)",
+          "Test (auto)",
+          "Deploy (30 phút)"
+        ],
+        "cost": "💰 ~$0 (Chỉ tốn phí API)",
+        "time": "~1-2 tuần tổng"
+      }
+    },
+    "roles": {
+      "label": "👥 SO SÁNH TỪNG VAI TRÒ",
+      "title": "Mọi Vai Trò Sẽ Thay Đổi Ra Sao",
+      "sub": "Không phải để thay thế con người. Mà là loại bỏ sức ỳ và quy trình thừa.",
+      "headers": {
+        "role": "Vai trò",
+        "scrum": "❌ Trong Team Scrum",
+        "cm": "⚡ Với CodyMaster + AI"
+      },
+      "list": [
+        {
+          "role": "👔 Stakeholder",
+          "scrum": "Review những tài liệu họ không hiểu hết. Trì hoãn quyết định do chi phí feature quá đắt.<br><span class=\"role-pain\">⚠️ Là cổ chai của nguyên team</span>",
+          "cm": "Xem prototype chạy thật trong vài ngày, không phải xem slide lỏ. Quyết định rẻ — thử, tối ưu, hoặc bỏ nhanh chóng.<br><span class=\"role-win\">✓ Quyết định bằng số thật, không đoán mò</span>"
+        },
+        {
+          "role": "📋 Product Manager",
+          "scrum": "Tốn hàng tuần làm specs, lấy requirements. Cãi nhau với design, dev. Hàng tháng trời không ra tính năng mới.<br><span class=\"role-pain\">⚠️ Hàng tháng trời công sức bốc hơi</span>",
+          "cm": "AI hỗ trợ research. Specs tự generate. Prototype xong trong vài giờ. PM tập trung vào việc quản trị, chiến lược.<br><span class=\"role-win\">✓ Từ vị trí hành chính sang nhà chiến lược</span>"
+        },
+        {
+          "role": "🎨 Designer",
+          "scrum": "Thiết kế bị 'hội đồng thẩm định' mổ xẻ liên tục. Bị trả về vì các ý kiến cảm tính. Dev code xong thì hỏng mịa nó UX/UI.<br><span class=\"role-pain\">⚠️ Sáng tạo chết chìm trong khâu thực thi</span>",
+          "cm": "AI tạo UI từ Design System chuẩn 48 UX Laws. Code đúng như thiết kế. Designer giờ đây là Creative Director đích thực.<br><span class=\"role-win\">✓ Sáng tạo thực thụ, không cãi vã về pixel</span>"
+        },
+        {
+          "role": "💻 Developer",
+          "scrum": "Code không biết 'why'. Bị dí KPI sprint liên tọi. Sợ AI giành mất việc.<br><span class=\"role-pain\">⚠️ Burn out, lo âu, thiếu ghi nhận</span>",
+          "cm": "AI code chuẩn TDD và Quality Gates, deploy CI/CD tự động 8 bước. Lên level thành Architect, chỉ review và quyết định.<br><span class=\"role-win\">✓ Từ thợ gõ phím sang kiến trúc sư</span>"
+        },
+        {
+          "role": "🧪 QA / Tester",
+          "scrum": "Regression test đến mòn cả móng tay mỗi sprint. Dev code ẩu thì cắm mặt làm OT.<br><span class=\"role-pain\">⚠️ Lặp lại lặp lại cắm mặt vào cày, chưa kể bị layoff đầu tiên</span>",
+          "cm": "Test viết và chạy tự động hoàn toàn bởi AI. QA mở rộng tập trung vào UX validation.<br><span class=\"role-win\">✓ Từ robot bấm tay thành Quality Champion</span>"
+        }
+      ]
+    },
+    "stats": [
+      {
+        "icon": "⚡",
+        "number": "12×",
+        "label": "Tốc Độ Ra Mắt",
+        "sub": "2 tuần vs 6 tháng"
+      },
+      {
+        "icon": "💰",
+        "number": "99%",
+        "label": "Giảm Chi Phí",
+        "sub": "~$0 vs $500K-$1M"
+      },
+      {
+        "icon": "👤",
+        "number": "1",
+        "label": "Người = Siêu Team",
+        "sub": "1 người vs 8+ chuyên gia"
+      },
+      {
+        "icon": "🛡️",
+        "number": "33+",
+        "label": "Kỹ Năng AI Experrt",
+        "sub": "Có đủ: PM, Design, Dev, QA, Deploy"
+      }
+    ],
+    "skills": {
+      "label": "🧠 TEAM AI CỦA BẠN",
+      "title": "Hơn 33 Phẩm Chất Kỹ Năng, 0 Buổi Họp",
+      "sub": "Tất cả kỹ năng mà 1 team Scrum 8 người cần có — nay được tự động hóa, quy trình siêu chuẩn, làm 24/7.",
+      "list": [
+        {
+          "name": "cm-brainstorm-idea",
+          "desc": "Phân tích, đánh giá, design insight (thay thế PM)"
+        },
+        {
+          "name": "cm-planning",
+          "desc": "Lập plan hoàn chỉnh (thay thế họp hành)"
+        },
+        {
+          "name": "cm-ux-master",
+          "desc": "Ráp code đúng 48 luật UX UI (thay thế designer)"
+        },
+        {
+          "name": "cm-tdd",
+          "desc": "Code chuẩn Auto testing (thay thế QA Manual)"
+        },
+        {
+          "name": "cm-secret-shield",
+          "desc": "Quét lộ lọt key/pasword (thay thế devsec)"
+        },
+        {
+          "name": "cm-safe-deploy",
+          "desc": "Pipeline CI/CD siêu chuẩn 8 vòng (thay thế DevOps)"
+        },
+        {
+          "name": "cm-dockit",
+          "desc": "Làm Docs tự động (thay thế QC/Business Analyst)"
+        },
+        {
+          "name": "cm-content-factory",
+          "desc": "Làm nội dung, translate (thay thế Content)"
+        },
+        {
+          "name": "cm-safe-i18n",
+          "desc": "Scan ra đa ngôn ngữ chuẩn (thay thế Translater)"
+        },
+        {
+          "name": "cm-debugging",
+          "desc": "Phân tích nguyên nhân root bugs sâu (thay thế bug triage)"
+        },
+        {
+          "name": "cm-quality-gate",
+          "desc": "Đòi chứng cứ trước thả ra (thay thế manual testing)"
+        },
+        {
+          "name": "cm-jtbd",
+          "desc": "Phân tích job to be done của User (thay thế user research)"
+        }
+      ]
+    },
+    "manifesto": {
+      "label": "💜 SỰ THẬT TỪ ĐÁY LÒNG",
+      "title": "Không Hề Nhằm Thay Thế Ai Cả",
+      "cardTitle": "Để Giải Phóng Mọi Người",
+      "cardText": "PM không nên mất vài tuần viết Specs dài ngoằng nhưng ít người đọc. Designer không nên cãi nhau những pixel vô bổ trong phòng họp. Developer không nên bị ép chạy đua OT. QA không nên test bằng tay 1 tính năng 300 lần.<br><br><strong>Vì AI sẽ làm xử lý đống đó quá tốt. Để con người làm những thứ con người làm giỏi nhất</strong> — chiến lược sâu sắc, thấu hiểu khách hàng, nhảy vọt ở sáng tạo, và build thứ thực sự thay đổi thế giới.",
+      "points": [
+        "<strong>PMs</strong> thành nhà chiến lược",
+        "<strong>Designers</strong> thành giám đốc sáng tạo",
+        "<strong>Developers</strong> thành kiến trúc sư hệ thống"
+      ]
+    },
+    "cta": {
+      "title": "Sprints Loanh Quanh Lũn Cũn? Thôi Nhé.<br><span>Đã Đến Lúc Build Nhanh Như Ánh Sáng.</span>",
+      "sub": "Hoàn toàn Fre. Mã Nguồn Mở. 30+ skills. Chỉ một người. Cân được cả ngàn việc.",
+      "btn": "Bắt Đầu Giải Phóng Sức Lao Động →",
+      "links": [
+        "Tính năng Tool Code khác thì sao? →",
+        "Tại sao cần Skills Kit? →",
+        "Hành trình sáng lập Cody Master? →"
+      ]
+    }
+  },
+  "vs_bolt_auto_1": "⚡ vs ⚙️ · So sánh chi tiết",
+  "vs_bolt_auto_2": "CodyMaster so với",
+  "vs_google_ai_studio_auto_1": "⚡ vs 🧪 · So sánh chi tiết",
+  "vs_google_ai_studio_auto_2": "CodyMaster so với",
+  "vs_lovable_auto_1": "⚡ vs 💖 · So sánh chi tiết",
+  "vs_lovable_auto_2": "CodyMaster so với",
+  "vs_others_auto_1": "🚀",
+  "vs_others_auto_10": "📖",
+  "vs_others_auto_11": "▶️",
+  "vs_others_auto_12": "🌍",
+  "vs_others_auto_13": "EN",
+  "vs_others_auto_14": "中文",
+  "vs_others_auto_15": "Tiếng Hindi",
+  "vs_others_auto_16": "Đứng trên",
+  "vs_others_auto_2": "📢",
+  "vs_others_auto_3": "📋",
+  "vs_others_auto_4": "💻",
+  "vs_others_auto_5": "🎨",
+  "vs_others_auto_6": "🦞",
+  "vs_others_auto_7": "💡",
+  "vs_others_auto_8": "🤺",
+  "vs_others_auto_9": "🔄",
+  "vs_replit_auto_1": "⚡ vs 🔵 · So sánh chi tiết",
+  "vs_replit_auto_2": "CodyMaster vs",
+  "vs_scrum_auto_1": "🚀",
+  "vs_scrum_auto_10": "📖",
+  "vs_scrum_auto_11": "▶️",
+  "vs_scrum_auto_12": "🌍",
+  "vs_scrum_auto_13": "EN",
+  "vs_scrum_auto_14": "Tiếng Trung",
+  "vs_scrum_auto_15": "Tiếng Hindi",
+  "vs_scrum_auto_16": "🔄",
+  "vs_scrum_auto_17": "🎨",
+  "vs_scrum_auto_18": "💀",
+  "vs_scrum_auto_19": "🔁",
+  "vs_scrum_auto_2": "📢",
+  "vs_scrum_auto_20": "💸",
+  "vs_scrum_auto_21": "💰",
+  "vs_scrum_auto_22": "👤",
+  "vs_scrum_auto_23": "🛡️",
+  "vs_scrum_auto_24": "🧠",
+  "vs_scrum_auto_25": "cm-động não-ý tưởng",
+  "vs_scrum_auto_26": "📋",
+  "vs_scrum_auto_27": "quy hoạch cm",
+  "vs_scrum_auto_28": "🎨",
+  "vs_scrum_auto_29": "cm-ux-master",
+  "vs_scrum_auto_3": "📋",
+  "vs_scrum_auto_30": "🧪",
+  "vs_scrum_auto_31": "cm-tdd",
+  "vs_scrum_auto_32": "🔒",
+  "vs_scrum_auto_33": "cm-bí mật-lá chắn",
+  "vs_scrum_auto_34": "🚀",
+  "vs_scrum_auto_35": "cm-safe-triển khai",
+  "vs_scrum_auto_36": "📖",
+  "vs_scrum_auto_37": "cm-dockit",
+  "vs_scrum_auto_38": "📈",
+  "vs_scrum_auto_39": "cm-nội dung-nhà máy",
+  "vs_scrum_auto_4": "💻",
+  "vs_scrum_auto_40": "🌐",
+  "vs_scrum_auto_41": "cm-safe-i18n",
+  "vs_scrum_auto_42": "🐛",
+  "vs_scrum_auto_43": "gỡ lỗi cm",
+  "vs_scrum_auto_44": "📊",
+  "vs_scrum_auto_45": "cm-chất lượng-cổng",
+  "vs_scrum_auto_46": "💡",
+  "vs_scrum_auto_47": "cm-jtbd",
+  "vs_scrum_auto_48": "🤝",
+  "vs_scrum_auto_49": "🧠",
+  "vs_scrum_auto_5": "🎨",
+  "vs_scrum_auto_50": "🎨",
+  "vs_scrum_auto_51": "💻",
+  "vs_scrum_auto_52": "⚡ Bộ CodyMaster",
+  "vs_scrum_auto_53": "GitHub",
+  "vs_scrum_auto_54": "Bất hòa",
+  "vs_scrum_auto_6": "🦞",
+  "vs_scrum_auto_7": "💡",
+  "vs_scrum_auto_8": "🤺",
+  "vs_scrum_auto_9": "🔄"
+}

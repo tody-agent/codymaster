@@ -1,0 +1,163 @@
+{
+  "faq_auto_1": "🚀",
+  "faq_auto_10": "📖",
+  "faq_auto_11": "▶️",
+  "faq_auto_12": "🌍",
+  "faq_auto_13": "EN",
+  "faq_auto_14": "中文",
+  "faq_auto_15": "हिन्दी",
+  "faq_auto_16": "❓ 帮助中心",
+  "faq_auto_17": "常见问题",
+  "faq_auto_2": "📢",
+  "faq_auto_3": "📋",
+  "faq_auto_4": "💻",
+  "faq_auto_5": "🎨",
+  "faq_auto_6": "🦞",
+  "faq_auto_7": "💡",
+  "faq_auto_8": "🤺",
+  "faq_auto_9": "🔄",
+  "features": {
+    "label": "为什么选择 CODY MASTER",
+    "title": "您所需的一切，\n尽在一个套件中",
+    "subtitle": "无需编程。无需雇佣开发者。AI为您处理从A到Z的所有工作。",
+    "cards": [
+      {
+        "title": "10倍速",
+        "description": "从创意到完整网站只需几分钟。AI自动完成编码、设计和部署——您只需说出需求。"
+      },
+      {
+        "title": "专业级质量",
+        "description": "生产级代码——绝非一次性原型。33个技能保障从安全到SEO的全面质量。"
+      },
+      {
+        "title": "节省 90%",
+        "description": "与外包或自由职业者相比，既省时又省钱。一个套件抵得上整个团队。"
+      },
+      {
+        "title": "极致简单",
+        "description": "自然聊天，AI理解并交付。没有复杂的界面，没有学习曲线。"
+      },
+      {
+        "title": "🔄 Legacy Rescue",
+        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
+      }
+    ]
+  },
+  "hero": {
+    "badge": "33个技能 · 开源 · 免费",
+    "headlineStatic": "用 AI 构建真实产品",
+    "typingPhrases": [
+      "无需编程",
+      "几分钟内上线",
+      "从创意到产品"
+    ],
+    "subtitle": "33 个专业 AI 技能处理设计、代码、测试和部署。\n您只需聊天。无需编程。",
+    "ctaPrimary": "开始构建 — 免费",
+    "ctaSecondary": "观看演示",
+    "trustNoCreditCard": "✓ 无需信用卡",
+    "trust30Seconds": "✓ 30秒内完成配置",
+    "trustOpenSource": "✓ 100% 开源"
+  },
+  "howItWorks": {
+    "label": "工作原理",
+    "title": "从零到英雄，\n只需简单的3步",
+    "steps": [
+      {
+        "title": "安装",
+        "description": "添加marketplace然后安装插件。\n30秒内完成。",
+        "code": "claude plugin install cm@codymaster"
+      },
+      {
+        "title": "聊天",
+        "description": "告诉AI您想要什么。\n使用简单的日常语言，就像和朋友聊天一样。",
+        "code": "\"为我的咖啡店\n创建一个落地页\""
+      },
+      {
+        "title": "上线",
+        "description": "完整的网站，自动部署到互联网。\n立即分享链接。",
+        "code": "✓ yoursite.com 已上线！"
+      }
+    ],
+    "deepLabel": "底层原理",
+    "deepTitle": "RARV 执行周期与六关质量体系",
+    "deepSubtitle": "分配给 CodyMaster 的每项任务都会经过一个自动化循环，确保代码符合生产环境标准。"
+  },
+  "index_auto_1": "🚀",
+  "index_auto_10": "📖",
+  "index_auto_11": "▶️",
+  "index_auto_12": "🌍",
+  "index_auto_13": "EN",
+  "index_auto_14": "中文",
+  "index_auto_15": "हिन्दी",
+  "index_auto_16": "🚀 v3.4.0",
+  "index_auto_17": "🧠 33 项技能",
+  "index_auto_18": "⚡ 7+ 个平台",
+  "index_auto_19": "🌍 开源",
+  "index_auto_2": "📢",
+  "index_auto_20": "您的 AI 智能体非常聪明。",
+  "index_auto_3": "📋",
+  "index_auto_4": "💻",
+  "index_auto_5": "🎨",
+  "index_auto_6": "🦞",
+  "index_auto_7": "💡",
+  "index_auto_8": "🤺",
+  "index_auto_9": "🔄",
+  "install": {
+    "title": "30秒内准备就绪",
+    "subtitle": "一条命令安装全部33个技能。无需npm，无需配置——只是一个Claude Code插件。",
+    "oneliner": "一行命令（自动检测，多语言）",
+    "or": "— 或分步操作 —",
+    "step1": "添加marketplace",
+    "step2": "安装全部33个技能",
+    "step3": "开始入门导览",
+    "copy": "复制",
+    "detailedGuide": "完整安装指南"
+  },
+  "usp": {
+    "label": "我们有何不同",
+    "title": "不仅是另一个AI工具。\n这是一个以设计为先的引擎。",
+    "subtitle": "CodyMaster不仅写代码——它还会设计、预览，并尊重您现有的设计系统。",
+    "cards": [
+      {
+        "icon": "kanban",
+        "title": "看板工作台",
+        "description": "可视化管理整个项目。在一个控制中心实时追踪任务、技能管道和部署状态。",
+        "visual": "kanban"
+      },
+      {
+        "icon": "eye",
+        "title": "先预览后编码",
+        "description": "在写下一行代码之前，精确查看UI的模样。与AI迭代设计——没有任何意外。",
+        "visual": "preview"
+      },
+      {
+        "icon": "sliders-horizontal",
+        "title": "完全的设计控制权",
+        "description": "选择您的美学风格——排版、颜色、间距、动画。AI遵循您的设计方向，而非随机默认值。",
+        "visual": "controls"
+      },
+      {
+        "icon": "component",
+        "title": "兼容您的设计系统",
+        "description": "已经有设计系统了？CodyMaster会读取您现有的设计Token、组件和品牌指南——然后使用它们进行构建。",
+        "visual": "system"
+      }
+    ]
+  },
+  "why_cody_master_auto_1": "🚀",
+  "why_cody_master_auto_10": "📖",
+  "why_cody_master_auto_11": "▶️",
+  "why_cody_master_auto_12": "🌍",
+  "why_cody_master_auto_13": "EN",
+  "why_cody_master_auto_14": "中文",
+  "why_cody_master_auto_15": "हिन्दी",
+  "why_cody_master_auto_16": "停止凭感觉编程。",
+  "why_cody_master_auto_2": "📢",
+  "why_cody_master_auto_3": "📋",
+  "why_cody_master_auto_4": "💻",
+  "why_cody_master_auto_5": "🎨",
+  "why_cody_master_auto_6": "🦞",
+  "why_cody_master_auto_7": "💡",
+  "why_cody_master_auto_8": "🤺",
+  "why_cody_master_auto_9": "🔄"
+}

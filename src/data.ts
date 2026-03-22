@@ -39,7 +39,8 @@ export type ActivityType =
   | 'project_created' | 'project_deleted'
   | 'deploy_staging' | 'deploy_production' | 'deploy_failed' | 'rollback'
   | 'git_push' | 'changelog_added'
-  | 'chain_started' | 'chain_step_completed' | 'chain_completed' | 'chain_failed' | 'chain_aborted';
+  | 'chain_started' | 'chain_step_completed' | 'chain_completed' | 'chain_failed' | 'chain_aborted'
+  | 'learning_deleted' | 'decision_deleted';
 
 export interface ActivityLog {
   id: string;

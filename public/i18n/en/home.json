@@ -1,0 +1,163 @@
+{
+  "faq_auto_1": "🚀",
+  "faq_auto_10": "📖",
+  "faq_auto_11": "▶️",
+  "faq_auto_12": "🌍",
+  "faq_auto_13": "EN",
+  "faq_auto_14": "中文",
+  "faq_auto_15": "हिन्दी",
+  "faq_auto_16": "❓ Help Center",
+  "faq_auto_17": "Frequently Asked",
+  "faq_auto_2": "📢",
+  "faq_auto_3": "📋",
+  "faq_auto_4": "💻",
+  "faq_auto_5": "🎨",
+  "faq_auto_6": "🦞",
+  "faq_auto_7": "💡",
+  "faq_auto_8": "🤺",
+  "faq_auto_9": "🔄",
+  "features": {
+    "label": "WHY THIS KIT",
+    "title": "Not scattered skills.\nOne integrated system.",
+    "subtitle": "Instead of installing 20 random AI skills that don't talk to each other — CodyMaster is one complete system where every skill connects, every workflow links.",
+    "cards": [
+      {
+        "title": "🧠 Learning Brain",
+        "description": "CodyMaster has a brain that learns. It remembers mistakes, draws lessons, and when it doesn't know something — it goes finding the right skill to upgrade itself. The more you use it, the smarter it gets."
+      },
+      {
+        "title": "🛡️ Multi-Layer Safety",
+        "description": "Strict multi-layer controls on every deploy. Your codebase won't get destroyed. No more 'deploy and pray'. Every change passes through quality gates before reaching production."
+      },
+      {
+        "title": "👥 Your Senior Team",
+        "description": "Using this kit = leveraging 10 years of product experience + a complete senior team from design to code to testing to deployment. One person. Full team power."
+      },
+      {
+        "title": "📄 Docs from Silence",
+        "description": "No documentation? No idea what the previous code does? cm-dockit generates complete technical docs AND user guides — from your existing code. Even the messiest legacy projects."
+      },
+      {
+        "title": "🔄 Legacy Rescue",
+        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
+      }
+    ]
+  },
+  "hero": {
+    "badge": "Built by a PM with 10+ years · 33 Skills · Free",
+    "headlineStatic": "Your AI Senior Team — From A to Z",
+    "typingPhrases": [
+      "For Lazy People Who Ship Fast 🦥",
+      "It Gets Smarter Every Day",
+      "One Kit. Entire Product Lifecycle."
+    ],
+    "subtitle": "10 years of product experience + 6 months of relentless vibe coding = 33 AI skills that think like a full senior team.\nInstall once. It learns. It improves. It ships.",
+    "ctaPrimary": "Start Building — Free",
+    "ctaSecondary": "Watch Demo",
+    "trustNoCreditCard": "✓ For people who hate repetitive work",
+    "trust30Seconds": "✓ Gets smarter the more you use it",
+    "trustOpenSource": "✓ 100% Free & Open Source"
+  },
+  "howItWorks": {
+    "label": "HOW IT WORKS",
+    "title": "3 simple steps,\nfrom zero to hero",
+    "steps": [
+      {
+        "title": "Install",
+        "description": "Add the marketplace then install the plugin.\nDone in 30 seconds.",
+        "code": "claude plugin install cm@codymaster"
+      },
+      {
+        "title": "Chat",
+        "description": "Tell AI what you want.\nIn plain English, like chatting with a friend.",
+        "code": "\"Create a landing page\nfor my coffee shop\""
+      },
+      {
+        "title": "Launch",
+        "description": "Complete website, auto-deployed\nto the internet. Share the link instantly.",
+        "code": "✓ yoursite.com is live!"
+      }
+    ],
+    "deepLabel": "UNDER THE HOOD",
+    "deepTitle": "The RARV Execution Cycle + 6-Gate Quality",
+    "deepSubtitle": "Every task assigned to CodyMaster goes through an autonomous loop ensuring production-ready code."
+  },
+  "index_auto_1": "🚀",
+  "index_auto_10": "📖",
+  "index_auto_11": "▶️",
+  "index_auto_12": "🌍",
+  "index_auto_13": "EN",
+  "index_auto_14": "中文",
+  "index_auto_15": "हिन्दी",
+  "index_auto_16": "🚀 v3.4.0",
+  "index_auto_17": "🧠 33 Skills",
+  "index_auto_18": "⚡ 7+ Platforms",
+  "index_auto_19": "🌍 Open Source",
+  "index_auto_2": "📢",
+  "index_auto_20": "Your AI Agent is smart.",
+  "index_auto_3": "📋",
+  "index_auto_4": "💻",
+  "index_auto_5": "🎨",
+  "index_auto_6": "🦞",
+  "index_auto_7": "💡",
+  "index_auto_8": "🤺",
+  "index_auto_9": "🔄",
+  "install": {
+    "title": "Ready in 30 seconds",
+    "subtitle": "One command installs all 33 skills. No npm, no config — just a Claude Code plugin.",
+    "oneliner": "One-liner (auto-detect, multi-language)",
+    "or": "— or step by step —",
+    "step1": "Add marketplace",
+    "step2": "Install all 33 skills",
+    "step3": "Start onboarding tour",
+    "copy": "Copy",
+    "detailedGuide": "Full Install Guide"
+  },
+  "usp": {
+    "label": "WHAT MAKES US DIFFERENT",
+    "title": "Not just another AI tool.\nThis is a design-first engine.",
+    "subtitle": "CodyMaster doesn't just write code — it designs, previews, and respects your existing design system.",
+    "cards": [
+      {
+        "icon": "kanban",
+        "title": "Kanban Dashboard",
+        "description": "Manage your entire project visually. Track tasks, skill pipelines, and deployments in real-time — all from one command center.",
+        "visual": "kanban"
+      },
+      {
+        "icon": "eye",
+        "title": "Preview Design Before Code",
+        "description": "See exactly what your UI will look like before a single line of code is written. Iterate on design with AI — no surprises.",
+        "visual": "preview"
+      },
+      {
+        "icon": "sliders-horizontal",
+        "title": "Full Design Control",
+        "description": "Choose your aesthetic — typography, colors, spacing, animations. AI follows YOUR design direction, not random defaults.",
+        "visual": "controls"
+      },
+      {
+        "icon": "component",
+        "title": "Works with Your Design System",
+        "description": "Already have a design system? CodyMaster reads your existing tokens, components, and brand guidelines — then builds with them.",
+        "visual": "system"
+      }
+    ]
+  },
+  "why_cody_master_auto_1": "🚀",
+  "why_cody_master_auto_10": "📖",
+  "why_cody_master_auto_11": "▶️",
+  "why_cody_master_auto_12": "🌍",
+  "why_cody_master_auto_13": "EN",
+  "why_cody_master_auto_14": "中文",
+  "why_cody_master_auto_15": "हिन्दी",
+  "why_cody_master_auto_16": "Stop Vibe Coding.",
+  "why_cody_master_auto_2": "📢",
+  "why_cody_master_auto_3": "📋",
+  "why_cody_master_auto_4": "💻",
+  "why_cody_master_auto_5": "🎨",
+  "why_cody_master_auto_6": "🦞",
+  "why_cody_master_auto_7": "💡",
+  "why_cody_master_auto_8": "🤺",
+  "why_cody_master_auto_9": "🔄"
+}

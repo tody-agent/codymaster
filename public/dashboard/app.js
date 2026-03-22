@@ -10,7 +10,7 @@
   function getEffectiveTheme() {
     const saved = localStorage.getItem(THEME_KEY);
     if (saved === 'light' || saved === 'dark') return saved;
-    return darkMQ.matches ? 'dark' : 'light';
+    return 'dark'; // New premium UI is dark by default
   }
 
   function applyTheme(theme) {
@@ -49,6 +49,7 @@
     'project_created': '📦', 'project_deleted': '🗑️',
     'deploy_staging': '🟡', 'deploy_production': '🚀', 'deploy_failed': '❌', 'rollback': '⏪',
     'git_push': '📤', 'changelog_added': '📝',
+    'learning_deleted': '🧹', 'decision_deleted': '🧹',
   };
 
   // ── Valid Transition Map ──────────────────
@@ -261,6 +262,7 @@
       case 'history': renderHistory(); break;
       case 'deploys': renderDeploys(); break;
       case 'changelog': renderChangelog(); break;
+      case 'brain': renderBrain(); break;
     }
   }
 
@@ -692,13 +694,22 @@
   function closeDeleteModal() { deleteOverlay.classList.remove('active'); deleteTaskId = null; }
 
   // ── Event Handlers ─────────────────────────
-  document.getElementById('btn-add-task').addEventListener('click', openAddModal);
+  const btnAddTask = document.getElementById('btn-add-task');
+  if (btnAddTask) btnAddTask.addEventListener('click', openAddModal);
   document.getElementById('btn-sidebar-refresh').addEventListener('click', () => refreshData(false));
   document.getElementById('btn-new-deploy').addEventListener('click', openDeployModal);
   document.getElementById('btn-new-changelog').addEventListener('click', openChangelogModal);
   refreshBtn.addEventListener('click', () => refreshData(false));
   if (autoRefreshBtn) autoRefreshBtn.addEventListener('click', toggleAutoRefresh);
   document.getElementById('sidebar-toggle').addEventListener('click', () => sidebar.classList.toggle('collapsed'));
+  const sidebarClose = document.getElementById('sidebar-close');
+  if (sidebarClose) {
+    sidebarClose.addEventListener('click', () => sidebar.classList.add('collapsed'));
+  }
+  // Auto collapse on small screens
+  if (window.innerWidth <= 900) {
+    sidebar.classList.add('collapsed');
+  }
 
   // Theme toggle
   document.getElementById('theme-toggle').addEventListener('click', () => {
@@ -722,6 +733,21 @@
   document.getElementById('delete-close').addEventListener('click', closeDeleteModal);
   document.getElementById('delete-cancel').addEventListener('click', closeDeleteModal);
   deleteOverlay.addEventListener('click', e => { if (e.target === deleteOverlay) closeDeleteModal(); });
+
+  // Header Dropdown Toggle
+  const btnMoreMenu = document.getElementById('btn-more-menu');
+  const headerActions = document.getElementById('header-actions');
+  if (btnMoreMenu && headerActions) {
+    btnMoreMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+      headerActions.classList.toggle('active');
+    });
+    document.addEventListener('click', (e) => {
+      if (!headerActions.contains(e.target) && !btnMoreMenu.contains(e.target)) {
+        headerActions.classList.remove('active');
+      }
+    });
+  }
 
   // Delete confirm
   deleteConfirm.addEventListener('click', async () => {
@@ -956,6 +982,197 @@
       .then(() => showToast('success', 'CLI command copied!'))
       .catch(err => showToast('error', 'Failed to copy: ' + err));
   });
+
+  // ── Brain Tab Rendering ──────────────────────────────
+  let brainData = { continuity: null, learnings: [], decisions: [] };
+  let brainSearchQuery = '';
+
+  async function loadBrainData() {
+    if (!selectedProjectId) {
+      // Load from first project with .cm/
+      for (const p of projects) {
+        try {
+          const status = await fetchJSON(`${API}/continuity/${p.id}`);
+          if (status && status.initialized) {
+            const [learnings, decisions] = await Promise.all([
+              fetchJSON(`${API}/learnings/${p.id}`),
+              fetchJSON(`${API}/decisions/${p.id}`),
+            ]);
+            brainData = { continuity: status, learnings: learnings || [], decisions: decisions || [], projectId: p.id, projectName: p.name };
+            return;
+          }
+        } catch { /* skip */ }
+      }
+      brainData = { continuity: null, learnings: [], decisions: [], projectId: null, projectName: null };
+      return;
+    }
+    try {
+      const [status, learnings, decisions] = await Promise.all([
+        fetchJSON(`${API}/continuity/${selectedProjectId}`),
+        fetchJSON(`${API}/learnings/${selectedProjectId}`),
+        fetchJSON(`${API}/decisions/${selectedProjectId}`),
+      ]);
+      const proj = projects.find(p => p.id === selectedProjectId);
+      brainData = { continuity: status, learnings: learnings || [], decisions: decisions || [], projectId: selectedProjectId, projectName: proj ? proj.name : 'Unknown' };
+    } catch {
+      brainData = { continuity: null, learnings: [], decisions: [], projectId: selectedProjectId, projectName: null };
+    }
+  }
+
+  async function renderBrain() {
+    await loadBrainData();
+    const { continuity, learnings, decisions, projectId, projectName } = brainData;
+    const statsEl = document.getElementById('brain-stats');
+    const contEl = document.getElementById('brain-continuity-content');
+    const learnEl = document.getElementById('brain-learnings-list');
+    const decEl = document.getElementById('brain-decisions-list');
+    const searchEl = document.getElementById('brain-search');
+
+    if (!continuity || !continuity.initialized) {
+      statsEl.innerHTML = '';
+      contEl.innerHTML = `<div class="brain-empty"><div class="brain-empty-icon">🧠</div><div>Working memory not initialized for this project.</div>${projectId ? `<button class="brain-init-btn" data-init-project="${projectId}">⚡ Initialize Memory</button>` : '<div style="margin-top:8px;font-size:12px">Select a project from the sidebar first.</div>'}</div>`;
+      learnEl.innerHTML = '';
+      decEl.innerHTML = '';
+      // Wire init button
+      const initBtn = contEl.querySelector('.brain-init-btn');
+      if (initBtn) {
+        initBtn.addEventListener('click', async () => {
+          try {
+            await fetch(`${API}/continuity/${projectId}/init`, { method: 'POST' });
+            showToast('success', '✅ Memory initialized!');
+            renderBrain();
+          } catch { showToast('error', 'Failed to initialize memory'); }
+        });
+      }
+      return;
+    }
+
+    // Stats cards
+    const phase = continuity.phase || 'idle';
+    const phaseClass = 'phase-' + phase;
+    statsEl.innerHTML = `
+      <div class="brain-stat-card stat-learnings">
+        <div class="brain-stat-label">Learnings</div>
+        <div class="brain-stat-value">${learnings.length}</div>
+        <div class="brain-stat-detail">Mistakes captured</div>
+      </div>
+      <div class="brain-stat-card stat-decisions">
+        <div class="brain-stat-label">Decisions</div>
+        <div class="brain-stat-value">${decisions.length}</div>
+        <div class="brain-stat-detail">Architecture choices</div>
+      </div>
+      <div class="brain-stat-card stat-phase">
+        <div class="brain-stat-label">Phase</div>
+        <div class="brain-stat-value ${phaseClass}" style="font-size:20px">${phase.charAt(0).toUpperCase() + phase.slice(1)}</div>
+        <div class="brain-stat-detail">${projectName || 'No project'}</div>
+      </div>
+      <div class="brain-stat-card stat-updated">
+        <div class="brain-stat-label">Last Updated</div>
+        <div class="brain-stat-value" style="font-size:16px">${continuity.lastUpdated ? formatTimeAgo(continuity.lastUpdated) : 'Never'}</div>
+        <div class="brain-stat-detail">Iteration ${continuity.iteration || 0}</div>
+      </div>`;
+
+    // Continuity status
+    contEl.innerHTML = `<div class="brain-continuity-grid">
+      <div class="brain-continuity-item"><div class="brain-continuity-label">Project</div><div class="brain-continuity-value">${esc(continuity.project || '—')}</div></div>
+      <div class="brain-continuity-item"><div class="brain-continuity-label">Active Goal</div><div class="brain-continuity-value">${esc(continuity.activeGoal || 'No active goal')}</div></div>
+      <div class="brain-continuity-item"><div class="brain-continuity-label">Current Task</div><div class="brain-continuity-value">${esc(continuity.currentTask || 'No active task')}</div></div>
+      <div class="brain-continuity-item"><div class="brain-continuity-label">Blockers</div><div class="brain-continuity-value">${continuity.blockerCount > 0 ? `🚧 ${continuity.blockerCount} blocker(s)` : '✅ No blockers'}</div></div>
+      <div class="brain-continuity-item"><div class="brain-continuity-label">Completed</div><div class="brain-continuity-value">${continuity.completedCount || 0} items</div></div>
+      <div class="brain-continuity-item"><div class="brain-continuity-label">Iteration</div><div class="brain-continuity-value">#${continuity.iteration || 0}</div></div>
+    </div>`;
+
+    // Search filter
+    const query = brainSearchQuery.toLowerCase();
+    const filteredLearnings = query
+      ? learnings.filter(l => (l.whatFailed || '').toLowerCase().includes(query) || (l.whyFailed || '').toLowerCase().includes(query) || (l.howToPrevent || '').toLowerCase().includes(query))
+      : learnings;
+
+    // Learnings
+    if (filteredLearnings.length === 0) {
+      learnEl.innerHTML = `<div class="brain-empty"><div class="brain-empty-icon">🎉</div>${query ? 'No learnings match your search.' : 'No learnings captured yet. Great start!'}</div>`;
+    } else {
+      learnEl.innerHTML = filteredLearnings.slice().reverse().map(l => `
+        <div class="brain-learning-card" data-learning-id="${l.id}">
+          <div class="brain-learning-header">
+            <div class="brain-learning-what">${esc(l.whatFailed)}</div>
+            <button class="brain-delete-btn" data-delete-learning="${l.id}" title="Delete">🗑️</button>
+          </div>
+          <div class="brain-learning-body">
+            <div class="brain-learning-why">${esc(l.whyFailed || '')}</div>
+            <div class="brain-learning-fix">${esc(l.howToPrevent || '')}</div>
+            <div class="brain-learning-meta">
+              <span>${l.agent || 'unknown agent'}</span>
+              <span>${l.timestamp ? formatTimeAgo(l.timestamp) : ''}</span>
+              ${l.module ? `<span>📦 ${esc(l.module)}</span>` : ''}
+            </div>
+          </div>
+        </div>`).join('');
+    }
+
+    // Decisions
+    if (decisions.length === 0) {
+      decEl.innerHTML = '<div class="brain-empty"><div class="brain-empty-icon">📋</div>No decisions recorded yet.</div>';
+    } else {
+      decEl.innerHTML = decisions.slice().reverse().map(d => `
+        <div class="brain-decision-card" data-decision-id="${d.id}">
+          <div class="brain-decision-header">
+            <div class="brain-decision-what">${esc(d.decision)}</div>
+            <button class="brain-delete-btn" data-delete-decision="${d.id}" title="Delete">🗑️</button>
+          </div>
+          <div class="brain-decision-rationale">${esc(d.rationale || '')}</div>
+          <div class="brain-decision-meta">
+            <span>${d.agent || 'unknown'}</span>
+            <span>${d.timestamp ? formatTimeAgo(d.timestamp) : ''}</span>
+          </div>
+        </div>`).join('');
+    }
+
+    // Wire learning card expand/collapse
+    learnEl.querySelectorAll('.brain-learning-card').forEach(card => {
+      card.addEventListener('click', e => {
+        if (e.target.closest('.brain-delete-btn')) return;
+        card.classList.toggle('expanded');
+      });
+    });
+
+    // Wire delete learning buttons
+    learnEl.querySelectorAll('[data-delete-learning]').forEach(btn => {
+      btn.addEventListener('click', async e => {
+        e.stopPropagation();
+        const lid = btn.dataset.deleteLearning;
+        if (!confirm('Delete this learning?')) return;
+        try {
+          await fetch(`${API}/learnings/${brainData.projectId}/${lid}`, { method: 'DELETE' });
+          showToast('success', '🧹 Learning deleted');
+          renderBrain();
+        } catch { showToast('error', 'Failed to delete learning'); }
+      });
+    });
+
+    // Wire delete decision buttons
+    decEl.querySelectorAll('[data-delete-decision]').forEach(btn => {
+      btn.addEventListener('click', async e => {
+        e.stopPropagation();
+        const did = btn.dataset.deleteDecision;
+        if (!confirm('Delete this decision?')) return;
+        try {
+          await fetch(`${API}/decisions/${brainData.projectId}/${did}`, { method: 'DELETE' });
+          showToast('success', '🧹 Decision deleted');
+          renderBrain();
+        } catch { showToast('error', 'Failed to delete decision'); }
+      });
+    });
+
+    // Wire search
+    if (searchEl && !searchEl._brainWired) {
+      searchEl._brainWired = true;
+      searchEl.addEventListener('input', e => {
+        brainSearchQuery = e.target.value;
+        renderBrain();
+      });
+    }
+  }
 
   // ── Init ───────────────────────────────────────
   async function init() {

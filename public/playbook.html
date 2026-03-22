@@ -1,0 +1,754 @@
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Playbook — CodyMaster Kit</title>
+  <meta name="description" content="The definitive playbook to master CodyMaster's 33 skills. Decision trees, real-world scenarios, exception handling, and golden rules.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/kit.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ── Playbook Hero ── */
+    .pb-hero {
+      position: relative;
+      min-height: 45vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 60px; overflow: hidden;
+    }
+    .pb-hero__content { position: relative; z-index: 1; max-width: 800px; }
+    .pb-hero__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 20px; border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle); background: rgba(20, 20, 32, 0.5);
+      font-size: 13px; font-weight: 500; color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    .pb-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700; color: var(--text-primary);
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .pb-hero__title span {
+      background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pb-hero__sub {
+      font-size: 1.15rem; color: var(--text-secondary);
+      line-height: 1.6; max-width: 620px; margin: 0 auto;
+    }
+
+    /* ── Section Common ── */
+    .pb-section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .pb-section__label {
+      font-family: var(--font-display); font-size: 13px; font-weight: 600;
+      color: var(--accent-lime); letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 12px; text-align: center;
+    }
+    .pb-section__title {
+      font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; text-align: center; margin-bottom: 12px; color: var(--text-primary);
+    }
+    .pb-section__sub {
+      text-align: center; color: var(--text-secondary); font-size: 1rem;
+      max-width: 650px; margin: 0 auto 40px; line-height: 1.6;
+    }
+
+    /* ── Decision Tree ── */
+    .pb-decision-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .pb-decision-card {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg); padding: 28px;
+      transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden;
+    }
+    .pb-decision-card:hover {
+      transform: translateY(-4px); border-color: var(--border-hover);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .pb-decision-card__icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .pb-decision-card__question {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 8px;
+    }
+    .pb-decision-card__answer {
+      font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;
+    }
+    .pb-decision-card__skills {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .pb-skill-tag {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+      padding: 4px 10px; border-radius: var(--radius-pill);
+      background: rgba(196, 248, 42, 0.08); color: var(--accent-lime);
+      border: 1px solid rgba(196, 248, 42, 0.15);
+    }
+
+    /* ── Scenario Cards ── */
+    .pb-scenario {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg); margin-bottom: 16px;
+      overflow: hidden; transition: all 0.3s;
+    }
+    .pb-scenario:hover { border-color: var(--border-hover); }
+    .pb-scenario__header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 24px 28px; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .pb-scenario__header:hover { background: rgba(255,255,255,0.02); }
+    .pb-scenario__icon { font-size: 1.8rem; flex-shrink: 0; }
+    .pb-scenario__title {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      color: var(--text-primary); flex: 1;
+    }
+    .pb-scenario__toggle {
+      color: var(--text-muted); transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .pb-scenario.open .pb-scenario__toggle { transform: rotate(180deg); }
+    .pb-scenario__body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 28px;
+    }
+    .pb-scenario.open .pb-scenario__body {
+      max-height: 800px; padding: 0 28px 28px;
+    }
+    .pb-scenario__desc {
+      font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;
+    }
+
+    /* Skill Chain */
+    .pb-chain {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .pb-chain__step {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(20, 20, 32, 0.8); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm); padding: 10px 14px;
+    }
+    .pb-chain__num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .pb-chain__name {
+      font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-lime);
+    }
+    .pb-chain__arrow {
+      color: var(--text-muted); font-size: 1.2rem; flex-shrink: 0;
+    }
+    .pb-chain__desc {
+      font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;
+    }
+
+    /* ── Exception Cards ── */
+    .pb-exception-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .pb-exception {
+      background: var(--bg-card); border-radius: var(--radius-md);
+      padding: 24px; position: relative;
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      border-left: 3px solid var(--cta-orange);
+      transition: all 0.3s;
+    }
+    .pb-exception:hover {
+      transform: translateY(-2px);
+      border-color: rgba(249, 115, 22, 0.35);
+    }
+    .pb-exception__label {
+      font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+      color: var(--cta-orange); letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .pb-exception__title {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 8px;
+    }
+    .pb-exception__desc {
+      font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px;
+    }
+    .pb-exception__fix {
+      padding: 12px 14px; border-radius: var(--radius-sm);
+      background: rgba(196, 248, 42, 0.06); border: 1px solid rgba(196, 248, 42, 0.1);
+    }
+    .pb-exception__fix-skill {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600;
+      color: var(--accent-lime);
+      padding: 3px 10px; border-radius: var(--radius-pill);
+      background: rgba(196, 248, 42, 0.1);
+      margin-bottom: 6px;
+    }
+    .pb-exception__fix-text {
+      font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;
+    }
+
+    /* ── Golden Rules ── */
+    .pb-rules-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px; counter-reset: rule;
+    }
+    .pb-rule {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md); padding: 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: all 0.3s;
+    }
+    .pb-rule:hover {
+      border-color: var(--border-hover); transform: translateY(-2px);
+    }
+    .pb-rule__num {
+      counter-increment: rule;
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
+      color: var(--bg-page);
+    }
+    .pb-rule__text {
+      font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;
+    }
+    .pb-rule__text strong {
+      color: var(--text-primary);
+    }
+
+    /* ── CTA ── */
+    .pb-cta {
+      text-align: center; padding: 60px 24px 80px;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .pb-cta__title {
+      font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700; color: var(--text-primary); margin-bottom: 8px;
+    }
+    .pb-cta__sub { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 8px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .pb-decision-grid { grid-template-columns: 1fr; }
+      .pb-exception-grid { grid-template-columns: 1fr; }
+      .pb-rules-grid { grid-template-columns: 1fr; }
+      .pb-chain { flex-direction: column; align-items: stretch; }
+      .pb-chain__arrow { transform: rotate(90deg); align-self: center; }
+    }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ NAV ═══════ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-icon">⚡</span>
+      <span>CodyMaster</span>
+    </a>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
+      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.personas">For You</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="for-founders.html" class="nav-dropdown__item"><span class="lang-flag">🚀</span> <span data-i18n="personas.cards.0.title">For Founders</span></a>
+          <a href="for-cmos.html" class="nav-dropdown__item"><span class="lang-flag">📢</span> <span data-i18n="personas.cards.1.title">For CMOs</span></a>
+          <a href="for-pms.html" class="nav-dropdown__item"><span class="lang-flag">📋</span> <span data-i18n="personas.cards.2.title">For PMs</span></a>
+          <a href="for-tech-teams.html" class="nav-dropdown__item"><span class="lang-flag">💻</span> <span data-i18n="personas.cards.3.title">For Tech Teams</span></a>
+          <a href="for-designers.html" class="nav-dropdown__item"><span class="lang-flag">🎨</span> <span data-i18n="personas.cards.4.title">For Designers</span></a>
+          <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.whyUs">Why Us</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
+          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
+          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
+        </div>
+      </li>
+      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
+      <li>
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
+            <span class="lang-btn-icon">🌍</span>
+            <span class="lang-btn-text" id="lang-btn-text">EN</span>
+            <span class="lang-btn-caret">▾</span>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
+          </div>
+        </div>
+      </li>
+      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
+    </ul>
+
+    <div class="nav__hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="pb-hero">
+    <div class="hero__orbs">
+      <div class="hero__orb hero__orb--purple"></div>
+      <div class="hero__orb hero__orb--lime"></div>
+    </div>
+    <div class="pb-hero__content">
+      <div class="pb-hero__badge" data-i18n="pages.playbook_auto_16">📖 Operational Guide</div>
+      <h1 class="pb-hero__title"><span data-i18n="pages.playbook_auto_17">The Skill</span><span>Playbook</span></h1>
+      <p class="pb-hero__sub">"I want to do X — which skills do I use?" This page answers that question for every scenario you'll face.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ DECISION TREE ═══════ -->
+  <section class="pb-section reveal">
+    <p class="pb-section__label">QUICK START</p>
+    <h2 class="pb-section__title">Pick Your Goal</h2>
+    <p class="pb-section__sub">Find your goal below. Each card shows exactly which skills to use.</p>
+
+    <div class="pb-decision-grid">
+      <div class="pb-decision-card">
+        <span class="pb-decision-card__icon">🚀</span>
+        <h3 class="pb-decision-card__question">"I want to build a new project"</h3>
+        <p class="pb-decision-card__answer">Start from zero: create repo, set up CI/CD, design system, and deploy — all in one session.</p>
+        <div class="pb-decision-card__skills">
+          <span class="pb-skill-tag">cm-identity-guard</span>
+          <span class="pb-skill-tag">cm-project-bootstrap</span>
+          <span class="pb-skill-tag">cm-planning</span>
+          <span class="pb-skill-tag">cm-tdd</span>
+          <span class="pb-skill-tag">cm-safe-deploy</span>
+        </div>
+      </div>
+
+      <div class="pb-decision-card">
+        <span class="pb-decision-card__icon">🐛</span>
+        <h3 class="pb-decision-card__question">"Something is broken!"</h3>
+        <p class="pb-decision-card__answer">Find the real cause first, write a test to prove it, fix it, then deploy safely.</p>
+        <div class="pb-decision-card__skills">
+          <span class="pb-skill-tag">cm-debugging</span>
+          <span class="pb-skill-tag">cm-tdd</span>
+          <span class="pb-skill-tag">cm-safe-deploy</span>
+        </div>
+      </div>
+
+      <div class="pb-decision-card">
+        <span class="pb-decision-card__icon">🎨</span>
+        <h3 class="pb-decision-card__question">"I want to improve the UI"</h3>
+        <p class="pb-decision-card__answer">Analyze what to change, design with proven UX rules, preview the result, then build it.</p>
+        <div class="pb-decision-card__skills">
+          <span class="pb-skill-tag">cm-brainstorm-idea</span>
+          <span class="pb-skill-tag">cm-ux-master</span>
+          <span class="pb-skill-tag">cm-ui-preview</span>
+          <span class="pb-skill-tag">cm-planning</span>
+        </div>
+      </div>
+
+      <div class="pb-decision-card">
+        <span class="pb-decision-card__icon">🌍</span>
+        <h3 class="pb-decision-card__question">"I need multi-language support"</h3>
+        <p class="pb-decision-card__answer">Extract text, translate in batches, and auto-audit to catch errors before they go live.</p>
+        <div class="pb-decision-card__skills">
+          <span class="pb-skill-tag">cm-safe-i18n</span>
+        </div>
+      </div>
+
+      <div class="pb-decision-card">
+        <span class="pb-decision-card__icon">📈</span>
+        <h3 class="pb-decision-card__question">"I need content + tracking"</h3>
+        <p class="pb-decision-card__answer">Generate SEO articles, set up ad pixels (Meta, TikTok, Google), and measure what works.</p>
+        <div class="pb-decision-card__skills">
+          <span class="pb-skill-tag">cm-content-factory</span>
+          <span class="pb-skill-tag">cm-ads-tracker</span>
+          <span class="pb-skill-tag">cro-methodology</span>
+        </div>
+      </div>
+
+      <div class="pb-decision-card">
+        <span class="pb-decision-card__icon">📚</span>
+        <h3 class="pb-decision-card__question">"I need documentation"</h3>
+        <p class="pb-decision-card__answer">Scan your codebase and auto-generate docs, SOPs, and API references.</p>
+        <div class="pb-decision-card__skills">
+          <span class="pb-skill-tag">cm-dockit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CORE SCENARIOS ═══════ -->
+  <section class="pb-section reveal">
+    <p class="pb-section__label">STEP BY STEP</p>
+    <h2 class="pb-section__title">How Each Workflow Works</h2>
+    <p class="pb-section__sub">Click any scenario to see the exact steps. Follow them in order.</p>
+
+    <!-- Scenario 1 -->
+    <div class="pb-scenario" id="sc1">
+      <div class="pb-scenario__header" onclick="toggleScenario('sc1')">
+        <span class="pb-scenario__icon">🚀</span>
+        <h3 class="pb-scenario__title">Build a New Project from Scratch</h3>
+        <i data-lucide="chevron-down" class="pb-scenario__toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="pb-scenario__body">
+        <p class="pb-scenario__desc">Start from nothing. In 1-2 chat sessions you'll have a live project with tests, CI, and auto-deploy.</p>
+        <div class="pb-chain">
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">1</span>
+            <div><span class="pb-chain__name">cm-identity-guard</span><div class="pb-chain__desc">Verify correct GitHub/Cloudflare account</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">2</span>
+            <div><span class="pb-chain__name">cm-project-bootstrap</span><div class="pb-chain__desc">Scaffold repo, CI, deploy pipeline</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">3</span>
+            <div><span class="pb-chain__name">cm-planning</span><div class="pb-chain__desc">Write implementation plan for feature</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">4</span>
+            <div><span class="pb-chain__name">cm-tdd</span><div class="pb-chain__desc">Red → Green → Refactor per feature</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">5</span>
+            <div><span class="pb-chain__name">cm-safe-deploy</span><div class="pb-chain__desc">8-gate pipeline to production</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="pb-scenario" id="sc2">
+      <div class="pb-scenario__header" onclick="toggleScenario('sc2')">
+        <span class="pb-scenario__icon">🐛</span>
+        <h3 class="pb-scenario__title">Fix a Production Bug</h3>
+        <i data-lucide="chevron-down" class="pb-scenario__toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="pb-scenario__body">
+        <p class="pb-scenario__desc">Don't let AI guess randomly. This workflow finds the real cause first, proving it with a test before fixing anything.</p>
+        <div class="pb-chain">
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">1</span>
+            <div><span class="pb-chain__name">cm-debugging</span><div class="pb-chain__desc">5-phase root cause analysis</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">2</span>
+            <div><span class="pb-chain__name">cm-tdd</span><div class="pb-chain__desc">Write regression test, then fix</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">3</span>
+            <div><span class="pb-chain__name">cm-safe-deploy</span><div class="pb-chain__desc">Deploy hotfix with rollback</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="pb-scenario" id="sc3">
+      <div class="pb-scenario__header" onclick="toggleScenario('sc3')">
+        <span class="pb-scenario__icon">🌍</span>
+        <h3 class="pb-scenario__title">Add Multi-Language Support</h3>
+        <i data-lucide="chevron-down" class="pb-scenario__toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="pb-scenario__body">
+        <p class="pb-scenario__desc">One wrong translation key = broken page. This skill extracts, translates, and double-checks everything automatically.</p>
+        <div class="pb-chain">
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">1</span>
+            <div><span class="pb-chain__name">cm-safe-i18n</span><div class="pb-chain__desc">Extract hardcoded strings → translate → audit → deploy</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 4 -->
+    <div class="pb-scenario" id="sc4">
+      <div class="pb-scenario__header" onclick="toggleScenario('sc4')">
+        <span class="pb-scenario__icon">📈</span>
+        <h3 class="pb-scenario__title">Launch a Content / Marketing Campaign</h3>
+        <i data-lucide="chevron-down" class="pb-scenario__toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="pb-scenario__body">
+        <p class="pb-scenario__desc">Need blog articles + ad tracking? This chain auto-writes, quality-checks, deploys, and sets up tracking pixels.</p>
+        <div class="pb-chain">
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">1</span>
+            <div><span class="pb-chain__name">cm-content-factory</span><div class="pb-chain__desc">Research → Generate → Audit → Deploy</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">2</span>
+            <div><span class="pb-chain__name">cm-ads-tracker</span><div class="pb-chain__desc">FB Pixel, TikTok, Google Ads setup</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">3</span>
+            <div><span class="pb-chain__name">cro-methodology</span><div class="pb-chain__desc">Funnel audit + A/B test design</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 5 -->
+    <div class="pb-scenario" id="sc5">
+      <div class="pb-scenario__header" onclick="toggleScenario('sc5')">
+        <span class="pb-scenario__icon">🎨</span>
+        <h3 class="pb-scenario__title">Redesign or Enhance Existing UI</h3>
+        <i data-lucide="chevron-down" class="pb-scenario__toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="pb-scenario__body">
+        <p class="pb-scenario__desc">Don't jump straight to code. Analyze what to change, design it properly, preview it visually, then plan the build.</p>
+        <div class="pb-chain">
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">1</span>
+            <div><span class="pb-chain__name">cm-brainstorm-idea</span><div class="pb-chain__desc">9 Windows + Double Diamond analysis</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">2</span>
+            <div><span class="pb-chain__name">cm-ux-master</span><div class="pb-chain__desc">Design system + 48 UX Laws</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">3</span>
+            <div><span class="pb-chain__name">cm-ui-preview</span><div class="pb-chain__desc">Visual preview via Stitch/Pencil</div></div>
+          </div>
+          <span class="pb-chain__arrow">→</span>
+          <div class="pb-chain__step">
+            <span class="pb-chain__num">4</span>
+            <div><span class="pb-chain__name">cm-planning</span><div class="pb-chain__desc">Write implementation plan</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ EXCEPTION CASES ═══════ -->
+  <section class="pb-section reveal">
+    <p class="pb-section__label">⚠️ TROUBLESHOOTING</p>
+    <h2 class="pb-section__title">When Things Don't Go as Planned</h2>
+    <p class="pb-section__sub">Hit a wall? Here's the fix for every common problem.</p>
+
+    <div class="pb-exception-grid">
+      <div class="pb-exception">
+        <span class="pb-exception__label">Context Lost</span>
+        <h3 class="pb-exception__title">AI forgot what it was doing</h3>
+        <p class="pb-exception__desc">Long chats fill up the AI's memory. It "forgets" earlier instructions and starts going off track.</p>
+        <div class="pb-exception__fix">
+          <span class="pb-exception__fix-skill">cm-continuity</span>
+          <div class="pb-exception__fix-text">Saves context to a file. AI reads it at the start of every session — never loses track again.</div>
+        </div>
+      </div>
+
+      <div class="pb-exception">
+        <span class="pb-exception__label">Wrong Direction</span>
+        <h3 class="pb-exception__title">Plan turns out to be wrong</h3>
+        <p class="pb-exception__desc">You're halfway done and realize the approach won't work, or requirements changed.</p>
+        <div class="pb-exception__fix">
+          <span class="pb-exception__fix-skill">cm-planning</span>
+          <div class="pb-exception__fix-text">Go back and update the plan. It's cheaper to rewrite a plan than to rewrite code.</div>
+        </div>
+      </div>
+
+      <div class="pb-exception">
+        <span class="pb-exception__label">Stuck in Loops</span>
+        <h3 class="pb-exception__title">AI keeps "fixing" but nothing works</h3>
+        <p class="pb-exception__desc">The AI guesses randomly instead of understanding why it's broken. Each attempt makes it worse.</p>
+        <div class="pb-exception__fix">
+          <span class="pb-exception__fix-skill">cm-debugging</span>
+          <div class="pb-exception__fix-text">Forces AI to investigate the root cause first — no code changes until the "why" is clear.</div>
+        </div>
+      </div>
+
+      <div class="pb-exception">
+        <span class="pb-exception__label">Wrong Account</span>
+        <h3 class="pb-exception__title">Code pushed to wrong repo</h3>
+        <p class="pb-exception__desc">Multiple GitHub/Cloudflare accounts? One wrong push = your code ends up in someone else's project.</p>
+        <div class="pb-exception__fix">
+          <span class="pb-exception__fix-skill">cm-identity-guard</span>
+          <div class="pb-exception__fix-text">Checks which account is active before every push. Blocks the action if it's the wrong one.</div>
+        </div>
+      </div>
+
+      <div class="pb-exception">
+        <span class="pb-exception__label">Too Many Files</span>
+        <h3 class="pb-exception__title">AI only sees part of the project</h3>
+        <p class="pb-exception__desc">Large codebase (200+ files). AI reads a few files but misses the rest — changes break things it never saw.</p>
+        <div class="pb-exception__fix">
+          <span class="pb-exception__fix-skill">cm-deep-search</span>
+          <div class="pb-exception__fix-text">Adds semantic search so AI can find relevant code across the entire project instantly.</div>
+        </div>
+      </div>
+
+      <div class="pb-exception">
+        <span class="pb-exception__label">Leaked Secrets</span>
+        <h3 class="pb-exception__title">API keys committed to Git</h3>
+        <p class="pb-exception__desc">AI puts passwords or API keys directly in code. Push to a public repo = instant security breach.</p>
+        <div class="pb-exception__fix">
+          <span class="pb-exception__fix-skill">cm-secret-shield</span>
+          <div class="pb-exception__fix-text">Scans every commit automatically. Blocks the push if any secret is detected.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 9 GOLDEN RULES ═══════ -->
+  <section class="pb-section reveal">
+    <p class="pb-section__label">🏆 GOLDEN RULES</p>
+    <h2 class="pb-section__title">The 9 Non-Negotiable Rules</h2>
+    <p class="pb-section__sub">Follow these and your AI-assisted development will be predictable, safe, and fast.</p>
+
+    <div class="pb-rules-grid">
+      <div class="pb-rule">
+        <span class="pb-rule__num">1</span>
+        <p class="pb-rule__text"><strong>Identity First.</strong> Verify account (<code>cm-identity-guard</code>) before push/deploy. Every. Single. Time.</p>
+      </div>
+      <div class="pb-rule">
+        <span class="pb-rule__num">2</span>
+        <p class="pb-rule__text"><strong>Design Before Code.</strong> Always have an approved plan before typing. Use <code>cm-planning</code>.</p>
+      </div>
+      <div class="pb-rule">
+        <span class="pb-rule__num">3</span>
+        <p class="pb-rule__text"><strong>i18n Day 0.</strong> Always consider multi-language from the brainstorm step, not as an afterthought.</p>
+      </div>
+      <div class="pb-rule">
+        <span class="pb-rule__num">4</span>
+        <p class="pb-rule__text"><strong>Test Before Code.</strong> RED → GREEN → REFACTOR. No exceptions. <code>cm-tdd</code> enforces this.</p>
+      </div>
+      <div class="pb-rule">
+        <span class="pb-rule__num">5</span>
+        <p class="pb-rule__text"><strong>Evidence Over Claims.</strong> Only trust terminal/test output, not AI "saying" it's done.</p>
+      </div>
+      <div class="pb-rule">
+        <span class="pb-rule__num">6</span>
+        <p class="pb-rule__text"><strong>Deploy via Gates.</strong> 8 gates must pass sequentially. Any fail = STOP. <code>cm-safe-deploy</code>.</p>
+      </div>
+      <div class="pb-rule">
+        <span class="pb-rule__num">7</span>
+        <p class="pb-rule__text"><strong>Safe Secrets.</strong> Never commit secrets. Pre-commit hooks protect every push. <code>cm-secret-shield</code>.</p>
+      </div>
+      <div class="pb-rule">
+        <span class="pb-rule__num">8</span>
+        <p class="pb-rule__text"><strong>Parallel Power.</strong> Use parallel execution for i18n or multi-bug fixes. <code>cm-execution</code>.</p>
+      </div>
+      <div class="pb-rule">
+        <span class="pb-rule__num">9</span>
+        <p class="pb-rule__text"><strong>Working Memory.</strong> Read CONTINUITY.md at session start, update at end. <code>cm-continuity</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="pb-cta reveal">
+    <h2 class="pb-cta__title">Ready to run the playbook?</h2>
+    <p class="pb-cta__sub">Install in 30 seconds. Follow the playbook. Ship with confidence.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <a href="start.html" class="btn btn--primary btn--large">Get Started →</a>
+      <a href="cli.html" class="btn btn--secondary">CLI Power Users →</a>
+    </div>
+    <a href="faq.html" style="color:var(--text-muted);font-size:0.9rem;margin-top:8px;">Have questions? Check the FAQ →</a>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer" id="siteFooter">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo">⚡ CodyMaster Kit</span>
+        <p class="footer__tagline" data-i18n="footer.tagline">Turn Ideas into Products 10x Faster</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.product">Product</h4>
+        <a href="brain.html" data-i18n="nav.brain">Brain</a>
+        <a href="skills.html" data-i18n="nav.skills">Skills</a>
+        <a href="start.html" data-i18n="nav.getStarted">Get Started</a>
+        <a href="/docs/" data-i18n="nav.docs">Docs</a>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.whyUs">Why Us</h4>
+        <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
+        <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
+        <a href="story.html" data-i18n="nav.story">Our Story</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
+        <a href="https://github.com/tody-agent/codymaster" target="_blank">GitHub</a>
+        <a href="#" target="_blank">Discord</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
+      <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
+    </div>
+  </footer>
+
+  <script src="js/kit.js"></script>
+  <script>
+    // Scenario toggle
+    function toggleScenario(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+    }
+
+    // Reveal on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Open first scenario by default
+      document.getElementById('sc1').classList.add('open');
+
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+
+
+</body></html>

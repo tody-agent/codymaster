@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" data-lang="en">
-<head>
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brain — CodyMaster Smart Memory System</title>
@@ -24,6 +22,7 @@
 
     <ul class="nav__links" id="navLinks">
       <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
       <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
@@ -46,9 +45,10 @@
         </button>
         <div class="nav-dropdown__menu">
           <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
           <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
           <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="demo.html" class="nav-dropdown__item"><span class="lang-flag">▶️</span> <span data-i18n="nav.demo">Demo</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
         </div>
       </li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
@@ -120,10 +120,10 @@
         <div class="brain-viz__dot brain-viz__dot--right"></div>
         <div class="brain-viz__dot brain-viz__dot--bottom"></div>
         <div class="brain-viz__dot brain-viz__dot--left"></div>
-        <span class="brain-viz__label brain-viz__label--top">Long-term</span>
-        <span class="brain-viz__label brain-viz__label--right">Working</span>
-        <span class="brain-viz__label brain-viz__label--bottom">Sensory</span>
-        <span class="brain-viz__label brain-viz__label--left">Audit</span>
+        <span class="brain-viz__label brain-viz__label--top" data-i18n="pages.brain_auto_16">Long-term</span>
+        <span class="brain-viz__label brain-viz__label--right" data-i18n="pages.brain_auto_17">Working</span>
+        <span class="brain-viz__label brain-viz__label--bottom" data-i18n="pages.brain_auto_18">Sensory</span>
+        <span class="brain-viz__label brain-viz__label--left" data-i18n="pages.brain_auto_19">Audit</span>
       </div>
     </div>
   </section>
@@ -210,32 +210,32 @@
     <div class="brain-decay__content reveal">
       <div class="brain-decay__timeline">
         <div class="brain-decay__item">
-          <span class="brain-decay__label">1× used</span>
+          <span class="brain-decay__label" data-i18n="pages.brain_auto_20">1× used</span>
           <div class="brain-decay__bar-wrap">
-            <div class="brain-decay__bar brain-decay__bar--1" data-width="100%">TTL: 30 days</div>
+            <div class="brain-decay__bar brain-decay__bar--1" data-width="100%" data-i18n="pages.brain_auto_21">TTL: 30 days</div>
           </div>
-          <span class="brain-decay__note">Auto-expire</span>
+          <span class="brain-decay__note" data-i18n="pages.brain_auto_22">Auto-expire</span>
         </div>
         <div class="brain-decay__item">
-          <span class="brain-decay__label">2× used</span>
+          <span class="brain-decay__label" data-i18n="pages.brain_auto_23">2× used</span>
           <div class="brain-decay__bar-wrap">
-            <div class="brain-decay__bar brain-decay__bar--2" data-width="70%">TTL: 60 days</div>
+            <div class="brain-decay__bar brain-decay__bar--2" data-width="70%" data-i18n="pages.brain_auto_24">TTL: 60 days</div>
           </div>
-          <span class="brain-decay__note">Extended</span>
+          <span class="brain-decay__note" data-i18n="pages.brain_auto_25">Extended</span>
         </div>
         <div class="brain-decay__item">
-          <span class="brain-decay__label">3× used</span>
+          <span class="brain-decay__label" data-i18n="pages.brain_auto_26">3× used</span>
           <div class="brain-decay__bar-wrap">
-            <div class="brain-decay__bar brain-decay__bar--3" data-width="40%">TTL: 90 days</div>
+            <div class="brain-decay__bar brain-decay__bar--3" data-width="40%" data-i18n="pages.brain_auto_27">TTL: 90 days</div>
           </div>
-          <span class="brain-decay__note">Semi-permanent</span>
+          <span class="brain-decay__note" data-i18n="pages.brain_auto_28">Semi-permanent</span>
         </div>
         <div class="brain-decay__item">
-          <span class="brain-decay__label">5×+ used</span>
+          <span class="brain-decay__label" data-i18n="pages.brain_auto_29">5×+ used</span>
           <div class="brain-decay__bar-wrap">
-            <div class="brain-decay__bar brain-decay__bar--4" data-width="20%">TTL: 180 days</div>
+            <div class="brain-decay__bar brain-decay__bar--4" data-width="20%" data-i18n="pages.brain_auto_30">TTL: 180 days</div>
           </div>
-          <span class="brain-decay__note">Permanent wisdom</span>
+          <span class="brain-decay__note" data-i18n="pages.brain_auto_31">Permanent wisdom</span>
         </div>
       </div>
     </div>
@@ -271,7 +271,7 @@
       <div class="brain-heal__step">
         <span class="brain-heal__step-number brain-heal__step-number--4">4</span>
         <i data-lucide="heart-pulse" class="brain-heal__step-icon brain-heal__step-icon--4"></i>
-        <h4 class="brain-heal__step-title" data-i18n="brainPage.heal.steps.3.title">Heal & Update</h4>
+        <h4 class="brain-heal__step-title" data-i18n="brainPage.heal.steps.3.title">Heal &amp; Update</h4>
         <p class="brain-heal__step-desc" data-i18n="brainPage.heal.steps.3.desc">Delete or update wrong memory. Log the correction. Prevent future loops.</p>
       </div>
     </div>
@@ -315,7 +315,7 @@
         </tr>
         <tr>
           <td data-i18n="brainPage.compare.rows.4.scenario">50+ learnings exist</td>
-          <td data-i18n="brainPage.compare.rows.4.standard">Loads all → slow & confused</td>
+          <td data-i18n="brainPage.compare.rows.4.standard">Loads all → slow &amp; confused</td>
           <td data-i18n="brainPage.compare.rows.4.brain">Scope filter → loads only 2 relevant</td>
         </tr>
       </tbody>
@@ -335,18 +335,18 @@
         <div class="brain-scope__dot brain-scope__dot--red"></div>
         <div class="brain-scope__dot brain-scope__dot--yellow"></div>
         <div class="brain-scope__dot brain-scope__dot--green"></div>
-        <span class="brain-scope__terminal-title">memory-loader.ts</span>
+        <span class="brain-scope__terminal-title" data-i18n="pages.brain_auto_32">memory-loader.ts</span>
       </div>
       <div class="brain-scope__code">
-        <span class="dimmed">// Task: fix auth middleware</span><br>
-        <span class="dimmed">// Scope: module:auth</span><br><br>
-        <span class="accent">→ Scanning 50 learnings...</span><br>
-        <span class="dimmed">  ✗ global:cors-config (not relevant)</span><br>
-        <span class="dimmed">  ✗ module:payment (not relevant)</span><br>
-        <span class="highlight">  ✓ module:auth — "JWT must include role claim"</span><br>
-        <span class="highlight">  ✓ module:auth — "Always check token expiry"</span><br>
-        <span class="dimmed">  ✗ file:footer.tsx (not relevant)</span><br><br>
-        <span class="result">→ Loaded 2/50 learnings · Saved ~100 tokens</span>
+        <span class="dimmed" data-i18n="pages.brain_auto_33">// Task: fix auth middleware</span><br>
+        <span class="dimmed" data-i18n="pages.brain_auto_34">// Scope: module:auth</span><br><br>
+        <span class="accent" data-i18n="pages.brain_auto_35">→ Scanning 50 learnings...</span><br>
+        <span class="dimmed" data-i18n="pages.brain_auto_36">  ✗ global:cors-config (not relevant)</span><br>
+        <span class="dimmed" data-i18n="pages.brain_auto_37">  ✗ module:payment (not relevant)</span><br>
+        <span class="highlight" data-i18n="pages.brain_auto_38">  ✓ module:auth — "JWT must include role claim"</span><br>
+        <span class="highlight" data-i18n="pages.brain_auto_39">  ✓ module:auth — "Always check token expiry"</span><br>
+        <span class="dimmed" data-i18n="pages.brain_auto_40">  ✗ file:footer.tsx (not relevant)</span><br><br>
+        <span class="result" data-i18n="pages.brain_auto_41">→ Loaded 2/50 learnings · Saved ~100 tokens</span>
       </div>
     </div>
   </section>
@@ -381,7 +381,7 @@
         <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
         <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
         <a href="story.html" data-i18n="nav.story">Our Story</a>
-        <a href="demo.html" data-i18n="nav.demo">Demo</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
@@ -397,5 +397,6 @@
 
   <script src="js/kit.js"></script>
   <script src="js/brain-page.js"></script>
-</body>
-</html>
+
+
+</body></html>

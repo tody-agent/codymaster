@@ -540,6 +540,26 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         });
         res.status(201).json(learning);
     });
+    app.delete('/api/learnings/:projectId/:learningId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        if (!(0, continuity_1.hasCmDir)(project.path)) {
+            res.status(404).json({ error: 'No .cm/ directory' });
+            return;
+        }
+        const success = (0, continuity_1.deleteLearning)(project.path, req.params.learningId);
+        if (!success) {
+            res.status(404).json({ error: 'Learning not found' });
+            return;
+        }
+        (0, data_1.logActivity)(data, 'learning_deleted', `Learning deleted`, project.id);
+        (0, data_1.saveData)(data);
+        res.status(204).send();
+    });
     app.get('/api/decisions/:projectId', (req, res) => {
         const data = (0, data_1.loadData)();
         const project = data.projects.find(p => p.id === req.params.projectId);
@@ -568,6 +588,26 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             decision, rationale: rationale || '', timestamp: new Date().toISOString(), agent: agent || '',
         });
         res.status(201).json(entry);
+    });
+    app.delete('/api/decisions/:projectId/:decisionId', (req, res) => {
+        const data = (0, data_1.loadData)();
+        const project = data.projects.find(p => p.id === req.params.projectId);
+        if (!project || !project.path) {
+            res.status(404).json({ error: 'Project not found' });
+            return;
+        }
+        if (!(0, continuity_1.hasCmDir)(project.path)) {
+            res.status(404).json({ error: 'No .cm/ directory' });
+            return;
+        }
+        const success = (0, continuity_1.deleteDecision)(project.path, req.params.decisionId);
+        if (!success) {
+            res.status(404).json({ error: 'Decision not found' });
+            return;
+        }
+        (0, data_1.logActivity)(data, 'decision_deleted', `Decision deleted`, project.id);
+        (0, data_1.saveData)(data);
+        res.status(204).send();
     });
     app.post('/api/continuity/:projectId/init', (req, res) => {
         const data = (0, data_1.loadData)();

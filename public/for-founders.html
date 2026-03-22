@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" data-lang="en">
-<head>
+<!DOCTYPE html><html lang="en" data-lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CodyMaster Kit — For Founders</title>
@@ -27,6 +25,7 @@
 
     <ul class="nav__links" id="navLinks">
       <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="playbook.html" class="nav__link" data-i18n="nav.playbook">Playbook</a></li>
       <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown__toggle">
@@ -49,9 +48,10 @@
         </button>
         <div class="nav-dropdown__menu">
           <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
           <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
           <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
-          <a href="demo.html" class="nav-dropdown__item"><span class="lang-flag">▶️</span> <span data-i18n="nav.demo">Demo</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
         </div>
       </li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
@@ -63,12 +63,24 @@
             <span class="lang-btn-caret">▾</span>
           </button>
           <div class="lang-menu" id="lang-menu">
-            <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span></button>
-            <button class="lang-option" data-lang="vi"><span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span></button>
-            <button class="lang-option" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span></button>
-            <button class="lang-option" data-lang="ru"><span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span></button>
-            <button class="lang-option" data-lang="ko"><span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span></button>
-            <button class="lang-option" data-lang="hi"><span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span></button>
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
           </div>
         </div>
       </li>
@@ -85,25 +97,25 @@
     <!-- Animated SVG Background -->
     <div class="persona-hero__svg-bg">
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="10" y="10" width="80" height="80" rx="8" stroke="currentColor" stroke-width="1"/>
-        <line x1="10" y1="30" x2="90" y2="30" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="16" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="40" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="64" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"/>
-        <circle cx="26" cy="20" r="3" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="16" y="54" width="20" height="8" rx="2" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="40" y="54" width="20" height="8" rx="2" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="10" y="10" width="80" height="80" rx="8" stroke="currentColor" stroke-width="1"></rect>
+        <line x1="10" y1="30" x2="90" y2="30" stroke="currentColor" stroke-width="0.5"></line>
+        <rect x="16" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"></rect>
+        <rect x="40" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"></rect>
+        <rect x="64" y="36" width="20" height="12" rx="2" stroke="currentColor" stroke-width="0.5"></rect>
+        <circle cx="26" cy="20" r="3" stroke="currentColor" stroke-width="0.5"></circle>
+        <rect x="16" y="54" width="20" height="8" rx="2" stroke="currentColor" stroke-width="0.5"></rect>
+        <rect x="40" y="54" width="20" height="8" rx="2" stroke="currentColor" stroke-width="0.5"></rect>
       </svg>
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.5"/>
-        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-width="0.5"/>
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="0.5"/>
-        <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.3"/>
-        <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="0.3"/>
+        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.5"></circle>
+        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-width="0.5"></circle>
+        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="0.5"></circle>
+        <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.3"></line>
+        <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="0.3"></line>
       </svg>
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 80 L50 20 L80 80 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
-        <circle cx="50" cy="55" r="15" stroke="currentColor" stroke-width="0.5"/>
+        <path d="M20 80 L50 20 L80 80 Z" stroke="currentColor" stroke-width="0.5" fill="none"></path>
+        <circle cx="50" cy="55" r="15" stroke="currentColor" stroke-width="0.5"></circle>
       </svg>
     </div>
 
@@ -111,7 +123,7 @@
       <!-- Trust Badge -->
       <div class="persona-hero__badge" data-i18n="personas.details.founder.heroBadge">
         <span class="persona-hero__badge-dot"></span>
-        Built by a PM with 10+ years · Free & Open Source
+        Built by a PM with 10+ years · Free &amp; Open Source
       </div>
       <h1 class="persona-hero__title" data-i18n="personas.details.founder.heroTitle">You have the idea.<br>You just need the 100 hands to build it.</h1>
       <p class="persona-hero__subtitle" data-i18n="personas.details.founder.heroSub">CodyMaster gives non-technical founders the power to build, design, and deploy production-ready products — without writing a single line of code.</p>
@@ -148,7 +160,7 @@
         <span data-i18n="personas.details.founder.fomo.1">100% Free — no paywall, no credit card</span>
       </div>
       <div class="persona-fomo__item persona-fomo__item--highlight">
-        <span class="persona-fomo__item-icon">🧠</span>
+        <span class="persona-fomo__item-icon" data-i18n="personas.for_founders_auto_16">🧠</span>
         <span data-i18n="personas.details.founder.fomo.2">Gets smarter every day you use it</span>
       </div>
     </div>
@@ -162,7 +174,7 @@
     </div>
     <div class="persona-pains__grid">
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">💸</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_founders_auto_17">💸</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.founder.pains.0.title">Agencies drain your budget</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.founder.pains.0.desc">You've been quoted $30K-50K for an MVP. Weeks of meetings. Revisions that cost extra. And the result? A product that doesn't match your vision.</p>
       </div>
@@ -172,12 +184,12 @@
         <p class="persona-pain-card__desc" data-i18n="personas.details.founder.pains.1.desc">By the time you find a developer, negotiate contracts, and start building — your competitor already launched. Speed is everything in startup land.</p>
       </div>
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">🧱</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_founders_auto_18">🧱</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.founder.pains.2.title">No-code hits a wall</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.founder.pains.2.desc">Wix, Squarespace, Bubble — great for static pages, terrible for real products. You need auth, dashboards, APIs, databases. No-code can't do that.</p>
       </div>
       <div class="persona-pain-card reveal">
-        <span class="persona-pain-card__icon">🎯</span>
+        <span class="persona-pain-card__icon" data-i18n="personas.for_founders_auto_19">🎯</span>
         <h3 class="persona-pain-card__title" data-i18n="personas.details.founder.pains.3.title">You can't validate fast enough</h3>
         <p class="persona-pain-card__desc" data-i18n="personas.details.founder.pains.3.desc">Every day without a live product is a day you're guessing instead of learning. You need to test the market NOW, not in 3 months.</p>
       </div>
@@ -196,10 +208,10 @@
       <h2 class="persona-guide__title" data-i18n="personas.details.founder.guide.title">Build like the top 1% of tech startups, without the $100K budget.</h2>
       <p class="persona-guide__desc" data-i18n="personas.details.founder.guide.desc">You don't need a CTO to build a revolutionary product anymore. CodyMaster equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment.</p>
       <div class="persona-guide__credentials">
-        <span class="persona-guide__credential">🧠 10+ Years PM Experience</span>
-        <span class="persona-guide__credential">🛡️ Multi-Layer Safety</span>
-        <span class="persona-guide__credential">🔄 Self-Learning AI</span>
-        <span class="persona-guide__credential">📝 Auto Documentation</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_founders_auto_20">🧠 10+ Years PM Experience</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_founders_auto_21">🛡️ Multi-Layer Safety</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_founders_auto_22">🔄 Self-Learning AI</span>
+        <span class="persona-guide__credential" data-i18n="personas.for_founders_auto_23">📝 Auto Documentation</span>
       </div>
     </div>
   </section>
@@ -217,14 +229,14 @@
         <p class="persona-plan__stepdesc" data-i18n="personas.details.founder.plan.0.desc">Chat with the cm-planning agent in plain English. Describe your market, your users, and your dream app.</p>
       </div>
       <!-- Connector SVG Arrow -->
-      <svg class="persona-plan__connector persona-plan__connector--1" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="persona-plan__connector persona-plan__connector--1" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <div class="persona-plan__step reveal">
         <div class="persona-plan__num">2</div>
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.founder.plan.1.title">Review</h3>
         <p class="persona-plan__stepdesc" data-i18n="personas.details.founder.plan.1.desc">Watch the UI generate in real-time. Give feedback on colors, layout, and copy just like talking to a human designer.</p>
       </div>
       <!-- Connector SVG Arrow -->
-      <svg class="persona-plan__connector persona-plan__connector--2" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="persona-plan__connector persona-plan__connector--2" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <div class="persona-plan__step reveal">
         <div class="persona-plan__num">3</div>
         <h3 class="persona-plan__steptitle" data-i18n="personas.details.founder.plan.2.title">Deploy</h3>
@@ -241,19 +253,19 @@
     </div>
     <div class="persona-solutions__grid">
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-planning</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_founders_auto_24">cm-planning</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.founder.solutions.0.benefit">Describe your idea in plain English. AI breaks it into an actionable plan.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-ux-master</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_founders_auto_25">cm-ux-master</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.founder.solutions.1.benefit">Get a professional design system — 48 UX Laws, 1032+ patterns.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-execution</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_founders_auto_26">cm-execution</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.founder.solutions.2.benefit">AI writes production code with tests. Not prototypes — real products.</p>
       </div>
       <div class="persona-solution-card reveal">
-        <div class="persona-solution-card__skill">cm-safe-deploy</div>
+        <div class="persona-solution-card__skill" data-i18n="personas.for_founders_auto_27">cm-safe-deploy</div>
         <p class="persona-solution-card__benefit" data-i18n="personas.details.founder.solutions.3.benefit">One command to deploy. 8-gate pipeline. Automatic rollback if anything breaks.</p>
       </div>
     </div>
@@ -277,7 +289,7 @@
     </div>
     <div class="persona-ba__container reveal">
       <div class="persona-ba__col persona-ba__col--before">
-        <h3 class="persona-ba__heading">❌ Before</h3>
+        <h3 class="persona-ba__heading" data-i18n="personas.for_founders_auto_28">❌ Before</h3>
         <ul>
           <li data-i18n="personas.details.founder.beforeAfter.before.0">$30K+ agency fees</li>
           <li data-i18n="personas.details.founder.beforeAfter.before.1">3-6 months to launch</li>
@@ -287,7 +299,7 @@
         </ul>
       </div>
       <div class="persona-ba__col persona-ba__col--after">
-        <h3 class="persona-ba__heading">✅ After CodyMaster</h3>
+        <h3 class="persona-ba__heading" data-i18n="personas.for_founders_auto_29">✅ After CodyMaster</h3>
         <ul>
           <li data-i18n="personas.details.founder.beforeAfter.after.0">$0 — completely free</li>
           <li data-i18n="personas.details.founder.beforeAfter.after.1">Days to launch, not months</li>
@@ -331,7 +343,7 @@
         <a href="story.html" class="persona-cta__secondary" data-i18n="personas.details.founder.ctaSecondary">📖 Read the Story</a>
       </div>
       <div class="persona-trust-strip">
-        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> 100% Free & Open Source</span>
+        <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span><span data-i18n="personas.for_founders_auto_30">100% Free &amp; Open Source</span></span>
         <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Gets Smarter Every Day</span>
         <span class="persona-trust-strip__item"><span class="persona-trust-strip__item-icon">✓</span> Built by a PM, for Everyone</span>
       </div>
@@ -357,7 +369,7 @@
         <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
         <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
         <a href="story.html" data-i18n="nav.story">Our Story</a>
-        <a href="demo.html" data-i18n="nav.demo">Demo</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
@@ -387,5 +399,6 @@
       if (window.lucide) lucide.createIcons();
     });
   </script>
-</body>
-</html>
+
+
+</body></html>

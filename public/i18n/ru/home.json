@@ -1,0 +1,163 @@
+{
+  "faq_auto_1": "🚀",
+  "faq_auto_10": "📖",
+  "faq_auto_11": "▶️",
+  "faq_auto_12": "🌍",
+  "faq_auto_13": "EN",
+  "faq_auto_14": "中文",
+  "faq_auto_15": "хинди",
+  "faq_auto_16": "❓ Справочный центр",
+  "faq_auto_17": "Часто задаваемые",
+  "faq_auto_2": "📢",
+  "faq_auto_3": "📋",
+  "faq_auto_4": "💻",
+  "faq_auto_5": "🎨",
+  "faq_auto_6": "🦞",
+  "faq_auto_7": "💡",
+  "faq_auto_8": "🤺",
+  "faq_auto_9": "🔄",
+  "features": {
+    "label": "ПОЧЕМУ CODY MASTER",
+    "title": "Всё, что вам нужно,\nв одном наборе",
+    "subtitle": "Никакого кода. Никакого найма разработчиков. ИИ сделает все от А до Я.",
+    "cards": [
+      {
+        "title": "Скорость 10х",
+        "description": "От идеи до полноценного сайта за минуты. ИИ выполняет код, дизайн и развертывание — вы просто просите."
+      },
+      {
+        "title": "Профессиональное качество",
+        "description": "Код уровня Production — никаких одноразовых прототипов. 33 навыка гарантируют качество от безопасности до SEO."
+      },
+      {
+        "title": "Экономия 90%",
+        "description": "Экономит время и деньги по сравнению с аутсорсингом или фрилансерами. Один набор программ заменяет команду."
+      },
+      {
+        "title": "Полная простота",
+        "description": "Общайтесь естественно, ИИ понимает и выполняет. Без сложных интерфейсов или кривых обучения."
+      },
+      {
+        "title": "🔄 Legacy Rescue",
+        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
+      }
+    ]
+  },
+  "hero": {
+    "badge": "33 ИИ навыка · Открытый исходный код · Бесплатно",
+    "headlineStatic": "Создавайте реальные продукты с ИИ",
+    "typingPhrases": [
+      "Без программирования",
+      "Запуск за минуты",
+      "От идеи до продукта"
+    ],
+    "subtitle": "33 специализированных навыка ИИ для дизайна, кода, тестирования и развёртывания.\nВы просто общаетесь. Без программирования.",
+    "ctaPrimary": "Начать строить — Бесплатно",
+    "ctaSecondary": "Смотреть демо",
+    "trustNoCreditCard": "✓ Не нужна банковская карта",
+    "trust30Seconds": "✓ Настройка за 30 секунд",
+    "trustOpenSource": "✓ 100% Открытый исходный код"
+  },
+  "howItWorks": {
+    "label": "КАК ЭТО РАБОТАЕТ",
+    "title": "От нуля до профи\nза 3 простых шага",
+    "steps": [
+      {
+        "title": "Установка",
+        "description": "Добавьте marketplace, затем установите плагин.\nГотово за 30 секунд.",
+        "code": "claude plugin install cm@codymaster"
+      },
+      {
+        "title": "Общение",
+        "description": "Скажите ИИ, что вы хотите построить.\nИспользуйте простые слова, как в разговоре с другом.",
+        "code": "\"Создай landing page\nдля моей кофейни\""
+      },
+      {
+        "title": "Публикация",
+        "description": "Полноценный сайт готов и опубликован.\nСразу делитесь ссылкой.",
+        "code": "✓ yoursite.com в сети!"
+      }
+    ],
+    "deepLabel": "КАК ЭТО РАБОТАЕТ ВНУТРИ",
+    "deepTitle": "Цикл RARV и 6 Этапов Контроля Качества",
+    "deepSubtitle": "Каждая задача, назначенная CodyMaster, проходит через автоматический цикл, гарантирующий код готовый к продакшну."
+  },
+  "index_auto_1": "🚀",
+  "index_auto_10": "📖",
+  "index_auto_11": "▶️",
+  "index_auto_12": "🌍",
+  "index_auto_13": "EN",
+  "index_auto_14": "中文",
+  "index_auto_15": "хинди",
+  "index_auto_16": "🚀 v3.4.0",
+  "index_auto_17": "🧠 33 навыка",
+  "index_auto_18": "⚡ 7+ Платформ",
+  "index_auto_19": "🌍 Открытый исходный код",
+  "index_auto_2": "📢",
+  "index_auto_20": "Ваш ИИ-агент умен.",
+  "index_auto_3": "📋",
+  "index_auto_4": "💻",
+  "index_auto_5": "🎨",
+  "index_auto_6": "🦞",
+  "index_auto_7": "💡",
+  "index_auto_8": "🤺",
+  "index_auto_9": "🔄",
+  "install": {
+    "title": "Готово за 30 секунд",
+    "subtitle": "Одна команда устанавливает все 33 навыка. Без npm, без конфигов — просто плагин Claude Code.",
+    "oneliner": "Одна строка (автоопределение, многоязычность)",
+    "or": "— или пошагово —",
+    "step1": "Добавить marketplace",
+    "step2": "Установить все 33 навыка",
+    "step3": "Начать обучение",
+    "copy": "Копировать",
+    "detailedGuide": "Полное руководство по установке"
+  },
+  "usp": {
+    "label": "В ЧЕМ НАШЕ ОТЛИЧИЕ",
+    "title": "Это не просто ИИ.\nЭто движок с акцентом на дизайн.",
+    "subtitle": "CodyMaster не просто пишет код — он проектирует, позволяет предварительно просматривать и уважает вашу дизайн-систему.",
+    "cards": [
+      {
+        "icon": "kanban",
+        "title": "Канбан Панель",
+        "description": "Визуальное управление проектом. Отслеживайте задачи, процессы и статусы развертывания в едином центре.",
+        "visual": "kanban"
+      },
+      {
+        "icon": "eye",
+        "title": "Сначала превью, потом код",
+        "description": "Увидьте точный внешний вид UI еще до написания кода. Итерации с ИИ без сюрпризов.",
+        "visual": "preview"
+      },
+      {
+        "icon": "sliders-horizontal",
+        "title": "Полный контроль дизайна",
+        "description": "Выбирайте эстетику — типографику, цвета, отступы. ИИ следует вашему направлению, а не случайным настройкам.",
+        "visual": "controls"
+      },
+      {
+        "icon": "component",
+        "title": "Работает с вашей системой",
+        "description": "Уже есть собственная дизайн-система? CodyMaster прочитает ваши токены, компоненты и гайды, и будет строить на их основе.",
+        "visual": "system"
+      }
+    ]
+  },
+  "why_cody_master_auto_1": "🚀",
+  "why_cody_master_auto_10": "📖",
+  "why_cody_master_auto_11": "▶️",
+  "why_cody_master_auto_12": "🌍",
+  "why_cody_master_auto_13": "EN",
+  "why_cody_master_auto_14": "中文",
+  "why_cody_master_auto_15": "хинди",
+  "why_cody_master_auto_16": "Прекратите кодирование Vibe.",
+  "why_cody_master_auto_2": "📢",
+  "why_cody_master_auto_3": "📋",
+  "why_cody_master_auto_4": "💻",
+  "why_cody_master_auto_5": "🎨",
+  "why_cody_master_auto_6": "🦞",
+  "why_cody_master_auto_7": "💡",
+  "why_cody_master_auto_8": "🤺",
+  "why_cody_master_auto_9": "🔄"
+}

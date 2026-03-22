@@ -5270,3 +5270,47 @@ img {
     max-width: 100%;
   }
 }
+
+/* ==============================================
+   RESPONSIVE TYPOGRAPHY & TEXT-WRAP FIXES
+   ============================================== */
+.hero__headline,
+.hero__subtitle,
+.section__title,
+.section__subtitle,
+.skills-hero__title,
+.skills-hero__sub,
+.story-hero__title,
+.story-hero__sub,
+.vs-hero__title,
+.vs-hero__sub,
+.cli-hero__title,
+.cli-hero__sub,
+.cli-section__title,
+.cli-section__sub,
+.born-pain__title,
+.usecase-card__title,
+.persona-hero__title,
+.persona-hero__subtitle,
+.persona-failure__title,
+.persona-cta__title {
+  text-wrap: balance;
+}
+
+@media (max-width: 768px) {
+  .hero__headline { font-size: clamp(2.2rem, 8vw, 3rem); }
+  .section__title { font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
+  .hero__subtitle, .section__subtitle { font-size: 1.1rem; }
+  
+  .skills-hero__title { font-size: clamp(2rem, 8vw, 2.5rem); }
+  .story-hero__title, .vs-hero__title, .cli-hero__title { font-size: clamp(2rem, 8vw, 2.5rem); }
+  
+  
+  .cli-section__title { font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
+  .cli-cta__title { font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
+  
+  .persona-hero__title { font-size: clamp(2rem, 8vw, 2.5rem); }
+  .persona-hero__subtitle { font-size: 1.1rem; }
+  .persona-failure__title { font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
+  .persona-cta__title { font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
+}

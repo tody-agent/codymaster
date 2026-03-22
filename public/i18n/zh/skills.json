@@ -1,0 +1,742 @@
+{
+  "skills": {
+    "label": "技能库",
+    "title": "33 专业技能\n覆盖每个阶段",
+    "subtitle": "每个技能都是一位AI专家——从创意构思、设计、内容文案到安全和部署。",
+    "categories": [
+      "创意构思",
+      "设计",
+      "内容",
+      "编码与部署",
+      "安全"
+    ],
+    "cards": [
+      {
+        "icon": "lightbulb",
+        "name": "cm-brainstorm-idea",
+        "categoryIndex": 0,
+        "description": "多维度的创意分析，在开始构建之前验证可行性"
+      },
+      {
+        "icon": "file-text",
+        "name": "cm-planning",
+        "categoryIndex": 0,
+        "description": "编码前的详细规划——不再把时间浪费在无休止的修改上"
+      },
+      {
+        "icon": "users",
+        "name": "cm-jtbd",
+        "categoryIndex": 0,
+        "description": "Jobs-To-Be-Done 发现——了解客户真正雇用您的产品做什么"
+      },
+      {
+        "icon": "palette",
+        "name": "cm-ux-master",
+        "categoryIndex": 1,
+        "description": "符合UX标准的界面设计——美观、易用，且为转化率优化"
+      },
+      {
+        "icon": "monitor",
+        "name": "cm-ui-preview",
+        "categoryIndex": 1,
+        "description": "通过Google Stitch进行AI驱动的UI生成——分钟内完成原型"
+      },
+      {
+        "icon": "pen-tool",
+        "name": "cm-content-factory",
+        "categoryIndex": 2,
+        "description": "SEO优化的内容创作——从博客到落地页，AI像专家一样写作"
+      },
+      {
+        "icon": "trending-up",
+        "name": "cm-ads-tracker",
+        "categoryIndex": 2,
+        "description": "完整转化追踪——Facebook/Meta Pixel、TikTok、Google Ads、GTM"
+      },
+      {
+        "icon": "target",
+        "name": "cro-methodology",
+        "categoryIndex": 2,
+        "description": "CRO审计——漏斗映射、异议处理、A/B测试设计"
+      },
+      {
+        "icon": "check-square",
+        "name": "cm-tdd",
+        "categoryIndex": 3,
+        "description": "红-绿-重构循环——没有失败测试就不写生产代码"
+      },
+      {
+        "icon": "bug",
+        "name": "cm-debugging",
+        "categoryIndex": 3,
+        "description": "系统性5阶段根本原因调查——解决问题，而非症状"
+      },
+      {
+        "icon": "rocket",
+        "name": "cm-safe-deploy",
+        "categoryIndex": 3,
+        "description": "多门部署流水线——密钥扫描→测试→构建→部署→冒烟测试"
+      },
+      {
+        "icon": "git-pull-request",
+        "name": "cm-code-review",
+        "categoryIndex": 3,
+        "description": "完整PR生命周期——请求审查、处理反馈、完成分支集成"
+      },
+      {
+        "icon": "lock",
+        "name": "cm-secret-shield",
+        "categoryIndex": 4,
+        "description": "纵深防御密钥管理——预提交钩子、全仓库泄露检测"
+      },
+      {
+        "icon": "shield",
+        "name": "cm-quality-gate",
+        "categoryIndex": 4,
+        "description": "基于证据的验证——盲审、反谄媚、安全扫描"
+      }
+    ]
+  },
+  "skillsPage": {
+    "modalWhat": "What is it?",
+    "modalWhen": "When to use?",
+    "modalWhy": "Why use it?",
+    "modalBest": "Best Practice",
+    "meta": {
+      "title": "技能库 — CodyMaster Kit",
+      "description": "探索30多个涵盖创意、设计、内容、代码、安全和部署的专属AI代理技能。"
+    },
+    "hero": "探索完整的技能库",
+    "heroSub": "每个技能都是专属的AI专家。搜索、过滤，为您的任务找到合适的技能。",
+    "searchPlaceholder": "搜索技能...",
+    "categories": [
+      "全部",
+      "创意构思",
+      "设计",
+      "内容",
+      "编码与部署",
+      "安全",
+      "质量把控",
+      "DevOps运维"
+    ],
+    "modalTryPrompt": "试着输入：",
+    "modalRelated": "相关技能",
+    "modalCta": "开始使用此技能",
+    "catalog": [
+      {
+        "id": "cm-brainstorm-idea",
+        "name": "cm-brainstorm-idea",
+        "category": "Ideation",
+        "icon": "lightbulb",
+        "tagline": "Strategic Idea Analysis",
+        "prompt": "Analyze my e-commerce platform and suggest improvements",
+        "related": [
+          "cm-planning",
+          "cm-ux-master"
+        ],
+        "problem": "Got a brilliant idea but paranoid about building the wrong thing and burning time?",
+        "solution": "Multi-dimensional analysis to architect the absolute best execution strategy before hardcoding.",
+        "whatIsIt": "A strategic analysis tactician acting as your Product Manager. Employs Design Thinking, TRIZ 9 Windows, and Double Diamond matrices to dissect mechanics, marketing, and business risks.",
+        "whenToUse": "Exclusively before bootstrapping major epics or refactoring chaotic multi-tiered legacy systems.",
+        "whyToUse": "Eviscerates the 'build fast but build wrong' illusion. Forces you into evaluating 2-3 structured strategic options (comparing Pros/Cons) rather than coding blindly.",
+        "bestPractice": "Feed it extensive raw User Profile contexts. Consistently execute this prior to invoking `cm-planning`."
+      },
+      {
+        "id": "cm-planning",
+        "name": "cm-planning",
+        "category": "Ideation",
+        "icon": "map",
+        "tagline": "Implementation Planning",
+        "prompt": "Plan the implementation for user authentication",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-execution"
+        ],
+        "problem": "Whenever the AI is commanded to code raw, it violently demolishes your stable architecture?",
+        "solution": "Force AI to formulate a comprehensive structural blueprint defining scope before keyboard hitting.",
+        "whatIsIt": "The supreme operational orchestrator. Pushes out an architectural blueprint (`implementation_plan.md`) documenting exactly what files undergo structural mutation.",
+        "whenToUse": "After the core idea hits green-light status (via `cm-brainstorm-idea`) and identically moments before physically coding.",
+        "whyToUse": "Shatters monolithic requests into micro-manageable step-nodes. Pre-reviewing this architectural snapshot rescues you from infinite debugging loops late night.",
+        "bestPractice": "Intensely scrutinize the `implementation_plan.md`. Command the AI to patch architectural flaws rigidly before ever approving movement to `cm-execution`."
+      },
+      {
+        "id": "cm-content-factory",
+        "name": "cm-content-factory",
+        "category": "Content",
+        "icon": "pen-tool",
+        "tagline": "AI Content Engine",
+        "prompt": "Write a blog post about remote work productivity",
+        "related": [
+          "cm-readit",
+          "cm-ux-master"
+        ],
+        "problem": "Your landing page SEO content sounds incredibly robotic, driving bounce rates up and conversions down?",
+        "solution": "A psychological copywriting factory that mimics 8-figure conversion marketers flawlessly.",
+        "whatIsIt": "A self-improving content engine imbued with 8+ hypnotic psychological frameworks (StoryBrand SB7, Cialdini's Persuasion, SUCCESs vectors) for elite marketing campaigns.",
+        "whenToUse": "Drafting intensely persuasive content mediums: Lead generation funnels, blast emails, commercial blogs, or Facebook Ad hooks.",
+        "whyToUse": "Moves away from generative dictionary-text into pure psychological maneuvers. It agitates exact user trauma points, weaponizes curiosity, and boosts global Conversion Rates (CRO).",
+        "bestPractice": "Initially define the JTBD (Job-to-be-Done). Trigger the StoryBrand mode projecting your Customer strictly as the Hero, and your Brand as the Yoda-like Guide."
+      },
+      {
+        "id": "cm-ux-master",
+        "name": "cm-ux-master",
+        "category": "Design",
+        "icon": "palette",
+        "tagline": "UI/UX Design Intelligence",
+        "prompt": "Design a dashboard for a SaaS analytics app",
+        "related": [
+          "cm-ui-preview",
+          "cm-content-factory"
+        ],
+        "problem": "Your interface is erratic, spacing grids clash, and the color hierarchies resemble a circus?",
+        "solution": "Instantly impose absolute UI/UX design compliance inherited from 48 universal laws and elite patterns.",
+        "whatIsIt": "The apex visual intelligence node. Integrates 48 strict UX Laws, thousands of component heuristics, deeply optimizing aesthetic A11y scaling and whitespace math.",
+        "whenToUse": "Prototyping new UI layouts from scratch, auditing broken checkout friction streams, or elevating UI consistency globally.",
+        "whyToUse": "Eradicates the dependency on highly expensive UX consultation. Acts as a draconian design gatekeeper verifying your aesthetic yields extreme polish and engagement.",
+        "bestPractice": "Always pair this engine sequentially with `cm-ui-preview` to visualize its conceptualized mockups before dropping into Tailwind syntax."
+      },
+      {
+        "id": "cm-ui-preview",
+        "name": "cm-ui-preview",
+        "category": "Design",
+        "icon": "monitor",
+        "tagline": "Visual UI Preview",
+        "prompt": "Preview a mobile app login screen",
+        "related": [
+          "cm-ux-master",
+          "cm-planning"
+        ],
+        "problem": "A nightmare trying to conceptualize how an AI's code will visually render without compiling?",
+        "solution": "Render immediate hyper-realistic mockups strictly locking down design specs before HTML processing.",
+        "whatIsIt": "Seamlessly interlocks via Google Stitch/Pencil integration parameters producing live UI graphical snapshots instantaneously.",
+        "whenToUse": "Traversing the twilight zone between conceptual ideation and deep coding pipelines to physically validate concepts.",
+        "whyToUse": "Iterating graphical elements is hundreds of times cheaper token-wise and time-wise compared to endless CSS refactoring loops. 'Preview before producing'.",
+        "bestPractice": "Declare component demands precisely (Sidebar grids, Hero Call-to-actions). Demand exported screenshot renderings immediately traversing processing."
+      },
+      {
+        "id": "cm-execution",
+        "name": "cm-execution",
+        "category": "Code & Deploy",
+        "icon": "play",
+        "tagline": "Smart Code Execution",
+        "prompt": "Execute the implementation plan for the checkout feature",
+        "related": [
+          "cm-planning",
+          "cm-tdd"
+        ],
+        "problem": "Unleashing an AI on gigantic changesheets causes token amnesia, breaking pristine logic boundaries?",
+        "solution": "Atomically partition operations, buffer saves, and intelligently string processing simultaneously.",
+        "whatIsIt": "The industrial-tier coding execution loop mechanism. Capable of intense batch processing trajectories, anomaly isolation, and non-stop operational perseverance.",
+        "whenToUse": "Armed explicitly with an `implementation_plan.md` and prepared to industrially construct the feature sets.",
+        "whyToUse": "It honors strict Dependency-First execution flow (E.g. generating DB schemas prior to UI consumption). Audits itself sequentially post-microstep.",
+        "bestPractice": "Monitor the `task.md` dashboard progress actively. Refrain arbitrarily interrupting the AI whilst locked in a Deep Execution state unless a nuclear error signals."
+      },
+      {
+        "id": "cm-tdd",
+        "name": "cm-tdd",
+        "category": "Quality",
+        "icon": "check-square",
+        "tagline": "Test-Driven Development",
+        "prompt": "Write tests for the payment processing module",
+        "related": [
+          "cm-execution",
+          "cm-quality-gate"
+        ],
+        "problem": "App functions flawlessly initially, but collapses silently via regression every minor patch cycle?",
+        "solution": "Draconian enforcement of Test-Driven Development (TDD) engineering absolute structural shields.",
+        "whatIsIt": "Pure TDD dogma enforcer. Physically authors logical assertions (Unit/Integration) *before* spawning the core algorithm logic designed to clear the test constraints.",
+        "whenToUse": "Absolutely fundamental dictation when handling core mathematical layers, payment gateways, complex state mutations, or critical endpoints.",
+        "whyToUse": "Guarantees mission-critical infrastructure operates immune to silent regression creeping. Green test matrices equal zero-anxiety nocturnal deployments.",
+        "bestPractice": "Never disregard utility function coverage metrics. Command the AI to ingest your custom Jest/Vitest configuration specifications thoroughly."
+      },
+      {
+        "id": "cm-debugging",
+        "name": "cm-debugging",
+        "category": "Quality",
+        "icon": "bug",
+        "tagline": "Root Cause Debugging",
+        "prompt": "Debug why the login page crashes on mobile",
+        "related": [
+          "cm-tdd",
+          "cm-terminal"
+        ],
+        "problem": "Hitting an anomaly and the AI guesses wildly, altering stable dependencies while deteriorating the stack?",
+        "solution": "Implement surgical Root Cause methodologies replacing volatile wild-guess patchwork immediately.",
+        "whatIsIt": "A methodical trace forensics instrument. Recursively scans the data flow pipelines, unravels terminal output, and isolates exact structural node failures surgically.",
+        "whenToUse": "Confronted by visible UI rendering fracturing, terminal compilation panics, or logic chains returning catastrophic mutations.",
+        "whyToUse": "Standard unstructured debugging usually annihilates secondary logic clusters. This technique isolates the infection, deploying a single targeted patch conserving absolute context stability.",
+        "bestPractice": "Deliver raw unadulterated Error Stack Traces. Explicitly instruct it: 'Analyze Root Cause precisely' prior to ever granting file-write authorization."
+      },
+      {
+        "id": "cm-code-review",
+        "name": "cm-code-review",
+        "category": "Quality",
+        "icon": "git-pull-request",
+        "tagline": "Code Review & Feedback",
+        "prompt": "Review the latest pull request for the API module",
+        "related": [
+          "cm-quality-gate",
+          "cm-tdd"
+        ],
+        "problem": "Terrified to merge foreign or rapid code injections out of fear they harbor security/technical decay?",
+        "solution": "Deploy a merciless automated Senior Engineer verification protocol gating your main branch.",
+        "whatIsIt": "An exhaustive Pull Request surveillance apparatus. Critiques invisible Code Smells, algorithm latency bottlenecks, reusability scaling, and security liabilities.",
+        "whenToUse": "Concluding feature isolation arcs, right before attempting branch merging matrices, or retro-auditing massive legacy refactors.",
+        "whyToUse": "Decimates the requirement for Senior human reviewers constantly standing by. Recommends intensely elegant structural refactoring permutations proactively decreasing Tech Debt.",
+        "bestPractice": "Ask the AI directly: 'Identify the top 3 Technical Debt consequences introducing this specific implementation will forge long-term'."
+      },
+      {
+        "id": "cm-quality-gate",
+        "name": "cm-quality-gate",
+        "category": "Quality",
+        "icon": "shield",
+        "tagline": "Deploy Quality Gate",
+        "prompt": "Run quality gate before deploying to production",
+        "related": [
+          "cm-tdd",
+          "cm-safe-deploy"
+        ],
+        "problem": "The classic 'It runs perfect on my localhost!' transitioning into a blazing server collapse deployment?",
+        "solution": "The uncompromising iron Quality Gate checkpoint. Failure to pass = Absolute deployment prohibition.",
+        "whatIsIt": "The ultimate CI validation blockade. Enforces zero-leniency clears over Linting aesthetics, Test pass rates, TypeScript bindings, and Security vulnerability scanners.",
+        "whenToUse": "MANDATORY checkpoint directly preceding any activation of the `cm-safe-deploy` command or concluding your two-week Scrum Sprint cycles.",
+        "whyToUse": "Anchors the RARV (Review-Audit-Resolve-Verify) standard. Violently blocks humiliating service outages stemming from simple undefined tokens or broken logic gates.",
+        "bestPractice": "Never under any administrative pressure bypass the execution check of this QA Gate checkpoint."
+      },
+      {
+        "id": "cm-test-gate",
+        "name": "cm-test-gate",
+        "category": "Quality",
+        "icon": "clipboard-check",
+        "tagline": "Test Infrastructure",
+        "prompt": "Set up test infrastructure for my Next.js project",
+        "related": [
+          "cm-tdd",
+          "cm-quality-gate"
+        ],
+        "problem": "Acknowledging Testing is paramount but entirely lost configuring the sophisticated infrastructure properly?",
+        "solution": "Instantiate robust automated testing CI foundations systematically strictly by the book.",
+        "whatIsIt": "Testing infrastructure scaffolding authority. Sets up the backbone array (Vitest, Jest, Cypress), environment profiles, and Husky pre-commit defensive mechanisms.",
+        "whenToUse": "Booting an entirely fresh repository, or salvaging an older legacy codebase devoid of comprehensive structural verification standards.",
+        "whyToUse": "Integrating Test Gates on Day 1 catalyzes massive horizontal project scaling capability without internal fracturing. It pre-populates dummy specs mapping out behavior.",
+        "bestPractice": "Trigger this initialization explicitly early, normally as the direct sequential operational step after clearing `cm-project-bootstrap`."
+      },
+      {
+        "id": "cm-terminal",
+        "name": "cm-terminal",
+        "category": "DevOps",
+        "icon": "terminal",
+        "tagline": "Terminal Management",
+        "prompt": "Run and monitor the build process",
+        "related": [
+          "cm-execution",
+          "cm-debugging"
+        ],
+        "problem": "Long-haul background compilations or terminal operations spew unnoticed critical warnings inducing invisible crashes?",
+        "solution": "Impose hyper-intelligent oversight spanning all terminal and shell execution processes instantly.",
+        "whatIsIt": "A dedicated supervisory overlay for Terminal executions—capturing NPM dependency installations, build engines, or headless daemon dev environments actively.",
+        "whenToUse": "Whenever authorizing heavily destructive directory commands or package cascades known to traditionally generate dense obscure warning streams.",
+        "whyToUse": "Aggressively checks AI 'fire and forget' tendencies. The unit methodically translates terminal feedback, pauses for process resolution, and neutralizes rogue exits carefully.",
+        "bestPractice": "Monitor and enforce its command restriction boundaries. Ask it dynamically to dump diagnostic log buffers if an unhandled backend process mysteriously evaporates."
+      },
+      {
+        "id": "cm-safe-deploy",
+        "name": "cm-safe-deploy",
+        "category": "DevOps",
+        "icon": "rocket",
+        "tagline": "Safe Deployment Pipeline",
+        "prompt": "Deploy the staging build to Cloudflare Pages",
+        "related": [
+          "cm-quality-gate",
+          "cm-identity-guard"
+        ],
+        "problem": "Does triggering the 'Deploy' sequence invoke intense anxiety and fear of irreversible domain outages?",
+        "solution": "An 8-Gate verification deployment protocol verifying holistic integrity before superseding live data arrays.",
+        "whatIsIt": "Zero-downtime automated deployment orchestrator. Fluidly connects with Vercel, Cloudflare Pages, or custom raw VPS server configurations gracefully.",
+        "whenToUse": "Progressing verified staging code integrations over the threshold into global Production/Live environment status updates.",
+        "whyToUse": "Alleviates the immense psychological friction attached to shipping internet products. Prioritizes indestructible rollback systems instantaneously shielding users if a build is fundamentally toxic.",
+        "bestPractice": "Obligatorily sequence this protocol exclusively only after achieving a full-green certification run from your `cm-quality-gate`."
+      },
+      {
+        "id": "cm-project-bootstrap",
+        "name": "cm-project-bootstrap",
+        "category": "DevOps",
+        "icon": "folder-plus",
+        "tagline": "Project Scaffold",
+        "prompt": "Bootstrap a new SaaS project with Next.js",
+        "related": [
+          "cm-planning",
+          "cm-safe-deploy"
+        ],
+        "problem": "The introductory configurations feel like an endless repeating chore: tailwind, git, eslint, routing setup...",
+        "solution": "Instantiate total enterprise-grade structural configurations universally under a rapid minute.",
+        "whatIsIt": "Paramount project initialization scaffold. Bakes in structural directory perfection, staging profiles, pre-configured i18n support, SEO metadata layers out of the box.",
+        "whenToUse": "Ground Zero momentum initializing a completely empty project canvas.",
+        "whyToUse": "Constructing upon a shaky foundational structure guarantees collapse later. Executing this standard magnifies developmental agility 10x throughout subsequent development months.",
+        "bestPractice": "Ensure correct organizational nomenclature (Domain, Project Title) when prompted, allowing the Identity Guard mechanisms to calibrate seamlessly."
+      },
+      {
+        "id": "cm-git-worktrees",
+        "name": "cm-git-worktrees",
+        "category": "DevOps",
+        "icon": "git-branch",
+        "tagline": "Git Worktree Manager",
+        "prompt": "Create a worktree for the new payment feature",
+        "related": [
+          "cm-code-review",
+          "cm-execution"
+        ],
+        "problem": "Halfway configuring deep logic when an immediate Live bug detonates; switching branches yields absolute Git apocalyptic conflicts?",
+        "solution": "Activate Git Worktree multiplexing, allowing multi-stream operations without shedding uncommitted code progress.",
+        "whatIsIt": "An elite branching parallelization tool. Worktrees instantiate isolated physical folder variants synchronized to a singular central git repository simultaneously.",
+        "whenToUse": "Extremely critical when forced to suspend highly-complex uncommitted algorithms to resolve catastrophic sudden high-tier organizational demands.",
+        "whyToUse": "Eradicates the volatile 'git stash' inferno. Eliminates excruciating `node_modules` reconfiguration wait-times. Operational context streams remain hermetically sealed and safe from tampering.",
+        "bestPractice": "Always prune and delete the isolated worktree directory securely once the temporary branch has achieved successful final merger integration to save SSD capacities."
+      },
+      {
+        "id": "cm-safe-i18n",
+        "name": "cm-safe-i18n",
+        "category": "Content",
+        "icon": "globe",
+        "tagline": "Safe Internationalization",
+        "prompt": "Translate the app from English to Vietnamese",
+        "related": [
+          "cm-content-factory",
+          "cm-quality-gate"
+        ],
+        "problem": "Generative AI multi-translation iterations capriciously obliterate core internal logic values or semantic HTML structures?",
+        "solution": "Absolute bulletproof localization matrices guaranteeing zero distortion in structural application frameworks.",
+        "whatIsIt": "Massive multi-pass array translation engine running distinct languages synchronously. Applies raw regex differential analysis ensuring structural components stay completely immaculate.",
+        "whenToUse": "Geographically scaling applications incorporating dense dual locales (E.g. processing Korean, Vietnamese, or custom English integrations globally).",
+        "whyToUse": "Forged directly directly in the fires of catastrophic AI-refactoring wipeouts. It integrates an 8-layer structural audit enforcing variables and DIV architectures stay entirely intact perpetually.",
+        "bestPractice": "Mandate parsing minimal JSON blocks strictly beneath 2,000 text lines to prevent extensive recursive hallucination tendencies in the LLM."
+      },
+      {
+        "id": "cm-readit",
+        "name": "cm-readit",
+        "category": "Content",
+        "icon": "headphones",
+        "tagline": "Audio & Voice CRO",
+        "prompt": "Add text-to-speech reading mode to my blog",
+        "related": [
+          "cm-content-factory",
+          "cm-ux-master"
+        ],
+        "problem": "Text-heavy domain articles massively fatigue user optics culminating in devastating Bounce Rates rapidly?",
+        "solution": "Algorithmically transcribe dense typographical realms into digestible Podcast/Audio player modules proactively.",
+        "whatIsIt": "Fully loaded Text-to-Speech (TTS) module architecture equipped intricately with interface players and Voice Activation CRO optimization triggers.",
+        "whenToUse": "Across extensively formatted academic manuals, storytelling marketing landing paths, and dense analytical journalism sectors prioritizing distinct interactivity.",
+        "whyToUse": "Substantially augments User Retention metrics. Listening mandates passive involvement. Massively supports Web Accessibility A11y while distinguishing overall media interactions.",
+        "bestPractice": "Integrate refined seamless Web Speech Engine configurations, or synchronize precisely generated high-definition Voice Actor MP3 rendering arrays."
+      },
+      {
+        "id": "cm-secret-shield",
+        "name": "cm-secret-shield",
+        "category": "Security",
+        "icon": "lock",
+        "tagline": "Secret Leak Prevention",
+        "prompt": "Scan the repo for exposed API keys",
+        "related": [
+          "cm-identity-guard",
+          "cm-safe-deploy"
+        ],
+        "problem": "Routinely exposing private Cloud Database keys or Secret Tokens over to Public GitHub feeds triggering massive global breaches?",
+        "solution": "An impermeable early-warning barrier annihilating unencrypted credential anomalies natively at the push horizon.",
+        "whatIsIt": "A ubiquitous cryptographic scanner instrument armed with intense regex logic sniffing AWS, JWT tokens, Stripe Secrets systematically bound strictly the localized Git hook level.",
+        "whenToUse": "Perpetually active in stealth sequence. However, specifically deploy the manual forced scan protocol previous to substantial complex network merges.",
+        "whyToUse": "Revealing organizational logic hashes guarantees absolute vulnerability exploitation by rogue actors. This intelligence possesses absolute zero leniency for anomalous hex-chains.",
+        "bestPractice": "Evacuate all sensitive variable arrays into a distinct `.env` container, checking explicitly thrice that `.env` forms the bedrock of your `.gitignore` protocol."
+      },
+      {
+        "id": "cm-identity-guard",
+        "name": "cm-identity-guard",
+        "category": "Security",
+        "icon": "fingerprint",
+        "tagline": "Identity & Account Guard",
+        "prompt": "Verify git config before pushing to production",
+        "related": [
+          "cm-secret-shield",
+          "cm-safe-deploy"
+        ],
+        "problem": "Co-mingling agency and individual workstation configurations leads to disastrously compromised corporate deployments to competing accounts?",
+        "solution": "Identity gating matrices verifying terminal profile identities correlate identically with organizational destination targets.",
+        "whatIsIt": "Total Git Configuration and structural credential lockdown engine. Unilaterally paralyses deployment scripts detecting profile mismatched variables (E.g. email mismatches).",
+        "whenToUse": "Triggered inherently upon executing `cm-safe-deploy`. Outstanding diagnostic layer for independent multi-client agency developers orchestrating synchronous configurations.",
+        "whyToUse": "Safeguards intellectual domains and proprietary organizational vectors. Ensures highly confidential SaaS algorithms NEVER mistakenly sync over external or unauthorized network hosts.",
+        "bestPractice": "Set up strict segregated environmental folders and uniquely assert `--local` configuration bounds specifically per isolated directory."
+      },
+      {
+        "id": "cm-ads-tracker",
+        "name": "cm-ads-tracker",
+        "category": "Content",
+        "icon": "bar-chart-2",
+        "tagline": "Conversion Tracking",
+        "prompt": "Set up Facebook Pixel and Google Ads tracking",
+        "related": [
+          "cm-content-factory",
+          "cm-ux-master"
+        ],
+        "problem": "Bleeding advertising revenue blindly whilst Conversion Tracking fails inherently due to fragmented logic or external browser blockers?",
+        "solution": "Enterprise Standard Server-Side telemetry configurations structurally formulated instantaneously with clinical precision.",
+        "whatIsIt": "The CRO Data Telemetry Architect. In under moments, array Meta CAPI limits, TikTok Event interfaces, standardized Google TM parameters and unified Enhanced Conversions mappings.",
+        "whenToUse": "MANDATORY configuration before any digital product is subjected to inbound funnel advertisement campaigns requesting concrete ROI analytic generation.",
+        "whyToUse": "Without accurate data, AI Advertising Engines hallucinate targeting profiles. This utility engineers a pristine operational 'Datalayer' to capture signals unbreakably flawlessly.",
+        "bestPractice": "Input exact localized Pixel strings reliably; explicitly define to the algorithm specifically which interface elements signify a fundamental 'Lead' versus an ultimate 'Purchase'."
+      },
+      {
+        "id": "cm-continuity",
+        "name": "cm-continuity",
+        "category": "DevOps",
+        "icon": "refresh-cw",
+        "tagline": "四层工作记忆",
+        "prompt": "从上一会话加载上下文",
+        "related": [
+          "cm-deep-search",
+          "cm-planning"
+        ],
+        "problem": "关闭工作会话后AI完全失去记忆，第二天早上从头开始的挫败感？",
+        "solution": "受大脑启发的四层记忆系统，具备艾宾浩斯衰减机制、作用域化学习记录和自动记忆审计——永久桥接工作会话。",
+        "whatIsIt": "终极记忆引擎。第一层：感觉记忆（会话内变量）。第二层：工作记忆（CONTINUITY.md）。第三层：长期记忆（带TTL和作用域的learnings.json + decisions.json）。第四层：外部语义（可选的qmd集成用于大型代码库）。",
+        "whenToUse": "始终作为后台协议运行。会话开始时读取，会话结束时更新。遇到错误——记录到Mistakes & Learnings并标注作用域标签。重要决策——记录并附上理由。",
+        "whyToUse": "彻底解决LLM上下文丢失问题。Memory Audit Protocol自动衰减过时的学习记录（受艾宾浩斯启发），检测冲突，按模块作用域过滤——AI只读取相关内容。",
+        "bestPractice": "为每条学习记录标注作用域（global/module/file）。强化现有模式而非创建副本。保持CONTINUITY.md在500字以内。对于超过50个文档的项目搭配cm-deep-search使用。"
+      },
+      {
+        "id": "cm-deep-search",
+        "name": "cm-deep-search",
+        "category": "DevOps",
+        "icon": "search",
+        "tagline": "语义记忆搜索",
+        "prompt": "为docs文件夹建立语义搜索索引",
+        "related": [
+          "cm-continuity",
+          "cm-brainstorm-idea"
+        ],
+        "problem": "项目文档和源文件超出AI的上下文窗口——在数百个文件中查找相关信息变得不可能？",
+        "solution": "自动检测过大的代码库并非侵入性地建议使用qmd——具备BM25 + 向量 + LLM重排序的100%本地语义搜索引擎。",
+        "whatIsIt": "第四层记忆增强。集成tobi/qmd用于docs/、src/、会议笔记的本地语义搜索。通过MCP服务器建立索引，AI可以查询`qmd query 'topic'`并即时获取相关代码片段。",
+        "whenToUse": "当项目超过50个markdown文档或200个源文件时自动触发。也在cm-dockit生成超过30个文档文件后触发，或当用户需要查找历史规格说明时触发。",
+        "whyToUse": "完美补充cm-continuity——continuity = RAM（我现在在做什么？），deep-search = SSD（查找之前写过的内容）。两者结合形成完整的AI记忆系统，并具备防过时机制。",
+        "bestPractice": "每完成大型任务后运行`qmd embed`保持索引最新。设置Git post-commit hook实现自动后台重建索引。始终使用`qmd context add`添加上下文——这是qmd的杀手级功能。"
+      },
+      {
+        "id": "cm-dockit",
+        "name": "cm-dockit",
+        "category": "Content",
+        "icon": "book-open",
+        "tagline": "Knowledge Docs Generator",
+        "prompt": "Generate documentation for my Frappe app",
+        "related": [
+          "cm-content-factory",
+          "cm-planning"
+        ],
+        "problem": "Handing off intricate enterprise apps bereft of operational manuals renders users helpless and obscures logic for consecutive engineers?",
+        "solution": "Automated code analysis matrix capable of manifesting exquisite technical manuals from A-Z effortlessly.",
+        "whatIsIt": "The internal Knowledge Platform creation bot. Synthesizes Markdown/VitePress formatting explaining deep backend API Reference tables, holistic Persona paths, and explicit SOP parameters intuitively.",
+        "whenToUse": "Scheduled across periodic enterprise scaling phases or strictly immediately preparatory for an inclusive public domain release horizon.",
+        "whyToUse": "End Users invariably rely on Documentation rather than analyzing chaotic syntax parameters directly. Superb systemic guides systematically decimate irrelevant mundane support tickets radically.",
+        "bestPractice": "Simultaneously commission the formulation of both an Internal Dev Reference Manual and an external simplified End-User Orientation Guide."
+      },
+      {
+        "id": "cm-skill-chain",
+        "name": "cm-skill-chain",
+        "category": "DevOps",
+        "icon": "link",
+        "tagline": "Skill Pipeline Engine",
+        "prompt": "Chain brainstorm → plan → execute for my feature",
+        "related": [
+          "cm-skill-mastery",
+          "cm-execution"
+        ],
+        "problem": "Executing atomic capabilities sequentially incurs brutal operational friction and stagnates velocity?",
+        "solution": "Unify discrete functional workflows via algorithmic cascading sequences: Strategy -> Blueprint -> Full Autonomous Implementation.",
+        "whatIsIt": "The operational Skill Pipeline orchestrator tool. Programmatically strings complementary AI disciplines logically functioning via dynamically checked transitional parameters reliably.",
+        "whenToUse": "Activated upon mastering initial isolated competencies when targeting hands-free automation, allowing intense prolonged operational execution away from keyboard interactions.",
+        "whyToUse": "Maximizes exponential technological leverage securely. A single command sequences automated deployment cycles analyzing, building, validating, and globally staging millions of code interactions passively.",
+        "bestPractice": "Exclusively orchestrate inherently non-destructive analytical skills concurrently early on. Always invariably conclude massive chains by interlocking strictly securely into `cm-quality-gate` configurations."
+      },
+      {
+        "id": "cm-skill-mastery",
+        "name": "cm-skill-mastery",
+        "category": "Ideation",
+        "icon": "compass",
+        "tagline": "Skill Discovery",
+        "prompt": "Which skill should I use for UX audit?",
+        "related": [
+          "cm-skill-chain",
+          "cm-how-it-work"
+        ],
+        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
+        "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
+        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
+        "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
+        "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
+        "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."
+      },
+      {
+        "id": "cm-skill-index",
+        "name": "cm-skill-index",
+        "category": "DevOps",
+        "icon": "list",
+        "tagline": "Skill Index",
+        "prompt": "Show me a summary of all available skills",
+        "related": [
+          "cm-skill-mastery",
+          "cm-skill-chain"
+        ],
+        "problem": "Blindly processing expansive arrays of instructional payloads concurrently corrupts prompt stability through severe Token saturation constraints?",
+        "solution": "Adopt layered Progressive Disclosures mechanics ensuring deep Context loading occurs exclusively upon situational demand necessity.",
+        "whatIsIt": "An underlying silent infrastructural database registry. Systematically caches mere high-level indexing semantics (Layer 1), extracting massive operational execution parameters (Layer 3) precisely strictly when definitively mandated.",
+        "whenToUse": "Operates intrinsically bound within the AI’s autonomous structural mechanics; absolutely necessitates zero human operational intervention manually.",
+        "whyToUse": "Surgically guarantees unpolluted AI focal precision, suppressing tangential hallucinatory feedback and remarkably conserving extensive extraneous processing API financial overhead essentially.",
+        "bestPractice": "Assure rigidly that crucial configuration registry logic maps located in standard execution directories remain un-deleted and uninterrupted universally securely."
+      },
+      {
+        "id": "cm-how-it-work",
+        "name": "cm-how-it-work",
+        "category": "Ideation",
+        "icon": "help-circle",
+        "tagline": "Getting Started Guide",
+        "prompt": "How do I use CodyMaster for the first time?",
+        "related": [
+          "cm-skill-mastery",
+          "cm-project-bootstrap"
+        ],
+        "problem": "Freshly initiated toward the CodyMaster architecture and deeply confused confronting esoteric terminal interfaces and workflow paradigms?",
+        "solution": "Immerse comprehensively directly into the central Vibe Coding operational foundation whitepaper natively.",
+        "whatIsIt": "An exhaustive induction manuscript actively translating the internal physics powering CodyMaster operations, pre-packaged distinctly featuring explicit operational scenario blueprints.",
+        "whenToUse": "Sequentially instantly subsequent to native baseline installation completions, or orchestrating technical induction processes introducing auxiliary Junior Developers into organizational standardized rhythms.",
+        "whyToUse": "Solidifies core operational philosophies intimately. Comprehending fundamental mechanisms equips a singular autonomous operative executing parallel production equalizing conventional development team cohorts.",
+        "bestPractice": "Chronologically explore sections initially mapping overarching physical directory matrices alongside strict cognitive iterations dictating the standard RARV automation methodologies."
+      },
+      {
+        "id": "cm-dashboard",
+        "name": "cm-dashboard",
+        "category": "DevOps",
+        "icon": "layout-dashboard",
+        "tagline": "Project Dashboard",
+        "prompt": "Show me the project dashboard",
+        "related": [
+          "cm-skill-chain",
+          "cm-continuity"
+        ],
+        "problem": "Struggling to track deep automated AI progressions tangibly resulting in dangerous operational disconnections across simultaneous executions?",
+        "solution": "Invoke graphical mission-command interface displays interpreting structural telemetry in tangible visual real-time.",
+        "whatIsIt": "A dedicated Radar UI console array structurally exposing macro Token combustions, executing Queue allocations, and continuous cascading Error Event matrices.",
+        "whenToUse": "Persistently anchor executing reliably active adjacent alongside complex Vibe Coding engagements handling numerous AI processing trajectories securely.",
+        "whyToUse": "Radically dissipates intrinsic 'Black-box' abstractions tangibly. Explicitly transparent visual feedback precisely denotes immediately exact processing allocations revealing latency obstacles effortlessly natively.",
+        "bestPractice": "Allocate specifically a secondary auxiliary monitor screen completely devoted explicitly exclusively towards keeping this systemic radar continuously operative."
+      },
+      {
+        "id": "cm-start",
+        "name": "cm-start",
+        "category": "Ideation",
+        "icon": "power",
+        "tagline": "Quick Start",
+        "prompt": "Start working on my new feature",
+        "related": [
+          "cm-planning",
+          "cm-skill-mastery"
+        ],
+        "problem": "Infuriated by perpetually articulating immensely verbose prompt incantations every explicit instance initiating standard procedural code modifications?",
+        "solution": "Trigger a rapid instantaneous universal execution macro immediately deciphering complex geographical active operational context implicitly.",
+        "whatIsIt": "Emergency execution launch pad module. Subconsciously interrogates ambient environmental editor logic deducing precise project situational trajectories instinctively without descriptive preamble required.",
+        "whenToUse": "Routinely deployed to aggressively jump-start algorithmic implementation logic refactors circumscribing long-winded tedious introductory exposition delays.",
+        "whyToUse": "Obliterates systematic preparation delays conclusively. Elicits focused tool deployments surgically relying minimally on brief un-nuanced directives.",
+        "bestPractice": "Ensuring the target explicit JS/CSS logic files are concurrently active focal points within your IDE immediately preceding launching this specific operational capability yields peak fidelity."
+      },
+      {
+        "id": "cm-status",
+        "name": "cm-status",
+        "category": "DevOps",
+        "icon": "activity",
+        "tagline": "Project Status",
+        "prompt": "What's the current status of my project?",
+        "related": [
+          "cm-dashboard",
+          "cm-quality-gate"
+        ],
+        "problem": "Desperately lack verifiable aggregate reporting indices to empirically authenticate grand total project structural completion progression professionally?",
+        "solution": "Trigger high-velocity diagnostic status compilers synthesizing comprehensive holistic developmental metric snapshots definitively.",
+        "whatIsIt": "Algorithmic audit query mechanism. Computes concrete output detailing total TDD verification coverage matrix paths, analytical build stability variables, alongside impending outstanding priority Tasklist assignments.",
+        "whenToUse": "Routinely deployed facilitating scheduled Monday macro-evaluations, or functioning integrally beforehand organizing executive administrative progress presentations reliably.",
+        "whyToUse": "Delivers indisputably tangible analytical empirical transparency systematically. Evaluates production quality metrics explicitly displacing subjective abstract development assessment entirely.",
+        "bestPractice": "Execute comprehensively operating synergistically paired consistently alongside `cm-continuity` updates achieving permanently chronicled historical tracking datastore registries securely."
+      },
+      {
+        "id": "cm-example",
+        "name": "cm-example",
+        "category": "DevOps",
+        "icon": "file-code",
+        "tagline": "Skill Template",
+        "prompt": "Show me how to create a new skill",
+        "related": [
+          "cm-skill-mastery",
+          "cm-skill-chain"
+        ],
+        "problem": "Urgently need to engineer highly proprietary internalized AI command capacities exclusively suited uniquely for specific corporate workflows perfectly?",
+        "solution": "Exploit pre-hardened architectural boilerplate code matrices completely circumventing frustrating manual procedural baseline setup anomalies.",
+        "whatIsIt": "A flawless mock-up prototype script architecturally harmonized precisely aligned toward strict Antigravity and established MCP framework interface protocols certifying flawless operational recognition inherently.",
+        "whenToUse": "Commencing complex localized bespoke automated functional Bot protocols handling niche organizational internal rulebook mechanics reliably.",
+        "whyToUse": "Abolishes the agonizing friction reviewing sprawling expansive external platform documentation endlessly. Empowers copying an inherently robust foundation operational dynamically efficiently instantly.",
+        "bestPractice": "Mechanically duplicate the target directory skeleton completely, comprehensively update structural naming taxonomies, and aggressively inject definitive proprietary context parameters efficiently prior to deployment."
+      },
+      {
+        "id": "cro-methodology",
+        "name": "cro-methodology",
+        "category": "Content",
+        "icon": "trending-up",
+        "tagline": "Conversion Rate Optimization",
+        "problem": "Landing pages getting traffic but visitors aren't converting — unclear why they leave?",
+        "solution": "Evidence-based CRO audit using the CRE Methodology: funnel mapping, visitor research, objection handling, and statistically rigorous A/B tests.",
+        "description": "Scientific, customer-centric CRO using the CRE Methodology — funnel mapping, persuasion assets, and A/B testing.",
+        "whatIsIt": "A systematic CRO audit engine based on the CRE Methodology. Scores pages 0-10, maps funnel blockers, identifies visitor objections, and designs evidence-based experiments.",
+        "whenToUse": "Use when a landing page, checkout flow, or funnel is underperforming. Activates on: 'conversion rate', 'A/B test', 'why visitors leave', 'objection handling'.",
+        "whyToUse": "Random optimization fails. This skill forces visitor research before changing anything, ensuring every test is based on evidence rather than opinion.",
+        "prompt": "Audit my landing page for conversion issues",
+        "bestPractice": "Always research WHY visitors leave before testing solutions. Evidence from surveys, heatmaps, and session recordings beats best practices every time.",
+        "related": [
+          "cm-ads-tracker",
+          "cm-ux-master",
+          "cm-content-factory"
+        ]
+      },
+      {
+        "id": "cm-jtbd",
+        "name": "cm-jtbd",
+        "category": "Ideation",
+        "icon": "users",
+        "tagline": "Customer Discovery (JTBD)",
+        "problem": "Building features users don't care about because you're guessing what they actually want?",
+        "solution": "JTBD Switch Interviews + Canvas to uncover the functional, social, and emotional jobs customers hire your product to do.",
+        "description": "Customer discovery using Jobs-To-Be-Done theory — Switch Interviews, JTBD Canvas, and Opportunity Scoring.",
+        "whatIsIt": "A structured customer discovery framework using JTBD theory. Runs Switch Interviews, builds job canvases, and scores outcome metrics to find underserved needs.",
+        "whenToUse": "Use before designing new features, when existing features aren't used, or when validating product-market fit. Activates on: 'customer discovery', 'JTBD', 'what do customers want'.",
+        "whyToUse": "People don't buy products — they hire them to get a job done. Understanding the job reveals what to build and what competitors you're actually fighting.",
+        "prompt": "Help me understand what job my users are hiring my product to do",
+        "bestPractice": "Focus on the Switch Interview: ask about the moment they decided to switch/buy, not hypotheticals. Past behavior beats future intent every time.",
+        "related": [
+          "cm-brainstorm-idea",
+          "cm-planning",
+          "cro-methodology"
+        ]
+      }
+    ]
+  },
+  "skills_auto_1": "🚀",
+  "skills_auto_10": "📖",
+  "skills_auto_11": "▶️",
+  "skills_auto_12": "🌍",
+  "skills_auto_13": "EN",
+  "skills_auto_14": "中文",
+  "skills_auto_15": "हिन्दी",
+  "skills_auto_16": "📖",
+  "skills_auto_2": "📢",
+  "skills_auto_3": "📋",
+  "skills_auto_4": "💻",
+  "skills_auto_5": "🎨",
+  "skills_auto_6": "🦞",
+  "skills_auto_7": "💡",
+  "skills_auto_8": "🤺",
+  "skills_auto_9": "🔄"
+}

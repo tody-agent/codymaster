@@ -1,0 +1,163 @@
+{
+  "faq_auto_1": "🚀",
+  "faq_auto_10": "📖",
+  "faq_auto_11": "▶️",
+  "faq_auto_12": "🌍",
+  "faq_auto_13": "EN",
+  "faq_auto_14": "中文",
+  "faq_auto_15": "हिन्दी",
+  "faq_auto_16": "❓ सहायता केंद्र",
+  "faq_auto_17": "अक्सर पूछे जाने वाले",
+  "faq_auto_2": "📢",
+  "faq_auto_3": "📋",
+  "faq_auto_4": "💻",
+  "faq_auto_5": "🎨",
+  "faq_auto_6": "🦞",
+  "faq_auto_7": "💡",
+  "faq_auto_8": "🤺",
+  "faq_auto_9": "🔄",
+  "features": {
+    "label": "कौडी मास्टर क्यों",
+    "title": "वह सब कुछ जो आपको चाहिए,\nएक किट में",
+    "subtitle": "कोई कोड आवश्यक नहीं। किसी डेवलपर को नियुक्त करने की आवश्यकता नहीं। AI सब कुछ A से Z तक संभालता है।",
+    "cards": [
+      {
+        "title": "10 गुना तेज़",
+        "description": "विचार से संपूर्ण वेबसाइट तक कुछ ही मिनटों में। AI कोडिंग, डिजाइन और तैनाती को स्वचालित करता है—आप बस पूछें।"
+      },
+      {
+        "title": "पेशेवर गुणवत्ता",
+        "description": "उत्पादन-श्रेणी कोड—सिर्फ एक बार का प्रोटोटाइप नहीं। सुरक्षा से लेकर SEO तक 33 कौशल गुणवत्ता सुनिश्चित करते हैं।"
+      },
+      {
+        "title": "90% बचत",
+        "description": "आउटसोर्स या फ्रीलांसरों की तुलना में समय और पैसा बचाता है। एक किट पूरी टीम की तरह काम करती है।"
+      },
+      {
+        "title": "अत्यधिक सरलता",
+        "description": "स्वाभाविक रूप से बात करें, AI समझता है और वितरित करता है। कोई जटिल UI या सीखने की अवस्था नहीं।"
+      },
+      {
+        "title": "🔄 Legacy Rescue",
+        "description": "Even if your product is ancient, ux-master can scan your website, extract the design system, and rebuild tokens — giving old products new life without starting from scratch."
+      }
+    ]
+  },
+  "hero": {
+    "badge": "33 कौशल · ओपन-सोर्स · मुफ़्त",
+    "headlineStatic": "AI से वास्तविक उत्पाद बनाएं",
+    "typingPhrases": [
+      "कोडिंग की जरूरत नहीं",
+      "मिनटों में लॉन्च",
+      "विचार से उत्पाद तक"
+    ],
+    "subtitle": "33 विशेष AI कौशल डिज़ाइन, कोड, टेस्टिंग और डिप्लॉयमेंट संभालते हैं।\nआप बस चैट करें। कोडिंग की जरूरत नहीं।",
+    "ctaPrimary": "बनाना शुरू करें — मुफ़्त",
+    "ctaSecondary": "डेमो देखें",
+    "trustNoCreditCard": "✓ किसी क्रेडिट कार्ड की आवश्यकता नहीं",
+    "trust30Seconds": "✓ 30 सेकंड में सेटअप करें",
+    "trustOpenSource": "✓ 100% ओपन सोर्स"
+  },
+  "howItWorks": {
+    "label": "यह कैसे काम करता है",
+    "title": "शून्य से हीरो तक,\n3 आसान चरणों में",
+    "steps": [
+      {
+        "title": "स्थापित करें",
+        "description": "Marketplace जोड़ें फिर plugin इंस्टॉल करें।\n30 सेकंड में हो जाएगा।",
+        "code": "claude plugin install cm@codymaster"
+      },
+      {
+        "title": "बात करें",
+        "description": "AI को बताएं कि आप क्या बनाना चाहते हैं।\nएक दोस्त की तरह सरल शब्दों का उपयोग करें।",
+        "code": "\"मेरी कॉफी की दुकान के लिए\nएक लैंडिंग पेज बनाएं\""
+      },
+      {
+        "title": "लाइव जाएं",
+        "description": "पूरी तरह से निर्मित वेबसाइट इंटरनेट पर तैनात है।\nलिंक को तुरंत साझा करें।",
+        "code": "✓ yoursit.com ऑनलाइन है!"
+      }
+    ],
+    "deepLabel": "आंतरिक कार्यप्रणाली",
+    "deepTitle": "RARV निष्पादन चक्र और 6-चरणीय गुणवत्ता प्रणाली",
+    "deepSubtitle": "CodyMaster को सौंपा गया प्रत्येक कार्य स्वचालित लूप से गुजरता है जो उत्पादन के लिए तैयार कोड सुनिश्चित करता है。"
+  },
+  "index_auto_1": "🚀",
+  "index_auto_10": "📖",
+  "index_auto_11": "▶️",
+  "index_auto_12": "🌍",
+  "index_auto_13": "EN",
+  "index_auto_14": "中文",
+  "index_auto_15": "हिन्दी",
+  "index_auto_16": "🚀v3.4.0",
+  "index_auto_17": "🧠33 कौशल",
+  "index_auto_18": "⚡ 7+ प्लेटफार्म",
+  "index_auto_19": "🌍 खुला स्रोत",
+  "index_auto_2": "📢",
+  "index_auto_20": "आपका AI एजेंट स्मार्ट है.",
+  "index_auto_3": "📋",
+  "index_auto_4": "💻",
+  "index_auto_5": "🎨",
+  "index_auto_6": "🦞",
+  "index_auto_7": "💡",
+  "index_auto_8": "🤺",
+  "index_auto_9": "🔄",
+  "install": {
+    "title": "30 सेकंड में तैयार",
+    "subtitle": "एक command से सभी 33 skills इंस्टॉल। npm नहीं, कोई config नहीं — बस Claude Code plugin।",
+    "oneliner": "One-liner (स्वतः पहचान, बहुभाषी)",
+    "or": "— या चरण-दर-चरण —",
+    "step1": "Marketplace जोड़ें",
+    "step2": "सभी 33 skills इंस्टॉल करें",
+    "step3": "Onboarding tour शुरू करें",
+    "copy": "कॉपी करें",
+    "detailedGuide": "पूरी Installation Guide"
+  },
+  "usp": {
+    "label": "हम कैसे अलग हैं",
+    "title": "सिर्फ एक और AI उपकरण नहीं।\nयह डिज़ाइन-प्रथम इंजन है।",
+    "subtitle": "CodyMaster केवल कोड नहीं लिखता—यह आपके वर्तमान डिज़ाइन सिस्टम का सम्मान करता है, और पूर्वावलोकन देता है।",
+    "cards": [
+      {
+        "icon": "kanban",
+        "title": "कानबन कार्यक्षेत्र",
+        "description": "पूरी परियोजना को दृश्य रूप से प्रबंधित करें। कार्यों, पाइपलाइनों और तैनाती को वास्तविक समय में ट्रैक करें।",
+        "visual": "kanban"
+      },
+      {
+        "icon": "eye",
+        "title": "कोड से पहले पूर्वावलोकन",
+        "description": "कोड लिखने से पहले अपनी UI डिज़ाइन का सटीक पूर्वावलोकन देखें। बिना आश्चर्य के AI के साथ डिज़ाइन दोहराएं।",
+        "visual": "preview"
+      },
+      {
+        "icon": "sliders-horizontal",
+        "title": "पूर्ण डिज़ाइन नियंत्रण",
+        "description": "अपने सौंदर्य प्रसाधन—टाइपोग्राफी, रंग, रिक्ति आदि चुनें। AI आपके डिजाइन दिशा का पालन करता है।",
+        "visual": "controls"
+      },
+      {
+        "icon": "component",
+        "title": "अपनी प्रणाली के साथ कार्य करता है",
+        "description": "पहले से कोई सिस्टम है? CodyMaster आपके डिजाइन दिशा निर्देशों को समझेगा और उनका पालन करेगा।",
+        "visual": "system"
+      }
+    ]
+  },
+  "why_cody_master_auto_1": "🚀",
+  "why_cody_master_auto_10": "📖",
+  "why_cody_master_auto_11": "▶️",
+  "why_cody_master_auto_12": "🌍",
+  "why_cody_master_auto_13": "EN",
+  "why_cody_master_auto_14": "中文",
+  "why_cody_master_auto_15": "हिन्दी",
+  "why_cody_master_auto_16": "वाइब कोडिंग बंद करें.",
+  "why_cody_master_auto_2": "📢",
+  "why_cody_master_auto_3": "📋",
+  "why_cody_master_auto_4": "💻",
+  "why_cody_master_auto_5": "🎨",
+  "why_cody_master_auto_6": "🦞",
+  "why_cody_master_auto_7": "💡",
+  "why_cody_master_auto_8": "🤺",
+  "why_cody_master_auto_9": "🔄"
+}

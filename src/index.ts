@@ -9,7 +9,7 @@ import { loadData, saveData, logActivity, findProjectByNameOrId, findTaskByIdPre
 import type { Project, Task, Deployment, ChangelogEntry } from './data';
 import { launchDashboard } from './dashboard';
 import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
-import { ensureCmDir, getContinuityStatus, getLearnings, getDecisions, resetContinuity, hasCmDir, readContinuityState } from './continuity';
+import { ensureCmDir, getContinuityStatus, getLearnings, getDecisions, resetContinuity, hasCmDir, readContinuityState, deleteLearning, deleteDecision } from './continuity';
 import { evaluateAllTasks, evaluateTaskState, suggestAgentsForSkill, suggestAgentsForTask, getSkillDomain, suggestChain } from './judge';
 import type { Learning } from './continuity';
 import { listChains, findChain, matchChain, createChainExecution, advanceChain as advanceChainStep, skipChainStep, abortChain, formatChainProgress, formatChainProgressBar, getCurrentSkill } from './skill-chain';
@@ -88,7 +88,7 @@ async function postInstallOnboarding(platform: string) {
         description: invoke },
       { title: chalk.white('🧩 Browse all 33 skills'), value: 'skills',
         description: 'See every skill, domain, and usage' },
-      { title: chalk.yellow('⚡ Install `cody` globally'), value: 'global',
+      { title: chalk.yellow('⚡ Install `cm` globally'), value: 'global',
         description: 'Add cody / cm / codymaster to your PATH' },
       { title: chalk.gray('✅ Done'), value: 'done' },
     ],
@@ -123,12 +123,12 @@ async function postInstallOnboarding(platform: string) {
       break;
     case 'global':
       console.log();
-      console.log(chalk.white('Run this to install the `cody` CLI globally:\n'));
+      console.log(chalk.white('Run this to install the `cm` CLI globally:\n'));
       console.log(chalk.cyan('  npm install -g codymaster'));
       console.log(chalk.gray('\nThen use:'));
-      console.log(chalk.cyan('  cody task add "My task"'));
-      console.log(chalk.cyan('  cody dashboard'));
-      console.log(chalk.cyan('  cody status\n'));
+      console.log(chalk.cyan('  cm task add "My task"'));
+      console.log(chalk.cyan('  cm dashboard'));
+      console.log(chalk.cyan('  cm status\n'));
       break;
     default:
       console.log(chalk.gray('\nRun `npx codymaster` any time to open the menu.\n'));
@@ -203,13 +203,13 @@ async function showInteractiveMenu() {
       break;
     case 'help':
     default:
-      console.log(chalk.white('Usage: cody <command> [options]\n'));
-      console.log(chalk.gray('  cody dashboard          Open Mission Control'));
-      console.log(chalk.gray('  cody status             Project overview'));
-      console.log(chalk.gray('  cody task add "Title"   Add a task'));
-      console.log(chalk.gray('  cody task list          View tasks'));
-      console.log(chalk.gray('  cody list               Browse 33 skills'));
-      console.log(chalk.gray('  cody deploy staging     Record deployment'));
+      console.log(chalk.white('Usage: cm <command> [options]\n'));
+      console.log(chalk.gray('  cm dashboard          Open Mission Control'));
+      console.log(chalk.gray('  cm status             Project overview'));
+      console.log(chalk.gray('  cm task add "Title"   Add a task'));
+      console.log(chalk.gray('  cm task list          View tasks'));
+      console.log(chalk.gray('  cm list               Browse 33 skills'));
+      console.log(chalk.gray('  cm deploy staging     Record deployment'));
       console.log(chalk.gray('  npx codymaster add --all   Install/update skills\n'));
   }
 }
@@ -219,7 +219,7 @@ async function showInteractiveMenu() {
 const program = new Command();
 
 program
-  .name('cody')
+  .name('cm')
   .description('Cody — 33 Skills. Ship 10x faster.')
   .version(VERSION, '-v, --version', 'Show version')
   .action(async () => {
@@ -266,7 +266,7 @@ function dashboardStatus(port: number) {
   if (isDashboardRunning()) {
     const pid = fs.readFileSync(PID_FILE, 'utf-8').trim();
     console.log(chalk.green(`✅ Dashboard RUNNING`)); console.log(chalk.gray(`   PID: ${pid}`)); console.log(chalk.gray(`   URL: http://codymaster.localhost:${port}`));
-  } else { console.log(chalk.yellow('⚫ Dashboard NOT running')); console.log(chalk.gray('   Start with: cody dashboard start')); }
+  } else { console.log(chalk.yellow('⚫ Dashboard NOT running')); console.log(chalk.gray('   Start with: cm dashboard start')); }
 }
 
 // ─── Task Command ───────────────────────────────────────────────────────────
@@ -296,7 +296,7 @@ program
   });
 
 function taskAdd(title: string, opts: any) {
-  if (!title) { console.log(chalk.red('❌ Title required. Usage: cody task add "My task"')); return; }
+  if (!title) { console.log(chalk.red('❌ Title required. Usage: cm task add "My task"')); return; }
   const data = loadData();
   let projectId: string | undefined;
   if (opts.project) {
@@ -345,7 +345,7 @@ function taskList(opts: any) {
 }
 
 function taskMove(idPrefix: string, targetColumn: string) {
-  if (!idPrefix || !targetColumn) { console.log(chalk.red('❌ Usage: cody task move <id> <column>')); return; }
+  if (!idPrefix || !targetColumn) { console.log(chalk.red('❌ Usage: cm task move <id> <column>')); return; }
   const vc = ['backlog', 'in-progress', 'review', 'done'];
   if (!vc.includes(targetColumn)) { console.log(chalk.red(`❌ Invalid column: ${targetColumn}. Valid: ${vc.join(', ')}`)); return; }
   const data = loadData();
@@ -412,17 +412,17 @@ function taskStuck(opts: any) {
     console.log('  ' + chalk.gray(padRight(shortId(task.id), 10)) + padRight(task.title.substring(0, 34), 36) + chalk.yellow(padRight(timeStr, 12)) + chalk.gray(padRight(task.agent || '—', 14)) + pc(task.priority));
   }
   console.log();
-  console.log(chalk.gray('  Tip: Move tasks with: cody task move <id> review|done|backlog'));
+  console.log(chalk.gray('  Tip: Move tasks with: cm task move <id> review|done|backlog'));
   console.log();
 }
 
 function taskDone(idPrefix: string) {
-  if (!idPrefix) { console.log(chalk.red('❌ Usage: cody task done <id>')); return; }
+  if (!idPrefix) { console.log(chalk.red('❌ Usage: cm task done <id>')); return; }
   taskMove(idPrefix, 'done');
 }
 
 function taskRemove(idPrefix: string) {
-  if (!idPrefix) { console.log(chalk.red('❌ Usage: cody task rm <id>')); return; }
+  if (!idPrefix) { console.log(chalk.red('❌ Usage: cm task rm <id>')); return; }
   const data = loadData();
   const idx = data.tasks.findIndex(t => t.id === idPrefix || t.id.startsWith(idPrefix));
   if (idx === -1) { console.log(chalk.red(`❌ Task not found: ${idPrefix}`)); return; }
@@ -433,7 +433,7 @@ function taskRemove(idPrefix: string) {
 }
 
 function taskDispatch(idPrefix: string, opts: any) {
-  if (!idPrefix) { console.log(chalk.red('❌ Usage: cody task dispatch <id> [--force]')); return; }
+  if (!idPrefix) { console.log(chalk.red('❌ Usage: cm task dispatch <id> [--force]')); return; }
   const data = loadData();
   const task = findTaskByIdPrefix(data, idPrefix);
   if (!task) { console.log(chalk.red(`❌ Task not found: ${idPrefix}`)); return; }
@@ -482,7 +482,7 @@ program
   });
 
 function projectAdd(name: string, opts: any) {
-  if (!name) { console.log(chalk.red('❌ Usage: cody project add "my-project"')); return; }
+  if (!name) { console.log(chalk.red('❌ Usage: cm project add "my-project"')); return; }
   const data = loadData();
   const project: Project = { id: crypto.randomUUID(), name: name.trim(), path: opts.path || process.cwd(), agents: [], createdAt: new Date().toISOString() };
   data.projects.push(project);
@@ -508,7 +508,7 @@ function projectList() {
 }
 
 function projectRemove(query: string) {
-  if (!query) { console.log(chalk.red('❌ Usage: cody project rm <name-or-id>')); return; }
+  if (!query) { console.log(chalk.red('❌ Usage: cm project rm <name-or-id>')); return; }
   const data = loadData();
   const project = findProjectByNameOrId(data, query);
   if (!project) { console.log(chalk.red(`❌ Project not found: ${query}`)); return; }
@@ -548,7 +548,7 @@ function deployRecord(env: 'staging' | 'production', opts: any) {
     if (!p) { console.log(chalk.red(`❌ Project not found: ${opts.project}`)); return; }
     projectId = p.id;
   } else if (data.projects.length > 0) { projectId = data.projects[0].id; }
-  else { console.log(chalk.red('❌ No projects. Create one first: cody project add "my-project"')); return; }
+  else { console.log(chalk.red('❌ No projects. Create one first: cm project add "my-project"')); return; }
 
   const now = new Date().toISOString();
   const dep: Deployment = {
@@ -685,7 +685,7 @@ program
   });
 
 function changelogAdd(args: string[], opts: any) {
-  if (args.length < 2) { console.log(chalk.red('❌ Usage: cody changelog add <version> "<title>" [changes...]')); return; }
+  if (args.length < 2) { console.log(chalk.red('❌ Usage: cm changelog add <version> "<title>" [changes...]')); return; }
   const data = loadData();
   let projectId = '';
   if (opts.project) {
@@ -782,7 +782,7 @@ program
     // Dashboard
     console.log();
     if (isDashboardRunning()) { console.log(chalk.green(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${DEFAULT_PORT}`)); }
-    else { console.log(chalk.gray(`  ⚫ Dashboard: not running (start with: cody dashboard)`)); }
+    else { console.log(chalk.gray(`  ⚫ Dashboard: not running (start with: cm dashboard)`)); }
     console.log();
   });
 
@@ -1121,7 +1121,7 @@ function continuityStatus(projectPath: string) {
   const status = getContinuityStatus(projectPath);
   if (!status.initialized) {
     console.log(chalk.yellow('⚫ Working memory not initialized.'));
-    console.log(chalk.gray('   Run: cody continuity init'));
+    console.log(chalk.gray('   Run: cm continuity init'));
     return;
   }
 
@@ -1164,7 +1164,7 @@ function continuityReset(projectPath: string) {
 
 function continuityLearnings(projectPath: string) {
   if (!hasCmDir(projectPath)) {
-    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cody continuity init'));
+    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
     return;
   }
   const learnings = getLearnings(projectPath);
@@ -1183,7 +1183,7 @@ function continuityLearnings(projectPath: string) {
 
 function continuityDecisions(projectPath: string) {
   if (!hasCmDir(projectPath)) {
-    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cody continuity init'));
+    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
     return;
   }
   const decisions = getDecisions(projectPath);
@@ -1196,6 +1196,281 @@ function continuityDecisions(projectPath: string) {
     console.log(chalk.white(`  📌 ${d.decision}`));
     console.log(chalk.gray(`     Rationale: ${d.rationale}`));
     console.log(chalk.gray(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
+  }
+}
+
+// ─── Brain Command (Enhanced Memory Explorer) ────────────────────────────────
+
+program
+  .command('brain [cmd]')
+  .alias('b')
+  .description('Memory explorer (status|learnings|decisions|delete|stats|export)')
+  .option('--path <path>', 'Project path', process.cwd())
+  .option('--search <query>', 'Search learnings')
+  .option('--last <n>', 'Show last N items')
+  .option('--format <fmt>', 'Export format: json|md', 'json')
+  .action((cmd, opts) => {
+    const projectPath = opts.path || process.cwd();
+    switch (cmd) {
+      case 'status': case undefined:
+        brainStatus(projectPath);
+        break;
+      case 'learnings': case 'learn': case 'l':
+        brainLearnings(projectPath, opts);
+        break;
+      case 'decisions': case 'dec': case 'd':
+        brainDecisions(projectPath, opts);
+        break;
+      case 'delete': case 'del': case 'rm':
+        console.log(chalk.gray('Usage: cm brain delete <type> <id>'));
+        console.log(chalk.gray('  type: learning | decision'));
+        console.log(chalk.gray('  id:   first 8 chars of the ID'));
+        break;
+      case 'stats':
+        brainStats(projectPath);
+        break;
+      case 'export':
+        brainExport(projectPath, opts);
+        break;
+      default:
+        // Try as delete: cm brain learning <id> or cm brain decision <id>
+        if (cmd === 'learning' || cmd === 'decision') {
+          console.log(chalk.gray(`Did you mean: cm brain ${cmd}s ?`));
+        } else {
+          console.log(chalk.red(`Unknown: ${cmd}`));
+          console.log(chalk.gray('Available: status, learnings, decisions, delete, stats, export'));
+        }
+    }
+  });
+
+program
+  .command('brain-delete <type> <id>')
+  .description('Delete a learning or decision by ID prefix')
+  .option('--path <path>', 'Project path', process.cwd())
+  .action((type, id, opts) => {
+    const projectPath = opts.path || process.cwd();
+    brainDelete(projectPath, type, id);
+  });
+
+function brainStatus(projectPath: string) {
+  const status = getContinuityStatus(projectPath);
+  if (!status.initialized) {
+    console.log(chalk.yellow('\n⚫ Working memory not initialized.'));
+    console.log(chalk.gray('   Run: cm continuity init'));
+    return;
+  }
+
+  showBanner();
+  console.log(chalk.cyan('\n🧠 Brain — Memory Status\n'));
+
+  // Stats row
+  console.log(chalk.white('  ┌──────────────┬──────────────┬──────────────┬──────────────┐'));
+  console.log(
+    chalk.white('  │') + chalk.red(` ❤ Learn: ${padRight(String(status.learningCount), 4)}`) + 
+    chalk.white(' │') + chalk.blue(` 📋 Decide: ${padRight(String(status.decisionCount), 3)}`) +
+    chalk.white(' │') + phaseColor(status.phase)(` ● ${padRight(status.phase, 9)}`) +
+    chalk.white(' │') + chalk.gray(` #${padRight(String(status.iteration), 10)}`) + chalk.white('│')
+  );
+  console.log(chalk.white('  └──────────────┴──────────────┴──────────────┴──────────────┘'));
+
+  console.log();
+  console.log(`  ${chalk.white('Project:')}     ${status.project}`);
+  if (status.activeGoal) console.log(`  ${chalk.white('Goal:')}        ${status.activeGoal}`);
+  if (status.currentTask) console.log(`  ${chalk.white('Task:')}        ${status.currentTask}`);
+  console.log(`  ${chalk.white('Completed:')}   ${status.completedCount} items`);
+  console.log(`  ${chalk.white('Blockers:')}    ${status.blockerCount > 0 ? chalk.yellow(`🚧 ${status.blockerCount}`) : chalk.green('✅ None')}`);
+  if (status.lastUpdated) console.log(`  ${chalk.white('Updated:')}     ${formatTimeAgoCli(status.lastUpdated)}`);
+  console.log();
+
+  console.log(chalk.gray('  Commands:'));
+  console.log(chalk.gray('    cm brain learnings    — View mistakes & lessons'));
+  console.log(chalk.gray('    cm brain decisions    — View architecture decisions'));
+  console.log(chalk.gray('    cm brain stats        — Memory statistics'));
+  console.log(chalk.gray('    cm brain export       — Export memory data'));
+  console.log();
+}
+
+function brainLearnings(projectPath: string, opts: { search?: string; last?: string }) {
+  if (!hasCmDir(projectPath)) {
+    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
+    return;
+  }
+  let learnings = getLearnings(projectPath);
+
+  // Search filter
+  if (opts.search) {
+    const q = opts.search.toLowerCase();
+    learnings = learnings.filter(l =>
+      (l.whatFailed || '').toLowerCase().includes(q) ||
+      (l.whyFailed || '').toLowerCase().includes(q) ||
+      (l.howToPrevent || '').toLowerCase().includes(q)
+    );
+  }
+
+  // Last N
+  const limit = opts.last ? parseInt(opts.last) : 15;
+  const display = learnings.slice(-limit);
+
+  if (display.length === 0) {
+    console.log(chalk.gray(`\n  No learnings ${opts.search ? 'matching "' + opts.search + '"' : 'captured yet'}. 🎉\n`));
+    return;
+  }
+
+  console.log(chalk.cyan(`\n📚 Learnings (${display.length}${learnings.length > limit ? '/' + learnings.length : ''})\n`));
+  for (const l of display) {
+    const shortId = l.id ? l.id.substring(0, 8) : '???';
+    console.log(chalk.red(`  ❌ ${l.whatFailed}`) + chalk.gray(` [${shortId}]`));
+    if (l.whyFailed) console.log(chalk.gray(`     Why: ${l.whyFailed}`));
+    if (l.howToPrevent) console.log(chalk.green(`     Fix: ${l.howToPrevent}`));
+    console.log(chalk.gray(`     ${formatTimeAgoCli(l.timestamp)} | ${l.agent || 'unknown'}${l.module ? ' | 📦 ' + l.module : ''}\n`));
+  }
+}
+
+function brainDecisions(projectPath: string, opts: { last?: string }) {
+  if (!hasCmDir(projectPath)) {
+    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
+    return;
+  }
+  const decisions = getDecisions(projectPath);
+  const limit = opts.last ? parseInt(opts.last) : 15;
+  const display = decisions.slice(-limit);
+
+  if (display.length === 0) {
+    console.log(chalk.gray('\n  No decisions recorded yet.\n'));
+    return;
+  }
+
+  console.log(chalk.cyan(`\n📋 Key Decisions (${display.length}${decisions.length > limit ? '/' + decisions.length : ''})\n`));
+  for (const d of display) {
+    const shortId = d.id ? d.id.substring(0, 8) : '???';
+    console.log(chalk.white(`  📌 ${d.decision}`) + chalk.gray(` [${shortId}]`));
+    if (d.rationale) console.log(chalk.gray(`     Rationale: ${d.rationale}`));
+    console.log(chalk.gray(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
+  }
+}
+
+function brainDelete(projectPath: string, type: string, id: string) {
+  if (!hasCmDir(projectPath)) {
+    console.log(chalk.yellow('⚠️  No .cm/ directory found.'));
+    return;
+  }
+
+  if (type === 'learning' || type === 'l') {
+    const learnings = getLearnings(projectPath);
+    const target = learnings.find(l => l.id && l.id.startsWith(id));
+    if (!target) {
+      console.log(chalk.red(`❌ Learning not found with ID prefix: ${id}`));
+      return;
+    }
+    const success = deleteLearning(projectPath, target.id);
+    if (success) {
+      console.log(chalk.green(`✅ Deleted learning: ${target.whatFailed}`));
+    } else {
+      console.log(chalk.red('❌ Failed to delete'));
+    }
+  } else if (type === 'decision' || type === 'd') {
+    const decisions = getDecisions(projectPath);
+    const target = decisions.find(d => d.id && d.id.startsWith(id));
+    if (!target) {
+      console.log(chalk.red(`❌ Decision not found with ID prefix: ${id}`));
+      return;
+    }
+    const success = deleteDecision(projectPath, target.id);
+    if (success) {
+      console.log(chalk.green(`✅ Deleted decision: ${target.decision}`));
+    } else {
+      console.log(chalk.red('❌ Failed to delete'));
+    }
+  } else {
+    console.log(chalk.red(`❌ Unknown type: ${type}`));
+    console.log(chalk.gray('   Use: cm brain-delete learning <id> | cm brain-delete decision <id>'));
+  }
+}
+
+function brainStats(projectPath: string) {
+  if (!hasCmDir(projectPath)) {
+    console.log(chalk.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
+    return;
+  }
+  const status = getContinuityStatus(projectPath);
+  const learnings = getLearnings(projectPath);
+  const decisions = getDecisions(projectPath);
+
+  console.log(chalk.cyan('\n📊 Brain Statistics\n'));
+  console.log(`  ${chalk.white('Learnings:')}    ${learnings.length}`);
+  console.log(`  ${chalk.white('Decisions:')}    ${decisions.length}`);
+  console.log(`  ${chalk.white('Completed:')}    ${status.completedCount} items`);
+  console.log(`  ${chalk.white('Blockers:')}     ${status.blockerCount}`);
+  console.log(`  ${chalk.white('Iteration:')}    #${status.iteration}`);
+
+  // Agent breakdown
+  const agentMap: Record<string, number> = {};
+  learnings.forEach(l => { if (l.agent) agentMap[l.agent] = (agentMap[l.agent] || 0) + 1; });
+  decisions.forEach(d => { if (d.agent) agentMap[d.agent] = (agentMap[d.agent] || 0) + 1; });
+  const agents = Object.entries(agentMap).sort((a, b) => b[1] - a[1]);
+  if (agents.length > 0) {
+    console.log();
+    console.log(chalk.white('  Agents:'));
+    for (const [agent, count] of agents) {
+      console.log(chalk.gray(`    🤖 ${padRight(agent, 20)} ${count} entries`));
+    }
+  }
+
+  // Module breakdown
+  const moduleMap: Record<string, number> = {};
+  learnings.forEach(l => { if (l.module) moduleMap[l.module] = (moduleMap[l.module] || 0) + 1; });
+  const modules = Object.entries(moduleMap).sort((a, b) => b[1] - a[1]);
+  if (modules.length > 0) {
+    console.log();
+    console.log(chalk.white('  Modules (most error-prone):'));
+    for (const [mod, count] of modules.slice(0, 5)) {
+      console.log(chalk.gray(`    📦 ${padRight(mod, 20)} ${count} learnings`));
+    }
+  }
+
+  // Time range
+  const allTimestamps = [...learnings.map(l => l.timestamp), ...decisions.map(d => d.timestamp)].filter(Boolean).sort();
+  if (allTimestamps.length > 0) {
+    console.log();
+    console.log(chalk.gray(`  First entry: ${formatTimeAgoCli(allTimestamps[0])}`));
+    console.log(chalk.gray(`  Latest:      ${formatTimeAgoCli(allTimestamps[allTimestamps.length - 1])}`));
+  }
+  console.log();
+}
+
+function brainExport(projectPath: string, opts: { format?: string }) {
+  if (!hasCmDir(projectPath)) {
+    console.log(chalk.yellow('⚠️  No .cm/ directory found.'));
+    return;
+  }
+  const learnings = getLearnings(projectPath);
+  const decisions = getDecisions(projectPath);
+  const status = getContinuityStatus(projectPath);
+  const format = opts.format || 'json';
+
+  if (format === 'json') {
+    const data = { status, learnings, decisions, exportedAt: new Date().toISOString() };
+    const outFile = `brain-export-${new Date().toISOString().slice(0, 10)}.json`;
+    fs.writeFileSync(outFile, JSON.stringify(data, null, 2));
+    console.log(chalk.green(`✅ Exported to ${outFile}`));
+    console.log(chalk.gray(`   ${learnings.length} learnings, ${decisions.length} decisions`));
+  } else if (format === 'md') {
+    let md = `# Brain Export\n\n**Project:** ${status.project || 'Unknown'}\n**Exported:** ${new Date().toISOString()}\n\n`;
+    md += `## Learnings (${learnings.length})\n\n`;
+    for (const l of learnings) {
+      md += `### ❌ ${l.whatFailed}\n- **Why:** ${l.whyFailed || 'N/A'}\n- **Fix:** ${l.howToPrevent || 'N/A'}\n- **Agent:** ${l.agent || 'unknown'} | **Date:** ${l.timestamp || 'N/A'}\n\n`;
+    }
+    md += `## Decisions (${decisions.length})\n\n`;
+    for (const d of decisions) {
+      md += `### 📌 ${d.decision}\n- **Rationale:** ${d.rationale || 'N/A'}\n- **Agent:** ${d.agent || 'unknown'} | **Date:** ${d.timestamp || 'N/A'}\n\n`;
+    }
+    const outFile = `brain-export-${new Date().toISOString().slice(0, 10)}.md`;
+    fs.writeFileSync(outFile, md);
+    console.log(chalk.green(`✅ Exported to ${outFile}`));
+    console.log(chalk.gray(`   ${learnings.length} learnings, ${decisions.length} decisions`));
+  } else {
+    console.log(chalk.red(`❌ Unknown format: ${format}`));
+    console.log(chalk.gray('   Use: --format json | --format md'));
   }
 }
 
@@ -1277,7 +1552,7 @@ program
         skillList();
         break;
       case 'info':
-        if (!name) { console.log(chalk.red('❌ Usage: cody skill info <skill-name>')); return; }
+        if (!name) { console.log(chalk.red('❌ Usage: cm skill info <skill-name>')); return; }
         skillInfo(name);
         break;
       case 'domains':
@@ -1332,7 +1607,7 @@ function skillInfo(name: string) {
     }
   }
   console.log(chalk.red(`❌ Skill not found: ${name}`));
-  console.log(chalk.gray('   Use "cody skill list" to see all available skills.'));
+  console.log(chalk.gray('   Use "cm skill list" to see all available skills.'));
 }
 
 function skillDomains() {
@@ -1461,8 +1736,8 @@ program
     }
 
     console.log(chalk.cyan('💡 Next steps:'));
-    console.log(chalk.gray('   cody task add "My first task"'));
-    console.log(chalk.gray('   cody open'));
+    console.log(chalk.gray('   cm task add "My first task"'));
+    console.log(chalk.gray('   cm open'));
     console.log();
   });
 
@@ -1498,7 +1773,7 @@ program
     console.log(`  ${chalk.white('Data File:')}  ${DATA_FILE}`);
     console.log(`  ${chalk.white('PID File:')}   ${PID_FILE}`);
     console.log(`  ${chalk.white('Port:')}       ${DEFAULT_PORT}`);
-    console.log(`  ${chalk.white('CLI Names:')}  cody | cm | codymaster`);
+    console.log(`  ${chalk.white('CLI Names:')}  cm | cm | codymaster`);
     console.log();
 
     // Show data stats
@@ -1556,7 +1831,7 @@ program
         console.log(`  ${agent.icon} ${chalk.white(padRight(agent.name, 24))} ${chalk.gray(agent.id)}`);
       }
       console.log();
-      console.log(chalk.gray('  💡 Tip: cody agents <skill-name> to see best agents for a skill'));
+      console.log(chalk.gray('  💡 Tip: cm agents <skill-name> to see best agents for a skill'));
       console.log();
     }
   });
@@ -1669,15 +1944,15 @@ function chainList() {
   }
   console.log(chalk.gray(`  Total: ${chains.length} chains\n`));
   console.log(chalk.cyan('💡 Quick start:'));
-  console.log(chalk.gray('   cody chain auto "Build user authentication"    # Auto-detect chain'));
-  console.log(chalk.gray('   cody chain start feature-development "My task"  # Start specific chain'));
+  console.log(chalk.gray('   cm chain auto "Build user authentication"    # Auto-detect chain'));
+  console.log(chalk.gray('   cm chain start feature-development "My task"  # Start specific chain'));
   console.log();
 }
 
 function chainInfo(chainId: string) {
-  if (!chainId) { console.log(chalk.red('❌ Usage: cody chain info <chain-id>')); return; }
+  if (!chainId) { console.log(chalk.red('❌ Usage: cm chain info <chain-id>')); return; }
   const chain = findChain(chainId);
-  if (!chain) { console.log(chalk.red(`❌ Chain not found: ${chainId}`)); console.log(chalk.gray('   Use "cody chain list" to see available chains.')); return; }
+  if (!chain) { console.log(chalk.red(`❌ Chain not found: ${chainId}`)); console.log(chalk.gray('   Use "cm chain list" to see available chains.')); return; }
 
   console.log(chalk.cyan(`\n${chain.icon} Chain: ${chain.name}\n`));
   console.log(`  ${chalk.white('ID:')}          ${chain.id}`);
@@ -1699,8 +1974,8 @@ function chainInfo(chainId: string) {
 }
 
 function chainStart(chainId: string, taskTitle: string, opts: any) {
-  if (!chainId) { console.log(chalk.red('❌ Usage: cody chain start <chain-id> "Task title"')); return; }
-  if (!taskTitle) { console.log(chalk.red('❌ Task title required. Usage: cody chain start <chain-id> "My task"')); return; }
+  if (!chainId) { console.log(chalk.red('❌ Usage: cm chain start <chain-id> "Task title"')); return; }
+  if (!taskTitle) { console.log(chalk.red('❌ Task title required. Usage: cm chain start <chain-id> "My task"')); return; }
 
   const chain = findChain(chainId);
   if (!chain) { console.log(chalk.red(`❌ Chain not found: ${chainId}`)); return; }
@@ -1714,7 +1989,7 @@ function chainStart(chainId: string, taskTitle: string, opts: any) {
   } else if (data.projects.length > 0) {
     projectId = data.projects[0].id;
   } else {
-    console.log(chalk.red('❌ No projects. Create one first: cody init')); return;
+    console.log(chalk.red('❌ No projects. Create one first: cm init')); return;
   }
 
   const agent = opts.agent || 'antigravity';
@@ -1746,7 +2021,7 @@ function chainStart(chainId: string, taskTitle: string, opts: any) {
   console.log();
   console.log(chalk.cyan(`  ▶ Current step: ${execution.steps[0]?.skill} — ${execution.steps[0]?.description}`));
   console.log();
-  console.log(chalk.gray(`  Next: cody chain advance ${shortId(execution.id)} "output summary"`));
+  console.log(chalk.gray(`  Next: cm chain advance ${shortId(execution.id)} "output summary"`));
   console.log();
 }
 
@@ -1767,7 +2042,7 @@ function chainStatus(execIdPrefix?: string) {
   const active = data.chainExecutions.filter(e => e.status === 'running' || e.status === 'paused');
   if (active.length === 0) {
     console.log(chalk.gray('\n  No active chain executions.'));
-    console.log(chalk.gray('  Start one with: cody chain auto "task description"\n'));
+    console.log(chalk.gray('  Start one with: cm chain auto "task description"\n'));
     return;
   }
 
@@ -1784,7 +2059,7 @@ function chainStatus(execIdPrefix?: string) {
 }
 
 function chainAdvance(execIdPrefix: string, output?: string) {
-  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cody chain advance <exec-id> ["output summary"]')); return; }
+  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cm chain advance <exec-id> ["output summary"]')); return; }
   const data = loadData();
   const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
   if (!exec) { console.log(chalk.red(`❌ Chain execution not found: ${execIdPrefix}`)); return; }
@@ -1827,7 +2102,7 @@ function chainAdvance(execIdPrefix: string, output?: string) {
 }
 
 function chainSkip(execIdPrefix: string, reason?: string) {
-  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cody chain skip <exec-id> ["reason"]')); return; }
+  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cm chain skip <exec-id> ["reason"]')); return; }
   const data = loadData();
   const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
   if (!exec) { console.log(chalk.red(`❌ Chain execution not found: ${execIdPrefix}`)); return; }
@@ -1847,7 +2122,7 @@ function chainSkip(execIdPrefix: string, reason?: string) {
 }
 
 function chainAbort(execIdPrefix: string, reason?: string) {
-  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cody chain abort <exec-id> ["reason"]')); return; }
+  if (!execIdPrefix) { console.log(chalk.red('❌ Usage: cm chain abort <exec-id> ["reason"]')); return; }
   const data = loadData();
   const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
   if (!exec) { console.log(chalk.red(`❌ Chain execution not found: ${execIdPrefix}`)); return; }
@@ -1866,8 +2141,8 @@ function chainAbort(execIdPrefix: string, reason?: string) {
 
 function chainAuto(taskTitle: string, opts: any) {
   if (!taskTitle) {
-    console.log(chalk.red('❌ Usage: cody chain auto "task description"'));
-    console.log(chalk.gray('   Example: cody chain auto "Build user authentication"'));
+    console.log(chalk.red('❌ Usage: cm chain auto "task description"'));
+    console.log(chalk.gray('   Example: cm chain auto "Build user authentication"'));
     return;
   }
 
@@ -1878,7 +2153,7 @@ function chainAuto(taskTitle: string, opts: any) {
     for (const c of listChains()) {
       console.log(chalk.gray(`     ${c.icon} ${c.id}: ${c.triggers.slice(0, 3).join(', ')}...`));
     }
-    console.log(chalk.gray('\n   Use "cody chain start <chain-id> <title>" to start manually.'));
+    console.log(chalk.gray('\n   Use "cm chain start <chain-id> <title>" to start manually.'));
     return;
   }
 

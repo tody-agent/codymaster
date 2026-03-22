@@ -6,7 +6,7 @@ import crypto from 'crypto';
 import { loadData, saveData, logActivity, DATA_FILE, PID_FILE, DEFAULT_PORT } from './data';
 import type { Project, Task, Deployment, ChangelogEntry } from './data';
 import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
-import { ensureCmDir, readContinuityState, writeContinuityMd, getContinuityStatus, addLearning, getLearnings, addDecision, getDecisions, hasCmDir } from './continuity';
+import { ensureCmDir, readContinuityState, writeContinuityMd, getContinuityStatus, addLearning, getLearnings, addDecision, getDecisions, deleteLearning, deleteDecision, hasCmDir } from './continuity';
 import type { ContinuityState, Learning, Decision } from './continuity';
 import { evaluateAllTasks, evaluateTaskState, suggestAgentsForTask, suggestAgentsForSkill, getSkillDomain, suggestTransitions } from './judge';
 import { listChains, findChain, matchChain, createChainExecution, advanceChain as advanceChainStep, skipChainStep, abortChain, getCurrentSkill } from './skill-chain';
@@ -507,6 +507,18 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     res.status(201).json(learning);
   });
 
+  app.delete('/api/learnings/:projectId/:learningId', (req, res) => {
+    const data = loadData();
+    const project = data.projects.find(p => p.id === req.params.projectId);
+    if (!project || !project.path) { res.status(404).json({ error: 'Project not found' }); return; }
+    if (!hasCmDir(project.path)) { res.status(404).json({ error: 'No .cm/ directory' }); return; }
+    const success = deleteLearning(project.path, req.params.learningId);
+    if (!success) { res.status(404).json({ error: 'Learning not found' }); return; }
+    logActivity(data, 'learning_deleted', `Learning deleted`, project.id);
+    saveData(data);
+    res.status(204).send();
+  });
+
   app.get('/api/decisions/:projectId', (req, res) => {
     const data = loadData();
     const project = data.projects.find(p => p.id === req.params.projectId);
@@ -526,6 +538,18 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
       decision, rationale: rationale || '', timestamp: new Date().toISOString(), agent: agent || '',
     });
     res.status(201).json(entry);
+  });
+
+  app.delete('/api/decisions/:projectId/:decisionId', (req, res) => {
+    const data = loadData();
+    const project = data.projects.find(p => p.id === req.params.projectId);
+    if (!project || !project.path) { res.status(404).json({ error: 'Project not found' }); return; }
+    if (!hasCmDir(project.path)) { res.status(404).json({ error: 'No .cm/ directory' }); return; }
+    const success = deleteDecision(project.path, req.params.decisionId);
+    if (!success) { res.status(404).json({ error: 'Decision not found' }); return; }
+    logActivity(data, 'decision_deleted', `Decision deleted`, project.id);
+    saveData(data);
+    res.status(204).send();
   });
 
   app.post('/api/continuity/:projectId/init', (req, res) => {
