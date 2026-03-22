@@ -28,6 +28,8 @@
     renderPanels(sp);
 
     if (window.lucide) lucide.createIcons();
+
+    markActiveNavCta();
   }
 
   function renderTabs(sp) {
@@ -93,6 +95,7 @@
     });
 
     setupCopyButtons(container, sp);
+    setupScrollAnimations();
   }
 
   function buildOneliner(oneliner, sp) {
@@ -213,6 +216,41 @@
         });
       });
     });
+  }
+
+  function setupScrollAnimations() {
+    const steps = document.querySelectorAll('.start-step');
+    if (!steps.length) return;
+
+    // Use IntersectionObserver for scroll-triggered animations
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('start-step--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      steps.forEach((step, i) => {
+        step.style.transitionDelay = (i * 0.1) + 's';
+        observer.observe(step);
+      });
+    } else {
+      // Fallback: just show all steps
+      steps.forEach(s => s.classList.add('start-step--visible'));
+    }
+  }
+
+  function markActiveNavCta() {
+    // Mark the "Get Started" nav CTA as active since we're on the start page
+    const cta = document.querySelector('.nav__cta[href="start.html"]');
+    if (cta) {
+      cta.style.opacity = '0.7';
+      cta.style.pointerEvents = 'none';
+      cta.setAttribute('aria-current', 'page');
+    }
   }
 
   if (document.readyState === 'loading') {

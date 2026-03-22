@@ -2,8 +2,9 @@
 
 # 🧠 CodyMaster
 
-**The Universal AI Agent Skills Framework**
-**33 Skills · 11 Commands · 1 Plugin · 6 Domains · 7+ Platforms**
+**Transform Your AI Coding Agent into an Autonomous Senior Developer.**
+
+*The ultimate skills framework for Claude Code, Cursor, Gemini, and beyond. Inject TDD discipline, systematic debugging, safe deployments, and context memory directly into your AI workflow.*
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-3.4.0-blue.svg?cacheSeconds=2592000" />
@@ -15,170 +16,135 @@
   </a>
 </p>
 
-> *Turns your AI coding agent into an autonomous senior developer with TDD discipline, systematic debugging, safe deployments, and working memory.*
+### 🌟 If CodyMaster helps you ship faster, please [Star this repository](https://github.com/tody-agent/codymaster)! 🌟
 
 </div>
 
 ---
 
-## Installation
+## 🛑 The Problem: AI Agents Are Smart, But Undisciplined
+Your AI coding assistant is incredibly smart, but it often guesses, writes untested code, breaks existing features, and forgets context across sessions. You spend more time reviewing and fixing AI-generated bugs than actually coding.
 
-### Claude Code (Recommended)
+## 🟢 The Solution: CodyMaster
+CodyMaster is a **Universal AI Agent Skills Framework**. It acts as a strict "manager" for your AI, forcing it to follow engineering best practices, test-driven development (TDD), and systematic debugging workflows. 
 
-**One-liner** — auto-detect, multi-language, scope selection:
+With **33 domain-specific skills**, your AI goes from being a junior coder to a seasoned Tech Lead.
+
+---
+
+## 🚀 1-Minute Quickstart
+
+### 🥇 Claude Code (Recommended)
+**One-liner installer — Auto-detect, multi-language, scope selection:**
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
 ```
+*Or manually: `claude plugin marketplace add tody-agent/codymaster` then `claude plugin install cody-master@cody-master`*
 
-**Or manually:**
-```bash
-# 1. Add marketplace
-claude plugin marketplace add tody-agent/codymaster
-
-# 2. Install all 33 skills
-claude plugin install cody-master@cody-master
+### 🥈 Cursor IDE
+Simply type in the chat to install the curated skills:
 ```
+/add-plugin cody-master
+```
+*Or search "cody-master" in the Cursor plugin marketplace.*
 
-### Gemini CLI
-
+### 🥉 Gemini CLI / Antigravity
 ```bash
 gemini extensions install https://github.com/tody-agent/codymaster
 ```
 
-### Cursor
+<details>
+<summary><b>View Installation for Other Agents (Codex, OpenCode, Kiro)</b></summary>
 
-```
-/add-plugin cody-master
-```
+**OpenCode / Codex**
+Fetch and follow instructions from `.opencode/INSTALL.md` or `.codex/INSTALL.md` in this repository.
 
-Or search "cody-master" in the Cursor plugin marketplace.
-
-### Codex
-
-```
-Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
-```
-
-### OpenCode
-
-```
-Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
-```
-
-### Antigravity / Gemini (Manual)
-
+**Universal Fallback (Any Agent)**
+`skills/*/SKILL.md` follows the universal format. Drop them anywhere in your workspace:
 ```bash
-# Global
+# Global fallback (example)
 git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
 cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
-# Per-project
-cp -r ~/.cody-master/skills/* .gemini/skills/
-```
-
-### Any Other Agent
-
-`skills/*/SKILL.md` follows the universal format — drop them anywhere:
-
-```bash
+# Local workspace fallback
 cp -r skills/* .opencode/skills/
 cp -r skills/* .cursor/skills/
 cp -r skills/* .codex/skills/
 cp -r skills/* .kiro/skills/
 ```
+</details>
 
 ---
 
-## What's Inside
+## ✨ Why You Need This (The Magic)
 
-All 33 skills ship as a **single plugin** (`cody-master`), organized by domain:
-
-| Domain | Skills |
-|--------|--------|
-| 🔧 Engineering | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` |
-| ⚙️ Operations | `cm-safe-deploy` `cm-identity-guard` `cm-git-worktrees` `cm-terminal` `cm-secret-shield` `cm-safe-i18n` |
-| 🎨 Product | `cm-planning` `cm-brainstorm-idea` `cm-ux-master` `cm-ui-preview` `cm-dockit` `cm-readit` `cm-project-bootstrap` `cm-jtbd` |
-| 📈 Growth | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
-| 🎯 Orchestration | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-index` `cm-skill-mastery` `cm-deep-search` `cm-how-it-work` |
-| 🖥️ Workflow | `cm-start` `cm-dashboard` `cm-status` |
+- **Test-Driven Development (TDD)**: Forces the AI to write tests *before* writing implementation code. Stop the regression loop.
+- **Systematic Debugging**: No more blind guessing. The AI runs diagnostic commands, reads logs, and isolates root causes before proposing fixes.
+- **Working Memory**: Context naturally persists across coding sessions using `CONTINUITY.md`. Your AI remembers its mistakes.
+- **Defense-in-Depth**: Includes pre-commit secret scanning, strict git worktree isolation, and safe multi-gate deployment pipelines.
 
 ---
 
-## Start Here
+## 🧰 The 33-Skill Arsenal 
 
-After installing, run the onboarding tour:
+All 33 skills ship as a **single plugin** (`cody-master`), instantly upgrading your agent across 6 domains:
 
+| Domain | Core Skills Included |
+|--------|----------------------|
+| 🔧 **Engineering** | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` |
+| ⚙️ **Operations** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
+| 🎨 **Product & UX**| `cm-planning` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
+| 📈 **Growth/CRO**  | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
+| 🎯 **Orchestration**| `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` |
+| 🖥️ **Workflow**    | `cm-start` `cm-dashboard` `cm-status` |
+
+---
+
+## 🎮 How to Command Your AI
+
+Skills activate **automatically** behind the scenes when relevant. But you can also explicitly orchestrate workflows using Commands. 
+
+After installing, try the interactive onboarding:
 ```
 /cody-master:demo
 ```
 
-| Goal | Command |
-|------|---------|
-| Onboarding tour | `/cody-master:demo` |
-| New project? | `/cody-master:bootstrap` |
-| Plan a feature? | `/cody-master:plan` |
-| Build with TDD? | `/cody-master:build` |
-| Debug an issue? | `/cody-master:debug` |
-| Review code? | `/cody-master:review` |
-| Deploy safely? | `/cody-master:deploy` |
-| Design UI? | `/cody-master:ux` |
-| Create content? | `/cody-master:content` |
-| Setup tracking? | `/cody-master:track` |
-| Resume session? | `/cody-master:continuity` |
+### Popular Workflows:
+| You Want To... | Just Type... |
+|----------------|--------------|
+| Boot a new project from scratch | `/cody-master:bootstrap` |
+| Plan a complex feature | `/cody-master:plan` |
+| Build robustly with TDD | `/cody-master:build` |
+| Fix a stubborn bug | `/cody-master:debug` |
+| Extract UX & Design a UI | `/cody-master:ux` |
+| Setup Marketing Tracking | `/cody-master:track` |
 
-Skills activate **automatically** when relevant — no invocation needed. Commands force specific workflows.
+**The Vibe Coding Flow:** `Your Idea → /plan → /build (TDD) → /review → /deploy → Production`
 
 ---
 
-## How It Works
+## 📚 Resources & Documentation
 
-**Skills** (`skills/cm-*/SKILL.md`) give your AI agent domain knowledge and structured workflows. They activate automatically when relevant — no invocation needed.
-
-**Commands** (`commands/*.md`) are user-triggered workflows invoked with `/cody-master:name`. They chain skills into end-to-end processes.
-
-```
-Your Idea → /plan → /build (TDD) → /review → /deploy → Production
-```
+- 🌍 **[Official Website](https://codymaster.pages.dev)**: Concept overviews & methodology.
+- 📖 **[Documentation](https://codymaster.pages.dev/docs)**: Full deep-dive into the framework.
+- 🛠️ **[Skills Reference](skills/)**: Browse the raw prompts and logic inside all 33 `SKILL.md` files.
 
 ---
 
-## Philosophy
+## 🤝 Join the Rebellion (Contributing)
 
-- **Test-Driven Development** — Write tests first, always
-- **Systematic over ad-hoc** — Process over guessing
-- **Complexity reduction** — Simplicity as primary goal
-- **Evidence over claims** — Verify before declaring success
-- **Defense-in-depth** — Multiple safety layers
-- **Working memory** — Context persists across sessions
+We are building the open standard for AI Agent Skills. Help us make AI coding actually reliable.
 
----
-
-## 📚 Documentation
-
-| Doc | Description |
-|-----|-------------|
-| [Website](https://codymaster.pages.dev) | Landing page and overview |
-| [Docs](https://codymaster.pages.dev/docs) | Full documentation |
-| [Skills Reference](skills/) | All 33 SKILL.md files |
-| [Installation Guide](docs/sop/installation.md) | Detailed setup for all platforms |
+1. **Star the repo!** (It helps us build momentum 🌟)
+2. Fork the repository
+3. Create your custom skill `skills/cm-your-skill/SKILL.md` 
+4. Submit a Pull Request!
 
 ---
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create `skills/cm-your-skill/SKILL.md` (see `skills/cm-example/SKILL.md` as template)
-3. Submit a Pull Request
-
----
-
-## 📜 License
-
-MIT License — free to use, modify, and distribute.
 
 <div align="center">
-<br/>
 
-*Built with ❤️ for the vibe coding community.*
+*MIT License — Free to use, modify, and distribute.* <br/>
+**Built with ❤️ for the vibe coding community.**
 
 </div>

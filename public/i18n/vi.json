@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Cody Master Kit — Biến ý tưởng thành sản phẩm nhanh gấp 10 lần",
+    "title": "CodyMaster Kit — Biến ý tưởng thành sản phẩm nhanh gấp 10 lần",
     "description": "33 AI Agent Skills giúp bạn đi từ ý tưởng đến thiết kế, lập trình và triển khai — không cần biết code."
   },
   "nav": {
@@ -57,7 +57,7 @@
   "usp": {
     "label": "ĐIỂM KHÁC BIỆT",
     "title": "Không chỉ là công cụ AI.\nĐây là engine thiết kế trước tiên.",
-    "subtitle": "Cody Master không chỉ viết code — nó thiết kế, cho xem trước, và tôn trọng design system hiện tại của bạn.",
+    "subtitle": "CodyMaster không chỉ viết code — nó thiết kế, cho xem trước, và tôn trọng design system hiện tại của bạn.",
     "cards": [
       {
         "icon": "kanban",
@@ -80,7 +80,7 @@
       {
         "icon": "component",
         "title": "Tương thích Design System của bạn",
-        "description": "Đã có design system? Cody Master đọc tokens, components và brand guidelines hiện tại — rồi xây dựng theo, không chống lại.",
+        "description": "Đã có design system? CodyMaster đọc tokens, components và brand guidelines hiện tại — rồi xây dựng theo, không chống lại.",
         "visual": "system"
       }
     ]
@@ -107,7 +107,7 @@
     ],
     "deepLabel": "CÔNG NGHỆ LÕI",
     "deepTitle": "Vòng Lặp RARV + Hệ Thống Chất Lượng 6 Cổng",
-    "deepSubtitle": "Mỗi tác vụ giao cho Cody Master đều trải qua vòng lặp tự động đảm bảo code sẵn sàng chạy thực tế."
+    "deepSubtitle": "Mỗi tác vụ giao cho CodyMaster đều trải qua vòng lặp tự động đảm bảo code sẵn sàng chạy thực tế."
   },
   "install": {
     "title": "Sẵn sàng trong 30 giây",
@@ -129,7 +129,7 @@
     },
     "label": "DÀNH CHO AI?",
     "title": "Xây dựng cho mọi vai trò trong nhóm",
-    "subtitle": "Cody Master thấu hiểu thách thức CỤ THỂ của bạn. Tìm vai trò, xem cách giải quyết vấn đề CỦA BẠN.",
+    "subtitle": "CodyMaster thấu hiểu thách thức CỤ THỂ của bạn. Tìm vai trò, xem cách giải quyết vấn đề CỦA BẠN.",
     "learnMore": "Tìm hiểu thêm →",
     "cards": [
       {
@@ -208,7 +208,7 @@
     "details": {
       "founder": {
         "heroTitle": "Bạn có ý tưởng.\nBạn chỉ cần 100 cánh tay để xây dựng nó.",
-        "heroSub": "Cody Master trao cho founder không biết code sức mạnh xây dựng, thiết kế và triển khai sản phẩm production-ready — không cần viết một dòng code nào.",
+        "heroSub": "CodyMaster trao cho founder không biết code sức mạnh xây dựng, thiết kế và triển khai sản phẩm production-ready — không cần viết một dòng code nào.",
         "painLabel": "NHỮNG BỨC TƯỜNG BẠN ĐANG ĐỐI MẶT",
         "painTitle": "Chúng tôi hiểu điều gì đang cản bạn",
         "pains": [
@@ -272,11 +272,11 @@
         "objections": [
           {
             "q": "AI có thật sự xây được sản phẩm production-quality?",
-            "a": "Có. Không giống copy-paste ChatGPT, Cody Master bắt buộc TDD, quality gate và security scan. Mỗi dòng code đều được test trước khi deploy."
+            "a": "Có. Không giống copy-paste ChatGPT, CodyMaster bắt buộc TDD, quality gate và security scan. Mỗi dòng code đều được test trước khi deploy."
           },
           {
             "q": "Tôi hoàn toàn không biết code. Có dùng được không?",
-            "a": "Đây chính xác là người Cody Master phục vụ. Người tạo ra Cody Master cũng là PM không biết code. Bạn chat tự nhiên — AI lo mọi thứ."
+            "a": "Đây chính xác là người CodyMaster phục vụ. Người tạo ra CodyMaster cũng là PM không biết code. Bạn chat tự nhiên — AI lo mọi thứ."
           },
           {
             "q": "Nếu cần thay đổi sau thì sao?",
@@ -289,7 +289,7 @@
         "guide": {
           "badge": "THE NEW REALITY",
           "title": "Build like the top 1% of tech startups, without the $100K budget.",
-          "desc": "You don't need a CTO to build a revolutionary product anymore. Cody Master equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment."
+          "desc": "You don't need a CTO to build a revolutionary product anymore. CodyMaster equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment."
         },
         "planLabel": "HOW TO LAUNCH",
         "planTitle": "3 steps to your live product",
@@ -312,7 +312,7 @@
         "failureDesc": "If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky."
       },
       "cmo": {
-        "heroTitle": "Đội content không kịp sản xuất.\nCody Master thì có thể.",
+        "heroTitle": "Đội content không kịp sản xuất.\nCodyMaster thì có thể.",
         "heroSub": "Tạo content chuẩn SEO, landing page chuyển đổi cao, và setup tracking hoàn chỉnh — tất cả dựa trên StoryBrand, Cialdini và 7 framework chuyển đổi.",
         "painLabel": "NÚT CỔ CHAI",
         "painTitle": "Marketing quy mô bị bế tắc nếu thiếu công cụ đúng",
@@ -394,7 +394,7 @@
         "guide": {
           "badge": "THE CONTENT EDGE",
           "title": "Scale your output without scaling your headcount.",
-          "desc": "Marketing at scale used to require massive teams of writers, designers, and developers. Now, Cody Master's Content Factory acts as your elite, autonomous marketing department—producing SEO articles, landing pages, and tracking setups perfectly aligned with Cialdini's principles."
+          "desc": "Marketing at scale used to require massive teams of writers, designers, and developers. Now, CodyMaster's Content Factory acts as your elite, autonomous marketing department—producing SEO articles, landing pages, and tracking setups perfectly aligned with Cialdini's principles."
         },
         "planLabel": "YOUR NEW WORKFLOW",
         "planTitle": "From strategy to live campaign in hours",
@@ -418,7 +418,7 @@
       },
       "pm": {
         "heroTitle": "AI cho bạn 100 cánh tay.\nNhưng thiếu kỷ luật, 100 cánh tay đó tạo hỗn loạn.",
-        "heroSub": "Cody Master là hệ thống điều khiển cho phát triển sản phẩm bằng AI. Quality gate bắt buộc, design nhất quán, và documentation tự động.",
+        "heroSub": "CodyMaster là hệ thống điều khiển cho phát triển sản phẩm bằng AI. Quality gate bắt buộc, design nhất quán, và documentation tự động.",
         "painLabel": "SỰ HỖN LOẠN BẠN QUÁ QUEN THUỘC",
         "painTitle": "Nghe quen không?",
         "pains": [
@@ -486,11 +486,11 @@
           },
           {
             "q": "Tôi là PM, không phải dev. Có quá kỹ thuật không?",
-            "a": "Người tạo Cody Master cũng là PM. Mọi thứ được thiết kế để bạn chat tự nhiên. Bạn nói muốn gì, AI lo phần kỹ thuật."
+            "a": "Người tạo CodyMaster cũng là PM. Mọi thứ được thiết kế để bạn chat tự nhiên. Bạn nói muốn gì, AI lo phần kỹ thuật."
           },
           {
             "q": "Chúng tôi dùng Jira/Linear. Có thay thế chúng không?",
-            "a": "Không. Cody Master bổ trợ. Nó xử lý phần AI — chất lượng, nhất quán, deploy mà Jira không enforce được."
+            "a": "Không. CodyMaster bổ trợ. Nó xử lý phần AI — chất lượng, nhất quán, deploy mà Jira không enforce được."
           }
         ],
         "ctaTitle": "Bạn đã quản lý hỗn loạn đủ lâu.\nĐã đến lúc có kỷ luật.",
@@ -499,7 +499,7 @@
         "guide": {
           "badge": "VALIDATION ENGINE",
           "title": "Validate faster. Ship confidently. Prove ROI instantly.",
-          "desc": "Product management is about reducing risk. Cody Master removes the engineering bottleneck entirely, allowing you to spin up functional prototypes and MVPs in hours to gather real user data before committing months of your actual tech team's time."
+          "desc": "Product management is about reducing risk. CodyMaster removes the engineering bottleneck entirely, allowing you to spin up functional prototypes and MVPs in hours to gather real user data before committing months of your actual tech team's time."
         },
         "planLabel": "THE AGILE WAY",
         "planTitle": "How to ship the right thing",
@@ -510,7 +510,7 @@
           },
           {
             "title": "Prototype",
-            "desc": "Don't just show Figma files. Let Cody Master build a live, clickable, coded prototype connected to a real database."
+            "desc": "Don't just show Figma files. Let CodyMaster build a live, clickable, coded prototype connected to a real database."
           },
           {
             "title": "Validate",
@@ -523,7 +523,7 @@
       },
       "dev": {
         "heroTitle": "Ngừng viết code setup.\nBắt đầu viết thứ quan trọng.",
-        "heroSub": "Dành cho CTO, Tech Lead, Frontend, Backend, Mobile dev, và QC engineer — Cody Master xử lý 80% boilerplate trong khi enforce tiêu chuẩn chất lượng bạn thực sự muốn.",
+        "heroSub": "Dành cho CTO, Tech Lead, Frontend, Backend, Mobile dev, và QC engineer — CodyMaster xử lý 80% boilerplate trong khi enforce tiêu chuẩn chất lượng bạn thực sự muốn.",
         "painLabel": "NỖI ĐAU HÀNG NGÀY CỦA DEV",
         "painTitle": "Dev nào cũng biết nỗi đau này",
         "pains": [
@@ -596,15 +596,15 @@
         "objections": [
           {
             "q": "Stack tôi lạ. Có chạy được không?",
-            "a": "Cody Master hỗ trợ 17 framework: React, Next.js, Astro, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, Angular, htmx, Electron, Tauri, và nhiều hơn."
+            "a": "CodyMaster hỗ trợ 17 framework: React, Next.js, Astro, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, Angular, htmx, Electron, Tauri, và nhiều hơn."
           },
           {
             "q": "Tôi không muốn AI viết core logic.",
-            "a": "Thì đừng. Dùng Cody Master cho 80% nhàm chán: scaffolding, test, docs, deploy config. Bạn viết 20% cần bộ não."
+            "a": "Thì đừng. Dùng CodyMaster cho 80% nhàm chán: scaffolding, test, docs, deploy config. Bạn viết 20% cần bộ não."
           },
           {
             "q": "CTO quản lý team thì dùng thế nào?",
-            "a": "CTO định nghĩa tiêu chuẩn chất lượng một lần. Cody Master enforce xuyên mọi project, mọi dev, mọi AI agent. Nhất quán quy mô lớn."
+            "a": "CTO định nghĩa tiêu chuẩn chất lượng một lần. CodyMaster enforce xuyên mọi project, mọi dev, mọi AI agent. Nhất quán quy mô lớn."
           }
         ],
         "ctaTitle": "Đời quá ngắn để viết boilerplate.\nĐể AI làm phần nhàm. Bạn làm phần brillant.",
@@ -613,7 +613,7 @@
         "guide": {
           "badge": "ENGINEERING LEVERAGE",
           "title": "Stop writing boilerplate. Start architecting systems.",
-          "desc": "Senior engineers shouldn't be centering divs or writing basic CRUD endpoints. Cody Master acts as your tireless junior developer, scaffolding apps, writing tests via cm-tdd, and executing repetitive tasks so you can focus on hard architectural problems."
+          "desc": "Senior engineers shouldn't be centering divs or writing basic CRUD endpoints. CodyMaster acts as your tireless junior developer, scaffolding apps, writing tests via cm-tdd, and executing repetitive tasks so you can focus on hard architectural problems."
         },
         "planLabel": "THE 10X PIPELINE",
         "planTitle": "How elite teams use Cody",
@@ -628,7 +628,7 @@
           },
           {
             "title": "Review",
-            "desc": "The code isn't a black box. You review the PRs. Cody Master runs cm-quality-gate to catch regressions before you even look."
+            "desc": "The code isn't a black box. You review the PRs. CodyMaster runs cm-quality-gate to catch regressions before you even look."
           }
         ],
         "failureLabel": "THE TECH DEBT SPIRAL",
@@ -637,7 +637,7 @@
       },
       "designer": {
         "heroTitle": "Bạn thiết kế hệ thống.\nAI phải tôn trọng nó.",
-        "heroSub": "Cody Master là bộ công cụ AI duy nhất đọc design tokens, preview trước khi code, và enforce brand nhất quán — biến AI thành partner thiết kế, không phải kẻ thù thiết kế.",
+        "heroSub": "CodyMaster là bộ công cụ AI duy nhất đọc design tokens, preview trước khi code, và enforce brand nhất quán — biến AI thành partner thiết kế, không phải kẻ thù thiết kế.",
         "painLabel": "NỖI THẤT VỌNG CỦA MỌI DESIGNER",
         "painTitle": "AI nên khuếch đại vision của bạn, không phải bỏ qua nó",
         "pains": [
@@ -701,7 +701,7 @@
         "objections": [
           {
             "q": "Tôi dùng Figma. Có đọc Figma tokens được không?",
-            "a": "Có. cm-ux-master Harvester trích xuất design tokens từ site, CSS file, design system. Export từ Figma, import vào Cody Master."
+            "a": "Có. cm-ux-master Harvester trích xuất design tokens từ site, CSS file, design system. Export từ Figma, import vào CodyMaster."
           },
           {
             "q": "'AI preview' có thực sự giống design chuyên nghiệp?",
@@ -718,7 +718,7 @@
         "guide": {
           "badge": "PIXEL PERFECT",
           "title": "From Figma to React, skipping the translation loss.",
-          "desc": "The handoff is broken. You design something beautiful; development builds something that 'kind of' looks like it. Cody Master bridges that gap, reading your design intent via cm-ux-master and generating pixel-perfect code that honors spacing, typography, and UX laws."
+          "desc": "The handoff is broken. You design something beautiful; development builds something that 'kind of' looks like it. CodyMaster bridges that gap, reading your design intent via cm-ux-master and generating pixel-perfect code that honors spacing, typography, and UX laws."
         },
         "planLabel": "THE DESIGN-TO-CODE LOOP",
         "planTitle": "Protect your design integrity",
@@ -729,7 +729,7 @@
           },
           {
             "title": "Generate",
-            "desc": "Cody Master translates your designs into clean Tailwind v4 utility classes and accessible DOM structures."
+            "desc": "CodyMaster translates your designs into clean Tailwind v4 utility classes and accessible DOM structures."
           },
           {
             "title": "Refine",
@@ -742,7 +742,7 @@
       },
       "claw": {
         "heroTitle": "Một bộ skill.\nMọi AI agent trong gia đình.",
-        "heroSub": "Dù bạn dùng Cursor, Claude Desktop, Antigravity, OpenClaw, NemoClaw, hay OpenFang — format phổ quát của Cody Master đồng nghĩa skill hoạt động mọi nơi, tức thì.",
+        "heroSub": "Dù bạn dùng Cursor, Claude Desktop, Antigravity, OpenClaw, NemoClaw, hay OpenFang — format phổ quát của CodyMaster đồng nghĩa skill hoạt động mọi nơi, tức thì.",
         "painLabel": "VẤN ĐỀ PHÂN MẢNH",
         "painTitle": "Chán viết lại rules cho mỗi agent?",
         "pains": [
@@ -810,7 +810,7 @@
           },
           {
             "q": "'Gia đình Claw' chính xác là gì?",
-            "a": "Là hệ sinh thái AI agent tool chia sẻ triết lý Open Claw interop: OpenClaw, NemoClaw, OpenFang, và khác. Cody Master nói ngôn ngữ của chúng native."
+            "a": "Là hệ sinh thái AI agent tool chia sẻ triết lý Open Claw interop: OpenClaw, NemoClaw, OpenFang, và khác. CodyMaster nói ngôn ngữ của chúng native."
           },
           {
             "q": "Có thể tạo skill riêng theo format này?",
@@ -823,7 +823,7 @@
         "guide": {
           "badge": "THE UNFAIR ADVANTAGE",
           "title": "The ultimate edge for independent creators and builders.",
-          "desc": "The Claw Family builds differently. You don't ask for permission. You identify niches, build tools, and generate revenue. Cody Master is the ultimate multi-tool designed explicitly for indie hackers who need to move at warp speed."
+          "desc": "The Claw Family builds differently. You don't ask for permission. You identify niches, build tools, and generate revenue. CodyMaster is the ultimate multi-tool designed explicitly for indie hackers who need to move at warp speed."
         },
         "planLabel": "THE INDIE PLAYBOOK",
         "planTitle": "From idea to revenue",
@@ -981,7 +981,7 @@
       "Tài liệu",
       "Discord"
     ],
-    "copyright": "© 2026 Cody Master · Được tạo bởi AI"
+    "copyright": "© 2026 CodyMaster · Được tạo bởi AI"
   },
   "skillsPage": {
     "modalWhat": "Đây là gì?",
@@ -989,7 +989,7 @@
     "modalWhy": "Tại sao nên dùng?",
     "modalBest": "Thực hành tốt nhất",
     "meta": {
-      "title": "Thư viện Kỹ năng — Cody Master Kit",
+      "title": "Thư viện Kỹ năng — CodyMaster Kit",
       "description": "Khám phá 33 kỹ năng AI Agent chuyên biệt cho ý tưởng, thiết kế, nội dung, code, bảo mật và triển khai."
     },
     "hero": "Khám phá Thư viện Kỹ năng",
@@ -1483,12 +1483,12 @@
         "category": "Ý tưởng",
         "icon": "help-circle",
         "tagline": "Hướng dẫn Bắt đầu",
-        "prompt": "Làm sao dùng Cody Master lần đầu?",
+        "prompt": "Làm sao dùng CodyMaster lần đầu?",
         "related": [
           "cm-skill-mastery",
           "cm-project-bootstrap"
         ],
-        "problem": "Lần đầu tải về và lầm tưởng Cody Master chỉ là cái công cụ Chat thông thường?",
+        "problem": "Lần đầu tải về và lầm tưởng CodyMaster chỉ là cái công cụ Chat thông thường?",
         "solution": "Lĩnh hội Sách Trắng - Bí kíp Vibe Coding thực thụ.",
         "whatIsIt": "Cuốn Whitepaper chứa đựng tinh hoa nguyên lý vận hành Model RARV, và Workflow các tác vụ mẫu mượt mà.",
         "whenToUse": "Khi mới vừa setup init. Hoặc ném cho Newbies dev team bạn lúc vừa gia nhập công ty.",
@@ -1611,8 +1611,8 @@
   },
   "startPage": {
     "meta": {
-      "title": "Bắt đầu — Cody Master",
-      "description": "Cài Cody Master trên Claude Code, Gemini CLI, Cursor, Codex và nhiều hơn nữa. Có 33 kỹ năng AI trong dưới 2 phút."
+      "title": "Bắt đầu — CodyMaster",
+      "description": "Cài CodyMaster trên Claude Code, Gemini CLI, Cursor, Codex và nhiều hơn nữa. Có 33 kỹ năng AI trong dưới 2 phút."
     },
     "hero": "Cài đặt trên nền tảng của bạn",
     "heroSub": "Chọn AI coding platform và nhận 33 kỹ năng trong vòng 2 phút.",
@@ -1636,7 +1636,7 @@
         "steps": [
           {
             "title": "Cài Claude Code",
-            "description": "Cody Master chạy như plugin Claude Code. Cần cài Claude Code CLI trước.",
+            "description": "CodyMaster chạy như plugin Claude Code. Cần cài Claude Code CLI trước.",
             "items": [
               "Tải tại claude.ai/code",
               "Kiểm tra: claude --version (cần 1.0+)",
@@ -1646,7 +1646,7 @@
           },
           {
             "title": "Thêm Marketplace",
-            "description": "Đăng ký nguồn plugin Cody Master để Claude Code có thể tìm thấy.",
+            "description": "Đăng ký nguồn plugin CodyMaster để Claude Code có thể tìm thấy.",
             "code": "claude plugin marketplace add tody-agent/codymaster",
             "output": "✓ Marketplace đã đăng ký: tody-agent/codymaster\n✓ cody-master plugin sẵn sàng"
           },
@@ -1660,7 +1660,7 @@
             "title": "Chạy onboarding tour",
             "description": "Mở Claude Code và chạy tour tương tác để xem tất cả 33 kỹ năng.",
             "code": "/cody-master:demo",
-            "output": "🚀 Chào mừng đến Cody Master! Cùng khám phá 33 kỹ năng..."
+            "output": "🚀 Chào mừng đến CodyMaster! Cùng khám phá 33 kỹ năng..."
           }
         ]
       },
@@ -1679,7 +1679,7 @@
             ]
           },
           {
-            "title": "Cài Cody Master",
+            "title": "Cài CodyMaster",
             "description": "Cài trực tiếp từ GitHub — không cần npm package.",
             "code": "gemini extensions install https://github.com/tody-agent/codymaster",
             "output": "✓ cody-master đã cài\n✓ 33 kỹ năng sẵn sàng trong Gemini CLI"
@@ -1692,7 +1692,7 @@
           },
           {
             "title": "Cập nhật sau này",
-            "description": "Cập nhật Cody Master bằng một lệnh.",
+            "description": "Cập nhật CodyMaster bằng một lệnh.",
             "code": "gemini extensions update cody-master"
           }
         ]
@@ -1758,7 +1758,7 @@
         "emoji": "🟠",
         "steps": [
           {
-            "title": "Clone Cody Master",
+            "title": "Clone CodyMaster",
             "description": "Clone repository về thư mục home của bạn.",
             "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
             "output": "✓ Đã clone — 33 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
@@ -1783,7 +1783,7 @@
         "steps": [
           {
             "title": "Clone repository",
-            "description": "Clone Cody Master về thư mục home.",
+            "description": "Clone CodyMaster về thư mục home.",
             "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
             "output": "✓ Đã clone — 33 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
           },
@@ -1816,7 +1816,7 @@
           },
           {
             "title": "Thêm skills qua npx",
-            "description": "Dùng Cody Master CLI để cài skills vào project OpenCode.",
+            "description": "Dùng CodyMaster CLI để cài skills vào project OpenCode.",
             "code": "npx codymaster add --all --platform opencode",
             "output": "📦 opencode — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (33 tổng)\n✅ 33 skills đã cài → ./.opencode/skills/"
           },
@@ -1850,7 +1850,7 @@
           },
           {
             "title": "Thêm skills qua npx",
-            "description": "Dùng CLI để cài skills Cody Master vào thư mục steering của Kiro.",
+            "description": "Dùng CLI để cài skills CodyMaster vào thư mục steering của Kiro.",
             "code": "npx codymaster add --all --platform kiro",
             "output": "🔶 kiro — Installing all 33 skills\n  ✅ cm-tdd\n  ... (33 tổng)\n✅ 33 skills đã cài → ./.kiro/steering/"
           },
@@ -1884,14 +1884,14 @@
           },
           {
             "title": "Thêm skills qua npx",
-            "description": "Cody Master chèn tham chiếu skills vào .github/copilot-instructions.md.",
+            "description": "CodyMaster chèn tham chiếu skills vào .github/copilot-instructions.md.",
             "code": "npx codymaster add --all --platform copilot",
             "output": "✅ 33 skills được tham chiếu trong .github/copilot-instructions.md\n   GitHub Copilot sẽ tự dùng làm context."
           },
           {
             "title": "Hoặc thêm thủ công",
-            "description": "Thêm tham chiếu Cody Master vào file copilot-instructions.md.",
-            "code": "# .github/copilot-instructions.md\n\n## AI Skills Available\nProject này dùng Cody Master skills:\n- cm-tdd, cm-debugging, cm-planning, cm-safe-deploy\n- cm-ux-master, cm-content-factory\n# Đầy đủ: https://github.com/tody-agent/codymaster"
+            "description": "Thêm tham chiếu CodyMaster vào file copilot-instructions.md.",
+            "code": "# .github/copilot-instructions.md\n\n## AI Skills Available\nProject này dùng CodyMaster skills:\n- cm-tdd, cm-debugging, cm-planning, cm-safe-deploy\n- cm-ux-master, cm-content-factory\n# Đầy đủ: https://github.com/tody-agent/codymaster"
           },
           {
             "title": "Sử dụng Skills",
@@ -1914,7 +1914,7 @@
             "title": "Cài qua npx (không cần cài toàn cục)",
             "description": "Hoạt động trên mọi máy có Node.js 18+. Không cần cài global.",
             "code": "npx codymaster add --all",
-            "output": "🧠 Cody Master v3.4.0\n   Đang phát hiện platform... ✅ Claude Code phát hiện\n   Đang cài 33 skills..."
+            "output": "🧠 CodyMaster v3.4.0\n   Đang phát hiện platform... ✅ Claude Code phát hiện\n   Đang cài 33 skills..."
           },
           {
             "title": "Cài skill cụ thể",
@@ -1937,13 +1937,13 @@
   },
   "demoPage": {
     "meta": {
-      "title": "Thử Cody Master — Demo Tương tác",
-      "description": "Trải nghiệm Cody Master trong hành động. Chat với AI và xem nó xây dựng sản phẩm thực — ngay trên trình duyệt."
+      "title": "Thử CodyMaster — Demo Tương tác",
+      "description": "Trải nghiệm CodyMaster trong hành động. Chat với AI và xem nó xây dựng sản phẩm thực — ngay trên trình duyệt."
     },
-    "topBar": "⚡ Cody Master Demo",
+    "topBar": "⚡ CodyMaster Demo",
     "exitDemo": "← Về trang chủ",
-    "aiName": "Cody Master AI",
-    "welcomeMessage": "Xin chào! Tôi là Cody Master. Hãy nói cho tôi bạn muốn xây gì, tôi sẽ cho bạn thấy cách tôi hoạt động. Thử một gợi ý bên dưới, hoặc gõ ý tưởng của bạn!",
+    "aiName": "CodyMaster AI",
+    "welcomeMessage": "Xin chào! Tôi là CodyMaster. Hãy nói cho tôi bạn muốn xây gì, tôi sẽ cho bạn thấy cách tôi hoạt động. Thử một gợi ý bên dưới, hoặc gõ ý tưởng của bạn!",
     "inputPlaceholder": "Gõ những gì bạn muốn xây...",
     "sendButton": "Gửi",
     "suggestions": [
@@ -1995,7 +1995,7 @@
   "useCases": {
     "label": "BẠN CÓ THỂ XÂY GÌ",
     "title": "Từ ý tưởng đến sản phẩm,\nmọi lĩnh vực",
-    "subtitle": "Kịch bản thật, kết quả thật. Đây là những gì mọi người xây dựng với Cody Master mỗi ngày.",
+    "subtitle": "Kịch bản thật, kết quả thật. Đây là những gì mọi người xây dựng với CodyMaster mỗi ngày.",
     "cases": [
       {
         "icon": "globe",
@@ -2051,7 +2051,7 @@
     "label": "SỰ CHUYỂN ĐỔI",
     "title": "Trước vs Sau",
     "before": {
-      "title": "Không có Cody Master",
+      "title": "Không có CodyMaster",
       "items": [
         "Design mỗi lần một kiểu",
         "AI quên sạch giữa các phiên làm việc",
@@ -2063,7 +2063,7 @@
       ]
     },
     "after": {
-      "title": "Với Cody Master",
+      "title": "Với CodyMaster",
       "items": [
         "Design system được AI tuân thủ",
         "Bộ nhớ 4 Tầng — không bao giờ mất context",
@@ -2077,10 +2077,10 @@
   },
   "storyPage": {
     "meta": {
-      "title": "Câu Chuyện — Cody Master Kit",
-      "description": "Câu chuyện thật đằng sau Cody Master: sinh ra từ nỗi đau của Product Manager, xây dựng qua hàng trăm đêm không ngủ."
+      "title": "Câu Chuyện — CodyMaster Kit",
+      "description": "Câu chuyện thật đằng sau CodyMaster: sinh ra từ nỗi đau của Product Manager, xây dựng qua hàng trăm đêm không ngủ."
     },
-    "hero": "Câu Chuyện Đằng Sau Cody Master",
+    "hero": "Câu Chuyện Đằng Sau CodyMaster",
     "heroSub": "Không phải quảng cáo. Không phải marketing. Đây là những gì thực sự đã xảy ra.",
     "founderIntro": "Tôi không phải developer. Tôi là Product Manager với hơn 10 năm kinh nghiệm. Code — thứ tôi không rành — từng là bức tường cao nhất ngăn tôi biến ý tưởng thành hiện thực.",
     "chapters": [
@@ -2149,7 +2149,7 @@
       {
         "number": "07",
         "title": "Lòng Biết Ơn Cộng Đồng",
-        "content": "Không phải mọi thứ tôi đều tự nghĩ ra.\n\nTôi nợ cộng đồng rất nhiều.\n\nSuperpower, Loki Mode, UX Max Pro... Những skill tuyệt vời mà các anh chị, các bạn đã chia sẻ — tôi học hỏi, tuyển chọn, chắt lọc, và tích hợp vào hệ sinh thái Cody Master.\n\nCảm ơn tất cả những người đã chia sẻ. Thật lòng.",
+        "content": "Không phải mọi thứ tôi đều tự nghĩ ra.\n\nTôi nợ cộng đồng rất nhiều.\n\nSuperpower, Loki Mode, UX Max Pro... Những skill tuyệt vời mà các anh chị, các bạn đã chia sẻ — tôi học hỏi, tuyển chọn, chắt lọc, và tích hợp vào hệ sinh thái CodyMaster.\n\nCảm ơn tất cả những người đã chia sẻ. Thật lòng.",
         "skills": [
           "cm-skill-mastery",
           "cm-continuity",
@@ -2159,7 +2159,7 @@
       }
     ],
     "closing": {
-      "title": "Vậy Cody Master Là Gì?",
+      "title": "Vậy CodyMaster Là Gì?",
       "content": "Nó không phải plugin. Không phải prompt template.\n\nĐó là câu trả lời của một Product Manager không biết code, sau hàng trăm đêm không ngủ, cho câu hỏi duy nhất:",
       "question": "\"Làm sao để một người có ý tưởng nhưng không rành kỹ thuật có thể tạo ra sản phẩm world-class — từ landing page, full-stack app, documentation, tới self-onboarding — mà không phải đánh đổi bằng chất lượng?\"",
       "punchline": "33 skills. Mỗi skill là một bài học. Mỗi bài học là một đêm không ngủ.\n\nVà bây giờ, bạn không cần phải trải qua những đêm đó nữa."
@@ -2169,11 +2169,11 @@
   },
   "docsPage": {
     "meta": {
-      "title": "Hướng dẫn toàn diện — Cody Master Kit | Personas, JTBD, Use Cases",
-      "description": "Hướng dẫn đầy đủ về Cody Master Kit: 5 chân dung người dùng, 5 công việc cần hoàn thành, 8 tình huống thực tế."
+      "title": "Hướng dẫn toàn diện — CodyMaster Kit | Personas, JTBD, Use Cases",
+      "description": "Hướng dẫn đầy đủ về CodyMaster Kit: 5 chân dung người dùng, 5 công việc cần hoàn thành, 8 tình huống thực tế."
     },
     "hero": "Hướng Dẫn Toàn Diện",
-    "heroSub": "Cody Master dành cho ai? Giải quyết vấn đề gì? Hoạt động như thế nào? Tất cả trong một trang.",
+    "heroSub": "CodyMaster dành cho ai? Giải quyết vấn đề gì? Hoạt động như thế nào? Tất cả trong một trang.",
     "tocTitle": "Trong Trang Này",
     "toc": [
       "Chân Dung Người Dùng",
@@ -2185,7 +2185,7 @@
     "personasSection": {
       "label": "DÀNH CHO AI?",
       "title": "5 Chân Dung Người Dùng",
-      "subtitle": "Cody Master được xây dựng cho những người thật với vấn đề thật. Tìm chính bạn bên dưới.",
+      "subtitle": "CodyMaster được xây dựng cho những người thật với vấn đề thật. Tìm chính bạn bên dưới.",
       "personas": [
         {
           "emoji": "🚀",
@@ -2292,7 +2292,7 @@
     "jtbdSection": {
       "label": "GIẢI QUYẾT VẤN ĐỀ GÌ?",
       "title": "5 Công Việc Cần Hoàn Thành",
-      "subtitle": "Mỗi kỹ năng trong Cody Master tồn tại vì một công việc thật mà người thật cần làm.",
+      "subtitle": "Mỗi kỹ năng trong CodyMaster tồn tại vì một công việc thật mà người thật cần làm.",
       "forceLabels": {
         "push": "Đẩy (Nỗi Đau Hiện Tại)",
         "pull": "Kéo (Kết Quả Mơ Ước)",
@@ -2405,7 +2405,7 @@
         {
           "emoji": "🌐",
           "title": "Ra mắt Landing Page trong 15 phút",
-          "scenario": "Bạn có quán cà phê và cần website chuyên nghiệp với đặt hàng online. Bạn mô tả cho Cody Master bằng tiếng Việt.",
+          "scenario": "Bạn có quán cà phê và cần website chuyên nghiệp với đặt hàng online. Bạn mô tả cho CodyMaster bằng tiếng Việt.",
           "chain": [
             "cm-planning",
             "cm-ux-master",
@@ -2419,7 +2419,7 @@
         {
           "emoji": "🏗️",
           "title": "Xây SaaS MVP trong 1 ngày",
-          "scenario": "Bạn đang validate ý tưởng B2B — cần auth, dashboard, API, và database. Mô tả tính năng và để Cody Master lên kế hoạch và thực hiện.",
+          "scenario": "Bạn đang validate ý tưởng B2B — cần auth, dashboard, API, và database. Mô tả tính năng và để CodyMaster lên kế hoạch và thực hiện.",
           "chain": [
             "cm-brainstorm-idea",
             "cm-planning",
@@ -2584,11 +2584,11 @@
       "questions": [
         {
           "q": "Tôi có cần biết code không?",
-          "a": "Không. Cody Master được thiết kế cho người không biết code. Bạn mô tả nhu cầu bằng ngôn ngữ tự nhiên — AI xử lý phần còn lại."
+          "a": "Không. CodyMaster được thiết kế cho người không biết code. Bạn mô tả nhu cầu bằng ngôn ngữ tự nhiên — AI xử lý phần còn lại."
         },
         {
           "q": "Có miễn phí không?",
-          "a": "Có, Cody Master là mã nguồn mở và miễn phí. Bạn chỉ trả cho AI provider (Gemini, Claude, v.v.) mà bạn chọn sử dụng."
+          "a": "Có, CodyMaster là mã nguồn mở và miễn phí. Bạn chỉ trả cho AI provider (Gemini, Claude, v.v.) mà bạn chọn sử dụng."
         },
         {
           "q": "Hoạt động với AI agent nào?",
@@ -2600,7 +2600,7 @@
         },
         {
           "q": "Khác gì so với v0, Bolt, hay Lovable?",
-          "a": "Những tool đó tạo prototype dùng một lần. Cody Master là framework kỹ năng hoàn chỉnh — enforce TDD, quality gate, security scan, design consistency, tài liệu, và safe deploy. Production-ready từ ngày đầu."
+          "a": "Những tool đó tạo prototype dùng một lần. CodyMaster là framework kỹ năng hoàn chỉnh — enforce TDD, quality gate, security scan, design consistency, tài liệu, và safe deploy. Production-ready từ ngày đầu."
         },
         {
           "q": "Tôi có thể tạo skill riêng không?",

@@ -5,7 +5,7 @@ description: Start the CM Workflow to execute your objective from idea to produc
 
 # Command: `/cm-start [your objective]`
 
-When this workflow is called, the AI Assistant should execute the following action sequence in the spirit of the **Cody Master Kit**:
+When this workflow is called, the AI Assistant should execute the following action sequence in the spirit of the **CodyMaster Kit**:
 
 1. **Understand Requirements (Planning & JTBD):**
     - Read the objective provided in the `/cm-start` command.

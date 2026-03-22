@@ -1,11 +1,11 @@
 ---
-description: Interactive onboarding tour — discover Cody Master skills, workflows, and examples. Run this first to learn how to use the kit.
+description: Interactive onboarding tour — discover CodyMaster skills, workflows, and examples. Run this first to learn how to use the kit.
 argument-hint: "[vi|en|zh|ko|ru|hi]"
 ---
 
-# 🧠 Welcome to Cody Master
+# 🧠 Welcome to CodyMaster
 
-You are now running the interactive onboarding demo. Guide the user through Cody Master in their language.
+You are now running the interactive onboarding demo. Guide the user through CodyMaster in their language.
 
 ## Step 1 — Detect Language
 
@@ -23,7 +23,7 @@ Remember the chosen language and respond in it for all following steps.
 ## Step 2 — Welcome Message
 
 Show a warm, concise welcome. Include:
-- What Cody Master is (1 sentence)
+- What CodyMaster is (1 sentence)
 - That it gives AI agents 33+ specialized skills
 - That this demo will take ~2 minutes
 

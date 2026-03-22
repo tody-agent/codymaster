@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodyMaster vs Others — Honest Comparison</title>
+  <meta name="description" content="Honest comparison between CodyMaster, Superpower, Loki Mode, and other AI coding skill kits. Standing on the shoulders of giants.">
+  <meta property="og:title" content="CodyMaster vs Others">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/kit.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ── Page-Specific Styles ── */
+    .vs-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      overflow: hidden;
+    }
+    .vs-hero__content { position: relative; z-index: 1; max-width: 750px; }
+    .vs-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .vs-hero__title span {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .vs-hero__sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* ── Gratitude Section ── */
+    .vs-gratitude {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+    }
+    .vs-gratitude__intro {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+    .vs-gratitude__intro p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .vs-gratitude__intro strong {
+      color: var(--text-primary);
+    }
+    .vs-gratitude__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .gratitude-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .gratitude-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+      opacity: 0.6;
+    }
+    .gratitude-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .gratitude-card__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .gratitude-card__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .gratitude-card__name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .gratitude-card__badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-left: auto;
+    }
+    .gratitude-card__desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .gratitude-card__lesson {
+      font-size: 0.85rem;
+      color: var(--accent-lime);
+      font-style: italic;
+      border-left: 2px solid rgba(196, 248, 42, 0.3);
+      padding-left: 12px;
+    }
+
+    /* Individual card accents */
+    .gratitude-card--uxpro .gratitude-card__icon { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+    .gratitude-card--uxpro::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+    .gratitude-card--uxpro .gratitude-card__badge { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+
+    .gratitude-card--superpower .gratitude-card__icon { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
+    .gratitude-card--superpower::before { background: linear-gradient(90deg, #3b82f6, #8b5cf6); }
+    .gratitude-card--superpower .gratitude-card__badge { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+
+    .gratitude-card--loki .gratitude-card__icon { background: linear-gradient(135deg, #22c55e, #06b6d4); }
+    .gratitude-card--loki::before { background: linear-gradient(90deg, #22c55e, #06b6d4); }
+    .gratitude-card--loki .gratitude-card__badge { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+
+    .gratitude-card--community .gratitude-card__icon { background: linear-gradient(135deg, #c084fc, #f472b6); }
+    .gratitude-card--community::before { background: linear-gradient(90deg, #c084fc, #f472b6); }
+    .gratitude-card--community .gratitude-card__badge { background: rgba(192, 132, 252, 0.15); color: #c084fc; }
+
+    /* ── Disclaimer ── */
+    .vs-disclaimer {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 24px;
+      background: rgba(124, 58, 237, 0.06);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .vs-disclaimer a {
+      color: var(--accent-lime);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .vs-disclaimer a:hover {
+      color: var(--text-primary);
+    }
+
+    /* ── Comparison Matrix ── */
+    .vs-matrix {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .vs-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .vs-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+    .vs-table thead th {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 16px 14px;
+      background: var(--bg-card);
+      border-bottom: 2px solid var(--border-subtle);
+      color: var(--text-primary);
+      position: sticky;
+      top: 0;
+      white-space: nowrap;
+    }
+    .vs-table thead th:first-child {
+      text-align: left;
+      min-width: 180px;
+    }
+    .vs-table thead th.highlight {
+      color: var(--accent-lime);
+      background: rgba(196, 248, 42, 0.05);
+      border-bottom-color: var(--accent-lime);
+    }
+    .vs-table tbody td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+    .vs-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: left;
+    }
+    .vs-table tbody td.highlight {
+      background: rgba(196, 248, 42, 0.03);
+    }
+    .vs-table tbody tr {
+      transition: background 0.2s;
+    }
+    .vs-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .check { color: var(--accent-lime); font-weight: 700; }
+    .cross { color: var(--text-muted); }
+    .partial { color: var(--cta-orange); font-size: 0.8rem; }
+    .best { color: var(--accent-lime); font-weight: 700; font-size: 0.8rem; }
+
+    /* ── Philosophy ── */
+    .vs-philosophy {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+    .vs-philosophy__quote {
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(196, 248, 42, 0.04));
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: var(--radius-md);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .vs-philosophy__quote p {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ── Decision Guide ── */
+    .vs-decision {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+    .vs-decision__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .decision-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: all 0.3s;
+    }
+    .decision-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .decision-card__title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .decision-card__list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .decision-card__list li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+    .decision-card__list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    /* ── CTA ── */
+    .vs-cta {
+      text-align: center;
+      padding: 60px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .vs-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .vs-cta__sub {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+    .vs-cta__link {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .vs-cta__link:hover {
+      color: var(--text-primary);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .vs-gratitude__grid { grid-template-columns: 1fr; }
+      .vs-decision__grid { grid-template-columns: 1fr; }
+      .vs-table { font-size: 0.75rem; }
+      .vs-table thead th,
+      .vs-table tbody td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════╗ NAVIGATION ╔═══════════ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-icon">⚡</span>
+      <span>CodyMaster</span>
+    </a>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="brain.html" class="nav__link nav__link--brain"><span data-i18n="nav.brain">Brain</span></a></li>
+      <li><a href="skills.html" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.personas">For You</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="for-founders.html" class="nav-dropdown__item"><span class="lang-flag">🚀</span> <span data-i18n="personas.cards.0.title">For Founders</span></a>
+          <a href="for-cmos.html" class="nav-dropdown__item"><span class="lang-flag">📢</span> <span data-i18n="personas.cards.1.title">For CMOs</span></a>
+          <a href="for-pms.html" class="nav-dropdown__item"><span class="lang-flag">📋</span> <span data-i18n="personas.cards.2.title">For PMs</span></a>
+          <a href="for-tech-teams.html" class="nav-dropdown__item"><span class="lang-flag">💻</span> <span data-i18n="personas.cards.3.title">For Tech Teams</span></a>
+          <a href="for-designers.html" class="nav-dropdown__item"><span class="lang-flag">🎨</span> <span data-i18n="personas.cards.4.title">For Designers</span></a>
+          <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
+        </div>
+      </li>
+      <li><a href="demo.html" class="nav__link" data-i18n="nav.demo">Demo</a></li>
+      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
+      <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
+      <li>
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
+            <span class="lang-btn-icon">🌍</span>
+            <span class="lang-btn-text" id="lang-btn-text">EN</span>
+            <span class="lang-btn-caret">▾</span>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
+          </div>
+        </div>
+      </li>
+      <li><a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a></li>
+    </ul>
+
+    <div class="nav__hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ═══════════╗ HERO ╔═══════════ -->
+  <section class="vs-hero" id="vsHero">
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="vs-hero__content">
+      <h1 class="vs-hero__title">Standing on the<br><span>Shoulders of Giants</span></h1>
+      <p class="vs-hero__sub">CodyMaster didn't emerge from nothing. We learned from incredible creators who pioneered AI-assisted coding. Here's an honest comparison — and our heartfelt thank you.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ PHILOSOPHY ╔═══════════ -->
+  <section class="vs-philosophy reveal" id="vsPhilosophy">
+    <div class="vs-philosophy__quote">
+      <p>"Every tool in this comparison is excellent at what it does. The real question isn't which is 'best' — it's which fits YOUR workflow, YOUR skill level, and YOUR goals."</p>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ COMPARISON MATRIX ╔═══════════ -->
+  <section class="vs-matrix" id="vsMatrix">
+    <div class="section__header reveal">
+      <p class="section__label">HONEST COMPARISON</p>
+      <h2 class="section__title">Feature by Feature</h2>
+    </div>
+
+    <div class="vs-table-wrap reveal">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Superpower</th>
+            <th>Loki Mode</th>
+            <th class="highlight">Cody Master</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>💰 Price</td>
+            <td><span class="partial">Varies</span></td>
+            <td><span class="partial">Varies</span></td>
+            <td class="highlight"><span class="best">Free ✓</span></td>
+          </tr>
+          <tr>
+            <td>🎨 Vibe Coding</td>
+            <td><span class="partial">★★★☆☆</span></td>
+            <td><span class="partial">★★★☆☆</span></td>
+            <td class="highlight"><span class="check">★★★★☆</span></td>
+          </tr>
+          <tr>
+            <td>🧪 TDD Enforcement</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓ Built-in</span></td>
+          </tr>
+          <tr>
+            <td>🧠 Persistent Memory</td>
+            <td><span class="partial">Basic</span></td>
+            <td><span class="best">✓ Pioneer</span></td>
+            <td class="highlight"><span class="check">✓ CONTINUITY.md</span></td>
+          </tr>
+          <tr>
+            <td>🔒 Secret Detection</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓ Pre-commit</span></td>
+          </tr>
+          <tr>
+            <td>🚀 Deploy Pipeline</td>
+            <td><span class="partial">Basic</span></td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓ 8 Gates</span></td>
+          </tr>
+          <tr>
+            <td>📊 Quality Gates</td>
+            <td><span class="partial">Some</span></td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓ Evidence-based</span></td>
+          </tr>
+          <tr>
+            <td>🎨 UX/Design System</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓ 48 UX Laws</span></td>
+          </tr>
+          <tr>
+            <td>📈 CRO / Marketing</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓ Full Suite</span></td>
+          </tr>
+          <tr>
+            <td>🌐 i18n Support</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓ Battle-tested</span></td>
+          </tr>
+          <tr>
+            <td>🔧 Total Skills</td>
+            <td><span class="partial">~10-15</span></td>
+            <td><span class="partial">~3-5</span></td>
+            <td class="highlight"><span class="best">33+ Skills</span></td>
+          </tr>
+          <tr>
+            <td>📝 Docs Automation</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓ cm-dockit</span></td>
+          </tr>
+          <tr>
+            <td>🖥️ Multi-Platform</td>
+            <td><span class="partial">Specific</span></td>
+            <td><span class="partial">Specific</span></td>
+            <td class="highlight"><span class="check">✓ 8+ Agents</span></td>
+          </tr>
+          <tr>
+            <td>👤 Non-dev Friendly</td>
+            <td><span class="partial">★★☆☆☆</span></td>
+            <td><span class="partial">★★★☆☆</span></td>
+            <td class="highlight"><span class="check">★★★★☆</span></td>
+          </tr>
+          <tr>
+            <td>📋 Full Lifecycle</td>
+            <td><span class="partial">Code focus</span></td>
+            <td><span class="partial">Memory focus</span></td>
+            <td class="highlight"><span class="best">Idea → Deploy</span></td>
+          </tr>
+          <tr>
+            <td>💳 Lock-in</td>
+            <td><span class="partial">Specific</span></td>
+            <td><span class="partial">Specific</span></td>
+            <td class="highlight"><span class="best">Zero lock-in</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ VIBE CODING COMPARISONS ╔═══════════ -->
+  <section class="vs-matrix" id="vsVibeCoders" style="padding-top: 20px;">
+    <div class="section__header reveal">
+      <p class="section__label" style="color: var(--accent-cyan);">🔥 VS TOP VIBE CODING TOOLS</p>
+      <h2 class="section__title">Dive Deeper — Detailed Comparisons</h2>
+      <p style="color: var(--text-secondary); max-width: 650px; margin: 12px auto 0; font-size: 0.95rem; line-height: 1.6;">We researched the most popular AI-powered coding platforms in the market. Here's how CodyMaster compares to each — honestly, objectively, with verified data.</p>
+    </div>
+
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+      <a href="vs-lovable.html" class="decision-card reveal" style="text-decoration: none; cursor: pointer; transition: all 0.3s;">
+        <h3 class="decision-card__title">💖 vs Lovable</h3>
+        <ul class="decision-card__list" style="margin-bottom: 12px;">
+          <li>AI Full-Stack App Builder</li>
+          <li>React + Supabase, one-click deploy</li>
+          <li>$0–$1,875/mo (credit-based)</li>
+        </ul>
+        <span style="color: var(--accent-lime); font-size: 0.85rem; font-weight: 600;">Read full comparison →</span>
+      </a>
+
+      <a href="vs-bolt.html" class="decision-card reveal" style="text-decoration: none; cursor: pointer; transition: all 0.3s;">
+        <h3 class="decision-card__title">⚙️ vs Bolt.new</h3>
+        <ul class="decision-card__list" style="margin-bottom: 12px;">
+          <li>Browser IDE by StackBlitz</li>
+          <li>WebContainers, Figma import</li>
+          <li>$0–$30/mo (token-based)</li>
+        </ul>
+        <span style="color: var(--accent-lime); font-size: 0.85rem; font-weight: 600;">Read full comparison →</span>
+      </a>
+
+      <a href="vs-google-ai-studio.html" class="decision-card reveal" style="text-decoration: none; cursor: pointer; transition: all 0.3s;">
+        <h3 class="decision-card__title">🧪 vs Google AI Studio</h3>
+        <ul class="decision-card__list" style="margin-bottom: 12px;">
+          <li>AI Model Playground (Gemini)</li>
+          <li>2M context, multimodal, Deep Research</li>
+          <li>Free → Pay-per-token</li>
+        </ul>
+        <span style="color: var(--accent-lime); font-size: 0.85rem; font-weight: 600;">Read full comparison →</span>
+      </a>
+
+      <a href="vs-replit.html" class="decision-card reveal" style="text-decoration: none; cursor: pointer; transition: all 0.3s;">
+        <h3 class="decision-card__title">🔵 vs Replit</h3>
+        <ul class="decision-card__list" style="margin-bottom: 12px;">
+          <li>Full Cloud IDE + AI Agent</li>
+          <li>50+ languages, multiplayer, Agent 4</li>
+          <li>$0–$100/mo</li>
+        </ul>
+        <span style="color: var(--accent-lime); font-size: 0.85rem; font-weight: 600;">Read full comparison →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ DECISION GUIDE ╔═══════════ -->
+  <section class="vs-decision" id="vsDecision">
+    <div class="section__header reveal">
+      <p class="section__label">RIGHT TOOL FOR YOU</p>
+      <h2 class="section__title">Choose What Fits Your Style</h2>
+    </div>
+
+    <div class="vs-decision__grid">
+      <div class="decision-card reveal">
+        <h3 class="decision-card__title">💪 Choose Superpower if you...</h3>
+        <ul class="decision-card__list">
+          <li>Want deep agent customization</li>
+          <li>Are an experienced developer</li>
+          <li>Need structured prompting systems</li>
+          <li>Want to build your own workflows</li>
+          <li>Prefer modular tool composition</li>
+        </ul>
+      </div>
+
+      <div class="decision-card reveal">
+        <h3 class="decision-card__title">🧠 Choose Loki Mode if you...</h3>
+        <ul class="decision-card__list">
+          <li>Prioritize context persistence above all</li>
+          <li>Work on long-running, multi-day projects</li>
+          <li>Want pioneering memory-first workflows</li>
+          <li>Need lightweight working memory patterns</li>
+          <li>Are comfortable with experimental tools</li>
+        </ul>
+      </div>
+
+      <div class="decision-card reveal" style="border-color: rgba(196, 248, 42, 0.2); background: rgba(196, 248, 42, 0.02); grid-column: 1 / -1;">
+        <h3 class="decision-card__title">⚡ Choose Cody Master if you...</h3>
+        <ul class="decision-card__list">
+          <li>Need the full lifecycle: idea → deploy</li>
+          <li>Want production-grade code, not prototypes</li>
+          <li>Need TDD, quality gates, and security built-in</li>
+          <li>Work across multiple AI agents / platforms</li>
+          <li>Are a non-developer who wants real products</li>
+          <li>Need marketing, UX, and content skills too</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ GRATITUDE ╔═══════════ -->
+  <section class="vs-gratitude" id="vsGratitude">
+    <div class="section__header reveal">
+      <p class="section__label" style="color: var(--accent-purple);">🙏 GRATITUDE</p>
+      <h2 class="section__title">Thank You to the Pioneers</h2>
+    </div>
+
+    <div class="vs-gratitude__intro reveal">
+      <p>Cody Master would not exist without the ideas, experiments, and open-source spirit of this community. We learned from all of you, and we're proud to be part of this ecosystem.</p>
+    </div>
+
+    <div class="vs-gratitude__grid">
+      <div class="gratitude-card gratitude-card--uxpro reveal">
+        <div class="gratitude-card__header">
+          <div class="gratitude-card__icon">🎨</div>
+          <div>
+            <div class="gratitude-card__name">UI/UX Pro Max Skill</div>
+          </div>
+          <span class="gratitude-card__badge">Design Pioneer 🔥</span>
+        </div>
+        <p class="gratitude-card__desc">The open-source <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" target="_blank" style="color: var(--accent-lime);">UI/UX Pro Max Skill</a> showed us how powerful a dedicated UX skill can be. It directly inspired our cm-ux-master with 48 UX Laws, Harvester v4, and design system generation.</p>
+        <p class="gratitude-card__lesson">💡 We learned: UX should be a first-class citizen in every AI coding kit, not an afterthought.</p>
+      </div>
+
+      <div class="gratitude-card gratitude-card--superpower reveal">
+        <div class="gratitude-card__header">
+          <div class="gratitude-card__icon">💪</div>
+          <div>
+            <div class="gratitude-card__name">Superpower</div>
+          </div>
+          <span class="gratitude-card__badge">Power User</span>
+        </div>
+        <p class="gratitude-card__desc">Pushed the boundaries of what's possible with AI agent customization. Showed that structured prompting systems can dramatically improve AI output quality.</p>
+        <p class="gratitude-card__lesson">💡 We learned: Structure matters. Well-organized systems beat ad-hoc prompts every time.</p>
+      </div>
+
+      <div class="gratitude-card gratitude-card--loki reveal">
+        <div class="gratitude-card__header">
+          <div class="gratitude-card__icon">🧠</div>
+          <div>
+            <div class="gratitude-card__name">Loki Mode</div>
+          </div>
+          <span class="gratitude-card__badge">Memory Pioneer</span>
+        </div>
+        <p class="gratitude-card__desc">Pioneered the concept of persistent working memory for AI agents. The idea that AI should remember context across sessions was revolutionary — and directly inspired our cm-continuity skill.</p>
+        <p class="gratitude-card__lesson">💡 We learned: AI without memory is AI without value. Context persistence is non-negotiable.</p>
+      </div>
+
+      <div class="gratitude-card gratitude-card--community reveal">
+        <div class="gratitude-card__header">
+          <div class="gratitude-card__icon">🌍</div>
+          <div>
+            <div class="gratitude-card__name">Open Source Community</div>
+          </div>
+          <span class="gratitude-card__badge">Everyone 💜</span>
+        </div>
+        <p class="gratitude-card__desc">Hundreds of GitHub repos, Discord discussions, and Twitter threads about AI-assisted coding. Every experiment, every failure shared publicly, every "here's what worked for me" — we absorbed it all.</p>
+        <p class="gratitude-card__lesson">💡 We learned: The best innovations come from standing together, not competing alone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ DISCLAIMER ╔═══════════ -->
+  <section style="max-width: 900px; margin: 0 auto; padding: 0 24px 40px;">
+    <div class="vs-disclaimer reveal">
+      <p>⚠️ This comparison is based on our understanding at the time of writing. We have not personally tested every tool in depth, and we may have missed or misrepresented features.</p>
+      <p style="margin-top: 8px;">If you notice any inaccuracies or omissions, please <a href="https://github.com/tody-agent/codymaster/issues" target="_blank">open an issue on GitHub</a> and we'll update promptly. We respect all creators in this ecosystem. 🙏</p>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ CTA ╔═══════════ -->
+  <section class="vs-cta reveal" id="vsCta">
+    <h2 class="vs-cta__title">Every tool has its place.<br>We just built ours to cover everything.</h2>
+    <p class="vs-cta__sub">Free. Open source. 33+ skills. Ready in 30 seconds.</p>
+    <a href="start.html" class="btn btn--primary btn--large">Get Started →</a>
+    <a href="why-cody-master.html" class="vs-cta__link">← See why you need a kit at all</a>
+  </section>
+
+  <!-- ═══════════╗ FOOTER ╔═══════════ -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo">⚡ CodyMaster Kit</span>
+        <p class="footer__tagline" data-i18n="footer.tagline">Turn Ideas into Products 10x Faster</p>
+      </div>
+      <div class="footer__links">
+        <a href="index.html" data-i18n="footer.home">Home</a>
+        <a href="skills.html" data-i18n="footer.skills">Skills</a>
+        <a href="start.html" data-i18n="footer.start">Get Started</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
+    </div>
+  </footer>
+
+  <script src="js/kit.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

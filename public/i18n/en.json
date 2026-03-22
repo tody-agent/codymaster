@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Cody Master Kit — Turn Ideas into Products 10x Faster",
+    "title": "CodyMaster Kit — Turn Ideas into Products 10x Faster",
     "description": "33 AI Agent Skills that take you from idea to design to code to deploy — no coding required. Just chat."
   },
   "nav": {
@@ -57,7 +57,7 @@
   "usp": {
     "label": "WHAT MAKES US DIFFERENT",
     "title": "Not just another AI tool.\nThis is a design-first engine.",
-    "subtitle": "Cody Master doesn't just write code — it designs, previews, and respects your existing design system.",
+    "subtitle": "CodyMaster doesn't just write code — it designs, previews, and respects your existing design system.",
     "cards": [
       {
         "icon": "kanban",
@@ -80,7 +80,7 @@
       {
         "icon": "component",
         "title": "Works with Your Design System",
-        "description": "Already have a design system? Cody Master reads your existing tokens, components, and brand guidelines — then builds with them.",
+        "description": "Already have a design system? CodyMaster reads your existing tokens, components, and brand guidelines — then builds with them.",
         "visual": "system"
       }
     ]
@@ -107,7 +107,7 @@
     ],
     "deepLabel": "UNDER THE HOOD",
     "deepTitle": "The RARV Execution Cycle + 6-Gate Quality",
-    "deepSubtitle": "Every task assigned to Cody Master goes through an autonomous loop ensuring production-ready code."
+    "deepSubtitle": "Every task assigned to CodyMaster goes through an autonomous loop ensuring production-ready code."
   },
   "install": {
     "title": "Ready in 30 seconds",
@@ -129,7 +129,7 @@
     },
     "label": "WHO IS IT FOR?",
     "title": "Built for every role on the team",
-    "subtitle": "Cody Master understands YOUR specific challenges. Find your role, see how it solves YOUR problems.",
+    "subtitle": "CodyMaster understands YOUR specific challenges. Find your role, see how it solves YOUR problems.",
     "learnMore": "Learn more →",
     "cards": [
       {
@@ -208,7 +208,7 @@
     "details": {
       "founder": {
         "heroTitle": "You have the idea.\nYou just need the 100 hands to build it.",
-        "heroSub": "Cody Master gives non-technical founders the power to build, design, and deploy production-ready products — without writing a single line of code.",
+        "heroSub": "CodyMaster gives non-technical founders the power to build, design, and deploy production-ready products — without writing a single line of code.",
         "painLabel": "THE WALLS YOU'RE HITTING",
         "painTitle": "We know what's stopping you",
         "pains": [
@@ -272,11 +272,11 @@
         "objections": [
           {
             "q": "Can AI really build production-quality products?",
-            "a": "Yes. Unlike ChatGPT copy-paste, Cody Master enforces TDD, quality gates, and security scans. Every line of code is tested before deploy."
+            "a": "Yes. Unlike ChatGPT copy-paste, CodyMaster enforces TDD, quality gates, and security scans. Every line of code is tested before deploy."
           },
           {
             "q": "I literally don't know any code. Will this work for me?",
-            "a": "That's exactly who this is for. The creator of Cody Master is a PM who can't code either. You chat naturally — AI handles everything."
+            "a": "That's exactly who this is for. The creator of CodyMaster is a PM who can't code either. You chat naturally — AI handles everything."
           },
           {
             "q": "What if I need changes later?",
@@ -289,7 +289,7 @@
         "guide": {
           "badge": "THE NEW REALITY",
           "title": "Build like the top 1% of tech startups, without the $100K budget.",
-          "desc": "You don't need a CTO to build a revolutionary product anymore. Cody Master equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment."
+          "desc": "You don't need a CTO to build a revolutionary product anymore. CodyMaster equips you with autonomous AI agents trained on Senior Engineer standards. You provide the vision; the agents write the code, run the tests, and secure the deployment."
         },
         "planLabel": "HOW TO LAUNCH",
         "planTitle": "3 steps to your live product",
@@ -312,7 +312,7 @@
         "failureDesc": "If you spend the next 6 months trying to fundraise to hire an agency, you will lose the timing advantage. Stop hoping for a technical co-founder to fall from the sky."
       },
       "cmo": {
-        "heroTitle": "Your content team can't keep up.\nCody Master can.",
+        "heroTitle": "Your content team can't keep up.\nCodyMaster can.",
         "heroSub": "Generate SEO-optimized content, high-converting landing pages, and complete ad tracking setup — all powered by StoryBrand, Cialdini, and 7 proven frameworks.",
         "painLabel": "THE BOTTLENECK",
         "painTitle": "Marketing at scale is broken without the right tools",
@@ -394,7 +394,7 @@
         "guide": {
           "badge": "THE CONTENT EDGE",
           "title": "Scale your output without scaling your headcount.",
-          "desc": "Marketing at scale used to require massive teams of writers, designers, and developers. Now, Cody Master's Content Factory acts as your elite, autonomous marketing department—producing SEO articles, landing pages, and tracking setups perfectly aligned with Cialdini's principles."
+          "desc": "Marketing at scale used to require massive teams of writers, designers, and developers. Now, CodyMaster's Content Factory acts as your elite, autonomous marketing department—producing SEO articles, landing pages, and tracking setups perfectly aligned with Cialdini's principles."
         },
         "planLabel": "YOUR NEW WORKFLOW",
         "planTitle": "From strategy to live campaign in hours",
@@ -418,7 +418,7 @@
       },
       "pm": {
         "heroTitle": "AI gave you 100 hands.\nBut without discipline, those hands create chaos.",
-        "heroSub": "Cody Master is the control system for AI-powered product development. Enforced quality gates, design consistency, and auto-generated documentation.",
+        "heroSub": "CodyMaster is the control system for AI-powered product development. Enforced quality gates, design consistency, and auto-generated documentation.",
         "painLabel": "THE CHAOS YOU KNOW TOO WELL",
         "painTitle": "Sound familiar?",
         "pains": [
@@ -486,11 +486,11 @@
           },
           {
             "q": "I'm a PM, not a dev. Is this too technical?",
-            "a": "Cody Master's creator is a PM too. Everything is designed for you to chat naturally. You say what you want, AI handles the technical details."
+            "a": "CodyMaster's creator is a PM too. Everything is designed for you to chat naturally. You say what you want, AI handles the technical details."
           },
           {
             "q": "We use Jira/Linear for task management. Does this replace them?",
-            "a": "No. Cody Master complements your tools. It handles the AI execution part — the quality, consistency, and deployment that Jira can't enforce."
+            "a": "No. CodyMaster complements your tools. It handles the AI execution part — the quality, consistency, and deployment that Jira can't enforce."
           }
         ],
         "ctaTitle": "You've managed chaos long enough.\nTime for discipline.",
@@ -499,7 +499,7 @@
         "guide": {
           "badge": "VALIDATION ENGINE",
           "title": "Validate faster. Ship confidently. Prove ROI instantly.",
-          "desc": "Product management is about reducing risk. Cody Master removes the engineering bottleneck entirely, allowing you to spin up functional prototypes and MVPs in hours to gather real user data before committing months of your actual tech team's time."
+          "desc": "Product management is about reducing risk. CodyMaster removes the engineering bottleneck entirely, allowing you to spin up functional prototypes and MVPs in hours to gather real user data before committing months of your actual tech team's time."
         },
         "planLabel": "THE AGILE WAY",
         "planTitle": "How to ship the right thing",
@@ -510,7 +510,7 @@
           },
           {
             "title": "Prototype",
-            "desc": "Don't just show Figma files. Let Cody Master build a live, clickable, coded prototype connected to a real database."
+            "desc": "Don't just show Figma files. Let CodyMaster build a live, clickable, coded prototype connected to a real database."
           },
           {
             "title": "Validate",
@@ -523,7 +523,7 @@
       },
       "dev": {
         "heroTitle": "Stop writing setup code.\nStart writing what matters.",
-        "heroSub": "For CTOs, Tech Leads, Frontend, Backend, Mobile devs, and QC engineers — Cody Master handles the 80% of boilerplate while enforcing the quality standards you actually want.",
+        "heroSub": "For CTOs, Tech Leads, Frontend, Backend, Mobile devs, and QC engineers — CodyMaster handles the 80% of boilerplate while enforcing the quality standards you actually want.",
         "painLabel": "THE DEVELOPER'S DAILY GRIND",
         "painTitle": "Every dev knows this pain",
         "pains": [
@@ -596,15 +596,15 @@
         "objections": [
           {
             "q": "My stack is unusual. Will it work?",
-            "a": "Cody Master supports 17 frameworks: React, Next.js, Astro, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, Angular, htmx, Electron, Tauri, and more."
+            "a": "CodyMaster supports 17 frameworks: React, Next.js, Astro, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, Angular, htmx, Electron, Tauri, and more."
           },
           {
             "q": "I don't want AI writing my core logic.",
-            "a": "Then don't. Use Cody Master for the 80% that's boring: scaffolding, tests, docs, deploy config. You write the 20% that requires your brain."
+            "a": "Then don't. Use CodyMaster for the 80% that's boring: scaffolding, tests, docs, deploy config. You write the 20% that requires your brain."
           },
           {
             "q": "How does this work for a CTO managing a team?",
-            "a": "As CTO, you define the quality standards once. Cody Master enforces them across every project, every developer, every AI agent. Consistency at scale."
+            "a": "As CTO, you define the quality standards once. CodyMaster enforces them across every project, every developer, every AI agent. Consistency at scale."
           }
         ],
         "ctaTitle": "Life is too short to write boilerplate.\nLet AI do the boring parts. You do the brilliant parts.",
@@ -613,7 +613,7 @@
         "guide": {
           "badge": "ENGINEERING LEVERAGE",
           "title": "Stop writing boilerplate. Start architecting systems.",
-          "desc": "Senior engineers shouldn't be centering divs or writing basic CRUD endpoints. Cody Master acts as your tireless junior developer, scaffolding apps, writing tests via cm-tdd, and executing repetitive tasks so you can focus on hard architectural problems."
+          "desc": "Senior engineers shouldn't be centering divs or writing basic CRUD endpoints. CodyMaster acts as your tireless junior developer, scaffolding apps, writing tests via cm-tdd, and executing repetitive tasks so you can focus on hard architectural problems."
         },
         "planLabel": "THE 10X PIPELINE",
         "planTitle": "How elite teams use Cody",
@@ -628,7 +628,7 @@
           },
           {
             "title": "Review",
-            "desc": "The code isn't a black box. You review the PRs. Cody Master runs cm-quality-gate to catch regressions before you even look."
+            "desc": "The code isn't a black box. You review the PRs. CodyMaster runs cm-quality-gate to catch regressions before you even look."
           }
         ],
         "failureLabel": "THE TECH DEBT SPIRAL",
@@ -637,7 +637,7 @@
       },
       "designer": {
         "heroTitle": "You designed the system.\nAI should respect it.",
-        "heroSub": "Cody Master is the only AI toolkit that reads your design tokens, previews before coding, and enforces brand consistency — making AI your design partner, not your design enemy.",
+        "heroSub": "CodyMaster is the only AI toolkit that reads your design tokens, previews before coding, and enforces brand consistency — making AI your design partner, not your design enemy.",
         "painLabel": "EVERY DESIGNER'S FRUSTRATION",
         "painTitle": "AI should amplify your vision, not ignore it",
         "pains": [
@@ -701,7 +701,7 @@
         "objections": [
           {
             "q": "I use Figma. Can it read my Figma tokens?",
-            "a": "Yes. cm-ux-master Harvester extracts design tokens from existing sites, CSS files, and design systems. Export from Figma, import into Cody Master."
+            "a": "Yes. cm-ux-master Harvester extracts design tokens from existing sites, CSS files, and design systems. Export from Figma, import into CodyMaster."
           },
           {
             "q": "Does 'AI preview' actually look like proper design?",
@@ -718,7 +718,7 @@
         "guide": {
           "badge": "PIXEL PERFECT",
           "title": "From Figma to React, skipping the translation loss.",
-          "desc": "The handoff is broken. You design something beautiful; development builds something that 'kind of' looks like it. Cody Master bridges that gap, reading your design intent via cm-ux-master and generating pixel-perfect code that honors spacing, typography, and UX laws."
+          "desc": "The handoff is broken. You design something beautiful; development builds something that 'kind of' looks like it. CodyMaster bridges that gap, reading your design intent via cm-ux-master and generating pixel-perfect code that honors spacing, typography, and UX laws."
         },
         "planLabel": "THE DESIGN-TO-CODE LOOP",
         "planTitle": "Protect your design integrity",
@@ -729,7 +729,7 @@
           },
           {
             "title": "Generate",
-            "desc": "Cody Master translates your designs into clean Tailwind v4 utility classes and accessible DOM structures."
+            "desc": "CodyMaster translates your designs into clean Tailwind v4 utility classes and accessible DOM structures."
           },
           {
             "title": "Refine",
@@ -742,7 +742,7 @@
       },
       "claw": {
         "heroTitle": "One skill kit.\nEvery AI agent in the family.",
-        "heroSub": "Whether you use Cursor, Claude Desktop, Antigravity, OpenClaw, NemoClaw, or OpenFang — Cody Master's universal format means your skills work everywhere, instantly.",
+        "heroSub": "Whether you use Cursor, Claude Desktop, Antigravity, OpenClaw, NemoClaw, or OpenFang — CodyMaster's universal format means your skills work everywhere, instantly.",
         "painLabel": "THE FRAGMENTATION PROBLEM",
         "painTitle": "Tired of rewriting rules for every agent?",
         "pains": [
@@ -810,7 +810,7 @@
           },
           {
             "q": "What is the 'Claw Family' exactly?",
-            "a": "It's the ecosystem of AI agent tools that share the Open Claw interop philosophy: OpenClaw, NemoClaw, OpenFang, and others. Cody Master speaks their language natively."
+            "a": "It's the ecosystem of AI agent tools that share the Open Claw interop philosophy: OpenClaw, NemoClaw, OpenFang, and others. CodyMaster speaks their language natively."
           },
           {
             "q": "Can I create my own skills in this format?",
@@ -823,7 +823,7 @@
         "guide": {
           "badge": "THE UNFAIR ADVANTAGE",
           "title": "The ultimate edge for independent creators and builders.",
-          "desc": "The Claw Family builds differently. You don't ask for permission. You identify niches, build tools, and generate revenue. Cody Master is the ultimate multi-tool designed explicitly for indie hackers who need to move at warp speed."
+          "desc": "The Claw Family builds differently. You don't ask for permission. You identify niches, build tools, and generate revenue. CodyMaster is the ultimate multi-tool designed explicitly for indie hackers who need to move at warp speed."
         },
         "planLabel": "THE INDIE PLAYBOOK",
         "planTitle": "From idea to revenue",
@@ -981,7 +981,7 @@
       "Docs",
       "Discord"
     ],
-    "copyright": "© 2026 Cody Master · Made with AI"
+    "copyright": "© 2026 CodyMaster · Made with AI"
   },
   "skillsPage": {
     "modalWhat": "What is it?",
@@ -989,7 +989,7 @@
     "modalWhy": "Why use it?",
     "modalBest": "Best Practice",
     "meta": {
-      "title": "Skill Library — Cody Master Kit",
+      "title": "Skill Library — CodyMaster Kit",
       "description": "Explore 33 specialized AI Agent Skills covering ideation, design, content, code, security, and deployment."
     },
     "hero": "Explore the Full Skill Library",
@@ -1483,14 +1483,14 @@
         "category": "Ideation",
         "icon": "help-circle",
         "tagline": "Getting Started Guide",
-        "prompt": "How do I use Cody Master for the first time?",
+        "prompt": "How do I use CodyMaster for the first time?",
         "related": [
           "cm-skill-mastery",
           "cm-project-bootstrap"
         ],
-        "problem": "Freshly initiated toward the Cody Master architecture and deeply confused confronting esoteric terminal interfaces and workflow paradigms?",
+        "problem": "Freshly initiated toward the CodyMaster architecture and deeply confused confronting esoteric terminal interfaces and workflow paradigms?",
         "solution": "Immerse comprehensively directly into the central Vibe Coding operational foundation whitepaper natively.",
-        "whatIsIt": "An exhaustive induction manuscript actively translating the internal physics powering Cody Master operations, pre-packaged distinctly featuring explicit operational scenario blueprints.",
+        "whatIsIt": "An exhaustive induction manuscript actively translating the internal physics powering CodyMaster operations, pre-packaged distinctly featuring explicit operational scenario blueprints.",
         "whenToUse": "Sequentially instantly subsequent to native baseline installation completions, or orchestrating technical induction processes introducing auxiliary Junior Developers into organizational standardized rhythms.",
         "whyToUse": "Solidifies core operational philosophies intimately. Comprehending fundamental mechanisms equips a singular autonomous operative executing parallel production equalizing conventional development team cohorts.",
         "bestPractice": "Chronologically explore sections initially mapping overarching physical directory matrices alongside strict cognitive iterations dictating the standard RARV automation methodologies."
@@ -1611,8 +1611,8 @@
   },
   "startPage": {
     "meta": {
-      "title": "Get Started — Cody Master",
-      "description": "Install Cody Master on Claude Code, Gemini CLI, Cursor, Codex and more. Get 33 AI skills in under 2 minutes."
+      "title": "Get Started — CodyMaster",
+      "description": "Install CodyMaster on Claude Code, Gemini CLI, Cursor, Codex and more. Get 33 AI skills in under 2 minutes."
     },
     "hero": "Install on Your Platform",
     "heroSub": "Choose your AI coding platform and get 33 skills in under 2 minutes.",
@@ -1636,7 +1636,7 @@
         "steps": [
           {
             "title": "Get Claude Code",
-            "description": "Cody Master runs as a Claude Code plugin. You need the Claude Code CLI installed first.",
+            "description": "CodyMaster runs as a Claude Code plugin. You need the Claude Code CLI installed first.",
             "items": [
               "Download from claude.ai/code",
               "Verify: claude --version (need 1.0+)",
@@ -1646,7 +1646,7 @@
           },
           {
             "title": "Add the Marketplace",
-            "description": "Register the Cody Master plugin source so Claude Code can find it.",
+            "description": "Register the CodyMaster plugin source so Claude Code can find it.",
             "code": "claude plugin marketplace add tody-agent/codymaster",
             "output": "✓ Marketplace registered: tody-agent/codymaster\n✓ cody-master plugin available"
           },
@@ -1660,7 +1660,7 @@
             "title": "Run Onboarding Tour",
             "description": "Open Claude Code and run the interactive tour to see all 33 skills in action.",
             "code": "/cody-master:demo",
-            "output": "🚀 Welcome to Cody Master! Let's explore all 33 skills..."
+            "output": "🚀 Welcome to CodyMaster! Let's explore all 33 skills..."
           }
         ]
       },
@@ -1679,7 +1679,7 @@
             ]
           },
           {
-            "title": "Install Cody Master",
+            "title": "Install CodyMaster",
             "description": "Install directly from GitHub — no npm package needed.",
             "code": "gemini extensions install https://github.com/tody-agent/codymaster",
             "output": "✓ cody-master installed\n✓ 33 skills available in Gemini CLI"
@@ -1692,7 +1692,7 @@
           },
           {
             "title": "Update Later",
-            "description": "Keep Cody Master up to date with one command.",
+            "description": "Keep CodyMaster up to date with one command.",
             "code": "gemini extensions update cody-master"
           }
         ]
@@ -1758,7 +1758,7 @@
         "emoji": "🟠",
         "steps": [
           {
-            "title": "Clone Cody Master",
+            "title": "Clone CodyMaster",
             "description": "Clone the repository once to your home directory.",
             "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
             "output": "✓ Cloned — 33 SKILL.md files ready at ~/.cody-master/skills/"
@@ -1783,7 +1783,7 @@
         "steps": [
           {
             "title": "Clone the Repository",
-            "description": "Clone Cody Master once to your home directory.",
+            "description": "Clone CodyMaster once to your home directory.",
             "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
             "output": "✓ Cloned — 33 SKILL.md files ready at ~/.cody-master/skills/"
           },
@@ -1816,7 +1816,7 @@
           },
           {
             "title": "Add Skills via npx",
-            "description": "Use the Cody Master CLI to install skills directly into your OpenCode project.",
+            "description": "Use the CodyMaster CLI to install skills directly into your OpenCode project.",
             "code": "npx codymaster add --all --platform opencode",
             "output": "📦 opencode — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ✅ cm-planning\n  ... (33 total)\n✅ 33 skills installed → ./.opencode/skills/"
           },
@@ -1850,7 +1850,7 @@
           },
           {
             "title": "Add Skills via npx",
-            "description": "Use the CLI to install Cody Master skills into Kiro's steering documents directory.",
+            "description": "Use the CLI to install CodyMaster skills into Kiro's steering documents directory.",
             "code": "npx codymaster add --all --platform kiro",
             "output": "🔶 kiro — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (33 total)\n✅ 33 skills installed → ./.kiro/steering/"
           },
@@ -1884,14 +1884,14 @@
           },
           {
             "title": "Add Skills via npx",
-            "description": "Cody Master injects skill references into .github/copilot-instructions.md — Copilot reads this automatically.",
+            "description": "CodyMaster injects skill references into .github/copilot-instructions.md — Copilot reads this automatically.",
             "code": "npx codymaster add --all --platform copilot",
             "output": "✅ 33 skills referenced in .github/copilot-instructions.md\n   GitHub Copilot will use these as context automatically."
           },
           {
             "title": "Or add manually",
-            "description": "Add a reference to Cody Master skills in your Copilot instructions file.",
-            "code": "# .github/copilot-instructions.md\n\n## AI Skills Available\nThis project uses Cody Master skills. Available skills:\n- cm-tdd, cm-debugging, cm-planning, cm-safe-deploy\n- cm-ux-master, cm-content-factory, cm-code-review\n# Full list: https://github.com/tody-agent/codymaster"
+            "description": "Add a reference to CodyMaster skills in your Copilot instructions file.",
+            "code": "# .github/copilot-instructions.md\n\n## AI Skills Available\nThis project uses CodyMaster skills. Available skills:\n- cm-tdd, cm-debugging, cm-planning, cm-safe-deploy\n- cm-ux-master, cm-content-factory, cm-code-review\n# Full list: https://github.com/tody-agent/codymaster"
           },
           {
             "title": "Use Skills",
@@ -1914,7 +1914,7 @@
             "title": "Install via npx (no install needed)",
             "description": "Works on any machine with Node.js 18+. No global install required.",
             "code": "npx codymaster add --all",
-            "output": "🧠 Cody Master v3.4.0\n   Detecting platform... ✅ Claude Code detected\n   Installing all 33 skills..."
+            "output": "🧠 CodyMaster v3.4.0\n   Detecting platform... ✅ Claude Code detected\n   Installing all 33 skills..."
           },
           {
             "title": "Install specific skill",
@@ -1937,13 +1937,13 @@
   },
   "demoPage": {
     "meta": {
-      "title": "Try Cody Master — Interactive Demo",
-      "description": "Experience Cody Master in action. Chat with AI and watch it build a real product — right in your browser."
+      "title": "Try CodyMaster — Interactive Demo",
+      "description": "Experience CodyMaster in action. Chat with AI and watch it build a real product — right in your browser."
     },
-    "topBar": "⚡ Cody Master Demo",
+    "topBar": "⚡ CodyMaster Demo",
     "exitDemo": "← Back to Home",
-    "aiName": "Cody Master AI",
-    "welcomeMessage": "Hi! I'm Cody Master. Tell me what you want to build, and I'll show you how I work. Try one of the suggestions below, or type your own idea!",
+    "aiName": "CodyMaster AI",
+    "welcomeMessage": "Hi! I'm CodyMaster. Tell me what you want to build, and I'll show you how I work. Try one of the suggestions below, or type your own idea!",
     "inputPlaceholder": "Type what you want to build...",
     "sendButton": "Send",
     "suggestions": [
@@ -1995,7 +1995,7 @@
   "useCases": {
     "label": "WHAT YOU CAN BUILD",
     "title": "From ideas to products,\nin every category",
-    "subtitle": "Real scenarios, real results. Here's what people build with Cody Master every day.",
+    "subtitle": "Real scenarios, real results. Here's what people build with CodyMaster every day.",
     "cases": [
       {
         "icon": "globe",
@@ -2051,7 +2051,7 @@
     "label": "THE TRANSFORMATION",
     "title": "Before vs After",
     "before": {
-      "title": "Without Cody Master",
+      "title": "Without CodyMaster",
       "items": [
         "Design inconsistent every time",
         "AI forgets everything between sessions",
@@ -2063,7 +2063,7 @@
       ]
     },
     "after": {
-      "title": "With Cody Master",
+      "title": "With CodyMaster",
       "items": [
         "Design system enforced by AI",
         "4-Tier Memory — never loses context",
@@ -2077,10 +2077,10 @@
   },
   "storyPage": {
     "meta": {
-      "title": "Our Story — Cody Master Kit",
-      "description": "The real story behind Cody Master: born from a Product Manager's pain, built through hundreds of sleepless nights."
+      "title": "Our Story — CodyMaster Kit",
+      "description": "The real story behind CodyMaster: born from a Product Manager's pain, built through hundreds of sleepless nights."
     },
-    "hero": "The Story Behind Cody Master",
+    "hero": "The Story Behind CodyMaster",
     "heroSub": "Not a pitch. Not marketing. This is what actually happened.",
     "founderIntro": "I'm not a developer. I'm a Product Manager with 10+ years of experience. Code — the thing I can't do — used to be the tallest wall between me and turning ideas into reality.",
     "chapters": [
@@ -2149,7 +2149,7 @@
       {
         "number": "07",
         "title": "Gratitude to the Community",
-        "content": "Not everything here came from my head.\n\nI owe the community a tremendous debt.\n\nSuperpower, Loki Mode, UX Max Pro... Brilliant skills that amazing people shared with the world — I learned from them, curated them, refined them, and integrated them into the Cody Master ecosystem. Every skill in this toolkit isn't just code — it's collective intelligence.\n\nThank you to everyone who shared. Truly.",
+        "content": "Not everything here came from my head.\n\nI owe the community a tremendous debt.\n\nSuperpower, Loki Mode, UX Max Pro... Brilliant skills that amazing people shared with the world — I learned from them, curated them, refined them, and integrated them into the CodyMaster ecosystem. Every skill in this toolkit isn't just code — it's collective intelligence.\n\nThank you to everyone who shared. Truly.",
         "skills": [
           "cm-skill-mastery",
           "cm-continuity",
@@ -2159,21 +2159,36 @@
       }
     ],
     "closing": {
-      "title": "So What Is Cody Master?",
+      "title": "So What Is CodyMaster?",
       "content": "It's not a plugin. Not a prompt template.\n\nIt's the answer from a Product Manager who can't code, after hundreds of sleepless nights, to one single question:",
       "question": "\"How can someone with ideas but no technical skills create world-class products — from landing pages, full-stack apps, documentation, to self-onboarding — without sacrificing quality?\"",
       "punchline": "33 skills. Each skill is a lesson. Each lesson is a sleepless night.\n\nAnd now, you don't have to go through those nights."
+    },
+    "brand": {
+      "title": "Why \"CodyMaster\"?",
+      "wordplay": {
+        "label": "The Wordplay",
+        "desc": "\"Cody\" comes from <strong>\"Code Đi\"</strong> (Cô-đi) — Vietnamese for <strong>\"Go code!\"</strong> An invitation to just start building, stop overthinking."
+      },
+      "heart": {
+        "label": "The Heart",
+        "desc": "Cody is also the name of the creator's child. This kit carries personal meaning — every skill was crafted with the same care and dedication as raising a child."
+      },
+      "philosophy": {
+        "label": "The Philosophy",
+        "desc": "<strong>CodyMaster = Code like an expert.</strong> Not just write code, but master the craft — with discipline, testing, planning, and quality at every step."
+      }
     },
     "cta": "Start your journey →",
     "backHome": "← Back to Home"
   },
   "docsPage": {
     "meta": {
-      "title": "Complete Guide — Cody Master Kit | Personas, JTBD, Use Cases",
-      "description": "The complete guide to Cody Master Kit: 5 user personas, 5 cm-jtbd, 8 real-world use cases. Learn who it's for, what problems it solves, and how it works."
+      "title": "Complete Guide — CodyMaster Kit | Personas, JTBD, Use Cases",
+      "description": "The complete guide to CodyMaster Kit: 5 user personas, 5 cm-jtbd, 8 real-world use cases. Learn who it's for, what problems it solves, and how it works."
     },
     "hero": "The Complete Guide",
-    "heroSub": "Who is Cody Master for? What problems does it solve? How does it actually work? Everything you need to know — in one page.",
+    "heroSub": "Who is CodyMaster for? What problems does it solve? How does it actually work? Everything you need to know — in one page.",
     "tocTitle": "On This Page",
     "toc": [
       "User Personas",
@@ -2185,7 +2200,7 @@
     "personasSection": {
       "label": "WHO IS IT FOR?",
       "title": "5 User Personas",
-      "subtitle": "Cody Master was built for real people with real problems. Find yourself below.",
+      "subtitle": "CodyMaster was built for real people with real problems. Find yourself below.",
       "personas": [
         {
           "emoji": "🚀",
@@ -2292,7 +2307,7 @@
     "jtbdSection": {
       "label": "WHAT PROBLEMS DOES IT SOLVE?",
       "title": "5 Jobs to Be Done",
-      "subtitle": "Every skill in Cody Master exists because of a real job that real people need done. Here are the 5 core jobs.",
+      "subtitle": "Every skill in CodyMaster exists because of a real job that real people need done. Here are the 5 core jobs.",
       "forceLabels": {
         "push": "Push (Current Pain)",
         "pull": "Pull (Dream Outcome)",
@@ -2405,7 +2420,7 @@
         {
           "emoji": "🌐",
           "title": "Launch a Landing Page in 15 Minutes",
-          "scenario": "You have a coffee shop and need a professional website with online ordering. You describe it to Cody Master in plain English.",
+          "scenario": "You have a coffee shop and need a professional website with online ordering. You describe it to CodyMaster in plain English.",
           "chain": [
             "cm-planning",
             "cm-ux-master",
@@ -2419,7 +2434,7 @@
         {
           "emoji": "🏗️",
           "title": "Build a SaaS MVP in One Day",
-          "scenario": "You're validating a B2B idea — need auth, dashboard, API, and database. You describe the features and let Cody Master plan and execute.",
+          "scenario": "You're validating a B2B idea — need auth, dashboard, API, and database. You describe the features and let CodyMaster plan and execute.",
           "chain": [
             "cm-brainstorm-idea",
             "cm-planning",
@@ -2584,11 +2599,11 @@
       "questions": [
         {
           "q": "Do I need to know how to code?",
-          "a": "No. Cody Master is designed for people who can't code. You describe what you want in plain language — AI handles the rest."
+          "a": "No. CodyMaster is designed for people who can't code. You describe what you want in plain language — AI handles the rest."
         },
         {
           "q": "Is this free?",
-          "a": "Yes, Cody Master is open source and free. You only pay for the AI provider (Gemini, Claude, etc.) you choose to use."
+          "a": "Yes, CodyMaster is open source and free. You only pay for the AI provider (Gemini, Claude, etc.) you choose to use."
         },
         {
           "q": "Which AI agents does it work with?",
@@ -2600,7 +2615,7 @@
         },
         {
           "q": "How is this different from v0, Bolt, or Lovable?",
-          "a": "Those tools generate one-off prototypes. Cody Master is a complete skills framework — it enforces TDD, quality gates, security scans, design consistency, documentation, and safe deployment. It's production-ready from day one."
+          "a": "Those tools generate one-off prototypes. CodyMaster is a complete skills framework — it enforces TDD, quality gates, security scans, design consistency, documentation, and safe deployment. It's production-ready from day one."
         },
         {
           "q": "Can I create my own skills?",

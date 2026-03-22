@@ -109,7 +109,7 @@ qmd query "authentication flow"
 
 ---
 
-## Usage with Cody Master Skills
+## Usage with CodyMaster Skills
 
 ### With `cm-brainstorm-idea` (Phase 1: DISCOVER)
 
@@ -157,7 +157,7 @@ Tier 4: External Semantic   → qmd (optional, used when project is large)
 
 The biggest risk of Semantic Search is **stale index / new source**. If AI reads outdated docs and generates incorrect code, the consequences are severe.
 
-Cody Master handles this with 3 mechanisms:
+CodyMaster handles this with 3 mechanisms:
 
 ### 1. The "Post-Execution" Sync
 Whenever AI completes a task that changes/creates a large number of files (e.g., `cm-dockit` generates docs, `cm-execution` refactors source code):
@@ -190,7 +190,7 @@ This ensures every commit triggers QMD to silently update the index in the backg
 
 ---
 
-## Position in Cody Master Lifecycle
+## Position in CodyMaster Lifecycle
 
 ```
 cm-continuity (memory) ─────────────── always active

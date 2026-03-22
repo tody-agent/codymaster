@@ -1,6 +1,6 @@
 ---
 name: cm-skill-mastery
-description: "Meta-skill for the Cody Master kit — when to invoke skills, how to create new skills, and skill discovery. Use at conversation start to establish skill discipline."
+description: "Meta-skill for the CodyMaster kit — when to invoke skills, how to create new skills, and skill discovery. Use at conversation start to establish skill discipline."
 ---
 
 # Skill Mastery — Use + Create + Discover
@@ -132,7 +132,7 @@ When you encounter something you don't have a skill for:
 
 ---
 
-## The Cody Master Kit (14 skills)
+## The CodyMaster Kit (14 skills)
 
 | # | Skill | Purpose |
 |---|-------|---------|

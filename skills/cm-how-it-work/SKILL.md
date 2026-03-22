@@ -1,13 +1,13 @@
 ---
 name: cm-how-it-work
-description: "Complete guide to vibe coding with the Cody Master skill kit — from idea to deploy. Covers the full workflow, skills used at each phase, and common use cases. Read this first if you are new; reference it whenever you're unsure which skill to invoke."
+description: "Complete guide to vibe coding with the CodyMaster skill kit — from idea to deploy. Covers the full workflow, skills used at each phase, and common use cases. Read this first if you are new; reference it whenever you're unsure which skill to invoke."
 ---
 
-# Cody Master Kit — The Ultimate Vibe Coding Guide
+# CodyMaster Kit — The Ultimate Vibe Coding Guide
 
 ## Overview
 
-The **Cody Master (CM)** kit transforms ideas into production code through 13 specialized, optimized skills. This workflow ensures the highest quality, absolute security, and maximum execution speed.
+The **CodyMaster (CM)** kit transforms ideas into production code through 13 specialized, optimized skills. This workflow ensures the highest quality, absolute security, and maximum execution speed.
 
 ```
 💡 Idea → 🔍 Analysis → 📐 Design → 🧪 Test-first (TDD) → 💻 Code → ✅ Verify → 🚀 Deploy → 🔄 Iterate
@@ -82,7 +82,7 @@ The **Cody Master (CM)** kit transforms ideas into production code through 13 sp
 
 ---
 
-## Cody Master Kit — 33 Skills Summary
+## CodyMaster Kit — 33 Skills Summary
 
 ### 🔧 Engineering
 | Skill | Primary Function |
@@ -153,7 +153,7 @@ The kit supports autonomous mode by applying the **Reason → Act → Reflect �
 
 ## 💡 Activation Guide by Use Cases
 
-There are 2 ways to use Cody Master: **Fully autonomous (Via Workflows)** or **Manual skill activation (Via Prompting)**.
+There are 2 ways to use CodyMaster: **Fully autonomous (Via Workflows)** or **Manual skill activation (Via Prompting)**.
 
 ### 1. Build New Feature / New Project (Autonomous)
 > Best way to delegate complete work packages.

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skill Library — Cody Master Kit</title>
+  <title>Skill Library — CodyMaster Kit</title>
   <meta name="description" content="Explore 33 specialized AI Agent Skills covering ideation, design, content, code, security, and deployment.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="css/kit.css">
@@ -15,7 +15,7 @@
   <nav class="nav" id="nav">
     <a href="index.html" class="nav__logo">
       <span class="nav__logo-icon">⚡</span>
-      <span>Cody Master</span>
+      <span>CodyMaster</span>
     </a>
 
     <ul class="nav__links" id="navLinks">
@@ -101,57 +101,66 @@
   <div class="skill-modal" id="skillModal" hidden>
     <div class="skill-modal__backdrop" id="modalBackdrop"></div>
     <div class="skill-modal__content">
-      <button class="skill-modal__close" id="modalClose">
-        <i data-lucide="x"></i>
-      </button>
-      <div class="skill-modal__header">
-        <i id="modalIcon" class="skill-modal__icon"></i>
-        <div>
+      <!-- STICKY HEADER -->
+      <div class="skill-modal__sticky-header">
+        <div class="skill-modal__header">
+          <i id="modalIcon" class="skill-modal__icon"></i>
           <h2 class="skill-modal__name" id="modalName"></h2>
-          <span class="skill-modal__tagline" id="modalTagline"></span>
         </div>
+        <button class="skill-modal__close" id="modalClose" aria-label="Close">
+          <i data-lucide="x"></i>
+        </button>
       </div>
-      
-      <div class="skill-modal__story">
-        <div class="story-section">
-          <h3>📖 <span data-i18n="skillsPage.modalWhat">What is it?</span></h3>
-          <p id="modalWhat"></p>
+
+      <!-- SCROLLABLE BODY -->
+      <div class="skill-modal__body">
+        <span class="skill-modal__tagline" id="modalTagline"></span>
+
+        <div class="skill-modal__story">
+          <div class="story-section">
+            <h3>📖 <span data-i18n="skillsPage.modalWhat">What is it?</span></h3>
+            <p id="modalWhat"></p>
+          </div>
+          <div class="story-section">
+            <h3>🎯 <span data-i18n="skillsPage.modalWhen">When to use?</span></h3>
+            <p id="modalWhen"></p>
+          </div>
+          <div class="story-section">
+            <h3>💡 <span data-i18n="skillsPage.modalWhy">Why use it?</span></h3>
+            <p id="modalWhy"></p>
+          </div>
+          <div class="story-section">
+            <h3>⭐ <span data-i18n="skillsPage.modalBest">Best Practice</span></h3>
+            <p id="modalBest"></p>
+          </div>
         </div>
-        <div class="story-section">
-          <h3>🎯 <span data-i18n="skillsPage.modalWhen">When to use?</span></h3>
-          <p id="modalWhen"></p>
+
+        <div class="skill-modal__prompt-block">
+          <span class="skill-modal__prompt-label" data-i18n="skillsPage.modalTryPrompt">Try saying:</span>
+          <div class="skill-modal__prompt" id="modalPrompt"></div>
         </div>
-        <div class="story-section">
-          <h3>💡 <span data-i18n="skillsPage.modalWhy">Why use it?</span></h3>
-          <p id="modalWhy"></p>
-        </div>
-        <div class="story-section">
-          <h3>⭐ <span data-i18n="skillsPage.modalBest">Best Practice</span></h3>
-          <p id="modalBest"></p>
+        <div class="skill-modal__related">
+          <span class="skill-modal__related-label" data-i18n="skillsPage.modalRelated">Related Skills</span>
+          <div class="skill-modal__related-list" id="modalRelated"></div>
         </div>
       </div>
 
-      <div class="skill-modal__prompt-block">
-        <span class="skill-modal__prompt-label" data-i18n="skillsPage.modalTryPrompt">Try saying:</span>
-        <div class="skill-modal__prompt" id="modalPrompt"></div>
+      <!-- STICKY FOOTER -->
+      <div class="skill-modal__sticky-footer">
+        <a href="start.html" class="btn btn--primary skill-modal__cta" data-i18n="skillsPage.modalCta">Get Started with this Skill</a>
       </div>
-      <div class="skill-modal__related">
-        <span class="skill-modal__related-label" data-i18n="skillsPage.modalRelated">Related Skills</span>
-        <div class="skill-modal__related-list" id="modalRelated"></div>
-      </div>
-      <a href="start.html" class="btn btn--primary skill-modal__cta" data-i18n="skillsPage.modalCta">Get Started with this Skill</a>
     </div>
   </div>
 
   <!-- ═══════ FOOTER ═══════ -->
   <footer class="footer">
-    <span class="footer__logo">⚡ Cody Master</span>
+    <span class="footer__logo">⚡ CodyMaster</span>
     <ul class="footer__links">
       <li><a href="https://github.com/tody-agent/codymaster" class="footer__link" target="_blank">GitHub</a></li>
       <li><a href="/docs/" class="footer__link">Docs</a></li>
       <li><a href="#" class="footer__link">Discord</a></li>
     </ul>
-    <span class="footer__copy" data-i18n="footer.copyright">© 2026 Cody Master · Made with AI</span>
+    <span class="footer__copy" data-i18n="footer.copyright">© 2026 CodyMaster · Made with AI</span>
   </footer>
 
   <script src="js/kit.js"></script>

@@ -113,14 +113,14 @@ gitleaks version
 #### Step 2: Create `.gitleaks.toml` (Project Root)
 
 ```toml
-# .gitleaks.toml — Cody Master Secret Shield Configuration
+# .gitleaks.toml — CodyMaster Secret Shield Configuration
 title = "CM Secret Shield — Gitleaks Config"
 
 # Extend default rules (catches 100+ known patterns)
 [extend]
 useDefault = true
 
-# Custom rules for Cody Master projects
+# Custom rules for CodyMaster projects
 [[rules]]
 id = "supabase-service-key"
 description = "Supabase Service Role Key"
