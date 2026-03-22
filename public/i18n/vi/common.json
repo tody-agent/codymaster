@@ -1,4 +1,22 @@
 {
+  "claw": {
+    "label": "TƯƠNG THÍCH TOÀN CẦU",
+    "title": "Một Cấu Hình. Mọi AI Agent Cùng Tuân Thủ.",
+    "subtitle": "Sức mạnh từ CodyMaster Claw. Viết hướng dẫn lệnh một lần, chạy ở mọi nơi."
+  },
+  "cta": {
+    "title": "Ngừng lên kế hoạch. Bắt đầu xây dựng.\nÝ tưởng của bạn xứng đáng tồn tại.",
+    "subtitle": "Miễn phí. Không cần thẻ. Cài đặt trong 30 giây. Bắt đầu xây ngay.",
+    "button": "Bắt Đầu Xây — Miễn Phí"
+  },
+  "footer": {
+    "links": [
+      "GitHub",
+      "Tài liệu",
+      "Discord"
+    ],
+    "copyright": "© 2026 CodyMaster · Được tạo bởi AI"
+  },
   "meta": {
     "title": "CodyMaster Kit — Biến ý tưởng thành sản phẩm nhanh gấp 10 lần",
     "description": "33 AI Agent Skills giúp bạn đi từ ý tưởng đến thiết kế, lập trình và triển khai — không cần biết code."
@@ -21,19 +39,6 @@
     "playbook": "Sổ Tay",
     "cli": "CLI"
   },
-  "cta": {
-    "title": "Ngừng lên kế hoạch. Bắt đầu xây dựng.\nÝ tưởng của bạn xứng đáng tồn tại.",
-    "subtitle": "Miễn phí. Không cần thẻ. Cài đặt trong 30 giây. Bắt đầu xây ngay.",
-    "button": "Bắt Đầu Xây — Miễn Phí"
-  },
-  "footer": {
-    "links": [
-      "GitHub",
-      "Tài liệu",
-      "Discord"
-    ],
-    "copyright": "© 2026 CodyMaster · Được tạo bởi AI"
-  },
   "socialProof": {
     "label": "ĐƯỢC TIN TƯỞNG BỞI BUILDERS",
     "title": "Được sử dụng bởi các đội nhóm và builders solo toàn cầu",
@@ -43,95 +48,23 @@
     "worksWithLabel": "Tương thích mọi AI agent lớn"
   },
   "stats": {
-    "models": {
-      "gemini-2.5-flash-lite": {
-        "api": {
-          "totalRequests": 1,
-          "totalErrors": 0,
-          "totalLatencyMs": 2159
-        },
-        "tokens": {
-          "input": 2808,
-          "prompt": 2808,
-          "candidates": 64,
-          "total": 3269,
-          "cached": 0,
-          "thoughts": 397,
-          "tool": 0
-        },
-        "roles": {
-          "utility_router": {
-            "totalRequests": 1,
-            "totalErrors": 0,
-            "totalLatencyMs": 2159,
-            "tokens": {
-              "input": 2808,
-              "prompt": 2808,
-              "candidates": 64,
-              "total": 3269,
-              "cached": 0,
-              "thoughts": 397,
-              "tool": 0
-            }
-          }
-        }
+    "items": [
+      {
+        "number": "33",
+        "label": "Kỹ năng AI"
       },
-      "gemini-3-flash-preview": {
-        "api": {
-          "totalRequests": 1,
-          "totalErrors": 0,
-          "totalLatencyMs": 18055
-        },
-        "tokens": {
-          "input": 195844,
-          "prompt": 195844,
-          "candidates": 39,
-          "total": 197837,
-          "cached": 0,
-          "thoughts": 1954,
-          "tool": 0
-        },
-        "roles": {
-          "main": {
-            "totalRequests": 1,
-            "totalErrors": 0,
-            "totalLatencyMs": 18055,
-            "tokens": {
-              "input": 195844,
-              "prompt": 195844,
-              "candidates": 39,
-              "total": 197837,
-              "cached": 0,
-              "thoughts": 1954,
-              "tool": 0
-            }
-          }
-        }
+      {
+        "number": "7+",
+        "label": "AI Agent Hỗ trợ"
+      },
+      {
+        "number": "6",
+        "label": "Ngôn ngữ"
+      },
+      {
+        "number": "100%",
+        "label": "Miễn phí & Mở"
       }
-    },
-    "tools": {
-      "totalCalls": 0,
-      "totalSuccess": 0,
-      "totalFail": 0,
-      "totalDurationMs": 0,
-      "totalDecisions": {
-        "accept": 0,
-        "reject": 0,
-        "modify": 0,
-        "auto_accept": 0
-      },
-      "byName": {}
-    },
-    "files": {
-      "totalLinesAdded": 0,
-      "totalLinesRemoved": 0
-    }
-  },
-  "claw": {
-    "label": "TƯƠNG THÍCH TOÀN CẦU",
-    "title": "Một Cấu Hình. Mọi AI Agent Cùng Tuân Thủ.",
-    "subtitle": "Sức mạnh từ CodyMaster Claw. Viết hướng dẫn lệnh một lần, chạy ở mọi nơi."
-  },
-  "session_id": "31ba9bb8-93d6-403b-ba2c-7d170ceca297",
-  "response": "{\"nav.vsScrum\":\"So với Scrum\",\"nav.demo\":\"Bản Demo\",\"nav.brain\":\"Hệ thống Brain\",\"nav.playbook\":\"Cẩm nang Playbook\"}"
+    ]
+  }
 }

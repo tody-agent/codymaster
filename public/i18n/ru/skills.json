@@ -12,91 +12,91 @@
     ],
     "cards": [
       {
-        "icon": "lightbulb",
+        "icon": "лампочка",
         "name": "cm-brainstorm-idea",
         "categoryIndex": 0,
         "description": "Многомерный анализ идей для проверки реализуемости до начала разработки"
       },
       {
-        "icon": "file-text",
+        "icon": "текст файла",
         "name": "cm-planning",
         "categoryIndex": 0,
         "description": "Детальное планирование до написания кода — избавляет от бесконечных переделок"
       },
       {
-        "icon": "users",
+        "icon": "пользователи",
         "name": "cm-jtbd",
         "categoryIndex": 0,
         "description": "Jobs-To-Be-Done — понять, для чего клиенты на самом деле используют ваш продукт"
       },
       {
-        "icon": "layers",
+        "icon": "слои",
         "name": "cm-design-system",
         "categoryIndex": 1,
         "description": "Конструктор и репликация Design system — обеспечение 100% единообразия бренда"
       },
       {
-        "icon": "palette",
+        "icon": "палитра",
         "name": "cm-ux-master",
         "categoryIndex": 1,
         "description": "UX-ориентированный дизайн UI — красивый, удобный и настроенный на конверсию"
       },
       {
-        "icon": "monitor",
+        "icon": "монитор",
         "name": "cm-ui-preview",
         "categoryIndex": 1,
         "description": "AI-генерация UI через Google Stitch — прототип за минуты, не дни"
       },
       {
-        "icon": "pen-tool",
+        "icon": "ручка-инструмент",
         "name": "cm-content-factory",
         "categoryIndex": 2,
         "description": "SEO-копирайтинг — от блогов до лендингов, ИИ пишет как эксперт"
       },
       {
-        "icon": "trending-up",
+        "icon": "тенденция роста",
         "name": "cm-ads-tracker",
         "categoryIndex": 2,
         "description": "Полное отслеживание конверсий — Facebook/Meta Pixel, TikTok, Google Ads, GTM"
       },
       {
-        "icon": "target",
+        "icon": "цель",
         "name": "cro-methodology",
         "categoryIndex": 2,
         "description": "CRO-аудит — картирование воронки, работа с возражениями, дизайн A/B-тестов"
       },
       {
-        "icon": "check-square",
+        "icon": "квадрат",
         "name": "cm-tdd",
         "categoryIndex": 3,
         "description": "Цикл Red-Green-Refactor — никакого продакшн-кода без провального теста"
       },
       {
-        "icon": "bug",
+        "icon": "ошибка",
         "name": "cm-debugging",
         "categoryIndex": 3,
         "description": "Систематическое 5-фазное расследование первопричин — лечим болезнь, не симптомы"
       },
       {
-        "icon": "rocket",
+        "icon": "ракета",
         "name": "cm-safe-deploy",
         "categoryIndex": 3,
         "description": "Многоуровневый пайплайн деплоя — сканирование→тесты→сборка→деплой→смок-тест"
       },
       {
-        "icon": "git-pull-request",
+        "icon": "git-pull-запрос",
         "name": "cm-code-review",
         "categoryIndex": 3,
         "description": "Полный жизненный цикл PR — запрос ревью, обработка фидбека, интеграция ветки"
       },
       {
-        "icon": "lock",
+        "icon": "замок",
         "name": "cm-secret-shield",
         "categoryIndex": 4,
         "description": "Глубокая защита секретов — pre-commit хуки, поиск утечек во всём репозитории"
       },
       {
-        "icon": "shield",
+        "icon": "щит",
         "name": "cm-quality-gate",
         "categoryIndex": 4,
         "description": "Верификация на основе доказательств — слепое ревью, антисикофантия, скан безопасности"
@@ -107,7 +107,7 @@
     "modalWhat": "Что это?",
     "modalWhen": "Когда использовать?",
     "modalWhy": "Зачем это использовать?",
-    "modalBest": "Best Practice",
+    "modalBest": "Лучшая практика",
     "meta": {
       "title": "Навыки — CodyMaster Kit",
       "description": "Исследуйте более 30 эксклюзивных ИИ-навыков."
@@ -132,8 +132,8 @@
       {
         "id": "cm-brainstorm-idea",
         "name": "cm-brainstorm-idea",
-        "category": "Ideation",
-        "icon": "lightbulb",
+        "category": "Идея",
+        "icon": "лампочка",
         "tagline": "Стратегический анализ идей",
         "prompt": "Проанализируй мою e-commerce платформу и предложи улучшения",
         "related": [
@@ -150,8 +150,8 @@
       {
         "id": "cm-planning",
         "name": "cm-planning",
-        "category": "Ideation",
-        "icon": "map",
+        "category": "Идея",
+        "icon": "карта",
         "tagline": "Планирование реализации",
         "prompt": "Спланируй реализацию аутентификации пользователей",
         "related": [
@@ -168,9 +168,9 @@
       {
         "id": "cm-content-factory",
         "name": "cm-content-factory",
-        "category": "Content",
-        "icon": "pen-tool",
-        "tagline": "AI Content Engine",
+        "category": "Содержание",
+        "icon": "ручка-инструмент",
+        "tagline": "AI-контент-движок",
         "prompt": "Напиши пост для блога о продуктивности при удаленной работе",
         "related": [
           "cm-readit",
@@ -186,10 +186,10 @@
       {
         "id": "cm-design-system",
         "name": "cm-design-system",
-        "category": "Design",
-        "icon": "layers",
-        "tagline": "Design System Builder",
-        "prompt": "Extract the design system from this website",
+        "category": "Дизайн",
+        "icon": "слои",
+        "tagline": "Разработчик систем проектирования",
+        "prompt": "Извлеките систему дизайна с этого сайта.",
         "related": [
           "cm-ux-master",
           "cm-ui-preview"
@@ -204,10 +204,10 @@
       {
         "id": "cm-ux-master",
         "name": "cm-ux-master",
-        "category": "Design",
-        "icon": "palette",
-        "tagline": "UI/UX Design Intelligence",
-        "prompt": "Design a dashboard for a SaaS analytics app",
+        "category": "Дизайн",
+        "icon": "палитра",
+        "tagline": "Интеллектуальный дизайн UI/UX",
+        "prompt": "Создайте панель мониторинга для аналитического приложения SaaS.",
         "related": [
           "cm-ui-preview",
           "cm-content-factory"
@@ -222,10 +222,10 @@
       {
         "id": "cm-ui-preview",
         "name": "cm-ui-preview",
-        "category": "Design",
-        "icon": "monitor",
-        "tagline": "Visual UI Preview",
-        "prompt": "Preview a mobile app login screen",
+        "category": "Дизайн",
+        "icon": "монитор",
+        "tagline": "Предварительный просмотр визуального пользовательского интерфейса",
+        "prompt": "Предварительный просмотр экрана входа в мобильное приложение",
         "related": [
           "cm-ux-master",
           "cm-planning"
@@ -240,10 +240,10 @@
       {
         "id": "cm-execution",
         "name": "cm-execution",
-        "category": "Code & Deploy",
-        "icon": "play",
-        "tagline": "Smart Code Execution",
-        "prompt": "Execute the implementation plan for the checkout feature",
+        "category": "Код и развертывание",
+        "icon": "играть",
+        "tagline": "Умное выполнение кода",
+        "prompt": "Выполнить план внедрения функции оформления заказа",
         "related": [
           "cm-planning",
           "cm-tdd"
@@ -258,10 +258,10 @@
       {
         "id": "cm-tdd",
         "name": "cm-tdd",
-        "category": "Quality",
-        "icon": "check-square",
-        "tagline": "Test-Driven Development",
-        "prompt": "Write tests for the payment processing module",
+        "category": "Качество",
+        "icon": "квадрат",
+        "tagline": "Разработка через тестирование",
+        "prompt": "Написание тестов для модуля обработки платежей",
         "related": [
           "cm-execution",
           "cm-quality-gate"
@@ -276,10 +276,10 @@
       {
         "id": "cm-debugging",
         "name": "cm-debugging",
-        "category": "Quality",
-        "icon": "bug",
-        "tagline": "Root Cause Debugging",
-        "prompt": "Debug why the login page crashes on mobile",
+        "category": "Качество",
+        "icon": "ошибка",
+        "tagline": "Отладка основной причины",
+        "prompt": "Устраните причину сбоя страницы входа на мобильном устройстве.",
         "related": [
           "cm-tdd",
           "cm-terminal"
@@ -294,10 +294,10 @@
       {
         "id": "cm-code-review",
         "name": "cm-code-review",
-        "category": "Quality",
-        "icon": "git-pull-request",
-        "tagline": "Code Review & Feedback",
-        "prompt": "Review the latest pull request for the API module",
+        "category": "Качество",
+        "icon": "git-pull-запрос",
+        "tagline": "Обзор кода и обратная связь",
+        "prompt": "Просмотрите последний запрос на включение модуля API.",
         "related": [
           "cm-quality-gate",
           "cm-tdd"
@@ -312,10 +312,10 @@
       {
         "id": "cm-quality-gate",
         "name": "cm-quality-gate",
-        "category": "Quality",
-        "icon": "shield",
-        "tagline": "Deploy Quality Gate",
-        "prompt": "Run quality gate before deploying to production",
+        "category": "Качество",
+        "icon": "щит",
+        "tagline": "Развертывание ворот качества",
+        "prompt": "Запустите контроль качества перед развертыванием в производстве",
         "related": [
           "cm-tdd",
           "cm-safe-deploy"
@@ -330,10 +330,10 @@
       {
         "id": "cm-test-gate",
         "name": "cm-test-gate",
-        "category": "Quality",
-        "icon": "clipboard-check",
-        "tagline": "Test Infrastructure",
-        "prompt": "Set up test infrastructure for my Next.js project",
+        "category": "Качество",
+        "icon": "проверка буфера обмена",
+        "tagline": "Тестовая инфраструктура",
+        "prompt": "Настройте тестовую инфраструктуру для моего проекта Next.js.",
         "related": [
           "cm-tdd",
           "cm-quality-gate"
@@ -349,9 +349,9 @@
         "id": "cm-terminal",
         "name": "cm-terminal",
         "category": "DevOps",
-        "icon": "terminal",
-        "tagline": "Terminal Management",
-        "prompt": "Run and monitor the build process",
+        "icon": "Терминал",
+        "tagline": "Управление терминалом",
+        "prompt": "Запускайте и контролируйте процесс сборки",
         "related": [
           "cm-execution",
           "cm-debugging"
@@ -367,8 +367,8 @@
         "id": "cm-safe-deploy",
         "name": "cm-safe-deploy",
         "category": "DevOps",
-        "icon": "rocket",
-        "tagline": "Safe Deployment Pipeline",
+        "icon": "ракета",
+        "tagline": "Безопасный конвейер развертывания",
         "prompt": "Развернуть staging-сборку на Cloudflare Pages",
         "related": [
           "cm-quality-gate",
@@ -385,8 +385,8 @@
         "id": "cm-project-bootstrap",
         "name": "cm-project-bootstrap",
         "category": "DevOps",
-        "icon": "folder-plus",
-        "tagline": "Project Scaffold",
+        "icon": "папка-плюс",
+        "tagline": "Проект Эшафот",
         "prompt": "Инициализировать новый SaaS проект на Next.js",
         "related": [
           "cm-planning",
@@ -403,8 +403,8 @@
         "id": "cm-git-worktrees",
         "name": "cm-git-worktrees",
         "category": "DevOps",
-        "icon": "git-branch",
-        "tagline": "Git Worktree Manager",
+        "icon": "git-ветвь",
+        "tagline": "Менеджер рабочего дерева Git",
         "prompt": "Создать worktree для новой функции оплаты",
         "related": [
           "cm-code-review",
@@ -420,9 +420,9 @@
       {
         "id": "cm-safe-i18n",
         "name": "cm-safe-i18n",
-        "category": "Content",
-        "icon": "globe",
-        "tagline": "Safe Internationalization",
+        "category": "Содержание",
+        "icon": "глобус",
+        "tagline": "Безопасная интернационализация",
         "prompt": "Перевести приложение с English на Vietnamese",
         "related": [
           "cm-content-factory",
@@ -438,9 +438,9 @@
       {
         "id": "cm-readit",
         "name": "cm-readit",
-        "category": "Content",
-        "icon": "headphones",
-        "tagline": "Audio & Voice CRO",
+        "category": "Содержание",
+        "icon": "наушники",
+        "tagline": "Аудио и голосовой CRO",
         "prompt": "Добавить режим чтения Text-to-Speech в мой блог",
         "related": [
           "cm-content-factory",
@@ -456,8 +456,8 @@
       {
         "id": "cm-secret-shield",
         "name": "cm-secret-shield",
-        "category": "Security",
-        "icon": "lock",
+        "category": "Безопасность",
+        "icon": "замок",
         "tagline": "Предотвращение утечки секретов",
         "prompt": "Просканируйте репозиторий на наличие открытых API keys",
         "related": [
@@ -474,8 +474,8 @@
       {
         "id": "cm-identity-guard",
         "name": "cm-identity-guard",
-        "category": "Security",
-        "icon": "fingerprint",
+        "category": "Безопасность",
+        "icon": "отпечаток пальца",
         "tagline": "Защита идентичности и аккаунтов",
         "prompt": "Проверьте конфигурацию git перед отправкой в production",
         "related": [
@@ -492,8 +492,8 @@
       {
         "id": "cm-ads-tracker",
         "name": "cm-ads-tracker",
-        "category": "Content",
-        "icon": "bar-chart-2",
+        "category": "Содержание",
+        "icon": "гистограмма-2",
         "tagline": "Отслеживание конверсий",
         "prompt": "Настройте отслеживание Facebook Pixel и Google Ads",
         "related": [
@@ -511,7 +511,7 @@
         "id": "cm-continuity",
         "name": "cm-continuity",
         "category": "DevOps",
-        "icon": "refresh-cw",
+        "icon": "обновить-cw",
         "tagline": "4-уровневая рабочая память",
         "prompt": "Загрузить контекст из предыдущей сессии",
         "related": [
@@ -529,7 +529,7 @@
         "id": "cm-deep-search",
         "name": "cm-deep-search",
         "category": "DevOps",
-        "icon": "search",
+        "icon": "поиск",
         "tagline": "Семантический поиск памяти",
         "prompt": "Проиндексировать папку docs для семантического поиска",
         "related": [
@@ -546,8 +546,8 @@
       {
         "id": "cm-dockit",
         "name": "cm-dockit",
-        "category": "Content",
-        "icon": "book-open",
+        "category": "Содержание",
+        "icon": "открытая книга",
         "tagline": "Генератор базы знаний",
         "prompt": "Сгенерируйте документацию для моего приложения Frappe",
         "related": [
@@ -565,7 +565,7 @@
         "id": "cm-skill-chain",
         "name": "cm-skill-chain",
         "category": "DevOps",
-        "icon": "link",
+        "icon": "связь",
         "tagline": "Движок конвейера навыков",
         "prompt": "Объедините brainstorm → plan → execute для моей функции",
         "related": [
@@ -582,10 +582,10 @@
       {
         "id": "cm-skill-mastery",
         "name": "cm-skill-mastery",
-        "category": "Ideation",
-        "icon": "compass",
-        "tagline": "Skill Discovery",
-        "prompt": "Which skill should I use for UX audit?",
+        "category": "Идея",
+        "icon": "компас",
+        "tagline": "Открытие навыков",
+        "prompt": "Какой навык мне следует использовать для UX-аудита?",
         "related": [
           "cm-skill-chain",
           "cm-how-it-work"
@@ -601,9 +601,9 @@
         "id": "cm-skill-index",
         "name": "cm-skill-index",
         "category": "DevOps",
-        "icon": "list",
-        "tagline": "Skill Index",
-        "prompt": "Show me a summary of all available skills",
+        "icon": "список",
+        "tagline": "Индекс навыков",
+        "prompt": "Покажите мне сводку всех доступных навыков",
         "related": [
           "cm-skill-mastery",
           "cm-skill-chain"
@@ -618,10 +618,10 @@
       {
         "id": "cm-how-it-work",
         "name": "cm-how-it-work",
-        "category": "Ideation",
-        "icon": "help-circle",
-        "tagline": "Getting Started Guide",
-        "prompt": "How do I use CodyMaster for the first time?",
+        "category": "Идея",
+        "icon": "кружок помощи",
+        "tagline": "Руководство по началу работы",
+        "prompt": "Как мне использовать CodyMaster в первый раз?",
         "related": [
           "cm-skill-mastery",
           "cm-project-bootstrap"
@@ -637,9 +637,9 @@
         "id": "cm-dashboard",
         "name": "cm-dashboard",
         "category": "DevOps",
-        "icon": "layout-dashboard",
-        "tagline": "Project Dashboard",
-        "prompt": "Show me the project dashboard",
+        "icon": "макет-панель",
+        "tagline": "Панель управления проектом",
+        "prompt": "Покажите мне панель управления проектом",
         "related": [
           "cm-skill-chain",
           "cm-continuity"
@@ -654,10 +654,10 @@
       {
         "id": "cm-start",
         "name": "cm-start",
-        "category": "Ideation",
-        "icon": "power",
-        "tagline": "Quick Start",
-        "prompt": "Start working on my new feature",
+        "category": "Идея",
+        "icon": "власть",
+        "tagline": "Быстрый старт",
+        "prompt": "Начни работать над моей новой функцией",
         "related": [
           "cm-planning",
           "cm-skill-mastery"
@@ -673,7 +673,7 @@
         "id": "cm-status",
         "name": "cm-status",
         "category": "DevOps",
-        "icon": "activity",
+        "icon": "активность",
         "tagline": "Статус проекта",
         "prompt": "Каков текущий статус моего проекта?",
         "related": [
@@ -691,7 +691,7 @@
         "id": "cm-example",
         "name": "cm-example",
         "category": "DevOps",
-        "icon": "file-code",
+        "icon": "код файла",
         "tagline": "Шаблон навыка",
         "prompt": "Покажи мне, как создать новый навык",
         "related": [
@@ -708,8 +708,8 @@
       {
         "id": "cro-methodology",
         "name": "cro-methodology",
-        "category": "Content",
-        "icon": "trending-up",
+        "category": "Содержание",
+        "icon": "тенденция роста",
         "tagline": "Оптимизация коэффициента конверсии",
         "problem": "Лендинги получают трафик, но посетители не конвертируются — непонятно, почему они уходят?",
         "solution": "Аудит CRO на основе доказательств с использованием CRE Methodology: картирование воронки, исследование посетителей, обработка возражений и статистически строгие A/B тесты.",
@@ -728,8 +728,8 @@
       {
         "id": "cm-jtbd",
         "name": "cm-jtbd",
-        "category": "Ideation",
-        "icon": "users",
+        "category": "Идея",
+        "icon": "пользователи",
         "tagline": "Исследование клиентов (JTBD)",
         "problem": "Создаете функции, которые не нужны пользователям, потому что гадаете, чего они на самом деле хотят?",
         "solution": "Интервью JTBD Switch + Canvas для выявления функциональных, социальных и эмоциональных задач, для выполнения которых клиенты «нанимают» ваш продукт.",
