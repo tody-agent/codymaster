@@ -393,16 +393,11 @@
         phrases = I18n.resolve(en, 'hero.typingPhrases');
       }
       
-      this.phrases = phrases || ['products'];
+      this.phrases = phrases || ['No Coding Required'];
       this.phraseIndex = 0;
       this.charIndex = 0;
       this.isDeleting = false;
       if (this.element) this.element.textContent = '';
-      
-      const hiddenSpan = document.getElementById('hero-hidden');
-      if (hiddenSpan && this.phrases.length > 0) {
-        hiddenSpan.textContent = this.phrases[0];
-      }
 
       clearTimeout(this.timer);
       this.type();
@@ -412,13 +407,6 @@
       if (!this.element || !this.phrases.length) return;
 
       const currentPhrase = this.phrases[this.phraseIndex % this.phrases.length];
-      
-      if (!this.isDeleting && this.charIndex === 0) {
-        const hiddenSpan = document.getElementById('hero-hidden');
-        if (hiddenSpan) {
-          hiddenSpan.textContent = currentPhrase;
-        }
-      }
 
       if (this.isDeleting) {
         this.charIndex--;

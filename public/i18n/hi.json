@@ -17,19 +17,18 @@
   },
   "hero": {
     "badge": "33 कौशल · ओपन-सोर्स · मुफ़्त",
+    "headlineStatic": "AI से वास्तविक उत्पाद बनाएं",
     "typingPhrases": [
-      "विचारों को 10 गुना तेज़ी से उत्पाद बनाएं",
-      "मिनटों में प्रोडक्शन कोड शिप करें",
-      "बिना Dev टीम के SaaS ऐप बनाएं",
-      "एक चैट से शानदार UX डिज़ाइन करें",
-      "पेशेवर दस्तावेज़ स्वचालित बनाएं"
+      "कोडिंग की जरूरत नहीं",
+      "मिनटों में लॉन्च",
+      "विचार से उत्पाद तक"
     ],
-    "subtitle": "एक AI एजेंट कौशल किट जो आपको विचार → डिज़ाइन → कोड → परिनियोजन के माध्यम से मार्गदर्शन करती है,\nशून्य कोडिंग आवश्यक। बस प्राकृतिक भाषा में बात करें।",
-    "ctaPrimary": "मुफ़्त में उपयोग करें",
+    "subtitle": "33 विशेष AI कौशल डिज़ाइन, कोड, टेस्टिंग और डिप्लॉयमेंट संभालते हैं।\nआप बस चैट करें। कोडिंग की जरूरत नहीं।",
+    "ctaPrimary": "बनाना शुरू करें — मुफ़्त",
     "ctaSecondary": "डेमो देखें",
     "trustNoCreditCard": "✓ किसी क्रेडिट कार्ड की आवश्यकता नहीं",
     "trust30Seconds": "✓ 30 सेकंड में सेटअप करें",
-    "trustMultilingual": "✓ बहुभाषी सक्षम"
+    "trustOpenSource": "✓ 100% ओपन सोर्स"
   },
   "features": {
     "label": "कौडी मास्टर क्यों",
@@ -92,7 +91,7 @@
       {
         "title": "स्थापित करें",
         "description": "Marketplace जोड़ें फिर plugin इंस्टॉल करें।\n30 सेकंड में हो जाएगा।",
-        "code": "claude plugin install cody-master@cody-master"
+        "code": "claude plugin install cm@codymaster"
       },
       {
         "title": "बात करें",
@@ -147,7 +146,7 @@
       {
         "id": "cmo",
         "emoji": "📢",
-        "title": "For CMOs & Marketing Managers",
+        "title": "For Marketing Expert",
         "tagline": "Content, landing pages, and tracking — instantly",
         "pains": [
           "Content team can't keep up with demand",
@@ -957,23 +956,23 @@
         "label": "AI कौशल"
       },
       {
-        "number": "17",
-        "label": "समर्थित फ्रेमवर्क"
+        "number": "7+",
+        "label": "समर्थित AI एजेंट"
       },
       {
-        "number": "48",
-        "label": "UX कानून"
+        "number": "6",
+        "label": "भाषाएँ"
       },
       {
-        "number": "1032+",
-        "label": "डिज़ाइन पैटर्न"
+        "number": "100%",
+        "label": "मुफ़्त & ओपन सोर्स"
       }
     ]
   },
   "cta": {
-    "title": "आप अपने पहले उत्पाद से\nबस एक चैट दूर हैं",
-    "subtitle": "मुफ़्त। किसी क्रेडिट कार्ड की आवश्यकता नहीं। 30 सेकंड में शुरू करें।",
-    "button": "अभी शुरू करें"
+    "title": "प्लानिंग बंद करें। बनाना शुरू करें।\nआपके विचार को अस्तित्व में आने का हक़ है।",
+    "subtitle": "मुफ़्त। क्रेडिट कार्ड नहीं। 30 सेकंड में सेटअप। अभी बनाना शुरू करें।",
+    "button": "बनाना शुरू करें — मुफ़्त"
   },
   "footer": {
     "links": [
@@ -1659,7 +1658,7 @@
           {
             "title": "ऑनबोर्डिंग टूर चलाएं",
             "description": "Claude Code खोलें और सभी 33 स्किल्स देखने के लिए इंटरेक्टिव टूर चलाएं।",
-            "code": "/cody-master:demo",
+            "code": "/cm:demo",
             "output": "🚀 CodyMaster में आपका स्वागत! सभी 33 स्किल्स एक्सप्लोर करते हैं..."
           }
         ]
@@ -1970,6 +1969,8 @@
     "title": "पीड़ा से जन्मा विजन",
     "subtitle": "यह टूलकिट हमारे द्वारा की गई गलतियों, खोए हुए समय और आँसुओं का उत्पाद है।",
     "quote": "\"मैं एक उत्पाद प्रबंधक हूं जो कोड नहीं लिख सकता। AI ने मुझे 100 हाथ दिए, लेकिन बिना नियंत्रण के यह आपदा है।\"",
+    "authorName": "Tody Le",
+    "authorRole": "Product Manager · CodyMaster निर्माता",
     "cards": [
       {
         "icon": "palette",
@@ -2165,7 +2166,22 @@
       "punchline": "मैंने आपके लिए उस दर्द को समाप्त कर दिया है। बस इसका इस्तेमाल करें और महान चीजें बनाएं।"
     },
     "cta": "अभी अपनी यात्रा शुरू करें →",
-    "backHome": "← आरंभ पृष्ठ"
+    "backHome": "← आरंभ पृष्ठ",
+    "brand": {
+      "title": "Why \"CodyMaster\"?",
+      "wordplay": {
+        "label": "The Wordplay",
+        "desc": "\"Cody\" comes from <strong>\"Code Đi\"</strong> (Cô-đi) — Vietnamese for <strong>\"Go code!\"</strong> An invitation to just start building, stop overthinking."
+      },
+      "heart": {
+        "label": "The Heart",
+        "desc": "Cody is also the name of the creator's child. This kit carries personal meaning — every skill was crafted with the same care and dedication as raising a child."
+      },
+      "philosophy": {
+        "label": "The Philosophy",
+        "desc": "<strong>CodyMaster = Code like an expert.</strong> Not just write code, but master the craft — with discipline, testing, planning, and quality at every step."
+      }
+    }
   },
   "docsPage": {
     "meta": {
@@ -2739,5 +2755,13 @@
       "button": "Brain अनुभव करें",
       "backHome": "← होम"
     }
+  },
+  "socialProof": {
+    "label": "विश्वसनीय",
+    "title": "दुनिया भर की टीमें और सोलो बिल्डर इस्तेमाल करते हैं",
+    "starOnGithub": "GitHub पर Star",
+    "openSource": "100% मुफ़्त & ओपन सोर्स",
+    "languages": "6 भाषाएँ समर्थित",
+    "worksWithLabel": "सभी प्रमुख AI एजेंट के साथ काम करता है"
   }
 }

@@ -33,13 +33,13 @@ Explain the main workflow with a visual diagram:
 
 ```
 💡 Idea
-  ↓  /cody-master:plan     (brainstorm + architecture + approval)
+  ↓  /cm:plan     (brainstorm + architecture + approval)
 📋 Plan
-  ↓  /cody-master:build    (TDD: red → green → refactor)
+  ↓  /cm:build    (TDD: red → green → refactor)
 ⚙️  Code
-  ↓  /cody-master:review   (code review + quality gate)
+  ↓  /cm:review   (code review + quality gate)
 ✅ Verified
-  ↓  /cody-master:deploy   (multi-gate deploy + rollback)
+  ↓  /cm:deploy   (multi-gate deploy + rollback)
 🚀 Live
 ```
 
@@ -49,16 +49,16 @@ Present each command with a concrete example. Format as a table:
 
 | Command | What it does | Example |
 |---------|-------------|---------|
-| `/cody-master:plan` | Brainstorm + architecture + plan | `/cody-master:plan Add OAuth login` |
-| `/cody-master:build` | TDD implementation | `/cody-master:build Execute the auth plan` |
-| `/cody-master:debug` | 4-phase root cause analysis | `/cody-master:debug Login fails after redirect` |
-| `/cody-master:review` | Code review + quality check | `/cody-master:review` |
-| `/cody-master:deploy` | Safe multi-gate deployment | `/cody-master:deploy to staging` |
-| `/cody-master:ux` | UX design + prototyping | `/cody-master:ux Design the onboarding flow` |
-| `/cody-master:content` | AI content factory | `/cody-master:content Write a product launch post` |
-| `/cody-master:track` | Task + progress tracking | `/cody-master:track` |
-| `/cody-master:continuity` | Session memory | `/cody-master:continuity` |
-| `/cody-master:bootstrap` | New project setup | `/cody-master:bootstrap my-saas-app` |
+| `/cm:plan` | Brainstorm + architecture + plan | `/cm:plan Add OAuth login` |
+| `/cm:build` | TDD implementation | `/cm:build Execute the auth plan` |
+| `/cm:debug` | 4-phase root cause analysis | `/cm:debug Login fails after redirect` |
+| `/cm:review` | Code review + quality check | `/cm:review` |
+| `/cm:deploy` | Safe multi-gate deployment | `/cm:deploy to staging` |
+| `/cm:ux` | UX design + prototyping | `/cm:ux Design the onboarding flow` |
+| `/cm:content` | AI content factory | `/cm:content Write a product launch post` |
+| `/cm:track` | Task + progress tracking | `/cm:track` |
+| `/cm:continuity` | Session memory | `/cm:continuity` |
+| `/cm:bootstrap` | New project setup | `/cm:bootstrap my-saas-app` |
 
 ## Step 5 — Agent Skills (Automatic)
 
@@ -77,10 +77,10 @@ Explain that besides slash commands, Claude also uses **agent skills automatical
 Ask the user to try ONE of these right now and offer to help:
 
 **Option A — Build something new:**
-> "What would you like to build? I'll start with `/cody-master:plan` to design it."
+> "What would you like to build? I'll start with `/cm:plan` to design it."
 
 **Option B — Fix a bug:**
-> "Paste your error message and I'll apply `/cody-master:debug` to find the root cause."
+> "Paste your error message and I'll apply `/cm:debug` to find the root cause."
 
 **Option C — Explore skills:**
 > "Ask me `what skills do you have?` and I'll show the full catalog with `cm-skill-index`."
@@ -89,8 +89,8 @@ Ask the user to try ONE of these right now and offer to help:
 
 Show at the end:
 - 📚 Docs: https://codymaster.pages.dev/docs
-- 🔄 Update: `claude plugin update cody-master@cody-master`
-- 💬 All skills: `/cody-master:skills`
-- 🔁 Restart tour: `/cody-master:demo`
+- 🔄 Update: `claude plugin update cm@codymaster`
+- 💬 All skills: `/cm:skills`
+- 🔁 Restart tour: `/cm:demo`
 
 Close with an encouraging call-to-action in the user's chosen language.

@@ -17,19 +17,18 @@
   },
   "hero": {
     "badge": "33 스킬 · 오픈소스 · 무료",
+    "headlineStatic": "AI로 실제 제품을 만드세요",
     "typingPhrases": [
-      "아이디어를 10배 빠르게 제품으로 바꾸세요",
-      "몇 분 만에 프로덕션 코드를 배포하세요",
-      "Dev 팀 없이 SaaS 앱을 만드세요",
-      "한 번의 채팅으로 멋진 UX를 디자인하세요",
-      "전문 문서를 자동으로 생성하세요"
+      "코딩 필요 없음",
+      "몇 분 만에 출시",
+      "아이디어에서 제품까지"
     ],
-    "subtitle": "아이디어 → 디자인 → 코드 → 배포까지 안내하는 AI 에이전트 스킬 키트입니다.\n코딩이 필요 없습니다. 자연어로 채팅만 하세요.",
-    "ctaPrimary": "무료로 사용하기",
+    "subtitle": "33개의 전문 AI 스킬이 디자인, 코드, 테스트, 배포를 처리합니다.\n대화만 하세요. 코딩 필요 없습니다.",
+    "ctaPrimary": "구축 시작 — 무료",
     "ctaSecondary": "데모 보기",
     "trustNoCreditCard": "✓ 신용카드 필요 없음",
     "trust30Seconds": "✓ 30초 내 설정 완료",
-    "trustMultilingual": "✓ 다국어 지원"
+    "trustOpenSource": "✓ 100% 오픈소스"
   },
   "features": {
     "label": "왜 CODY MASTER 인가",
@@ -92,7 +91,7 @@
       {
         "title": "설치",
         "description": "마켓플레이스를 추가하고 플러그인을 설치하세요.\n30초 안에 완료됩니다.",
-        "code": "claude plugin install cody-master@cody-master"
+        "code": "claude plugin install cm@codymaster"
       },
       {
         "title": "채팅",
@@ -147,7 +146,7 @@
       {
         "id": "cmo",
         "emoji": "📢",
-        "title": "For CMOs & Marketing Managers",
+        "title": "For Marketing Expert",
         "tagline": "Content, landing pages, and tracking — instantly",
         "pains": [
           "Content team can't keep up with demand",
@@ -957,23 +956,23 @@
         "label": "AI 스킬"
       },
       {
-        "number": "17",
-        "label": "지원 프레임워크"
+        "number": "7+",
+        "label": "지원 AI 에이전트"
       },
       {
-        "number": "48",
-        "label": "UX 법칙"
+        "number": "6",
+        "label": "언어"
       },
       {
-        "number": "1032+",
-        "label": "디자인 패턴"
+        "number": "100%",
+        "label": "무료 & 오픈소스"
       }
     ]
   },
   "cta": {
-    "title": "첫 제품 개발까지\n채팅 한 번이면 됩니다",
-    "subtitle": "무료입니다. 신용카드가 필요 없습니다. 30초 내 시작 가능.",
-    "button": "지금 바로 시작하기"
+    "title": "계획하지 마세요. 만드세요.\n당신의 아이디어는 존재할 자격이 있습니다.",
+    "subtitle": "무료. 신용카드 불필요. 30초 셋업. 지금 바로 시작.",
+    "button": "구축 시작 — 무료"
   },
   "footer": {
     "links": [
@@ -1659,7 +1658,7 @@
           {
             "title": "온보딩 투어 실행",
             "description": "Claude Code를 열고 대화형 투어로 33개 스킬을 모두 확인하세요.",
-            "code": "/cody-master:demo",
+            "code": "/cm:demo",
             "output": "🚀 CodyMaster에 오신 것을 환영합니다! 33개 스킬을 탐색해 봅시다..."
           }
         ]
@@ -1970,6 +1969,8 @@
     "title": "단순 상상이 아닌\n피눈물이 빚은 결과",
     "subtitle": "이 툴킷 안에 있는 모든 스킬세트는 개발 과정에서 흘린 우리의 식은땀과 탄식으로부터 기원했습니다.",
     "quote": "\"전 10년 차 기획 매니저일 뿐, 코드는 한 줄도 모릅니다. 그런데 이런 제가 100인분의 코딩을 다루게 되었습니다.\"",
+    "authorName": "Tody Le",
+    "authorRole": "Product Manager · CodyMaster 제작자",
     "cards": [
       {
         "icon": "palette",
@@ -2165,7 +2166,22 @@
       "punchline": "불필요한 시간의 소진을 막고 그 고통의 바퀴를 제가 전부 끊어낸 결과물입니다. 그저 마음껏 꺼내 쓰십시오."
     },
     "cta": "바로 탑승하기 →",
-    "backHome": "← 시작 화면"
+    "backHome": "← 시작 화면",
+    "brand": {
+      "title": "Why \"CodyMaster\"?",
+      "wordplay": {
+        "label": "The Wordplay",
+        "desc": "\"Cody\" comes from <strong>\"Code Đi\"</strong> (Cô-đi) — Vietnamese for <strong>\"Go code!\"</strong> An invitation to just start building, stop overthinking."
+      },
+      "heart": {
+        "label": "The Heart",
+        "desc": "Cody is also the name of the creator's child. This kit carries personal meaning — every skill was crafted with the same care and dedication as raising a child."
+      },
+      "philosophy": {
+        "label": "The Philosophy",
+        "desc": "<strong>CodyMaster = Code like an expert.</strong> Not just write code, but master the craft — with discipline, testing, planning, and quality at every step."
+      }
+    }
   },
   "docsPage": {
     "meta": {
@@ -2739,5 +2755,13 @@
       "button": "Brain 체험하기",
       "backHome": "← 홈으로"
     }
+  },
+  "socialProof": {
+    "label": "신뢰받는 도구",
+    "title": "전 세계 팀과 솔로 빌더가 사용",
+    "starOnGithub": "GitHub에서 Star",
+    "openSource": "100% 무료 & 오픈소스",
+    "languages": "6개 언어 지원",
+    "worksWithLabel": "모든 주요 AI 에이전트와 호환"
   }
 }

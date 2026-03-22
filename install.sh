@@ -167,12 +167,12 @@ print_onboarding() {
   echo ""
   echo -e "${W}${BOLD}$(msg onboard)${NC}"
   echo ""
-  echo -e "  ${C}/cody-master:demo${NC}       ← Run this first! Interactive tour"
-  echo -e "  ${C}/cody-master:plan${NC}       ← Start a new feature"
-  echo -e "  ${C}/cody-master:build${NC}      ← Build with TDD"
-  echo -e "  ${C}/cody-master:debug${NC}      ← Fix a bug"
-  echo -e "  ${C}/cody-master:review${NC}     ← Code review"
-  echo -e "  ${C}/cody-master:deploy${NC}     ← Deploy safely"
+  echo -e "  ${C}/cm:demo${NC}       ← Run this first! Interactive tour"
+  echo -e "  ${C}/cm:plan${NC}       ← Start a new feature"
+  echo -e "  ${C}/cm:build${NC}      ← Build with TDD"
+  echo -e "  ${C}/cm:debug${NC}      ← Fix a bug"
+  echo -e "  ${C}/cm:review${NC}     ← Code review"
+  echo -e "  ${C}/cm:deploy${NC}     ← Deploy safely"
   echo ""
   echo -e "${W}${BOLD}$(msg docs)${NC} ${C}https://codymaster.pages.dev/docs${NC}"
   echo ""
@@ -189,9 +189,9 @@ install_claude() {
     echo -e "  ${W}Adding marketplace...${NC}"
     claude plugin marketplace add tody-agent/codymaster 2>/dev/null || true
     echo -e "  ${W}Installing plugin (scope: ${scope})...${NC}"
-    claude plugin install cody-master@cody-master --scope "$scope"
+    claude plugin install cm@codymaster --scope "$scope"
     echo ""
-    echo -e "  ${G}✅ cody-master installed — scope: ${scope}${NC}"
+    echo -e "  ${G}✅ cm installed — scope: ${scope}${NC}"
     print_onboarding "$scope"
   else
     echo -e "  ${R}Claude Code CLI not found. Install from: https://claude.ai/code${NC}"
@@ -199,9 +199,9 @@ install_claude() {
     echo "  Then run these commands in Claude Code:"
     echo ""
     echo -e "  ${BOLD}1.${NC} ${C}claude plugin marketplace add tody-agent/codymaster${NC}"
-    echo -e "  ${BOLD}2.${NC} ${C}claude plugin install cody-master@cody-master --scope ${scope}${NC}"
+    echo -e "  ${BOLD}2.${NC} ${C}claude plugin install cm@codymaster --scope ${scope}${NC}"
     echo ""
-    echo -e "  First thing after install: ${C}/cody-master:demo${NC}"
+    echo -e "  First thing after install: ${C}/cm:demo${NC}"
   fi
 }
 
@@ -329,7 +329,7 @@ for platform in "${platforms[@]}"; do
     cursor)
       echo ""
       echo -e "${B}${BOLD}Cursor — Plugin Install${NC}"
-      echo -e "  In Cursor Agent chat, run: ${C}/add-plugin cody-master${NC}"
+      echo -e "  In Cursor Agent chat, run: ${C}/add-plugin cm${NC}"
       ;;
     codex)
       echo ""

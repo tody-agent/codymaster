@@ -17,19 +17,18 @@
   },
   "hero": {
     "badge": "33个技能 · 开源 · 免费",
+    "headlineStatic": "用 AI 构建真实产品",
     "typingPhrases": [
-      "10倍速将创意转化为产品",
-      "几分钟内交付生产级代码",
-      "无需开发团队构建SaaS应用",
-      "一句话设计出色UX",
-      "自动生成专业文档"
+      "无需编程",
+      "几分钟内上线",
+      "从创意到产品"
     ],
-    "subtitle": "一个AI代理技能套件，带您从创意 → 设计 → 编码 → 部署，\n零代码需求。只需用自然语言交流。",
-    "ctaPrimary": "免费试用",
+    "subtitle": "33 个专业 AI 技能处理设计、代码、测试和部署。\n您只需聊天。无需编程。",
+    "ctaPrimary": "开始构建 — 免费",
     "ctaSecondary": "观看演示",
     "trustNoCreditCard": "✓ 无需信用卡",
     "trust30Seconds": "✓ 30秒内完成配置",
-    "trustMultilingual": "✓ 多语言支持"
+    "trustOpenSource": "✓ 100% 开源"
   },
   "features": {
     "label": "为什么选择 CODY MASTER",
@@ -92,7 +91,7 @@
       {
         "title": "安装",
         "description": "添加marketplace然后安装插件。\n30秒内完成。",
-        "code": "claude plugin install cody-master@cody-master"
+        "code": "claude plugin install cm@codymaster"
       },
       {
         "title": "聊天",
@@ -147,7 +146,7 @@
       {
         "id": "cmo",
         "emoji": "📢",
-        "title": "For CMOs & Marketing Managers",
+        "title": "For Marketing Expert",
         "tagline": "Content, landing pages, and tracking — instantly",
         "pains": [
           "Content team can't keep up with demand",
@@ -957,23 +956,23 @@
         "label": "AI技能"
       },
       {
-        "number": "17",
-        "label": "框架支持"
+        "number": "7+",
+        "label": "支持的 AI 代理"
       },
       {
-        "number": "48",
-        "label": "UX法则"
+        "number": "6",
+        "label": "语言"
       },
       {
-        "number": "1032+",
-        "label": "设计模式"
+        "number": "100%",
+        "label": "免费开源"
       }
     ]
   },
   "cta": {
-    "title": "您与首个产品之间，\n只差一次聊天",
-    "subtitle": "免费。无需信用卡。30秒即可开始。",
-    "button": "立即开始"
+    "title": "别再计划了。开始构建。\n你的想法值得存在。",
+    "subtitle": "免费。无需信用卡。30 秒内开始。立即构建。",
+    "button": "开始构建 — 免费"
   },
   "footer": {
     "links": [
@@ -1659,7 +1658,7 @@
           {
             "title": "运行入门导览",
             "description": "打开 Claude Code 并运行互动导览，查看全部33个技能。",
-            "code": "/cody-master:demo",
+            "code": "/cm:demo",
             "output": "🚀 欢迎使用 CodyMaster！让我们探索全部33个技能..."
           }
         ]
@@ -1970,6 +1969,8 @@
     "title": "诞生于真实的痛点",
     "subtitle": "这个套件里的技能之所以存在，是因为真正让我们浪费了大量时间的现实痛点。",
     "quote": "\"我不懂写代码。AI给了我100双手——但如果没有约束，这只有灾难。\"",
+    "authorName": "Tody Le",
+    "authorRole": "Product Manager · CodyMaster 创始人",
     "cards": [
       {
         "icon": "palette",
@@ -2165,7 +2166,22 @@
       "punchline": "这就三十多个技能构成的屏障武器库。每门学问皆是鲜血痛楚总结。以后你无须重蹈黑夜覆辙，这副套件把往后的路都铺好了。"
     },
     "cta": "这就启程，揭开不凡之路的序幕 →",
-    "backHome": "← 返回首页"
+    "backHome": "← 返回首页",
+    "brand": {
+      "title": "Why \"CodyMaster\"?",
+      "wordplay": {
+        "label": "The Wordplay",
+        "desc": "\"Cody\" comes from <strong>\"Code Đi\"</strong> (Cô-đi) — Vietnamese for <strong>\"Go code!\"</strong> An invitation to just start building, stop overthinking."
+      },
+      "heart": {
+        "label": "The Heart",
+        "desc": "Cody is also the name of the creator's child. This kit carries personal meaning — every skill was crafted with the same care and dedication as raising a child."
+      },
+      "philosophy": {
+        "label": "The Philosophy",
+        "desc": "<strong>CodyMaster = Code like an expert.</strong> Not just write code, but master the craft — with discipline, testing, planning, and quality at every step."
+      }
+    }
   },
   "docsPage": {
     "meta": {
@@ -2739,5 +2755,13 @@
       "button": "立即体验 Brain",
       "backHome": "← 返回首页"
     }
+  },
+  "socialProof": {
+    "label": "值得信赖",
+    "title": "全球团队和个人开发者都在使用",
+    "starOnGithub": "在 GitHub 上点星",
+    "openSource": "100% 免费开源",
+    "languages": "支持 6 种语言",
+    "worksWithLabel": "兼容所有主流 AI 代理"
   }
 }

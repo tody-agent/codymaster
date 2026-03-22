@@ -815,6 +815,146 @@ img {
   font-size: 15px;
   color: var(--text-secondary);
 }
+/* --- Social Proof Section --- */
+.social-proof {
+  text-align: center;
+}
+
+.social-proof__badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.social-proof__github {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, rgba(196, 248, 42, 0.15), rgba(6, 214, 160, 0.1));
+  border: 1px solid rgba(196, 248, 42, 0.3);
+  color: var(--accent-lime);
+  font-weight: 600;
+  font-size: 15px;
+  transition: all var(--transition-fast);
+}
+
+.social-proof__github:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(196, 248, 42, 0.2);
+  border-color: var(--accent-lime);
+}
+
+.social-proof__star-icon {
+  font-size: 18px;
+}
+
+.social-proof__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  background: rgba(20, 20, 32, 0.5);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.social-proof__agents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.social-proof__agents-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.social-proof__agents-grid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-proof__agent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: rgba(20, 20, 32, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.social-proof__agent:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* --- Born from Pain: Author Attribution --- */
+.born-pain__author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.born-pain__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.born-pain__name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.born-pain__role {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* --- Hero: Static Headline --- */
+.hero__headline-static {
+  display: block;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__typing-wrap {
+  display: inline-block;
+}
 
 /* --- Final CTA --- */
 .final-cta {

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "CodyMaster Kit — Turn Ideas into Products 10x Faster",
-    "description": "33 AI Agent Skills that take you from idea to design to code to deploy — no coding required. Just chat."
+    "title": "CodyMaster Kit — Build Real Products with AI, No Coding Required",
+    "description": "33 AI Agent Skills that handle design, code, testing, and deployment. You just chat. Free & open source."
   },
   "nav": {
     "features": "Features",
@@ -17,19 +17,18 @@
   },
   "hero": {
     "badge": "33 Skills · Open Source · Free",
+    "headlineStatic": "Build Real Products with AI",
     "typingPhrases": [
-      "Turn Ideas into Real Products 10x Faster",
-      "Ship Production Code in Minutes",
-      "Build SaaS Apps Without a Dev Team",
-      "Design Stunning UX with One Chat",
-      "Generate Docs That Actually Help"
+      "No Coding Required",
+      "Ship in Minutes, Not Months",
+      "From Idea to Live Product"
     ],
-    "subtitle": "An AI Agent Skills kit that takes you from idea → design → code → deploy,\nno coding required. Just chat in plain English.",
-    "ctaPrimary": "Try It Free",
+    "subtitle": "33 specialized AI skills that handle design, code, testing, and deployment.\nYou just chat. No coding required.",
+    "ctaPrimary": "Start Building — Free",
     "ctaSecondary": "Watch Demo",
     "trustNoCreditCard": "✓ No credit card needed",
     "trust30Seconds": "✓ Setup in 30 seconds",
-    "trustMultilingual": "✓ Multi-language support"
+    "trustOpenSource": "✓ 100% Open Source"
   },
   "features": {
     "label": "WHY CODY MASTER",
@@ -92,7 +91,7 @@
       {
         "title": "Install",
         "description": "Add the marketplace then install the plugin.\nDone in 30 seconds.",
-        "code": "claude plugin install cody-master@cody-master"
+        "code": "claude plugin install cm@codymaster"
       },
       {
         "title": "Chat",
@@ -147,7 +146,7 @@
       {
         "id": "cmo",
         "emoji": "📢",
-        "title": "For CMOs & Marketing Managers",
+        "title": "For Marketing Expert",
         "tagline": "Content, landing pages, and tracking — instantly",
         "pains": [
           "Content team can't keep up with demand",
@@ -957,23 +956,31 @@
         "label": "AI Skills"
       },
       {
-        "number": "17",
-        "label": "Frameworks"
+        "number": "7+",
+        "label": "Supported AI Agents"
       },
       {
-        "number": "48",
-        "label": "UX Laws"
+        "number": "6",
+        "label": "Languages"
       },
       {
-        "number": "1032+",
-        "label": "Design Patterns"
+        "number": "100%",
+        "label": "Free & Open Source"
       }
     ]
   },
+  "socialProof": {
+    "label": "TRUSTED BY BUILDERS",
+    "title": "Used by teams and solo builders worldwide",
+    "starOnGithub": "Star on GitHub",
+    "openSource": "100% Free & Open Source",
+    "languages": "6 Languages Supported",
+    "worksWithLabel": "Works with every major AI agent"
+  },
   "cta": {
-    "title": "You're just one chat away\nfrom your first product",
-    "subtitle": "Free. No credit card. Start in 30 seconds.",
-    "button": "Get Started Now"
+    "title": "Stop planning. Start building.\nYour idea deserves to exist.",
+    "subtitle": "Free. No credit card. Setup in 30 seconds. Start building now.",
+    "button": "Start Building \u2014 Free"
   },
   "footer": {
     "links": [
@@ -1659,7 +1666,7 @@
           {
             "title": "Run Onboarding Tour",
             "description": "Open Claude Code and run the interactive tour to see all 33 skills in action.",
-            "code": "/cody-master:demo",
+            "code": "/cm:demo",
             "output": "🚀 Welcome to CodyMaster! Let's explore all 33 skills..."
           }
         ]
@@ -1968,8 +1975,10 @@
   "bornFromPain": {
     "label": "WHY WE BUILT THIS",
     "title": "Born from real pain,\nnot a business plan",
-    "subtitle": "Every skill in this kit exists because of a real problem that cost real time and real tears.",
-    "quote": "\"I'm a Product Manager with 10+ years of experience. I can't code. AI gave me 100 hands — but without discipline, those hands created chaos.\"",
+    "subtitle": "10+ years of product experience + 6 months of non-stop vibe coding. Every skill exists because of a real failure that cost real time and real tears.",
+    "quote": "\"I'm a Head of Product with 10+ years of experience. I can't code. AI gave me 100 hands — but without discipline, those hands created chaos. So I built the discipline.\"",
+    "authorName": "Tody Le",
+    "authorRole": "Head of Product · 10+ Years · Creator of CodyMaster",
     "cards": [
       {
         "icon": "palette",
@@ -1988,6 +1997,12 @@
         "title": "Great Product, Zero Users",
         "pain": "Built amazing apps but nobody knew how to use them. No docs, no onboarding, no self-service. Support team overwhelmed.",
         "solution": "cm-dockit + cm-content-factory"
+      },
+      {
+        "icon": "brain",
+        "title": "AI That Never Learns",
+        "pain": "Same mistake every session. Explain the same codebase every morning. AI has zero memory, zero growth. It's like training a new intern every single day.",
+        "solution": "cm-continuity + cm-skill-mastery + cm-deep-search"
       }
     ],
     "readStory": "Read the full story →"
@@ -2160,9 +2175,9 @@
     ],
     "closing": {
       "title": "So What Is CodyMaster?",
-      "content": "It's not a plugin. Not a prompt template.\n\nIt's the answer from a Product Manager who can't code, after hundreds of sleepless nights, to one single question:",
-      "question": "\"How can someone with ideas but no technical skills create world-class products — from landing pages, full-stack apps, documentation, to self-onboarding — without sacrificing quality?\"",
-      "punchline": "33 skills. Each skill is a lesson. Each lesson is a sleepless night.\n\nAnd now, you don't have to go through those nights."
+      "content": "It's not just a plugin. Not a collection of prompts.\n\nIt's 10+ years of product management experience + 6 months of battle-tested vibe coding, distilled into an integrated operating system for your AI agent.\n\nA brain that learns from its mistakes. A 4-layer defense system that protects your codebase. A full-cycle engine from Idea → Design → Code → Test → Deploy → Docs → Learn. A design system extractor that can rescue even the oldest products. A documentation engine that generates complete knowledge bases from code.\n\nThe answer to one single question:",
+      "question": "\"How can someone who is lazy — brilliantly, strategically lazy — create world-class products without repeating the same mistakes, the same setup, the same pain?\"",
+      "punchline": "33 skills. Each skill is a lesson learned the hard way. Each lesson cost sleepless nights.\n\nInstall CodyMaster, and you're not adding skills — you're hiring an entire senior team. A team that remembers, learns, improves, and never ships broken code to production.\n\nYou don't have to go through those nights. We already did."
     },
     "brand": {
       "title": "Why \"CodyMaster\"?",

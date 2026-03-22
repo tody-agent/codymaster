@@ -29,7 +29,7 @@ claude plugin marketplace add tody-agent/codymaster
 One command installs everything:
 
 ```bash
-claude plugin install cody-master@cody-master
+claude plugin install cm@codymaster
 ```
 
 All 33 skills ship as a single plugin:
@@ -117,21 +117,21 @@ cp -r ~/.cody-master/skills/* .opencode/skills/                # OpenCode
 Run the interactive onboarding tour — it takes ~2 minutes and shows every skill:
 
 ```
-/cody-master:demo
+/cm:demo
 ```
 
 Then use any command by name:
 
 | Command | What it does |
 |---------|-------------|
-| `/cody-master:plan` | Brainstorm + architecture + task plan |
-| `/cody-master:build` | TDD implementation (red → green → refactor) |
-| `/cody-master:debug` | 4-phase root cause analysis |
-| `/cody-master:review` | Code review + quality gate |
-| `/cody-master:deploy` | Safe multi-gate deployment |
-| `/cody-master:ux` | UX design + prototyping |
-| `/cody-master:content` | AI content factory |
-| `/cody-master:bootstrap` | New project setup |
+| `/cm:plan` | Brainstorm + architecture + task plan |
+| `/cm:build` | TDD implementation (red → green → refactor) |
+| `/cm:debug` | 4-phase root cause analysis |
+| `/cm:review` | Code review + quality gate |
+| `/cm:deploy` | Safe multi-gate deployment |
+| `/cm:ux` | UX design + prototyping |
+| `/cm:content` | AI content factory |
+| `/cm:bootstrap` | New project setup |
 
 Skills also activate **automatically** when relevant — just describe what you want and the right skill engages.
 

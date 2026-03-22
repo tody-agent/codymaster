@@ -39,7 +39,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 ```bash [Manual]
 claude plugin marketplace add tody-agent/codymaster
-claude plugin install cody-master@cody-master
+claude plugin install cm@codymaster
 ```
 
 ```bash [Gemini CLI]
@@ -63,7 +63,7 @@ gemini extensions install https://github.com/tody-agent/codymaster
 
 | Platform | Status | Skill Invocation |
 |----------|--------|-----------------|
-| 🟣 Claude Code | ✅ | `/cody-master:skill-name` (plugin) |
+| 🟣 Claude Code | ✅ | `/cm:skill-name` (plugin) |
 | 🟢 Gemini / Antigravity | ✅ | `@[/skill-name]` |
 | 🔵 Cursor | ✅ | `@skill-name` |
 | 🟠 Windsurf | ✅ | `@skill-name` |

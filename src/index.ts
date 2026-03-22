@@ -72,7 +72,7 @@ async function postInstallOnboarding(platform: string) {
 
   const p = (await import('prompts')).default;
   const invoke =
-    platform === 'claude'   ? '/cody-master:demo  (type in Claude Code)' :
+    platform === 'claude'   ? '/cm:demo  (type in Claude Code)' :
     platform === 'gemini'   ? '@[/cm-planning] in Gemini CLI' :
     platform === 'cursor'   ? '@cm-planning in Cursor Agent' :
                               '@cm-planning in your AI tool';
@@ -111,7 +111,7 @@ async function postInstallOnboarding(platform: string) {
       console.log();
       if (platform === 'claude') {
         console.log(chalk.white('Open Claude Code and type:\n'));
-        console.log(chalk.cyan('  /cody-master:demo'));
+        console.log(chalk.cyan('  /cm:demo'));
         console.log(chalk.gray('\n  This will run an interactive tour of all 33 skills.\n'));
       } else {
         console.log(chalk.cyan(`  ${invoke}\n`));
@@ -124,7 +124,7 @@ async function postInstallOnboarding(platform: string) {
     case 'global':
       console.log();
       console.log(chalk.white('Run this to install the `cody` CLI globally:\n'));
-      console.log(chalk.cyan('  npm install -g cody-master'));
+      console.log(chalk.cyan('  npm install -g codymaster'));
       console.log(chalk.gray('\nThen use:'));
       console.log(chalk.cyan('  cody task add "My task"'));
       console.log(chalk.cyan('  cody dashboard'));

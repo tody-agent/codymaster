@@ -17,19 +17,18 @@
   },
   "hero": {
     "badge": "33 ИИ навыка · Открытый исходный код · Бесплатно",
+    "headlineStatic": "Создавайте реальные продукты с ИИ",
     "typingPhrases": [
-      "Превращайте идеи в продукт в 10 раз быстрее",
-      "Шипьте продакшн код за минуты",
-      "Создавайте SaaS без команды разработки",
-      "Дизайнте UX одним чатом",
-      "Генерируйте документацию автоматически"
+      "Без программирования",
+      "Запуск за минуты",
+      "От идеи до продукта"
     ],
-    "subtitle": "Набор навыков ИИ-агентов, который проведет вас от идеи → к дизайну → к коду → к развертыванию,\nпрограммирование не требуется. Просто общайтесь на естественном языке.",
-    "ctaPrimary": "Попробовать бесплатно",
+    "subtitle": "33 специализированных навыка ИИ для дизайна, кода, тестирования и развёртывания.\nВы просто общаетесь. Без программирования.",
+    "ctaPrimary": "Начать строить — Бесплатно",
     "ctaSecondary": "Смотреть демо",
     "trustNoCreditCard": "✓ Не нужна банковская карта",
     "trust30Seconds": "✓ Настройка за 30 секунд",
-    "trustMultilingual": "✓ Мультиязычность"
+    "trustOpenSource": "✓ 100% Открытый исходный код"
   },
   "features": {
     "label": "ПОЧЕМУ CODY MASTER",
@@ -92,7 +91,7 @@
       {
         "title": "Установка",
         "description": "Добавьте marketplace, затем установите плагин.\nГотово за 30 секунд.",
-        "code": "claude plugin install cody-master@cody-master"
+        "code": "claude plugin install cm@codymaster"
       },
       {
         "title": "Общение",
@@ -147,7 +146,7 @@
       {
         "id": "cmo",
         "emoji": "📢",
-        "title": "For CMOs & Marketing Managers",
+        "title": "For Marketing Expert",
         "tagline": "Content, landing pages, and tracking — instantly",
         "pains": [
           "Content team can't keep up with demand",
@@ -957,23 +956,23 @@
         "label": "ИИ навыков"
       },
       {
-        "number": "17",
-        "label": "Фреймворков"
+        "number": "7+",
+        "label": "Поддерживаемых AI-агентов"
       },
       {
-        "number": "48",
-        "label": "Законов UX"
+        "number": "6",
+        "label": "Языков"
       },
       {
-        "number": "1032+",
-        "label": "Паттернов UI"
+        "number": "100%",
+        "label": "Бесплатно и с открытым кодом"
       }
     ]
   },
   "cta": {
-    "title": "Вас отделяет один чат\nот вашего первого продукта",
-    "subtitle": "Бесплатно. Карты не нужны. Начать за 30 секунд.",
-    "button": "Начать прямо сейчас"
+    "title": "Хватит планировать. Начинайте строить.\nВаша идея заслуживает существования.",
+    "subtitle": "Бесплатно. Без кредитной карты. Настройка за 30 секунд. Начните строить сейчас.",
+    "button": "Начать строить — Бесплатно"
   },
   "footer": {
     "links": [
@@ -1659,7 +1658,7 @@
           {
             "title": "Запустите вводный тур",
             "description": "Откройте Claude Code и запустите интерактивный тур по всем 33 навыкам.",
-            "code": "/cody-master:demo",
+            "code": "/cm:demo",
             "output": "🚀 Добро пожаловать в CodyMaster! Давайте исследуем все 33 навыка..."
           }
         ]
@@ -1970,6 +1969,8 @@
     "title": "Рожден из реальной боли",
     "subtitle": "Каждый навык в этом наборе существует из-за боли, которая стоила нам сотен часов и слез.",
     "quote": "\"Я не умею программировать. ИИ подарил мне 100 рук, но без строгого контроля эти 100 рук натворят одни беды.\"",
+    "authorName": "Tody Le",
+    "authorRole": "Product Manager · Создатель CodyMaster",
     "cards": [
       {
         "icon": "palette",
@@ -2165,7 +2166,22 @@
       "punchline": "У вас теперь есть все инструменты. Вы не должны переживать те же бессонные ночи, что пережил я."
     },
     "cta": "Начать свой путь →",
-    "backHome": "← Назад"
+    "backHome": "← Назад",
+    "brand": {
+      "title": "Why \"CodyMaster\"?",
+      "wordplay": {
+        "label": "The Wordplay",
+        "desc": "\"Cody\" comes from <strong>\"Code Đi\"</strong> (Cô-đi) — Vietnamese for <strong>\"Go code!\"</strong> An invitation to just start building, stop overthinking."
+      },
+      "heart": {
+        "label": "The Heart",
+        "desc": "Cody is also the name of the creator's child. This kit carries personal meaning — every skill was crafted with the same care and dedication as raising a child."
+      },
+      "philosophy": {
+        "label": "The Philosophy",
+        "desc": "<strong>CodyMaster = Code like an expert.</strong> Not just write code, but master the craft — with discipline, testing, planning, and quality at every step."
+      }
+    }
   },
   "docsPage": {
     "meta": {
@@ -2739,5 +2755,13 @@
       "button": "Попробовать Brain",
       "backHome": "← На главную"
     }
+  },
+  "socialProof": {
+    "label": "НАМ ДОВЕРЯЮТ",
+    "title": "Используется командами и разработчиками по всему миру",
+    "starOnGithub": "Звезда на GitHub",
+    "openSource": "100% Бесплатно и с открытым кодом",
+    "languages": "Поддержка 6 языков",
+    "worksWithLabel": "Работает с каждым крупным AI-агентом"
   }
 }

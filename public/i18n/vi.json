@@ -17,19 +17,18 @@
   },
   "hero": {
     "badge": "33 Skills · Mã nguồn mở · Miễn phí",
+    "headlineStatic": "Xây Sản Phẩm Thật Với AI",
     "typingPhrases": [
-      "Biến Ý Tưởng Thành Sản Phẩm Nhanh Gấp 10 Lần",
-      "Ship Code Production Chỉ Trong Vài Phút",
-      "Xây Dựng SaaS Không Cần Dev Team",
-      "Thiết Kế UX Chuẩn Chỉ Bằng 1 Câu Chat",
-      "Tạo Tài Liệu Chuyên Nghiệp Tự Động"
+      "Không Cần Biết Code",
+      "Ship Trong Vài Phút",
+      "Từ Ý Tưởng Đến Sản Phẩm"
     ],
-    "subtitle": "Bộ kỹ năng AI Agent đưa bạn từ ý tưởng → thiết kế → code → triển khai,\nkhông cần biết lập trình. Chỉ cần chat bằng tiếng Việt.",
-    "ctaPrimary": "Dùng thử miễn phí",
+    "subtitle": "33 kỹ năng AI chuyên biệt xử lý thiết kế, code, testing, và triển khai.\nBạn chỉ cần chat. Không cần biết lập trình.",
+    "ctaPrimary": "Bắt Đầu Xây — Miễn Phí",
     "ctaSecondary": "Xem Demo",
     "trustNoCreditCard": "✓ Không cần thẻ tín dụng",
     "trust30Seconds": "✓ Cài đặt trong 30 giây",
-    "trustMultilingual": "✓ Hỗ trợ đa ngôn ngữ"
+    "trustOpenSource": "✓ 100% Mã nguồn mở"
   },
   "features": {
     "label": "TẠI SAO CHỌN CODY MASTER",
@@ -92,7 +91,7 @@
       {
         "title": "Cài đặt",
         "description": "Thêm marketplace rồi install plugin.\nXong trong 30 giây.",
-        "code": "claude plugin install cody-master@cody-master"
+        "code": "claude plugin install cm@codymaster"
       },
       {
         "title": "Chat",
@@ -957,23 +956,31 @@
         "label": "Kỹ năng AI"
       },
       {
-        "number": "17",
-        "label": "Framework"
+        "number": "7+",
+        "label": "AI Agent hỗ trợ"
       },
       {
-        "number": "48",
-        "label": "Luật UX"
+        "number": "6",
+        "label": "Ngôn ngữ"
       },
       {
-        "number": "1032+",
-        "label": "Design Pattern"
+        "number": "100%",
+        "label": "Miễn phí & Mã nguồn mở"
       }
     ]
   },
+  "socialProof": {
+    "label": "ĐƯỢC TIN TƯỞNG BỞI BUILDERS",
+    "title": "Được sử dụng bởi các đội nhóm và builders solo toàn cầu",
+    "starOnGithub": "Star trên GitHub",
+    "openSource": "100% Miễn phí & Mã nguồn mở",
+    "languages": "Hỗ trợ 6 ngôn ngữ",
+    "worksWithLabel": "Tương thích mọi AI agent lớn"
+  },
   "cta": {
-    "title": "Bạn chỉ cách sản phẩm đầu tiên\nmột cuộc chat",
-    "subtitle": "Miễn phí. Không cần thẻ. Bắt đầu trong 30 giây.",
-    "button": "Bắt đầu ngay"
+    "title": "Ngừng lên kế hoạch. Bắt đầu xây dựng.\nÝ tưởng của bạn xứng đáng tồn tại.",
+    "subtitle": "Miễn phí. Không cần thẻ. Cài đặt trong 30 giây. Bắt đầu xây ngay.",
+    "button": "Bắt Đầu Xây — Miễn Phí"
   },
   "footer": {
     "links": [
@@ -1659,7 +1666,7 @@
           {
             "title": "Chạy onboarding tour",
             "description": "Mở Claude Code và chạy tour tương tác để xem tất cả 33 kỹ năng.",
-            "code": "/cody-master:demo",
+            "code": "/cm:demo",
             "output": "🚀 Chào mừng đến CodyMaster! Cùng khám phá 33 kỹ năng..."
           }
         ]
@@ -1970,6 +1977,8 @@
     "title": "Sinh ra từ nỗi đau thật,\nkhông phải bản kế hoạch kinh doanh",
     "subtitle": "Mỗi skill trong bộ kit này tồn tại vì một vấn đề thực sự đã tốn thời gian và nước mắt thật.",
     "quote": "\"Tôi là Product Manager với hơn 10 năm kinh nghiệm. Tôi không biết code. AI cho tôi 100 cánh tay — nhưng thiếu kỷ luật, 100 cánh tay đó tạo ra hỗn loạn.\"",
+    "authorName": "Tody Le",
+    "authorRole": "Product Manager · Người tạo CodyMaster",
     "cards": [
       {
         "icon": "palette",
@@ -2165,7 +2174,22 @@
       "punchline": "33 skills. Mỗi skill là một bài học. Mỗi bài học là một đêm không ngủ.\n\nVà bây giờ, bạn không cần phải trải qua những đêm đó nữa."
     },
     "cta": "Bắt đầu hành trình của bạn →",
-    "backHome": "← Về trang chủ"
+    "backHome": "← Về trang chủ",
+    "brand": {
+      "title": "Why \"CodyMaster\"?",
+      "wordplay": {
+        "label": "The Wordplay",
+        "desc": "\"Cody\" comes from <strong>\"Code Đi\"</strong> (Cô-đi) — Vietnamese for <strong>\"Go code!\"</strong> An invitation to just start building, stop overthinking."
+      },
+      "heart": {
+        "label": "The Heart",
+        "desc": "Cody is also the name of the creator's child. This kit carries personal meaning — every skill was crafted with the same care and dedication as raising a child."
+      },
+      "philosophy": {
+        "label": "The Philosophy",
+        "desc": "<strong>CodyMaster = Code like an expert.</strong> Not just write code, but master the craft — with discipline, testing, planning, and quality at every step."
+      }
+    }
   },
   "docsPage": {
     "meta": {
