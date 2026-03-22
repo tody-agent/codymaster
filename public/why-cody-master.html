@@ -306,9 +306,19 @@
           <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
         </div>
       </li>
-      <li><a href="demo.html" class="nav__link" data-i18n="nav.demo">Demo</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.whyUs">Why Us</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
+          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
+          <a href="demo.html" class="nav-dropdown__item"><span class="lang-flag">▶️</span> <span data-i18n="nav.demo">Demo</span></a>
+        </div>
+      </li>
       <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
-      <li><a href="story.html" class="nav__link" data-i18n="nav.story">Our Story</a></li>
       <li>
         <div class="lang-switcher" id="lang-switcher">
           <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
@@ -570,20 +580,35 @@
   </section>
 
   <!-- ═══════════╗ FOOTER ╔═══════════ -->
-  <footer class="footer">
+  <footer class="footer" id="siteFooter">
     <div class="footer__grid">
       <div class="footer__brand">
         <span class="footer__logo">⚡ CodyMaster Kit</span>
         <p class="footer__tagline" data-i18n="footer.tagline">Turn Ideas into Products 10x Faster</p>
       </div>
-      <div class="footer__links">
-        <a href="index.html" data-i18n="footer.home">Home</a>
-        <a href="skills.html" data-i18n="footer.skills">Skills</a>
-        <a href="start.html" data-i18n="footer.start">Get Started</a>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.product">Product</h4>
+        <a href="brain.html" data-i18n="nav.brain">Brain</a>
+        <a href="skills.html" data-i18n="nav.skills">Skills</a>
+        <a href="start.html" data-i18n="nav.getStarted">Get Started</a>
+        <a href="/docs/" data-i18n="nav.docs">Docs</a>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.whyUs">Why Us</h4>
+        <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
+        <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
+        <a href="story.html" data-i18n="nav.story">Our Story</a>
+        <a href="demo.html" data-i18n="nav.demo">Demo</a>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
+        <a href="https://github.com/tody-agent/codymaster" target="_blank">GitHub</a>
+        <a href="#" target="_blank">Discord</a>
       </div>
     </div>
     <div class="footer__bottom">
       <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
+      <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
     </div>
   </footer>
 

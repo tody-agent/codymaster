@@ -16,6 +16,8 @@
   </a>
 </p>
 
+![CodyMaster Kanban Dashboard](assets/images/dashboard.png)
+
 ### 🌟 If CodyMaster helps you ship faster, please [Star this repository](https://github.com/tody-agent/codymaster)! 🌟
 
 </div>
@@ -83,6 +85,27 @@ cp -r skills/* .kiro/skills/
 - **Working Memory**: Context naturally persists across coding sessions using `CONTINUITY.md`. Your AI remembers its mistakes.
 - **Defense-in-Depth**: Includes pre-commit secret scanning, strict git worktree isolation, and safe multi-gate deployment pipelines.
 
+  <details>
+  <summary><b>View Defense Architecture</b></summary>
+
+  ```mermaid
+  flowchart LR
+      subgraph Pre-commit
+          A(cm-secret-shield) --> B(cm-identity-guard)
+      end
+      subgraph Execution
+          B --> C(cm-git-worktrees)
+      end
+      subgraph Distribution
+          C --> D(cm-test-gate)
+          D --> E(cm-safe-deploy)
+      end
+      style A fill:#e84118,stroke:#c23616,color:#fff
+      style B fill:#0097e6,stroke:#00a8ff,color:#fff
+      style C fill:#4cd137,stroke:#44bd32,color:#fff
+  ```
+  </details>
+
 ---
 
 ## 🧰 The 33-Skill Arsenal 
@@ -119,7 +142,24 @@ After installing, try the interactive onboarding:
 | Extract UX & Design a UI | `/cody-master:ux` |
 | Setup Marketing Tracking | `/cody-master:track` |
 
-**The Vibe Coding Flow:** `Your Idea → /plan → /build (TDD) → /review → /deploy → Production`
+**The Vibe Coding Flow:**
+
+```mermaid
+graph LR
+    A["💡 Your Idea"] --> B{"cm-planning"}
+    B --> C["📝 Spec / Arch"]
+    C --> D{"cm-tdd"}
+    D --> E["🧪 Tests"]
+    E --> F["💻 Code"]
+    F --> G{"cm-debugging"}
+    G -- "Fix bugs" --> E
+    G -- "Pass" --> H{"cm-quality-gate"}
+    H --> I["🚀 Deploy"]
+    classDef ai fill:#2f3640,stroke:#fbc531,stroke-width:2px,color:#fff;
+    classDef default fill:#353b48,stroke:#dcdde1,stroke-width:1px,color:#fff;
+    class A,C,E,F,I default;
+    class B,D,G,H ai;
+```
 
 ---
 
