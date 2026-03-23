@@ -141,14 +141,14 @@
       },
       {
         "icon": "🛡️",
-        "number": "33+",
+        "number": "34+",
         "label": "AI 专家技能",
         "sub": "PM, Design, Dev, QA, Deploy"
       }
     ],
     "skills": {
       "label": "🧠 您的 AI 团队",
-      "title": "33+ 专家技能，零会议",
+      "title": "34+ 专家技能，零会议",
       "sub": "8 人团队所需的每一项技能——自动化、纪律严明、24/7 全天候可用。",
       "list": [
         {
@@ -214,7 +214,7 @@
     },
     "cta": {
       "title": "停止循环冲刺。<br><span>开始以光速构建。</span>",
-      "sub": "免费。开源。33+ skills。一个人。无限产出。",
+      "sub": "免费。开源。34+ skills。一个人。无限产出。",
       "btn": "立即开始 →",
       "links": [
         "与 AI coding tools 比较 →",
@@ -354,7 +354,7 @@
   "vs_others_auto_53": "🔧 技能总计",
   "vs_others_auto_54": "~10-15",
   "vs_others_auto_55": "~3-5",
-  "vs_others_auto_56": "33+ 项技能",
+  "vs_others_auto_56": "34+ 项技能",
   "vs_others_auto_57": "📝 文档自动化",
   "vs_others_auto_58": "✓ cm-dockit",
   "vs_others_auto_59": "🖥️ 多平台",
@@ -473,5 +473,30 @@
   "vs_scrum_auto_6": "🦞",
   "vs_scrum_auto_7": "💡",
   "vs_scrum_auto_8": "🤺",
-  "vs_scrum_auto_9": "🔄"
+  "vs_scrum_auto_9": "🔄",
+  "vsHeroTitle1": "站在",
+  "vsHeroTitle2": "巨人的肩膀上",
+  "vsHeroSub": "CodyMaster并非凭空产生。我们向那些开拓人工智能辅助编程的杰出创作者学习。这是我们的一份诚实对比——以及我们衷心的感谢。",
+  "vsGratitudeLink1": "UI/UX Pro Max Skill",
+  "vsGratitudeLink2": " 向我们展示了专用UX技能的强大。它直接启发了我们的cm-ux-master，融合了48条UX法则、Harvester v4和设计系统生成能力。",
+  "vsBoltBadge": "⚡ vs ⚙️ · 详细对比",
+  "vsBoltTitle1": "CodyMaster vs",
+  "vsBoltTitle2": "Bolt.new",
+  "vsBoltSub": "Bolt在浏览器中运行完整的Node.js环境。CodyMaster在任何AI代理中运行33+项专业技能。两者都能构建应用——但方式截然不同。",
+  "vsBoltIntroTitle": "⚙️ 什么是Bolt.new？",
+  "vsBoltIntroPrefix": "Bolt.new 是一个",
+  "vsBoltIntroStrong": "基于浏览器的AI IDE",
+  "vsBoltIntroSuffix": "，由 StackBlitz 开发。它使用 WebContainers 在浏览器标签页中运行完整的 Node.js 环境。与 AI (Claude 3.5 Sonnet) 对话，查看实时预览，并进行部署——无需安装任何软件。",
+  "vsGoogleBadge": "⚡ vs 🧪 · 详细对比",
+  "vsGoogleTitle1": "CodyMaster vs",
+  "vsGoogleTitle2": "AI Studio",
+  "vsGoogleSub": "Google AI Studio 是 Gemini 模型的前沿阵地。CodyMaster 是终端技能套件，将 Gemini 的强大功能（以及其他 33+ 项技能）引入您的本地开发流程。",
+  "vsLovableBadge": "⚡ vs 💖 · 详细对比",
+  "vsLovableTitle1": "CodyMaster vs",
+  "vsLovableTitle2": "Lovable",
+  "vsLovableSub": "Lovable 是一款强大的全栈 AI 应用构建器。CodyMaster 是面向 AI 代理（Gemini、Claude、Cursor）的专业技能套件。两者都构建产品——但服务于不同的用户。",
+  "vsReplitBadge": "⚡ vs 🔵 · 详细对比",
+  "vsReplitTitle1": "CodyMaster vs",
+  "vsReplitTitle2": "Replit Agent",
+  "vsReplitSub": "Replit 是一个完整的云端开发平台。CodyMaster 是一款运行在本地计算机、您喜爱的 IDE 中的专业技能套件。两者都赋能您的构建——但它们存在于不同的环境中。"
 }

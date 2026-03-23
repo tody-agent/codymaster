@@ -1,6 +1,6 @@
 ---
 title: "cm-ux-master"
-description: "Ultimate UI/UX design intelligence with Harvester v4 (AI-powered visual extraction), 48 UX Laws, 37 Design Tests, UX Heuristics (Nielsen + Krug), Figma & Google"
+description: "Ultimate UI/UX design intelligence with Harvester (AI-powered visual extraction), 48 UX Laws, 37 Design Tests, UX Heuristics (Nielsen + Krug), Google Stitch & Pencil.dev integration, Component Generator, and BM25 search across 16 domains."
 keywords: ["cm-ux-master", "cody master", "ai skill"]
 robots: "index, follow"
 ---
@@ -9,13 +9,13 @@ robots: "index, follow"
 
 [← Back to Skills Library](./index.md)
 
-# 🚀 CM UX Master v4 — Ultimate Design Intelligence Platform
+# 🚀 CM UX Master — Ultimate Design Intelligence Platform
 
 **AI-powered design system platform combining:**
 - 🎯 **Harvester v4** — One-command design system extraction from any website
 - 🤖 **MCP Server** — Native integration with Claude/Cursor/AI assistants  
 - 🎨 **Figma Bridge** — Bidirectional sync with Figma Tokens Studio
-- ✨ **Google Stitch** — AI design generation with extracted tokens
+- ✨ **Google Stitch & Pencil.dev** — AI design generation with extracted tokens
 - 📐 **48 UX Laws** — Behavioral psychology-based design rules
 - ✅ **37 Design Tests** — TDD for design validation
 - 💻 **Component Generator** — React/Vue/Semi Design components
@@ -239,322 +239,42 @@ python3 scripts/search.py "<keyword>" --stack html-tailwind
 
 Available: `html-tailwind`, `react`, `nextjs`, `astro`, `vue`, `nuxtjs`, `nuxt-ui`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`, `angular`, `htmx`, `electron`, `tauri`
 
-### Step 7: Extract Design System from Existing Site (NEW)
+### Step 7: Extract Design System
 
-Analyze an existing website and extract its design tokens:
-
-```bash
-# From URL
-python3 scripts/extractor.py --url "https://example.com" -p "BrandName" --generate-skill --persist
-
-# From local project directory
-python3 scripts/extractor.py --directory ./src -p "MyApp" --generate-skill --persist
-
-# From CSS files
-python3 scripts/extractor.py --css style.css theme.css -p "MyProject" --format tailwind
-```
-
-Outputs: `EXTRACTED.md`, `BRAND-SKILL.md`, `tailwind.config.js`, `design-tokens.css`
-
-### Step 8: Multi-Project Registry + Multi-Page Harvest (v2) 🔒 PRO
-
-Manage multiple design system projects and scan multiple pages:
-
-```bash
-# Create a project
-python3 scripts/project_registry.py --create "Haravan" --url "https://showcase.myharavan.com"
-
-# List all projects
-python3 scripts/project_registry.py --list
-
-# Get project info
-python3 scripts/project_registry.py --get haravan
-
-# Add page harvest to project
-python3 scripts/project_registry.py --add-harvest haravan -i harvest.json
-
-# Token mapper with project (auto-saves to output/<slug>/)
-python3 scripts/token_mapper.py -i harvest.json --project haravan
-
-# Merge multiple harvest files
-python3 scripts/harvest_session.py page1.json page2.json page3.json -o merged.json --confidence
-```
-
-### Step 9: Design System Documentation Site (v2) 🔒 PRO
-
-Generate a self-contained HTML documentation page:
-
-```bash
-# From project
-python3 scripts/design_doc_generator.py --project haravan --open
-
-# From harvest file directly
-python3 scripts/design_doc_generator.py -i harvest.json -o design-system.html
-```
-
-Output includes: color palette swatches, typography specimens, geometry preview, component samples, token reference table, usage instructions, dark mode toggle.
-
-### Step 10: Harvester v3 — Comprehensive Design System Extraction 🔒 PRO
-
-Upgrade from basic extraction (~20 tokens) to comprehensive design system capture (50-80+ tokens):
-
-```bash
-# 1. Inject harvester_v3.js in browser console on target page
-#    Copy-paste scripts/harvester_v3.js → browser DevTools console → Enter
-#    Copy the JSON output
-
-# 2. Save raw harvest
-#    Paste JSON into output/<project>/harvest-v3-raw.json
-
-# 3. Map to Semi tokens (auto-detects v3 format)
-python3 scripts/token_mapper.py -i output/<project>/harvest-v3-raw.json --project <slug>
-
-# 4. Generate design system doc with all 9 sections
-python3 scripts/design_doc_generator.py --project <slug> --open
-```
-
-**v3 extracts:**
-- Color histogram + semantic colors (primary, success, warning, danger, info, link, disabled)
-- Neutral scale (10-shade gray ramp: 50→900)
-- Expanded surfaces (app, card, sidebar, header, modal, hover, selected, input)
-- Typography scale (heading+body families, 5-8 sizes, 4 weights)
-- Spacing system (padding/margin/gap → 8-step scale)
-- Border system (width, color, radius sm/md/lg/xl/full)
-- Shadow system (sm/md/lg classified by blur depth)
-- Layout metrics (sidebar width, header height, content max-width, grid gap)
-- Component blueprints (button, input, card, table, nav_item, tag)
-- Page type detection (dashboard/settings/report/orders)
+> [!IMPORTANT]
+> The Harvester extraction functionality has been moved to the specialized **`cm-design-system`** skill.
+> When the user requests to extract, copy, or build a design system from a source, you MUST delegate to `cm-design-system`.
 
 ---
 
-## Free vs Pro
+## All Features Included
 
-| Feature | Free | Pro |
-|---------|------|-----|
-| Design Rules | 1032+ ✅ | 1032+ ✅ |
-| UX Laws | 48 ✅ | 48 ✅ |
-| Design Tests | 37 ✅ | 37 ✅ |
-| UI Styles | 67 ✅ | 67 ✅ |
-| Platform Support | 6 ✅ | 6 ✅ |
-| Framework Stacks | 17 ✅ | 17 ✅ |
-| Animation Patterns | 30 ✅ | 30 ✅ |
-| Responsive Patterns | 25 ✅ | 25 ✅ |
-| Accessibility (WCAG 2.2) | 25 ✅ | 25 ✅ |
-| Device Profiles | 20 ✅ | 20 ✅ |
-| Code Templates | 4 ✅ | 4 ✅ |
-| **Harvester** | **v3 (80+ tokens)** | **v4 (120+ tokens)** 🔥 |
-| Color Histogram | ❌ | ✅ |
-| Semantic Colors | ❌ | ✅ |
-| Neutral Scale | ❌ | ✅ |
-| Component Blueprints | ❌ | ✅ |
-| Typography Scale | ❌ | ✅ |
-| Shadow/Border System | ❌ | ✅ |
-| Layout Metrics | ❌ | ✅ |
-| Token Mapper | ❌ | ✅ 🔥 |
-| Design Doc Generator | ❌ | ✅ |
-| Project Registry | ❌ | ✅ |
-| Multi-harvest Merge | ❌ | ✅ |
-| Semi MCP Bridge | ❌ | ✅ |
-
----
-
-## 🚀 NEW: Harvester v4 — AI-Powered Visual Extraction
-
-**Harvester v4** là bản nâng cấp toàn diện với khả năng thu thập design system tự động thông qua browser automation và tái hiện kiến trúc chuẩn Semi Design.
-
-### Tính năng mới v4
-
-| Feature | v3 | v4 |
-|---------|----|----|
-| Tokens | ~80 | **~120+** |
-| Browser Automation | ❌ | ✅ Auto-open |
-| Multi-page Crawl | ❌ | ✅ |
-| AI Visual Analysis | ❌ | ✅ Psychology |
-| Component Blueprints | Basic | ✅ Advanced |
-| Auto Component Gen | ❌ | ✅ React/Semi/Vue |
-| Design System Index | ❌ | ✅ Semi-architecture |
-| CLI Integration | ❌ | ✅ Unified CLI |
-
-### Quick Start v4
-
-```bash
-# 1. Quick workflow - Extract + Index + Generate
-cd /Users/todyle/Library/Mobile\ Documents/com~apple~CloudDocs/Code/AgentSkills/ux-master
-python3 scripts/harvester_cli.py quick https://example.com --framework semi
-
-# 2. Multi-page harvest with component generation
-python3 scripts/harvester_cli.py extract \
-  --url https://example.com \
-  --crawl --max-pages 5 \
-  --generate --framework react-tailwind
-
-# 3. Index existing harvest
-python3 scripts/harvester_cli.py index \
-  --input output/harvest.json \
-  --name "MyApp" --figma
-
-# 4. Generate components from design system
-python3 scripts/harvester_cli.py generate \
-  --input output/design-system.json \
-  --all --framework semi
-```
-
-### Harvester v4 Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│  Harvester v4 Workflow                                      │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐  │
-│  │   Extract    │───→│    Index     │───→│   Generate   │  │
-│  │  (Browser)   │    │ (Semi Arch)  │    │ (Components) │  │
-│  └──────────────┘    └──────────────┘    └──────────────┘  │
-│         │                   │                   │           │
-│    harvester_v4.js    design_system_      component_       │
-│    harvester_browser.py  indexer.py       generator.py      │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Step 11: Harvester v4 — Full Automation 🔥
-
-#### A. Browser Automation
-
-```bash
-# Single URL harvest
-python3 scripts/harvester_browser.py --url https://example.com --output ./output
-
-# With mobile viewport
-python3 scripts/harvester_browser.py --url https://example.com --mobile
-
-# Multi-page crawl
-python3 scripts/harvester_browser.py --url https://example.com --crawl --max-pages 10
-
-# Interactive mode
-python3 scripts/harvester_browser.py --interactive
-```
-
-**v4 extracts (120+ tokens):**
-- Visual element detection & classification
-- Color psychology analysis
-- Layout pattern recognition (grid, flex, sidebar)
-- Typography hierarchy with font pairing
-- Component relationship mapping
-- Animation & transition detection
-- Accessibility audit (contrast, labels)
-
-#### B. Design System Indexing (Semi Architecture)
-
-```bash
-# Index single harvest
-python3 scripts/design_system_indexer.py \
-  --input harvest.json \
-  --name "MyApp" \
-  --output ./design-system
-
-# Merge multiple harvests
-python3 scripts/design_system_indexer.py \
-  --multi ./harvests/page1.json ./harvests/page2.json \
-  --name "MergedSystem"
-
-# Generate Figma tokens
-python3 scripts/design_system_indexer.py \
-  --input harvest.json \
-  --name "MyApp" \
-  --figma
-```
-
-**Kiến trúc Semi Design:**
-- Color System: Primary, Secondary, Tertiary, Neutrals (50-900)
-- Background: bg-0 → bg-4
-- Fill: fill-0 → fill-2  
-- Text: text-0 → text-3
-- Semantic: success, warning, danger, info, link
-- Spacing: none → super-loose (10 steps)
-- Border: radius xs → full
-- Shadow: sm → elevated → lg
-
-#### C. Component Generation
-
-```bash
-# Generate all components
-python3 scripts/component_generator.py \
-  --input design-system.json \
-  --all --output ./components
-
-# Generate specific component
-python3 scripts/component_generator.py \
-  --input design-system.json \
-  --component button \
-  --framework semi
-
-# Supported frameworks
-# --framework react-tailwind (default)
-# --framework semi (Semi Design)
-# --framework vue (Vue 3 + Tailwind)
-```
-
-**Generated components:**
-- Button (primary, secondary, outline, ghost, danger)
-- Card (default, bordered, elevated)
-- Input (text, password, textarea, select)
-- Badge/Tag (default, success, warning, danger, info)
-- Avatar (circle, square, sizes)
-- Alert (info, success, warning, error)
-- Modal/Dialog
-- Table
-- Tabs
-- Dropdown
-- Tooltip
-- Divider
-- Skeleton
-- Empty state
-
-#### D. Unified CLI
-
-```bash
-# Full workflow
-python3 scripts/harvester_cli.py quick https://example.com
-
-# Individual phases
-python3 scripts/harvester_cli.py extract --url https://example.com --generate
-python3 scripts/harvester_cli.py index --input harvest.json --name "MyApp"
-python3 scripts/harvester_cli.py generate --input design-system.json --all
-```
-
-### v4 Output Structure
-
-```
-output/
-├── harvest-raw.json           # Raw extraction data
-├── design-system.json         # Indexed design system
-├── design-system.css          # CSS variables (Semi spec)
-├── figma-tokens.json          # Figma Tokens Studio
-├── component-blueprints.json  # Component specs
-├── screenshot-desktop.png     # Visual reference
-├── screenshot-mobile.png      # Mobile viewport
-└── components/                # Generated components
-    ├── button/
-    │   ├── component.tsx
-    │   └── index.ts
-    ├── card/
-    ├── input/
-    └── ...
-```
-
-### Requirements
-
-```bash
-# Install Playwright for browser automation
-pip install playwright
-playwright install chromium
-
-# Or all browsers
-playwright install
-```
-
-> **Upgrade to Pro:** [ux-master.dev/pro](https://ux-master.dev/pro) — One-time payment, lifetime access, all future updates.
+| Category | Count |
+|----------|-------|
+| Design Rules | 1032+ |
+| UX Laws | 48 |
+| Design Tests | 37 |
+| UI Styles | 67 |
+| Platform Support | 6 |
+| Framework Stacks | 17 |
+| Animation Patterns | 30 |
+| Responsive Patterns | 25 |
+| Accessibility (WCAG 2.2) | 25 |
+| Device Profiles | 20 |
+| Code Templates | 4 |
+| **Harvester** | **120+ design tokens** |
+| Color Histogram | ✅ |
+| Semantic Colors | ✅ |
+| Neutral Scale | ✅ |
+| Component Blueprints | ✅ |
+| Typography Scale | ✅ |
+| Shadow/Border System | ✅ |
+| Layout Metrics | ✅ |
+| Token Mapper | ✅ |
+| Design Doc Generator | ✅ |
+| Project Registry | ✅ |
+| Multi-harvest Merge | ✅ |
+| Semi MCP Bridge | ✅ |
 
 ---
 

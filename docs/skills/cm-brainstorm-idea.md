@@ -1,6 +1,6 @@
 ---
 title: "cm-brainstorm-idea"
-description: "Strategic analysis gate for existing products — multi-dimensional evaluation (tech, product, design, business) using Design Thinking + 9 Windows (TRIZ) + Double"
+description: "Strategic analysis gate for existing products — multi-dimensional evaluation (tech, product, design, business) using Design Thinking + 9 Windows (TRIZ) + Double Diamond."
 keywords: ["cm-brainstorm-idea", "cody master", "ai skill"]
 robots: "index, follow"
 ---
@@ -22,7 +22,7 @@ robots: "index, follow"
 - User jumps straight into hard/complex tasks without analysis
 - Post `cm-project-bootstrap` — product exists, needs improvement
 - Feature requests that could be solved in fundamentally different ways
-- "Nên làm gì tiếp?" / "Cải tiến gì?" / "Enhancement" / "Initiative"
+- "What should we do next?" / "What to improve?" / "Enhancement" / "Initiative"
 
 **Skip when:**
 - Simple bug fixes (use `cm-debugging`)
@@ -41,8 +41,8 @@ User requests complex task
 
 When downstream skills detect an unqualified complex request, they should REDIRECT here:
 ```
-cm-planning detects ambiguity → "Chưa rõ vấn đề. Chạy cm-brainstorm-idea trước."
-cm-execution gets vague plan  → "Plan thiếu context. Quay lại cm-brainstorm-idea."
+cm-planning detects ambiguity → "Problem not clear. Run cm-brainstorm-idea first."
+cm-execution gets vague plan  → "Plan lacks context. Go back to cm-brainstorm-idea."
 ```
 
 ---
@@ -61,6 +61,20 @@ Phase 5: HANDOFF      (Bridge to cm-planning)   → Package for downstream skill
 ### Phase 1: DISCOVER — Scan & Empathize
 
 > **Goal:** Understand the current state of the product from all angles.
+
+#### 1a-pre. Load Working Memory (cm-continuity)
+
+Before scanning the codebase, load relevant context:
+
+```
+1. Read `.cm/CONTINUITY.md` → understand where we left off
+2. Read `.cm/memory/decisions.json` → filter by scope matching this initiative
+   → Avoid re-analyzing decisions already made
+3. Read `.cm/memory/learnings.json` → filter by `scope: global` or relevant module
+   → Apply known prevention patterns to this analysis
+```
+
+> **Token savings:** If decisions.json already has architecture decisions for this module, skip re-analysis and reference the existing decision in your output.
 
 #### 1a. Codebase Scan
 
@@ -84,7 +98,7 @@ Read and map the existing system:
 
 🔍 SIZE CHECK (auto — triggers cm-deep-search):
   IF docs/ > 50 files OR source > 200 files:
-    → Suggest: "Project này khá lớn. Xem cm-deep-search để setup semantic search với qmd."
+    → Suggest: "This project is quite large. See cm-deep-search to setup semantic search with qmd."
     → Non-blocking: continue Phase 1 regardless of user response
 ```
 
@@ -94,11 +108,11 @@ Ask targeted questions to understand intent:
 
 ```
 📋 DISCOVERY QUESTIONS:
-1. Sản phẩm hiện tại phục vụ ai? (Who are the users?)
-2. Pain point lớn nhất đang gặp là gì? (Biggest pain point?)
-3. Mục tiêu kinh doanh kế tiếp? (Next business goal?)
-4. Có constraint nào về tech/budget/timeline không? (Constraints?)
-5. Đã thử giải pháp nào rồi? (What's been tried?)
+1. Who does the current product serve? (Target users?)
+2. What is the biggest pain point right now? (Biggest pain point?)
+3. What is the next business goal? (Next business goal?)
+4. Are there any tech/budget/timeline constraints? (Constraints?)
+5. What solutions have already been tried? (What's been tried?)
 ```
 
 #### 1c. Multi-Dimensional Current State
@@ -240,20 +254,20 @@ For each option, document:
 ```markdown
 ## 🎯 Recommendation
 
-**Chọn Option [X]: [Name]**
+**Choose Option [X]: [Name]**
 
-### Tại sao chọn Option X:
+### Why Option X:
 1. [Strongest reason — tied to qualified problem]
 2. [Second reason — tied to constraint/context]
 3. [Third reason — tied to future evolution]
 
-### Tại sao KHÔNG chọn các option khác:
+### Why NOT the other options:
 - **Option [Y]:** [specific deal-breaker]
 - **Option [Z]:** [specific deal-breaker]
 
 ### Quick-win suggestion:
-Nếu muốn thấy kết quả nhanh, có thể bắt đầu với [subset of Option X]
-trước khi triển khai toàn bộ.
+If you want to see results quickly, you can start with [subset of Option X]
+before implementing the full solution.
 ```
 
 ---
@@ -267,12 +281,12 @@ trước khi triển khai toàn bộ.
 After Phase 4 recommendation is clear, ALWAYS ask:
 
 ```markdown
-🎨 **Muốn xem trước thiết kế không?**
+🎨 **Want to preview the design?**
 
-Phương án [X] đã được đề xuất. Bạn có muốn tạo UI concept trước khi lên kế hoạch chi tiết?
+Option [X] has been recommended. Would you like to create a UI concept before detailed planning?
 
-1. ✅ **Có** — Tạo preview nhanh để hình dung rõ hơn
-2. ⏭️ **Không** — Đi thẳng vào planning
+1. ✅ **Yes** — Quick preview to visualize better
+2. ⏭️ **No** — Go straight to planning
 ```
 
 #### Smart Tool Detection
@@ -290,8 +304,8 @@ Check available MCP tools:
 │ Stitch only  │ Pencil only  │ Both available                │
 ├──────────────┼──────────────┼───────────────────────────────┤
 │ Use Stitch   │ Use Pencil   │ Ask user preference:          │
-│ (quick       │ (detailed    │ - "Nhanh" → Stitch            │
-│  concept)    │  control)    │ - "Kiểm soát" → Pencil        │
+│ (quick       │ (detailed    │ - "Quick" → Stitch             │
+│  concept)    │  control)    │ - "Control" → Pencil           │
 │              │              │ - Default: Stitch (faster)    │
 └──────────────┴──────────────┴───────────────────────────────┘
 ```
@@ -309,7 +323,7 @@ Check available MCP tools:
 #### Execution Flow
 
 ```
-User says "Có" (Yes to preview):
+User says "Yes" (Yes to preview):
   1. Detect available tools (Stitch / Pencil / both)
   2. If both → ask preference or auto-select based on context
   3. Delegate to cm-ui-preview with brainstorm context:
@@ -320,7 +334,7 @@ User says "Có" (Yes to preview):
      → ✏️ Edit → Iterate on preview
      → ❌ Change option → Go back to Phase 4, pick different option
 
-User says "Không" (Skip preview):
+User says "No" (Skip preview):
   → Proceed directly to Phase 5 (Handoff)
 ```
 
@@ -376,6 +390,21 @@ Date: [date]
 - cm-ux-master: [design considerations]
 - cm-execution: [suggested execution mode]
 ```
+
+#### 5b. Record Decision & Update Memory (cm-continuity)
+
+After writing `brainstorm-output.md`, ALWAYS:
+
+1. **Write to `.cm/memory/decisions.json`:**
+   - `decision`: The recommended option (e.g., "Use TRIZ-Parallel Pipeline for cm-execution")
+   - `rationale`: Why this option won over alternatives
+   - `scope`: `module:{name}` or `global`
+   - `status`: `active`
+
+2. **Update `.cm/CONTINUITY.md`:**
+   - Active Goal → updated to reflect the chosen direction
+   - Just Completed → "Brainstorm analysis for [initiative]: recommended Option [X]"
+   - Next Actions → "Run cm-planning for [recommended option]"
 
 ---
 

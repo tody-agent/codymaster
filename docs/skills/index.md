@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Complete catalog of all 33 Cody Master skills organized by domain. Every skill is open source — full documentation visible."
+description: "Complete catalog of all 34 Cody Master skills organized by domain. Every skill is open source — full documentation visible."
 keywords: ["skills", "ai agent", "cody master", "skill library"]
 robots: "index, follow"
 ---
@@ -8,7 +8,7 @@ robots: "index, follow"
 # Skills Library
 
 > **Quick Reference**
-> - **Total Skills**: 33 across 6 domains
+> - **Total Skills**: 34 across 6 domains
 > - **Format**: Universal — works on any AI coding platform
 > - **Open Source**: Full SKILL.md visible for every skill
 > - **License**: MIT
@@ -48,8 +48,8 @@ Skills for planning, design, documentation, and bootstrapping.
 |-------|-------------|-----------|
 | **cm-brainstorm-idea** | Strategic analysis gate: 9 Windows (TRIZ) + Double Diamond → 2-3 qualified options for existing products. | [View →](./cm-brainstorm-idea.md) |
 | **cm-planning** | Brainstorm intent → write implementation plan → coordinate execution. Required before complex tasks. | [View →](./cm-planning.md) |
-| **cm-ux-master** | Ultimate design intelligence: 48 UX Laws, 37 Design Tests, Figma & Stitch integration, BM25 search. | [View →](./cm-ux-master.md) |
-| **cm-ui-preview** | AI-powered UI generation via Google Stitch MCP. Stitch Build Loop + Prompt Optimization pipeline. | [View →](./cm-ui-preview.md) |
+| **cm-ux-master** | Ultimate design intelligence: 48 UX Laws, 37 Design Tests, Stitch & Pencil.dev integration, BM25 search. | [View →](./cm-ux-master.md) |
+| **cm-ui-preview** | AI-powered UI generation via Google Stitch & Pencil.dev MCP. Dual engine: quick concepts (Stitch) or precise control (Pencil). | [View →](./cm-ui-preview.md) |
 | **cm-dockit** | Knowledge systematization engine — generates tech docs, SOPs, API references as VitePress or Markdown. | [View →](./cm-dockit.md) |
 | **cm-readit** | Web audio engine: TTS reader (SpeechSynthesis), pre-recorded MP3 player, Voice CRO trigger system. | [View →](./cm-readit.md) |
 | **cm-project-bootstrap** | Full project setup from Day 0 — design system, CI, staging, i18n, SEO, AGENTS.md, 8-gate pipeline. | [View →](./cm-project-bootstrap.md) |
@@ -77,7 +77,7 @@ Skills that coordinate workflows, manage memory, and enable autonomous execution
 | **cm-skill-index** | Progressive disclosure index — 90% token savings on skill discovery. Always loaded at session start. | [View →](./cm-skill-index.md) |
 | **cm-skill-mastery** | Meta-skill: when to invoke which skill, how to create new skills, skill discovery guide. | [View →](./cm-skill-mastery.md) |
 | **cm-deep-search** | Semantic search via qmd — BM25 + Vector + LLM re-ranking for large codebases (>200 src files). | [View →](./cm-deep-search.md) |
-| **cm-how-it-work** | Complete vibe coding guide — 6 phases, 33 skills, 9 golden rules. Read this first if you're new. | [View →](./cm-how-it-work.md) |
+| **cm-how-it-work** | Complete vibe coding guide — 6 phases, 34 skills, 9 golden rules. Read this first if you're new. | [View →](./cm-how-it-work.md) |
 | **cm-start** | Start the full CM workflow from objective → plan → TDD implement → verify → done. | — |
 | **cm-dashboard** | Render Kanban board from `cm-tasks.json` — visual TO DO / IN PROGRESS / DONE view. | — |
 | **cm-status** | Ultra-concise 1-2 sentence progress: what's done, what's next, what's blocked. | — |

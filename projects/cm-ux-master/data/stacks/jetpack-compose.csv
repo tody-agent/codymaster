@@ -31,7 +31,7 @@ No,Category,Guideline,Description,Do,Don't,Code Good,Code Bad,Severity,Docs URL
 30,Layout,Avoid fillMaxSize by default,fillMaxSize may break parent constraints,Use exact size,Fill max everywhere,Constraint-aware size,Overfilled layout,Medium,
 31,Layout,Avoid intrinsic size unless necessary,Intrinsic measurement is expensive,Explicit sizing,IntrinsicSize.Min,Predictable layout,Expensive measure,High,https://developer.android.com/jetpack/compose/layout/intrinsics
 32,Layout,Use Arrangement and Alignment APIs,Declare layout intent explicitly,Use Arrangement / Alignment,Manual spacing hacks,Declarative spacing,Magic spacing,High,
-33,Layout,Extract reusable layout patterns,Repeated layouts should be shared,Create layout composable,Copy-paste layouts,Reusable scaffold,Duplicated layout,High,
+34,Layout,Extract reusable layout patterns,Repeated layouts should be shared,Create layout composable,Copy-paste layouts,Reusable scaffold,Duplicated layout,High,
 34,Theming,No hardcoded text style,Use typography,MaterialTheme.typography,Hardcode sp,Scalable,Inconsistent,Medium,
 35,Testing,Stateless UI testing,Composable easy to test,Pass state,Hidden state,Testable,Hard test,High,https://developer.android.com/jetpack/compose/testing
 36,Testing,Use testTag,Stable UI selectors,Modifier.testTag,Find by text,Stable tests,Flaky tests,Medium,

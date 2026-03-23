@@ -141,14 +141,14 @@
       },
       {
         "icon": "🛡️",
-        "number": "33+",
+        "number": "34+",
         "label": "Kỹ Năng AI Experrt",
         "sub": "Có đủ: PM, Design, Dev, QA, Deploy"
       }
     ],
     "skills": {
       "label": "🧠 TEAM AI CỦA BẠN",
-      "title": "Hơn 33 Phẩm Chất Kỹ Năng, 0 Buổi Họp",
+      "title": "Hơn 34 Phẩm Chất Kỹ Năng, 0 Buổi Họp",
       "sub": "Tất cả kỹ năng mà 1 team Scrum 8 người cần có — nay được tự động hóa, quy trình siêu chuẩn, làm 24/7.",
       "list": [
         {
@@ -354,7 +354,7 @@
   "vs_others_auto_53": "🔧 Tổng số Kỹ năng",
   "vs_others_auto_54": "~10-15",
   "vs_others_auto_55": "~3-5",
-  "vs_others_auto_56": "33+ Kỹ năng",
+  "vs_others_auto_56": "34+ Kỹ năng",
   "vs_others_auto_57": "📝 Tự động hóa Tài liệu",
   "vs_others_auto_58": "✓ cm-dockit",
   "vs_others_auto_59": "🖥️ Đa nền tảng",
@@ -473,5 +473,30 @@
   "vs_scrum_auto_6": "🦞",
   "vs_scrum_auto_7": "💡",
   "vs_scrum_auto_8": "🤺",
-  "vs_scrum_auto_9": "🔄"
+  "vs_scrum_auto_9": "🔄",
+  "vsHeroTitle1": "Đứng trên",
+  "vsHeroTitle2": "Vai những Người khổng lồ",
+  "vsHeroSub": "CodyMaster không sinh ra từ hư vô. Chúng tôi đã học hỏi từ những nhà sáng tạo kiệt xuất - những người tiên phong trong lĩnh vực lập trình hỗ trợ bởi AI. Dưới đây là một bảng so sánh khách quan — và lời tri ân chân thành nhất từ chúng tôi.",
+  "vsGratitudeLink1": "UI/UX Pro Max Skill",
+  "vsGratitudeLink2": " đã cho chúng tôi thấy sức mạnh của một kỹ năng UX chuyên dụng. Nó trực tiếp truyền cảm hứng cho cm-ux-master của chúng tôi với 48 Luật UX, Harvester v4 và khả năng tạo ra hệ thống thiết kế.",
+  "vsBoltBadge": "⚡ vs ⚙️ · So sánh chi tiết",
+  "vsBoltTitle1": "CodyMaster vs",
+  "vsBoltTitle2": "Bolt.new",
+  "vsBoltSub": "Bolt chạy toàn bộ môi trường Node.js trên trình duyệt của bạn. CodyMaster vận hành hơn 33 kỹ năng chuyên nghiệp trong bất kỳ tác nhân AI nào. Cả hai đều xây dựng ứng dụng — nhưng theo những cách hoàn toàn khác nhau.",
+  "vsBoltIntroTitle": "⚙️ Bolt.new là gì?",
+  "vsBoltIntroPrefix": "Bolt.new là một",
+  "vsBoltIntroStrong": "IDE trình duyệt hỗ trợ AI",
+  "vsBoltIntroSuffix": " bởi StackBlitz. Nó sử dụng WebContainers để chạy toàn bộ môi trường Node.js trong tab trình duyệt của bạn. Trò chuyện với AI (Claude 3.5 Sonnet), xem bản xem trước trực tiếp và triển khai — tất cả mà không cần cài đặt bất cứ thứ gì.",
+  "vsGoogleBadge": "⚡ vs 🧪 · So sánh chi tiết",
+  "vsGoogleTitle1": "CodyMaster vs",
+  "vsGoogleTitle2": "AI Studio",
+  "vsGoogleSub": "Google AI Studio là tiền tuyến cho các mô hình Gemini. CodyMaster là bộ kỹ năng dòng lệnh mang sức mạnh của Gemini (và hơn 33 kỹ năng khác) vào quy trình phát triển địa phương của bạn.",
+  "vsLovableBadge": "⚡ vs 💖 · So sánh chi tiết",
+  "vsLovableTitle1": "CodyMaster vs",
+  "vsLovableTitle2": "Lovable",
+  "vsLovableSub": "Lovable là một trình xây dựng ứng dụng full-stack AI mạnh mẽ. CodyMaster là bộ kỹ năng chuyên nghiệp cho các tác nhân AI (Gemini, Claude, Cursor). Cả hai đều xây dựng sản phẩm — nhưng phục vụ các đối tượng người dùng khác nhau.",
+  "vsReplitBadge": "⚡ vs 🔵 · So sánh chi tiết",
+  "vsReplitTitle1": "CodyMaster vs",
+  "vsReplitTitle2": "Replit Agent",
+  "vsReplitSub": "Replit là một nền tảng phát triển dựa trên đám mây hoàn chỉnh. CodyMaster là một bộ kỹ năng chuyên nghiệp chạy trực tiếp trên máy của bạn, trong IDE yêu thích của bạn. Cả hai đều giúp bạn xây dựng ứng dụng — nhưng chúng tồn tại trong những môi trường khác nhau."
 }

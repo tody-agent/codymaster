@@ -19,7 +19,7 @@
   },
   "meta": {
     "title": "CodyMaster Kit — Biến ý tưởng thành sản phẩm nhanh gấp 10 lần",
-    "description": "33 AI Agent Skills giúp bạn đi từ ý tưởng đến thiết kế, lập trình và triển khai — không cần biết code."
+    "description": "34 AI Agent Skills giúp bạn đi từ ý tưởng đến thiết kế, lập trình và triển khai — không cần biết code."
   },
   "nav": {
     "features": "Tính năng",
@@ -37,7 +37,8 @@
     "demo": "Demo",
     "brain": "Thông thái",
     "playbook": "Sổ Tay",
-    "cli": "CLI"
+    "cli": "CLI",
+    "faq": "FAQ"
   },
   "socialProof": {
     "label": "ĐƯỢC TIN TƯỞNG BỞI BUILDERS",
@@ -50,7 +51,7 @@
   "stats": {
     "items": [
       {
-        "number": "33",
+        "number": "34",
         "label": "Kỹ năng AI"
       },
       {

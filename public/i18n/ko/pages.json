@@ -891,6 +891,39 @@
     "finalButton": "33개 스킬 탐색",
     "platforms": [
       {
+        "id": "google-antigravity",
+        "label": "Google Antigravity",
+        "emoji": "🚀",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ 원라이너 — 자동 감지, 다국어 지원",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh)"
+        },
+        "steps": [
+          {
+            "title": "Antigravity 접속",
+            "description": "Antigravity는 Google DeepMind의 고급 에이전트 코딩 환경입니다.",
+            "items": [
+              "Antigravity가 활성화된 환경을 엽니다",
+              "최신 버전의 도구를 사용 중인지 확인하세요",
+              "CodyMaster 스킬과 네이티브로 호환됩니다"
+            ]
+          },
+          {
+            "title": "34개 전체 스킬 설치",
+            "description": "한 번의 명령으로 TDD, 디버깅, 기획, UX 등 모든 것을 설치합니다.",
+            "code": "npx codymaster add --all --platform gemini",
+            "output": "✓ 34개 스킬이 .gemini/antigravity/skills/에 설치되었습니다\n📦 cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "설치 확인",
+            "description": "스킬이 자동으로 활성화됩니다. 스킬을 언급하여 시작해 보세요.",
+            "code": "@cm-planning Design a new feature",
+            "note": "언제든지 @cm-status를 언급하여 현재 진행 상황을 확인하세요."
+          }
+        ]
+      },
+      {
         "id": "클로드 코드",
         "label": "Claude 코드",
         "emoji": "🟣",
@@ -1402,5 +1435,16 @@
         "metricLabel": "탑재 스탠바"
       }
     ]
-  }
+  },
+  "playbookBadge": "📖 운영 가이드",
+  "playbookTitlePart1": "스킬 ",
+  "playbookTitlePart2": "플레이북",
+  "playbookSub": "\"X를 하고 싶은데 — 어떤 스킬을 사용해야 하나요?\" 이 페이지가 모든 시나리오에 대한 답을 제공합니다.",
+  "playbookRule1Suffix": ") push/deploy 전에 확인. 매번. 반드시.",
+  "cliBadge": "$ 터미널",
+  "cliTitlePart1": "",
+  "cliTitlePart2": "CLI ",
+  "cliTitlePart3": "파워 가이드",
+  "cliSub": "터미널 명령어로 생각하는 개발자를 위해. 모든 슬래시 명령어, 모든 워크플로우를 한 곳에.",
+  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm"
 }

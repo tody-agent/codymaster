@@ -1,10 +1,15 @@
-<!DOCTYPE html><html lang="en" data-lang="en"><head>
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Why CodyMaster? — Stop Vibe Coding, Start Building</title>
-  <meta name="description" content="See the difference between raw AI coding and disciplined AI development. CodyMaster turns chaos into production-ready code.">
+  <meta name="description"
+    content="See the difference between raw AI coding and disciplined AI development. CodyMaster turns chaos into production-ready code.">
   <meta property="og:title" content="Why CodyMaster Kit?">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="css/kit.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
@@ -19,7 +24,13 @@
       padding: 120px 24px 60px;
       overflow: hidden;
     }
-    .why-hero__content { position: relative; z-index: 1; max-width: 750px; }
+
+    .why-hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 750px;
+    }
+
     .why-hero__title {
       font-family: var(--font-display);
       font-size: clamp(2rem, 5vw, 3.2rem);
@@ -28,12 +39,14 @@
       margin-bottom: 16px;
       line-height: 1.2;
     }
+
     .why-hero__title span {
       background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .why-hero__sub {
       font-size: 1.15rem;
       color: var(--text-secondary);
@@ -49,11 +62,13 @@
       padding: 40px 24px;
       text-align: center;
     }
+
     .why-intro__text {
       font-size: 1.1rem;
       color: var(--text-secondary);
       line-height: 1.7;
     }
+
     .why-intro__text strong {
       color: var(--text-primary);
     }
@@ -64,20 +79,24 @@
       margin: 0 auto;
       padding: 0 24px 60px;
     }
+
     .why-comparison__header {
       text-align: center;
       margin-bottom: 32px;
     }
+
     .why-comparison__grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
+
     .why-col {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
+
     .why-col__title {
       font-family: var(--font-display);
       font-size: 1.3rem;
@@ -86,12 +105,14 @@
       padding: 16px;
       border-radius: var(--radius-md) var(--radius-md) 0 0;
     }
+
     .why-col--without .why-col__title {
       color: #FCA5A5;
       background: rgba(239, 68, 68, 0.08);
       border: 1px solid rgba(239, 68, 68, 0.15);
       border-bottom: none;
     }
+
     .why-col--with .why-col__title {
       color: var(--accent-lime);
       background: rgba(196, 248, 42, 0.08);
@@ -107,21 +128,26 @@
       transition: all 0.3s;
       position: relative;
     }
+
     .why-card:hover {
       transform: translateY(-3px);
       border-color: var(--border-hover);
     }
+
     .why-col--without .why-card {
       border-left: 3px solid rgba(239, 68, 68, 0.4);
     }
+
     .why-col--with .why-card {
       border-left: 3px solid rgba(196, 248, 42, 0.4);
     }
+
     .why-card__icon {
       font-size: 1.5rem;
       margin-bottom: 8px;
       display: block;
     }
+
     .why-card__title {
       font-family: var(--font-display);
       font-size: 1rem;
@@ -129,11 +155,13 @@
       color: var(--text-primary);
       margin-bottom: 8px;
     }
+
     .why-card__desc {
       font-size: 0.9rem;
       color: var(--text-secondary);
       line-height: 1.6;
     }
+
     .why-col--with .why-card__skill {
       font-family: var(--font-mono);
       font-size: 0.75rem;
@@ -151,12 +179,14 @@
       margin: 0 auto;
       padding: 60px 24px;
     }
+
     .why-table {
       width: 100%;
       border-collapse: collapse;
       border-radius: var(--radius-md);
       overflow: hidden;
     }
+
     .why-table thead th {
       font-family: var(--font-display);
       font-size: 0.9rem;
@@ -167,39 +197,62 @@
       border-bottom: 2px solid var(--border-subtle);
       color: var(--text-primary);
     }
+
     .why-table thead th:first-child {
       text-align: left;
     }
+
     .why-table thead th:nth-child(2) {
       color: var(--text-muted);
     }
+
     .why-table thead th:nth-child(3) {
       color: var(--accent-lime);
     }
+
     .why-table tbody td {
       padding: 14px 20px;
       border-bottom: 1px solid var(--border-subtle);
       font-size: 0.9rem;
       color: var(--text-secondary);
     }
+
     .why-table tbody td:first-child {
       font-weight: 600;
       color: var(--text-primary);
     }
+
     .why-table tbody td:nth-child(2),
     .why-table tbody td:nth-child(3) {
       text-align: center;
     }
+
     .why-table tbody tr {
       background: transparent;
       transition: background 0.2s;
     }
+
     .why-table tbody tr:hover {
       background: rgba(255, 255, 255, 0.02);
     }
-    .check { color: var(--accent-lime); font-weight: 700; font-size: 1.1rem; }
-    .cross { color: var(--accent-red); font-weight: 700; font-size: 1.1rem; }
-    .partial { color: var(--cta-orange); font-weight: 600; font-size: 0.85rem; }
+
+    .check {
+      color: var(--accent-lime);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .cross {
+      color: var(--accent-red);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .partial {
+      color: var(--cta-orange);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
 
     /* ── Impact Stats ── */
     .why-stats {
@@ -210,6 +263,7 @@
       margin: 0 auto;
       padding: 60px 24px;
     }
+
     .why-stat {
       text-align: center;
       padding: 32px 16px;
@@ -218,10 +272,12 @@
       border-radius: var(--radius-md);
       transition: all 0.3s;
     }
+
     .why-stat:hover {
       border-color: var(--accent-lime);
       transform: translateY(-4px);
     }
+
     .why-stat__number {
       font-family: var(--font-display);
       font-size: 2.2rem;
@@ -233,6 +289,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .why-stat__label {
       color: var(--text-secondary);
       font-size: 0.85rem;
@@ -248,6 +305,7 @@
       align-items: center;
       gap: 16px;
     }
+
     .why-cta__title {
       font-family: var(--font-display);
       font-size: clamp(1.5rem, 3vw, 2rem);
@@ -255,40 +313,55 @@
       color: var(--text-primary);
       margin-bottom: 8px;
     }
+
     .why-cta__sub {
       color: var(--text-secondary);
       margin-bottom: 16px;
       font-size: 1.05rem;
     }
+
     .why-cta__link {
       color: var(--text-muted);
       font-size: 0.9rem;
     }
+
     .why-cta__link:hover {
       color: var(--text-primary);
     }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      .why-comparison__grid { grid-template-columns: 1fr; }
-      .why-stats { grid-template-columns: repeat(2, 1fr); }
-      .why-table { font-size: 0.8rem; }
+      .why-comparison__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-table {
+        font-size: 0.8rem;
+      }
+
       .why-table thead th,
-      .why-table tbody td { padding: 10px 12px; }
+      .why-table tbody td {
+        padding: 10px 12px;
+      }
     }
   </style>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-JCHYEW645C');
-</script>
+    gtag('config', 'G-JCHYEW645C');
+  </script>
 
 </head>
+
 <body>
 
   <!-- ═══════════╗ NAVIGATION ╔═══════════ -->
@@ -374,14 +447,20 @@
     <div class="hero__orb hero__orb--1"></div>
     <div class="hero__orb hero__orb--2"></div>
     <div class="why-hero__content">
-      <h1 class="why-hero__title"><span data-i18n="home.why_cody_master_auto_16">Stop Vibe Coding.</span><br><span data-i18n="home.why_cody_master_auto_16">Start Building.</span></h1>
-      <p class="why-hero__sub" data-i18n="home.why_cody_master_auto_17">AI can write code. But without discipline, it writes chaos. Here's why a skill kit changes everything.</p>
+      <h1 class="why-hero__title"><span data-i18n="home.whyHeroTitle1">Stop Vibe Coding.</span><br><span
+          data-i18n="home.whyHeroTitle2">Start Building.</span></h1>
+      <p class="why-hero__sub" data-i18n="home.whyHeroSub">AI can write code. But without discipline, it writes chaos.
+        Here's why a skill kit changes everything.</p>
     </div>
   </section>
 
   <!-- ═══════════╗ INTRO ╔═══════════ -->
   <section class="why-intro reveal" id="whyIntro">
-    <p class="why-intro__text"><span data-i18n="home.why_cody_master_auto_18">Everyone's using AI to code now.</span><strong data-i18n="home.why_cody_master_auto_16">The question isn't whether AI can code — it's whether the code it writes actually works in production.</strong><span data-i18n="home.why_cody_master_auto_17">Without guardrails, AI is a brilliant junior developer who never tests, never remembers context, deploys secrets to GitHub, and breaks what it built yesterday.</span></p>
+    <p class="why-intro__text"><span data-i18n="home.whyIntroPrefix">Everyone's using AI to code now. </span><strong
+        data-i18n="home.whyIntroStrong">The question isn't whether AI can code — it's whether the code it writes
+        actually works in production. </strong><span data-i18n="home.whyIntroSuffix">Without guardrails, AI is a
+        brilliant junior developer who never tests, never remembers context, deploys secrets to GitHub, and breaks what
+        it built yesterday.</span></p>
   </section>
 
   <!-- ═══════════╗ WITHOUT vs WITH ╔═══════════ -->
@@ -399,37 +478,43 @@
         <div class="why-card reveal">
           <span class="why-card__icon">🐛</span>
           <h3 class="why-card__title">No Tests, No Safety Net</h3>
-          <p class="why-card__desc">AI writes code but never tests it. You deploy, it breaks, you panic. Repeat daily. Every "fix" introduces 3 new bugs.</p>
+          <p class="why-card__desc">AI writes code but never tests it. You deploy, it breaks, you panic. Repeat daily.
+            Every "fix" introduces 3 new bugs.</p>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">🧠</span>
           <h3 class="why-card__title">Zero Memory Between Sessions</h3>
-          <p class="why-card__desc">Ask AI to continue yesterday's work? It has no idea what happened. Re-explain everything. Every. Single. Session.</p>
+          <p class="why-card__desc">Ask AI to continue yesterday's work? It has no idea what happened. Re-explain
+            everything. Every. Single. Session.</p>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">💀</span>
           <h3 class="why-card__title">Spaghetti Architecture</h3>
-          <p class="why-card__desc">AI generates code that works once. But it doesn't follow patterns. No structure. 10,000 lines of unmaintainable mess.</p>
+          <p class="why-card__desc">AI generates code that works once. But it doesn't follow patterns. No structure.
+            10,000 lines of unmaintainable mess.</p>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">🔓</span>
           <h3 class="why-card__title">Secrets Leaked to Git</h3>
-          <p class="why-card__desc">AI hardcodes API keys. You push to GitHub. Your AWS bill hits $10,000 by morning. This happens more than you think.</p>
+          <p class="why-card__desc">AI hardcodes API keys. You push to GitHub. Your AWS bill hits $10,000 by morning.
+            This happens more than you think.</p>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">🎲</span>
           <h3 class="why-card__title">Inconsistent Quality</h3>
-          <p class="why-card__desc">Same prompt, different day, completely different output. No standards. No code review. Just pray and deploy.</p>
+          <p class="why-card__desc">Same prompt, different day, completely different output. No standards. No code
+            review. Just pray and deploy.</p>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">🚀</span>
           <h3 class="why-card__title">Deploy and Hope</h3>
-          <p class="why-card__desc">No deploy pipeline. No rollback. No health checks. You push to production and refresh the page 50 times hoping it works.</p>
+          <p class="why-card__desc">No deploy pipeline. No rollback. No health checks. You push to production and
+            refresh the page 50 times hoping it works.</p>
         </div>
       </div>
 
@@ -440,42 +525,48 @@
         <div class="why-card reveal">
           <span class="why-card__icon">✅</span>
           <h3 class="why-card__title">Tests First, Always</h3>
-          <p class="why-card__desc">TDD is enforced. AI writes the test BEFORE the code. Every feature is verified before it touches your codebase.</p>
+          <p class="why-card__desc">TDD is enforced. AI writes the test BEFORE the code. Every feature is verified
+            before it touches your codebase.</p>
           <span class="why-card__skill">cm-tdd</span>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">🧠</span>
           <h3 class="why-card__title">Persistent Working Memory</h3>
-          <p class="why-card__desc">CONTINUITY.md tracks context across sessions. AI remembers what it did, what went wrong, and never repeats mistakes.</p>
+          <p class="why-card__desc">CONTINUITY.md tracks context across sessions. AI remembers what it did, what went
+            wrong, and never repeats mistakes.</p>
           <span class="why-card__skill">cm-continuity</span>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">🏗️</span>
           <h3 class="why-card__title">Planned Architecture</h3>
-          <p class="why-card__desc">Every feature starts with a plan. Design Thinking analysis. Then implementation. Then verification. Senior engineer standards.</p>
+          <p class="why-card__desc">Every feature starts with a plan. Design Thinking analysis. Then implementation.
+            Then verification. Senior engineer standards.</p>
           <span class="why-card__skill">cm-planning</span>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">🔒</span>
           <h3 class="why-card__title">Secret Shield Protection</h3>
-          <p class="why-card__desc">Pre-commit scanning. Repo-wide detection. Token lifecycle management. Zero secrets will ever reach your repository.</p>
+          <p class="why-card__desc">Pre-commit scanning. Repo-wide detection. Token lifecycle management. Zero secrets
+            will ever reach your repository.</p>
           <span class="why-card__skill">cm-secret-shield</span>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">📊</span>
           <h3 class="why-card__title">Quality Gates at Every Step</h3>
-          <p class="why-card__desc">Evidence-based verification. Blind code review. Security scan. No deploy without proof. No claims without evidence.</p>
+          <p class="why-card__desc">Evidence-based verification. Blind code review. Security scan. No deploy without
+            proof. No claims without evidence.</p>
           <span class="why-card__skill">cm-quality-gate</span>
         </div>
 
         <div class="why-card reveal">
           <span class="why-card__icon">🚀</span>
           <h3 class="why-card__title">8-Gate Deploy Pipeline</h3>
-          <p class="why-card__desc">Lint → test → build → security → preview → smoke test → deploy → health check. Automatic rollback on failure.</p>
+          <p class="why-card__desc">Lint → test → build → security → preview → smoke test → deploy → health check.
+            Automatic rollback on failure.</p>
           <span class="why-card__skill">cm-safe-deploy</span>
         </div>
       </div>
@@ -573,7 +664,7 @@
       <span class="why-stat__label">Secret Leaks</span>
     </div>
     <div class="why-stat">
-      <span class="why-stat__number">33+</span>
+      <span class="why-stat__number">34+</span>
       <span class="why-stat__label">Specialized Skills</span>
     </div>
     <div class="why-stat">
@@ -603,6 +694,7 @@
         <a href="skills.html" data-i18n="nav.skills">Skills</a>
         <a href="start.html" data-i18n="nav.getStarted">Get Started</a>
         <a href="/docs/" data-i18n="nav.docs">Docs</a>
+        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.whyUs">Why Us</h4>
@@ -640,4 +732,7 @@
   </script>
 
 
-</body></html>
+  <script src="js/ga-events.js"></script>
+</body>
+
+</html>

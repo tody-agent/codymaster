@@ -1,23 +1,29 @@
-<!DOCTYPE html><html lang="en" data-lang="en"><head>
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skill Library — CodyMaster Kit</title>
-  <meta name="description" content="Explore 33 specialized AI Agent Skills covering ideation, design, content, code, security, and deployment.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <meta name="description"
+    content="Explore 34 specialized AI Agent Skills covering ideation, design, content, code, security, and deployment.">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="css/kit.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-JCHYEW645C');
-</script>
+    gtag('config', 'G-JCHYEW645C');
+  </script>
 
 </head>
+
 <body>
 
   <!-- ═══════ NAV ═══════ -->
@@ -100,19 +106,25 @@
     <div class="bg-mesh bg-mesh--cyan"></div>
     <div class="bg-grid--dots"></div>
     <div class="bg-particles">
-      <div class="bg-particle"></div><div class="bg-particle"></div><div class="bg-particle"></div>
-      <div class="bg-particle"></div><div class="bg-particle"></div><div class="bg-particle"></div>
+      <div class="bg-particle"></div>
+      <div class="bg-particle"></div>
+      <div class="bg-particle"></div>
+      <div class="bg-particle"></div>
+      <div class="bg-particle"></div>
+      <div class="bg-particle"></div>
     </div>
     <div class="bg-noise"></div>
     <h1 class="skills-hero__title" data-i18n="skillsPage.hero">Explore the Full Skill Library</h1>
-    <p class="skills-hero__sub" data-i18n="skillsPage.heroSub">Every skill is a dedicated AI expert. Search, filter, and discover the right skill for your task.</p>
+    <p class="skills-hero__sub" data-i18n="skillsPage.heroSub">Every skill is a dedicated AI expert. Search, filter, and
+      discover the right skill for your task.</p>
   </section>
 
   <!-- ═══════ SEARCH + FILTERS ═══════ -->
   <section class="skills-controls">
     <div class="skills-search">
       <i data-lucide="search" class="skills-search__icon"></i>
-      <input type="text" id="skillSearch" class="skills-search__input" data-i18n-placeholder="skillsPage.searchPlaceholder" placeholder="Search skills...">
+      <input type="text" id="skillSearch" class="skills-search__input"
+        data-i18n-placeholder="skillsPage.searchPlaceholder" placeholder="Search skills...">
     </div>
     <div class="skills-categories" id="skillCategories">
       <!-- Populated by JS -->
@@ -145,15 +157,18 @@
 
         <div class="skill-modal__story">
           <div class="story-section">
-            <h3><span data-i18n="skills.skills_auto_16">📖</span><span data-i18n="skillsPage.modalWhat">What is it?</span></h3>
+            <h3><span data-i18n="skills.skills_auto_16">📖</span><span data-i18n="skillsPage.modalWhat">What is
+                it?</span></h3>
             <p id="modalWhat"></p>
           </div>
           <div class="story-section">
-            <h3><span data-i18n="skills.skills_auto_16">🎯</span><span data-i18n="skillsPage.modalWhen">When to use?</span></h3>
+            <h3><span data-i18n="skills.skills_auto_16">🎯</span><span data-i18n="skillsPage.modalWhen">When to
+                use?</span></h3>
             <p id="modalWhen"></p>
           </div>
           <div class="story-section">
-            <h3><span data-i18n="skills.skills_auto_16">💡</span><span data-i18n="skillsPage.modalWhy">Why use it?</span></h3>
+            <h3><span data-i18n="skills.skills_auto_16">💡</span><span data-i18n="skillsPage.modalWhy">Why use
+                it?</span></h3>
             <p id="modalWhy"></p>
           </div>
           <div class="story-section">
@@ -174,7 +189,8 @@
 
       <!-- STICKY FOOTER -->
       <div class="skill-modal__sticky-footer">
-        <a href="start.html" class="btn btn--primary skill-modal__cta" data-i18n="skillsPage.modalCta">Get Started with this Skill</a>
+        <a href="start.html" class="btn btn--primary skill-modal__cta" data-i18n="skillsPage.modalCta">Get Started with
+          this Skill</a>
       </div>
     </div>
   </div>
@@ -192,6 +208,7 @@
         <a href="skills.html" data-i18n="nav.skills">Skills</a>
         <a href="start.html" data-i18n="nav.getStarted">Get Started</a>
         <a href="/docs/" data-i18n="nav.docs">Docs</a>
+        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.whyUs">Why Us</h4>
@@ -216,4 +233,7 @@
   <script src="js/skills-page.js"></script>
 
 
-</body></html>
+  <script src="js/ga-events.js"></script>
+</body>
+
+</html>

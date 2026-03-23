@@ -1,6 +1,6 @@
 ---
 title: "Cody Master — Official Documentation"
-description: "Complete documentation for Cody Master Kit: architecture, user guides, API reference, and the full 33-skill library. From installation to autonomous deployment."
+description: "Complete documentation for Cody Master Kit: architecture, user guides, API reference, and the full 34-skill library. From installation to autonomous deployment."
 keywords: ["cody master", "ai agent skills", "vibe coding", "documentation", "AI coding framework"]
 robots: "index, follow"
 ---
@@ -10,7 +10,7 @@ robots: "index, follow"
 > **Quick Reference**
 > - **Version**: 3.4.0
 > - **Type**: Universal AI Agent Skills Framework
-> - **Skills**: 33 skills in 6 domains
+> - **Skills**: 34 skills in 6 domains
 > - **Platforms**: Claude Code, Gemini/Antigravity, Cursor, Windsurf, Cline, OpenCode, and more
 
 ## What is Cody Master?
@@ -55,7 +55,7 @@ gemini extensions install https://github.com/tody-agent/codymaster
 | 🏗️ **Architecture** | System design, ADR, tech stack | [View →](./architecture.md) |
 | 📊 **Data Flow** | RARV cycle, data flow, skill chain | [View →](./data-flow.md) |
 | 🚀 **Deployment** | Installation, configuration, deployment | [View →](./deployment.md) |
-| 🧩 **Skills Library** | All 33 skills — grouped, described, open source | [View →](./skills/) |
+| 🧩 **Skills Library** | All 34 skills — grouped, described, open source | [View →](./skills/) |
 | 📖 **User Guides (SOP)** | Step-by-step for every feature | [View →](./sop/) |
 | 🔌 **API Reference** | REST API + CLI commands | [View →](./api/) |
 
@@ -76,7 +76,7 @@ gemini extensions install https://github.com/tody-agent/codymaster
 
 ```mermaid
 graph TB
-    CM["🧠 Cody Master<br/>33 Skills"]
+    CM["🧠 Cody Master<br/>34 Skills"]
     CM --> E["🔧 Engineering"]
     CM --> O["⚙️ Operations"]
     CM --> P["🎨 Product"]

@@ -54,17 +54,17 @@
 
   // ── Valid Transition Map ──────────────────
   const VALID_TRANSITIONS = {
-    'backlog':      ['in-progress'],
-    'in-progress':  ['review', 'done', 'backlog'],
-    'review':       ['done', 'in-progress'],
-    'done':         ['backlog'],
+    'backlog': ['in-progress'],
+    'in-progress': ['review', 'done', 'backlog'],
+    'review': ['done', 'in-progress'],
+    'done': ['backlog'],
   };
 
   const TRANSITION_LABELS = {
     'in-progress': { label: '▶ Start', icon: '▶' },
-    'review':      { label: '→ Review', icon: '🔍' },
-    'done':        { label: '✓ Done', icon: '✅' },
-    'backlog':     { label: '← Backlog', icon: '📋' },
+    'review': { label: '→ Review', icon: '🔍' },
+    'done': { label: '✓ Done', icon: '✅' },
+    'backlog': { label: '← Backlog', icon: '📋' },
   };
 
   // ── State ──────────────────────────────────────────
@@ -399,7 +399,7 @@
       <div class="card-actions">
         ${dispatchBtn}
         <button class="card-action-btn edit" title="Edit" data-id="${task.id}"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M11.5 1.5l3 3L5 14H2v-3L11.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="card-action-btn delete" title="Delete" data-id="${task.id}"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m2 0v9.33a1.33 1.33 0 01-1.34 1.34H4.67a1.33 1.33 0 01-1.34-1.34V4h9.34z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="card-action-btn delete" title="Delete" data-id="${task.id}"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M5.34 4V2.67a1.34 1.34 0 011.34-1.34h2.66a1.34 1.34 0 011.34 1.34V4m2 0v9.33a1.34 1.34 0 01-1.34 1.34H4.67a1.34 1.34 0 01-1.34-1.34V4h9.34z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div></div>
       ${task.description ? `<p class="card-description">${esc(task.description)}</p>` : ''}
       ${meta}
@@ -746,40 +746,40 @@
     // Close modals
     const modalClose = document.getElementById('modal-close');
     if (modalClose) modalClose.addEventListener('click', closeModal);
-    
+
     const cancelBtn = document.getElementById('btn-cancel');
     if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
-    
+
     if (modalOverlay) {
       modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
     }
 
     const deployClose = document.getElementById('deploy-modal-close');
     if (deployClose) deployClose.addEventListener('click', closeDeployModal);
-    
+
     const deployCancel = document.getElementById('deploy-cancel');
     if (deployCancel) deployCancel.addEventListener('click', closeDeployModal);
-    
+
     if (deployModalOverlay) {
       deployModalOverlay.addEventListener('click', e => { if (e.target === deployModalOverlay) closeDeployModal(); });
     }
 
     const changelogClose = document.getElementById('cl-modal-close') || document.getElementById('changelog-modal-close');
     if (changelogClose) changelogClose.addEventListener('click', closeChangelogModal);
-    
+
     const changelogCancel = document.getElementById('cl-cancel') || document.getElementById('changelog-cancel');
     if (changelogCancel) changelogCancel.addEventListener('click', closeChangelogModal);
-    
+
     if (changelogModalOverlay) {
       changelogModalOverlay.addEventListener('click', e => { if (e.target === changelogModalOverlay) closeChangelogModal(); });
     }
 
     const deleteClose = document.getElementById('delete-close') || document.getElementById('delete-modal-close');
     if (deleteClose) deleteClose.addEventListener('click', closeDeleteModal);
-    
+
     const deleteCancel = document.getElementById('delete-cancel');
     if (deleteCancel) deleteCancel.addEventListener('click', closeDeleteModal);
-    
+
     if (deleteOverlay) {
       deleteOverlay.addEventListener('click', e => { if (e.target === deleteOverlay) closeDeleteModal(); });
     }
@@ -1046,7 +1046,7 @@
   // Event listeners for Dispatch Modal
   if (dispatchClose) dispatchClose.addEventListener('click', closeDispatchModal);
   if (dispatchDoneBtn) dispatchDoneBtn.addEventListener('click', closeDispatchModal);
-  
+
   if (copyPromptBtn) copyPromptBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(dispatchPrompt.textContent)
       .then(() => showToast('success', 'Prompt copied to clipboard!'))

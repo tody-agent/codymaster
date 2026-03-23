@@ -31,7 +31,7 @@ No,Category,Guideline,Description,Do,Don't,Code Good,Code Bad,Severity,Docs URL
 30,Images,Use resizeMode,Control image scaling,resizeMode cover contain,Stretch images,"resizeMode=""cover""",No resizeMode,Low,
 31,Forms,Use controlled inputs,State-controlled form fields,value + onChangeText,Uncontrolled inputs,<TextInput value={text} onChangeText={setText} />,<TextInput defaultValue={text} />,Medium,
 32,Forms,Handle keyboard,Manage keyboard visibility,KeyboardAvoidingView,Content hidden by keyboard,"<KeyboardAvoidingView behavior=""padding"">",No keyboard handling,High,https://reactnative.dev/docs/keyboardavoidingview
-33,Forms,Use proper keyboard types,Appropriate keyboard for input,keyboardType for input type,Default keyboard for all,"keyboardType=""email-address""","keyboardType=""default"" for email",Low,
+34,Forms,Use proper keyboard types,Appropriate keyboard for input,keyboardType for input type,Default keyboard for all,"keyboardType=""email-address""","keyboardType=""default"" for email",Low,
 34,Touch,Use Pressable,Modern touch handling,Pressable for touch interactions,TouchableOpacity for new code,<Pressable onPress={} />,<TouchableOpacity onPress={} />,Low,https://reactnative.dev/docs/pressable
 35,Touch,Provide touch feedback,Visual feedback on press,Ripple or opacity change,No feedback on press,android_ripple={{ color: 'gray' }},No press feedback,Medium,
 36,Touch,Set hitSlop for small targets,Increase touch area,hitSlop for icons and small buttons,Tiny touch targets,hitSlop={{ top: 10 bottom: 10 }},44x44 with no hitSlop,Medium,

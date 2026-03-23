@@ -372,6 +372,28 @@ fi
 echo "✅ Smoke test passed (HTTP $STATUS)"
 ```
 
+### Post-Deploy: Memory Update (cm-continuity)
+
+**On SUCCESS:**
+```
+Update `.cm/CONTINUITY.md`:
+  - Just Completed: "Deployed [commit] to [platform] — all 7 gates passed"
+  - Set currentPhase: "verified"
+```
+
+**On FAILURE at any gate:**
+```
+Write to `.cm/memory/learnings.json`:
+  - error: Which gate failed and the error output
+  - cause: Root cause analysis (not just "gate N failed")
+  - prevention: Specific check to add or process to follow
+  - scope: "global" (deploy issues affect the whole project)
+  - ttl: 30, reinforceCount: 0, status: "active"
+
+Update `.cm/CONTINUITY.md`:
+  - Active Blockers: "Deploy blocked at Gate N — [reason]"
+```
+
 ---
 
 ## Composing the Deploy Script
@@ -473,6 +495,7 @@ Create `.agents/workflows/deploy.md`.
 | `cm-safe-i18n` | Adding i18n-specific gates |
 | `cm-terminal` | Monitoring gate commands |
 | `cm-identity-guard` | Gate 0 verifies deploy identity |
+| `cm-continuity` | Post-deploy: record success/failure learnings to memory |
 
 ## The Bottom Line
 

@@ -75,7 +75,7 @@ Browse the full [Skills Library →](../skills/) with complete documentation for
 |-------|--------|---------|
 | 🔧 Engineering | cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review | Code quality & testing |
 | ⚙️ Operations | cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal | Safe deployment & ops |
-| 🎨 Product | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap | Design & documentation |
+| 🎨 Product | cm-planning, cm-brainstorm-idea, cm-ux-master, cm-ui-preview, cm-dockit, cm-readit, cm-project-bootstrap | Strategic analysis, planning & design |
 | 📈 Growth | cm-content-factory, cm-ads-tracker | Marketing & analytics |
 | 🎯 Orchestration | cm-execution, cm-continuity, cm-skill-chain, cm-skill-mastery, cm-safe-i18n | Coordination & automation |
 

@@ -74,6 +74,16 @@ digraph i18n_flow {
 
 ### Phase 0: Pre-Flight Checks (NEW)
 
+#### 0a. Load i18n Learnings (cm-continuity)
+
+Before ANY i18n work, read `.cm/memory/learnings.json` filtered by `scope: "module:i18n"`.
+Apply all active prevention patterns. Known high-value learnings:
+- **L001**: Always run i18n-sync test after each batch extraction
+- **L004**: Use namespace-split architecture (not monolithic JSON)
+- **L005**: Add exclusion list to extraction scripts to prevent junk keys
+
+> If learnings.json has relevant entries, reference them before starting. If no `.cm/` directory exists, proceed but create learnings after this workflow.
+
 Before ANY i18n work:
 
 ```bash
@@ -390,6 +400,13 @@ git checkout main
 git merge i18n/...
 ```
 
+#### Post-completion: Update Memory (cm-continuity)
+
+After final validation passes:
+1. Update `.cm/CONTINUITY.md` → Just Completed: "i18n: [N] strings across [M] languages"
+2. Record any NEW bug patterns to `.cm/memory/learnings.json` with `scope: "module:i18n"`
+3. **Anti-duplicate**: If same pattern as existing learning → reinforce (count++), don't create new entry
+
 ---
 
 ## Quick Reference: Key Naming Convention
@@ -447,6 +464,7 @@ git merge i18n/...
 | `cm-quality-gate` | Final test gate before deploy |
 | `cm-execution` | Phase 4: Parallel language translation |
 | `cm-terminal` | While running audit commands |
+| `cm-continuity` | Phase 0: load i18n learnings; Post-completion: record new patterns |
 
 ## The Bottom Line
 

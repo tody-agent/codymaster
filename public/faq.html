@@ -1,180 +1,310 @@
-<!DOCTYPE html><html lang="en" data-lang="en"><head>
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQ — CodyMaster Kit</title>
-  <meta name="description" content="Frequently asked questions about CodyMaster Kit. Installation, skills, technical details, and licensing.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <meta name="description"
+    content="Frequently asked questions about CodyMaster Kit. Installation, skills, technical details, and licensing.">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="css/kit.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     /* ── FAQ Hero ── */
     .faq-hero {
-      position: relative; min-height: 38vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 40px; overflow: hidden;
+      position: relative;
+      min-height: 38vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 40px;
+      overflow: hidden;
     }
-    .faq-hero__content { position: relative; z-index: 1; max-width: 700px; }
+
+    .faq-hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
     .faq-hero__badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 20px; border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle); background: rgba(20, 20, 32, 0.5);
-      font-size: 13px; font-weight: 500; color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      background: rgba(20, 20, 32, 0.5);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
       margin-bottom: 20px;
     }
+
     .faq-hero__title {
       font-family: var(--font-display);
       font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700; color: var(--text-primary);
-      margin-bottom: 16px; line-height: 1.2;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      line-height: 1.2;
     }
+
     .faq-hero__title span {
       background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .faq-hero__sub {
-      font-size: 1.1rem; color: var(--text-secondary);
-      line-height: 1.6; max-width: 550px; margin: 0 auto;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 550px;
+      margin: 0 auto;
     }
 
     /* ── Search ── */
     .faq-search {
-      max-width: 700px; margin: 0 auto;
-      padding: 0 24px 20px; position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px 20px;
+      position: relative;
     }
+
     .faq-search__input {
-      width: 100%; padding: 16px 20px 16px 48px;
+      width: 100%;
+      padding: 16px 20px 16px 48px;
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
-      background: var(--bg-card); color: var(--text-primary);
-      font-size: 1rem; font-family: var(--font-body);
-      outline: none; transition: border-color 0.3s;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: var(--font-body);
+      outline: none;
+      transition: border-color 0.3s;
     }
+
     .faq-search__input:focus {
       border-color: var(--accent-lime);
     }
-    .faq-search__input::placeholder { color: var(--text-muted); }
-    .faq-search__icon {
-      position: absolute; left: 40px; top: 50%; transform: translateY(-50%);
-      color: var(--text-muted); pointer-events: none;
+
+    .faq-search__input::placeholder {
+      color: var(--text-muted);
     }
+
+    .faq-search__icon {
+      position: absolute;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
     .faq-no-results {
-      text-align: center; padding: 40px 24px;
-      color: var(--text-muted); font-size: 1rem;
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-muted);
+      font-size: 1rem;
       display: none;
     }
 
     /* ── Tabs ── */
     .faq-tabs {
-      max-width: 700px; margin: 0 auto;
+      max-width: 700px;
+      margin: 0 auto;
       padding: 0 24px 32px;
-      display: flex; flex-wrap: wrap; gap: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
+
     .faq-tab {
-      padding: 8px 18px; border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
       border: 1px solid var(--border-subtle);
-      background: transparent; color: var(--text-secondary);
-      font-size: 0.85rem; font-weight: 500; cursor: pointer;
-      transition: all 0.3s; font-family: var(--font-body);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: var(--font-body);
     }
-    .faq-tab:hover { border-color: var(--border-hover); color: var(--text-primary); }
+
+    .faq-tab:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+    }
+
     .faq-tab.active {
-      background: rgba(196, 248, 42, 0.1); border-color: var(--accent-lime);
+      background: rgba(196, 248, 42, 0.1);
+      border-color: var(--accent-lime);
       color: var(--accent-lime);
     }
 
     /* ── Accordion ── */
     .faq-list {
-      max-width: 700px; margin: 0 auto;
+      max-width: 700px;
+      margin: 0 auto;
       padding: 0 24px 60px;
     }
+
     .faq-category-label {
-      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
-      color: var(--accent-lime); letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 24px 0 12px; margin-top: 8px;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-lime);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 24px 0 12px;
+      margin-top: 8px;
     }
+
     .faq-item {
-      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 16px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
       transition: all 0.2s;
+      overflow: hidden;
     }
-    .faq-item.hidden { display: none; }
+
+    .faq-item.hidden {
+      display: none;
+    }
+
     .faq-item__q {
-      display: flex; align-items: center; gap: 12px;
-      padding: 20px 0; cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 24px;
+      cursor: pointer;
       transition: color 0.2s;
     }
-    .faq-item__q:hover { color: var(--accent-lime); }
-    .faq-item__q-text {
-      flex: 1; font-size: 1rem; font-weight: 600;
-      color: var(--text-primary); line-height: 1.5;
+
+    .faq-item__q:hover {
+      color: var(--accent-lime);
     }
+
+    .faq-item__q-text {
+      flex: 1;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
     .faq-item__q-icon {
-      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.04);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text-muted);
-      font-size: 1.1rem; font-weight: 300;
+      font-size: 1.1rem;
+      font-weight: 300;
       transition: all 0.3s;
     }
+
     .faq-item.open .faq-item__q-icon {
       transform: rotate(45deg);
       color: var(--accent-lime);
       background: rgba(196, 248, 42, 0.1);
     }
+
     .faq-item__a {
-      max-height: 0; overflow: hidden;
+      max-height: 0;
+      overflow: hidden;
       transition: max-height 0.4s ease, padding 0.3s ease;
-      padding: 0 0 0 0;
+      padding: 0 24px;
     }
+
     .faq-item.open .faq-item__a {
-      max-height: 400px; padding: 0 0 20px 0;
+      max-height: 400px;
+      padding: 0 24px 24px 24px;
     }
+
     .faq-item__a-text {
-      font-size: 0.92rem; color: var(--text-secondary);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
       line-height: 1.7;
     }
+
     .faq-item__a-text code {
-      font-family: var(--font-mono); font-size: 0.82rem;
-      padding: 2px 8px; border-radius: var(--radius-sm);
-      background: rgba(196, 248, 42, 0.08); color: var(--accent-lime);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      background: rgba(196, 248, 42, 0.08);
+      color: var(--accent-lime);
     }
+
     .faq-item__a-text a {
-      color: var(--accent-lime); text-decoration: underline;
+      color: var(--accent-lime);
+      text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     /* ── CTA ── */
     .faq-cta {
-      text-align: center; padding: 40px 24px 80px;
+      text-align: center;
+      padding: 40px 24px 80px;
     }
+
     .faq-cta__title {
-      font-family: var(--font-display); font-size: 1.3rem;
-      font-weight: 700; color: var(--text-primary); margin-bottom: 12px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
     }
+
     .faq-cta__sub {
-      color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
     }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      .faq-tabs { justify-content: center; }
+      .faq-tabs {
+        justify-content: center;
+      }
     }
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-JCHYEW645C');
-</script>
+    gtag('config', 'G-JCHYEW645C');
+  </script>
 
 </head>
+
 <body>
 
   <!-- ═══════ NAV ═══════ -->
@@ -259,9 +389,10 @@
       <div class="hero__orb hero__orb--lime"></div>
     </div>
     <div class="faq-hero__content">
-      <div class="faq-hero__badge" data-i18n="home.faq_auto_16">❓ Help Center</div>
-      <h1 class="faq-hero__title"><span data-i18n="home.faq_auto_17">Frequently Asked</span><span data-i18n="home.faq_auto_16">Questions</span></h1>
-      <p class="faq-hero__sub" data-i18n="home.faq_auto_17">Quick answers to common questions. Can't find yours? Open a GitHub issue.</p>
+      <div class="faq-hero__badge" data-i18n="home.faqHeroBadge">❓ Help Center</div>
+      <h1 class="faq-hero__title" data-i18n="home.faqHeroTitle">Frequently Asked Questions</h1>
+      <p class="faq-hero__sub" data-i18n="home.faqHeroSub">Everything you need to know about CodyMaster Kit, from
+        installation to advanced workflows.</p>
     </div>
   </section>
 
@@ -292,7 +423,10 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text" data-i18n="home.faq_auto_26">CodyMaster is a collection of 33+ AI skills that turn your coding AI (Gemini, Claude, Cursor, etc.) into a disciplined software engineering team. Instead of AI guessing randomly, skills enforce proven workflows: plan before code, test before deploy, verify before claim.</p>
+        <p class="faq-item__a-text" data-i18n="home.faq_auto_26">CodyMaster is a collection of 34+ AI skills that turn
+          your coding AI (Gemini, Claude, Cursor, etc.) into a disciplined software engineering team. Instead of AI
+          guessing randomly, skills enforce proven workflows: plan before code, test before deploy, verify before claim.
+        </p>
       </div>
     </div>
 
@@ -302,7 +436,10 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text"><span data-i18n="home.faq_auto_28">Copy the</span><code>skills/</code><span data-i18n="home.faq_auto_16">folder into your project root. That's it — no npm install, no build step, no dependencies. Your AI agent automatically detects and uses the skills. See the</span><a href="start.html">Get Started</a> page for platform-specific setup.</p>
+        <p class="faq-item__a-text"><span data-i18n="home.faq_auto_28">Copy the</span><code>skills/</code><span
+            data-i18n="home.faq_auto_16">folder into your project root. That's it — no npm install, no build step, no
+            dependencies. Your AI agent automatically detects and uses the skills. See the</span><a
+            href="start.html">Get Started</a> page for platform-specific setup.</p>
       </div>
     </div>
 
@@ -312,7 +449,10 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">CodyMaster works with any AI that reads markdown files from your project: <strong>Google Gemini (Antigravity)</strong>, <strong>Claude (OpenClaw/Projects)</strong>, <strong>Cursor Agent</strong>, and <strong>GitHub Copilot Workspace</strong>. Skills are plain markdown — no proprietary format.</p>
+        <p class="faq-item__a-text">CodyMaster works with any AI that reads markdown files from your project:
+          <strong>Google Gemini (Antigravity)</strong>, <strong>Claude (OpenClaw/Projects)</strong>, <strong>Cursor
+            Agent</strong>, and <strong>GitHub Copilot Workspace</strong>. Skills are plain markdown — no proprietary
+          format.</p>
       </div>
     </div>
 
@@ -322,7 +462,10 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Say <code>/cm-start</code> and describe your objective. The AI will read the skill index and automatically chain the right skills together. For new projects, it starts with <code>cm-identity-guard</code> → <code>cm-project-bootstrap</code> → <code>cm-planning</code>. Check the <a href="playbook.html">Playbook</a> for all workflows.</p>
+        <p class="faq-item__a-text">Say <code>/cm-start</code> and describe your objective. The AI will read the skill
+          index and automatically chain the right skills together. For new projects, it starts with
+          <code>cm-identity-guard</code> → <code>cm-project-bootstrap</code> → <code>cm-planning</code>. Check the <a
+            href="playbook.html">Playbook</a> for all workflows.</p>
       </div>
     </div>
 
@@ -332,7 +475,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Pull the latest from the GitHub repo and replace your <code>skills/</code> folder. Since skills are just markdown files, there are no dependency conflicts or breaking changes. Your project settings and CONTINUITY.md are preserved.</p>
+        <p class="faq-item__a-text">Pull the latest from the GitHub repo and replace your <code>skills/</code> folder.
+          Since skills are just markdown files, there are no dependency conflicts or breaking changes. Your project
+          settings and CONTINUITY.md are preserved.</p>
       </div>
     </div>
 
@@ -345,7 +490,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Skills don't directly communicate. Instead, <code>cm-skill-chain</code> composes them into pipelines, and <code>cm-continuity</code> maintains context between sessions via a shared CONTINUITY.md file. The AI reads this file to know what happened before and what to do next.</p>
+        <p class="faq-item__a-text">Skills don't directly communicate. Instead, <code>cm-skill-chain</code> composes
+          them into pipelines, and <code>cm-continuity</code> maintains context between sessions via a shared
+          CONTINUITY.md file. The AI reads this file to know what happened before and what to do next.</p>
       </div>
     </div>
 
@@ -355,7 +502,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Yes! Use <code>skill-creator-ultra</code> to turn any repeating process into a skill. It interviews you, detects patterns, and generates a production-quality SKILL.md file. You can also create them manually — just follow the markdown format in any existing skill.</p>
+        <p class="faq-item__a-text">Yes! Use <code>skill-creator-ultra</code> to turn any repeating process into a
+          skill. It interviews you, detects patterns, and generates a production-quality SKILL.md file. You can also
+          create them manually — just follow the markdown format in any existing skill.</p>
       </div>
     </div>
 
@@ -365,7 +514,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Mention the skill directly: <code>@cm-tdd</code> or <code>/cm-tdd</code>. Skills use trigger keywords — so even saying "write tests first" activates <code>cm-tdd</code>. If the AI still skips, break the task into smaller steps and explicitly reference each skill.</p>
+        <p class="faq-item__a-text">Mention the skill directly: <code>@cm-tdd</code> or <code>/cm-tdd</code>. Skills use
+          trigger keywords — so even saying "write tests first" activates <code>cm-tdd</code>. If the AI still skips,
+          break the task into smaller steps and explicitly reference each skill.</p>
       </div>
     </div>
 
@@ -375,7 +526,10 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">The typical flow is: <strong>Identity</strong> → <strong>Analysis</strong> → <strong>Planning</strong> → <strong>Implementation</strong> → <strong>Quality</strong> → <strong>Deploy</strong>. But not all tasks need all phases. Bug fixes skip analysis. Translations only need <code>cm-safe-i18n</code>. See the <a href="playbook.html">Playbook</a> for exact chains per scenario.</p>
+        <p class="faq-item__a-text">The typical flow is: <strong>Identity</strong> → <strong>Analysis</strong> →
+          <strong>Planning</strong> → <strong>Implementation</strong> → <strong>Quality</strong> →
+          <strong>Deploy</strong>. But not all tasks need all phases. Bug fixes skip analysis. Translations only need
+          <code>cm-safe-i18n</code>. See the <a href="playbook.html">Playbook</a> for exact chains per scenario.</p>
       </div>
     </div>
 
@@ -385,17 +539,22 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text"><code>/cm-start</code> is the autonomous mode — AI auto-detects which skills to use based on your objective. Manual calling (e.g., <code>/cm-debugging</code>) gives you explicit control. Both work. New users should start with <code>/cm-start</code>; power users prefer manual control.</p>
+        <p class="faq-item__a-text"><code>/cm-start</code> is the autonomous mode — AI auto-detects which skills to use
+          based on your objective. Manual calling (e.g., <code>/cm-debugging</code>) gives you explicit control. Both
+          work. New users should start with <code>/cm-start</code>; power users prefer manual control.</p>
       </div>
     </div>
 
     <div class="faq-item" data-cat="skills" data-q="too many skills overwhelming which to learn">
       <div class="faq-item__q" onclick="toggleFaq(this)">
-        <span class="faq-item__q-text">33 skills feels overwhelming. Where do I start?</span>
+        <span class="faq-item__q-text">34 skills feels overwhelming. Where do I start?</span>
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">You don't need to learn them all. Start with just 3: <code>cm-start</code> (auto-mode), <code>cm-planning</code> (think before code), and <code>cm-continuity</code> (memory). The AI loads others automatically via the progressive disclosure system — it only reads a full skill when it's needed.</p>
+        <p class="faq-item__a-text">You don't need to learn them all. Start with just 3: <code>cm-start</code>
+          (auto-mode), <code>cm-planning</code> (think before code), and <code>cm-continuity</code> (memory). The AI
+          loads others automatically via the progressive disclosure system — it only reads a full skill when it's
+          needed.</p>
       </div>
     </div>
 
@@ -408,7 +567,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Yes. Drop the <code>skills/</code> folder into any existing project. CodyMaster is language-agnostic — it works with JavaScript, Python, Go, Rust, or any stack. Skills guide the AI's workflow, not the language or framework.</p>
+        <p class="faq-item__a-text">Yes. Drop the <code>skills/</code> folder into any existing project. CodyMaster is
+          language-agnostic — it works with JavaScript, Python, Go, Rust, or any stack. Skills guide the AI's workflow,
+          not the language or framework.</p>
       </div>
     </div>
 
@@ -418,7 +579,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Minimal. The 3-layer progressive disclosure system means most skills load only ~100 tokens (the skill index). Full skill content (~300-2000 tokens) is loaded only when triggered. You'll actually save tokens because the AI makes fewer mistakes and retry loops.</p>
+        <p class="faq-item__a-text">Minimal. The 3-layer progressive disclosure system means most skills load only ~100
+          tokens (the skill index). Full skill content (~300-2000 tokens) is loaded only when triggered. You'll actually
+          save tokens because the AI makes fewer mistakes and retry loops.</p>
       </div>
     </div>
 
@@ -428,7 +591,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">The skills themselves are local markdown files — always available offline. But you still need internet for the AI model (Gemini, Claude, etc.) since the models run in the cloud. Some features like <code>cm-ads-tracker</code> also need network access for API integrations.</p>
+        <p class="faq-item__a-text">The skills themselves are local markdown files — always available offline. But you
+          still need internet for the AI model (Gemini, Claude, etc.) since the models run in the cloud. Some features
+          like <code>cm-ads-tracker</code> also need network access for API integrations.</p>
       </div>
     </div>
 
@@ -438,7 +603,10 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text"><code>cm-identity-guard</code> verifies your Git identity before every push. <code>cm-git-worktrees</code> creates isolated branches for feature work. <code>cm-secret-shield</code> adds pre-commit hooks to block secret leaks. <code>cm-code-review</code> handles the review and merge lifecycle.</p>
+        <p class="faq-item__a-text"><code>cm-identity-guard</code> verifies your Git identity before every push.
+          <code>cm-git-worktrees</code> creates isolated branches for feature work. <code>cm-secret-shield</code> adds
+          pre-commit hooks to block secret leaks. <code>cm-code-review</code> handles the review and merge lifecycle.
+        </p>
       </div>
     </div>
 
@@ -448,7 +616,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">No. CodyMaster doesn't install packages, modify configs, or add runtime dependencies. It's a folder of markdown files that guide your AI's behavior. It works alongside ESLint, Prettier, Husky, or any other tools you already use.</p>
+        <p class="faq-item__a-text">No. CodyMaster doesn't install packages, modify configs, or add runtime
+          dependencies. It's a folder of markdown files that guide your AI's behavior. It works alongside ESLint,
+          Prettier, Husky, or any other tools you already use.</p>
       </div>
     </div>
 
@@ -461,7 +631,8 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Yes, CodyMaster is free and open source. All 33+ skills, the full documentation, and future updates are free forever. We believe in making AI-assisted development accessible to everyone.</p>
+        <p class="faq-item__a-text">Yes, CodyMaster is free and open source. All 34+ skills, the full documentation, and
+          future updates are free forever. We believe in making AI-assisted development accessible to everyone.</p>
       </div>
     </div>
 
@@ -471,7 +642,8 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Absolutely. Use it for personal, commercial, or enterprise projects. There are no restrictions on commercial use. Many teams already use CodyMaster in production.</p>
+        <p class="faq-item__a-text">Absolutely. Use it for personal, commercial, or enterprise projects. There are no
+          restrictions on commercial use. Many teams already use CodyMaster in production.</p>
       </div>
     </div>
 
@@ -481,7 +653,9 @@
         <span class="faq-item__q-icon">+</span>
       </div>
       <div class="faq-item__a">
-        <p class="faq-item__a-text">Yes! Fork it, modify skills, create your own, or contribute back. The best improvements come from real-world usage. We actively merge community contributions. PRs are welcome at <a href="https://github.com/tody-agent/codymaster" target="_blank">GitHub</a>.</p>
+        <p class="faq-item__a-text">Yes! Fork it, modify skills, create your own, or contribute back. The best
+          improvements come from real-world usage. We actively merge community contributions. PRs are welcome at <a
+            href="https://github.com/tody-agent/codymaster" target="_blank">GitHub</a>.</p>
       </div>
     </div>
   </div>
@@ -496,7 +670,8 @@
     <h2 class="faq-cta__title">Still have questions?</h2>
     <p class="faq-cta__sub">Open a GitHub issue — we respond quickly.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-      <a href="https://github.com/tody-agent/codymaster/issues" target="_blank" class="btn btn--primary">Open an Issue →</a>
+      <a href="https://github.com/tody-agent/codymaster/issues" target="_blank" class="btn btn--primary">Open an Issue
+        →</a>
       <a href="playbook.html" class="btn btn--secondary">Read the Playbook →</a>
     </div>
   </section>
@@ -514,6 +689,7 @@
         <a href="skills.html" data-i18n="nav.skills">Skills</a>
         <a href="start.html" data-i18n="nav.getStarted">Get Started</a>
         <a href="/docs/" data-i18n="nav.docs">Docs</a>
+        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.whyUs">Why Us</h4>
@@ -606,4 +782,7 @@
   </script>
 
 
-</body></html>
+  <script src="js/ga-events.js"></script>
+</body>
+
+</html>

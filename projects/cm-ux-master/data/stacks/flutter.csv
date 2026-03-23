@@ -31,7 +31,7 @@ No,Category,Guideline,Description,Do,Don't,Code Good,Code Bad,Severity,Docs URL
 30,Theming,Support dark mode,Respect system theme,darkTheme in MaterialApp,Light theme only,"MaterialApp(theme: light, darkTheme: dark)",MaterialApp(theme: light),Medium,
 31,Animation,Use implicit animations,Simple animations,AnimatedContainer AnimatedOpacity,Explicit for simple transitions,AnimatedContainer(duration: Duration()),AnimationController for fade,Low,https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html
 32,Animation,Use AnimationController for complex,Fine-grained control,AnimationController with Ticker,Implicit for complex sequences,AnimationController(vsync: this),AnimatedContainer for staggered,Medium,
-33,Animation,Dispose AnimationControllers,Clean up animation resources,dispose() for controllers,Memory leaks,controller.dispose() in dispose,No controller disposal,High,
+34,Animation,Dispose AnimationControllers,Clean up animation resources,dispose() for controllers,Memory leaks,controller.dispose() in dispose,No controller disposal,High,
 34,Animation,Use Hero for transitions,Shared element transitions,Hero for navigation animations,Manual shared element,Hero(tag: 'image' child: Image()),Custom shared element animation,Low,https://api.flutter.dev/flutter/widgets/Hero-class.html
 35,Forms,Use Form widget,Form validation,Form with GlobalKey,Individual validation,Form(key: _formKey child: ...),TextField without Form,Medium,https://api.flutter.dev/flutter/widgets/Form-class.html
 36,Forms,Use TextEditingController,Control text input,Controller for text fields,onChanged for all text,final controller = TextEditingController(),onChanged: (v) => setState(),Medium,

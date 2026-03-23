@@ -9,6 +9,16 @@ description: "Meta-skill for the CodyMaster kit — when to invoke skills, how t
 
 ## Part A: Using Skills
 
+### Rule #0: Memory First (cm-continuity)
+
+Before invoking ANY skill, ensure `cm-continuity` is active:
+
+1. Has `.cm/CONTINUITY.md` been read this session? If not → **read it first**
+2. Are there relevant learnings for the module you're about to work on? → **Load them**
+3. After skill completes → **update CONTINUITY.md**
+
+> Memory is the foundation that makes all other skills smarter. Without it, you repeat every mistake.
+
 ### The Rule
 
 **Invoke relevant skills BEFORE any response or action.** Even 1% chance = check the skill.
@@ -17,6 +27,9 @@ description: "Meta-skill for the CodyMaster kit — when to invoke skills, how t
 
 ```
 User message received
+  → CONTINUITY.md loaded? (Rule #0)
+    → NO: Read .cm/CONTINUITY.md first
+    → YES: Continue
   → Might any skill apply? (even 1%)
     → YES: Read the skill → Follow it
     → NO: Respond directly

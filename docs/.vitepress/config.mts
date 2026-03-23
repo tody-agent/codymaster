@@ -13,8 +13,11 @@ export default withMermaid(defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Cody Master Documentation' }],
     ['meta', { property: 'og:description', content: 'Universal AI Agent Skills Platform — 30+ skills for disciplined AI coding' }],
-    ['meta', { property: 'og:url', content: 'https://docs.codymaster.pages.dev' }],
+    ['meta', { property: 'og:url', content: 'https://cody.todyle.com/docs/' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    // GA4 tracking
+    ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C' }],
+    ['script', {}, `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JCHYEW645C');`],
   ],
   
   cleanUrls: true,

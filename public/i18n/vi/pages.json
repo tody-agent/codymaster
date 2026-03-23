@@ -635,7 +635,7 @@
     "skillMapSection": {
       "label": "CÁC KỸ NĂNG KẾT NỐI NHƯ THẾ NÀO",
       "title": "Bản Đồ Kỹ Năng",
-      "subtitle": "33 kỹ năng tổ chức thành 5 nhóm. Kỹ năng tự động nối chuỗi dựa trên nhiệm vụ.",
+      "subtitle": "34 kỹ năng tổ chức thành 5 nhóm. Kỹ năng tự động nối chuỗi dựa trên nhiệm vụ.",
       "swarms": [
         {
           "name": "🎯 Ý Tưởng",
@@ -878,18 +878,51 @@
   "startPage": {
     "meta": {
       "title": "Bắt đầu — CodyMaster",
-      "description": "Cài CodyMaster trên Claude Code, Gemini CLI, Cursor, Codex và nhiều hơn nữa. Có 33 kỹ năng AI trong dưới 2 phút."
+      "description": "Cài CodyMaster trên Claude Code, Gemini CLI, Cursor, Codex và nhiều hơn nữa. Có 34 kỹ năng AI trong dưới 2 phút."
     },
     "hero": "Cài đặt trên nền tảng của bạn",
-    "heroSub": "Chọn AI coding platform và nhận 33 kỹ năng trong vòng 2 phút.",
+    "heroSub": "Chọn AI coding platform và nhận 34 kỹ năng trong vòng 2 phút.",
     "recommended": "Đề xuất",
     "onelineLabel": "⚡ Lệnh một dòng (tự phát hiện & cài đặt)",
     "orStepByStep": "— hoặc theo từng bước —",
     "copyButton": "Sao chép",
     "copiedButton": "Đã sao chép!",
     "finalCta": "Bạn đã sẵn sàng. Bắt đầu xây dựng.",
-    "finalButton": "Khám phá 33 kỹ năng",
+    "finalButton": "Khám phá 34 kỹ năng",
     "platforms": [
+      {
+        "id": "google-antigravity",
+        "label": "Google Antigravity",
+        "emoji": "🚀",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ Lệnh một dòng — tự phát hiện, đa ngôn ngữ",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh)"
+        },
+        "steps": [
+          {
+            "title": "Truy cập Antigravity",
+            "description": "Antigravity là môi trường lập trình agentic tiên tiến từ Google DeepMind.",
+            "items": [
+              "Mở môi trường đã kích hoạt Antigravity của bạn",
+              "Đảm bảo bạn đang sử dụng phiên bản công cụ mới nhất",
+              "Hoạt động tương thích hoàn toàn với CodyMaster skills"
+            ]
+          },
+          {
+            "title": "Cài đặt 34 kỹ năng",
+            "description": "Một lệnh cài đặt tất cả — TDD, debug, planning, UX, và nhiều hơn nữa.",
+            "code": "npx codymaster add --all --platform gemini",
+            "output": "✓ Đã cài 34 kỹ năng vào .gemini/antigravity/skills/\n📦 cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "Xác minh cài đặt",
+            "description": "Kỹ năng tự động kích hoạt. Thử nhắc đến một kỹ năng để bắt đầu.",
+            "code": "@cm-planning Thiết kế tính năng mới",
+            "note": "Gõ @cm-status bất kỳ lúc nào để xem tiến độ hiện tại."
+          }
+        ]
+      },
       {
         "id": "claude-code",
         "label": "Claude Code",
@@ -914,19 +947,19 @@
             "title": "Thêm Marketplace",
             "description": "Đăng ký nguồn plugin CodyMaster để Claude Code có thể tìm thấy.",
             "code": "claude plugin marketplace add tody-agent/codymaster",
-            "output": "✓ Marketplace đã đăng ký: tody-agent/codymaster\n✓ cody-master plugin sẵn sàng"
+            "output": "✓ Marketplace đã đăng ký: tody-agent/codymaster\n✓ codymaster plugin sẵn sàng"
           },
           {
-            "title": "Cài 33 kỹ năng",
+            "title": "Cài 34 kỹ năng",
             "description": "Một lệnh cài tất cả — TDD, debug, deploy, UX, content, bảo mật và hơn nữa.",
-            "code": "claude plugin install cody-master@cody-master",
-            "output": "✓ cody-master v3.4.0 đã cài\n📦 33 kỹ năng: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+            "code": "claude plugin install cm@codymaster",
+            "output": "✓ cm v3.4.0 đã cài\n📦 34 kỹ năng: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
           },
           {
             "title": "Chạy onboarding tour",
-            "description": "Mở Claude Code và chạy tour tương tác để xem tất cả 33 kỹ năng.",
+            "description": "Mở Claude Code và chạy tour tương tác để xem tất cả 34 kỹ năng.",
             "code": "/cm:demo",
-            "output": "🚀 Chào mừng đến CodyMaster! Cùng khám phá 33 kỹ năng..."
+            "output": "🚀 Chào mừng đến CodyMaster! Cùng khám phá 34 kỹ năng..."
           }
         ]
       },
@@ -948,13 +981,13 @@
             "title": "Cài CodyMaster",
             "description": "Cài trực tiếp từ GitHub — không cần npm package.",
             "code": "gemini extensions install https://github.com/tody-agent/codymaster",
-            "output": "✓ cody-master đã cài\n✓ 33 kỹ năng sẵn sàng trong Gemini CLI"
+            "output": "✓ cody-master đã cài\n✓ 34 kỹ năng sẵn sàng trong Gemini CLI"
           },
           {
             "title": "Sử dụng kỹ năng",
             "description": "Kỹ năng tự kích hoạt. Gọi thủ công với @[/tên-kỹ-năng].",
             "code": "@[/cm-planning] Thiết kế tính năng mới cho ứng dụng của tôi",
-            "note": "33 kỹ năng: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+            "note": "34 kỹ năng: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
           },
           {
             "title": "Cập nhật sau này",
@@ -987,7 +1020,7 @@
             "title": "Sử dụng kỹ năng",
             "description": "Kỹ năng tự kích hoạt theo ngữ cảnh. Gọi thủ công với @mention.",
             "code": "@cm-planning Thiết kế hệ thống auth mới",
-            "note": "33 kỹ năng: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+            "note": "34 kỹ năng: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1008,13 +1041,13 @@
             "title": "Lấy hướng dẫn cài đặt",
             "description": "Bảo Codex tải và làm theo hướng dẫn từ GitHub.",
             "code": "Truy cập và làm theo hướng dẫn tại https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
-            "output": "✓ Codex tự động đọc, phân tích và cài 33 kỹ năng"
+            "output": "✓ Codex tự động đọc, phân tích và cài 34 kỹ năng"
           },
           {
             "title": "Sử dụng kỹ năng",
             "description": "Kỹ năng đã có trong .codex/skills/ và tự kích hoạt.",
             "code": "@cm-tdd Implement user authentication với full test coverage",
-            "note": "33 kỹ năng: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "note": "34 kỹ năng: @cm-planning, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1027,7 +1060,7 @@
             "title": "Clone CodyMaster",
             "description": "Clone repository về thư mục home của bạn.",
             "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ Đã clone — 33 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
+            "output": "✓ Đã clone — 34 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
           },
           {
             "title": "Copy kỹ năng vào platform",
@@ -1038,7 +1071,7 @@
             "title": "Sử dụng kỹ năng",
             "description": "Mở editor và gọi bất kỳ kỹ năng nào. Kỹ năng tự kích hoạt khi phù hợp.",
             "code": "@cm-planning Giúp thiết kế tính năng mới",
-            "note": "33 kỹ năng: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+            "note": "34 kỹ năng: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1051,7 +1084,7 @@
             "title": "Clone repository",
             "description": "Clone CodyMaster về thư mục home.",
             "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ Đã clone — 33 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
+            "output": "✓ Đã clone — 34 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
           },
           {
             "title": "Copy vào platform của bạn",
@@ -1084,19 +1117,19 @@
             "title": "Thêm skills qua npx",
             "description": "Dùng CodyMaster CLI để cài skills vào project OpenCode.",
             "code": "npx codymaster add --all --platform opencode",
-            "output": "📦 opencode — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (33 tổng)\n✅ 33 skills đã cài → ./.opencode/skills/"
+            "output": "📦 opencode — Installing all 34 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (34 tổng)\n✅ 34 skills đã cài → ./.opencode/skills/"
           },
           {
             "title": "Hoặc clone thủ công",
             "description": "Clone repo và sao chép skills vào thư mục OpenCode.",
             "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
-            "output": "✓ 33 file SKILL.md sẵn sàng trong .opencode/skills/"
+            "output": "✓ 34 file SKILL.md sẵn sàng trong .opencode/skills/"
           },
           {
             "title": "Sử dụng Skills",
             "description": "Skills tự kích hoạt. Gọi chúng theo tên trong phiên OpenCode.",
             "code": "@[/cm-planning] Thiết kế tính năng mới cho ứng dụng",
-            "note": "Tất cả 33 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+            "note": "Tất cả 34 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
           }
         ]
       },
@@ -1118,19 +1151,19 @@
             "title": "Thêm skills qua npx",
             "description": "Dùng CLI để cài skills CodyMaster vào thư mục steering của Kiro.",
             "code": "npx codymaster add --all --platform kiro",
-            "output": "🔶 kiro — Installing all 33 skills\n  ✅ cm-tdd\n  ... (33 tổng)\n✅ 33 skills đã cài → ./.kiro/steering/"
+            "output": "🔶 kiro — Installing all 34 skills\n  ✅ cm-tdd\n  ... (34 tổng)\n✅ 34 skills đã cài → ./.kiro/steering/"
           },
           {
             "title": "Hoặc clone thủ công",
             "description": "Clone repo và sao chép vào steering của Kiro.",
             "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
-            "output": "✓ 33 file SKILL.md sẵn sàng trong .kiro/steering/"
+            "output": "✓ 34 file SKILL.md sẵn sàng trong .kiro/steering/"
           },
           {
             "title": "Sử dụng Skills",
             "description": "Kiro tự đọc steering documents. Skills kích hoạt theo ngữ cảnh.",
             "code": "@cm-tdd Implement xác thực người dùng với full test coverage",
-            "note": "Tất cả 33 skills: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "note": "Tất cả 34 skills: @cm-planning, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1152,7 +1185,7 @@
             "title": "Thêm skills qua npx",
             "description": "CodyMaster chèn tham chiếu skills vào .github/copilot-instructions.md.",
             "code": "npx codymaster add --all --platform copilot",
-            "output": "✅ 33 skills được tham chiếu trong .github/copilot-instructions.md\n   GitHub Copilot sẽ tự dùng làm context."
+            "output": "✅ 34 skills được tham chiếu trong .github/copilot-instructions.md\n   GitHub Copilot sẽ tự dùng làm context."
           },
           {
             "title": "Hoặc thêm thủ công",
@@ -1163,7 +1196,7 @@
             "title": "Sử dụng Skills",
             "description": "Yêu cầu Copilot dùng skill bất kỳ theo tên trong chat.",
             "code": "Dùng cm-tdd để implement xác thực người dùng với full test coverage",
-            "note": "Hoạt động tốt nhất trong Copilot Chat (Cmd+I). Tất cả 33 skills đều sẵn sàng."
+            "note": "Hoạt động tốt nhất trong Copilot Chat (Cmd+I). Tất cả 34 skills đều sẵn sàng."
           }
         ]
       },
@@ -1172,7 +1205,7 @@
         "label": "npx / CLI",
         "emoji": "⚡",
         "oneliner": {
-          "label": "⚡ Lệnh một dòng — cài 33 skills, tự phát hiện platform",
+          "label": "⚡ Lệnh một dòng — cài 34 skills, tự phát hiện platform",
           "code": "npx codymaster add --all"
         },
         "steps": [
@@ -1180,7 +1213,7 @@
             "title": "Cài qua npx (không cần cài toàn cục)",
             "description": "Hoạt động trên mọi máy có Node.js 18+. Không cần cài global.",
             "code": "npx codymaster add --all",
-            "output": "🧠 CodyMaster v3.4.0\n   Đang phát hiện platform... ✅ Claude Code phát hiện\n   Đang cài 33 skills..."
+            "output": "🧠 CodyMaster v3.4.0\n   Đang phát hiện platform... ✅ Claude Code phát hiện\n   Đang cài 34 skills..."
           },
           {
             "title": "Cài skill cụ thể",
@@ -1190,11 +1223,11 @@
           {
             "title": "Chỉ định platform cụ thể",
             "description": "Ghi đè auto-detect và cài vào bất kỳ AI coding tool nào.",
-            "code": "# Claude Code\nnpx codymaster add --all --platform claude\n\n# Gemini CLI\nnpx codymaster add --all --platform gemini\n\n# Cursor, Windsurf, Cline, OpenCode, Kiro\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+            "code": "# Claude Code\nnpx codymaster add --all --platform claude\n\n# Gemini CLI\nnpx codymaster add --all --platform gemini\n\n# Cursor, Windsurf, Cline, OpenCode, Kiro\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform windsurf\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
           },
           {
             "title": "Duyệt & tìm kiếm skills",
-            "description": "Liệt kê 33 skills hoặc tìm theo domain.",
+            "description": "Liệt kê 34 skills hoặc tìm theo domain.",
             "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
           }
         ]
@@ -1307,7 +1340,7 @@
       "title": "Vậy CodyMaster Là Gì?",
       "content": "Nó không phải plugin. Không phải prompt template.\n\nĐó là câu trả lời của một Product Manager không biết code, sau hàng trăm đêm không ngủ, cho câu hỏi duy nhất:",
       "question": "\"Làm sao để một người có ý tưởng nhưng không rành kỹ thuật có thể tạo ra sản phẩm world-class — từ landing page, full-stack app, documentation, tới self-onboarding — mà không phải đánh đổi bằng chất lượng?\"",
-      "punchline": "33 skills. Mỗi skill là một bài học. Mỗi bài học là một đêm không ngủ.\n\nVà bây giờ, bạn không cần phải trải qua những đêm đó nữa."
+      "punchline": "34 skills. Mỗi skill là một bài học. Mỗi bài học là một đêm không ngủ.\n\nVà bây giờ, bạn không cần phải trải qua những đêm đó nữa."
     },
     "brand": {
       "title": "Tại sao lại là \"CodyMaster\"?",
@@ -1386,7 +1419,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "33 ngôn ngữ",
+        "metric": "34 ngôn ngữ",
         "metricLabel": "hỗ trợ"
       },
       {
@@ -1402,5 +1435,16 @@
         "metricLabel": "tích hợp sẵn"
       }
     ]
-  }
+  },
+  "playbookBadge": "📖 Hướng dẫn vận hành",
+  "playbookTitlePart1": "Cẩm Nang ",
+  "playbookTitlePart2": "Kỹ Năng",
+  "playbookSub": "\"Tôi muốn làm X — tôi cần dùng kỹ năng nào?\" Trang này trả lời câu hỏi đó cho mọi tình huống bạn gặp phải.",
+  "playbookRule1Suffix": ") trước khi push/deploy. Mỗi. Lần. Đều. Phải.",
+  "cliBadge": "$ terminal",
+  "cliTitlePart1": "Cẩm Nang ",
+  "cliTitlePart2": "CLI ",
+  "cliTitlePart3": "Quyền Năng",
+  "cliSub": "Dành cho lập trình viên tư duy bằng dòng lệnh. Mọi slash command, mọi workflow, tất cả ở một nơi.",
+  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm"
 }

@@ -373,7 +373,7 @@
 
         borders.radius = {};
         if (sortedRadii.length >= 1) borders.radius.sm = sortedRadii[0][0];
-        if (sortedRadii.length >= 2) borders.radius.md = sortedRadii[Math.floor(sortedRadii.length * 0.33)][0];
+        if (sortedRadii.length >= 2) borders.radius.md = sortedRadii[Math.floor(sortedRadii.length * 0.34)][0];
         if (sortedRadii.length >= 3) borders.radius.lg = sortedRadii[Math.floor(sortedRadii.length * 0.66)][0];
         if (sortedRadii.length >= 4) borders.radius.xl = sortedRadii[sortedRadii.length - 1][0];
 

@@ -56,6 +56,20 @@ Phase 5: HANDOFF      (Bridge to cm-planning)   → Package for downstream skill
 
 > **Goal:** Understand the current state of the product from all angles.
 
+#### 1a-pre. Load Working Memory (cm-continuity)
+
+Before scanning the codebase, load relevant context:
+
+```
+1. Read `.cm/CONTINUITY.md` → understand where we left off
+2. Read `.cm/memory/decisions.json` → filter by scope matching this initiative
+   → Avoid re-analyzing decisions already made
+3. Read `.cm/memory/learnings.json` → filter by `scope: global` or relevant module
+   → Apply known prevention patterns to this analysis
+```
+
+> **Token savings:** If decisions.json already has architecture decisions for this module, skip re-analysis and reference the existing decision in your output.
+
 #### 1a. Codebase Scan
 
 Read and map the existing system:
@@ -370,6 +384,21 @@ Date: [date]
 - cm-ux-master: [design considerations]
 - cm-execution: [suggested execution mode]
 ```
+
+#### 5b. Record Decision & Update Memory (cm-continuity)
+
+After writing `brainstorm-output.md`, ALWAYS:
+
+1. **Write to `.cm/memory/decisions.json`:**
+   - `decision`: The recommended option (e.g., "Use TRIZ-Parallel Pipeline for cm-execution")
+   - `rationale`: Why this option won over alternatives
+   - `scope`: `module:{name}` or `global`
+   - `status`: `active`
+
+2. **Update `.cm/CONTINUITY.md`:**
+   - Active Goal → updated to reflect the chosen direction
+   - Just Completed → "Brainstorm analysis for [initiative]: recommended Option [X]"
+   - Next Actions → "Run cm-planning for [recommended option]"
 
 ---
 

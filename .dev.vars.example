@@ -1,0 +1,7 @@
+# Cloudflare local development secrets
+# Copy to .dev.vars and fill in real values
+# NEVER commit .dev.vars — it's gitignored
+
+# SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+# SUPABASE_SERVICE_KEY=your_service_key_here
+# SUPABASE_ANON_KEY=your_anon_key_here

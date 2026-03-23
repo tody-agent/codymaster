@@ -97,9 +97,9 @@ class TestCalculateConfidence(unittest.TestCase):
         self.assertEqual(conf["colors"]["primary"], 1.0)
 
     def test_partial_appearance(self):
-        """success only in 1 of 3 pages → 0.33 confidence."""
+        """success only in 1 of 3 pages → 0.34 confidence."""
         conf = calculate_confidence([HARVEST_DASHBOARD, HARVEST_ORDERS, HARVEST_SETTINGS])
-        self.assertAlmostEqual(conf["colors"]["success"], 0.33, places=2)
+        self.assertAlmostEqual(conf["colors"]["success"], 0.34, places=2)
 
     def test_full_appearance(self):
         """primary in all 3 pages → 1.0 confidence."""

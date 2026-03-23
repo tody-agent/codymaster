@@ -31,7 +31,7 @@ No,Category,Icon Name,Keywords,Library,Import Code,Usage,Best For,Style
 30,Communication,message-circle,chat comment bubble conversation,Lucide,import { MessageCircle } from 'lucide-react',<MessageCircle />,Chat comment message,Outline
 31,Communication,phone,call mobile telephone contact,Lucide,import { Phone } from 'lucide-react',<Phone />,Phone contact call,Outline
 32,Communication,send,submit dispatch message airplane,Lucide,import { Send } from 'lucide-react',<Send />,Send message submit,Outline
-33,Communication,bell,notification alert ring reminder,Lucide,import { Bell } from 'lucide-react',<Bell />,Notification bell alert,Outline
+34,Communication,bell,notification alert ring reminder,Lucide,import { Bell } from 'lucide-react',<Bell />,Notification bell alert,Outline
 34,User,user,profile account person avatar,Lucide,import { User } from 'lucide-react',<User />,User profile account,Outline
 35,User,users,team group people members,Lucide,import { Users } from 'lucide-react',<Users />,Team group members,Outline
 36,User,user-plus,add invite new member,Lucide,import { UserPlus } from 'lucide-react',<UserPlus />,Add user invite,Outline

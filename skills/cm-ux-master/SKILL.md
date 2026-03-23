@@ -1,15 +1,15 @@
 ---
 name: cm-ux-master
-description: "Ultimate UI/UX design intelligence with Harvester v4 (AI-powered visual extraction), 48 UX Laws, 37 Design Tests, UX Heuristics (Nielsen + Krug), Figma & Google Stitch integration, MCP server for Claude/Cursor, Component Generator, and BM25 search across 16 domains. One command = Complete design system. 10x productivity boost."
+description: "Ultimate UI/UX design intelligence with Harvester (AI-powered visual extraction), 48 UX Laws, 37 Design Tests, UX Heuristics (Nielsen + Krug), Figma & Google Stitch integration, MCP server for Claude/Cursor, Component Generator, and BM25 search across 16 domains. One command = Complete design system. 10x productivity boost. All features are free and included. No paid tiers."
 ---
 
-# 🚀 CM UX Master v4 — Ultimate Design Intelligence Platform
+# 🚀 CM UX Master — Ultimate Design Intelligence Platform
 
 **AI-powered design system platform combining:**
-- 🎯 **Harvester v4** — One-command design system extraction from any website
+- 🎯 **Harvester** — One-command design system extraction from any website
 - 🤖 **MCP Server** — Native integration with Claude/Cursor/AI assistants  
 - 🎨 **Figma Bridge** — Bidirectional sync with Figma Tokens Studio
-- ✨ **Google Stitch** — AI design generation with extracted tokens
+- ✨ **Google Stitch & Pencil.dev** — AI design generation with extracted tokens
 - 📐 **48 UX Laws** — Behavioral psychology-based design rules
 - ✅ **37 Design Tests** — TDD for design validation
 - 💻 **Component Generator** — React/Vue/Semi Design components
@@ -241,43 +241,43 @@ Available: `html-tailwind`, `react`, `nextjs`, `astro`, `vue`, `nuxtjs`, `nuxt-u
 
 ---
 
-## Free vs Pro
+## All Features Included
 
-| Feature | Free | Pro |
-|---------|------|-----|
-| Design Rules | 1032+ ✅ | 1032+ ✅ |
-| UX Laws | 48 ✅ | 48 ✅ |
-| Design Tests | 37 ✅ | 37 ✅ |
-| UI Styles | 67 ✅ | 67 ✅ |
-| Platform Support | 6 ✅ | 6 ✅ |
-| Framework Stacks | 17 ✅ | 17 ✅ |
-| Animation Patterns | 30 ✅ | 30 ✅ |
-| Responsive Patterns | 25 ✅ | 25 ✅ |
-| Accessibility (WCAG 2.2) | 25 ✅ | 25 ✅ |
-| Device Profiles | 20 ✅ | 20 ✅ |
-| Code Templates | 4 ✅ | 4 ✅ |
-| **Harvester** | **v3 (80+ tokens)** | **v4 (120+ tokens)** 🔥 |
-| Color Histogram | ❌ | ✅ |
-| Semantic Colors | ❌ | ✅ |
-| Neutral Scale | ❌ | ✅ |
-| Component Blueprints | ❌ | ✅ |
-| Typography Scale | ❌ | ✅ |
-| Shadow/Border System | ❌ | ✅ |
-| Layout Metrics | ❌ | ✅ |
-| Token Mapper | ❌ | ✅ 🔥 |
-| Design Doc Generator | ❌ | ✅ |
-| Project Registry | ❌ | ✅ |
-| Multi-harvest Merge | ❌ | ✅ |
-| Semi MCP Bridge | ❌ | ✅ |
+| Category | Count |
+|----------|-------|
+| Design Rules | 1032+ |
+| UX Laws | 48 |
+| Design Tests | 37 |
+| UI Styles | 67 |
+| Platform Support | 6 |
+| Framework Stacks | 17 |
+| Animation Patterns | 30 |
+| Responsive Patterns | 25 |
+| Accessibility (WCAG 2.2) | 25 |
+| Device Profiles | 20 |
+| Code Templates | 4 |
+| **Harvester** | **120+ design tokens** |
+| Color Histogram | ✅ |
+| Semantic Colors | ✅ |
+| Neutral Scale | ✅ |
+| Component Blueprints | ✅ |
+| Typography Scale | ✅ |
+| Shadow/Border System | ✅ |
+| Layout Metrics | ✅ |
+| Token Mapper | ✅ |
+| Design Doc Generator | ✅ |
+| Project Registry | ✅ |
+| Multi-harvest Merge | ✅ |
+| Semi MCP Bridge | ✅ |
 
 ---
 
-## 🚀 Harvester Extraction (v4/v5)
+## 🚀 Harvester Extraction
 
 > [!IMPORTANT]
 > The AI-Powered Visual Extraction, Multi-page Crawl, and Semi Architecture Design System generation are now fully managed by the **`cm-design-system`** skill.
 > 
-> Please use `cm-design-system` for any task relating to extracting STITCH JSON tokens, generating `DESIGN.md`, or working with Pencil.dev UI Kits (Shadcn, Halo, Lunaris, Nitro).
+> Please use `cm-design-system` for any task relating to extracting STITCH JSON tokens, generating `DESIGN.md`, working with Pencil.dev `.pen` files, or using pre-built UI Kits (Shadcn, Halo, Lunaris, Nitro).
 
 ---
 
@@ -362,16 +362,18 @@ python3 scripts/search.py "real-time data chart" --stack react
 
 Whenever `cm-ux-master` is used to build, extract, or establish a design system, it **MUST** output a `DESIGN.md` file in the root of the project (or inside `.stitch/DESIGN.md`).
 
-This file is the **Absolute Source of Truth** for AI design generation. It bridges the gap between extraction (`cm-ux-master`) and UI generation (`cm-ui-preview`).
+This file is the **Absolute Source of Truth** for AI design generation. It bridges the gap between extraction (`cm-ux-master`) and UI generation (`cm-ui-preview`) for both **Google Stitch** and **Pencil.dev**.
 
 **CRITICAL:** You must follow the exact structure defined in `skills/cm-ux-master/DESIGN_STANDARD_TEMPLATE.md`. 
 1. **Markdown Structure:** Overview, Colors, Typography, Spacing & Shapes, Components, Do's and Don'ts.
 2. **JSON Tokens:** The file must conclude with the hidden JSON block wrapped exactly in `<!-- STITCH_TOKENS_START -->` and `<!-- STITCH_TOKENS_END -->`.
+3. **Pencil.dev Variables:** Tokens from `DESIGN.md` can be applied to `.pen` files via `mcp_pencil_set_variables`. See `cm-design-system` for the mapping workflow.
 
 If you are translating Harvester v4 tokens into `DESIGN.md`:
 - Map Harvester `semantic colors` to Stitch's `Primary, Secondary, Tertiary`.
 - Map Harvester `typography scale` to Stitch's `Headlines, Body, Labels`.
 - Write the extracted boundaries into the JSON token structure so Stitch engine generates accurate replicas.
+- For Pencil.dev, set the same tokens as `.pen` variables via `set_variables()` for native design file usage.
 
 ---
 

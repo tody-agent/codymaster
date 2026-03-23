@@ -23,15 +23,32 @@
   }
 
   async function init() {
-    const lang = localStorage.getItem('kit-lang') ||
-      (new URLSearchParams(window.location.search).get('lang')) ||
-      (navigator.language?.startsWith('vi') ? 'vi' : 'en');
+    // Sync with global I18n if available
+    if (window.I18n && window.I18n.translations[window.I18n.currentLang]) {
+      translations = window.I18n.translations[window.I18n.currentLang];
+    } else {
+      const lang = localStorage.getItem('kit-lang') ||
+        (new URLSearchParams(window.location.search).get('lang')) ||
+        (navigator.language?.startsWith('vi') ? 'vi' : 'en');
 
-    translations = await loadLang(lang);
-    if (Object.keys(translations).length === 0 && lang !== 'en') {
-      translations = await loadLang('en');
+      translations = await loadLang(lang);
+      if (Object.keys(translations).length === 0 && lang !== 'en') {
+        translations = await loadLang('en');
+      }
     }
 
+    renderCurrentState();
+
+    // Listen for language changes from kit.js
+    document.addEventListener('languageChanged', (e) => {
+      translations = e.detail.translations;
+      renderCurrentState();
+    });
+
+    markActiveNavCta();
+  }
+
+  function renderCurrentState() {
     const sp = translations.startPage;
     if (!sp) return;
 
@@ -39,8 +56,6 @@
     renderPanels(sp);
 
     if (window.lucide) lucide.createIcons();
-
-    markActiveNavCta();
   }
 
   function renderTabs(sp) {

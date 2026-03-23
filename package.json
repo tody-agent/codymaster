@@ -1,7 +1,7 @@
 {
   "name": "codymaster",
   "version": "3.4.0",
-  "description": "33 Skills. Ship 10x faster.",
+  "description": "34 Skills. Ship 10x faster.",
   "main": "dist/index.js",
   "bin": {
     "cody": "dist/index.js",
@@ -16,7 +16,12 @@
     "build:html": "node scripts/inject-header.js && node scripts/inject-footer.js && node scripts/inject-ga.js",
     "docs:build": "cd docs && npx vitepress build && rm -rf ../public/docs && cp -r .vitepress/dist ../public/docs",
     "docs:dev": "cd docs && npx vitepress dev",
-    "deploy": "npm run build:html && npm run docs:build && export $(grep -v '^#' .env | xargs) && wrangler pages deploy public"
+    "gate:secrets": "node scripts/gate-0-secrets.js",
+    "gate:syntax": "node scripts/gate-1-syntax.js",
+    "gate:dist": "node scripts/gate-5-dist-verify.js",
+    "gate:smoke": "node scripts/gate-6-smoke-test.js",
+    "deploy": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run build:html && npm run docs:build && npm run gate:dist && export $(grep -v '^#' .env | xargs) && wrangler pages deploy public && npm run gate:smoke",
+    "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run build:html && npm run docs:build && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'"
   },
   "keywords": [],
   "author": "",

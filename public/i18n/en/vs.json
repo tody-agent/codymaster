@@ -141,14 +141,14 @@
       },
       {
         "icon": "🛡️",
-        "number": "33+",
+        "number": "34+",
         "label": "AI Expert Skills",
         "sub": "PM, Design, Dev, QA, Deploy"
       }
     ],
     "skills": {
       "label": "🧠 YOUR AI TEAM",
-      "title": "33+ Expert Skills, Zero Meetings",
+      "title": "34+ Expert Skills, Zero Meetings",
       "sub": "Every skill that an 8-person team would need — automated, disciplined, available 24/7.",
       "list": [
         {
@@ -214,7 +214,7 @@
     },
     "cta": {
       "title": "Stop Sprinting in Circles.<br><span>Start Building at Light Speed.</span>",
-      "sub": "Free. Open source. 33+ skills. One person. Infinite output.",
+      "sub": "Free. Open source. 34+ skills. One person. Infinite output.",
       "btn": "Get Started →",
       "links": [
         "Compare with AI coding tools →",
@@ -354,7 +354,7 @@
   "vs_others_auto_53": "🔧 Total Skills",
   "vs_others_auto_54": "~10-15",
   "vs_others_auto_55": "~3-5",
-  "vs_others_auto_56": "33+ Skills",
+  "vs_others_auto_56": "34+ Skills",
   "vs_others_auto_57": "📝 Docs Automation",
   "vs_others_auto_58": "✓ cm-dockit",
   "vs_others_auto_59": "🖥️ Multi-Platform",
@@ -473,5 +473,30 @@
   "vs_scrum_auto_6": "🦞",
   "vs_scrum_auto_7": "💡",
   "vs_scrum_auto_8": "🤺",
-  "vs_scrum_auto_9": "🔄"
+  "vs_scrum_auto_9": "🔄",
+  "vsHeroTitle1": "Standing on the",
+  "vsHeroTitle2": "Shoulders of Giants",
+  "vsHeroSub": "CodyMaster didn't emerge from nothing. We learned from incredible creators who pioneered AI-assisted coding. Here's an honest comparison — and our heartfelt thank you.",
+  "vsGratitudeLink1": "UI/UX Pro Max Skill",
+  "vsGratitudeLink2": " showed us how powerful a dedicated UX skill can be. It directly inspired our cm-ux-master with 48 UX Laws, Harvester v4, and design system generation.",
+  "vsBoltBadge": "⚡ vs ⚙️ · Detailed Comparison",
+  "vsBoltTitle1": "CodyMaster vs",
+  "vsBoltTitle2": "Bolt.new",
+  "vsBoltSub": "Bolt runs a full Node.js environment in your browser. CodyMaster runs 33+ professional skills in any AI agent. Both build apps — but in fundamentally different ways.",
+  "vsBoltIntroTitle": "⚙️ What is Bolt.new?",
+  "vsBoltIntroPrefix": "Bolt.new is an",
+  "vsBoltIntroStrong": "AI-powered browser IDE",
+  "vsBoltIntroSuffix": " by StackBlitz. It uses WebContainers to run a full Node.js environment in your browser tab. Chat with AI (Claude 3.5 Sonnet), see live previews, and deploy — all without installing anything.",
+  "vsGoogleBadge": "⚡ vs 🧪 · Detailed Comparison",
+  "vsGoogleTitle1": "CodyMaster vs",
+  "vsGoogleTitle2": "AI Studio",
+  "vsGoogleSub": "Google AI Studio is the frontier for Gemini models. CodyMaster is the terminal skill kit that brings Gemini's power (and 33+ other skills) into your local development workflow.",
+  "vsLovableBadge": "⚡ vs 💖 · Detailed Comparison",
+  "vsLovableTitle1": "CodyMaster vs",
+  "vsLovableTitle2": "Lovable",
+  "vsLovableSub": "Lovable is a powerful full-stack AI app builder. CodyMaster is a professional skill kit for AI agents (Gemini, Claude, Cursor). Both build products — but they serve different users.",
+  "vsReplitBadge": "⚡ vs 🔵 · Detailed Comparison",
+  "vsReplitTitle1": "CodyMaster vs",
+  "vsReplitTitle2": "Replit Agent",
+  "vsReplitSub": "Replit is a complete cloud-based development platform. CodyMaster is a professional skill kit that runs locally on your machine, in your favorite IDE. Both empower you to build — but they live in different worlds."
 }

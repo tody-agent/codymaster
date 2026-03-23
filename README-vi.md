@@ -48,7 +48,7 @@ Nhưng rồi thực tế ập đến:
 
 ## 🟢 Giải pháp: Cả một đội ngũ Senior trong một bộ công cụ
 
-CodyMaster không chỉ là "một gói kỹ năng AI khác". Đó là **10+ năm kinh nghiệm quản lý sản phẩm + 6 tháng vibe coding thực chiến**, được đúc kết thành 33 kỹ năng kết nối với nhau, hoạt động như một **hệ thống tích hợp duy nhất**.
+CodyMaster không chỉ là "một gói kỹ năng AI khác". Đó là **10+ năm kinh nghiệm quản lý sản phẩm + 6 tháng vibe coding thực chiến**, được đúc kết thành 34 kỹ năng kết nối với nhau, hoạt động như một **hệ thống tích hợp duy nhất**.
 
 Khi bạn cài đặt CodyMaster, bạn không chỉ thêm các kỹ năng.
 **Bạn đang thuê cả một đội ngũ senior:**
@@ -220,7 +220,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 ---
 
-## 🧰 Kho vũ khí 33 kỹ năng
+## 🧰 Kho vũ khí 34 kỹ năng
 
 | Lĩnh vực | Kỹ năng |
 |--------|--------|

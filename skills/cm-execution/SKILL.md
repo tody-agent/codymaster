@@ -37,6 +37,8 @@ After EACH completed task, update CONTINUITY.md:
 
 ```
 Have a plan with independent tasks?
+├── Need SPEED + QUALITY on 3+ tasks?
+│   └── YES → Mode E: TRIZ-Parallel ⚡ (recommended)
 ├── Stay in this session?
 │   ├── YES → Mode B: Subagent-Driven
 │   └── NO → Mode A: Batch Execution
@@ -49,6 +51,7 @@ Have a plan with independent tasks?
 | **A: Batch** | Plan with checkpoints | Execute 3 tasks → report → feedback → next batch |
 | **B: Subagent** | Plan with independent tasks, same session | Fresh subagent per task + 2-stage review |
 | **C: Parallel** | 2+ independent problems | One agent per problem domain |
+| **E: TRIZ-Parallel** ⚡ | 3+ independent tasks, need speed + quality | Dependency-aware parallel dispatch with per-agent quality gates |
 
 ---
 
@@ -189,6 +192,55 @@ After EVERY phase, you MUST:
 - **Always log** — the dashboard reads logs in real-time
 - **Don't batch-skip** — execute one task at a time through full RARV
 - **Respect interrupts** — if user sends a message, pause and respond
+
+---
+
+## Mode E: TRIZ-Parallel ⚡
+
+> **Speed AND quality.** 6 TRIZ principles resolve the contradiction.
+
+### When
+- 3+ tasks that can potentially run in parallel
+- Speed is important but quality cannot be sacrificed
+- Tasks are well-defined with clear file scope
+- You need to maximize throughput without merge conflicts
+
+### TRIZ Principles Applied
+
+| # | Principle | How Applied |
+|---|-----------|-------------|
+| **#1** | Segmentation | Tasks split by file-dependency graph → only truly independent tasks run together |
+| **#3** | Local Quality | Each agent runs its own mini quality gate (syntax + tests) before reporting |
+| **#10** | Prior Action | Pre-flight check scans for file overlaps BEFORE dispatch |
+| **#15** | Dynamicity | Batch size adapts: starts at 2, scales up after clean runs, down after conflicts |
+| **#18** | Feedback | Real-time conflict detection via shared ledger of modified files |
+| **#40** | Composite | Each agent = implementer + tester + reviewer (3 roles in 1) |
+
+### Process
+
+```
+1. ANALYZE    → Extract file dependencies from task descriptions
+2. GRAPH      → Build dependency graph, group into independent batches
+3. ADAPT      → Read parallel history, compute optimal batch size
+4. PRE-FLIGHT → Check conflict ledger for overlaps with running agents
+5. DISPATCH   → Send batch to agents with quality contracts
+6. MONITOR    → Each agent reports modified files → detect conflicts
+7. VERIFY     → Each agent runs mini quality gate before reporting done
+8. RECORD     → Update parallel history for future batch sizing
+```
+
+### Rules
+- **Never dispatch conflicting tasks** — pre-flight must pass
+- **Each agent must self-validate** — no "trust me it works"
+- **Adaptive sizing is mandatory** — don't hardcode batch sizes
+- **File scope is enforced** — agents must not modify files outside their scope
+- **Conflict = halt** — stop further dispatch until conflict is resolved
+
+### Common Mistakes
+- ❌ "All tasks are independent" → Always run dependency analysis first
+- ❌ "Skip pre-flight, save time" → Pre-flight prevents wasted agent work
+- ❌ "Batch size 5 for everything" → Start at 2, let the system adapt
+- ❌ "One task failed, continue anyway" → Fix before next batch
 
 ---
 

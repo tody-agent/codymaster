@@ -24,7 +24,7 @@ Open your terminal and run:
 claude plugin marketplace add tody-agent/codymaster
 ```
 
-### Step 2: Install All 33 Skills
+### Step 2: Install All 34 Skills
 
 One command installs everything:
 
@@ -32,7 +32,7 @@ One command installs everything:
 claude plugin install cm@codymaster
 ```
 
-All 33 skills ship as a single plugin:
+All 34 skills ship as a single plugin:
 
 | Domain | Skills |
 |--------|--------|
@@ -49,7 +49,7 @@ All 33 skills ship as a single plugin:
 claude plugin list
 ```
 
-You should see `cody-master` listed as installed.
+You should see `cm` listed as installed.
 
 ### One-Liner Alternative
 
@@ -69,7 +69,7 @@ gemini extensions install https://github.com/tody-agent/codymaster
 
 To update later:
 ```bash
-gemini extensions update cody-master
+gemini extensions update codymaster
 ```
 
 ---
@@ -78,10 +78,10 @@ gemini extensions update cody-master
 
 In Cursor Agent chat, run:
 ```
-/add-plugin cody-master
+/add-plugin cm
 ```
 
-Or search for `cody-master` in the Cursor plugin marketplace.
+Or search for `codymaster` in the Cursor plugin marketplace.
 
 ---
 
@@ -139,10 +139,10 @@ Skills also activate **automatically** when relevant — just describe what you 
 
 ```bash
 # Claude Code
-claude plugin update cody-master@cody-master
+claude plugin update cm@codymaster
 
 # Gemini CLI
-gemini extensions update cody-master
+gemini extensions update codymaster
 ```
 
 ## Troubleshooting
@@ -193,5 +193,5 @@ bash install.sh --claude
 ## Next Steps
 
 - [Using Skills →](./skills-usage.md) — Learn how to invoke and customize skills
-- [Skills Library →](../skills/) — Browse all 33+ available skills
+- [Skills Library →](../skills/) — Browse all 34+ available skills
 - [Dashboard Guide →](./dashboard.md) — Task tracking with the Kanban board

@@ -14,11 +14,16 @@ test('JS files have valid syntax', () => {
   }
 });
 
-test('index.html does not contain catastrophic syntax corruption', () => {
-  const content = readFileSync('public/index.html', 'utf-8');
+test('landing pages do not contain catastrophic syntax corruption', () => {
+  const publicDir = 'public';
+  const htmlFiles = readdirSync(publicDir).filter(f => f.endsWith('.html'));
   
-  // HTML structure integrity
-  expect(content).not.toMatch(/<\s+[a-zA-Z]/); // e.g., "< div"
-  expect(content).not.toMatch(/<\/\s+[a-zA-Z]/); // e.g., "</ div"
-  expect(content).not.toMatch(/--\s+>/); // e.g., "text-- >"
+  for (const file of htmlFiles) {
+    const content = readFileSync(path.join(publicDir, file), 'utf-8');
+    
+    // HTML structure integrity
+    expect(content, `${file} contains invalid opening tag`).not.toMatch(/<\s+[a-zA-Z]/); // e.g., "< div"
+    expect(content, `${file} contains invalid closing tag`).not.toMatch(/<\/\s+[a-zA-Z]/); // e.g., "</ div"
+    expect(content, `${file} contains invalid comment format`).not.toMatch(/--\s+>/); // e.g., "text-- >"
+  }
 });

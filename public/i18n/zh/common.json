@@ -37,7 +37,8 @@
     "demo": "演示",
     "brain": "大脑",
     "playbook": "实战指南",
-    "cli": "CLI"
+    "cli": "CLI",
+    "faq": "常见问题"
   },
   "socialProof": {
     "label": "值得信赖",
@@ -50,7 +51,7 @@
   "stats": {
     "items": [
       {
-        "number": "33",
+        "number": "34",
         "label": "AI 技能"
       },
       {

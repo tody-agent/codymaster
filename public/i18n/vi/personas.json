@@ -408,7 +408,7 @@
         "heroBadge": "Được xây dựng bởi một PM với hơn 10 năm kinh nghiệm · Miễn phí & Mã nguồn mở",
         "heroStats": [
           {
-            "num": "33",
+            "num": "34",
             "label": "Kỹ năng AI"
           },
           {
@@ -488,7 +488,7 @@
             "Không chứng minh được ROI"
           ],
           "after": [
-            "33 bài blog tạo tức thì",
+            "34 bài blog tạo tức thì",
             "Landing page trong 15 phút",
             "Theo dõi đầy đủ pixel + CAPI + UTM",
             "7 framework tích hợp mỗi bài",
@@ -832,7 +832,7 @@
           "label": "Bị lãng phí mỗi dự án cho việc thiết lập boilerplate. Với cm-project-bootstrap: 10 phút."
         },
         "failureWhile": "⏱️ Tech debt tăng trưởng nhanh hơn khả năng tuyển dụng của bạn. Những kỹ sư giỏi nhất của bạn đang phải fix bug thay vì xây dựng tính năng.",
-        "ctaSecondary": "🛠️ Xem tất cả 33 Skills"
+        "ctaSecondary": "🛠️ Xem tất cả 34 Skills"
       },
       "designer": {
         "heroTitle": "Bạn thiết kế hệ thống.\nAI phải tôn trọng nó.",
@@ -1025,13 +1025,13 @@
             "Một format phổ quát",
             "Toàn bộ Claw ecosystem tương thích",
             "Đổi tự do, zero chi phí migration",
-            "33 skill, cross-agent tức thì"
+            "34 skill, cross-agent tức thì"
           ]
         },
         "objections": [
           {
             "q": "Tôi chỉ dùng Cursor. Có cần không?",
-            "a": "Có! Trên Cursor thôi bạn đã có 33 skill battle-tested. Và nếu muốn thử Claude hay Antigravity, toàn bộ thư viện skill theo bạn."
+            "a": "Có! Trên Cursor thôi bạn đã có 34 skill battle-tested. Và nếu muốn thử Claude hay Antigravity, toàn bộ thư viện skill theo bạn."
           },
           {
             "q": "'Gia đình Claw' chính xác là gì?",
@@ -1043,7 +1043,7 @@
           }
         ],
         "ctaTitle": "Tham gia hệ sinh thái skill phổ quát.\nViết một lần. Chạy mọi nơi.",
-        "ctaSub": "33 skill. Mọi Claw agent. Zero lock-in.",
+        "ctaSub": "34 skill. Mọi Claw agent. Zero lock-in.",
         "ctaButton": "Gia Nhập Claw Family →",
         "guide": {
           "badge": "LỢI THẾ BẤT CÔNG",
@@ -1076,7 +1076,7 @@
             "label": "Nền tảng AI"
           },
           {
-            "num": "33",
+            "num": "34",
             "label": "Kỹ năng Phổ quát"
           },
           {

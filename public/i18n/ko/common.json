@@ -37,7 +37,8 @@
     "demo": "데모",
     "brain": "브레인",
     "playbook": "플레이북",
-    "cli": "CLI"
+    "cli": "CLI",
+    "faq": "FAQ"
   },
   "socialProof": {
     "label": "신뢰받는 도구",
@@ -50,7 +51,7 @@
   "stats": {
     "items": [
       {
-        "number": "33",
+        "number": "34",
         "label": "AI 스킬"
       },
       {

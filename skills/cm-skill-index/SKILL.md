@@ -152,7 +152,7 @@ view_file /path/to/skills/cm-tdd/SKILL.md
 ```
 1. AT SESSION START:
    - Load this skill index (Layer 1) — costs ~2500 tokens total
-   - Now you know what 33 skills do without reading any of them
+   - Now you know what 34 skills do without reading any of them
 
 2. WHEN MATCHING A TASK:
    - Scan Layer 1 triggers to find matching skill(s)
@@ -164,7 +164,7 @@ view_file /path/to/skills/cm-tdd/SKILL.md
    - Follow the skill's instructions completely
 
 4. SAVINGS:
-   - Without index: 33 × 4000 = 132,000 tokens
+   - Without index: 34 × 4000 = 132,000 tokens
    - With index: 2800 + 300 + 4000 = 7,100 tokens
    - Saved: ~124,900 tokens (~94%)
 ```

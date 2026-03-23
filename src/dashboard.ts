@@ -138,6 +138,125 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     res.status(201).json({ project, tasks: created });
   });
 
+  // ─── Auto-Sync (Conversation Lifecycle) ─────────────────────────────
+  // Agents and webhooks call this to report conversation status.
+  // Upserts by conversationId — creates task if missing, transitions if status changes.
+
+  app.post('/api/tasks/auto-sync', (req, res) => {
+    const data = loadData();
+    const { conversationId, title, status, agent, skill, projectId, projectName } = req.body;
+
+    if (!conversationId || !title) {
+      res.status(400).json({ error: 'conversationId and title are required' });
+      return;
+    }
+
+    // Map status to column
+    const STATUS_TO_COLUMN: Record<string, Task['column']> = {
+      'started': 'in-progress',
+      'active': 'in-progress',
+      'in-progress': 'in-progress',
+      'idle': 'in-progress',
+      'review': 'review',
+      'completed': 'done',
+      'done': 'done',
+      'cancelled': 'done',
+    };
+    const column = STATUS_TO_COLUMN[status || 'active'] || 'in-progress';
+
+    // Find project — try by ID, then by name, then use first project
+    let project = projectId
+      ? data.projects.find(p => p.id === projectId)
+      : projectName
+        ? data.projects.find(p => p.name.toLowerCase() === projectName.toLowerCase())
+        : data.projects[0];
+
+    if (!project) {
+      project = {
+        id: crypto.randomUUID(),
+        name: projectName || 'Default',
+        path: '',
+        agents: agent ? [agent] : [],
+        createdAt: new Date().toISOString(),
+      };
+      data.projects.push(project);
+    }
+    if (agent && !project.agents.includes(agent)) project.agents.push(agent);
+
+    // Find existing task by conversationId metadata or exact title match
+    let taskIdx = data.tasks.findIndex(t =>
+      (t as any).conversationId === conversationId ||
+      (t.title === title && t.projectId === project!.id && t.column !== 'done')
+    );
+
+    const now = new Date().toISOString();
+
+    if (taskIdx >= 0) {
+      // Update existing task
+      const task = data.tasks[taskIdx];
+      const oldCol = task.column;
+      if (oldCol !== column) {
+        task.column = column;
+        task.updatedAt = now;
+        task.stuckSince = undefined;
+        // Reorder
+        const targetTasks = data.tasks.filter(t => t.column === column && t.id !== task.id && t.projectId === task.projectId).sort((a, b) => a.order - b.order);
+        task.order = targetTasks.length;
+        data.tasks.filter(t => t.column === oldCol && t.projectId === task.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
+        const actType = column === 'done' ? 'task_done' : 'task_transitioned';
+        logActivity(data, actType, `Auto-sync: "${task.title}" ${oldCol} → ${column}`, task.projectId, agent || task.agent, { from: oldCol, to: column, conversationId });
+      }
+      saveData(data);
+      res.json({ action: 'updated', task: data.tasks[taskIdx] });
+    } else {
+      // Create new task
+      const colTasks = data.tasks.filter(t => t.column === column && t.projectId === project!.id);
+      const maxOrder = colTasks.length > 0 ? Math.max(...colTasks.map(t => t.order)) : -1;
+      const task: Task & { conversationId?: string } = {
+        id: crypto.randomUUID(),
+        projectId: project!.id,
+        title: title.trim(),
+        description: `Auto-synced from conversation ${conversationId}`,
+        column,
+        order: maxOrder + 1,
+        priority: 'medium',
+        agent: (agent || '').trim(),
+        skill: (skill || '').trim(),
+        createdAt: now,
+        updatedAt: now,
+        conversationId,
+      };
+      data.tasks.push(task as Task);
+      logActivity(data, 'task_created', `Auto-sync: "${task.title}" created in ${column}`, project!.id, agent || '', { conversationId });
+      saveData(data);
+      res.status(201).json({ action: 'created', task });
+    }
+  });
+
+  // ─── Auto-Cleanup (Archive stale done tasks) ────────────────────────
+
+  app.post('/api/tasks/auto-cleanup', (req, res) => {
+    const data = loadData();
+    const { maxAgeHours = 72, projectId } = req.body;
+
+    const cutoff = new Date(Date.now() - maxAgeHours * 60 * 60 * 1000).toISOString();
+    const before = data.tasks.length;
+
+    data.tasks = data.tasks.filter(t => {
+      if (t.column !== 'done') return true;
+      if (projectId && t.projectId !== projectId) return true;
+      return t.updatedAt > cutoff;
+    });
+
+    const removed = before - data.tasks.length;
+    if (removed > 0) {
+      logActivity(data, 'task_deleted', `Auto-cleanup: archived ${removed} done tasks older than ${maxAgeHours}h`, projectId || '', '', { removed, maxAgeHours });
+      saveData(data);
+    }
+
+    res.json({ removed, remaining: data.tasks.length });
+  });
+
   app.put('/api/tasks/:id', (req, res) => {
     const data = loadData();
     const idx = data.tasks.findIndex(t => t.id === req.params.id);

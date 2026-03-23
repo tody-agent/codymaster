@@ -408,7 +408,7 @@
         "heroBadge": "Built by a PM with 10+ years · Free & Open Source",
         "heroStats": [
           {
-            "num": "33",
+            "num": "34",
             "label": "AI Skills"
           },
           {
@@ -488,7 +488,7 @@
             "Can't prove ROI"
           ],
           "after": [
-            "33 blog posts generated instantly",
+            "34 blog posts generated instantly",
             "Landing pages in 15 minutes",
             "Full pixel + CAPI + UTM tracking",
             "7 proven frameworks in every piece",
@@ -832,7 +832,7 @@
           "label": "Wasted per project on setup boilerplate. With cm-project-bootstrap: 10 minutes."
         },
         "failureWhile": "⏱️ Tech debt grows faster than you can hire. Your best engineers are fixing bugs, not building features.",
-        "ctaSecondary": "🛠️ See All 33 Skills"
+        "ctaSecondary": "🛠️ See All 34 Skills"
       },
       "designer": {
         "heroTitle": "You designed the system.\nAI should respect it.",
@@ -1025,13 +1025,13 @@
             "One universal format",
             "Full Claw ecosystem interop",
             "Switch freely, zero migration cost",
-            "33 skills, instant cross-agent compatibility"
+            "34 skills, instant cross-agent compatibility"
           ]
         },
         "objections": [
           {
             "q": "I only use Cursor. Do I need this?",
-            "a": "Yes! Even on Cursor alone, you get 33 battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
+            "a": "Yes! Even on Cursor alone, you get 34 battle-tested skills. And if you ever want to try Claude or Antigravity, your entire skill library comes with you."
           },
           {
             "q": "What is the 'Claw Family' exactly?",
@@ -1043,7 +1043,7 @@
           }
         ],
         "ctaTitle": "Join the universal skill ecosystem.\nWrite once. Run everywhere.",
-        "ctaSub": "33 skills. Every Claw agent. Zero lock-in.",
+        "ctaSub": "34 skills. Every Claw agent. Zero lock-in.",
         "ctaButton": "Join the Claw Family →",
         "guide": {
           "badge": "THE UNFAIR ADVANTAGE",
@@ -1076,7 +1076,7 @@
             "label": "AI Platforms"
           },
           {
-            "num": "33",
+            "num": "34",
             "label": "Universal Skills"
           },
           {

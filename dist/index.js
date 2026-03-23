@@ -65,7 +65,7 @@ function showBanner() {
     console.log(chalk_1.default.cyan(`
    ██████╗ ██████╗  ██████╗  ██╗   ██╗
   ██╔════╝██╔═══██╗██╔══██╗ ╚██╗ ██╔╝   Cody v${VERSION}
-  ██║     ██║   ██║██║  ██║  ╚████╔╝    33 Skills. Ship 10x faster.
+  ██║     ██║   ██║██║  ██║  ╚████╔╝    34 Skills. Ship 10x faster.
   ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://codymaster.localhost:${data_1.DEFAULT_PORT}
   ╚██████╗╚██████╔╝██████╔╝    ██║
    ╚═════╝ ╚═════╝ ╚═════╝     ╚═╝
@@ -110,14 +110,22 @@ function postInstallOnboarding(platform) {
             name: 'action',
             message: 'Choose an action:',
             choices: [
-                { title: chalk_1.default.cyan('📊 Launch Dashboard'), value: 'dashboard',
-                    description: `Open Mission Control → http://codymaster.localhost:${data_1.DEFAULT_PORT}` },
-                { title: chalk_1.default.magenta('🚀 Start in ' + platform.charAt(0).toUpperCase() + platform.slice(1)), value: 'invoke',
-                    description: invoke },
-                { title: chalk_1.default.white('🧩 Browse all 33 skills'), value: 'skills',
-                    description: 'See every skill, domain, and usage' },
-                { title: chalk_1.default.yellow('⚡ Install `cm` globally'), value: 'global',
-                    description: 'Add cody / cm / codymaster to your PATH' },
+                {
+                    title: chalk_1.default.cyan('📊 Launch Dashboard'), value: 'dashboard',
+                    description: `Open Mission Control → http://codymaster.localhost:${data_1.DEFAULT_PORT}`
+                },
+                {
+                    title: chalk_1.default.magenta('🚀 Start in ' + platform.charAt(0).toUpperCase() + platform.slice(1)), value: 'invoke',
+                    description: invoke
+                },
+                {
+                    title: chalk_1.default.white('🧩 Browse all 34 skills'), value: 'skills',
+                    description: 'See every skill, domain, and usage'
+                },
+                {
+                    title: chalk_1.default.yellow('⚡ Install `cm` globally'), value: 'global',
+                    description: 'Add cody / cm / codymaster to your PATH'
+                },
                 { title: chalk_1.default.gray('✅ Done'), value: 'done' },
             ],
             hint: '↑↓ navigate · Enter select · Ctrl+C exit',
@@ -139,7 +147,7 @@ function postInstallOnboarding(platform) {
                 if (platform === 'claude') {
                     console.log(chalk_1.default.white('Open Claude Code and type:\n'));
                     console.log(chalk_1.default.cyan('  /cm:demo'));
-                    console.log(chalk_1.default.gray('\n  This will run an interactive tour of all 33 skills.\n'));
+                    console.log(chalk_1.default.gray('\n  This will run an interactive tour of all 34 skills.\n'));
                 }
                 else {
                     console.log(chalk_1.default.cyan(`  ${invoke}\n`));
@@ -178,18 +186,30 @@ function showInteractiveMenu() {
             name: 'action',
             message: 'Quick menu:',
             choices: [
-                { title: chalk_1.default.cyan('📊 Dashboard'), value: 'dashboard',
-                    description: isDashboardRunning() ? 'Open in browser' : 'Start & open in browser' },
-                { title: chalk_1.default.white('📋 My Tasks'), value: 'tasks',
-                    description: 'View all tasks across projects' },
-                { title: chalk_1.default.white('📈 Status'), value: 'status',
-                    description: 'Project health snapshot' },
-                { title: chalk_1.default.magenta('🧩 Browse Skills'), value: 'skills',
-                    description: 'All 33 skills by domain' },
-                { title: chalk_1.default.yellow('➕ Add a Task'), value: 'addtask',
-                    description: 'Quickly add a task to backlog' },
-                { title: chalk_1.default.green('⚡ Install/Update Skills'), value: 'install',
-                    description: 'npx codymaster add --all' },
+                {
+                    title: chalk_1.default.cyan('📊 Dashboard'), value: 'dashboard',
+                    description: isDashboardRunning() ? 'Open in browser' : 'Start & open in browser'
+                },
+                {
+                    title: chalk_1.default.white('📋 My Tasks'), value: 'tasks',
+                    description: 'View all tasks across projects'
+                },
+                {
+                    title: chalk_1.default.white('📈 Status'), value: 'status',
+                    description: 'Project health snapshot'
+                },
+                {
+                    title: chalk_1.default.magenta('🧩 Browse Skills'), value: 'skills',
+                    description: 'All 34 skills by domain'
+                },
+                {
+                    title: chalk_1.default.yellow('➕ Add a Task'), value: 'addtask',
+                    description: 'Quickly add a task to backlog'
+                },
+                {
+                    title: chalk_1.default.green('⚡ Install/Update Skills'), value: 'install',
+                    description: 'npx codymaster add --all'
+                },
                 { title: chalk_1.default.gray('❓ Help'), value: 'help' },
             ],
             hint: '↑↓ navigate · Enter select · Ctrl+C exit',
@@ -232,7 +252,7 @@ function showInteractiveMenu() {
                 console.log(chalk_1.default.gray('  cm status             Project overview'));
                 console.log(chalk_1.default.gray('  cm task add "Title"   Add a task'));
                 console.log(chalk_1.default.gray('  cm task list          View tasks'));
-                console.log(chalk_1.default.gray('  cm list               Browse 33 skills'));
+                console.log(chalk_1.default.gray('  cm list               Browse 34 skills'));
                 console.log(chalk_1.default.gray('  cm deploy staging     Record deployment'));
                 console.log(chalk_1.default.gray('  npx codymaster add --all   Install/update skills\n'));
         }
@@ -242,7 +262,7 @@ function showInteractiveMenu() {
 const program = new commander_1.Command();
 program
     .name('cm')
-    .description('Cody — 33 Skills. Ship 10x faster.')
+    .description('Cody — 34 Skills. Ship 10x faster.')
     .version(VERSION, '-v, --version', 'Show version')
     .action(() => __awaiter(void 0, void 0, void 0, function* () {
     // Interactive quick menu (Amp-style)
@@ -1074,7 +1094,7 @@ function doAddSkills(skills, platform) {
         const { execFileSync } = require('child_process');
         if (platform === 'claude') {
             console.log(chalk_1.default.magenta('🟣 Claude Code — Installing via plugin system'));
-            console.log(chalk_1.default.gray('   (Claude installs all 33 skills as one bundle)\n'));
+            console.log(chalk_1.default.gray('   (Claude installs all 34 skills as one bundle)\n'));
             // Step 1: Register marketplace — "already installed" is OK, just continue
             console.log(chalk_1.default.gray('   $ claude plugin marketplace add tody-agent/codymaster'));
             try {
@@ -1099,7 +1119,7 @@ function doAddSkills(skills, platform) {
             console.log(chalk_1.default.gray('   $ claude plugin install cody-master@cody-master'));
             try {
                 execFileSync('claude', ['plugin', 'install', 'cody-master@cody-master'], { stdio: 'inherit' });
-                console.log('\n' + chalk_1.default.green('✅ All 33 skills installed!'));
+                console.log('\n' + chalk_1.default.green('✅ All 34 skills installed!'));
                 yield postInstallOnboarding('claude');
             }
             catch (_b) {
@@ -1114,7 +1134,7 @@ function doAddSkills(skills, platform) {
             console.log(chalk_1.default.cyan('💻 Gemini CLI — Installing via extensions'));
             try {
                 execFileSync('gemini', ['extensions', 'install', 'https://github.com/tody-agent/codymaster'], { stdio: 'inherit' });
-                console.log('\n' + chalk_1.default.green('✅ All 33 skills installed for Gemini CLI!'));
+                console.log('\n' + chalk_1.default.green('✅ All 34 skills installed for Gemini CLI!'));
                 yield postInstallOnboarding('gemini');
             }
             catch (_c) {
@@ -1144,7 +1164,7 @@ function doAddSkills(skills, platform) {
         }
         const icons = { cursor: '🔵', windsurf: '🟠', cline: '⚫', opencode: '📦', kiro: '🔶' };
         const icon = icons[platform] || '📦';
-        const label = skills.length === ALL_SKILLS.length ? 'all 33 skills' : skills.join(', ');
+        const label = skills.length === ALL_SKILLS.length ? 'all 34 skills' : skills.join(', ');
         console.log(`${icon} ${platform} — Installing ${label}`);
         console.log(chalk_1.default.gray(`   Target: ./${target.dir}/\n`));
         let ok = 0, fail = 0;
@@ -1180,7 +1200,7 @@ program
     .command('add')
     .description('Add skills to your AI agent  (npx codymaster add --skill cm-debugging)')
     .option('--skill <name>', 'Specific skill to add (e.g. cm-debugging)')
-    .option('--all', 'Add all 33 skills')
+    .option('--all', 'Add all 34 skills')
     .option('--platform <platform>', 'Target: claude|gemini|cursor|windsurf|cline|opencode|kiro|copilot')
     .option('--list', 'Show available skills and exit')
     .action((opts) => __awaiter(void 0, void 0, void 0, function* () {
@@ -1233,7 +1253,7 @@ program
             const resp = yield prompts({
                 type: 'select', name: 'mode', message: 'What to install?',
                 choices: [
-                    { title: 'All 33 skills (full kit)', value: 'all' },
+                    { title: 'All 34 skills (full kit)', value: 'all' },
                     { title: 'Search & pick one skill', value: 'pick' },
                 ],
             });
@@ -1257,7 +1277,7 @@ program
 program
     .command('list')
     .alias('ls')
-    .description('List all 33 available skills')
+    .description('List all 34 available skills')
     .option('-d, --domain <domain>', 'Filter by domain')
     .action((opts) => {
     skillList(opts.domain);
@@ -1717,7 +1737,7 @@ const SKILL_CATALOG = {
             { name: 'cm-start', desc: 'Onboarding & session kick-off wizard' },
             { name: 'cm-dashboard', desc: 'Project status & task Kanban board' },
             { name: 'cm-status', desc: 'Quick project health snapshot' },
-            { name: 'cm-how-it-work', desc: 'Interactive explainer for all 33 skills' },
+            { name: 'cm-how-it-work', desc: 'Interactive explainer for all 34 skills' },
             { name: 'cm-example', desc: 'Minimal template for new skills' },
         ],
     },
@@ -1757,7 +1777,7 @@ function skillList(filterDomain) {
         console.log(chalk_1.default.gray('   Domains: engineering, operations, product, growth, orchestration, workflow'));
         return;
     }
-    console.log(chalk_1.default.cyan('\n🧩 Cody Master — 33 Skills\n'));
+    console.log(chalk_1.default.cyan('\n🧩 Cody Master — 34 Skills\n'));
     let total = 0;
     for (const [domain, data] of entries) {
         console.log(chalk_1.default.white(`  ${data.icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)}`));

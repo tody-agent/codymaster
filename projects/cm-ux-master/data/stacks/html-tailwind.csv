@@ -31,7 +31,7 @@ No,Category,Guideline,Description,Do,Don't,Code Good,Code Bad,Severity,Docs URL
 30,Responsive,Mobile-first approach,Start with mobile styles and add breakpoints,Default mobile + md: lg: xl:,Desktop-first approach,text-sm md:text-base,text-base max-md:text-sm,Medium,https://tailwindcss.com/docs/responsive-design
 31,Responsive,Breakpoint testing,Test at standard breakpoints,320 375 768 1024 1280 1536,Only test on development device,Test all breakpoints,Single device testing,High,
 32,Responsive,Hidden/shown utilities,Control visibility per breakpoint,hidden md:block,Different content per breakpoint,hidden md:flex,Separate mobile/desktop components,Low,https://tailwindcss.com/docs/display
-33,Buttons,Button sizing,Consistent button dimensions,px-4 py-2 or px-6 py-3,Inconsistent button sizes,px-4 py-2 text-sm,Various padding per button,Medium,
+34,Buttons,Button sizing,Consistent button dimensions,px-4 py-2 or px-6 py-3,Inconsistent button sizes,px-4 py-2 text-sm,Various padding per button,Medium,
 34,Buttons,Touch targets,Minimum 44px touch target on mobile,min-h-[44px] on mobile,Small buttons on mobile,min-h-[44px] min-w-[44px],h-8 w-8 on mobile,High,
 35,Buttons,Loading states,Show loading feedback,disabled + spinner icon,Clickable during loading,<Button disabled><Spinner/></Button>,Button without loading state,High,
 36,Buttons,Icon buttons,Accessible icon-only buttons,aria-label on icon buttons,Icon button without label,<button aria-label='Close'><XIcon/></button>,<button><XIcon/></button>,High,

@@ -7,7 +7,9 @@ node_modules
 # Secrets
 .env
 .env.*
+.dev.vars
 !.env.example
+!.dev.vars.example
 
 # Docs build output (generated from docs/.vitepress)
 public/docs/

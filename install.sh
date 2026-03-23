@@ -42,7 +42,7 @@ msg() {
   local key="$1"
   case "$LANG_CODE:$key" in
     vi:welcome)   echo "Chào mừng bạn đến với CodyMaster v${VERSION}" ;;
-    vi:tagline)   echo "33+ kỹ năng AI cho Claude Code và các AI agents khác" ;;
+    vi:tagline)   echo "34+ kỹ năng AI cho Claude Code và các AI agents khác" ;;
     vi:detecting) echo "🔍 Đang phát hiện các AI agent đã cài..." ;;
     vi:found)     echo "✅ Đã tìm thấy" ;;
     vi:not_found) echo "❌ Không tìm thấy" ;;
@@ -55,7 +55,7 @@ msg() {
     vi:docs)      echo "📚 Tài liệu:" ;;
 
     zh:welcome)   echo "欢迎使用 CodyMaster v${VERSION}" ;;
-    zh:tagline)   echo "Claude Code 的 33+ AI 技能" ;;
+    zh:tagline)   echo "Claude Code 的 34+ AI 技能" ;;
     zh:detecting) echo "🔍 检测已安装的 AI Agent..." ;;
     zh:found)     echo "✅ 已找到" ;;
     zh:not_found) echo "❌ 未找到" ;;
@@ -68,7 +68,7 @@ msg() {
     zh:docs)      echo "📚 文档:" ;;
 
     ko:welcome)   echo "CodyMaster v${VERSION}에 오신 것을 환영합니다" ;;
-    ko:tagline)   echo "Claude Code용 33+ AI 스킬" ;;
+    ko:tagline)   echo "Claude Code용 34+ AI 스킬" ;;
     ko:detecting) echo "🔍 설치된 AI Agent 감지 중..." ;;
     ko:found)     echo "✅ 발견됨" ;;
     ko:not_found) echo "❌ 없음" ;;
@@ -83,7 +83,7 @@ msg() {
     *)
       case "$key" in
         welcome)   echo "Welcome to CodyMaster v${VERSION}" ;;
-        tagline)   echo "33+ AI skills for Claude Code and other AI agents" ;;
+        tagline)   echo "34+ AI skills for Claude Code and other AI agents" ;;
         detecting) echo "🔍 Detecting installed AI agents..." ;;
         found)     echo "✅ Found" ;;
         not_found) echo "❌ Not found" ;;
@@ -186,6 +186,8 @@ install_claude() {
   echo ""
 
   if command -v claude &>/dev/null; then
+    # Cleanup old marketplace if exists
+    claude plugin marketplace remove cody-master 2>/dev/null || true
     echo -e "  ${W}Adding marketplace...${NC}"
     claude plugin marketplace add tody-agent/codymaster 2>/dev/null || true
     echo -e "  ${W}Installing plugin (scope: ${scope})...${NC}"

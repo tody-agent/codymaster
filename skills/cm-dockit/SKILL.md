@@ -18,17 +18,17 @@ A professional knowledge systematization engine powered by codebase analysis and
 
 | Type | Skill File | Description |
 |------|-----------|-------------|
-| **knowledge** | `skills/persona-builder.md` + `skills/jtbd-analyzer.md` + `skills/flow-mapper.md` *(files pending)* | Personas, JTBD, Process Flows — knowledge foundation |
+| **knowledge** | *(generated directly by AI agent)* | Personas, JTBD, Process Flows — knowledge foundation |
 | **tech** | `skills/tech-docs.md` | Architecture, database, deployment, data flow |
 | **sop** | `skills/sop-guide.md` | Step-by-step user guides (enriched with knowledge) |
 | **api** | `skills/api-reference.md` | API endpoint reference with examples |
 | **all** | All above | Full knowledge base + documentation suite |
 
-| Support Skill | File | Purpose |
-|--------------|------|---------|
-| **SEO Checklist** | `skills/seo-checklist.md` | Per-page SEO audit (title, meta, headings, robots) |
-| **Content Writing** | `skills/content-writing.md` | SEO copywriting, keywords, active voice, FAQ |
-| **LLM Optimization** | `skills/llm-optimization.md` | AI-readable structure, NotebookLM-friendly |
+| Support Skill | Purpose |
+|--------------|--------|
+| **SEO Checklist** | Per-page SEO audit (title, meta, headings, robots) — applied inline by AI agent |
+| **Content Writing** | SEO copywriting, keywords, active voice, FAQ — applied inline by AI agent |
+| **LLM Optimization** | AI-readable structure, NotebookLM-friendly — applied inline by AI agent |
 
 ## Output Formats
 
@@ -142,13 +142,13 @@ Key rules to enforce:
 
 ### Step 3b: Apply SEO & LLM Guidelines (If enabled)
 
-**If SEO = yes:** Read `skills/content-writing.md` for:
+**If SEO = yes:** Apply these SEO content writing guidelines directly:
 - Keyword placement (title, H1, first paragraph, H2s, meta)
 - Inverted pyramid structure (answer first, details later)
 - Active voice (≥80%), transition words (≥30%)
 - FAQ in schema-ready format for rich snippets
 
-**If LLM_OPTIMIZE = yes:** Read `skills/llm-optimization.md` for:
+**If LLM_OPTIMIZE = yes:** Apply these AI-readability guidelines directly:
 - Clean heading hierarchy (no skipped levels)
 - Text descriptions alongside all Mermaid diagrams
 - Self-contained sections (≤500 words per H2)
@@ -159,10 +159,10 @@ Key rules to enforce:
 
 Based on the chosen type, read and follow the corresponding skill file:
 
-- **knowledge** → Run 3 skills sequentially:
-  1. Read `skills/persona-builder.md` → `docs/personas/` (Buyer & User Personas)
-  2. Read `skills/jtbd-analyzer.md` → `docs/jtbd/` (JTBD Canvases)
-  3. Read `skills/flow-mapper.md` → `docs/flows/` (Workflow, Sequence, Lifecycle, Journey)
+- **knowledge** → AI agent generates directly:
+  1. `docs/personas/` (Buyer & User Personas)
+  2. `docs/jtbd/` (JTBD Canvases)
+  3. `docs/flows/` (Workflow, Sequence, Lifecycle, Journey)
 
 - **tech** → Read `skills/tech-docs.md`, generate:
   - `docs/architecture.md` — System architecture + ADR
@@ -205,7 +205,7 @@ Read and follow `workflows/generate-sitemap.md`:
 
 ### Step 5c: Run SEO Audit (If SEO = yes)
 
-Read `skills/seo-checklist.md` and audit every generated page:
+Read `skills/content-guidelines.md` SEO checklist section and audit every generated page:
 - Title (50–60 chars, keyword) ✔️
 - Meta description (150–160 chars) ✔️
 - Single H1, no skipped levels ✔️
@@ -241,15 +241,23 @@ See also: `cm-deep-search` skill.
 
 ## CLI Quick Start
 
-For a fast interactive experience, users can run the doc generation script from the skill root:
+For a fast interactive experience, use the built-in CLI scripts:
 
 ```bash
-# Run from the cm-dockit skill directory
+# Main documentation generator
 bash scripts/doc-gen.sh
+
+# Full runner with DAG-based task execution
+bash scripts/dockit-runner.sh -p /path/to/project -t all
+
+# Dashboard view of progress
+bash scripts/dockit-dashboard.sh
+
+# Individual task runner
+bash scripts/dockit-task.sh
 ```
 
-> **Note:** The `scripts/` directory and `doc-gen.sh` script need to be created.
-> For now, trigger this skill by invoking `cm-dockit` directly via the AI assistant.
+> Run these scripts from the `cm-dockit` skill directory.
 
 ## UX Principles Applied
 

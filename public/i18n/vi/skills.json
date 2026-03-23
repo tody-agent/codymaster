@@ -1,7 +1,7 @@
 {
   "skills": {
     "label": "THƯ VIỆN KỸ NĂNG",
-    "title": "33 Kỹ năng chuyên biệt\ncho mọi giai đoạn",
+    "title": "34 Kỹ năng chuyên biệt\ncho mọi giai đoạn",
     "subtitle": "Mỗi kỹ năng là một chuyên gia AI — từ lên ý tưởng, thiết kế, viết nội dung, đến bảo mật và triển khai.",
     "categories": [
       "Ý tưởng",
@@ -110,7 +110,7 @@
     "modalBest": "Thực hành tốt nhất",
     "meta": {
       "title": "Thư viện Kỹ năng — CodyMaster Kit",
-      "description": "Khám phá 33 kỹ năng AI Agent chuyên biệt cho ý tưởng, thiết kế, nội dung, code, bảo mật và triển khai."
+      "description": "Khám phá 34 kỹ năng AI Agent chuyên biệt cho ý tưởng, thiết kế, nội dung, code, bảo mật và triển khai."
     },
     "hero": "Khám phá Thư viện Kỹ năng",
     "heroSub": "Mỗi kỹ năng là một chuyên gia AI riêng. Tìm kiếm, lọc và khám phá kỹ năng phù hợp.",
@@ -592,7 +592,7 @@
         ],
         "problem": "30 kỹ năng nhìn phát hoảng. Tôi muốn giải quyết vấn đề XYZ thì xài skill nào đây?",
         "solution": "Bách khoa toàn thư kiêm điều phối viên AI tư vấn ngược lại bạn.",
-        "whatIsIt": "Kỹ năng của các kỹ năng (Meta-skill). Nó đọc toàn bộ 33 kỹ năng còn lại và am hiểu cách build một lệnh riêng biệt.",
+        "whatIsIt": "Kỹ năng của các kỹ năng (Meta-skill). Nó đọc toàn bộ 34 kỹ năng còn lại và am hiểu cách build một lệnh riêng biệt.",
         "whenToUse": "Khi bí đường, khi cần tư vấn cách thức thiết kế workflow AI cho doanh nghiệp bạn.",
         "whyToUse": "Bạn không cần thuộc lệnh. 'Cody, tìm tao cái nào chuyên check HTML giao diện nhanh'.",
         "bestPractice": "Mở nó ra ngay ngày đầu hoặc khi bạn định dạy cho AI nhà bạn một format làm việc chuẩn MCP mới."

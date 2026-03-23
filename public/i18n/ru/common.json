@@ -37,7 +37,8 @@
     "demo": "Демонстрация",
     "brain": "Мозг",
     "playbook": "Руководство",
-    "cli": "CLI"
+    "cli": "CLI",
+    "faq": "FAQ"
   },
   "socialProof": {
     "label": "НАМ ДОВЕРЯЮТ",
@@ -50,7 +51,7 @@
   "stats": {
     "items": [
       {
-        "number": "33",
+        "number": "34",
         "label": "ИИ навыков"
       },
       {

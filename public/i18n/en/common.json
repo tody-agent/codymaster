@@ -19,7 +19,7 @@
   },
   "meta": {
     "title": "CodyMaster Kit — Build Real Products with AI, No Coding Required",
-    "description": "33 AI Agent Skills that handle design, code, testing, and deployment. You just chat. Free & open source."
+    "description": "34 AI Agent Skills that handle design, code, testing, and deployment. You just chat. Free & open source."
   },
   "nav": {
     "features": "Features",
@@ -37,7 +37,8 @@
     "demo": "Demo",
     "brain": "Brain",
     "playbook": "Playbook",
-    "cli": "CLI"
+    "cli": "CLI",
+    "faq": "FAQ"
   },
   "socialProof": {
     "label": "TRUSTED BY BUILDERS",
@@ -50,7 +51,7 @@
   "stats": {
     "items": [
       {
-        "number": "33",
+        "number": "34",
         "label": "AI Skills"
       },
       {

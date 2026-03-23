@@ -1,221 +1,801 @@
-<!DOCTYPE html><html lang="en" data-lang="en"><head>
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLI Guide &amp; Dashboard — CodyMaster Kit</title>
-  <meta name="description" content="Terminal-first power user guide for CodyMaster Kit. Slash commands, workflow recipes, cheat sheet, and the Mission Control Dashboard.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <meta name="description"
+    content="Terminal-first power user guide for CodyMaster Kit. Slash commands, workflow recipes, cheat sheet, and the Mission Control Dashboard.">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="css/kit.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     /* ── Utilities ── */
-    .font-mono { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; }
-    .text-lime { color: #a3e635; }
-    .text-cyan { color: #67e8f9; }
-    .text-purple { color: #c084fc; }
-    .text-yellow { color: #fde047; }
-    .text-red { color: #f87171; }
-    .text-green { color: #4ade80; }
-    .text-gray { color: #9ca3af; }
-    .text-white { color: #f9fafb; }
-    
+    .font-mono {
+      font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    }
+
+    .text-lime {
+      color: #a3e635;
+    }
+
+    .text-cyan {
+      color: #67e8f9;
+    }
+
+    .text-purple {
+      color: #c084fc;
+    }
+
+    .text-yellow {
+      color: #fde047;
+    }
+
+    .text-red {
+      color: #f87171;
+    }
+
+    .text-green {
+      color: #4ade80;
+    }
+
+    .text-gray {
+      color: #9ca3af;
+    }
+
+    .text-white {
+      color: #f9fafb;
+    }
+
     /* ── CLI Hero ── */
     .cli-hero {
-      position: relative; min-height: 42vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 60px; overflow: hidden;
+      position: relative;
+      min-height: 42vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      overflow: hidden;
     }
-    .cli-hero__content { position: relative; z-index: 1; max-width: 800px; margin-bottom: 40px; }
+
+    .cli-hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin-bottom: 40px;
+    }
+
     .cli-hero__badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 20px; border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle); background: rgba(20, 20, 32, 0.5);
-      font-size: 13px; font-weight: 500; color: var(--text-secondary);
-      margin-bottom: 20px; font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      background: rgba(20, 20, 32, 0.5);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-family: var(--font-mono);
     }
+
     .cli-hero__title {
-      font-family: var(--font-mono); font-size: clamp(1.8rem, 4.5vw, 3rem);
-      font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2;
+      font-family: var(--font-mono);
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      line-height: 1.2;
     }
+
     .cli-hero__title span {
       background: linear-gradient(135deg, var(--accent-lime), var(--accent-green));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
+
     .cli-hero__sub {
-      font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; max-width: 580px; margin: 0 auto;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 580px;
+      margin: 0 auto;
     }
 
     /* ── Section ── */
-    .cli-section { max-width: 1000px; margin: 0 auto; padding: 60px 24px; }
-    .cli-section--wide { max-width: 1200px; }
+    .cli-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .cli-section--wide {
+      max-width: 1200px;
+    }
+
     .cli-section__label {
-      font-family: var(--font-mono); font-size: 12px; font-weight: 600;
-      color: var(--accent-lime); letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 12px; text-align: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-lime);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-align: center;
     }
+
     .cli-section__title {
-      font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 700; text-align: center; margin-bottom: 12px; color: var(--text-primary);
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--text-primary);
     }
+
     .cli-section__sub {
-      text-align: center; color: var(--text-secondary); font-size: 0.95rem;
-      max-width: 600px; margin: 0 auto 40px; line-height: 1.6;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
     }
 
     /* ── Universal Window Frame ── */
     .app-window {
-      width: 100%; max-width: 1000px; margin: 0 auto;
-      background: #1e1e2e; border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px; overflow: hidden;
-      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #1e1e2e;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
       text-align: left;
     }
-    .app-window--wide { max-width: 1200px; }
-    .app-window__bar {
-      height: 38px; background: #E5E5EA; display: flex; align-items: center; justify-content: space-between;
-      padding: 0 16px; border-bottom: 1px solid #d1d1d6;
+
+    .app-window--wide {
+      max-width: 1200px;
     }
-    .app-window__dots { display: flex; gap: 8px; }
-    .app-window__dot { width: 12px; height: 12px; border-radius: 50%; }
-    .app-window__dot--r { background: #ff5f56; }
-    .app-window__dot--y { background: #ffbd2e; }
-    .app-window__dot--g { background: #27c93f; }
-    .app-window__title { font-size: 13px; font-weight: 600; color: #333; font-family: -apple-system, sans-serif; }
-    .app-window__right { width: 50px; } 
+
+    .app-window__bar {
+      height: 38px;
+      background: #E5E5EA;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid #d1d1d6;
+    }
+
+    .app-window__dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .app-window__dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .app-window__dot--r {
+      background: #ff5f56;
+    }
+
+    .app-window__dot--y {
+      background: #ffbd2e;
+    }
+
+    .app-window__dot--g {
+      background: #27c93f;
+    }
+
+    .app-window__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .app-window__right {
+      width: 50px;
+    }
 
     /* ── Terminal Body ── */
     .term-body {
-      background: #282a36; padding: 24px; font-size: 14px;
-      line-height: 1.5; overflow-x: auto; color: #f8f8f2; font-family: var(--font-mono);
+      background: #282a36;
+      padding: 24px;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+      color: #f8f8f2;
+      font-family: var(--font-mono);
     }
+
     .term-ascii {
-      color: #8be9fd; white-space: pre; line-height: 1.1; margin-bottom: 20px;
-      font-weight: bold; font-size: 12px;
+      color: #8be9fd;
+      white-space: pre;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 12px;
     }
-    .term-line { display: flex; margin-bottom: 4px; }
-    .term-line--gap { margin-bottom: 16px; }
+
+    .term-line {
+      display: flex;
+      margin-bottom: 4px;
+    }
+
+    .term-line--gap {
+      margin-bottom: 16px;
+    }
 
     /* For smaller snippet blocks */
     .cli-terminal {
-      background: #0d1117; border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 24px;
+      background: #0d1117;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 24px;
     }
+
     .cli-terminal__bar {
-      display: flex; align-items: center; gap: 8px; padding: 12px 16px;
-      background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
-    .cli-terminal__title { flex: 1; text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
-    .cli-terminal__body { padding: 20px 24px; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.8; color: #c9d1d9; overflow-x: auto; }
-    .cli-terminal__body .prompt { color: var(--accent-lime); }
-    .cli-terminal__body .comment { color: #6e7681; font-style: italic; }
-    .cli-terminal__body .string { color: #a5d6ff; }
-    .cli-terminal__body .flag { color: #d2a8ff; }
-    .cli-terminal__body .output { color: #8b949e; }
+
+    .cli-terminal__title {
+      flex: 1;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .cli-terminal__body {
+      padding: 20px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: #c9d1d9;
+      overflow-x: auto;
+    }
+
+    .cli-terminal__body .prompt {
+      color: var(--accent-lime);
+    }
+
+    .cli-terminal__body .comment {
+      color: #6e7681;
+      font-style: italic;
+    }
+
+    .cli-terminal__body .string {
+      color: #a5d6ff;
+    }
+
+    .cli-terminal__body .flag {
+      color: #d2a8ff;
+    }
+
+    .cli-terminal__body .output {
+      color: #8b949e;
+    }
 
     /* ── Dashboard Body ── */
     .dash-body {
-      display: flex; height: 600px; background: #18181b; color: #e4e4e7;
+      display: flex;
+      height: 600px;
+      background: #18181b;
+      color: #e4e4e7;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
+
     .dash-sidebar {
-      width: 240px; background: #121214; border-right: 1px solid #27272a;
-      padding: 24px 16px; display: flex; flex-direction: column;
+      width: 240px;
+      background: #121214;
+      border-right: 1px solid #27272a;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
     }
-    .dash-sidebar__title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 12px; margin-bottom: 32px; color: #fff; }
-    .dash-section { margin-bottom: 24px; }
-    .dash-section__label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #a1a1aa; font-weight: 600; margin-bottom: 12px; }
-    .dash-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; color: #d4d4d8; margin-bottom: 4px; transition: background 0.2s; }
-    .dash-item.active { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-    .dash-item:hover:not(.active) { background: #27272a; }
-    .dash-item__left { display: flex; align-items: center; gap: 8px; }
-    .dash-badge { background: #27272a; color: #a1a1aa; font-size: 11px; padding: 2px 6px; border-radius: 12px; min-width: 20px; text-align: center; }
-    
-    .dash-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-    .dash-header { height: 56px; border-bottom: 1px solid #27272a; display: flex; align-items: center; padding: 0 24px; justify-content: space-between; }
-    .dash-header__tabs { display: flex; gap: 24px; height: 100%; }
-    .dash-tab { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: #a1a1aa; cursor: pointer; position: relative; height: 100%; }
-    .dash-tab.active { color: #fff; }
-    .dash-tab.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #3b82f6; }
-    
-    .kanban-board { flex: 1; display: flex; gap: 16px; padding: 24px; overflow-x: auto; background: #09090b; }
-    .kanban-column { width: 280px; flex-shrink: 0; background: #141417; border: 1px solid #27272a; border-radius: 8px; display: flex; flex-direction: column; }
-    .kanban-column__header { padding: 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #27272a; }
-    .kanban-column__title { font-size: 14px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 8px; }
-    .kanban-column__title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
-    .col-backlog::before { background: #71717a; } .col-progress::before { background: #3b82f6; } .col-review::before { background: #eab308; } .col-done::before { background: #22c55e; }
-    .kanban-cards { padding: 12px; overflow-y: auto; flex: 1; }
-    .kanban-card { background: #1e1e20; border: 1px solid #27272a; border-radius: 6px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
-    .kanban-card__title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 6px; }
-    .kanban-card__desc { font-size: 12px; color: #a1a1aa; margin-bottom: 16px; line-height: 1.4; }
-    .kanban-card__footer { display: flex; justify-content: space-between; align-items: center; }
-    .kanban-agent { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #22c55e; }
-    .kanban-agent::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
-    .kanban-tags { display: flex; gap: 6px; }
-    .kanban-tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
-    .tag-urgent { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
-    .tag-high { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+
+    .dash-sidebar__title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      color: #fff;
+    }
+
+    .dash-section {
+      margin-bottom: 24px;
+    }
+
+    .dash-section__label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a1a1aa;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .dash-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: #d4d4d8;
+      margin-bottom: 4px;
+      transition: background 0.2s;
+    }
+
+    .dash-item.active {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+    }
+
+    .dash-item:hover:not(.active) {
+      background: #27272a;
+    }
+
+    .dash-item__left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dash-badge {
+      background: #27272a;
+      color: #a1a1aa;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 12px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .dash-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .dash-header {
+      height: 56px;
+      border-bottom: 1px solid #27272a;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      justify-content: space-between;
+    }
+
+    .dash-header__tabs {
+      display: flex;
+      gap: 24px;
+      height: 100%;
+    }
+
+    .dash-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #a1a1aa;
+      cursor: pointer;
+      position: relative;
+      height: 100%;
+    }
+
+    .dash-tab.active {
+      color: #fff;
+    }
+
+    .dash-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #3b82f6;
+    }
+
+    .kanban-board {
+      flex: 1;
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      overflow-x: auto;
+      background: #09090b;
+    }
+
+    .kanban-column {
+      width: 280px;
+      flex-shrink: 0;
+      background: #141417;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kanban-column__header {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #27272a;
+    }
+
+    .kanban-column__title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .kanban-column__title::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .col-backlog::before {
+      background: #71717a;
+    }
+
+    .col-progress::before {
+      background: #3b82f6;
+    }
+
+    .col-review::before {
+      background: #eab308;
+    }
+
+    .col-done::before {
+      background: #22c55e;
+    }
+
+    .kanban-cards {
+      padding: 12px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .kanban-card {
+      background: #1e1e20;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .kanban-card__title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .kanban-card__desc {
+      font-size: 12px;
+      color: #a1a1aa;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .kanban-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .kanban-agent {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #22c55e;
+    }
+
+    .kanban-agent::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #22c55e;
+      border-radius: 50%;
+    }
+
+    .kanban-tags {
+      display: flex;
+      gap: 6px;
+    }
+
+    .kanban-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .tag-urgent {
+      background: rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+    }
+
+    .tag-high {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+    }
 
     /* ── Quick Ref Table ── */
-    .cli-table-wrap { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); }
-    .cli-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
-    .cli-table thead { background: rgba(196, 248, 42, 0.06); }
-    .cli-table th { text-align: left; padding: 14px 18px; font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; color: var(--accent-lime); letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border-subtle); }
-    .cli-table td { padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text-secondary); vertical-align: top; }
-    .cli-table tr:hover td { background: rgba(255,255,255,0.02); }
-    .cli-table .cmd { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-lime); font-weight: 600; white-space: nowrap; }
-    .cli-table .cat-badge { font-size: 0.7rem; font-weight: 600; padding: 3px 9px; border-radius: var(--radius-pill); white-space: nowrap; }
-    .cat-eng { background: rgba(96, 165, 250, 0.12); color: #60a5fa; }
-    .cat-ops { background: rgba(196, 248, 42, 0.1); color: var(--accent-lime); }
-    .cat-sec { background: rgba(248, 113, 113, 0.12); color: #f87171; }
-    .cat-prod { background: rgba(251, 191, 36, 0.12); color: #fbbf24; }
-    .cat-grow { background: rgba(167, 139, 250, 0.12); color: #a78bfa; }
-    .cat-cmd { background: rgba(45, 212, 191, 0.12); color: #2dd4bf; }
+    .cli-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .cli-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .cli-table thead {
+      background: rgba(196, 248, 42, 0.06);
+    }
+
+    .cli-table th {
+      text-align: left;
+      padding: 14px 18px;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-lime);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .cli-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+
+    .cli-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .cli-table .cmd {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--accent-lime);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .cli-table .cat-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .cat-eng {
+      background: rgba(96, 165, 250, 0.12);
+      color: #60a5fa;
+    }
+
+    .cat-ops {
+      background: rgba(196, 248, 42, 0.1);
+      color: var(--accent-lime);
+    }
+
+    .cat-sec {
+      background: rgba(248, 113, 113, 0.12);
+      color: #f87171;
+    }
+
+    .cat-prod {
+      background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24;
+    }
+
+    .cat-grow {
+      background: rgba(167, 139, 250, 0.12);
+      color: #a78bfa;
+    }
+
+    .cat-cmd {
+      background: rgba(45, 212, 191, 0.12);
+      color: #2dd4bf;
+    }
 
     /* ── Workflow Cards ── */
-    .cli-workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 20px; }
-    .cli-wf-label { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .cli-workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: 20px;
+    }
+
+    .cli-wf-label {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
     /* ── Tips ── */
-    .cli-tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-    .cli-tip { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px; transition: all 0.3s; }
-    .cli-tip:hover { border-color: var(--border-hover); transform: translateY(-3px); }
-    .cli-tip__icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
-    .cli-tip__title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
-    .cli-tip__desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
-    .cli-tip__desc code { font-family: var(--font-mono); font-size: 0.78rem; padding: 2px 7px; border-radius: var(--radius-sm); background: rgba(196, 248, 42, 0.08); color: var(--accent-lime); }
+    .cli-tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .cli-tip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: all 0.3s;
+    }
+
+    .cli-tip:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+
+    .cli-tip__icon {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .cli-tip__title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .cli-tip__desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .cli-tip__desc code {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+      background: rgba(196, 248, 42, 0.08);
+      color: var(--accent-lime);
+    }
 
     /* ── CTA ── */
-    .cli-cta { text-align: center; padding: 40px 24px 80px; }
-    .cli-cta__title { font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
-    .cli-cta__sub { color: var(--text-secondary); font-size: 1rem; margin-bottom: 20px; }
+    .cli-cta {
+      text-align: center;
+      padding: 40px 24px 80px;
+    }
+
+    .cli-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .cli-cta__sub {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      .cli-hero__title { text-wrap: balance; font-size: clamp(2rem, 8vw, 2.5rem); }
-      .cli-section__title { text-wrap: balance; font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
-      .cli-cta__title { text-wrap: balance; font-size: clamp(1.8rem, 7vw, 2.2rem); line-height: 1.3; }
-      .cli-hero__sub, .cli-section__sub, .cli-cta__sub { text-wrap: balance; }
-      
-      .cli-workflow-grid { grid-template-columns: 1fr; }
-      .cli-tips-grid { grid-template-columns: 1fr; }
-      .app-window { border-radius: 0; border-left: none; border-right: none; }
-      .dash-sidebar { display: none; }
+      .cli-hero__title {
+        text-wrap: balance;
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+
+      .cli-section__title {
+        text-wrap: balance;
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+        line-height: 1.3;
+      }
+
+      .cli-cta__title {
+        text-wrap: balance;
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+        line-height: 1.3;
+      }
+
+      .cli-hero__sub,
+      .cli-section__sub,
+      .cli-cta__sub {
+        text-wrap: balance;
+      }
+
+      .cli-workflow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cli-tips-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .app-window {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+      }
+
+      .dash-sidebar {
+        display: none;
+      }
     }
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-JCHYEW645C');
-</script>
+    gtag('config', 'G-JCHYEW645C');
+  </script>
 
 </head>
+
 <body>
 
   <!-- ═══════ NAV ═══════ -->
@@ -303,9 +883,11 @@
       <div class="hero__orb hero__orb--lime"></div>
     </div>
     <div class="cli-hero__content">
-      <div class="cli-hero__badge" data-i18n="pages.cli_auto_14">$ terminal</div>
-      <h1 class="cli-hero__title"><span data-i18n="pages.cli_auto_15">The</span><span data-i18n="pages.cli_auto_16">CLI</span><span data-i18n="pages.cli_auto_17">Power Guide</span></h1>
-      <p class="cli-hero__sub" data-i18n="pages.cli_auto_16">For developers who think in terminal commands. Every slash command, every workflow, all in one place.</p>
+      <div class="cli-hero__badge" data-i18n="pages.cliBadge">$ terminal</div>
+      <h1 class="cli-hero__title"><span data-i18n="pages.cliTitlePart1">The </span><span
+          data-i18n="pages.cliTitlePart2">CLI </span><span data-i18n="pages.cliTitlePart3">Power Guide</span></h1>
+      <p class="cli-hero__sub" data-i18n="pages.cliSub">For developers who think in terminal commands. Every slash
+        command, every workflow, all in one place.</p>
     </div>
 
     <div class="app-window text-left">
@@ -315,37 +897,41 @@
           <div class="app-window__dot app-window__dot--y"></div>
           <div class="app-window__dot app-window__dot--g"></div>
         </div>
-        <div class="app-window__title" data-i18n="pages.cli_auto_17">codymaster — node /opt/homebrew/bin/cm</div>
+        <div class="app-window__title" data-i18n="pages.cliWindowTitle">codymaster — node /opt/homebrew/bin/cm</div>
         <div class="app-window__right"></div>
       </div>
       <div class="term-body">
-        <div class="term-line term-line--gap"><span class="text-gray" data-i18n="pages.cli_auto_18">[dev@macbook-pro ~/proj] %</span><span data-i18n="pages.cli_auto_19">cm</span></div>
-        
+        <div class="term-line term-line--gap"><span class="text-gray" data-i18n="pages.cli_auto_18">[dev@macbook-pro
+            ~/proj] %</span><span data-i18n="pages.cli_auto_19">cm</span></div>
+
         <div class="term-ascii">
- ██████╗ ██████╗ ██████╗ ██╗   ██╗
-██╔════╝██╔═══██╗██╔══██╗╚██╗ ██╔╝
-██║     ██║   ██║██║  ██║ ╚████╔╝
-██║     ██║   ██║██║  ██║  ╚██╔╝
-╚██████╗╚██████╔╝██████╔╝   ██║
- ╚═════╝ ╚═════╝ ╚═════╝    ╚═╝
+          ██████╗ ██████╗ ██████╗ ██╗ ██╗
+          ██╔════╝██╔═══██╗██╔══██╗╚██╗ ██╔╝
+          ██║ ██║ ██║██║ ██║ ╚████╔╝
+          ██║ ██║ ██║██║ ██║ ╚██╔╝
+          ╚██████╗╚██████╔╝██████╔╝ ██║
+          ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝
         </div>
-        
+
         <div class="term-line" style="margin-left: 200px; margin-top: -85px;">
           <div>
             <span class="text-cyan">Cody v3.4.0</span><br>
-            <span class="text-gray">33 Skills. Ship 10x faster.</span><br>
+            <span class="text-gray">34 Skills. Ship 10x faster.</span><br>
             <span class="text-gray">Dashboard: </span><span class="text-cyan">http://localhost:6969</span>
           </div>
         </div>
-  
+
         <div class="term-line" style="margin-top: 40px; margin-bottom: 20px;">
-          <span class="text-gray">Dashboard: </span> &nbsp;<span class="text-green">● RUNNING</span>&nbsp; <span class="text-gray">http://localhost:6969</span>
+          <span class="text-gray">Dashboard: </span> &nbsp;<span class="text-green">● RUNNING</span>&nbsp; <span
+            class="text-gray">http://localhost:6969</span>
         </div>
-  
+
         <div class="term-line text-white">
-          <span class="text-cyan">?</span> Quick menu: <span class="text-gray">› ↑↓ navigate · Enter select · Ctrl+C exit</span>
+          <span class="text-cyan">?</span> Quick menu: <span class="text-gray">› ↑↓ navigate · Enter select · Ctrl+C
+            exit</span>
         </div>
-        <div class="term-line"><span class="text-cyan">❯</span> &nbsp;📊 <span class="text-cyan" style="text-decoration: underline;">Dashboard</span> <span class="text-gray">— Open in browser</span></div>
+        <div class="term-line"><span class="text-cyan">❯</span> &nbsp;📊 <span class="text-cyan"
+            style="text-decoration: underline;">Dashboard</span> <span class="text-gray">— Open in browser</span></div>
         <div class="term-line">&nbsp;&nbsp;📋 My Tasks</div>
         <div class="term-line">&nbsp;&nbsp;📈 Status</div>
         <div class="term-line">&nbsp;&nbsp;<span class="text-purple">🧩 Browse Skills</span></div>
@@ -373,14 +959,15 @@
         <span class="comment"># 1. Install — just copy the skills folder to your project</span><br>
         <span class="prompt">$</span> cp -r codymaster/skills/ ./skills/<br><br>
         <span class="comment"># 2. Start autonomous mode — AI picks the right skills</span><br>
-        <span class="prompt">$</span> <span class="string">/cm-start</span> <span class="flag">"Build a landing page for my SaaS product"</span><br><br>
+        <span class="prompt">$</span> <span class="string">/cm-start</span> <span class="flag">"Build a landing page for
+          my SaaS product"</span><br><br>
         <span class="comment"># 3. Check progress anytime</span><br>
         <span class="prompt">$</span> <span class="string">/cm-status</span><br>
-        <span class="output">  ✓ Identity verified (omisocial/github)</span><br>
-        <span class="output">  ✓ Plan approved (implementation_plan.md)</span><br>
-        <span class="output">  ⧖ Building components (3/7 done)</span><br>
-        <span class="output">  ○ Tests pending</span><br>
-        <span class="output">  ○ Deploy pending</span>
+        <span class="output"> ✓ Identity verified (omisocial/github)</span><br>
+        <span class="output"> ✓ Plan approved (implementation_plan.md)</span><br>
+        <span class="output"> ⧖ Building components (3/7 done)</span><br>
+        <span class="output"> ○ Tests pending</span><br>
+        <span class="output"> ○ Deploy pending</span>
       </div>
     </div>
   </section>
@@ -389,7 +976,9 @@
   <section class="cli-section cli-section--wide reveal">
     <p class="cli-section__label">// EXTENSION</p>
     <h2 class="cli-section__title">Mission Control Dashboard</h2>
-    <p class="cli-section__sub">For users who need a shared mission control. Run <code>cm dashboard</code> or click the menu to orchestrate multiple AI agents (Claude, Antigravity) across all your projects in a visual Kanban board.</p>
+    <p class="cli-section__sub">For users who need a shared mission control. Run <code>cm dashboard</code> or click the
+      menu to orchestrate multiple AI agents (Claude, Antigravity) across all your projects in a visual Kanban board.
+    </p>
 
     <div class="app-window app-window--wide text-left">
       <div class="app-window__bar">
@@ -402,8 +991,10 @@
         <div class="app-window__right"></div>
       </div>
 
-      <div class="dash-body" style="padding: 0; overflow: hidden; height: 600px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; background: #000;">
-        <iframe src="dashboard-static.html" title="Dashboard Preview" style="width: 100%; height: 100%; border: none;"></iframe>
+      <div class="dash-body"
+        style="padding: 0; overflow: hidden; height: 600px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; background: #000;">
+        <iframe src="dashboard-static.html" title="Dashboard Preview"
+          style="width: 100%; height: 100%; border: none;"></iframe>
       </div>
     </div>
   </section>
@@ -431,7 +1022,8 @@
             <span class="comment"># Scaffold everything</span><br>
             <span class="prompt">$</span> <span class="string">/cm-project-bootstrap</span><br><br>
             <span class="comment"># Plan your first feature</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-planning</span> <span class="flag">"User auth with email + OAuth"</span><br><br>
+            <span class="prompt">$</span> <span class="string">/cm-planning</span> <span class="flag">"User auth with
+              email + OAuth"</span><br><br>
             <span class="comment"># Build with TDD</span><br>
             <span class="prompt">$</span> <span class="string">/cm-tdd</span><br><br>
             <span class="comment"># Deploy when ready</span><br>
@@ -452,9 +1044,11 @@
           </div>
           <div class="cli-terminal__body">
             <span class="comment"># Isolate in a worktree</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-git-worktrees</span> <span class="flag">fix/login-crash</span><br><br>
+            <span class="prompt">$</span> <span class="string">/cm-git-worktrees</span> <span
+              class="flag">fix/login-crash</span><br><br>
             <span class="comment"># Find the real cause</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-debugging</span> <span class="flag">"Login page crashes on submit"</span><br><br>
+            <span class="prompt">$</span> <span class="string">/cm-debugging</span> <span class="flag">"Login page
+              crashes on submit"</span><br><br>
             <span class="comment"># Write regression test, then fix</span><br>
             <span class="prompt">$</span> <span class="string">/cm-tdd</span><br><br>
             <span class="comment"># Review and merge</span><br>
@@ -475,12 +1069,13 @@
           </div>
           <div class="cli-terminal__body">
             <span class="comment"># Translate a page to all languages</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-safe-i18n</span> <span class="flag">"Translate pricing.html to vi, zh, ko, hi, ru"</span><br><br>
+            <span class="prompt">$</span> <span class="string">/cm-safe-i18n</span> <span class="flag">"Translate
+              pricing.html to vi, zh, ko, hi, ru"</span><br><br>
             <span class="comment"># Outputs:</span><br>
-            <span class="output">  ✓ Extracted 47 strings</span><br>
-            <span class="output">  ✓ Translated to 5 languages (parallel)</span><br>
-            <span class="output">  ✓ Passed 8/8 audit gates</span><br>
-            <span class="output">  ✓ Updated en.json, vi.json, zh.json...</span>
+            <span class="output"> ✓ Extracted 47 strings</span><br>
+            <span class="output"> ✓ Translated to 5 languages (parallel)</span><br>
+            <span class="output"> ✓ Passed 8/8 audit gates</span><br>
+            <span class="output"> ✓ Updated en.json, vi.json, zh.json...</span>
           </div>
         </div>
       </div>
@@ -497,7 +1092,8 @@
           </div>
           <div class="cli-terminal__body">
             <span class="comment"># Analyze current design</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-brainstorm-idea</span> <span class="flag">"Improve conversion on pricing"</span><br><br>
+            <span class="prompt">$</span> <span class="string">/cm-brainstorm-idea</span> <span class="flag">"Improve
+              conversion on pricing"</span><br><br>
             <span class="comment"># Design with UX laws</span><br>
             <span class="prompt">$</span> <span class="string">/cm-ux-master</span><br><br>
             <span class="comment"># Preview before coding</span><br>
@@ -513,7 +1109,7 @@
   <!-- ═══════ CHEAT SHEET ═══════ -->
   <section class="cli-section reveal">
     <p class="cli-section__label">// CHEAT SHEET</p>
-    <h2 class="cli-section__title">All 33 Skills at a Glance</h2>
+    <h2 class="cli-section__title">All 34 Skills at a Glance</h2>
     <p class="cli-section__sub">The complete reference. Copy any command and paste it in your AI chat.</p>
 
     <div class="cli-table-wrap">
@@ -526,39 +1122,171 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td class="cmd">/cm-start</td><td><span class="cat-badge cat-cmd">Command</span></td><td>Autonomous mode — AI picks skills based on your goal</td></tr>
-          <tr><td class="cmd">/cm-status</td><td><span class="cat-badge cat-cmd">Command</span></td><td>View progress summary of current tasks</td></tr>
-          <tr><td class="cmd">/cm-dashboard</td><td><span class="cat-badge cat-cmd">Command</span></td><td>Open visual Kanban board to track work</td></tr>
-          <tr><td class="cmd">/cm-planning</td><td><span class="cat-badge cat-eng">Engineering</span></td><td>Explore intent, write implementation plan before coding</td></tr>
-          <tr><td class="cmd">/cm-tdd</td><td><span class="cat-badge cat-eng">Engineering</span></td><td>Write tests first, then implement (RED → GREEN → REFACTOR)</td></tr>
-          <tr><td class="cmd">/cm-debugging</td><td><span class="cat-badge cat-eng">Engineering</span></td><td>5-phase root cause analysis before fixing</td></tr>
-          <tr><td class="cmd">/cm-execution</td><td><span class="cat-badge cat-eng">Engineering</span></td><td>Batch, subagent, or parallel execution modes</td></tr>
-          <tr><td class="cmd">/cm-code-review</td><td><span class="cat-badge cat-eng">Engineering</span></td><td>Review lifecycle — request, handle feedback, merge</td></tr>
-          <tr><td class="cmd">/cm-git-worktrees</td><td><span class="cat-badge cat-eng">Engineering</span></td><td>Isolated git worktrees for feature branches</td></tr>
-          <tr><td class="cmd">/cm-continuity</td><td><span class="cat-badge cat-ops">Operations</span></td><td>Working memory across sessions via CONTINUITY.md</td></tr>
-          <tr><td class="cmd">/cm-terminal</td><td><span class="cat-badge cat-ops">Operations</span></td><td>Enforce progress logging and error-stop behavior</td></tr>
-          <tr><td class="cmd">/cm-skill-chain</td><td><span class="cat-badge cat-ops">Operations</span></td><td>Compose skills into automated pipelines</td></tr>
-          <tr><td class="cmd">/cm-skill-mastery</td><td><span class="cat-badge cat-ops">Operations</span></td><td>When to invoke skills, how to create new ones</td></tr>
-          <tr><td class="cmd">/cm-deep-search</td><td><span class="cat-badge cat-ops">Operations</span></td><td>Semantic codebase search for large projects</td></tr>
-          <tr><td class="cmd">/cm-identity-guard</td><td><span class="cat-badge cat-sec">Security</span></td><td>Verify correct account before push/deploy</td></tr>
-          <tr><td class="cmd">/cm-secret-shield</td><td><span class="cat-badge cat-sec">Security</span></td><td>Pre-commit secret scanning, blocks leaked keys</td></tr>
-          <tr><td class="cmd">/cm-safe-deploy</td><td><span class="cat-badge cat-sec">Security</span></td><td>8-gate deploy pipeline with rollback</td></tr>
-          <tr><td class="cmd">/cm-quality-gate</td><td><span class="cat-badge cat-sec">Security</span></td><td>Evidence-based verification before completion</td></tr>
-          <tr><td class="cmd">/cm-test-gate</td><td><span class="cat-badge cat-sec">Security</span></td><td>Set up reliable test infrastructure</td></tr>
-          <tr><td class="cmd">/cm-safe-i18n</td><td><span class="cat-badge cat-sec">Security</span></td><td>Safe multi-language translation with 8 audit gates</td></tr>
-          <tr><td class="cmd">/cm-brainstorm-idea</td><td><span class="cat-badge cat-prod">Product</span></td><td>Multi-dimensional analysis with 9 Windows + Double Diamond</td></tr>
-          <tr><td class="cmd">/cm-ux-master</td><td><span class="cat-badge cat-prod">Product</span></td><td>Design system with 48 UX Laws, Harvester v4</td></tr>
-          <tr><td class="cmd">/cm-ui-preview</td><td><span class="cat-badge cat-prod">Product</span></td><td>Visual UI preview via Google Stitch / Pencil</td></tr>
-          <tr><td class="cmd">/cm-jtbd</td><td><span class="cat-badge cat-prod">Product</span></td><td>Jobs-To-Be-Done customer discovery</td></tr>
-          <tr><td class="cmd">/cm-project-bootstrap</td><td><span class="cat-badge cat-prod">Product</span></td><td>Full project scaffold from day 0</td></tr>
-          <tr><td class="cmd">/cm-dockit</td><td><span class="cat-badge cat-prod">Product</span></td><td>Auto-generate docs, SOPs, API references</td></tr>
-          <tr><td class="cmd">/cm-content-factory</td><td><span class="cat-badge cat-grow">Growth</span></td><td>AI content engine with multi-agent support</td></tr>
-          <tr><td class="cmd">/cm-ads-tracker</td><td><span class="cat-badge cat-grow">Growth</span></td><td>Full pixel + CAPI tracking setup</td></tr>
-          <tr><td class="cmd">/cro-methodology</td><td><span class="cat-badge cat-grow">Growth</span></td><td>Conversion audit + A/B test design</td></tr>
-          <tr><td class="cmd">/cm-readit</td><td><span class="cat-badge cat-grow">Growth</span></td><td>Audio reader + voice CRO triggers</td></tr>
-          <tr><td class="cmd">/cm-how-it-work</td><td><span class="cat-badge cat-cmd">Command</span></td><td>Full workflow guide from idea to production</td></tr>
-          <tr><td class="cmd">/cm-skill-index</td><td><span class="cat-badge cat-cmd">Command</span></td><td>Progressive skill discovery (3-layer loading)</td></tr>
-          <tr><td class="cmd">/skill-creator-ultra</td><td><span class="cat-badge cat-cmd">Command</span></td><td>Create new skills from your processes</td></tr>
+          <tr>
+            <td class="cmd">/cm-start</td>
+            <td><span class="cat-badge cat-cmd">Command</span></td>
+            <td>Autonomous mode — AI picks skills based on your goal</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-status</td>
+            <td><span class="cat-badge cat-cmd">Command</span></td>
+            <td>View progress summary of current tasks</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-dashboard</td>
+            <td><span class="cat-badge cat-cmd">Command</span></td>
+            <td>Open visual Kanban board to track work</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-planning</td>
+            <td><span class="cat-badge cat-eng">Engineering</span></td>
+            <td>Explore intent, write implementation plan before coding</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-tdd</td>
+            <td><span class="cat-badge cat-eng">Engineering</span></td>
+            <td>Write tests first, then implement (RED → GREEN → REFACTOR)</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-debugging</td>
+            <td><span class="cat-badge cat-eng">Engineering</span></td>
+            <td>5-phase root cause analysis before fixing</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-execution</td>
+            <td><span class="cat-badge cat-eng">Engineering</span></td>
+            <td>Batch, subagent, or parallel execution modes</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-code-review</td>
+            <td><span class="cat-badge cat-eng">Engineering</span></td>
+            <td>Review lifecycle — request, handle feedback, merge</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-git-worktrees</td>
+            <td><span class="cat-badge cat-eng">Engineering</span></td>
+            <td>Isolated git worktrees for feature branches</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-continuity</td>
+            <td><span class="cat-badge cat-ops">Operations</span></td>
+            <td>Working memory across sessions via CONTINUITY.md</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-terminal</td>
+            <td><span class="cat-badge cat-ops">Operations</span></td>
+            <td>Enforce progress logging and error-stop behavior</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-skill-chain</td>
+            <td><span class="cat-badge cat-ops">Operations</span></td>
+            <td>Compose skills into automated pipelines</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-skill-mastery</td>
+            <td><span class="cat-badge cat-ops">Operations</span></td>
+            <td>When to invoke skills, how to create new ones</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-deep-search</td>
+            <td><span class="cat-badge cat-ops">Operations</span></td>
+            <td>Semantic codebase search for large projects</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-identity-guard</td>
+            <td><span class="cat-badge cat-sec">Security</span></td>
+            <td>Verify correct account before push/deploy</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-secret-shield</td>
+            <td><span class="cat-badge cat-sec">Security</span></td>
+            <td>Pre-commit secret scanning, blocks leaked keys</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-safe-deploy</td>
+            <td><span class="cat-badge cat-sec">Security</span></td>
+            <td>8-gate deploy pipeline with rollback</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-quality-gate</td>
+            <td><span class="cat-badge cat-sec">Security</span></td>
+            <td>Evidence-based verification before completion</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-test-gate</td>
+            <td><span class="cat-badge cat-sec">Security</span></td>
+            <td>Set up reliable test infrastructure</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-safe-i18n</td>
+            <td><span class="cat-badge cat-sec">Security</span></td>
+            <td>Safe multi-language translation with 8 audit gates</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-brainstorm-idea</td>
+            <td><span class="cat-badge cat-prod">Product</span></td>
+            <td>Multi-dimensional analysis with 9 Windows + Double Diamond</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-ux-master</td>
+            <td><span class="cat-badge cat-prod">Product</span></td>
+            <td>Design system with 48 UX Laws, Harvester v4</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-ui-preview</td>
+            <td><span class="cat-badge cat-prod">Product</span></td>
+            <td>Visual UI preview via Google Stitch / Pencil</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-jtbd</td>
+            <td><span class="cat-badge cat-prod">Product</span></td>
+            <td>Jobs-To-Be-Done customer discovery</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-project-bootstrap</td>
+            <td><span class="cat-badge cat-prod">Product</span></td>
+            <td>Full project scaffold from day 0</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-dockit</td>
+            <td><span class="cat-badge cat-prod">Product</span></td>
+            <td>Auto-generate docs, SOPs, API references</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-content-factory</td>
+            <td><span class="cat-badge cat-grow">Growth</span></td>
+            <td>AI content engine with multi-agent support</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-ads-tracker</td>
+            <td><span class="cat-badge cat-grow">Growth</span></td>
+            <td>Full pixel + CAPI tracking setup</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cro-methodology</td>
+            <td><span class="cat-badge cat-grow">Growth</span></td>
+            <td>Conversion audit + A/B test design</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-readit</td>
+            <td><span class="cat-badge cat-grow">Growth</span></td>
+            <td>Audio reader + voice CRO triggers</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-how-it-work</td>
+            <td><span class="cat-badge cat-cmd">Command</span></td>
+            <td>Full workflow guide from idea to production</td>
+          </tr>
+          <tr>
+            <td class="cmd">/cm-skill-index</td>
+            <td><span class="cat-badge cat-cmd">Command</span></td>
+            <td>Progressive skill discovery (3-layer loading)</td>
+          </tr>
+          <tr>
+            <td class="cmd">/skill-creator-ultra</td>
+            <td><span class="cat-badge cat-cmd">Command</span></td>
+            <td>Create new skills from your processes</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -574,37 +1302,43 @@
       <div class="cli-tip">
         <span class="cli-tip__icon">⚡</span>
         <h3 class="cli-tip__title">Combine Skills in One Prompt</h3>
-        <p class="cli-tip__desc">Reference multiple skills: <code>@cm-brainstorm-idea @cm-ux-master @cm-planning</code> — AI chains them automatically in the right order.</p>
+        <p class="cli-tip__desc">Reference multiple skills: <code>@cm-brainstorm-idea @cm-ux-master @cm-planning</code>
+          — AI chains them automatically in the right order.</p>
       </div>
 
       <div class="cli-tip">
         <span class="cli-tip__icon">🔄</span>
         <h3 class="cli-tip__title">Resume After a Break</h3>
-        <p class="cli-tip__desc">Start every new session with <code>/cm-continuity</code>. AI reads CONTINUITY.md and picks up exactly where you left off — no context lost.</p>
+        <p class="cli-tip__desc">Start every new session with <code>/cm-continuity</code>. AI reads CONTINUITY.md and
+          picks up exactly where you left off — no context lost.</p>
       </div>
 
       <div class="cli-tip">
         <span class="cli-tip__icon">🌿</span>
         <h3 class="cli-tip__title">Isolate Risky Work</h3>
-        <p class="cli-tip__desc">Use <code>/cm-git-worktrees</code> before any large refactor. Creates a separate directory so your main branch stays clean.</p>
+        <p class="cli-tip__desc">Use <code>/cm-git-worktrees</code> before any large refactor. Creates a separate
+          directory so your main branch stays clean.</p>
       </div>
 
       <div class="cli-tip">
         <span class="cli-tip__icon">🏃</span>
         <h3 class="cli-tip__title">Parallel Execution Exception</h3>
-        <p class="cli-tip__desc">If a task fails during full autonomous mode, switch to <code>/cm-execution</code> in parallel mode to isolate subagents to single tasks.</p>
+        <p class="cli-tip__desc">If a task fails during full autonomous mode, switch to <code>/cm-execution</code> in
+          parallel mode to isolate subagents to single tasks.</p>
       </div>
 
       <div class="cli-tip">
         <span class="cli-tip__icon">🛡️</span>
         <h3 class="cli-tip__title">Pre-Push Safety</h3>
-        <p class="cli-tip__desc">Always run <code>/cm-identity-guard</code> + <code>/cm-secret-shield</code> before pushing. This catches wrong-account deploys and leaked API keys.</p>
+        <p class="cli-tip__desc">Always run <code>/cm-identity-guard</code> + <code>/cm-secret-shield</code> before
+          pushing. This catches wrong-account deploys and leaked API keys.</p>
       </div>
 
       <div class="cli-tip">
         <span class="cli-tip__icon">❌</span>
         <h3 class="cli-tip__title">Context Overload Loop</h3>
-        <p class="cli-tip__desc">If AI starts looping or forgetting rules, STOP. Do not keep prompting. Run <code>/cm-continuity</code> to summarize, then start a fresh chat session.</p>
+        <p class="cli-tip__desc">If AI starts looping or forgetting rules, STOP. Do not keep prompting. Run
+          <code>/cm-continuity</code> to summarize, then start a fresh chat session.</p>
       </div>
     </div>
   </section>
@@ -632,6 +1366,7 @@
         <a href="skills.html" data-i18n="nav.skills">Skills</a>
         <a href="start.html" data-i18n="nav.getStarted">Get Started</a>
         <a href="/docs/" data-i18n="nav.docs">Docs</a>
+        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title" data-i18n="footer.whyUs">Why Us</h4>
@@ -670,4 +1405,7 @@
   </script>
 
 
-</body></html>
+  <script src="js/ga-events.js"></script>
+</body>
+
+</html>

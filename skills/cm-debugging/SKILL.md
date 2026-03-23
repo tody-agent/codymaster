@@ -13,6 +13,8 @@ Random fixes waste time and create new bugs. Quick patches mask underlying issue
 
 **Violating the letter of this process is violating the spirit of debugging.**
 
+**Thinking principle (TRIZ):** Use structured cognitive tools — not just checklists — to see bugs from multiple dimensions. When linear investigation stalls, 9 Windows and Contradiction Analysis break the deadlock.
+
 ## The Iron Law
 
 ```
@@ -43,7 +45,25 @@ Use for ANY technical issue:
 - You're in a hurry (rushing guarantees rework)
 - Manager wants it fixed NOW (systematic is faster than thrashing)
 
-## The Four Phases
+## Bug Complexity Classifier
+
+Before entering the phases, classify the bug to determine which cognitive tools activate:
+
+```
+BUG enters cm-debugging
+  → Is reproduction straightforward AND error message points to exact cause?
+    → YES → SIMPLE PATH (standard Phase 0.5 → 1 → 2 → 3 → 4 → 5)
+    → NO  → COMPLEX PATH (all phases + TRIZ tools: 9 Windows, Contradiction, Troika)
+
+STALL DETECTOR (auto-triggers during any phase):
+  → Phase 1 investigation doesn't surface root cause after 2 attempts?
+  → Phase 3 hypothesis fails twice in a row?
+  → UPGRADE to Complex Path → activate TRIZ tools immediately
+```
+
+> **Why classify?** Simple bugs don't need heavy thinking tools. Complex bugs NEED them. The stall detector catches bugs that look simple but aren't.
+
+## The Phases
 
 You MUST complete each phase before proceeding to the next.
 
@@ -133,6 +153,39 @@ IF memory did NOT cause the bug:
    - Keep tracing up until you find the source
    - Fix at source, not at symptom
 
+6. **9 Windows Analysis (TRIZ) — Complex Path / Stall Detector**
+
+   **WHEN standard investigation stalls OR bug classified as complex:**
+
+   Map the bug across 3 time periods × 3 system scopes:
+
+   ```
+   ┌──────────────────┬───────────────────────┬───────────────────────┬───────────────────────┐
+   │                  │  BEFORE bug           │  DURING bug           │  AFTER fix (target)   │
+   ├──────────────────┼───────────────────────┼───────────────────────┼───────────────────────┤
+   │  SUPER-SYSTEM    │  What was the system  │  What external        │  What system-level    │
+   │  (environment,   │  environment before?  │  conditions exist     │  changes prevent      │
+   │   CI, infra,     │  Any env/dep/infra    │  during the bug?      │  recurrence?          │
+   │   dependencies)  │  changes?             │  (timing, load, etc.) │                       │
+   ├──────────────────┼───────────────────────┼───────────────────────┼───────────────────────┤
+   │  SYSTEM          │  How did the module   │  What is the exact    │  How should the       │
+   │  (module/feature)│  work before the bug? │  broken behavior?     │  module work after?   │
+   │                  │  Last known good?     │  What's different     │  What invariant       │
+   │                  │  (git log, deploy)    │  from expected?       │  must hold?           │
+   ├──────────────────┼───────────────────────┼───────────────────────┼───────────────────────┤
+   │  SUB-SYSTEM      │  What were the        │  What specific        │  What component       │
+   │  (function, var, │  component values/    │  values/states are    │  changes fix this     │
+   │   config, state) │  states before?       │  wrong now?           │  at the root?         │
+   └──────────────────┴───────────────────────┴───────────────────────┴───────────────────────┘
+   ```
+
+   **Fill ALL 9 windows.** This reveals:
+   - **Temporal blind spots:** What changed between BEFORE and DURING?
+   - **Scope blind spots:** Is the root cause at a DIFFERENT level than the symptom?
+   - **Fix quality:** Does the target AFTER state prevent the class of bug, not just this instance?
+
+   > **WHY 9 WINDOWS?** Most debugging stalls happen because you're looking at the wrong time period OR the wrong system level. 9 Windows forces you to check ALL combinations.
+
 ### Phase 2: Pattern Analysis
 
 **Find the pattern before fixing:**
@@ -155,6 +208,29 @@ IF memory did NOT cause the bug:
    - What other components does this need?
    - What settings, config, environment?
    - What assumptions does it make?
+
+5. **Contradiction Analysis (TRIZ) — Complex Path / Stall Detector**
+
+   **WHEN pattern analysis reveals conflicting behaviors or "impossible" states:**
+
+   Fill in this template:
+
+   ```
+   CONTRADICTION TEMPLATE:
+   ┌─────────────────────────────────────────────────────────────┐
+   │ System NEEDS:  [what the feature/module SHOULD do]         │
+   │ System DOES:   [what it ACTUALLY does]                     │
+   │ Conflict:      [WHY it can't do both — the hidden tension] │
+   │ Resolution:    [dissolve the contradiction, don't compromise]│
+   └─────────────────────────────────────────────────────────────┘
+   ```
+
+   **Common debugging contradictions:**
+   - "Function must be fast" vs "Function must be complete" → missing edge case in optimization
+   - "Config must be flexible" vs "Config must have safe defaults" → bad default caused the bug
+   - "Module must be independent" vs "Module needs shared state" → coupling created race condition
+
+   > **WHY CONTRADICTION?** Bugs often hide where two legitimate requirements CONFLICT. Standard pattern analysis compares code structure. Contradiction analysis compares system INTENTIONS.
 
 ### Phase 3: Hypothesis and Testing
 
@@ -180,6 +256,33 @@ IF memory did NOT cause the bug:
    - Don't pretend to know
    - Ask for help
    - Research more
+
+5. **Troika Consulting (TRIZ) — Complex Path / When Hypothesis Stalls**
+
+   **WHEN you can't form a strong hypothesis OR 2 hypotheses have failed:**
+
+   Force yourself to generate hypotheses from **3 different lenses**:
+
+   ```
+   LENS 1 — Code Lens:
+     "What code path leads to this state?"
+     Focus: control flow, logic branches, exception handling, return values
+
+   LENS 2 — Data Lens:
+     "What data/input causes this? What data is missing, corrupt, or unexpected?"
+     Focus: input validation, data shape, null/undefined, encoding, type coercion
+
+   LENS 3 — Environment Lens:
+     "What environmental factor triggers this?"
+     Focus: timing, concurrency, config, network, filesystem, memory, OS differences
+   ```
+
+   **Rules:**
+   - You MUST generate at least 1 hypothesis from EACH lens
+   - If a lens seems "irrelevant" — that's exactly where the bug hides
+   - Test the hypothesis from the LEAST obvious lens first
+
+   > **WHY TROIKA?** When debugging stalls, it's because you're stuck in ONE perspective. Troika forces 3 fundamentally different viewpoints. The bug is almost always visible from a lens you haven't tried.
 
 ### Phase 4: Implementation
 
@@ -278,12 +381,12 @@ If you catch yourself thinking:
 
 ## Quick Reference
 
-| Phase | Key Activities | Success Criteria |
-|-------|---------------|------------------|
-| **1. Root Cause** | Read errors, reproduce, check changes, gather evidence | Understand WHAT and WHY |
-| **2. Pattern** | Find working examples, compare | Identify differences |
-| **3. Hypothesis** | Form theory, test minimally | Confirmed or new hypothesis |
-| **4. Implementation** | Create test, fix, verify | Bug resolved, tests pass |
+| Phase | Key Activities | TRIZ Tool (Complex Path) | Success Criteria |
+|-------|---------------|--------------------------|------------------|
+| **1. Root Cause** | Read errors, reproduce, check changes, gather evidence | **9 Windows** — temporal × spatial analysis | Understand WHAT and WHY |
+| **2. Pattern** | Find working examples, compare | **Contradiction Analysis** — conflicting requirements | Identify root differences |
+| **3. Hypothesis** | Form theory, test minimally | **Troika** — Code/Data/Environment lenses | Confirmed or new hypothesis |
+| **4. Implementation** | Create test, fix, verify | — | Bug resolved, tests pass |
 
 ## When Process Reveals "No Root Cause"
 
@@ -301,3 +404,9 @@ If systematic investigation reveals issue is truly environmental, timing-depende
 **Related skills:**
 - **cm-tdd** - For creating failing test case (Phase 4, Step 1)
 - **cm-quality-gate** - Verify fix worked before claiming success
+- **cm-brainstorm-idea** - When 3+ fixes fail and bug reveals architectural problem → redirect to brainstorm
+
+**TRIZ tools used:**
+- **9 Windows** (Phase 1) — See bug across time × system scope
+- **Contradiction Analysis** (Phase 2) — Find hidden conflicts between requirements
+- **Troika Consulting** (Phase 3) — Force 3 different lenses on the same bug

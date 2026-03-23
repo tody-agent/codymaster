@@ -635,7 +635,7 @@
     "skillMapSection": {
       "label": "कौशल कैसे जुड़ते हैं",
       "title": "कौशल मानचित्र",
-      "subtitle": "33 कौशलों को 5 झुंडों में व्यवस्थित किया गया। आपके कार्य के आधार पर कौशल ऑटो-चेन।",
+      "subtitle": "34 कौशलों को 5 झुंडों में व्यवस्थित किया गया। आपके कार्य के आधार पर कौशल ऑटो-चेन।",
       "swarms": [
         {
           "name": "🎯विचारधारा",
@@ -878,18 +878,51 @@
   "startPage": {
     "meta": {
       "title": "शुरू करें — CodyMaster",
-      "description": "Claude Code, Gemini CLI, Cursor, Codex पर CodyMaster इंस्टॉल करें। 2 मिनट में 33 AI स्किल्स।"
+      "description": "Claude Code, Gemini CLI, Cursor, Codex पर CodyMaster इंस्टॉल करें। 2 मिनट में 34 AI स्किल्स।"
     },
     "hero": "अपने प्लेटफ़ॉर्म पर इंस्टॉल करें",
-    "heroSub": "अपना AI कोडिंग प्लेटफ़ॉर्म चुनें और 2 मिनट में 33 स्किल्स पाएं।",
+    "heroSub": "अपना AI कोडिंग प्लेटफ़ॉर्म चुनें और 2 मिनट में 34 स्किल्स पाएं।",
     "recommended": "अनुशंसित",
     "onelineLabel": "⚡ एक-लाइनर (ऑटो-डिटेक्ट)",
     "orStepByStep": "— या चरण दर चरण —",
     "copyButton": "कॉपी करें",
     "copiedButton": "कॉपी हुआ!",
     "finalCta": "तैयार हैं। बनाना शुरू करें।",
-    "finalButton": "33 स्किल्स एक्सप्लोर करें",
+    "finalButton": "34 स्किल्स एक्सप्लोर करें",
     "platforms": [
+      {
+        "id": "google-antigravity",
+        "label": "Google Antigravity",
+        "emoji": "🚀",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ वन-लाइनर — ऑटो-डिटेक्ट, बहुभाषी",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh)"
+        },
+        "steps": [
+          {
+            "title": "Antigravity एक्सेस करें",
+            "description": "Antigravity Google DeepMind का उन्नत एजेंट कोडिंग वातावरण है।",
+            "items": [
+              "अपना Antigravity-सक्षम वातावरण खोलें",
+              "सुनिश्चित करें कि आपके पास टूल का नवीनतम संस्करण है",
+              "CodyMaster कौशल के साथ मूल रूप से काम करता है"
+            ]
+          },
+          {
+            "title": "सभी 34 कौशल स्थापित करें",
+            "description": "एक कमांड सब कुछ स्थापित करता है — TDD, डिबगिंग, प्लानिंग, UX, और बहुत कुछ।",
+            "code": "npx codymaster add --all --platform gemini",
+            "output": "✓ सभी 34 कौशल .gemini/antigravity/skills/ में स्थापित\n📦 cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "स्थापना सत्यापित करें",
+            "description": "कौशल स्वचालित रूप से सक्रिय हो जाते हैं। शुरू करने के लिए किसी कौशल का उल्लेख करें।",
+            "code": "@cm-planning Design a new feature",
+            "note": "अपनी वर्तमान प्रगति देखने के लिए किसी भी समय @cm-status का उल्लेख करें।"
+          }
+        ]
+      },
       {
         "id": "क्लाउड-कोड",
         "label": "Claude कोड",
@@ -917,16 +950,16 @@
             "output": "✓ मार्केटप्लेस रजिस्टर हुआ: tody-agent/codymaster\n✓ cody-master plugin उपलब्ध"
           },
           {
-            "title": "सभी 33 स्किल्स इंस्टॉल करें",
+            "title": "सभी 34 स्किल्स इंस्टॉल करें",
             "description": "एक कमांड से सब कुछ — TDD, डिबगिंग, डिप्लॉयमेंट, UX, कंटेंट, सिक्योरिटी।",
             "code": "क्लाउड प्लगइन कोडी-मास्टर@कोडी-मास्टर इंस्टॉल करें",
-            "output": "✓ cody-master v3.4.0 इंस्टॉल हुआ\n📦 33 स्किल्स: cm-tdd, cm-debugging, cm-planning..."
+            "output": "✓ cody-master v3.4.0 इंस्टॉल हुआ\n📦 34 स्किल्स: cm-tdd, cm-debugging, cm-planning..."
           },
           {
             "title": "ऑनबोर्डिंग टूर चलाएं",
-            "description": "Claude Code खोलें और सभी 33 स्किल्स देखने के लिए इंटरेक्टिव टूर चलाएं।",
+            "description": "Claude Code खोलें और सभी 34 स्किल्स देखने के लिए इंटरेक्टिव टूर चलाएं।",
             "code": "/सेमी:डेमो",
-            "output": "🚀 CodyMaster में आपका स्वागत! सभी 33 स्किल्स एक्सप्लोर करते हैं..."
+            "output": "🚀 CodyMaster में आपका स्वागत! सभी 34 स्किल्स एक्सप्लोर करते हैं..."
           }
         ]
       },
@@ -948,13 +981,13 @@
             "title": "CodyMaster इंस्टॉल करें",
             "description": "GitHub से सीधे इंस्टॉल — npm पैकेज की ज़रूरत नहीं।",
             "code": "जेमिनी एक्सटेंशन https://github.com/tody-agent/codymaster इंस्टॉल करें",
-            "output": "✓ cody-master इंस्टॉल हुआ\n✓ Gemini CLI में 33 स्किल्स उपलब्ध"
+            "output": "✓ cody-master इंस्टॉल हुआ\n✓ Gemini CLI में 34 स्किल्स उपलब्ध"
           },
           {
             "title": "स्किल्स उपयोग करें",
             "description": "स्किल्स ऑटोमैटिक एक्टिवेट होते हैं। @[/skill-name] से एक्सप्लिसिट कॉल करें।",
             "code": "@[/cm-planning] मेरे ऐप के लिए नई फीचर डिज़ाइन करो",
-            "note": "33 स्किल्स: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+            "note": "34 स्किल्स: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
           },
           {
             "title": "बाद में अपडेट करें",
@@ -987,7 +1020,7 @@
             "title": "स्किल्स उपयोग करें",
             "description": "स्किल्स context के अनुसार ऑटो एक्टिवेट होते हैं। @mention से एक्सप्लिसिट कॉल।",
             "code": "@cm-planning नई auth system डिज़ाइन करो",
-            "note": "33 स्किल्स: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+            "note": "34 स्किल्स: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1008,13 +1041,13 @@
             "title": "इंस्टॉल इंस्ट्रक्शन फेच करें",
             "description": "Codex को GitHub से install guide फेच करने और फॉलो करने को कहें।",
             "code": "https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md से निर्देश प्राप्त करें और उनका पालन करें।",
-            "output": "✓ Codex ऑटोमैटिक सभी 33 स्किल्स पढ़ता, पार्स करता और इंस्टॉल करता है"
+            "output": "✓ Codex ऑटोमैटिक सभी 34 स्किल्स पढ़ता, पार्स करता और इंस्टॉल करता है"
           },
           {
             "title": "स्किल्स उपयोग करें",
             "description": "स्किल्स .codex/skills/ में हैं और ऑटो एक्टिवेट होते हैं।",
             "code": "@cm-tdd पूरे test coverage के साथ user authentication implement करो",
-            "note": "33 स्किल्स: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "note": "34 स्किल्स: @cm-planning, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1027,7 +1060,7 @@
             "title": "CodyMaster क्लोन करें",
             "description": "रिपॉजिटरी को home directory में क्लोन करें।",
             "code": "गिट क्लोन https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ क्लोन हुआ — 33 SKILL.md तैयार"
+            "output": "✓ क्लोन हुआ — 34 SKILL.md तैयार"
           },
           {
             "title": "प्लेटफ़ॉर्म पर स्किल्स कॉपी करें",
@@ -1038,7 +1071,7 @@
             "title": "स्किल्स उपयोग करें",
             "description": "एडिटर खोलें और किसी भी स्किल को invoke करें। Relevant होने पर ऑटो एक्टिवेट होते हैं।",
             "code": "@cm-planning नई फीचर डिज़ाइन में मदद करो",
-            "note": "33 स्किल्स: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+            "note": "34 स्किल्स: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1051,7 +1084,7 @@
             "title": "रिपॉजिटरी क्लोन करें",
             "description": "CodyMaster को home directory में क्लोन करें।",
             "code": "गिट क्लोन https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ क्लोन हुआ — 33 SKILL.md तैयार"
+            "output": "✓ क्लोन हुआ — 34 SKILL.md तैयार"
           },
           {
             "title": "अपने प्लेटफ़ॉर्म पर कॉपी करें",
@@ -1084,19 +1117,19 @@
             "title": "npx से स्किल्स जोड़ें",
             "description": "OpenCode प्रोजेक्ट में स्किल्स इंस्टॉल करने के लिए CodyMaster CLI का उपयोग करें।",
             "code": "एनपीएक्स कोडीमास्टर ऐड --ऑल --प्लेटफॉर्म ओपनकोड",
-            "output": "📦 opencode — सभी 33 स्किल्स इंस्टॉल हो रही हैं\n  ✅ cm-tdd\n  ... (कुल 33)\n✅ 33 स्किल्स इंस्टॉल → ./.opencode/skills/"
+            "output": "📦 opencode — सभी 34 स्किल्स इंस्टॉल हो रही हैं\n  ✅ cm-tdd\n  ... (कुल 34)\n✅ 34 स्किल्स इंस्टॉल → ./.opencode/skills/"
           },
           {
             "title": "या मैन्युअली क्लोन करें",
             "description": "रेपो क्लोन करें और OpenCode डायरेक्टरी में स्किल्स कॉपी करें।",
             "code": "गिट क्लोन https://github.com/tody-agent/codymaster.git /tmp/cody\nसीपी -आर /टीएमपी/कोडी/कौशल/* .ओपनकोड/कौशल/",
-            "output": "✓ 33 SKILL.md फाइलें .opencode/skills/ में तैयार"
+            "output": "✓ 34 SKILL.md फाइलें .opencode/skills/ में तैयार"
           },
           {
             "title": "स्किल्स का उपयोग करें",
             "description": "स्किल्स स्वचालित रूप से सक्रिय होती हैं। OpenCode सेशन में नाम से कॉल करें।",
             "code": "@[/cm-planning] मेरे ऐप के लिए नई फीचर डिज़ाइन करें",
-            "note": "सभी 33 स्किल्स: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+            "note": "सभी 34 स्किल्स: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
           }
         ]
       },
@@ -1118,19 +1151,19 @@
             "title": "npx से स्किल्स जोड़ें",
             "description": "Kiro की steering डायरेक्टरी में स्किल्स इंस्टॉल करने के लिए CLI का उपयोग करें।",
             "code": "एनपीएक्स कोडीमास्टर ऐड --ऑल --प्लेटफॉर्म किरो",
-            "output": "🔶 kiro — सभी 33 स्किल्स इंस्टॉल हो रही हैं\n  ✅ cm-tdd\n  ... (कुल 33)\n✅ 33 स्किल्स इंस्टॉल → ./.kiro/steering/"
+            "output": "🔶 kiro — सभी 34 स्किल्स इंस्टॉल हो रही हैं\n  ✅ cm-tdd\n  ... (कुल 34)\n✅ 34 स्किल्स इंस्टॉल → ./.kiro/steering/"
           },
           {
             "title": "या मैन्युअली क्लोन करें",
             "description": "रेपो क्लोन करें और Kiro steering में कॉपी करें।",
             "code": "गिट क्लोन https://github.com/tody-agent/codymaster.git /tmp/cody\nसीपी -आर /टीएमपी/कोडी/कौशल/* .किरो/स्टीयरिंग/",
-            "output": "✓ 33 SKILL.md फाइलें .kiro/steering/ में तैयार"
+            "output": "✓ 34 SKILL.md फाइलें .kiro/steering/ में तैयार"
           },
           {
             "title": "स्किल्स का उपयोग करें",
             "description": "Kiro स्वचालित रूप से steering documents पढ़ता है। कॉन्टेक्स्ट के आधार पर स्किल्स सक्रिय होती हैं।",
             "code": "@cm-tdd पूर्ण टेस्ट कवरेज के साथ यूजर ऑथेंटिकेशन लागू करें",
-            "note": "सभी 33 स्किल्स: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "note": "सभी 34 स्किल्स: @cm-planning, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1152,7 +1185,7 @@
             "title": "npx से स्किल्स जोड़ें",
             "description": "CodyMaster .github/copilot-instructions.md में स्किल रेफरेंस जोड़ता है।",
             "code": "एनपीएक्स कोडीमास्टर ऐड --ऑल --प्लेटफॉर्म कोपायलट",
-            "output": "✅ 33 स्किल्स .github/copilot-instructions.md में रेफर हुईं\n   GitHub Copilot इन्हें स्वचालित रूप से context के रूप में उपयोग करेगा।"
+            "output": "✅ 34 स्किल्स .github/copilot-instructions.md में रेफर हुईं\n   GitHub Copilot इन्हें स्वचालित रूप से context के रूप में उपयोग करेगा।"
           },
           {
             "title": "या मैन्युअली जोड़ें",
@@ -1163,7 +1196,7 @@
             "title": "स्किल्स का उपयोग करें",
             "description": "Copilot Chat में किसी भी स्किल को नाम से उपयोग करने के लिए कहें।",
             "code": "cm-tdd का उपयोग करके पूर्ण टेस्ट कवरेज के साथ यूजर ऑथेंटिकेशन लागू करें",
-            "note": "Copilot Chat (Cmd+I) में सबसे अच्छा काम करता है। सभी 33 स्किल्स उपलब्ध।"
+            "note": "Copilot Chat (Cmd+I) में सबसे अच्छा काम करता है। सभी 34 स्किल्स उपलब्ध।"
           }
         ]
       },
@@ -1172,7 +1205,7 @@
         "label": "एनपीएक्स/सीएलआई",
         "emoji": "⚡",
         "oneliner": {
-          "label": "⚡ एक-लाइन कमांड — सभी 33 स्किल्स इंस्टॉल करें, प्लेटफ़ॉर्म ऑटो-डिटेक्ट",
+          "label": "⚡ एक-लाइन कमांड — सभी 34 स्किल्स इंस्टॉल करें, प्लेटफ़ॉर्म ऑटो-डिटेक्ट",
           "code": "एनपीएक्स कोडीमास्टर ऐड--ऑल"
         },
         "steps": [
@@ -1180,7 +1213,7 @@
             "title": "npx से इंस्टॉल करें (ग्लोबल इंस्टॉल की जरूरत नहीं)",
             "description": "Node.js 18+ वाली किसी भी मशीन पर काम करता है।",
             "code": "एनपीएक्स कोडीमास्टर ऐड--ऑल",
-            "output": "🧠 CodyMaster v3.4.0\n   प्लेटफ़ॉर्म डिटेक्ट हो रहा है... ✅ Claude Code मिला\n   33 स्किल्स इंस्टॉल हो रही हैं..."
+            "output": "🧠 CodyMaster v3.4.0\n   प्लेटफ़ॉर्म डिटेक्ट हो रहा है... ✅ Claude Code मिला\n   34 स्किल्स इंस्टॉल हो रही हैं..."
           },
           {
             "title": "विशिष्ट स्किल इंस्टॉल करें",
@@ -1194,7 +1227,7 @@
           },
           {
             "title": "स्किल्स ब्राउज़ करें",
-            "description": "सभी 33 स्किल्स सूचीबद्ध करें या डोमेन से खोजें।",
+            "description": "सभी 34 स्किल्स सूचीबद्ध करें या डोमेन से खोजें।",
             "code": "एनपीएक्स कोडीमास्टर सूची\nएनपीएक्स कोडीमास्टर सूची--डोमेन इंजीनियरिंग\nएनपीएक्स कोडीमास्टर ऐड--लिस्ट"
           }
         ]
@@ -1386,7 +1419,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "33 भाषाएँ",
+        "metric": "34 भाषाएँ",
         "metricLabel": "एक साथ समर्थन"
       },
       {
@@ -1402,5 +1435,16 @@
         "metricLabel": "के साथ"
       }
     ]
-  }
+  },
+  "playbookBadge": "📖 संचालन गाइड",
+  "playbookTitlePart1": "स्किल ",
+  "playbookTitlePart2": "प्लेबुक",
+  "playbookSub": "\"मैं X करना चाहता हूं — कौन से स्किल्स का उपयोग करूं?\" यह पेज हर परिदृश्य के लिए उस सवाल का जवाब देता है।",
+  "playbookRule1Suffix": ") push/deploy से पहले जांचें। हर। बार।",
+  "cliBadge": "$ टर्मिनल",
+  "cliTitlePart1": "",
+  "cliTitlePart2": "CLI ",
+  "cliTitlePart3": "पावर गाइड",
+  "cliSub": "टर्मिनल कमांड में सोचने वाले डेवलपर्स के लिए। हर स्लैश कमांड, हर वर्कफ़्लो, सब एक जगह।",
+  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm"
 }

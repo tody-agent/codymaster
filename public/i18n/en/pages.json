@@ -635,7 +635,7 @@
     "skillMapSection": {
       "label": "HOW SKILLS CONNECT",
       "title": "The Skill Map",
-      "subtitle": "33 skills organized into 5 swarms. Skills auto-chain based on your task.",
+      "subtitle": "34 skills organized into 5 swarms. Skills auto-chain based on your task.",
       "swarms": [
         {
           "name": "🎯 Ideation",
@@ -878,18 +878,51 @@
   "startPage": {
     "meta": {
       "title": "Get Started — CodyMaster",
-      "description": "Install CodyMaster on Claude Code, Gemini CLI, Cursor, Codex and more. Get 33 AI skills in under 2 minutes."
+      "description": "Install CodyMaster on Claude Code, Gemini CLI, Cursor, Codex and more. Get 34 AI skills in under 2 minutes."
     },
     "hero": "Install on Your Platform",
-    "heroSub": "Choose your AI coding platform and get 33 skills in under 2 minutes.",
+    "heroSub": "Choose your AI coding platform and get 34 skills in under 2 minutes.",
     "recommended": "Recommended",
     "onelineLabel": "⚡ One-liner (auto-detect & install)",
     "orStepByStep": "— or step by step —",
     "copyButton": "Copy",
     "copiedButton": "Copied!",
     "finalCta": "You're ready. Start building.",
-    "finalButton": "Explore 33 Skills",
+    "finalButton": "Explore 34 Skills",
     "platforms": [
+      {
+        "id": "google-antigravity",
+        "label": "Google Antigravity",
+        "emoji": "🚀",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ One-liner — auto-detect, multi-language",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh)"
+        },
+        "steps": [
+          {
+            "title": "Access Antigravity",
+            "description": "Antigravity is the advanced agentic coding environment from Google DeepMind.",
+            "items": [
+              "Open your Antigravity-enabled environment",
+              "Ensure you have the latest version of the tools",
+              "Works natively with CodyMaster skills"
+            ]
+          },
+          {
+            "title": "Install All 34 Skills",
+            "description": "One command installs everything — TDD, debugging, planning, UX, and more.",
+            "code": "npx codymaster add --all --platform gemini",
+            "output": "✓ 34 skills installed to .gemini/antigravity/skills/\n📦 cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "Verify Installation",
+            "description": "Skills activate automatically. Try mentioning a skill to start.",
+            "code": "@cm-planning Design a new feature",
+            "note": "Mention @cm-status anytime to see your current progress."
+          }
+        ]
+      },
       {
         "id": "claude-code",
         "label": "Claude Code",
@@ -914,19 +947,19 @@
             "title": "Add the Marketplace",
             "description": "Register the CodyMaster plugin source so Claude Code can find it.",
             "code": "claude plugin marketplace add tody-agent/codymaster",
-            "output": "✓ Marketplace registered: tody-agent/codymaster\n✓ cody-master plugin available"
+            "output": "✓ Marketplace registered: tody-agent/codymaster\n✓ codymaster plugin available"
           },
           {
-            "title": "Install All 33 Skills",
+            "title": "Install All 34 Skills",
             "description": "One command installs everything — TDD, debugging, deployment, UX, content, security and more.",
-            "code": "claude plugin install cody-master@cody-master",
-            "output": "✓ cody-master v3.4.0 installed\n📦 33 skills: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+            "code": "claude plugin install cm@codymaster",
+            "output": "✓ cm v3.4.0 installed\n📦 34 skills: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
           },
           {
             "title": "Run Onboarding Tour",
-            "description": "Open Claude Code and run the interactive tour to see all 33 skills in action.",
+            "description": "Open Claude Code and run the interactive tour to see all 34 skills in action.",
             "code": "/cm:demo",
-            "output": "🚀 Welcome to CodyMaster! Let's explore all 33 skills..."
+            "output": "🚀 Welcome to CodyMaster! Let's explore all 34 skills..."
           }
         ]
       },
@@ -948,13 +981,13 @@
             "title": "Install CodyMaster",
             "description": "Install directly from GitHub — no npm package needed.",
             "code": "gemini extensions install https://github.com/tody-agent/codymaster",
-            "output": "✓ cody-master installed\n✓ 33 skills available in Gemini CLI"
+            "output": "✓ cody-master installed\n✓ 34 skills available in Gemini CLI"
           },
           {
             "title": "Use Skills",
             "description": "Skills activate automatically. Invoke explicitly with @[/skill-name] in any session.",
             "code": "@[/cm-planning] Design a new feature for my app",
-            "note": "All 33 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
+            "note": "All 34 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
           },
           {
             "title": "Update Later",
@@ -987,7 +1020,7 @@
             "title": "Use Skills",
             "description": "Skills activate automatically based on context. Invoke explicitly with @mention.",
             "code": "@cm-planning Design a new auth system for my app",
-            "note": "All 33 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
+            "note": "All 34 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
           }
         ]
       },
@@ -1008,13 +1041,13 @@
             "title": "Fetch Install Instructions",
             "description": "Tell Codex to fetch and follow the install guide from GitHub.",
             "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
-            "output": "✓ Codex reads, parses, and installs all 33 skills automatically"
+            "output": "✓ Codex reads, parses, and installs all 34 skills automatically"
           },
           {
             "title": "Use Skills",
             "description": "Skills are now in .codex/skills/ and activate automatically.",
             "code": "@cm-tdd Implement user authentication with full test coverage",
-            "note": "All 33 skills: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "note": "All 34 skills: @cm-planning, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1027,7 +1060,7 @@
             "title": "Clone CodyMaster",
             "description": "Clone the repository once to your home directory.",
             "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ Cloned — 33 SKILL.md files ready at ~/.cody-master/skills/"
+            "output": "✓ Cloned — 34 SKILL.md files ready at ~/.cody-master/skills/"
           },
           {
             "title": "Copy Skills to Your Platform",
@@ -1038,7 +1071,7 @@
             "title": "Use Skills",
             "description": "Open your editor and invoke any skill. Skills activate automatically when relevant.",
             "code": "@cm-planning Help me design a new feature",
-            "note": "All 33 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
+            "note": "All 34 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
           }
         ]
       },
@@ -1051,7 +1084,7 @@
             "title": "Clone the Repository",
             "description": "Clone CodyMaster once to your home directory.",
             "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ Cloned — 33 SKILL.md files ready at ~/.cody-master/skills/"
+            "output": "✓ Cloned — 34 SKILL.md files ready at ~/.cody-master/skills/"
           },
           {
             "title": "Copy to Your Platform",
@@ -1084,19 +1117,19 @@
             "title": "Add Skills via npx",
             "description": "Use the CodyMaster CLI to install skills directly into your OpenCode project.",
             "code": "npx codymaster add --all --platform opencode",
-            "output": "📦 opencode — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ✅ cm-planning\n  ... (33 total)\n✅ 33 skills installed → ./.opencode/skills/"
+            "output": "📦 opencode — Installing all 34 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ✅ cm-planning\n  ... (34 total)\n✅ 34 skills installed → ./.opencode/skills/"
           },
           {
             "title": "Or clone manually",
             "description": "Clone and copy skills to your OpenCode skills directory.",
             "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
-            "output": "✓ 33 SKILL.md files ready in .opencode/skills/"
+            "output": "✓ 34 SKILL.md files ready in .opencode/skills/"
           },
           {
             "title": "Use Skills",
             "description": "Skills activate automatically. Reference them by name in any OpenCode session.",
             "code": "@[/cm-planning] Design a new feature for my app",
-            "note": "All 33 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
+            "note": "All 34 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
           }
         ]
       },
@@ -1118,19 +1151,19 @@
             "title": "Add Skills via npx",
             "description": "Use the CLI to install CodyMaster skills into Kiro's steering documents directory.",
             "code": "npx codymaster add --all --platform kiro",
-            "output": "🔶 kiro — Installing all 33 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (33 total)\n✅ 33 skills installed → ./.kiro/steering/"
+            "output": "🔶 kiro — Installing all 34 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (34 total)\n✅ 34 skills installed → ./.kiro/steering/"
           },
           {
             "title": "Or clone manually",
             "description": "Clone the repo and copy steering documents to Kiro.",
             "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
-            "output": "✓ 33 SKILL.md files ready in .kiro/steering/"
+            "output": "✓ 34 SKILL.md files ready in .kiro/steering/"
           },
           {
             "title": "Use Skills",
             "description": "Kiro reads steering documents automatically. Skills activate based on context.",
             "code": "@cm-tdd Implement user authentication with full test coverage",
-            "note": "All 33 skills: @cm-planning, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
+            "note": "All 34 skills: @cm-planning, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
           }
         ]
       },
@@ -1152,7 +1185,7 @@
             "title": "Add Skills via npx",
             "description": "CodyMaster injects skill references into .github/copilot-instructions.md — Copilot reads this automatically.",
             "code": "npx codymaster add --all --platform copilot",
-            "output": "✅ 33 skills referenced in .github/copilot-instructions.md\n   GitHub Copilot will use these as context automatically."
+            "output": "✅ 34 skills referenced in .github/copilot-instructions.md\n   GitHub Copilot will use these as context automatically."
           },
           {
             "title": "Or add manually",
@@ -1163,7 +1196,7 @@
             "title": "Use Skills",
             "description": "Ask Copilot to use any skill by name in chat. Copilot will reference the skill context automatically.",
             "code": "Use cm-tdd to implement user authentication with full test coverage",
-            "note": "Works best in Copilot Chat (Cmd+I). All 33 skills are available as context."
+            "note": "Works best in Copilot Chat (Cmd+I). All 34 skills are available as context."
           }
         ]
       },
@@ -1172,7 +1205,7 @@
         "label": "npx / CLI",
         "emoji": "⚡",
         "oneliner": {
-          "label": "⚡ Universal one-liner — install all 33 skills, auto-detect platform",
+          "label": "⚡ Universal one-liner — install all 34 skills, auto-detect platform",
           "code": "npx codymaster add --all"
         },
         "steps": [
@@ -1180,7 +1213,7 @@
             "title": "Install via npx (no install needed)",
             "description": "Works on any machine with Node.js 18+. No global install required.",
             "code": "npx codymaster add --all",
-            "output": "🧠 CodyMaster v3.4.0\n   Detecting platform... ✅ Claude Code detected\n   Installing all 33 skills..."
+            "output": "🧠 CodyMaster v3.4.0\n   Detecting platform... ✅ Claude Code detected\n   Installing all 34 skills..."
           },
           {
             "title": "Install specific skill",
@@ -1194,7 +1227,7 @@
           },
           {
             "title": "Browse & search skills",
-            "description": "List all 33 skills or search by domain.",
+            "description": "List all 34 skills or search by domain.",
             "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
           }
         ]
@@ -1307,7 +1340,7 @@
       "title": "So What Is CodyMaster?",
       "content": "It's not just a plugin. Not a collection of prompts.\n\nIt's 10+ years of product management experience + 6 months of battle-tested vibe coding, distilled into an integrated operating system for your AI agent.\n\nA brain that learns from its mistakes. A 4-layer defense system that protects your codebase. A full-cycle engine from Idea → Design → Code → Test → Deploy → Docs → Learn. A design system extractor that can rescue even the oldest products. A documentation engine that generates complete knowledge bases from code.\n\nThe answer to one single question:",
       "question": "\"How can someone who is lazy — brilliantly, strategically lazy — create world-class products without repeating the same mistakes, the same setup, the same pain?\"",
-      "punchline": "33 skills. Each skill is a lesson learned the hard way. Each lesson cost sleepless nights.\n\nInstall CodyMaster, and you're not adding skills — you're hiring an entire senior team. A team that remembers, learns, improves, and never ships broken code to production.\n\nYou don't have to go through those nights. We already did."
+      "punchline": "34 skills. Each skill is a lesson learned the hard way. Each lesson cost sleepless nights.\n\nInstall CodyMaster, and you're not adding skills — you're hiring an entire senior team. A team that remembers, learns, improves, and never ships broken code to production.\n\nYou don't have to go through those nights. We already did."
     },
     "brand": {
       "title": "Why \"CodyMaster\"?",
@@ -1386,7 +1419,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "33 langs",
+        "metric": "34 langs",
         "metricLabel": "supported"
       },
       {
@@ -1402,5 +1435,16 @@
         "metricLabel": "built in"
       }
     ]
-  }
+  },
+  "playbookBadge": "📖 Operational Guide",
+  "playbookTitlePart1": "The Skill ",
+  "playbookTitlePart2": "Playbook",
+  "playbookSub": "\"I want to do X — which skills do I use?\" This page answers that question for every scenario you'll face.",
+  "playbookRule1Suffix": ") before push/deploy. Every. Single. Time.",
+  "cliBadge": "$ terminal",
+  "cliTitlePart1": "The ",
+  "cliTitlePart2": "CLI ",
+  "cliTitlePart3": "Power Guide",
+  "cliSub": "For developers who think in terminal commands. Every slash command, every workflow, all in one place.",
+  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm"
 }

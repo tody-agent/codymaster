@@ -48,7 +48,7 @@ But then reality hits:
 
 ## 🟢 The Solution: An Entire Senior Team in One Kit
 
-CodyMaster isn't just "another AI skills pack." It's **10+ years of product management experience + 6 months of battle-tested vibe coding**, distilled into 33 interconnected skills that work as a **single integrated system**.
+CodyMaster isn't just "another AI skills pack." It's **10+ years of product management experience + 6 months of battle-tested vibe coding**, distilled into 34 interconnected skills that work as a **single integrated system**.
 
 When you install CodyMaster, you're not adding skills.
 **You're hiring an entire senior team:**
@@ -221,7 +221,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 ---
 
-## 🧰 The 33-Skill Arsenal
+## 🧰 The 34-Skill Arsenal
 
 | Domain | Skills |
 |--------|--------|

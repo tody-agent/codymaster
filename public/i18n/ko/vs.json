@@ -141,7 +141,7 @@
       },
       {
         "icon": "🛡️",
-        "number": "33+",
+        "number": "34+",
         "label": "AI 전문가 스킬",
         "sub": "PM, 디자인, 개발, QA, 배포"
       }
@@ -473,5 +473,30 @@
   "vs_scrum_auto_6": "🦞",
   "vs_scrum_auto_7": "💡",
   "vs_scrum_auto_8": "🤺",
-  "vs_scrum_auto_9": "🔄"
+  "vs_scrum_auto_9": "🔄",
+  "vsHeroTitle1": "거인의",
+  "vsHeroTitle2": "어깨 위에 서서",
+  "vsHeroSub": "CodyMaster는 갑자기 나타난 것이 아닙니다. 저희는 AI 지원 코딩을 개척한 훌륭한 창작자들로부터 배웠습니다. 여기 솔직한 비교와 진심 어린 감사를 전합니다.",
+  "vsGratitudeLink1": "UI/UX Pro Max Skill",
+  "vsGratitudeLink2": "은 전용 UX 기술이 얼마나 강력할 수 있는지 보여주었습니다. 이는 48가지 UX 법칙, Harvester v4 및 디자인 시스템 생성을 갖춘 cm-ux-master에 직접적인 영감을 주었습니다.",
+  "vsBoltBadge": "⚡ vs ⚙️ · 상세 비교",
+  "vsBoltTitle1": "CodyMaster vs",
+  "vsBoltTitle2": "Bolt.new",
+  "vsBoltSub": "Bolt는 브라우저에서 전체 Node.js 환경을 실행합니다. CodyMaster는 모든 AI 에이전트에서 33개 이상의 전문 기술을 실행합니다. 둘 다 앱을 구축하지만 근본적으로 방식이 다릅니다.",
+  "vsBoltIntroTitle": "⚙️ Bolt.new란 무엇인가요?",
+  "vsBoltIntroPrefix": "Bolt.new는 StackBlitz에서 개발한",
+  "vsBoltIntroStrong": "AI 기반 브라우저 IDE",
+  "vsBoltIntroSuffix": "입니다. WebContainers를 사용하여 브라우저 탭에서 전체 Node.js 환경을 실행합니다. AI(Claude 3.5 Sonnet)와 대화하고, 라이브 미리보기를 확인하고, 아무것도 설치하지 않고 배포할 수 있습니다.",
+  "vsGoogleBadge": "⚡ vs 🧪 · 상세 비교",
+  "vsGoogleTitle1": "CodyMaster vs",
+  "vsGoogleTitle2": "AI Studio",
+  "vsGoogleSub": "Google AI Studio는 Gemini 모델의 최전선입니다. CodyMaster는 Gemini의 파워(및 기타 33개 이상의 기술)를 로컬 개발 워크플로우로 가져오는 터미널 기술 키트입니다.",
+  "vsLovableBadge": "⚡ vs 💖 · 상세 비교",
+  "vsLovableTitle1": "CodyMaster vs",
+  "vsLovableTitle2": "Lovable",
+  "vsLovableSub": "Lovable은 강력한 풀스택 AI 앱 빌더입니다. CodyMaster는 AI 에이전트(Gemini, Claude, Cursor)를 위한 전문 기술 키트입니다. 둘 다 제품을 구축하지만 서로 다른 사용자 층을 대상으로 합니다.",
+  "vsReplitBadge": "⚡ vs 🔵 · 상세 비교",
+  "vsReplitTitle1": "CodyMaster vs",
+  "vsReplitTitle2": "Replit Agent",
+  "vsReplitSub": "Replit은 완전한 클라우드 기반 개발 플랫폼입니다. CodyMaster는 선호하는 IDE에서 로컬로 실행되는 전문 기술 키트입니다. 둘 다 구축을 지원하지만 서로 다른 환경에서 작동합니다."
 }

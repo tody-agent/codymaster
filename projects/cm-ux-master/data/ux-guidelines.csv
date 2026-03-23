@@ -31,7 +31,7 @@ No,Category,Issue,Platform,Description,Do,Don't,Code Example Good,Code Example B
 30,Interaction,Active States,All,Show immediate feedback on press/click,Add pressed/active state visual change,No feedback during interaction,active:scale-95,No active state,Medium
 31,Interaction,Disabled States,All,Clearly indicate non-interactive elements,Reduce opacity and change cursor,Confuse disabled with normal state,opacity-50 cursor-not-allowed,Same style as enabled,Medium
 32,Interaction,Loading Buttons,All,Prevent double submission during async actions,Disable button and show loading state,Allow multiple clicks during processing,disabled={loading} spinner,Button clickable while loading,High
-33,Interaction,Error Feedback,All,Users need to know when something fails,Show clear error messages near problem,Silent failures with no feedback,Red border + error message,No indication of error,High
+34,Interaction,Error Feedback,All,Users need to know when something fails,Show clear error messages near problem,Silent failures with no feedback,Red border + error message,No indication of error,High
 34,Interaction,Success Feedback,All,Confirm successful actions to users,Show success message or visual change,No confirmation of completed action,Toast notification or checkmark,Action completes silently,Medium
 35,Interaction,Confirmation Dialogs,All,Prevent accidental destructive actions,Confirm before delete/irreversible actions,Delete without confirmation,Are you sure modal,Direct delete on click,High
 36,Accessibility,Color Contrast,All,Text must be readable against background,Minimum 4.5:1 ratio for normal text,Low contrast text,#333 on white (7:1),#999 on white (2.8:1),High

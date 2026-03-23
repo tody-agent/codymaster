@@ -559,7 +559,7 @@ gantt
 
 | Feature | UUPM | UXM 2.0 | Advantage |
 |---------|------|---------|-----------|
-| CLI Distribution | NPM | PyPI + Homebrew + NPM | UXM +33% |
+| CLI Distribution | NPM | PyPI + Homebrew + NPM | UXM +34% |
 | Platforms | 16 | 16 + MCP Servers | Equal |
 | UX Laws | ❌ | 48 + auto-mapping | UXM wins |
 | Design Tests | ❌ | 37 + validation engine | UXM wins |

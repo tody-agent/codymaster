@@ -26,7 +26,7 @@ function showBanner() {
   console.log(chalk.cyan(`
    ██████╗ ██████╗  ██████╗  ██╗   ██╗
   ██╔════╝██╔═══██╗██╔══██╗ ╚██╗ ██╔╝   Cody v${VERSION}
-  ██║     ██║   ██║██║  ██║  ╚████╔╝    33 Skills. Ship 10x faster.
+  ██║     ██║   ██║██║  ██║  ╚████╔╝    34 Skills. Ship 10x faster.
   ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://codymaster.localhost:${DEFAULT_PORT}
   ╚██████╗╚██████╔╝██████╔╝    ██║
    ╚═════╝ ╚═════╝ ╚═════╝     ╚═╝
@@ -55,10 +55,10 @@ function padRight(str: string, len: number): string {
 function openUrl(url: string) {
   const { execFile } = require('child_process');
   const [cmd, ...args] =
-    process.platform === 'darwin'  ? ['open',     url] :
-    process.platform === 'win32'   ? ['cmd', '/c', 'start', url] :
-                                     ['xdg-open', url];
-  execFile(cmd, args, () => {});
+    process.platform === 'darwin' ? ['open', url] :
+      process.platform === 'win32' ? ['cmd', '/c', 'start', url] :
+        ['xdg-open', url];
+  execFile(cmd, args, () => { });
 }
 
 // ─── Post-install Onboarding ─────────────────────────────────────────────────
@@ -72,24 +72,32 @@ async function postInstallOnboarding(platform: string) {
 
   const p = (await import('prompts')).default;
   const invoke =
-    platform === 'claude'   ? '/cm:demo  (type in Claude Code)' :
-    platform === 'gemini'   ? '@[/cm-planning] in Gemini CLI' :
-    platform === 'cursor'   ? '@cm-planning in Cursor Agent' :
-                              '@cm-planning in your AI tool';
+    platform === 'claude' ? '/cm:demo  (type in Claude Code)' :
+      platform === 'gemini' ? '@[/cm-planning] in Gemini CLI' :
+        platform === 'cursor' ? '@cm-planning in Cursor Agent' :
+          '@cm-planning in your AI tool';
 
   const resp = await p({
     type: 'select',
     name: 'action',
     message: 'Choose an action:',
     choices: [
-      { title: chalk.cyan('📊 Launch Dashboard'), value: 'dashboard',
-        description: `Open Mission Control → http://codymaster.localhost:${DEFAULT_PORT}` },
-      { title: chalk.magenta('🚀 Start in ' + platform.charAt(0).toUpperCase() + platform.slice(1)), value: 'invoke',
-        description: invoke },
-      { title: chalk.white('🧩 Browse all 33 skills'), value: 'skills',
-        description: 'See every skill, domain, and usage' },
-      { title: chalk.yellow('⚡ Install `cm` globally'), value: 'global',
-        description: 'Add cody / cm / codymaster to your PATH' },
+      {
+        title: chalk.cyan('📊 Launch Dashboard'), value: 'dashboard',
+        description: `Open Mission Control → http://codymaster.localhost:${DEFAULT_PORT}`
+      },
+      {
+        title: chalk.magenta('🚀 Start in ' + platform.charAt(0).toUpperCase() + platform.slice(1)), value: 'invoke',
+        description: invoke
+      },
+      {
+        title: chalk.white('🧩 Browse all 34 skills'), value: 'skills',
+        description: 'See every skill, domain, and usage'
+      },
+      {
+        title: chalk.yellow('⚡ Install `cm` globally'), value: 'global',
+        description: 'Add cody / cm / codymaster to your PATH'
+      },
       { title: chalk.gray('✅ Done'), value: 'done' },
     ],
     hint: '↑↓ navigate · Enter select · Ctrl+C exit',
@@ -112,7 +120,7 @@ async function postInstallOnboarding(platform: string) {
       if (platform === 'claude') {
         console.log(chalk.white('Open Claude Code and type:\n'));
         console.log(chalk.cyan('  /cm:demo'));
-        console.log(chalk.gray('\n  This will run an interactive tour of all 33 skills.\n'));
+        console.log(chalk.gray('\n  This will run an interactive tour of all 34 skills.\n'));
       } else {
         console.log(chalk.cyan(`  ${invoke}\n`));
       }
@@ -153,18 +161,30 @@ async function showInteractiveMenu() {
     name: 'action',
     message: 'Quick menu:',
     choices: [
-      { title: chalk.cyan('📊 Dashboard'), value: 'dashboard',
-        description: isDashboardRunning() ? 'Open in browser' : 'Start & open in browser' },
-      { title: chalk.white('📋 My Tasks'), value: 'tasks',
-        description: 'View all tasks across projects' },
-      { title: chalk.white('📈 Status'), value: 'status',
-        description: 'Project health snapshot' },
-      { title: chalk.magenta('🧩 Browse Skills'), value: 'skills',
-        description: 'All 33 skills by domain' },
-      { title: chalk.yellow('➕ Add a Task'), value: 'addtask',
-        description: 'Quickly add a task to backlog' },
-      { title: chalk.green('⚡ Install/Update Skills'), value: 'install',
-        description: 'npx codymaster add --all' },
+      {
+        title: chalk.cyan('📊 Dashboard'), value: 'dashboard',
+        description: isDashboardRunning() ? 'Open in browser' : 'Start & open in browser'
+      },
+      {
+        title: chalk.white('📋 My Tasks'), value: 'tasks',
+        description: 'View all tasks across projects'
+      },
+      {
+        title: chalk.white('📈 Status'), value: 'status',
+        description: 'Project health snapshot'
+      },
+      {
+        title: chalk.magenta('🧩 Browse Skills'), value: 'skills',
+        description: 'All 34 skills by domain'
+      },
+      {
+        title: chalk.yellow('➕ Add a Task'), value: 'addtask',
+        description: 'Quickly add a task to backlog'
+      },
+      {
+        title: chalk.green('⚡ Install/Update Skills'), value: 'install',
+        description: 'npx codymaster add --all'
+      },
       { title: chalk.gray('❓ Help'), value: 'help' },
     ],
     hint: '↑↓ navigate · Enter select · Ctrl+C exit',
@@ -208,7 +228,7 @@ async function showInteractiveMenu() {
       console.log(chalk.gray('  cm status             Project overview'));
       console.log(chalk.gray('  cm task add "Title"   Add a task'));
       console.log(chalk.gray('  cm task list          View tasks'));
-      console.log(chalk.gray('  cm list               Browse 33 skills'));
+      console.log(chalk.gray('  cm list               Browse 34 skills'));
       console.log(chalk.gray('  cm deploy staging     Record deployment'));
       console.log(chalk.gray('  npx codymaster add --all   Install/update skills\n'));
   }
@@ -220,7 +240,7 @@ const program = new Command();
 
 program
   .name('cm')
-  .description('Cody — 33 Skills. Ship 10x faster.')
+  .description('Cody — 34 Skills. Ship 10x faster.')
   .version(VERSION, '-v, --version', 'Show version')
   .action(async () => {
     // Interactive quick menu (Amp-style)
@@ -250,16 +270,16 @@ program
 
 function isDashboardRunning(): boolean {
   try { if (!fs.existsSync(PID_FILE)) return false; const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8').trim()); process.kill(pid, 0); return true; }
-  catch { try { fs.unlinkSync(PID_FILE); } catch {} return false; }
+  catch { try { fs.unlinkSync(PID_FILE); } catch { } return false; }
 }
 
 function stopDashboard() {
   try {
     if (!fs.existsSync(PID_FILE)) { console.log(chalk.yellow('⚠️  No dashboard running.')); return; }
     const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8').trim());
-    process.kill(pid, 'SIGTERM'); try { fs.unlinkSync(PID_FILE); } catch {}
+    process.kill(pid, 'SIGTERM'); try { fs.unlinkSync(PID_FILE); } catch { }
     console.log(chalk.green(`✅ Dashboard stopped (PID ${pid}).`));
-  } catch (err: any) { console.log(chalk.red(`Failed to stop: ${err.message}`)); try { fs.unlinkSync(PID_FILE); } catch {} }
+  } catch (err: any) { console.log(chalk.red(`Failed to stop: ${err.message}`)); try { fs.unlinkSync(PID_FILE); } catch { } }
 }
 
 function dashboardStatus(port: number) {
@@ -842,21 +862,21 @@ const ALL_SKILLS = [
 ];
 
 const PLATFORM_TARGETS: Record<string, { dir: string; invoke: string; note: string }> = {
-  gemini:   { dir: '.gemini/skills',  invoke: '@[/<skill>]',   note: 'or ~/.gemini/antigravity/skills/ for global' },
-  cursor:   { dir: '.cursor/rules',   invoke: '@<skill>',       note: 'Cursor rules directory' },
-  windsurf: { dir: '.windsurf/rules', invoke: '@<skill>',       note: 'Windsurf rules directory' },
-  cline:    { dir: '.cline/skills',   invoke: '@<skill>',       note: 'Cline / RooCode skills directory' },
-  opencode: { dir: '.opencode/skills',invoke: '@[/<skill>]',   note: 'OpenCode skills directory' },
-  kiro:     { dir: '.kiro/steering',  invoke: '@<skill>',       note: 'Kiro steering documents' },
-  copilot:  { dir: '.github',         invoke: '(auto-context)', note: 'Added to copilot-instructions.md' },
+  gemini: { dir: '.gemini/skills', invoke: '@[/<skill>]', note: 'or ~/.gemini/antigravity/skills/ for global' },
+  cursor: { dir: '.cursor/rules', invoke: '@<skill>', note: 'Cursor rules directory' },
+  windsurf: { dir: '.windsurf/rules', invoke: '@<skill>', note: 'Windsurf rules directory' },
+  cline: { dir: '.cline/skills', invoke: '@<skill>', note: 'Cline / RooCode skills directory' },
+  opencode: { dir: '.opencode/skills', invoke: '@[/<skill>]', note: 'OpenCode skills directory' },
+  kiro: { dir: '.kiro/steering', invoke: '@<skill>', note: 'Kiro steering documents' },
+  copilot: { dir: '.github', invoke: '(auto-context)', note: 'Added to copilot-instructions.md' },
 };
 
 const RAW_BASE = 'https://raw.githubusercontent.com/tody-agent/codymaster/main';
 
 function autoDetectPlatform(): string {
   const { execFileSync } = require('child_process');
-  try { execFileSync('claude', ['--version'], { stdio: 'pipe' }); return 'claude'; } catch {}
-  try { execFileSync('gemini', ['--version'], { stdio: 'pipe' }); return 'gemini'; } catch {}
+  try { execFileSync('claude', ['--version'], { stdio: 'pipe' }); return 'claude'; } catch { }
+  try { execFileSync('gemini', ['--version'], { stdio: 'pipe' }); return 'gemini'; } catch { }
   if (fs.existsSync(path.join(os.homedir(), '.cursor'))) return 'cursor';
   if (fs.existsSync(path.join(os.homedir(), '.windsurf'))) return 'windsurf';
   return 'manual';
@@ -868,7 +888,7 @@ function downloadFile(url: string, dest: string): Promise<boolean> {
       fs.mkdirSync(path.dirname(dest), { recursive: true });
       const file = fs.createWriteStream(dest);
       https.get(url, (res) => {
-        if (res.statusCode !== 200) { file.close(); try { fs.unlinkSync(dest); } catch {} resolve(false); return; }
+        if (res.statusCode !== 200) { file.close(); try { fs.unlinkSync(dest); } catch { } resolve(false); return; }
         res.pipe(file);
         file.on('finish', () => { file.close(); resolve(true); });
       }).on('error', () => { file.close(); resolve(false); });
@@ -882,7 +902,7 @@ async function doAddSkills(skills: string[], platform: string) {
 
   if (platform === 'claude') {
     console.log(chalk.magenta('🟣 Claude Code — Installing via plugin system'));
-    console.log(chalk.gray('   (Claude installs all 33 skills as one bundle)\n'));
+    console.log(chalk.gray('   (Claude installs all 34 skills as one bundle)\n'));
 
     // Step 1: Register marketplace — "already installed" is OK, just continue
     console.log(chalk.gray('   $ claude plugin marketplace add tody-agent/codymaster'));
@@ -908,7 +928,7 @@ async function doAddSkills(skills: string[], platform: string) {
     console.log(chalk.gray('   $ claude plugin install cody-master@cody-master'));
     try {
       execFileSync('claude', ['plugin', 'install', 'cody-master@cody-master'], { stdio: 'inherit' });
-      console.log('\n' + chalk.green('✅ All 33 skills installed!'));
+      console.log('\n' + chalk.green('✅ All 34 skills installed!'));
       await postInstallOnboarding('claude');
     } catch {
       console.log(chalk.yellow('\n⚠️  Plugin install failed. Run manually:\n'));
@@ -923,7 +943,7 @@ async function doAddSkills(skills: string[], platform: string) {
     console.log(chalk.cyan('💻 Gemini CLI — Installing via extensions'));
     try {
       execFileSync('gemini', ['extensions', 'install', 'https://github.com/tody-agent/codymaster'], { stdio: 'inherit' });
-      console.log('\n' + chalk.green('✅ All 33 skills installed for Gemini CLI!'));
+      console.log('\n' + chalk.green('✅ All 34 skills installed for Gemini CLI!'));
       await postInstallOnboarding('gemini');
     } catch {
       console.log(chalk.yellow('💡 Run this in your terminal:\n'));
@@ -955,7 +975,7 @@ async function doAddSkills(skills: string[], platform: string) {
 
   const icons: Record<string, string> = { cursor: '🔵', windsurf: '🟠', cline: '⚫', opencode: '📦', kiro: '🔶' };
   const icon = icons[platform] || '📦';
-  const label = skills.length === ALL_SKILLS.length ? 'all 33 skills' : skills.join(', ');
+  const label = skills.length === ALL_SKILLS.length ? 'all 34 skills' : skills.join(', ');
   console.log(`${icon} ${platform} — Installing ${label}`);
   console.log(chalk.gray(`   Target: ./${target.dir}/\n`));
 
@@ -986,7 +1006,7 @@ program
   .command('add')
   .description('Add skills to your AI agent  (npx codymaster add --skill cm-debugging)')
   .option('--skill <name>', 'Specific skill to add (e.g. cm-debugging)')
-  .option('--all', 'Add all 33 skills')
+  .option('--all', 'Add all 34 skills')
   .option('--platform <platform>', 'Target: claude|gemini|cursor|windsurf|cline|opencode|kiro|copilot')
   .option('--list', 'Show available skills and exit')
   .action(async (opts) => {
@@ -1037,7 +1057,7 @@ program
         const resp = await prompts({
           type: 'select', name: 'mode', message: 'What to install?',
           choices: [
-            { title: 'All 33 skills (full kit)', value: 'all' },
+            { title: 'All 34 skills (full kit)', value: 'all' },
             { title: 'Search & pick one skill', value: 'pick' },
           ],
         });
@@ -1062,7 +1082,7 @@ program
 program
   .command('list')
   .alias('ls')
-  .description('List all 33 available skills')
+  .description('List all 34 available skills')
   .option('-d, --domain <domain>', 'Filter by domain')
   .action((opts) => {
     skillList(opts.domain);
@@ -1266,7 +1286,7 @@ function brainStatus(projectPath: string) {
   // Stats row
   console.log(chalk.white('  ┌──────────────┬──────────────┬──────────────┬──────────────┐'));
   console.log(
-    chalk.white('  │') + chalk.red(` ❤ Learn: ${padRight(String(status.learningCount), 4)}`) + 
+    chalk.white('  │') + chalk.red(` ❤ Learn: ${padRight(String(status.learningCount), 4)}`) +
     chalk.white(' │') + chalk.blue(` 📋 Decide: ${padRight(String(status.decisionCount), 3)}`) +
     chalk.white(' │') + phaseColor(status.phase)(` ● ${padRight(status.phase, 9)}`) +
     chalk.white(' │') + chalk.gray(` #${padRight(String(status.iteration), 10)}`) + chalk.white('│')
@@ -1480,64 +1500,64 @@ const SKILL_CATALOG: Record<string, { icon: string; skills: { name: string; desc
   engineering: {
     icon: '🔧',
     skills: [
-      { name: 'cm-tdd',           desc: 'Red-Green-Refactor cycle — test before code' },
-      { name: 'cm-debugging',     desc: '5-phase root cause investigation' },
-      { name: 'cm-quality-gate',  desc: '6-gate verification system' },
-      { name: 'cm-test-gate',     desc: 'Setup 4-layer test infrastructure' },
-      { name: 'cm-code-review',   desc: 'Professional PR review lifecycle' },
+      { name: 'cm-tdd', desc: 'Red-Green-Refactor cycle — test before code' },
+      { name: 'cm-debugging', desc: '5-phase root cause investigation' },
+      { name: 'cm-quality-gate', desc: '6-gate verification system' },
+      { name: 'cm-test-gate', desc: 'Setup 4-layer test infrastructure' },
+      { name: 'cm-code-review', desc: 'Professional PR review lifecycle' },
     ],
   },
   operations: {
     icon: '⚙️',
     skills: [
-      { name: 'cm-safe-deploy',    desc: 'Multi-gate deploy pipeline with rollback' },
+      { name: 'cm-safe-deploy', desc: 'Multi-gate deploy pipeline with rollback' },
       { name: 'cm-identity-guard', desc: 'Prevent wrong-account deploys' },
-      { name: 'cm-git-worktrees',  desc: 'Isolated feature branches without context-switch' },
-      { name: 'cm-terminal',       desc: 'Safe terminal execution with logging' },
-      { name: 'cm-secret-shield',  desc: 'Scan & block secrets before commit/deploy' },
-      { name: 'cm-safe-i18n',      desc: 'Multi-pass translation with 8 audit gates' },
+      { name: 'cm-git-worktrees', desc: 'Isolated feature branches without context-switch' },
+      { name: 'cm-terminal', desc: 'Safe terminal execution with logging' },
+      { name: 'cm-secret-shield', desc: 'Scan & block secrets before commit/deploy' },
+      { name: 'cm-safe-i18n', desc: 'Multi-pass translation with 8 audit gates' },
     ],
   },
   product: {
     icon: '🎨',
     skills: [
-      { name: 'cm-planning',         desc: 'Intent → design → structured plan' },
-      { name: 'cm-ux-master',        desc: '48 UX Laws + 37 Design Tests' },
-      { name: 'cm-ui-preview',       desc: 'Browser-previewed UI prototypes' },
-      { name: 'cm-brainstorm-idea',  desc: 'Multi-lens ideation with scoring' },
-      { name: 'cm-jtbd',             desc: 'Jobs-To-Be-Done framework & canvas' },
-      { name: 'cm-dockit',           desc: 'Complete knowledge base from codebase' },
-      { name: 'cm-project-bootstrap',desc: 'Full project setup: design → CI → deploy' },
-      { name: 'cm-readit',           desc: 'Web audio TTS reader & MP3 player' },
+      { name: 'cm-planning', desc: 'Intent → design → structured plan' },
+      { name: 'cm-ux-master', desc: '48 UX Laws + 37 Design Tests' },
+      { name: 'cm-ui-preview', desc: 'Browser-previewed UI prototypes' },
+      { name: 'cm-brainstorm-idea', desc: 'Multi-lens ideation with scoring' },
+      { name: 'cm-jtbd', desc: 'Jobs-To-Be-Done framework & canvas' },
+      { name: 'cm-dockit', desc: 'Complete knowledge base from codebase' },
+      { name: 'cm-project-bootstrap', desc: 'Full project setup: design → CI → deploy' },
+      { name: 'cm-readit', desc: 'Web audio TTS reader & MP3 player' },
     ],
   },
   growth: {
     icon: '📈',
     skills: [
       { name: 'cm-content-factory', desc: 'AI content engine: research → deploy' },
-      { name: 'cm-ads-tracker',     desc: 'Facebook/TikTok/Google pixel setup' },
-      { name: 'cro-methodology',    desc: 'Conversion audit + A/B test design' },
-      { name: 'cm-deep-search',     desc: 'Multi-source deep research synthesis' },
+      { name: 'cm-ads-tracker', desc: 'Facebook/TikTok/Google pixel setup' },
+      { name: 'cro-methodology', desc: 'Conversion audit + A/B test design' },
+      { name: 'cm-deep-search', desc: 'Multi-source deep research synthesis' },
     ],
   },
   orchestration: {
     icon: '🎯',
     skills: [
-      { name: 'cm-execution',    desc: 'Execute plans: batch, parallel, RARV' },
-      { name: 'cm-continuity',   desc: 'Working memory: read/update per session' },
-      { name: 'cm-skill-index',  desc: 'Progressive skill discovery & routing' },
-      { name: 'cm-skill-mastery',desc: 'Meta: when/how to invoke skills' },
-      { name: 'cm-skill-chain',  desc: 'Multi-skill pipeline execution' },
+      { name: 'cm-execution', desc: 'Execute plans: batch, parallel, RARV' },
+      { name: 'cm-continuity', desc: 'Working memory: read/update per session' },
+      { name: 'cm-skill-index', desc: 'Progressive skill discovery & routing' },
+      { name: 'cm-skill-mastery', desc: 'Meta: when/how to invoke skills' },
+      { name: 'cm-skill-chain', desc: 'Multi-skill pipeline execution' },
     ],
   },
   workflow: {
     icon: '⚡',
     skills: [
-      { name: 'cm-start',       desc: 'Onboarding & session kick-off wizard' },
-      { name: 'cm-dashboard',   desc: 'Project status & task Kanban board' },
-      { name: 'cm-status',      desc: 'Quick project health snapshot' },
-      { name: 'cm-how-it-work', desc: 'Interactive explainer for all 33 skills' },
-      { name: 'cm-example',     desc: 'Minimal template for new skills' },
+      { name: 'cm-start', desc: 'Onboarding & session kick-off wizard' },
+      { name: 'cm-dashboard', desc: 'Project status & task Kanban board' },
+      { name: 'cm-status', desc: 'Quick project health snapshot' },
+      { name: 'cm-how-it-work', desc: 'Interactive explainer for all 34 skills' },
+      { name: 'cm-example', desc: 'Minimal template for new skills' },
     ],
   },
 };
@@ -1575,7 +1595,7 @@ function skillList(filterDomain?: string) {
     return;
   }
 
-  console.log(chalk.cyan('\n🧩 Cody Master — 33 Skills\n'));
+  console.log(chalk.cyan('\n🧩 Cody Master — 34 Skills\n'));
   let total = 0;
   for (const [domain, data] of entries) {
     console.log(chalk.white(`  ${data.icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)}`));
@@ -1682,8 +1702,8 @@ program
         const task = tasks.find(t => t.id === tid);
         const actionColor = dec.action === 'CONTINUE' ? chalk.green
           : dec.action === 'COMPLETE' ? chalk.blue
-          : dec.action === 'ESCALATE' ? chalk.yellow
-          : chalk.magenta;
+            : dec.action === 'ESCALATE' ? chalk.yellow
+              : chalk.magenta;
         console.log('  ' + padRight(dec.badge, 8) + actionColor(padRight(dec.action, 12)) + chalk.gray(padRight(`${Math.round(dec.confidence * 100)}%`, 12)) + (task?.title || tid.substring(0, 8)));
       }
       console.log();

@@ -45,7 +45,7 @@
         "icon": "monitor",
         "name": "cm-ui-preview",
         "categoryIndex": 1,
-        "description": "AI-powered UI generation via Google Stitch — prototype in minutes, not days"
+        "description": "AI-powered UI generation via Google Stitch & Pencil.dev — prototype in minutes, not days"
       },
       {
         "icon": "pen-tool",
@@ -590,9 +590,9 @@
           "cm-skill-chain",
           "cm-how-it-work"
         ],
-        "problem": "Overwhelmed analyzing 33 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
+        "problem": "Overwhelmed analyzing 34 sophisticated operational vectors leaving you paralyzed discerning which engine resolves a targeted anomaly specifically?",
         "solution": "Engage an interactive internal encyclopedic Index Librarian and AI-oriented Orchestration Consultant.",
-        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 33 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
+        "whatIsIt": "The superlative Meta-Skill. Inherently comprehends the intricate capabilities structuring all subsequent 34 systems and knows the foundational mechanics generating novel unwritten protocols comprehensively.",
         "whenToUse": "Navigating cognitive blockages, attempting solution discovery exploration, or explicitly commanding the AI to codify an original bespoke analytical algorithm for commercial packaging.",
         "whyToUse": "Utterly removes arbitrary command memorizations seamlessly. Example: 'Cody, locate an intelligent protocol specifically analyzing accessibility patterns across our checkout grid.'",
         "bestPractice": "Proactively activate this node during early initiation orientation sessions, or instruct it explicitly to draft out an organizational structural `SKILL.md` paradigm mapping for agency custom protocols."

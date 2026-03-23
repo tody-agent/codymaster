@@ -28,13 +28,13 @@ Writing documentation is tedious. Keeping it updated is even harder.
 Simply copy the `doc-kit` folder into your Antigravity skills directory:
 
 ```bash
-cp -r doc-kit ~/.gemini/antigravity/skills/
+cp -r cm-dockit ~/.gemini/antigravity/skills/
 ```
 
 Make sure the CLI script is executable:
 
 ```bash
-chmod +x ~/.gemini/antigravity/skills/doc-kit/scripts/doc-gen.sh
+chmod +x ~/.gemini/antigravity/skills/cm-dockit/scripts/doc-gen.sh
 ```
 
 ## 💻 Quick Start
@@ -44,7 +44,7 @@ chmod +x ~/.gemini/antigravity/skills/doc-kit/scripts/doc-gen.sh
 To get the best results effortlessly, use the built-in CLI menu:
 
 ```bash
-bash ~/.gemini/antigravity/skills/doc-kit/scripts/doc-gen.sh
+bash ~/.gemini/antigravity/skills/cm-dockit/scripts/doc-gen.sh
 ```
 
 The CLI will ask you 4 quick questions:
@@ -68,15 +68,24 @@ The agent will prompt you for the required choices.
 Doc-Kit is built using specialized sub-skills for maximum depth and accuracy:
 
 ```text
-skills/doc-kit/
+skills/cm-dockit/
 ├── SKILL.md                 # Main orchestration agent
 ├── scripts/
-│   └── doc-gen.sh           # Highly interactive CLI
+│   ├── doc-gen.sh           # Interactive CLI
+│   ├── dockit-runner.sh     # DAG-based task execution
+│   ├── dockit-dashboard.sh  # Progress dashboard
+│   └── dockit-task.sh       # Individual task runner
 ├── skills/
 │   ├── analyze-codebase.md  # Semantic analysis
 │   ├── tech-docs.md         # System Architecture
 │   ├── sop-guide.md         # Step-by-step UX flows
-│   └── api-reference.md     # Auto REST/GraphQL extraction
+│   ├── api-reference.md     # Auto REST/GraphQL extraction
+│   └── content-guidelines.md # Content formatting rules
+├── templates/               # Output format templates
+│   ├── markdown/
+│   └── vitepress-premium/
+├── tests/
+│   └── runner.test.ts       # Backend test suite
 └── workflows/               # Rules for output (Markdown or VitePress)
 ```
 

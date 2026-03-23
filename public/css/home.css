@@ -132,7 +132,7 @@
 /* Problem Box */
 .home-problem-list {
   display: grid;
-  gap: 24px;
+  gap: 32px;
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 40px;
 }
@@ -333,13 +333,12 @@
   .dash-body .column { min-width: 85vw; width: 85vw; max-width: 320px; scroll-snap-align: center; }
   .app-window { border-radius: 0; margin-left: -24px; margin-right: -24px; max-width: 100vw; overflow-x: hidden; }
 }
-\n
 
 /* Features List */
 .home-feature-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 32px;
 }
 
 .home-feature-block {

@@ -31,7 +31,7 @@ No,Category,Guideline,Description,Do,Don't,Code Good,Code Bad,Severity,Docs URL
 30,API,Handle HTTP methods explicitly,Export named functions for methods,Export GET POST PUT DELETE,Single handler for all methods,export async function POST(),switch(req.method),Low,
 31,API,Validate request body,Validate input before processing,Zod or similar for validation,Trust client input,const body = schema.parse(await req.json()),const body = await req.json(),High,
 32,Middleware,Use middleware for auth,Protect routes with middleware.ts,middleware.ts at root,Auth check in every page,export function middleware(request),if (!session) redirect in page,Medium,https://nextjs.org/docs/app/building-your-application/routing/middleware
-33,Middleware,Match specific paths,Configure middleware matcher,config.matcher for specific routes,Run middleware on all routes,matcher: ['/dashboard/:path*'],No matcher config,Medium,
+34,Middleware,Match specific paths,Configure middleware matcher,config.matcher for specific routes,Run middleware on all routes,matcher: ['/dashboard/:path*'],No matcher config,Medium,
 34,Middleware,Keep middleware edge-compatible,Middleware runs on Edge runtime,Edge-compatible code only,Node.js APIs in middleware,Edge-compatible auth check,fs.readFile in middleware,High,
 35,Environment,Use NEXT_PUBLIC prefix,Client-accessible env vars need prefix,NEXT_PUBLIC_ for client vars,Server vars exposed to client,NEXT_PUBLIC_API_URL,API_SECRET in client code,High,https://nextjs.org/docs/app/building-your-application/configuring/environment-variables
 36,Environment,Validate env vars,Check required env vars exist,Validate on startup,Undefined env at runtime,if (!process.env.DATABASE_URL) throw,process.env.DATABASE_URL (might be undefined),High,

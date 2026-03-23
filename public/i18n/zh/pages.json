@@ -891,6 +891,39 @@
     "finalButton": "探索33个技能",
     "platforms": [
       {
+        "id": "google-antigravity",
+        "label": "Google Antigravity",
+        "emoji": "🚀",
+        "recommended": true,
+        "oneliner": {
+          "label": "⚡ 一行命令 — 自动检测，多语言",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh)"
+        },
+        "steps": [
+          {
+            "title": "访问 Antigravity",
+            "description": "Antigravity 是来自 Google DeepMind 的高级智能协作编码环境。",
+            "items": [
+              "打开已启用 Antigravity 的环境",
+              "确保您拥有最新版本的工具",
+              "原生支持 CodyMaster 技能"
+            ]
+          },
+          {
+            "title": "安装全部 34 项技能",
+            "description": "只需一条命令即可安装所有功能 — TDD、调试、规划、UX 等。",
+            "code": "npx codymaster add --all --platform gemini",
+            "output": "✓ 已安装 34 项技能至 .gemini/antigravity/skills/\n📦 cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+          },
+          {
+            "title": "验证安装",
+            "description": "技能会自动激活。尝试提及某项技能开始使用。",
+            "code": "@cm-planning Design a new feature",
+            "note": "随时提及 @cm-status 以查看当前进度。"
+          }
+        ]
+      },
+      {
         "id": "claude-code",
         "label": "Claude Code",
         "emoji": "🟣",
@@ -1084,19 +1117,19 @@
             "title": "通过 npx 添加技能",
             "description": "使用 CodyMaster CLI 将技能安装到 OpenCode 项目。",
             "code": "npx codymaster add --all --platform opencode",
-            "output": "📦 opencode — 安装全部 33 个技能\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (共 33 个)\n✅ 33 个技能已安装 → ./.opencode/skills/"
+            "output": "📦 opencode — 安装全部 34 个技能\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (共 34 个)\n✅ 34 个技能已安装 → ./.opencode/skills/"
           },
           {
             "title": "或手动克隆",
             "description": "克隆仓库并将技能复制到 OpenCode 目录。",
             "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
-            "output": "✓ 33 个 SKILL.md 文件已就绪，位于 .opencode/skills/"
+            "output": "✓ 34 个 SKILL.md 文件已就绪，位于 .opencode/skills/"
           },
           {
             "title": "使用技能",
             "description": "技能自动激活。在 OpenCode 会话中按名称引用。",
             "code": "@[/cm-planning] 为我的应用设计新功能",
-            "note": "全部 33 个技能: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+            "note": "全部 34 个技能: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
           }
         ]
       },
@@ -1118,19 +1151,19 @@
             "title": "通过 npx 添加技能",
             "description": "使用 CLI 将 CodyMaster 技能安装到 Kiro 的 steering 目录。",
             "code": "npx codymaster add --all --platform kiro",
-            "output": "🔶 kiro — 安装全部 33 个技能\n  ✅ cm-tdd\n  ... (共 33 个)\n✅ 33 个技能已安装 → ./.kiro/steering/"
+            "output": "🔶 kiro — 安装全部 34 个技能\n  ✅ cm-tdd\n  ... (共 34 个)\n✅ 34 个技能已安装 → ./.kiro/steering/"
           },
           {
             "title": "或手动克隆",
             "description": "克隆仓库并复制到 Kiro steering 目录。",
             "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
-            "output": "✓ 33 个 SKILL.md 文件已就绪，位于 .kiro/steering/"
+            "output": "✓ 34 个 SKILL.md 文件已就绪，位于 .kiro/steering/"
           },
           {
             "title": "使用技能",
             "description": "Kiro 自动读取 steering 文档。技能基于上下文激活。",
             "code": "@cm-tdd 使用完整测试覆盖实现用户认证",
-            "note": "全部 33 个技能: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "note": "全部 34 个技能: @cm-planning, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
@@ -1152,7 +1185,7 @@
             "title": "通过 npx 添加技能",
             "description": "CodyMaster 将技能引用注入 .github/copilot-instructions.md。",
             "code": "npx codymaster add --all --platform copilot",
-            "output": "✅ 33 个技能已引用到 .github/copilot-instructions.md\n   GitHub Copilot 将自动使用这些作为上下文。"
+            "output": "✅ 34 个技能已引用到 .github/copilot-instructions.md\n   GitHub Copilot 将自动使用这些作为上下文。"
           },
           {
             "title": "或手动添加",
@@ -1163,7 +1196,7 @@
             "title": "使用技能",
             "description": "在 Copilot Chat 中按名称要求使用任何技能。",
             "code": "使用 cm-tdd 实现完整测试覆盖的用户认证",
-            "note": "在 Copilot Chat (Cmd+I) 中效果最佳。全部 33 个技能均可用。"
+            "note": "在 Copilot Chat (Cmd+I) 中效果最佳。全部 34 个技能均可用。"
           }
         ]
       },
@@ -1172,7 +1205,7 @@
         "label": "npx / CLI",
         "emoji": "⚡",
         "oneliner": {
-          "label": "⚡ 一行命令 — 安装全部 33 个技能，自动检测平台",
+          "label": "⚡ 一行命令 — 安装全部 34 个技能，自动检测平台",
           "code": "npx codymaster add --all"
         },
         "steps": [
@@ -1180,7 +1213,7 @@
             "title": "通过 npx 安装 (无需全局安装)",
             "description": "在任何装有 Node.js 18+ 的机器上运行。无需全局安装。",
             "code": "npx codymaster add --all",
-            "output": "🧠 CodyMaster v3.4.0\n   正在检测平台... ✅ 检测到 Claude Code\n   正在安装 33 个技能..."
+            "output": "🧠 CodyMaster v3.4.0\n   正在检测平台... ✅ 检测到 Claude Code\n   正在安装 34 个技能..."
           },
           {
             "title": "安装特定技能",
@@ -1194,7 +1227,7 @@
           },
           {
             "title": "浏览 & 搜索技能",
-            "description": "列出全部 33 个技能或按领域搜索。",
+            "description": "列出全部 34 个技能或按领域搜索。",
             "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
           }
         ]
@@ -1386,7 +1419,7 @@
           "cm-safe-i18n",
           "cm-content-factory"
         ],
-        "metric": "33 种语言",
+        "metric": "34 种语言",
         "metricLabel": "获得支持"
       },
       {
@@ -1402,5 +1435,16 @@
         "metricLabel": "开箱即用"
       }
     ]
-  }
+  },
+  "playbookBadge": "📖 操作指南",
+  "playbookTitlePart1": "技能 ",
+  "playbookTitlePart2": "手册",
+  "playbookSub": "\"我想做X——该用哪些技能？\" 本页面为你在每种场景中回答这个问题。",
+  "playbookRule1Suffix": "）推送/部署前必须检查。每次。都要。",
+  "cliBadge": "$ 终端",
+  "cliTitlePart1": "",
+  "cliTitlePart2": "CLI ",
+  "cliTitlePart3": "命令指南",
+  "cliSub": "为在终端中思考的开发者而生。每个斜杠命令、每个工作流程，一处收录。",
+  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm"
 }

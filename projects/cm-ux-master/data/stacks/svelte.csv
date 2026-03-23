@@ -31,7 +31,7 @@ No,Category,Guideline,Description,Do,Don't,Code Good,Code Bad,Severity,Docs URL
 30,Styling,Use CSS variables for theming,Dynamic styling,CSS custom properties,Inline styles for themes,"style=""--color: {color}""","style=""color: {color}""",Low,
 31,Transitions,Use built-in transitions,Svelte transition directives,transition:fade for simple effects,Manual CSS transitions,<div transition:fade>,<div class:fade={visible}>,Low,https://svelte.dev/docs/element-directives#transition-fn
 32,Transitions,Use in: and out: separately,Different enter/exit animations,in:fly out:fade for asymmetric,Same transition for both,<div in:fly out:fade>,<div transition:fly>,Low,
-33,Transitions,Add local modifier,Prevent ancestor trigger,transition:fade|local,Global transitions for lists,<div transition:slide|local>,<div transition:slide>,Medium,
+34,Transitions,Add local modifier,Prevent ancestor trigger,transition:fade|local,Global transitions for lists,<div transition:slide|local>,<div transition:slide>,Medium,
 34,Actions,Use actions for DOM behavior,Reusable DOM logic,use:action for DOM enhancements,onMount for each usage,<div use:clickOutside>,onMount(() => setupClickOutside(el)),Medium,https://svelte.dev/docs/element-directives#use-action
 35,Actions,Return update and destroy,Lifecycle methods for actions,"Return { update, destroy }",Only initial setup,"return { update(params) {}, destroy() {} }",return destroy only,Medium,
 36,Actions,Pass parameters to actions,Configure action behavior,use:action={params},Hardcoded action behavior,<div use:tooltip={options}>,<div use:tooltip>,Low,
