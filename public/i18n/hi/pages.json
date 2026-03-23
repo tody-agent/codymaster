@@ -924,75 +924,75 @@
         ]
       },
       {
-        "id": "क्लाउड-कोड",
-        "label": "Claude कोड",
+        "id": "claude-code",
+        "label": "Claude Code",
         "emoji": "🟣",
         "recommended": true,
         "oneliner": {
-          "label": "⚡ एक-लाइनर — ऑटो-डिटेक्ट, मल्टी-लैंग्वेज",
-          "code": "बैश <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --क्लाउड"
+          "label": "⚡ One-liner — auto-detect, multi-language",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
         },
         "steps": [
           {
-            "title": "Claude Code इंस्टॉल करें",
-            "description": "CodyMaster Claude Code प्लगइन के रूप में चलता है। पहले Claude Code CLI चाहिए।",
+            "title": "Get Claude Code",
+            "description": "CodyMaster runs as a Claude Code plugin. You need the Claude Code CLI installed first.",
             "items": [
-              "claude.ai/code से डाउनलोड करें",
-              "जांचें: claude --version (1.0+ चाहिए)",
-              "Mac, Linux, Windows (WSL) सपोर्टेड"
+              "Download from claude.ai/code",
+              "Verify: claude --version (need 1.0+)",
+              "Works on Mac, Linux, and Windows (WSL)"
             ],
-            "note": "पहले से Claude Code 1.0+ है? सीधे चरण 2 पर जाएं।"
+            "note": "Already have Claude Code 1.0+? Skip to Step 2."
           },
           {
-            "title": "मार्केटप्लेस जोड़ें",
-            "description": "Claude Code में CodyMaster प्लगइन सोर्स रजिस्टर करें।",
-            "code": "क्लाउड प्लगइन बाज़ार में टोडी-एजेंट/कोडीमास्टर जोड़ें",
-            "output": "✓ मार्केटप्लेस रजिस्टर हुआ: tody-agent/codymaster\n✓ cody-master plugin उपलब्ध"
+            "title": "Add the Marketplace",
+            "description": "Register the CodyMaster plugin source so Claude Code can find it.",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ Marketplace registered: tody-agent/codymaster\n✓ codymaster plugin available"
           },
           {
-            "title": "सभी 34 स्किल्स इंस्टॉल करें",
-            "description": "एक कमांड से सब कुछ — TDD, डिबगिंग, डिप्लॉयमेंट, UX, कंटेंट, सिक्योरिटी।",
-            "code": "क्लाउड प्लगइन कोडी-मास्टर@कोडी-मास्टर इंस्टॉल करें",
-            "output": "✓ cody-master v3.4.0 इंस्टॉल हुआ\n📦 34 स्किल्स: cm-tdd, cm-debugging, cm-planning..."
+            "title": "Install All 34 Skills",
+            "description": "One command installs everything — TDD, debugging, deployment, UX, content, security and more.",
+            "code": "claude plugin install cm@codymaster",
+            "output": "✓ cm v3.4.0 installed\n📦 34 skills: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
           },
           {
-            "title": "ऑनबोर्डिंग टूर चलाएं",
-            "description": "Claude Code खोलें और सभी 34 स्किल्स देखने के लिए इंटरेक्टिव टूर चलाएं।",
-            "code": "/सेमी:डेमो",
-            "output": "🚀 CodyMaster में आपका स्वागत! सभी 34 स्किल्स एक्सप्लोर करते हैं..."
+            "title": "Run Onboarding Tour",
+            "description": "Open Claude Code and run the interactive tour to see all 34 skills in action.",
+            "code": "/cm:demo",
+            "output": "🚀 Welcome to CodyMaster! Let's explore all 34 skills..."
           }
         ]
       },
       {
-        "id": "मिथुन-CLI",
-        "label": "Gemini सीएलआई",
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
         "emoji": "💻",
         "steps": [
           {
-            "title": "Gemini CLI इंस्टॉल करें",
-            "description": "सुनिश्चित करें Gemini CLI इंस्टॉल और ऑथेंटिकेटेड है।",
+            "title": "Install Gemini CLI",
+            "description": "Make sure you have the Gemini CLI installed and authenticated.",
             "items": [
-              "इंस्टॉल: npm install -g @google/gemini-cli",
-              "जांचें: gemini --version",
-              "Google अकाउंट से लॉगिन करें"
+              "Install: npm install -g @google/gemini-cli",
+              "Verify: gemini --version",
+              "Authenticate with your Google account"
             ]
           },
           {
-            "title": "CodyMaster इंस्टॉल करें",
-            "description": "GitHub से सीधे इंस्टॉल — npm पैकेज की ज़रूरत नहीं।",
-            "code": "जेमिनी एक्सटेंशन https://github.com/tody-agent/codymaster इंस्टॉल करें",
-            "output": "✓ cody-master इंस्टॉल हुआ\n✓ Gemini CLI में 34 स्किल्स उपलब्ध"
+            "title": "Install CodyMaster",
+            "description": "Install directly from GitHub — no npm package needed.",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master installed\n✓ 34 skills available in Gemini CLI"
           },
           {
-            "title": "स्किल्स उपयोग करें",
-            "description": "स्किल्स ऑटोमैटिक एक्टिवेट होते हैं। @[/skill-name] से एक्सप्लिसिट कॉल करें।",
-            "code": "@[/cm-planning] मेरे ऐप के लिए नई फीचर डिज़ाइन करो",
-            "note": "34 स्किल्स: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+            "title": "Use Skills",
+            "description": "Skills activate automatically. Invoke explicitly with @[/skill-name] in any session.",
+            "code": "@[/cm-planning] Design a new feature for my app",
+            "note": "All 34 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
           },
           {
-            "title": "बाद में अपडेट करें",
-            "description": "एक कमांड से CodyMaster अपडेट करें।",
-            "code": "जेमिनी एक्सटेंशन कोडी-मास्टर अपडेट करें"
+            "title": "Update Later",
+            "description": "Keep CodyMaster up to date with one command.",
+            "code": "gemini extensions update cody-master"
           }
         ]
       },
@@ -1025,77 +1025,176 @@
         ]
       },
       {
-        "id": "कोडेक्स",
-        "label": "ज़ाब्ता",
+        "id": "codex",
+        "label": "Codex",
         "emoji": "⬛",
         "steps": [
           {
-            "title": "Codex सेशन शुरू करें",
-            "description": "प्रोजेक्ट रूट में Codex environment खोलें।",
+            "title": "Start a Codex Session",
+            "description": "Open your Codex environment in the project root.",
             "items": [
-              "प्रोजेक्ट रूट में टर्मिनल खोलें",
-              "चलाएं: codex (या codex --model o4-mini)"
+              "Open your terminal in the project root",
+              "Run: codex (or codex --model o4-mini)"
             ]
           },
           {
-            "title": "इंस्टॉल इंस्ट्रक्शन फेच करें",
-            "description": "Codex को GitHub से install guide फेच करने और फॉलो करने को कहें।",
-            "code": "https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md से निर्देश प्राप्त करें और उनका पालन करें।",
-            "output": "✓ Codex ऑटोमैटिक सभी 34 स्किल्स पढ़ता, पार्स करता और इंस्टॉल करता है"
+            "title": "Fetch Install Instructions",
+            "description": "Tell Codex to fetch and follow the install guide from GitHub.",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex reads, parses, and installs all 34 skills automatically"
           },
           {
-            "title": "स्किल्स उपयोग करें",
-            "description": "स्किल्स .codex/skills/ में हैं और ऑटो एक्टिवेट होते हैं।",
-            "code": "@cm-tdd पूरे test coverage के साथ user authentication implement करो",
-            "note": "34 स्किल्स: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "title": "Use Skills",
+            "description": "Skills are now in .codex/skills/ and activate automatically.",
+            "code": "@cm-tdd Implement user authentication with full test coverage",
+            "note": "All 34 skills: @cm-planning, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
       {
-        "id": "विंडसर्फ-क्लाइन",
-        "label": "विंडसर्फ़/क्लाइन",
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
         "emoji": "🟠",
         "steps": [
           {
-            "title": "CodyMaster क्लोन करें",
-            "description": "रिपॉजिटरी को home directory में क्लोन करें।",
-            "code": "गिट क्लोन https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ क्लोन हुआ — 34 SKILL.md तैयार"
+            "title": "Clone CodyMaster",
+            "description": "Clone the repository once to your home directory.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Cloned — 34 SKILL.md files ready at ~/.cody-master/skills/"
           },
           {
-            "title": "प्लेटफ़ॉर्म पर स्किल्स कॉपी करें",
-            "description": "SKILL.md फाइल्स को प्लेटफ़ॉर्म की rules या skills directory में कॉपी करें।",
-            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/"
+            "title": "Copy Skills to Your Platform",
+            "description": "Drop the SKILL.md files into your platform's rules or skills directory.",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/\n\n# Project-local\ncp -r ~/.cody-master/skills/* .windsurf/rules/"
           },
           {
-            "title": "स्किल्स उपयोग करें",
-            "description": "एडिटर खोलें और किसी भी स्किल को invoke करें। Relevant होने पर ऑटो एक्टिवेट होते हैं।",
-            "code": "@cm-planning नई फीचर डिज़ाइन में मदद करो",
-            "note": "34 स्किल्स: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+            "title": "Use Skills",
+            "description": "Open your editor and invoke any skill. Skills activate automatically when relevant.",
+            "code": "@cm-planning Help me design a new feature",
+            "note": "All 34 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
           }
         ]
       },
       {
-        "id": "कोई भी मंच",
-        "label": "कोई भी प्लेटफ़ॉर्म",
+        "id": "aider",
+        "label": "Aider",
+        "emoji": "🤖",
+        "oneliner": {
+          "label": "�� Aider — AI pair programmer in your terminal",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider"
+        },
+        "steps": [
+          {
+            "title": "Install Aider (if not installed)",
+            "description": "Aider is an AI pair programmer that runs in your terminal.",
+            "code": "pip install aider-chat"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads all 34+ skills to ~/.aider/skills/ for use in Aider sessions.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider"
+          },
+          {
+            "title": "Load a skill in Aider",
+            "description": "Pass a skill file as context when starting an Aider session.",
+            "code": "aider --read ~/.aider/skills/cm-planning/SKILL.md\n# Or use multiple skills\naider --read ~/.aider/skills/cm-tdd/SKILL.md \\\n      --read ~/.aider/skills/cm-debugging/SKILL.md"
+          }
+        ]
+      },
+      {
+        "id": "continue",
+        "label": "Continue.dev",
+        "emoji": "🔗",
+        "oneliner": {
+          "label": "🔗 Continue.dev — Open-source AI code assistant for VS Code & JetBrains",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue"
+        },
+        "steps": [
+          {
+            "title": "Install CodyMaster rules",
+            "description": "Copies all skill files as rules to ~/.continue/rules/ — auto-loaded by Continue.dev.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue"
+          },
+          {
+            "title": "Verify in Continue.dev",
+            "description": "Rules in ~/.continue/rules/ are automatically picked up by Continue. Open VS Code and chat to verify.",
+            "code": "ls ~/.continue/rules/ | head -10\n# You should see: cm-planning.md, cm-debugging.md, cm-tdd.md ..."
+          }
+        ]
+      },
+      {
+        "id": "amazon-q",
+        "label": "Amazon Q CLI",
+        "emoji": "☁️",
+        "oneliner": {
+          "label": "☁️ Amazon Q — AI assistant with AWS expertise",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q"
+        },
+        "steps": [
+          {
+            "title": "Install Amazon Q CLI (if not installed)",
+            "description": "Amazon Q Developer is AWS's AI coding assistant.",
+            "code": "# macOS\nbrew install amazon-q\n# Or download from: https://aws.amazon.com/q/developer/"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads skills to ~/.aws/amazonq/skills/ for use with Amazon Q.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q"
+          },
+          {
+            "title": "Use skills in Q chat",
+            "description": "Reference skill files as context when starting Q chat sessions.",
+            "code": "q chat --context ~/.aws/amazonq/skills/cm-planning/SKILL.md\n# Or q dev mode\nq dev"
+          }
+        ]
+      },
+      {
+        "id": "amp",
+        "label": "Amp",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ Amp — Agentic coding by Sourcegraph",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp"
+        },
+        "steps": [
+          {
+            "title": "Install Amp (if not installed)",
+            "description": "Amp is an agentic coding assistant by Sourcegraph.",
+            "code": "npm install -g @sourcegraph/amp\n# Or: https://ampcode.com"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads all skills to ~/.amp/skills/ for use in Amp sessions.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp"
+          },
+          {
+            "title": "Add skills to your AGENTS.md",
+            "description": "Reference skills from your project's AGENTS.md so Amp loads them automatically.",
+            "code": "# In your project's AGENTS.md:\n@~/.amp/skills/cm-planning/SKILL.md\n@~/.amp/skills/cm-tdd/SKILL.md\n@~/.amp/skills/cm-debugging/SKILL.md"
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "Any Platform",
         "emoji": "⚙️",
         "steps": [
           {
-            "title": "रिपॉजिटरी क्लोन करें",
-            "description": "CodyMaster को home directory में क्लोन करें।",
-            "code": "गिट क्लोन https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ क्लोन हुआ — 34 SKILL.md तैयार"
+            "title": "Clone the Repository",
+            "description": "Clone CodyMaster once to your home directory.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Cloned — 34 SKILL.md files ready at ~/.cody-master/skills/"
           },
           {
-            "title": "अपने प्लेटफ़ॉर्म पर कॉपी करें",
-            "description": "यूनिवर्सल SKILL.md फाइल्स किसी भी प्लेटफ़ॉर्म की skills directory में डालें।",
-            "code": "# Gemini (global)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+            "title": "Copy to Your Platform",
+            "description": "Drop the universal SKILL.md files into any platform's skills directory.",
+            "code": "# Gemini (global)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# Gemini (project)\ncp -r ~/.cody-master/skills/* .gemini/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
           },
           {
-            "title": "जांचें और उपयोग करें",
-            "description": "AI agent खोलें और किसी स्किल को reference करें। Context के अनुसार ऑटो एक्टिवेट।",
-            "code": "@cm-tdd पूरे test coverage के साथ login implement करो",
-            "note": "GitHub Copilot, Kiro, OpenCode, Windsurf और custom instructions सपोर्ट करने वाले सभी प्लेटफ़ॉर्म पर काम करता है।"
+            "title": "Verify & Use",
+            "description": "Open your AI agent and reference any skill. They activate automatically based on context.",
+            "code": "@cm-tdd Implement login with full test coverage",
+            "note": "Works on GitHub Copilot, Kiro, OpenCode, Windsurf, and any platform supporting custom instructions."
           }
         ]
       },
@@ -1134,101 +1233,101 @@
         ]
       },
       {
-        "id": "किरो",
-        "label": "किरो",
+        "id": "kiro",
+        "label": "Kiro",
         "emoji": "🔶",
         "steps": [
           {
-            "title": "Kiro इंस्टॉल करें",
-            "description": "Kiro — AWS का AI IDE डाउनलोड और इंस्टॉल करें। kiro.dev पर उपलब्ध।",
+            "title": "Install Kiro",
+            "description": "Download and install Kiro — AWS's AI-powered IDE. Available at kiro.dev.",
             "items": [
-              "kiro.dev से Kiro डाउनलोड करें",
-              "AWS Builder ID से साइन इन करें",
-              "Kiro में अपना प्रोजेक्ट खोलें"
+              "Download Kiro from kiro.dev",
+              "Sign in with your AWS Builder ID",
+              "Open your project in Kiro"
             ]
           },
           {
-            "title": "npx से स्किल्स जोड़ें",
-            "description": "Kiro की steering डायरेक्टरी में स्किल्स इंस्टॉल करने के लिए CLI का उपयोग करें।",
-            "code": "एनपीएक्स कोडीमास्टर ऐड --ऑल --प्लेटफॉर्म किरो",
-            "output": "🔶 kiro — सभी 34 स्किल्स इंस्टॉल हो रही हैं\n  ✅ cm-tdd\n  ... (कुल 34)\n✅ 34 स्किल्स इंस्टॉल → ./.kiro/steering/"
+            "title": "Add Skills via npx",
+            "description": "Use the CLI to install CodyMaster skills into Kiro's steering documents directory.",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — Installing all 34 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (34 total)\n✅ 34 skills installed → ./.kiro/steering/"
           },
           {
-            "title": "या मैन्युअली क्लोन करें",
-            "description": "रेपो क्लोन करें और Kiro steering में कॉपी करें।",
-            "code": "गिट क्लोन https://github.com/tody-agent/codymaster.git /tmp/cody\nसीपी -आर /टीएमपी/कोडी/कौशल/* .किरो/स्टीयरिंग/",
-            "output": "✓ 34 SKILL.md फाइलें .kiro/steering/ में तैयार"
+            "title": "Or clone manually",
+            "description": "Clone the repo and copy steering documents to Kiro.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 34 SKILL.md files ready in .kiro/steering/"
           },
           {
-            "title": "स्किल्स का उपयोग करें",
-            "description": "Kiro स्वचालित रूप से steering documents पढ़ता है। कॉन्टेक्स्ट के आधार पर स्किल्स सक्रिय होती हैं।",
-            "code": "@cm-tdd पूर्ण टेस्ट कवरेज के साथ यूजर ऑथेंटिकेशन लागू करें",
-            "note": "सभी 34 स्किल्स: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "title": "Use Skills",
+            "description": "Kiro reads steering documents automatically. Skills activate based on context.",
+            "code": "@cm-tdd Implement user authentication with full test coverage",
+            "note": "All 34 skills: @cm-planning, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
           }
         ]
       },
       {
-        "id": "github-कोपायलट",
-        "label": "__बी1__ सहपायलट",
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
         "emoji": "🐙",
         "steps": [
           {
-            "title": "GitHub Copilot सक्षम करें",
-            "description": "सुनिश्चित करें कि VS Code में GitHub Copilot सक्रिय है।",
+            "title": "Enable GitHub Copilot",
+            "description": "Make sure GitHub Copilot is active in VS Code or your IDE.",
             "items": [
-              "github.com/features/copilot पर सब्सक्राइब करें",
-              "VS Code में GitHub Copilot एक्सटेंशन इंस्टॉल करें",
-              "GitHub अकाउंट से साइन इन करें"
+              "Subscribe at github.com/features/copilot",
+              "Install GitHub Copilot extension in VS Code",
+              "Sign in with your GitHub account"
             ]
           },
           {
-            "title": "npx से स्किल्स जोड़ें",
-            "description": "CodyMaster .github/copilot-instructions.md में स्किल रेफरेंस जोड़ता है।",
-            "code": "एनपीएक्स कोडीमास्टर ऐड --ऑल --प्लेटफॉर्म कोपायलट",
-            "output": "✅ 34 स्किल्स .github/copilot-instructions.md में रेफर हुईं\n   GitHub Copilot इन्हें स्वचालित रूप से context के रूप में उपयोग करेगा।"
+            "title": "Add Skills via npx",
+            "description": "CodyMaster injects skill references into .github/copilot-instructions.md — Copilot reads this automatically.",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 34 skills referenced in .github/copilot-instructions.md\n   GitHub Copilot will use these as context automatically."
           },
           {
-            "title": "या मैन्युअली जोड़ें",
-            "description": "copilot-instructions.md में CodyMaster स्किल्स का संदर्भ जोड़ें।",
-            "code": "# .github/copilot-instructions.md\n\n## उपलब्ध AI स्किल्स\nयह प्रोजेक्ट CodyMaster स्किल्स उपयोग करता है:\n- cm-tdd, cm-debugging, cm-planning\n# पूरी सूची: https://github.com/tody-agent/codymaster"
+            "title": "Or add manually",
+            "description": "Add a reference to CodyMaster skills in your Copilot instructions file.",
+            "code": "# .github/copilot-instructions.md\n\n## AI Skills Available\nThis project uses CodyMaster skills. Available skills:\n- cm-tdd, cm-debugging, cm-planning, cm-safe-deploy\n- cm-ux-master, cm-content-factory, cm-code-review\n# Full list: https://github.com/tody-agent/codymaster"
           },
           {
-            "title": "स्किल्स का उपयोग करें",
-            "description": "Copilot Chat में किसी भी स्किल को नाम से उपयोग करने के लिए कहें।",
-            "code": "cm-tdd का उपयोग करके पूर्ण टेस्ट कवरेज के साथ यूजर ऑथेंटिकेशन लागू करें",
-            "note": "Copilot Chat (Cmd+I) में सबसे अच्छा काम करता है। सभी 34 स्किल्स उपलब्ध।"
+            "title": "Use Skills",
+            "description": "Ask Copilot to use any skill by name in chat. Copilot will reference the skill context automatically.",
+            "code": "Use cm-tdd to implement user authentication with full test coverage",
+            "note": "Works best in Copilot Chat (Cmd+I). All 34 skills are available as context."
           }
         ]
       },
       {
-        "id": "एनपीएक्स-सीएलआई",
-        "label": "एनपीएक्स/सीएलआई",
+        "id": "npx-cli",
+        "label": "npx / CLI",
         "emoji": "⚡",
         "oneliner": {
-          "label": "⚡ एक-लाइन कमांड — सभी 34 स्किल्स इंस्टॉल करें, प्लेटफ़ॉर्म ऑटो-डिटेक्ट",
-          "code": "एनपीएक्स कोडीमास्टर ऐड--ऑल"
+          "label": "⚡ Universal one-liner — install all 34 skills, auto-detect platform",
+          "code": "npx codymaster add --all"
         },
         "steps": [
           {
-            "title": "npx से इंस्टॉल करें (ग्लोबल इंस्टॉल की जरूरत नहीं)",
-            "description": "Node.js 18+ वाली किसी भी मशीन पर काम करता है।",
-            "code": "एनपीएक्स कोडीमास्टर ऐड--ऑल",
-            "output": "🧠 CodyMaster v3.4.0\n   प्लेटफ़ॉर्म डिटेक्ट हो रहा है... ✅ Claude Code मिला\n   34 स्किल्स इंस्टॉल हो रही हैं..."
+            "title": "Install via npx (no install needed)",
+            "description": "Works on any machine with Node.js 18+. No global install required.",
+            "code": "npx codymaster add --all",
+            "output": "🧠 CodyMaster v3.4.0\n   Detecting platform... ✅ Claude Code detected\n   Installing all 34 skills..."
           },
           {
-            "title": "विशिष्ट स्किल इंस्टॉल करें",
-            "description": "सिर्फ जरूरी स्किल इंस्टॉल करें। प्लेटफ़ॉर्म ऑटो-डिटेक्ट।",
-            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd"
+            "title": "Install specific skill",
+            "description": "Pick just the skill you need. Auto-detects your platform.",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd\nnpx codymaster add --skill cm-safe-deploy"
           },
           {
-            "title": "विशिष्ट प्लेटफ़ॉर्म चुनें",
-            "description": "ऑटो-डिटेक्ट को ओवरराइड करें और किसी भी AI टूल में इंस्टॉल करें।",
-            "code": "npx codymaster add --all --platform claude\nnpx codymaster add --all --platform gemini\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+            "title": "Target a specific platform",
+            "description": "Override platform detection and install to any AI coding tool.",
+            "code": "# Claude Code\nnpx codymaster add --all --platform claude\n\n# Gemini CLI\nnpx codymaster add --all --platform gemini\n\n# Cursor, Windsurf, Cline, OpenCode, Kiro\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform windsurf\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
           },
           {
-            "title": "स्किल्स ब्राउज़ करें",
-            "description": "सभी 34 स्किल्स सूचीबद्ध करें या डोमेन से खोजें।",
-            "code": "एनपीएक्स कोडीमास्टर सूची\nएनपीएक्स कोडीमास्टर सूची--डोमेन इंजीनियरिंग\nएनपीएक्स कोडीमास्टर ऐड--लिस्ट"
+            "title": "Browse & search skills",
+            "description": "List all 34 skills or search by domain.",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
           }
         ]
       }

@@ -924,75 +924,75 @@
         ]
       },
       {
-        "id": "Клауд-код",
-        "label": "Claude Код",
+        "id": "claude-code",
+        "label": "Claude Code",
         "emoji": "🟣",
         "recommended": true,
         "oneliner": {
-          "label": "⚡ Однострочник — автоопределение, мультиязычный",
+          "label": "⚡ One-liner — auto-detect, multi-language",
           "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude"
         },
         "steps": [
           {
-            "title": "Установите Claude Code",
-            "description": "CodyMaster работает как плагин Claude Code. Сначала нужен Claude Code CLI.",
+            "title": "Get Claude Code",
+            "description": "CodyMaster runs as a Claude Code plugin. You need the Claude Code CLI installed first.",
             "items": [
-              "Скачать на claude.ai/code",
-              "Проверить: claude --version (нужна 1.0+)",
-              "Поддерживается Mac, Linux, Windows (WSL)"
+              "Download from claude.ai/code",
+              "Verify: claude --version (need 1.0+)",
+              "Works on Mac, Linux, and Windows (WSL)"
             ],
-            "note": "Claude Code 1.0+ уже есть? Переходите к шагу 2."
+            "note": "Already have Claude Code 1.0+? Skip to Step 2."
           },
           {
-            "title": "Добавьте маркетплейс",
-            "description": "Зарегистрируйте источник плагина CodyMaster в Claude Code.",
-            "code": "Торговая площадка плагинов Claude, добавьте tody-agent/codymaster",
-            "output": "✓ Маркетплейс зарегистрирован: tody-agent/codymaster\n✓ cody-master плагин доступен"
+            "title": "Add the Marketplace",
+            "description": "Register the CodyMaster plugin source so Claude Code can find it.",
+            "code": "claude plugin marketplace add tody-agent/codymaster",
+            "output": "✓ Marketplace registered: tody-agent/codymaster\n✓ codymaster plugin available"
           },
           {
-            "title": "Установите все 34 навыка",
-            "description": "Одна команда устанавливает всё — TDD, отладка, деплой, UX, контент, безопасность.",
-            "code": "Установка плагина Claude cody-master@cody-master",
-            "output": "✓ cody-master v3.4.0 установлен\n📦 34 навыка: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+            "title": "Install All 34 Skills",
+            "description": "One command installs everything — TDD, debugging, deployment, UX, content, security and more.",
+            "code": "claude plugin install cm@codymaster",
+            "output": "✓ cm v3.4.0 installed\n📦 34 skills: cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
           },
           {
-            "title": "Запустите вводный тур",
-            "description": "Откройте Claude Code и запустите интерактивный тур по всем 34 навыкам.",
-            "code": "/ см: демо",
-            "output": "🚀 Добро пожаловать в CodyMaster! Давайте исследуем все 34 навыка..."
+            "title": "Run Onboarding Tour",
+            "description": "Open Claude Code and run the interactive tour to see all 34 skills in action.",
+            "code": "/cm:demo",
+            "output": "🚀 Welcome to CodyMaster! Let's explore all 34 skills..."
           }
         ]
       },
       {
-        "id": "Близнецы-кли",
-        "label": "Gemini интерфейс командной строки",
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
         "emoji": "💻",
         "steps": [
           {
-            "title": "Установите Gemini CLI",
-            "description": "Убедитесь, что Gemini CLI установлен и аутентифицирован.",
+            "title": "Install Gemini CLI",
+            "description": "Make sure you have the Gemini CLI installed and authenticated.",
             "items": [
-              "Установить: npm install -g @google/gemini-cli",
-              "Проверить: gemini --version",
-              "Войти с аккаунтом Google"
+              "Install: npm install -g @google/gemini-cli",
+              "Verify: gemini --version",
+              "Authenticate with your Google account"
             ]
           },
           {
-            "title": "Установите CodyMaster",
-            "description": "Установка напрямую с GitHub — npm-пакет не нужен.",
-            "code": "установка расширений Gemini https://github.com/tody-agent/codymaster",
-            "output": "✓ cody-master установлен\n✓ 34 навыка доступны в Gemini CLI"
+            "title": "Install CodyMaster",
+            "description": "Install directly from GitHub — no npm package needed.",
+            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
+            "output": "✓ cody-master installed\n✓ 34 skills available in Gemini CLI"
           },
           {
-            "title": "Используйте навыки",
-            "description": "Навыки активируются автоматически. Вызывайте явно через @[/имя-навыка].",
-            "code": "@[/cm-planning] Спроектируй новую функцию для моего приложения",
-            "note": "34 навыка: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+            "title": "Use Skills",
+            "description": "Skills activate automatically. Invoke explicitly with @[/skill-name] in any session.",
+            "code": "@[/cm-planning] Design a new feature for my app",
+            "note": "All 34 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
           },
           {
-            "title": "Обновление",
-            "description": "Обновите CodyMaster одной командой.",
-            "code": "Обновление расширений Gemini"
+            "title": "Update Later",
+            "description": "Keep CodyMaster up to date with one command.",
+            "code": "gemini extensions update cody-master"
           }
         ]
       },
@@ -1025,77 +1025,176 @@
         ]
       },
       {
-        "id": "кодекс",
-        "label": "Кодекс",
+        "id": "codex",
+        "label": "Codex",
         "emoji": "⬛",
         "steps": [
           {
-            "title": "Запустите сессию Codex",
-            "description": "Откройте среду Codex в корне проекта.",
+            "title": "Start a Codex Session",
+            "description": "Open your Codex environment in the project root.",
             "items": [
-              "Открыть терминал в корне проекта",
-              "Запустить: codex (или codex --model o4-mini)"
+              "Open your terminal in the project root",
+              "Run: codex (or codex --model o4-mini)"
             ]
           },
           {
-            "title": "Получите инструкции по установке",
-            "description": "Попросите Codex загрузить и следовать инструкциям с GitHub.",
-            "code": "Загрузите и следуйте инструкциям с https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md.",
-            "output": "✓ Codex автоматически читает, парсит и устанавливает все 34 навыка"
+            "title": "Fetch Install Instructions",
+            "description": "Tell Codex to fetch and follow the install guide from GitHub.",
+            "code": "Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md",
+            "output": "✓ Codex reads, parses, and installs all 34 skills automatically"
           },
           {
-            "title": "Используйте навыки",
-            "description": "Навыки в .codex/skills/ и активируются автоматически.",
-            "code": "@cm-tdd Реализуй аутентификацию с полным покрытием тестами",
-            "note": "34 навыка: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "title": "Use Skills",
+            "description": "Skills are now in .codex/skills/ and activate automatically.",
+            "code": "@cm-tdd Implement user authentication with full test coverage",
+            "note": "All 34 skills: @cm-planning, @cm-debugging, @cm-safe-deploy..."
           }
         ]
       },
       {
-        "id": "линия для виндсерфинга",
-        "label": "Виндсерфинг / Клайн",
+        "id": "windsurf-cline",
+        "label": "Windsurf / Cline",
         "emoji": "🟠",
         "steps": [
           {
-            "title": "Клонируйте CodyMaster",
-            "description": "Клонируйте репозиторий в домашнюю директорию.",
-            "code": "git клон https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ Склонировано — 34 SKILL.md готовы"
+            "title": "Clone CodyMaster",
+            "description": "Clone the repository once to your home directory.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Cloned — 34 SKILL.md files ready at ~/.cody-master/skills/"
           },
           {
-            "title": "Скопируйте навыки на платформу",
-            "description": "Скопируйте SKILL.md в директорию rules или skills вашей платформы.",
-            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/"
+            "title": "Copy Skills to Your Platform",
+            "description": "Drop the SKILL.md files into your platform's rules or skills directory.",
+            "code": "# Windsurf\ncp -r ~/.cody-master/skills/* ~/.windsurf/rules/\n\n# Cline / RooCode\ncp -r ~/.cody-master/skills/* ~/.cline/skills/\n\n# Project-local\ncp -r ~/.cody-master/skills/* .windsurf/rules/"
           },
           {
-            "title": "Используйте навыки",
-            "description": "Откройте редактор и вызовите любой навык. Активируются автоматически по контексту.",
-            "code": "@cm-planning Помоги спроектировать новую функцию",
-            "note": "34 навыка: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+            "title": "Use Skills",
+            "description": "Open your editor and invoke any skill. Skills activate automatically when relevant.",
+            "code": "@cm-planning Help me design a new feature",
+            "note": "All 34 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
           }
         ]
       },
       {
-        "id": "любая платформа",
-        "label": "Любая платформа",
+        "id": "aider",
+        "label": "Aider",
+        "emoji": "🤖",
+        "oneliner": {
+          "label": "�� Aider — AI pair programmer in your terminal",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider"
+        },
+        "steps": [
+          {
+            "title": "Install Aider (if not installed)",
+            "description": "Aider is an AI pair programmer that runs in your terminal.",
+            "code": "pip install aider-chat"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads all 34+ skills to ~/.aider/skills/ for use in Aider sessions.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider"
+          },
+          {
+            "title": "Load a skill in Aider",
+            "description": "Pass a skill file as context when starting an Aider session.",
+            "code": "aider --read ~/.aider/skills/cm-planning/SKILL.md\n# Or use multiple skills\naider --read ~/.aider/skills/cm-tdd/SKILL.md \\\n      --read ~/.aider/skills/cm-debugging/SKILL.md"
+          }
+        ]
+      },
+      {
+        "id": "continue",
+        "label": "Continue.dev",
+        "emoji": "🔗",
+        "oneliner": {
+          "label": "🔗 Continue.dev — Open-source AI code assistant for VS Code & JetBrains",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue"
+        },
+        "steps": [
+          {
+            "title": "Install CodyMaster rules",
+            "description": "Copies all skill files as rules to ~/.continue/rules/ — auto-loaded by Continue.dev.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue"
+          },
+          {
+            "title": "Verify in Continue.dev",
+            "description": "Rules in ~/.continue/rules/ are automatically picked up by Continue. Open VS Code and chat to verify.",
+            "code": "ls ~/.continue/rules/ | head -10\n# You should see: cm-planning.md, cm-debugging.md, cm-tdd.md ..."
+          }
+        ]
+      },
+      {
+        "id": "amazon-q",
+        "label": "Amazon Q CLI",
+        "emoji": "☁️",
+        "oneliner": {
+          "label": "☁️ Amazon Q — AI assistant with AWS expertise",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q"
+        },
+        "steps": [
+          {
+            "title": "Install Amazon Q CLI (if not installed)",
+            "description": "Amazon Q Developer is AWS's AI coding assistant.",
+            "code": "# macOS\nbrew install amazon-q\n# Or download from: https://aws.amazon.com/q/developer/"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads skills to ~/.aws/amazonq/skills/ for use with Amazon Q.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q"
+          },
+          {
+            "title": "Use skills in Q chat",
+            "description": "Reference skill files as context when starting Q chat sessions.",
+            "code": "q chat --context ~/.aws/amazonq/skills/cm-planning/SKILL.md\n# Or q dev mode\nq dev"
+          }
+        ]
+      },
+      {
+        "id": "amp",
+        "label": "Amp",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ Amp — Agentic coding by Sourcegraph",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp"
+        },
+        "steps": [
+          {
+            "title": "Install Amp (if not installed)",
+            "description": "Amp is an agentic coding assistant by Sourcegraph.",
+            "code": "npm install -g @sourcegraph/amp\n# Or: https://ampcode.com"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads all skills to ~/.amp/skills/ for use in Amp sessions.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp"
+          },
+          {
+            "title": "Add skills to your AGENTS.md",
+            "description": "Reference skills from your project's AGENTS.md so Amp loads them automatically.",
+            "code": "# In your project's AGENTS.md:\n@~/.amp/skills/cm-planning/SKILL.md\n@~/.amp/skills/cm-tdd/SKILL.md\n@~/.amp/skills/cm-debugging/SKILL.md"
+          }
+        ]
+      },
+      {
+        "id": "any-platform",
+        "label": "Any Platform",
         "emoji": "⚙️",
         "steps": [
           {
-            "title": "Клонируйте репозиторий",
-            "description": "Клонируйте CodyMaster в домашнюю директорию.",
-            "code": "git клон https://github.com/tody-agent/codymaster.git ~/.cody-master",
-            "output": "✓ Склонировано — 34 SKILL.md готовы"
+            "title": "Clone the Repository",
+            "description": "Clone CodyMaster once to your home directory.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Cloned — 34 SKILL.md files ready at ~/.cody-master/skills/"
           },
           {
-            "title": "Скопируйте на платформу",
-            "description": "Поместите универсальные SKILL.md в директорию skills любой платформы.",
-            "code": "# Gemini (глобально)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
+            "title": "Copy to Your Platform",
+            "description": "Drop the universal SKILL.md files into any platform's skills directory.",
+            "code": "# Gemini (global)\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/\n\n# Gemini (project)\ncp -r ~/.cody-master/skills/* .gemini/skills/\n\n# OpenCode\ncp -r ~/.cody-master/skills/* .opencode/skills/\n\n# Kiro\ncp -r ~/.cody-master/skills/* .kiro/skills/"
           },
           {
-            "title": "Проверьте и используйте",
-            "description": "Откройте AI-агент и обратитесь к любому навыку. Активируются автоматически по контексту.",
-            "code": "@cm-tdd Реализуй вход с полным покрытием тестами",
-            "note": "Работает на GitHub Copilot, Kiro, OpenCode, Windsurf и любой платформе с кастомными инструкциями."
+            "title": "Verify & Use",
+            "description": "Open your AI agent and reference any skill. They activate automatically based on context.",
+            "code": "@cm-tdd Implement login with full test coverage",
+            "note": "Works on GitHub Copilot, Kiro, OpenCode, Windsurf, and any platform supporting custom instructions."
           }
         ]
       },
@@ -1134,101 +1233,101 @@
         ]
       },
       {
-        "id": "Киро",
-        "label": "Киро",
+        "id": "kiro",
+        "label": "Kiro",
         "emoji": "🔶",
         "steps": [
           {
-            "title": "Установить Kiro",
-            "description": "Скачайте и установите Kiro — AI IDE от AWS. Доступно на kiro.dev.",
+            "title": "Install Kiro",
+            "description": "Download and install Kiro — AWS's AI-powered IDE. Available at kiro.dev.",
             "items": [
-              "Скачать Kiro с kiro.dev",
-              "Войти с AWS Builder ID",
-              "Открыть проект в Kiro"
+              "Download Kiro from kiro.dev",
+              "Sign in with your AWS Builder ID",
+              "Open your project in Kiro"
             ]
           },
           {
-            "title": "Добавить навыки через npx",
-            "description": "Используйте CLI для установки навыков CodyMaster в директорию steering Kiro.",
-            "code": "npx codymaster add --all --platform Киро",
-            "output": "🔶 kiro — Устанавливаю все 34 навыка\n  ✅ cm-tdd\n  ... (всего 34)\n✅ 34 навыка установлены → ./.kiro/steering/"
+            "title": "Add Skills via npx",
+            "description": "Use the CLI to install CodyMaster skills into Kiro's steering documents directory.",
+            "code": "npx codymaster add --all --platform kiro",
+            "output": "🔶 kiro — Installing all 34 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ... (34 total)\n✅ 34 skills installed → ./.kiro/steering/"
           },
           {
-            "title": "Или клонировать вручную",
-            "description": "Клонируйте репозиторий и скопируйте в steering Kiro.",
-            "code": "git-клон https://github.com/tody-agent/codymaster.git/tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
-            "output": "✓ 34 файла SKILL.md готовы в .kiro/steering/"
+            "title": "Or clone manually",
+            "description": "Clone the repo and copy steering documents to Kiro.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .kiro/steering/",
+            "output": "✓ 34 SKILL.md files ready in .kiro/steering/"
           },
           {
-            "title": "Использование навыков",
-            "description": "Kiro автоматически читает steering документы. Навыки активируются по контексту.",
-            "code": "@cm-tdd Реализовать аутентификацию с полным покрытием тестами",
-            "note": "Все 34 навыка: @cm-planning, @cm-debugging, @cm-safe-deploy..."
+            "title": "Use Skills",
+            "description": "Kiro reads steering documents automatically. Skills activate based on context.",
+            "code": "@cm-tdd Implement user authentication with full test coverage",
+            "note": "All 34 skills: @cm-planning, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
           }
         ]
       },
       {
-        "id": "github-второй пилот",
-        "label": "GitHub Второй пилот",
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
         "emoji": "🐙",
         "steps": [
           {
-            "title": "Включить GitHub Copilot",
-            "description": "Убедитесь, что GitHub Copilot активен в VS Code.",
+            "title": "Enable GitHub Copilot",
+            "description": "Make sure GitHub Copilot is active in VS Code or your IDE.",
             "items": [
-              "Подписаться на github.com/features/copilot",
-              "Установить расширение GitHub Copilot в VS Code",
-              "Войти с аккаунтом GitHub"
+              "Subscribe at github.com/features/copilot",
+              "Install GitHub Copilot extension in VS Code",
+              "Sign in with your GitHub account"
             ]
           },
           {
-            "title": "Добавить навыки через npx",
-            "description": "CodyMaster добавляет ссылки на навыки в .github/copilot-instructions.md.",
-            "code": "npx codymaster add --all --platform второй пилот",
-            "output": "✅ 34 навыка добавлены в .github/copilot-instructions.md\n   GitHub Copilot будет автоматически использовать их как контекст."
+            "title": "Add Skills via npx",
+            "description": "CodyMaster injects skill references into .github/copilot-instructions.md — Copilot reads this automatically.",
+            "code": "npx codymaster add --all --platform copilot",
+            "output": "✅ 34 skills referenced in .github/copilot-instructions.md\n   GitHub Copilot will use these as context automatically."
           },
           {
-            "title": "Или добавить вручную",
-            "description": "Добавьте ссылки на CodyMaster в copilot-instructions.md.",
-            "code": "# .github/copilot-instructions.md\n\n## Доступные AI навыки\nПроект использует навыки CodyMaster:\n- cm-tdd, cm-debugging, cm-planning\n# Полный список: https://github.com/tody-agent/codymaster"
+            "title": "Or add manually",
+            "description": "Add a reference to CodyMaster skills in your Copilot instructions file.",
+            "code": "# .github/copilot-instructions.md\n\n## AI Skills Available\nThis project uses CodyMaster skills. Available skills:\n- cm-tdd, cm-debugging, cm-planning, cm-safe-deploy\n- cm-ux-master, cm-content-factory, cm-code-review\n# Full list: https://github.com/tody-agent/codymaster"
           },
           {
-            "title": "Использование навыков",
-            "description": "Запросите использование любого навыка по имени в Copilot Chat.",
-            "code": "Используй cm-tdd для реализации аутентификации с полным покрытием тестами",
-            "note": "Лучше всего работает в Copilot Chat (Cmd+I). Все 34 навыка доступны."
+            "title": "Use Skills",
+            "description": "Ask Copilot to use any skill by name in chat. Copilot will reference the skill context automatically.",
+            "code": "Use cm-tdd to implement user authentication with full test coverage",
+            "note": "Works best in Copilot Chat (Cmd+I). All 34 skills are available as context."
           }
         ]
       },
       {
-        "id": "npx-кли",
-        "label": "npx/CLI",
+        "id": "npx-cli",
+        "label": "npx / CLI",
         "emoji": "⚡",
         "oneliner": {
-          "label": "⚡ Однострочная команда — установить все 34 навыка, автоопределение платформы",
-          "code": "npx codymaster добавить --all"
+          "label": "⚡ Universal one-liner — install all 34 skills, auto-detect platform",
+          "code": "npx codymaster add --all"
         },
         "steps": [
           {
-            "title": "Установить через npx (без глобальной установки)",
-            "description": "Работает на любой машине с Node.js 18+. Глобальная установка не нужна.",
-            "code": "npx codymaster добавить --all",
-            "output": "🧠 CodyMaster v3.4.0\n   Определение платформы... ✅ Обнаружен Claude Code\n   Установка 34 навыков..."
+            "title": "Install via npx (no install needed)",
+            "description": "Works on any machine with Node.js 18+. No global install required.",
+            "code": "npx codymaster add --all",
+            "output": "🧠 CodyMaster v3.4.0\n   Detecting platform... ✅ Claude Code detected\n   Installing all 34 skills..."
           },
           {
-            "title": "Установить конкретный навык",
-            "description": "Устанавливайте только нужные навыки. Платформа определяется автоматически.",
-            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd"
+            "title": "Install specific skill",
+            "description": "Pick just the skill you need. Auto-detects your platform.",
+            "code": "npx codymaster add --skill cm-debugging\nnpx codymaster add --skill cm-tdd\nnpx codymaster add --skill cm-safe-deploy"
           },
           {
-            "title": "Указать платформу явно",
-            "description": "Переопределить автоопределение и установить в любой AI инструмент.",
-            "code": "npx codymaster add --all --platform claude\nnpx codymaster add --all --platform gemini\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
+            "title": "Target a specific platform",
+            "description": "Override platform detection and install to any AI coding tool.",
+            "code": "# Claude Code\nnpx codymaster add --all --platform claude\n\n# Gemini CLI\nnpx codymaster add --all --platform gemini\n\n# Cursor, Windsurf, Cline, OpenCode, Kiro\nnpx codymaster add --all --platform cursor\nnpx codymaster add --all --platform windsurf\nnpx codymaster add --all --platform opencode\nnpx codymaster add --all --platform kiro"
           },
           {
-            "title": "Просмотр и поиск навыков",
-            "description": "Перечислить все 34 навыка или искать по домену.",
-            "code": "список кодимастера npx\nnpx список codymaster — разработка домена\nnpx codymaster добавить --list"
+            "title": "Browse & search skills",
+            "description": "List all 34 skills or search by domain.",
+            "code": "npx codymaster list\nnpx codymaster list --domain engineering\nnpx codymaster add --list"
           }
         ]
       }

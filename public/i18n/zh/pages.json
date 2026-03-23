@@ -1076,6 +1076,105 @@
         ]
       },
       {
+        "id": "aider",
+        "label": "Aider",
+        "emoji": "🤖",
+        "oneliner": {
+          "label": "�� Aider — AI pair programmer in your terminal",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider"
+        },
+        "steps": [
+          {
+            "title": "Install Aider (if not installed)",
+            "description": "Aider is an AI pair programmer that runs in your terminal.",
+            "code": "pip install aider-chat"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads all 34+ skills to ~/.aider/skills/ for use in Aider sessions.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider"
+          },
+          {
+            "title": "Load a skill in Aider",
+            "description": "Pass a skill file as context when starting an Aider session.",
+            "code": "aider --read ~/.aider/skills/cm-planning/SKILL.md\n# Or use multiple skills\naider --read ~/.aider/skills/cm-tdd/SKILL.md \\\n      --read ~/.aider/skills/cm-debugging/SKILL.md"
+          }
+        ]
+      },
+      {
+        "id": "continue",
+        "label": "Continue.dev",
+        "emoji": "🔗",
+        "oneliner": {
+          "label": "🔗 Continue.dev — Open-source AI code assistant for VS Code & JetBrains",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue"
+        },
+        "steps": [
+          {
+            "title": "Install CodyMaster rules",
+            "description": "Copies all skill files as rules to ~/.continue/rules/ — auto-loaded by Continue.dev.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue"
+          },
+          {
+            "title": "Verify in Continue.dev",
+            "description": "Rules in ~/.continue/rules/ are automatically picked up by Continue. Open VS Code and chat to verify.",
+            "code": "ls ~/.continue/rules/ | head -10\n# You should see: cm-planning.md, cm-debugging.md, cm-tdd.md ..."
+          }
+        ]
+      },
+      {
+        "id": "amazon-q",
+        "label": "Amazon Q CLI",
+        "emoji": "☁️",
+        "oneliner": {
+          "label": "☁️ Amazon Q — AI assistant with AWS expertise",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q"
+        },
+        "steps": [
+          {
+            "title": "Install Amazon Q CLI (if not installed)",
+            "description": "Amazon Q Developer is AWS's AI coding assistant.",
+            "code": "# macOS\nbrew install amazon-q\n# Or download from: https://aws.amazon.com/q/developer/"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads skills to ~/.aws/amazonq/skills/ for use with Amazon Q.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q"
+          },
+          {
+            "title": "Use skills in Q chat",
+            "description": "Reference skill files as context when starting Q chat sessions.",
+            "code": "q chat --context ~/.aws/amazonq/skills/cm-planning/SKILL.md\n# Or q dev mode\nq dev"
+          }
+        ]
+      },
+      {
+        "id": "amp",
+        "label": "Amp",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ Amp — Agentic coding by Sourcegraph",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp"
+        },
+        "steps": [
+          {
+            "title": "Install Amp (if not installed)",
+            "description": "Amp is an agentic coding assistant by Sourcegraph.",
+            "code": "npm install -g @sourcegraph/amp\n# Or: https://ampcode.com"
+          },
+          {
+            "title": "Install CodyMaster skills",
+            "description": "Downloads all skills to ~/.amp/skills/ for use in Amp sessions.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp"
+          },
+          {
+            "title": "Add skills to your AGENTS.md",
+            "description": "Reference skills from your project's AGENTS.md so Amp loads them automatically.",
+            "code": "# In your project's AGENTS.md:\n@~/.amp/skills/cm-planning/SKILL.md\n@~/.amp/skills/cm-tdd/SKILL.md\n@~/.amp/skills/cm-debugging/SKILL.md"
+          }
+        ]
+      },
+      {
         "id": "any-platform",
         "label": "任意平台",
         "emoji": "⚙️",

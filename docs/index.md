@@ -11,7 +11,7 @@ robots: "index, follow"
 > - **Version**: 3.4.0
 > - **Type**: Universal AI Agent Skills Framework
 > - **Skills**: 34 skills in 6 domains
-> - **Platforms**: Claude Code, Gemini/Antigravity, Cursor, Windsurf, Cline, OpenCode, and more
+> - **Platforms**: Claude Code, Gemini/Antigravity, Cursor, Windsurf, Cline, Aider, Continue, Amazon Q, Amp, and more
 
 ## What is Cody Master?
 
@@ -43,7 +43,16 @@ claude plugin install cm@codymaster
 ```
 
 ```bash [Gemini CLI]
+# Method A: Extension Install
 gemini extensions install https://github.com/tody-agent/codymaster
+
+# Method B: Direct Install (Fallback)
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
+```
+
+```bash [Aider / Continue / Q]
+# Auto-detect and install for individual or all platforms
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
 ```
 
 :::
@@ -68,6 +77,10 @@ gemini extensions install https://github.com/tody-agent/codymaster
 | 🔵 Cursor | ✅ | `@skill-name` |
 | 🟠 Windsurf | ✅ | `@skill-name` |
 | 🟤 Cline / RooCode | ✅ | `@skill-name` |
+| 🤖 Aider | ✅ | `@skill-name` |
+| 🔗 Continue.dev | ✅ | `@skill-name` |
+| ☁️ Amazon Q CLI | ✅ | `@skill-name` |
+| ⚡ Amp | ✅ | `@skill-name` |
 | 🐈 GitHub Copilot | ✅ | `skill-name` |
 | 💻 Gemini CLI | ✅ | `@[/skill-name]` |
 | 🔷 OpenCode / Codex | ✅ | `@skill-name` |

@@ -1076,6 +1076,105 @@
         ]
       },
       {
+        "id": "aider",
+        "label": "Aider",
+        "emoji": "🤖",
+        "oneliner": {
+          "label": "🤖 Aider — Lập trình cùng AI trên terminal",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider"
+        },
+        "steps": [
+          {
+            "title": "Cài Aider (nếu chưa có)",
+            "description": "Aider là công cụ lập trình AI cặp đôi chạy trên terminal.",
+            "code": "pip install aider-chat"
+          },
+          {
+            "title": "Cài kĩ năng CodyMaster",
+            "description": "Tải 34+ kĩ năng vào ~/.aider/skills/ để dùng trong Aider.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider"
+          },
+          {
+            "title": "Dùng kĩ năng trong Aider",
+            "description": "Truyền file kĩ năng làm context khi khởi động phên Aider.",
+            "code": "aider --read ~/.aider/skills/cm-planning/SKILL.md\n# Hoặc dùng nhiều kĩ năng\naider --read ~/.aider/skills/cm-tdd/SKILL.md --read ~/.aider/skills/cm-debugging/SKILL.md"
+          }
+        ]
+      },
+      {
+        "id": "continue",
+        "label": "Continue.dev",
+        "emoji": "🔗",
+        "oneliner": {
+          "label": "🔗 Continue.dev — Trợ lý code AI mó nguồn mở cho VS Code & JetBrains",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue"
+        },
+        "steps": [
+          {
+            "title": "Cài rules CodyMaster",
+            "description": "Sao chép tất cả skill files vào ~/.continue/rules/ — Continue.dev tự tải.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue"
+          },
+          {
+            "title": "Kiểm tra trong Continue.dev",
+            "description": "Rules trong ~/.continue/rules/ được Continue tự nhận. Mở VS Code và chạy thử.",
+            "code": "ls ~/.continue/rules/ | head -10\n# You should see: cm-planning.md, cm-debugging.md, cm-tdd.md ..."
+          }
+        ]
+      },
+      {
+        "id": "amazon-q",
+        "label": "Amazon Q CLI",
+        "emoji": "☁️",
+        "oneliner": {
+          "label": "☁️ Amazon Q — Trợ lý AI chuyên AWS",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q"
+        },
+        "steps": [
+          {
+            "title": "Cài Amazon Q CLI (nếu chưa có)",
+            "description": "Amazon Q Developer là trợ lý code AI của AWS.",
+            "code": "# macOS\nbrew install amazon-q\n# Hoặc tải tại: https://aws.amazon.com/q/developer/"
+          },
+          {
+            "title": "Cài kĩ năng CodyMaster",
+            "description": "Tải kĩ năng vào ~/.aws/amazonq/skills/ để dùng với Amazon Q.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q"
+          },
+          {
+            "title": "Dùng kĩ năng trong Q chat",
+            "description": "Tham chiếu file kĩ năng làm context khi khởi động Q chat.",
+            "code": "q chat --context ~/.aws/amazonq/skills/cm-planning/SKILL.md"
+          }
+        ]
+      },
+      {
+        "id": "amp",
+        "label": "Amp",
+        "emoji": "⚡",
+        "oneliner": {
+          "label": "⚡ Amp — Agent code của Sourcegraph",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp"
+        },
+        "steps": [
+          {
+            "title": "Cài Amp (nếu chưa có)",
+            "description": "Amp là công cụ code agent của Sourcegraph.",
+            "code": "npm install -g @sourcegraph/amp\n# Hoặc: https://ampcode.com"
+          },
+          {
+            "title": "Cài kĩ năng CodyMaster",
+            "description": "Tải tất cả kĩ năng vào ~/.amp/skills/.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp"
+          },
+          {
+            "title": "Thêm kĩ năng vào AGENTS.md",
+            "description": "Tham chiếu kĩ năng trong AGENTS.md của dự án để Amp tự tải.",
+            "code": "# Trong AGENTS.md của project:\n@~/.amp/skills/cm-planning/SKILL.md\n@~/.amp/skills/cm-tdd/SKILL.md\n@~/.amp/skills/cm-debugging/SKILL.md"
+          }
+        ]
+      },
+      {
         "id": "any-platform",
         "label": "Nền tảng khác",
         "emoji": "⚙️",

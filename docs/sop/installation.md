@@ -61,11 +61,15 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 ---
 
-## Method 2: Gemini CLI
+## Method 2: Gemini CLI (Antigravity)
 
 ```bash
 gemini extensions install https://github.com/tody-agent/codymaster
 ```
+
+> [!TIP]
+> **Fallback Installation**: If the automated extension install fails, CodyMaster will automatically attempt a direct skills copy to `~/.gemini/skills/`. You can also force this via:
+> `bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity`
 
 To update later:
 ```bash
@@ -94,7 +98,43 @@ Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/
 
 ---
 
-## Method 5: Manual / Any Platform
+## Method 6: Aider
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --aider
+```
+Skills will be copied to `~/.aider/skills/`.
+
+---
+
+## Method 7: Continue.dev
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --continue
+```
+Skills will be copied to `~/.continue/rules/`.
+
+---
+
+## Method 8: Amazon Q CLI
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amazon-q
+```
+Skills will be copied to `~/.aws/amazonq/skills/`.
+
+---
+
+## Method 9: Amp
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --amp
+```
+Skills will be copied to `~/.amp/skills/`.
+
+---
+
+## Method 10: Manual / Any Platform
 
 Clone the repo and copy skills directly:
 

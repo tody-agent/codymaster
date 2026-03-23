@@ -49,6 +49,7 @@ Skills for planning, design, documentation, and bootstrapping.
 | **cm-brainstorm-idea** | Strategic analysis gate: 9 Windows (TRIZ) + Double Diamond → 2-3 qualified options for existing products. | [View →](./cm-brainstorm-idea.md) |
 | **cm-planning** | Brainstorm intent → write implementation plan → coordinate execution. Required before complex tasks. | [View →](./cm-planning.md) |
 | **cm-ux-master** | Ultimate design intelligence: 48 UX Laws, 37 Design Tests, Stitch & Pencil.dev integration, BM25 search. | [View →](./cm-ux-master.md) |
+| **cm-design-system** | Manage, extract, and replicate UI design systems. Visual token harvesting from any URL. | [View →](./cm-design-system.md) |
 | **cm-ui-preview** | AI-powered UI generation via Google Stitch & Pencil.dev MCP. Dual engine: quick concepts (Stitch) or precise control (Pencil). | [View →](./cm-ui-preview.md) |
 | **cm-dockit** | Knowledge systematization engine — generates tech docs, SOPs, API references as VitePress or Markdown. | [View →](./cm-dockit.md) |
 | **cm-readit** | Web audio engine: TTS reader (SpeechSynthesis), pre-recorded MP3 player, Voice CRO trigger system. | [View →](./cm-readit.md) |
