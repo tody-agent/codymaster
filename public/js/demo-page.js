@@ -164,7 +164,8 @@
       const step = document.createElement('div');
       step.className = `demo-progress__step ${i < phaseKeys.length - 1 ? 'demo-progress__step--active' : 'demo-progress__step--done'}`;
       step.style.animationDelay = `${i * 0.1}s`;
-      step.innerHTML = `<span class="demo-progress__dot"></span> ${text}`;
+      step.innerHTML = '<span class="demo-progress__dot"></span> ';
+      step.appendChild(document.createTextNode(text));
       progressDiv.appendChild(step);
 
       scrollToBottom();
@@ -185,13 +186,34 @@
     const container = document.getElementById('demoMessages');
     const result = document.createElement('div');
     result.className = 'demo-result';
-    result.innerHTML = `
-      <div class="demo-result__title">${demoT.resultTitle || 'Your project is ready!'}</div>
-      <div class="demo-result__preview">${previewText}</div>
-      <a href="start.html" class="btn btn--primary">${demoT.resultCta || 'Install for real →'}</a>
-      <br>
-      <button class="demo-suggestion" style="margin-top:12px" onclick="location.reload()">${demoT.tryAnother || 'Try another prompt'}</button>
-    `;
+    result.innerHTML = '';
+
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'demo-result__title';
+    titleDiv.textContent = demoT.resultTitle || 'Your project is ready!';
+
+    const previewDiv = document.createElement('div');
+    previewDiv.className = 'demo-result__preview';
+    previewDiv.textContent = previewText;
+
+    const a = document.createElement('a');
+    a.href = 'start.html';
+    a.className = 'btn btn--primary';
+    a.textContent = demoT.resultCta || 'Install for real →';
+
+    const br = document.createElement('br');
+
+    const btn = document.createElement('button');
+    btn.className = 'demo-suggestion';
+    btn.style.marginTop = '12px';
+    btn.onclick = () => location.reload();
+    btn.textContent = demoT.tryAnother || 'Try another prompt';
+
+    result.appendChild(titleDiv);
+    result.appendChild(previewDiv);
+    result.appendChild(a);
+    result.appendChild(br);
+    result.appendChild(btn);
     container.appendChild(result);
     scrollToBottom();
   }
@@ -201,7 +223,12 @@
     const container = document.getElementById('demoMessages');
     const msg = document.createElement('div');
     msg.className = 'demo-msg demo-msg--ai';
-    msg.innerHTML = `<span class="demo-msg__name">${demoT.aiName || 'Cody Master AI'}</span>${text}`;
+    msg.innerHTML = '';
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'demo-msg__name';
+    nameSpan.textContent = demoT.aiName || 'Cody Master AI';
+    msg.appendChild(nameSpan);
+    msg.appendChild(document.createTextNode(text));
     container.appendChild(msg);
     scrollToBottom();
     return msg;
@@ -220,21 +247,29 @@
     const container = document.getElementById('demoMessages');
     const msg = document.createElement('div');
     msg.className = 'demo-msg demo-msg--ai';
-    msg.innerHTML = `
-      <span class="demo-msg__name">${demoT.aiName || 'Cody Master AI'}</span>
-      <div class="demo-typing">
-        <span class="demo-typing__dot"></span>
-        <span class="demo-typing__dot"></span>
-        <span class="demo-typing__dot"></span>
-      </div>
-    `;
+    msg.innerHTML = '';
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'demo-msg__name';
+    nameSpan.textContent = demoT.aiName || 'Cody Master AI';
+
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'demo-typing';
+    typingDiv.innerHTML = '<span class="demo-typing__dot"></span><span class="demo-typing__dot"></span><span class="demo-typing__dot"></span>';
+
+    msg.appendChild(nameSpan);
+    msg.appendChild(typingDiv);
     container.appendChild(msg);
     scrollToBottom();
     return msg;
   }
 
   function replaceWithAiMessage(el, text) {
-    el.innerHTML = `<span class="demo-msg__name">${demoT.aiName || 'Cody Master AI'}</span>${text}`;
+    el.innerHTML = '';
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'demo-msg__name';
+    nameSpan.textContent = demoT.aiName || 'Cody Master AI';
+    el.appendChild(nameSpan);
+    el.appendChild(document.createTextNode(text));
   }
 
   function addSkillTags(msgEl, skills) {
