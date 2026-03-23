@@ -1,12 +1,39 @@
+# Source & build config
 src/
-tests/
+test/
+tsconfig.json
+vitest.config.ts
+
+# Documentation & website
 docs/
 public/
 scripts/
-projects/
+
+# Working memory & config
 .cm/
-*.test.ts
-tsconfig.json
-vitest.config.ts
+.claude/
+.claude-plugin/
+.cursor-plugin/
+.codex/
+.opencode/
+.agent-tasks/
+.wrangler/
+projects/
+
+# Secrets & env
 .env
 .env.*
+.dev.vars
+.dev.vars.example
+.project-identity.json
+
+# Misc
+*.test.ts
+wrangler.toml
+gemini-extension.json
+gemini-extension.json.backup
+GEMINI.md
+.DS_Store
+.git*
+**/.git*
+skills/.content-factory-state.json

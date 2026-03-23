@@ -17,6 +17,7 @@ import os
 import subprocess
 import argparse
 from pathlib import Path
+from safe_path import safe_resolve
 
 
 def load_config(config_path: str) -> dict:
@@ -49,8 +50,8 @@ def run_planner(project_root: Path, config: dict, dry_run: bool, group: str = No
 
 def generate_basic_plan(project_root: Path, config: dict, dry_run: bool, group: str = None):
     """Generate topic plan directly from config when no planner script exists."""
-    kb_dir = project_root / config["output"].get("knowledge_dir", "knowledge-base/")
-    queue_dir = project_root / config["output"].get("queue_dir", "topics-queue/")
+    kb_dir = safe_resolve(project_root, config["output"].get("knowledge_dir", "knowledge-base/"))
+    queue_dir = safe_resolve(project_root, config["output"].get("queue_dir", "topics-queue/"))
     index_file = kb_dir / "index.json"
 
     if not index_file.exists():

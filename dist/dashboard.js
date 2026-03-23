@@ -17,7 +17,8 @@ const skill_chain_1 = require("./skill-chain");
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     const app = (0, express_1.default)();
-    app.use(express_1.default.json());
+    app.disable('x-powered-by');
+    app.use(express_1.default.json({ limit: '1mb' }));
     const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
     app.use(express_1.default.static(publicDir));
     // ─── Project API ────────────────────────────────────────────────────────

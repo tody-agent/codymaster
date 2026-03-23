@@ -15,6 +15,7 @@ import sys
 import subprocess
 import argparse
 from pathlib import Path
+from safe_path import safe_resolve
 
 
 DEPLOY_COMMANDS = {

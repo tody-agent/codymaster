@@ -18,6 +18,7 @@ import shutil
 import argparse
 from pathlib import Path
 from datetime import datetime
+from safe_path import safe_resolve
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_DIR = SCRIPT_DIR.parent
@@ -104,7 +105,17 @@ class Wizard:
 
         # Generate
         config = self._generate_config()
+        # Validate output_dir stays within cwd or is explicitly absolute
+        cwd = Path.cwd()
         output_dir = Path(project_dir).resolve()
+        try:
+            output_dir.relative_to(cwd)
+        except ValueError:
+            print(f"  ⚠️ Warning: output directory '{output_dir}' is outside current working directory")
+            confirm = self._ask("  Continue anyway? (y/N)", default="N")
+            if confirm.lower() not in ("y", "yes"):
+                print("  ❌ Cancelled")
+                return None
         self._write_output(config, output_dir)
 
         return {

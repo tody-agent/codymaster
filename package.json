@@ -1,8 +1,16 @@
 {
   "name": "codymaster",
-  "version": "4.1.0",
-  "description": "34 Skills. Ship 10x faster.",
+  "version": "4.1.1",
+  "description": "34 Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omisocial/codymaster.git"
+  },
+  "homepage": "https://codymaster.ai",
+  "bugs": {
+    "url": "https://github.com/omisocial/codymaster/issues"
+  },
   "bin": {
     "cody": "dist/index.js",
     "cm": "dist/index.js",
@@ -10,7 +18,6 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build",
     "start": "ts-node src/index.ts",
     "test:gate": "vitest run --reporter=verbose",
     "build:html": "node scripts/inject-header.js && node scripts/inject-footer.js && node scripts/inject-ga.js",
@@ -24,25 +31,48 @@
     "deploy": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:i18n && npm run build:html && npm run docs:build && npm run gate:dist && export $(grep -v '^#' .env | xargs) && wrangler pages deploy public && npm run gate:smoke",
     "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:i18n && npm run build:html && npm run docs:build && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ai",
+    "coding",
+    "skills",
+    "claude",
+    "cursor",
+    "gemini",
+    "vibe-coding",
+    "developer-tools",
+    "productivity",
+    "cli"
+  ],
+  "author": "todyagent <aitodyle@gmail.com>",
   "license": "ISC",
   "type": "commonjs",
+  "files": [
+    "dist/",
+    "skills/",
+    "adapters/",
+    "commands/",
+    "README.md",
+    "CHANGELOG.md",
+    "install.sh"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
-    "@clack/prompts": "^1.1.0",
-    "@types/node": "^25.5.0",
     "chalk": "^5.6.2",
     "commander": "^14.0.3",
     "express": "^5.2.1",
-    "prompts": "^2.4.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
+    "@clack/prompts": "^1.1.0",
     "@types/express": "^5.0.6",
+    "@types/node": "^25.5.0",
     "@types/prompts": "^2.4.9",
     "acorn": "^8.16.0",
     "jsdom": "^29.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
     "vitest": "^4.1.0"
   }
 }

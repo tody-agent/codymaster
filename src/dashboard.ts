@@ -16,7 +16,8 @@ import type { ChainExecution } from './skill-chain';
 
 export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = false) {
   const app = express();
-  app.use(express.json());
+  app.disable('x-powered-by');
+  app.use(express.json({ limit: '1mb' }));
 
   const publicDir = path.join(__dirname, '..', 'public', 'dashboard');
   app.use(express.static(publicDir));

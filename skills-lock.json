@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "xss-html-injection": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "95464f8733e4e096597e0a13c7dfb5a2d92b7ff84433e5f3b90a8d1a88444206"
+    }
+  }
+}

@@ -164,7 +164,8 @@
       const step = document.createElement('div');
       step.className = `demo-progress__step ${i < phaseKeys.length - 1 ? 'demo-progress__step--active' : 'demo-progress__step--done'}`;
       step.style.animationDelay = `${i * 0.1}s`;
-      step.innerHTML = `<span class="demo-progress__dot"></span> ${text}`;
+      const escStep = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
+      step.innerHTML = `<span class="demo-progress__dot"></span> ${escStep(text)}`;
       progressDiv.appendChild(step);
 
       scrollToBottom();
@@ -185,12 +186,13 @@
     const container = document.getElementById('demoMessages');
     const result = document.createElement('div');
     result.className = 'demo-result';
+    const escR = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
     result.innerHTML = `
-      <div class="demo-result__title">${demoT.resultTitle || 'Your project is ready!'}</div>
-      <div class="demo-result__preview">${previewText}</div>
-      <a href="start.html" class="btn btn--primary">${demoT.resultCta || 'Install for real →'}</a>
+      <div class="demo-result__title">${escR(demoT.resultTitle || 'Your project is ready!')}</div>
+      <div class="demo-result__preview">${escR(previewText)}</div>
+      <a href="start.html" class="btn btn--primary">${escR(demoT.resultCta || 'Install for real →')}</a>
       <br>
-      <button class="demo-suggestion" style="margin-top:12px" onclick="location.reload()">${demoT.tryAnother || 'Try another prompt'}</button>
+      <button class="demo-suggestion" style="margin-top:12px" onclick="location.reload()">${escR(demoT.tryAnother || 'Try another prompt')}</button>
     `;
     container.appendChild(result);
     scrollToBottom();
@@ -201,7 +203,8 @@
     const container = document.getElementById('demoMessages');
     const msg = document.createElement('div');
     msg.className = 'demo-msg demo-msg--ai';
-    msg.innerHTML = `<span class="demo-msg__name">${demoT.aiName || 'Cody Master AI'}</span>${text}`;
+    const escMsg = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
+    msg.innerHTML = `<span class="demo-msg__name">${escMsg(demoT.aiName || 'Cody Master AI')}</span>${escMsg(text)}`;
     container.appendChild(msg);
     scrollToBottom();
     return msg;
@@ -220,8 +223,9 @@
     const container = document.getElementById('demoMessages');
     const msg = document.createElement('div');
     msg.className = 'demo-msg demo-msg--ai';
+    const escType = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
     msg.innerHTML = `
-      <span class="demo-msg__name">${demoT.aiName || 'Cody Master AI'}</span>
+      <span class="demo-msg__name">${escType(demoT.aiName || 'Cody Master AI')}</span>
       <div class="demo-typing">
         <span class="demo-typing__dot"></span>
         <span class="demo-typing__dot"></span>
@@ -234,7 +238,8 @@
   }
 
   function replaceWithAiMessage(el, text) {
-    el.innerHTML = `<span class="demo-msg__name">${demoT.aiName || 'Cody Master AI'}</span>${text}`;
+    const escReplace = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
+    el.innerHTML = `<span class="demo-msg__name">${escReplace(demoT.aiName || 'Cody Master AI')}</span>${escReplace(text)}`;
   }
 
   function addSkillTags(msgEl, skills) {

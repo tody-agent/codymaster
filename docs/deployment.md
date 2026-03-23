@@ -162,7 +162,7 @@ npx wrangler pages deploy ./public --project-name=cody-master --branch=preview
 
 | Record | Name | Value |
 |--------|------|-------|
-| CNAME | `cody-master-a5q.pages.dev` | Cloudflare Pages auto-configured |
+| CNAME | `cody.todyle.com` | Cloudflare Pages auto-configured |
 | Custom | Your domain | Point to Cloudflare Pages |
 
 ## File Structure for Deployment

@@ -206,7 +206,7 @@ print_onboarding() {
   echo -e "  ${C}/cm:review${NC}     ← Code review"
   echo -e "  ${C}/cm:deploy${NC}     ← Deploy safely"
   echo ""
-  echo -e "${W}${BOLD}$(msg docs)${NC} ${C}https://cody-master-a5q.pages.dev/docs${NC}"
+  echo -e "${W}${BOLD}$(msg docs)${NC} ${C}https://cody.todyle.com/docs${NC}"
   echo ""
 }
 
@@ -509,5 +509,5 @@ for platform in "${platforms[@]}"; do
 done
 
 echo ""
-echo -e "${C}$(msg docs) https://cody-master-a5q.pages.dev/docs${NC}"
+echo -e "${C}$(msg docs) https://cody.todyle.com/docs${NC}"
 echo ""

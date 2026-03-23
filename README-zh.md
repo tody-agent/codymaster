@@ -253,16 +253,16 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 > *“34项技能。每一项技能都是一课。每一课都是一个不眠之夜。而现在，你无需再经历那些夜晚。”*
 
-📖 [阅读完整故事 →](https://cody-master-a5q.pages.dev/story)
+📖 [阅读完整故事 →](https://cody.todyle.com/story)
 
 ---
 
 ## 📚 资源
 
-- 🌍 [网站](https://cody-master-a5q.pages.dev) — 概览与演示
-- 📖 [文档](https://cody-master-a5q.pages.dev/docs) — 完整深度探索
+- 🌍 [网站](https://cody.todyle.com) — 概览与演示
+- 📖 [文档](https://cody.todyle.com/docs) — 完整深度探索
 - 🛠️ [技能参考](skills/) — 浏览所有34个SKILL.md文件
-- 📖 [我们的故事](https://cody-master-a5q.pages.dev/story) — 为什么存在这个项目
+- 📖 [我们的故事](https://cody.todyle.com/story) — 为什么存在这个项目
 
 ---
 

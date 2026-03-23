@@ -117,15 +117,17 @@
       const card = document.createElement('div');
       card.className = 'skill-bento-card';
       card.setAttribute('data-skill-id', skill.id);
+      const esc = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
+      const escAttr = window.SecurityUtils ? window.SecurityUtils.escapeAttr : (s => s);
       card.innerHTML = `
         <div class="skill-bento-card__top">
-          <i data-lucide="${skill.icon}" class="skill-bento-card__icon" style="color:${cssColor}"></i>
-          <span class="skill-bento-card__badge" style="color:${cssColor};border-color:${cssColor}">${skill.category}</span>
+          <i data-lucide="${escAttr(skill.icon)}" class="skill-bento-card__icon" style="color:${cssColor}"></i>
+          <span class="skill-bento-card__badge" style="color:${cssColor};border-color:${cssColor}">${esc(skill.category)}</span>
         </div>
-        <span class="skill-bento-card__name">${skill.name}</span>
+        <span class="skill-bento-card__name">${esc(skill.name)}</span>
         <div class="skill-bento-card__story">
-          <p class="skill-bento-card__problem" style="margin-top: 12px; font-size: 0.9rem; color: var(--text-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">😕 ${skill.problem || skill.description}</p>
-          <p class="skill-bento-card__solution" style="margin-top: 8px; font-size: 0.9rem; color: ${cssColor}; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">💡 ${skill.solution || skill.tagline}</p>
+          <p class="skill-bento-card__problem" style="margin-top: 12px; font-size: 0.9rem; color: var(--text-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">😕 ${esc(skill.problem || skill.description)}</p>
+          <p class="skill-bento-card__solution" style="margin-top: 8px; font-size: 0.9rem; color: ${cssColor}; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">💡 ${esc(skill.solution || skill.tagline)}</p>
         </div>
       `;
       card.addEventListener('click', () => openModal(skill));
@@ -194,10 +196,11 @@
     const whyEl = document.getElementById('modalWhy');
     const bestEl = document.getElementById('modalBest');
     
-    if (whatEl) whatEl.innerHTML = skill.whatIsIt || skill.description || '';
-    if (whenEl) whenEl.innerHTML = skill.whenToUse || '';
-    if (whyEl) whyEl.innerHTML = skill.whyToUse || '';
-    if (bestEl) bestEl.innerHTML = skill.bestPractice || '';
+    const escModal = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
+    if (whatEl) whatEl.innerHTML = escModal(skill.whatIsIt || skill.description || '');
+    if (whenEl) whenEl.innerHTML = escModal(skill.whenToUse || '');
+    if (whyEl) whyEl.innerHTML = escModal(skill.whyToUse || '');
+    if (bestEl) bestEl.innerHTML = escModal(skill.bestPractice || '');
     
     // Hide empty sections
     document.querySelectorAll('.story-section').forEach(sec => {

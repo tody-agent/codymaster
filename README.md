@@ -254,16 +254,16 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 > *"34 skills. Each skill is a lesson. Each lesson is a sleepless night. And now, you don't have to go through those nights."*
 
-📖 [Read the full story →](https://cody-master-a5q.pages.dev/story)
+📖 [Read the full story →](https://cody.todyle.com/story)
 
 ---
 
 ## 📚 Resources
 
-- 🌍 [Website](https://cody-master-a5q.pages.dev) — Overview & demos
-- 📖 [Documentation](https://cody-master-a5q.pages.dev/docs) — Full deep-dive
+- 🌍 [Website](https://cody.todyle.com) — Overview & demos
+- 📖 [Documentation](https://cody.todyle.com/docs) — Full deep-dive
 - 🛠️ [Skills Reference](skills/) — Browse all 34 SKILL.md files
-- 📖 [Our Story](https://cody-master-a5q.pages.dev/story) — Why this exists
+- 📖 [Our Story](https://cody.todyle.com/story) — Why this exists
 
 ---
 

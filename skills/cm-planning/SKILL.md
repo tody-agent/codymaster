@@ -35,6 +35,10 @@ description: "You MUST use this before any creative work or multi-step task. Exp
     -   Must-haves vs nice-to-haves
     -   Edge cases to handle
     -   Edge cases to explicitly NOT handle
+    -   **Security (if frontend):** How will dynamic data be rendered?
+        - `textContent` (preferred) or `innerHTML` with `escapeHtml()`?
+        - Is `sanitize.js` loaded in all affected HTML pages?
+        - Are URLs/params validated against allowlists?
 
 4.  **Skill Coverage Audit** — Do I have the right skills?
     -   List all technologies/frameworks/tools referenced in the scope

@@ -89,7 +89,7 @@
           if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
             el.placeholder = value;
           } else {
-            el.innerHTML = value.replace(/\n/g, '<br>');
+            el.innerHTML = (window.SecurityUtils ? window.SecurityUtils.escapeHtmlWithBreaks(value) : value.replace(/\n/g, '<br>'));
           }
         }
       });
@@ -289,17 +289,18 @@
         el.href = urlMap[card.id] || `persona.html?p=${card.id}`;
         el.className = `persona-home-card reveal reveal-delay-${delay}`;
         el.style.setProperty('--card-accent', accent);
+        const esc = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
         el.innerHTML = `
           <div class="persona-home-card__header">
-            <span class="persona-home-card__emoji">${card.emoji}</span>
-            <h3 class="persona-home-card__title">${card.title}</h3>
-            <p class="persona-home-card__tagline">${card.tagline}</p>
+            <span class="persona-home-card__emoji">${esc(card.emoji)}</span>
+            <h3 class="persona-home-card__title">${esc(card.title)}</h3>
+            <p class="persona-home-card__tagline">${esc(card.tagline)}</p>
           </div>
           <ul class="persona-home-card__pains">
-            ${card.pains.map(p => `<li>😤 ${p}</li>`).join('')}
+            ${card.pains.map(p => `<li>😤 ${esc(p)}</li>`).join('')}
           </ul>
-          <p class="persona-home-card__dream">✨ ${card.dream}</p>
-          <span class="persona-home-card__link">${learnMore}</span>
+          <p class="persona-home-card__dream">✨ ${esc(card.dream)}</p>
+          <span class="persona-home-card__link">${esc(learnMore)}</span>
         `;
         container.appendChild(el);
       });

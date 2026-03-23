@@ -17,6 +17,7 @@ import os
 import argparse
 import subprocess
 from pathlib import Path
+from safe_path import safe_resolve
 
 
 def load_config(config_path: str) -> dict:
@@ -48,8 +49,8 @@ def run_docx_extractor(project_root: Path, config: dict, dry_run: bool, group: s
 
 def run_markdown_extractor(project_root: Path, config: dict, dry_run: bool):
     """Extract knowledge from existing markdown files."""
-    source_path = project_root / config["sources"]["path"]
-    output_dir = project_root / config["output"].get("knowledge_dir", "knowledge-base/")
+    source_path = safe_resolve(project_root, config["sources"]["path"])
+    output_dir = safe_resolve(project_root, config["output"].get("knowledge_dir", "knowledge-base/"))
 
     if not source_path.exists():
         print(f"❌ Source path not found: {source_path}")

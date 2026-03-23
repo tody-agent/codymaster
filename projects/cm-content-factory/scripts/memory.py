@@ -19,6 +19,7 @@ import os
 import argparse
 from pathlib import Path
 from datetime import datetime, timedelta
+from safe_path import safe_resolve
 
 
 MEMORY_SCHEMA = {
@@ -81,7 +82,7 @@ class MemoryEngine:
 
         self.project_root = Path(config_path).resolve().parent
         mem_cfg = self.config.get("memory", {})
-        self.memory_dir = self.project_root / mem_cfg.get("memory_dir", "memory")
+        self.memory_dir = safe_resolve(self.project_root, mem_cfg.get("memory_dir", "memory"))
         self.auto_learn = mem_cfg.get("auto_learn", True)
         self.max_episodic_days = mem_cfg.get("max_episodic_days", 90)
 

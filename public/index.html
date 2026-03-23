@@ -538,6 +538,7 @@
     </div>
   </footer>
 
+  <script src="js/sanitize.js"></script>
   <script src="js/kit.js"></script>
   <script>
     // Re-trigger lucide icons just in case
@@ -665,12 +666,13 @@
         document.querySelectorAll('.home-install-content').forEach(c => c.classList.remove('active'));
 
         // Build instructions
-        let html = '<h3 style="text-align:center;font-family:var(--font-display);font-size:1.4rem;color:var(--text-primary);margin-bottom:24px;">' + info.title + '</h3>';
+        const esc = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
+        let html = '<h3 style="text-align:center;font-family:var(--font-display);font-size:1.4rem;color:var(--text-primary);margin-bottom:24px;">' + esc(info.title) + '</h3>';
         html += '<div class="home-manual-grid" style="grid-template-columns:1fr;">';
         info.steps.forEach((step, i) => {
           html += '<div class="home-manual-card">';
-          html += '<h4><span style="background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">' + (i + 1) + '</span> ' + step.label + '</h4>';
-          html += '<code>' + step.code + '</code>';
+          html += '<h4><span style="background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">' + (i + 1) + '</span> ' + esc(step.label) + '</h4>';
+          html += '<code>' + esc(step.code) + '</code>';
           html += '</div>';
         });
         html += '</div>';

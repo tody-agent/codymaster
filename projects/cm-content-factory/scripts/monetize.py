@@ -20,6 +20,7 @@ import re
 import argparse
 from pathlib import Path
 from datetime import datetime
+from safe_path import safe_resolve
 
 
 # Commercial intent signals
@@ -150,7 +151,7 @@ class MonetizationScorer:
 
     def score_all(self) -> list:
         """Score all articles for monetization."""
-        content_dir = self.project_root / self.config["output"]["content_dir"]
+        content_dir = safe_resolve(self.project_root, self.config["output"]["content_dir"])
         if not content_dir.exists():
             return []
 
@@ -203,7 +204,7 @@ def main():
     if args.score:
         fp = Path(args.score)
         if not fp.exists():
-            fp = scorer.project_root / scorer.config["output"]["content_dir"] / args.score
+            fp = safe_resolve(scorer.project_root, str(Path(scorer.config["output"]["content_dir"]) / args.score))
         result = scorer.score_article(fp)
         print(f"\n💰 {result['slug']}: {result['total']}/100")
         for k, v in result["scores"].items():

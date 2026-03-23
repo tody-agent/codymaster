@@ -253,16 +253,16 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 > *"34 навыка. Каждый навык — это урок. Каждый урок — бессонная ночь. И теперь вам не придется проходить через эти ночи."*
 
-📖 [Прочитать полную историю →](https://cody-master-a5q.pages.dev/story)
+📖 [Прочитать полную историю →](https://cody.todyle.com/story)
 
 ---
 
 ## 📚 Ресурсы
 
-- 🌍 [Веб-сайт](https://cody-master-a5q.pages.dev) — Обзор и демо
-- 📖 [Документация](https://cody-master-a5q.pages.dev/docs) — Полное погружение
+- 🌍 [Веб-сайт](https://cody.todyle.com) — Обзор и демо
+- 📖 [Документация](https://cody.todyle.com/docs) — Полное погружение
 - 🛠️ [Справочник навыков](skills/) — Просмотреть все 34 файла SKILL.md
-- 📖 [Наша история](https://cody-master-a5q.pages.dev/story) — Почему это существует
+- 📖 [Наша история](https://cody.todyle.com/story) — Почему это существует
 
 ---
 

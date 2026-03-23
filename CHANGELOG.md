@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes**
 
+## [4.1.1] - 2026-03-24
+
+### 🚀 Improvements
+- Documentation Changelog Integration — automated changelog generation added to VitePress docs
+- Setup NPM Publishing — configured package for npmjs.com publishing
+- CLI Interface Redesign — premium mobile-optimized ASCII art banner
+- Parallel Coding Page — added visual comparison and full i18n support
+- Open Source Docs — added section acknowledging referenced GitHub repositories
+
+### 🐛 Bug Fixes
+- Security Vulnerability Remediation — resolved Snyk Code findings including DOM XSS and Path Traversal
+- Fixed 401 Unauthorized authentication error for `/cm:cm-start` command
+
+---
+
+
 ## [4.1.0] - 2026-03-23
 
 ### 🚀 Improvements

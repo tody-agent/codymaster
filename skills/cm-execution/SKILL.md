@@ -245,6 +245,44 @@ After EVERY phase, you MUST:
 
 ---
 
+## Security Rules (Learned: March 2026)
+
+> **Code that touches files, subprocesses, or the DOM MUST follow these rules. No exceptions.**
+
+### Frontend — DOM Safety
+
+| Pattern | Risk | Fix |
+|---------|------|-----|
+| `innerHTML = \`...\${data}...\`` | DOM XSS | `innerHTML = \`...\${esc(data)}...\`` |
+| `innerHTML = variable` | DOM XSS | `textContent = variable` |
+| `eval(input)` / `new Function(input)` | Code injection | Avoid entirely |
+| `document.write(data)` | DOM XSS | Use DOM API |
+| `el.setAttribute('on*', data)` | Event injection | `el.addEventListener()` |
+
+**Always:** Escape before innerHTML, prefer `textContent`, validate URLs via allowlist.
+
+### Backend — Python
+
+| Pattern | Risk | Fix |
+|---------|------|-----|
+| `Path(user_input) / "file"` | Path Traversal | `safe_resolve(base, user_input)` |
+| `subprocess.run(f"cmd {arg}", shell=True)` | Command Injection | `subprocess.run(["cmd", arg])` |
+| `open(config["path"])` | Path Traversal | `safe_open(base, config["path"])` |
+| `json.load()` → paths unvalidated | Path Traversal | Validate ALL paths from config via `safe_resolve()` |
+
+**Always:** Import `safe_path`, validate EVERY path from CLI/config/API against a base directory.
+
+### Backend — Express/Node
+
+| Pattern | Risk | Fix |
+|---------|------|-----|
+| Missing `app.disable('x-powered-by')` | Info leak | Add after `express()` |
+| No body size limit | DoS | `express.json({ limit: '1mb' })` |
+| `path.resolve(userInput)` without validation | Path Traversal | Check null bytes + `relative_to(baseDir)` |
+| `Object.assign(config, userInput)` | Prototype Pollution | Filter `__proto__`, `constructor` keys |
+
+
+
 ## Integration
 
 | Skill | When |

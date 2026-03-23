@@ -360,6 +360,44 @@ Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix 
 
 Never fix bugs without a test.
 
+## Security TDD (Learned: March 2026)
+
+> **Security bugs get tests too.** Every XSS, path traversal, or injection fix starts with a failing test.
+
+### Example: XSS Prevention
+
+**RED**
+```javascript
+test('escapeHtml prevents script injection', () => {
+  const malicious = '<script>alert("xss")</script>';
+  const result = escapeHtml(malicious);
+  expect(result).not.toContain('<script>');
+  expect(result).toContain('&lt;script&gt;');
+});
+
+test('no unescaped innerHTML with dynamic data in JS files', () => {
+  const result = execSync(
+    `grep -rn 'innerHTML.*\\\${' public/js/*.js | grep -v 'esc\\|SecurityUtils' || true`,
+    { encoding: 'utf-8' }
+  );
+  expect(result.trim()).toBe('');
+});
+```
+
+### Example: Path Traversal Prevention
+
+**RED**
+```python
+def test_safe_resolve_blocks_traversal():
+    with pytest.raises(ValueError, match="Path traversal detected"):
+        safe_resolve("/app/data", "../../etc/passwd")
+```
+
+### Rule
+- **Every security fix = failing test first**
+- Test the ATTACK, not just the happy path
+- Security regression tests are permanent — never delete
+
 ## Final Rule
 
 ```

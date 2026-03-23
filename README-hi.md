@@ -253,16 +253,16 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 > *"34 कौशल। प्रत्येक कौशल एक सबक है। प्रत्येक सबक एक बिना नींद वाली रात है। और अब, आपको उन रातों से नहीं गुजरना पड़ेगा।"*
 
-📖 [पूरी कहानी पढ़ें →](https://cody-master-a5q.pages.dev/story)
+📖 [पूरी कहानी पढ़ें →](https://cody.todyle.com/story)
 
 ---
 
 ## 📚 संसाधन
 
-- 🌍 [वेबसाइट](https://cody-master-a5q.pages.dev) — ओवरव्यू और डेमो
-- 📖 [डॉक्यूमेंटेशन](https://cody-master-a5q.pages.dev/docs) — पूर्ण डीप-डाइव
+- 🌍 [वेबसाइट](https://cody.todyle.com) — ओवरव्यू और डेमो
+- 📖 [डॉक्यूमेंटेशन](https://cody.todyle.com/docs) — पूर्ण डीप-डाइव
 - 🛠️ [स्किल्स संदर्भ](skills/) — सभी 34 SKILL.md फाइलें ब्राउज़ करें
-- 📖 [हमारी कहानी](https://cody-master-a5q.pages.dev/story) — यह क्यों मौजूद है
+- 📖 [हमारी कहानी](https://cody.todyle.com/story) — यह क्यों मौजूद है
 
 ---
 

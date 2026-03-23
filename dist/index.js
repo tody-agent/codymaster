@@ -62,14 +62,13 @@ const https_1 = __importDefault(require("https"));
 const VERSION = '3.4.0';
 // ─── Branding ───────────────────────────────────────────────────────────────
 function showBanner() {
-    console.log(chalk_1.default.cyan(`
-   ██████╗ ██████╗  ██████╗  ██╗   ██╗
-  ██╔════╝██╔═══██╗██╔══██╗ ╚██╗ ██╔╝   Cody v${VERSION}
-  ██║     ██║   ██║██║  ██║  ╚████╔╝    34 Skills. Ship 10x faster.
-  ██║     ██║   ██║██║  ██║   ╚██╔╝     Dashboard: http://codymaster.localhost:${data_1.DEFAULT_PORT}
-  ╚██████╗╚██████╔╝██████╔╝    ██║
-   ╚═════╝ ╚═════╝ ╚═════╝     ╚═╝
-`));
+    const cPath = process.cwd().replace(os_1.default.homedir(), '~');
+    const bg = chalk_1.default.bgHex('#F59E0B');
+    console.log('');
+    console.log(`  ${bg('      ')}   ${chalk_1.default.bold.white('CodyMaster')} ${chalk_1.default.gray(`v${VERSION}`)}`);
+    console.log(`  ${bg.black.bold('  CM  ')}   ${chalk_1.default.gray('34 Skills. Ship 10x faster.')}`);
+    console.log(`  ${bg('      ')}   ${chalk_1.default.gray(cPath)}`);
+    console.log(chalk_1.default.gray('  ' + '─'.repeat(46)));
 }
 // ─── Utility ────────────────────────────────────────────────────────────────
 const COL_COLORS = {
@@ -112,7 +111,7 @@ function postInstallOnboarding(platform) {
             choices: [
                 {
                     title: chalk_1.default.cyan('📊 Launch Dashboard'), value: 'dashboard',
-                    description: `Open Mission Control → http://codymaster.localhost:${data_1.DEFAULT_PORT}`
+                    description: `Open Mission Control → http://localhost:${data_1.DEFAULT_PORT}`
                 },
                 {
                     title: chalk_1.default.magenta('🚀 Start in ' + platform.charAt(0).toUpperCase() + platform.slice(1)), value: 'invoke',
@@ -137,8 +136,8 @@ function postInstallOnboarding(platform) {
                     (0, dashboard_1.launchDashboard)(data_1.DEFAULT_PORT, false);
                     yield new Promise(r => setTimeout(r, 800)); // let server start
                 }
-                console.log(chalk_1.default.cyan(`🌐 Opening http://codymaster.localhost:${data_1.DEFAULT_PORT} ...`));
-                openUrl(`http://codymaster.localhost:${data_1.DEFAULT_PORT}`);
+                console.log(chalk_1.default.cyan(`🌐 Opening http://localhost:${data_1.DEFAULT_PORT} ...`));
+                openUrl(`http://localhost:${data_1.DEFAULT_PORT}`);
                 console.log(chalk_1.default.gray('   Dashboard is running. Press Ctrl+C to stop.\n'));
                 break;
             }
@@ -176,7 +175,7 @@ function showInteractiveMenu() {
     return __awaiter(this, void 0, void 0, function* () {
         showBanner();
         const dashStatus = isDashboardRunning()
-            ? chalk_1.default.green('● RUNNING') + chalk_1.default.gray(` http://codymaster.localhost:${data_1.DEFAULT_PORT}`)
+            ? chalk_1.default.green('● RUNNING') + chalk_1.default.gray(` http://localhost:${data_1.DEFAULT_PORT}`)
             : chalk_1.default.gray('○ stopped');
         console.log(chalk_1.default.gray(`  Dashboard: ${dashStatus}`));
         console.log();
@@ -221,8 +220,8 @@ function showInteractiveMenu() {
                     (0, dashboard_1.launchDashboard)(data_1.DEFAULT_PORT, false);
                     yield new Promise(r => setTimeout(r, 800));
                 }
-                console.log(chalk_1.default.cyan(`🌐 Opening http://codymaster.localhost:${data_1.DEFAULT_PORT} ...`));
-                openUrl(`http://codymaster.localhost:${data_1.DEFAULT_PORT}`);
+                console.log(chalk_1.default.cyan(`🌐 Opening http://localhost:${data_1.DEFAULT_PORT} ...`));
+                openUrl(`http://localhost:${data_1.DEFAULT_PORT}`);
                 console.log(chalk_1.default.gray('Dashboard is running. Ctrl+C to stop.\n'));
                 break;
             case 'tasks':
@@ -281,7 +280,7 @@ program
         case undefined:
             if (isDashboardRunning()) {
                 console.log(chalk_1.default.yellow('⚠️  Dashboard already running.'));
-                console.log(chalk_1.default.gray(`   URL: http://codymaster.localhost:${port}`));
+                console.log(chalk_1.default.gray(`   URL: http://localhost:${port}`));
                 return;
             }
             (0, dashboard_1.launchDashboard)(port);
@@ -293,11 +292,11 @@ program
             dashboardStatus(port);
             break;
         case 'open':
-            console.log(chalk_1.default.blue(`🌐 Opening http://codymaster.localhost:${port} ...`));
-            openUrl(`http://codymaster.localhost:${port}`);
+            console.log(chalk_1.default.blue(`🌐 Opening http://localhost:${port} ...`));
+            openUrl(`http://localhost:${port}`);
             break;
         case 'url':
-            console.log(`http://codymaster.localhost:${port}`);
+            console.log(`http://localhost:${port}`);
             break;
         default:
             console.log(chalk_1.default.red(`Unknown: ${cmd}`));
@@ -347,7 +346,7 @@ function dashboardStatus(port) {
         const pid = fs_1.default.readFileSync(data_1.PID_FILE, 'utf-8').trim();
         console.log(chalk_1.default.green(`✅ Dashboard RUNNING`));
         console.log(chalk_1.default.gray(`   PID: ${pid}`));
-        console.log(chalk_1.default.gray(`   URL: http://codymaster.localhost:${port}`));
+        console.log(chalk_1.default.gray(`   URL: http://localhost:${port}`));
     }
     else {
         console.log(chalk_1.default.yellow('⚫ Dashboard NOT running'));
@@ -1116,15 +1115,15 @@ function doAddSkills(skills, platform) {
                 console.log(chalk_1.default.yellow('   ⚠️  Could not reach marketplace — continuing'));
             }
             // Step 2: Install / update the plugin
-            console.log(chalk_1.default.gray('   $ claude plugin install cody-master@cody-master'));
+            console.log(chalk_1.default.gray('   $ claude plugin install codymaster@codymaster'));
             try {
-                execFileSync('claude', ['plugin', 'install', 'cody-master@cody-master'], { stdio: 'inherit' });
+                execFileSync('claude', ['plugin', 'install', 'codymaster@codymaster'], { stdio: 'inherit' });
                 console.log('\n' + chalk_1.default.green('✅ All 34 skills installed!'));
                 yield postInstallOnboarding('claude');
             }
             catch (_b) {
                 console.log(chalk_1.default.yellow('\n⚠️  Plugin install failed. Run manually:\n'));
-                console.log(chalk_1.default.cyan('  claude plugin install cody-master@cody-master'));
+                console.log(chalk_1.default.cyan('  claude plugin install codymaster@codymaster'));
                 console.log(chalk_1.default.gray('\n  Or one-liner:'));
                 console.log(chalk_1.default.cyan('  bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude'));
             }

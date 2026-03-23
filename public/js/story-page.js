@@ -12,7 +12,8 @@ function renderChapterContent() {
     const key = el.getAttribute('data-i18n-html');
     const text = getI18nValue(key);
     if (text) {
-      el.innerHTML = text.replace(/\\n/g, '\n').split('\n').map(p => p.trim() ? `<p>${p}</p>` : '').join('');
+      const esc = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
+      el.innerHTML = text.replace(/\\n/g, '\n').split('\n').map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join('');
     }
   });
 }
@@ -39,8 +40,9 @@ function renderChapterSkills() {
     const key = `storyPage.chapters.${idx}.skills`;
     const skills = getI18nValue(key);
     if (skills && Array.isArray(skills) && skills.length > 0) {
+      const escSkill = window.SecurityUtils ? window.SecurityUtils.escapeHtml : (s => s);
       el.innerHTML = skills.map(s =>
-        `<a href="skills.html" class="chapter__skill-tag">${s}</a>`
+        `<a href="skills.html" class="chapter__skill-tag">${escSkill(s)}</a>`
       ).join('');
     }
   });

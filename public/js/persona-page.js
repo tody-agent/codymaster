@@ -6,6 +6,14 @@
 (function () {
   'use strict';
 
+  // ─── HTML Escape Helper (XSS Prevention) ────────
+  function esc(str) {
+    if (str == null) return '';
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(String(str)));
+    return div.innerHTML;
+  }
+
   // ─── i18n Engine (standalone for this page) ────────
   const I18n = {
     currentLang: 'en',
@@ -70,7 +78,7 @@
           if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
             el.placeholder = value;
           } else {
-            el.innerHTML = value.replace(/\n/g, '<br>');
+            el.innerHTML = esc(value).replace(/\n/g, '<br>');
           }
         }
       });
@@ -147,14 +155,20 @@
   const PersonaPage = {
     personaId: null,
 
+    // Allowlist of valid persona IDs — prevents taint from URL params
+    VALID_IDS: ['founder', 'cmo', 'pm', 'dev', 'designer', 'claw'],
+
     init() {
       const params = new URLSearchParams(window.location.search);
-      this.personaId = params.get('p');
+      const rawId = params.get('p');
 
-      if (!this.personaId) {
+      // Validate against allowlist to break XSS taint chain
+      if (!rawId || !this.VALID_IDS.includes(rawId)) {
         window.location.href = 'index.html#personas';
         return;
       }
+
+      this.personaId = rawId;
     },
 
     render() {
@@ -201,7 +215,7 @@
     renderHero(data) {
       const title = document.getElementById('personaHeroTitle');
       const sub = document.getElementById('personaHeroSub');
-      if (title) title.innerHTML = data.heroTitle.replace(/\n/g, '<br>');
+      if (title) title.innerHTML = esc(data.heroTitle).replace(/\n/g, '<br>');
       if (sub) sub.textContent = data.heroSub;
     },
 
@@ -216,9 +230,9 @@
 
       grid.innerHTML = data.pains.map(pain => `
         <div class="persona-pain-card reveal">
-          <span class="persona-pain-card__icon">${pain.icon}</span>
-          <h3 class="persona-pain-card__title">${pain.title}</h3>
-          <p class="persona-pain-card__desc">${pain.desc}</p>
+          <span class="persona-pain-card__icon">${esc(pain.icon)}</span>
+          <h3 class="persona-pain-card__title">${esc(pain.title)}</h3>
+          <p class="persona-pain-card__desc">${esc(pain.desc)}</p>
         </div>
       `).join('');
     },
@@ -234,8 +248,8 @@
 
       grid.innerHTML = data.solutions.map(sol => `
         <div class="persona-solution-card reveal">
-          <div class="persona-solution-card__skill">${sol.skill}</div>
-          <p class="persona-solution-card__benefit">${sol.benefit}</p>
+          <div class="persona-solution-card__skill">${esc(sol.skill)}</div>
+          <p class="persona-solution-card__benefit">${esc(sol.benefit)}</p>
         </div>
       `).join('');
     },
@@ -246,13 +260,13 @@
 
       if (beforeList && data.beforeAfter?.before) {
         beforeList.innerHTML = data.beforeAfter.before.map(item =>
-          `<li>${item}</li>`
+          `<li>${esc(item)}</li>`
         ).join('');
       }
 
       if (afterList && data.beforeAfter?.after) {
         afterList.innerHTML = data.beforeAfter.after.map(item =>
-          `<li>${item}</li>`
+          `<li>${esc(item)}</li>`
         ).join('');
       }
     },
@@ -263,8 +277,8 @@
 
       list.innerHTML = data.objections.map(obj => `
         <details class="persona-objection reveal">
-          <summary class="persona-objection__q">${obj.q}</summary>
-          <div class="persona-objection__a">${obj.a}</div>
+          <summary class="persona-objection__q">${esc(obj.q)}</summary>
+          <div class="persona-objection__a">${esc(obj.a)}</div>
         </details>
       `).join('');
     },
@@ -274,7 +288,7 @@
       const sub = document.getElementById('personaCtaSub');
       const btn = document.getElementById('personaCtaButton');
 
-      if (title) title.innerHTML = data.ctaTitle.replace(/\n/g, '<br>');
+      if (title) title.innerHTML = esc(data.ctaTitle).replace(/\n/g, '<br>');
       if (sub) sub.textContent = data.ctaSub;
       if (btn) btn.textContent = data.ctaButton;
     }

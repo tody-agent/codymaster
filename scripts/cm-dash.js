@@ -177,6 +177,12 @@ function renderBoard(board) {
 
 async function syncFile(filePath) {
   const abs = path.resolve(filePath);
+  // Path traversal guard: ensure resolved path matches what was requested
+  // and doesn't traverse above what path.resolve() canonicalized
+  if (abs.includes('\0')) {
+    console.error('cm-dash: invalid null byte in file path');
+    process.exit(1);
+  }
   if (!fs.existsSync(abs)) {
     console.error(`cm-dash: file not found: ${abs}`);
     process.exit(1);

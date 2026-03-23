@@ -133,6 +133,32 @@ Setting up or enhancing test suites for projects with frontend JavaScript/TypeSc
 | 5. Corruption Patterns | Known bad patterns (empty functions, truncation) | Required |
 | 6. Import/Export | Module references resolve | Recommended |
 | 7. CSS Validation | CSS files parse correctly | Recommended |
+| 8. XSS/Injection Safety | No unescaped innerHTML with dynamic data | **CRITICAL** |
+
+### Layer 8: XSS/Injection Safety (Learned: March 2026)
+
+```javascript
+import { execSync } from 'child_process';
+
+test('no unescaped innerHTML with dynamic data', () => {
+  // Scan all JS files for innerHTML with template literals NOT using escape
+  const result = execSync(
+    `grep -rn 'innerHTML.*\\\${' public/js/*.js | grep -v 'esc\\|SecurityUtils' || true`,
+    { encoding: 'utf-8' }
+  );
+  expect(result.trim()).toBe(''); // Must be empty = all escaped
+});
+
+test('sanitize.js loaded in all HTML pages', () => {
+  const htmlFiles = execSync('ls public/*.html', { encoding: 'utf-8' }).trim().split('\n');
+  for (const file of htmlFiles) {
+    const content = fs.readFileSync(file, 'utf-8');
+    if (content.includes('kit.js')) {
+      expect(content).toContain('sanitize.js'); // Must load before kit.js
+    }
+  }
+});
+```
 
 ### Setup
 
@@ -202,6 +228,32 @@ After all gates execute, output a numeric quality score:
 - **≥80** → ✅ **PASS** — safe to deploy
 - **60-79** → ⚠️ **WARN** — deploy with caution, document risks
 - **<60** → ❌ **FAIL** — fix before deploy
+
+---
+
+### Gate 6: Security Scan (Snyk Code) (Added: March 2026)
+
+> Run SAST scan to catch path traversal, XSS, injection, and other vulnerabilities BEFORE deploy.
+
+```bash
+# If snyk CLI installed:
+snyk code test --severity-threshold=high
+
+# Gate decision:
+# 0 HIGH findings → proceed
+# Any HIGH findings → STOP. Fix before deploy.
+# MEDIUM findings → review, add to .snyk if mitigated
+```
+
+**When findings are false positives:**
+1. Verify the mitigation is real (e.g., `safe_resolve()` for path traversal, `esc()` for XSS)
+2. Add to `.snyk` exclude with documentation explaining the mitigation
+3. Never suppress without documenting WHY
+
+**Scoring:**
+| Component | Max | How to Score |
+|-----------|-----|-------------|
+| Security Scan | 10 | 10 = 0 HIGH, −5 per HIGH, −1 per unreviewed MEDIUM |
 
 ---
 

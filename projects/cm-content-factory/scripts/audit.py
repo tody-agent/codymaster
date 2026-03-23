@@ -17,6 +17,7 @@ import sys
 import subprocess
 import argparse
 from pathlib import Path
+from safe_path import safe_resolve
 
 
 def load_config(config_path: str) -> dict:

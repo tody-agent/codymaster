@@ -17,6 +17,7 @@ import subprocess
 import argparse
 from pathlib import Path
 from datetime import datetime
+from safe_path import safe_resolve
 
 
 def load_config(config_path: str) -> dict:
@@ -46,7 +47,7 @@ def run_build(project_root: Path, config: dict, dry_run: bool) -> bool:
 
 def run_git_push(project_root: Path, config: dict, dry_run: bool) -> bool:
     """Git add, commit, and push content."""
-    content_dir = config["output"]["content_dir"]
+    content_dir = str(safe_resolve(project_root, config["output"]["content_dir"]).relative_to(project_root))
     branch = config.get("pipeline", {}).get("git_branch", "main")
 
     # Check for changes
@@ -73,8 +74,8 @@ def run_git_push(project_root: Path, config: dict, dry_run: bool) -> bool:
     subprocess.run(["git", "add", content_dir], cwd=str(project_root))
 
     # Also stage knowledge-base and topics-queue if they exist
-    kb_dir = config["output"].get("knowledge_dir", "knowledge-base/")
-    queue_dir = config["output"].get("queue_dir", "topics-queue/")
+    kb_dir = str(safe_resolve(project_root, config["output"].get("knowledge_dir", "knowledge-base/")).relative_to(project_root))
+    queue_dir = str(safe_resolve(project_root, config["output"].get("queue_dir", "topics-queue/")).relative_to(project_root))
     for extra in [kb_dir, queue_dir]:
         if (project_root / extra).exists():
             subprocess.run(["git", "add", extra], cwd=str(project_root))

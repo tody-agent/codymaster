@@ -46,12 +46,18 @@ description: Use when starting any new project from scratch. Asks for project id
 
 ## Phase 0.5: Security Foundation 🛡️
 
-> Calls `cm-secret-shield` for setup.
+> Calls `cm-secret-shield` for setup + adds code-level security utilities.
 
 1. Create `.gitleaks.toml` with Supabase + generic high-entropy rules
 2. Setup pre-commit hook (`.git/hooks/pre-commit`) — scans staged files
 3. Add `security:scan` script to `package.json`
 4. Create `.dev.vars.example` template (committed). `.dev.vars` = real secrets (gitignored)
+5. **[NEW] Security Utilities (Learned: March 2026):**
+   - **Python projects:** Copy `safe_path.py` to `scripts/` — provides `safe_resolve()`, `safe_join()`, `safe_open()` for path traversal prevention
+   - **JS/TS frontend:** Add `esc()` function to sanitize HTML — prevent DOM XSS
+   - **Express apps:** Add `app.disable('x-powered-by')` + `express.json({ limit: '1mb' })`
+   - **Create `.snyk`** policy file for managing false positives
+   - **Rule:** ALL paths from CLI/config/API → `safe_resolve()`. ALL innerHTML → `esc()`. No exceptions.
 
 ## Phase 1: Project Type Detection 🔍
 

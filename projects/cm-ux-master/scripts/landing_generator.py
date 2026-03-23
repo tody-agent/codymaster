@@ -17,6 +17,7 @@ import sys
 import argparse
 from pathlib import Path
 from datetime import datetime
+from safe_path import safe_resolve
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -432,7 +433,8 @@ def main():
         }, indent=2, ensure_ascii=False))
         return
 
-    output_dir = Path(args.output_dir)
+    config_dir = Path(args.config).resolve().parent
+    output_dir = safe_resolve(config_dir, args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     targets = personas

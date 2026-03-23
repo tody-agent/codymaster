@@ -64,10 +64,11 @@ export default withMermaid(defineConfig({
           { text: 'Using Skills', link: '/sop/skills-usage' },
           { text: 'Dashboard', link: '/sop/dashboard' },
           { text: 'Working Memory', link: '/sop/working-memory' },
+          { text: 'Open Source Credits', link: '/open-source' },
         ]
       },
       { text: 'API', link: '/api/' },
-      { text: 'Website ↗', link: 'https://cody-master.pages.dev' },
+      { text: 'Website ↗', link: 'https://cody.todyle.com' },
     ],
     
     sidebar: {
@@ -79,6 +80,7 @@ export default withMermaid(defineConfig({
             { text: 'How It Works', link: '/how-it-work' },
             { text: 'Codebase Analysis', link: '/analysis' },
             { text: 'Changelog', link: '/changelog' },
+            { text: 'Open Source Credits', link: '/open-source' },
           ]
         },
         {
@@ -212,6 +214,6 @@ export default withMermaid(defineConfig({
   },
   
   sitemap: {
-    hostname: 'https://cody-master.pages.dev/docs'
+    hostname: 'https://cody.todyle.com/docs'
   }
 }))
