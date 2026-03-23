@@ -1,0 +1,4 @@
+## 2025-01-01 - [XSS] Missing Escaping in InnerHTML Assignments
+**Vulnerability:** Unescaped variables (`projectName`, `l.agent`, `d.agent`, `phaseClass`) were injected directly into the DOM using `innerHTML` in `public/dashboard/app.js`. This could allow Cross-Site Scripting (XSS) if the data source contains malicious script tags.
+**Learning:** Even though most of the codebase correctly uses `esc()` for dynamic inputs, newly added components like the Brain/Memory tab may omit `esc()` calls by mistake. This pattern is particularly dangerous in plain JavaScript apps where `innerHTML` is heavily used.
+**Prevention:** Consistently use the `esc()` helper for ALL user-provided and API-provided strings (including project names, agent names, and status labels) before inserting them into template literals assigned to `innerHTML`. Avoid assuming data is safe just because it comes from a local API.

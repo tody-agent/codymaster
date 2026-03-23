@@ -1139,8 +1139,8 @@
       </div>
       <div class="brain-stat-card stat-phase">
         <div class="brain-stat-label">Phase</div>
-        <div class="brain-stat-value ${phaseClass}" style="font-size:20px">${phase.charAt(0).toUpperCase() + phase.slice(1)}</div>
-        <div class="brain-stat-detail">${projectName || 'No project'}</div>
+        <div class="brain-stat-value ${esc(phaseClass)}" style="font-size:20px">${esc(phase.charAt(0).toUpperCase() + phase.slice(1))}</div>
+        <div class="brain-stat-detail">${esc(projectName || 'No project')}</div>
       </div>
       <div class="brain-stat-card stat-updated">
         <div class="brain-stat-label">Last Updated</div>
@@ -1178,7 +1178,7 @@
             <div class="brain-learning-why">${esc(l.whyFailed || '')}</div>
             <div class="brain-learning-fix">${esc(l.howToPrevent || '')}</div>
             <div class="brain-learning-meta">
-              <span>${l.agent || 'unknown agent'}</span>
+            <span>${esc(l.agent || 'unknown agent')}</span>
               <span>${l.timestamp ? formatTimeAgo(l.timestamp) : ''}</span>
               ${l.module ? `<span>📦 ${esc(l.module)}</span>` : ''}
             </div>
@@ -1198,7 +1198,7 @@
           </div>
           <div class="brain-decision-rationale">${esc(d.rationale || '')}</div>
           <div class="brain-decision-meta">
-            <span>${d.agent || 'unknown'}</span>
+            <span>${esc(d.agent || 'unknown')}</span>
             <span>${d.timestamp ? formatTimeAgo(d.timestamp) : ''}</span>
           </div>
         </div>`).join('');
