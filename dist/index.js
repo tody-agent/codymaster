@@ -61,6 +61,16 @@ const os_1 = __importDefault(require("os"));
 const https_1 = __importDefault(require("https"));
 const VERSION = '3.4.0';
 // ─── Branding ───────────────────────────────────────────────────────────────
+function safeUnlinkSync(filePath) {
+    try {
+        fs_1.default.unlinkSync(filePath);
+    }
+    catch (err) {
+        if (err.code !== 'ENOENT') {
+            console.log(chalk_1.default.yellow(`Failed to delete ${filePath}: ${err.message}`));
+        }
+    }
+}
 function showBanner() {
     console.log(chalk_1.default.cyan(`
    ██████╗ ██████╗  ██████╗  ██╗   ██╗
@@ -313,10 +323,7 @@ function isDashboardRunning() {
         return true;
     }
     catch (_a) {
-        try {
-            fs_1.default.unlinkSync(data_1.PID_FILE);
-        }
-        catch (_b) { }
+        safeUnlinkSync(data_1.PID_FILE);
         return false;
     }
 }
@@ -328,18 +335,12 @@ function stopDashboard() {
         }
         const pid = parseInt(fs_1.default.readFileSync(data_1.PID_FILE, 'utf-8').trim());
         process.kill(pid, 'SIGTERM');
-        try {
-            fs_1.default.unlinkSync(data_1.PID_FILE);
-        }
-        catch (_a) { }
+        safeUnlinkSync(data_1.PID_FILE);
         console.log(chalk_1.default.green(`✅ Dashboard stopped (PID ${pid}).`));
     }
     catch (err) {
         console.log(chalk_1.default.red(`Failed to stop: ${err.message}`));
-        try {
-            fs_1.default.unlinkSync(data_1.PID_FILE);
-        }
-        catch (_b) { }
+        safeUnlinkSync(data_1.PID_FILE);
     }
 }
 function dashboardStatus(port) {
@@ -1072,10 +1073,7 @@ function downloadFile(url, dest) {
             https_1.default.get(url, (res) => {
                 if (res.statusCode !== 200) {
                     file.close();
-                    try {
-                        fs_1.default.unlinkSync(dest);
-                    }
-                    catch (_a) { }
+                    safeUnlinkSync(dest);
                     resolve(false);
                     return;
                 }
