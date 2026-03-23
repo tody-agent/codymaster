@@ -38,7 +38,11 @@
     "brain": "브레인",
     "playbook": "플레이북",
     "cli": "CLI",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "parallelCoding": "병렬 코딩",
+    "how": "사용법",
+    "vibeCoding": "Vibe Coding",
+    "useCases": "사용 사례"
   },
   "socialProof": {
     "label": "신뢰받는 도구",

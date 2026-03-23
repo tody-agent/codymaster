@@ -5,6 +5,8 @@ description: "Use before any deployment or completion claim. Enforces test gates
 
 # Quality Gate — Test + Verify + Ship Safe
 
+> **Role: QA Lead** — You enforce test gates, evidence-based verification, and frontend safety. No deploy without passing you.
+
 > **Three checkpoints, one skill:** Pre-deploy testing, evidence verification, frontend safety.
 
 ## The Iron Laws
@@ -156,26 +158,50 @@ test('app.js has valid syntax', () => {
 
 ### Gate 4: Update Working Memory
 
-After ALL gates pass, update `.cm/CONTINUITY.md`:
-- **Current Phase:** Set to `verified` or `ready-to-deploy`
-- **Just Completed:** Add `✅ Quality gate passed: [test count] tests, 0 failures`
+Per `_shared/helpers.md#Update-Continuity`
 
-After ANY gate fails, **FIRST run Memory Integrity Check:**
+After ALL gates pass → record `✅ Quality gate passed: [test count] tests, 0 failures`
+
+After ANY gate fails → **FIRST run Memory Integrity Check:**
 1. List active learnings/decisions for the failing module
 2. Ask: "Did AI follow a learning/decision that caused this failure?"
 3. If YES → HEAL memory (invalidate/correct/scope-reduce) BEFORE recording new learning
 4. Record meta-learning in `.cm/meta-learnings.json` if memory was the cause
 
-**Then** update `.cm/CONTINUITY.md`:
-- **Active Blockers:** Add the failing gate details
-- **Mistakes & Learnings:** Record what failed with scope tag:
-  - What Failed: [test/gate that failed]
-  - How to Prevent: [fix pattern]
-  - Scope: `module:{failing-module}` or `global` if systemic
-  - Memory-caused: [yes/no — was existing memory the root cause?]
+---
 
-> **Token savings:** Next session instantly knows if last run passed or failed
-> without re-running the test suite just to check status.
+### Gate 5: Quality Score Report
+
+After all gates execute, output a numeric quality score:
+
+```
+🎯 Gate Score: 87/100
+├── Secret Scan:      10/10 ✅
+├── Syntax:           10/10 ✅
+├── Tests:             8/10 ⚠️  (2 skipped tests)
+├── i18n Parity:      10/10 ✅
+├── Build:            10/10 ✅
+├── Dist Verify:      10/10 ✅
+├── Frontend Safety:   9/10 ✅
+└── Coverage:          7/10 ⚠️  (75% vs 80% target)
+```
+
+**Scoring Rules:**
+| Component | Max | How to Score |
+|-----------|-----|-------------|
+| Secret Scan | 10 | 10 = clean, 0 = any secret found |
+| Syntax | 10 | 10 = no errors, 0 = parse fails |
+| Tests | 15 | 15 = all pass, −2 per failure, −1 per skip |
+| i18n | 10 | 10 = parity, −5 per mismatch |
+| Build | 15 | 15 = clean build, 0 = build fails |
+| Dist Verify | 10 | 10 = all files present, −2 per missing |
+| Frontend Safety | 15 | 15 = all layers pass, −3 per failure |
+| Coverage | 15 | 15 = ≥80%, scale down linearly |
+
+**Thresholds:**
+- **≥80** → ✅ **PASS** — safe to deploy
+- **60-79** → ⚠️ **WARN** — deploy with caution, document risks
+- **<60** → ❌ **FAIL** — fix before deploy
 
 ---
 

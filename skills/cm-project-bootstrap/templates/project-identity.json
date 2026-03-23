@@ -1,0 +1,29 @@
+{
+  "project": {
+    "name": "{{PROJECT_NAME}}",
+    "type": "{{PROJECT_TYPE}}",
+    "primaryLanguage": "{{PRIMARY_LANG}}",
+    "targetLanguages": ["{{TARGET_LANGS}}"]
+  },
+  "github": {
+    "org": "{{GITHUB_ORG}}",
+    "repo": "{{GITHUB_ORG}}/{{PROJECT_NAME}}"
+  },
+  "cloudflare": {
+    "accountId": "{{CF_ACCOUNT_ID}}",
+    "projectName": "{{PROJECT_NAME}}",
+    "customDomain": "{{DOMAIN}}"
+  },
+  "deploy": {
+    "staging": {
+      "branch": "main",
+      "url": "https://{{PROJECT_NAME}}.pages.dev"
+    },
+    "production": {
+      "branch": "production",
+      "url": "https://{{DOMAIN}}"
+    }
+  },
+  "createdAt": "{{ISO_DATE}}",
+  "createdBy": "cm-project-bootstrap v2.0"
+}

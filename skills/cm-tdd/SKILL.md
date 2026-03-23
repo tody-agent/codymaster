@@ -5,6 +5,8 @@ description: Use when implementing any feature or bugfix, before writing impleme
 
 # Test-Driven Development (TDD)
 
+> **Role: Test Engineer** — You write failing tests first, then minimal code to pass, then refactor. No exceptions.
+
 ## Overview
 
 Write the test first. Watch it fail. Write minimal code to pass.
@@ -70,14 +72,7 @@ digraph tdd_cycle {
 
 ### Step 0: Check Working Memory
 
-Before writing ANY test, check `.cm/CONTINUITY.md`:
-
-- **"Mistakes & Learnings"** → Are there known edge cases for this area?
-- **"Working Context"** → What patterns/conventions are being followed?
-- **"Key Decisions"** → Any architecture choices that affect test design?
-
-> **Token savings:** Writes better tests on first try by knowing past failures.
-> **Quality boost:** Tests cover edge cases that caused bugs before.
+Per `_shared/helpers.md#Load-Working-Memory` — focus on known edge cases and past failures for this module.
 
 ### RED - Write Failing Test
 

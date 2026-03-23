@@ -5,35 +5,61 @@ description: Start the CM Workflow to execute your objective from idea to produc
 
 # Command: `/cm-start [your objective]`
 
+> **Role: Workflow Orchestrator** — You assess complexity, select the right workflow depth, and drive execution from objective to production code.
+
 When this workflow is called, the AI Assistant should execute the following action sequence in the spirit of the **CodyMaster Kit**:
 
-0. **Load Working Memory (cm-continuity):**
-    - Read `.cm/CONTINUITY.md` → resume from where we left off
-    - Read `.cm/memory/learnings.json` → avoid past mistakes (scope-filtered)
-    - Read `.cm/memory/decisions.json` → respect existing architecture decisions
+0. **Load Working Memory:**
+    Per `_shared/helpers.md#Load-Working-Memory`
     - Update `CONTINUITY.md` → set Active Goal to the new objective
+
+0.5. **Skill Coverage Check (Adaptive Discovery):**
+    - Scan the objective for technologies, frameworks, or patterns mentioned
+    - Cross-reference with `cm-skill-index` Layer 1 triggers
+    - If gap detected → trigger Discovery Loop from `cm-skill-mastery` Part C:
+      `npx skills find "{keyword}"` → review → ask user → install if approved
+    - Log any discovered skills to `.cm-skills-log.json`
 
 1. **Understand Requirements (Planning & JTBD):**
     - Read the objective provided in the `/cm-start` command.
     - Analyze requirements, ask clarifying questions if needed (apply `cm-planning`).
     - Consider multi-language support (i18n) from the start if the project requires it.
 
-2. **Create Plan (Task Breakdown):**
-    - Automatically create or update a plan file (such as `cm-tasks.json` or `task.md`) by breaking the objective into specific tasks.
-    - Write `implementation_plan.md` for this objective.
+2. **Detect Project Level:**
+    Per `_shared/helpers.md#Project-Level-Detection`
+    - Analyze the objective to determine L0/L1/L2/L3 complexity
+    - Present detected level and recommended skill chain to the user
+    - Let user confirm or override the level
 
-3. **Execute (Implementation):**
-    - Propose starting execution of the plan.
-    - Suggest applying `cm-tdd` (Test-Driven Development) for each task. Write Red tests first, then write code to pass Green, finally Refactor.
-    - Suggest applying `cm-execution` to write code.
+3. **Execute Based on Level:**
 
-4. **Verify (Verification):**
-    - Suggest using `cm-quality-gate` or `cm-code-review` to check results upon completion.
+    **L0 (Micro):** Code + Test only
+    - Skip planning. Apply `cm-tdd` directly → `cm-quality-gate`
 
-5. **Complete:**
-    - Update the progress file.
-    - Update `.cm/CONTINUITY.md` → Just Completed, Next Actions, Files Modified.
-    - Record any new learnings or decisions made during this workflow to `.cm/memory/`.
-    - Notify the user that the task is complete or move on to the next task.
+    **L1 (Small):** Planning lite → Code → Deploy
+    - Apply `cm-planning` (lightweight implementation plan)
+    - Apply `cm-tdd` + `cm-execution` → `cm-quality-gate`
 
-> **Note for AI:** If this is a brand new project, suggest running `cm-project-bootstrap` first. If the working environment has a risk of accidentally switching accounts/projects, remind about using `cm-identity-guard`.
+    **L2 (Medium):** Full analysis flow
+    - Apply `cm-brainstorm-idea` if problem is ambiguous
+    - Apply `cm-planning` (full implementation plan with task breakdown)
+    - Create `cm-tasks.json` → launch RARV autonomous execution
+    - Apply `cm-quality-gate` → `cm-safe-deploy`
+
+    **L3 (Large):** Full + PRD + Architecture + Sprint
+    - Apply `cm-brainstorm-idea` (mandatory)
+    - Apply `cm-planning` with FR/NFR requirement tracing
+    - Sprint planning → `cm-tasks.json` with sprints
+    - Apply `cm-execution` (Mode E: TRIZ-Parallel for speed)
+    - Apply `cm-quality-gate` → `cm-safe-deploy`
+
+3. **Track Progress:**
+    - Create or update `cm-tasks.json` by breaking the objective into specific tasks
+    - Suggest `/cm-dashboard` for visual tracking
+    - Suggest `/cm-status` for quick terminal summary
+
+4. **Complete:**
+    Per `_shared/helpers.md#Update-Continuity`
+    - Record any new learnings or decisions made during this workflow
+
+> **Note for AI:** If this is a brand new project, suggest running `cm-project-bootstrap` first. If the working environment has a risk of accidentally switching accounts/projects, remind about `cm-identity-guard` (Per `_shared/helpers.md#Identity-Check`).

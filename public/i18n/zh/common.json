@@ -38,7 +38,11 @@
     "brain": "大脑",
     "playbook": "实战指南",
     "cli": "CLI",
-    "faq": "常见问题"
+    "faq": "常见问题",
+    "parallelCoding": "并行编程",
+    "how": "使用方法",
+    "vibeCoding": "Vibe Coding",
+    "useCases": "使用案例"
   },
   "socialProof": {
     "label": "值得信赖",

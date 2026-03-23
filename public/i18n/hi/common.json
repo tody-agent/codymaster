@@ -38,7 +38,11 @@
     "brain": "ब्रेन",
     "playbook": "प्लेबुक",
     "cli": "CLI",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "parallelCoding": "पैरेलल कोडिंग",
+    "how": "कैसे",
+    "vibeCoding": "Vibe Coding",
+    "useCases": "उपयोग के मामले"
   },
   "socialProof": {
     "label": "विश्वसनीय",

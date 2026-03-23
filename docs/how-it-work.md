@@ -88,7 +88,7 @@ Before every action, the agent asks itself 3 critical questions:
 
 ---
 
-## The 6-Gate Quality System
+## The 6-Gate Quality System (v4.0 — with Gate Scoring)
 
 ```mermaid
 graph LR
@@ -98,10 +98,18 @@ graph LR
     G4["G4: Anti-Sycophancy<br/>Devil's Advocate"]
     G5["G5: Security Scan<br/>No secrets, OWASP"]
     G6["G6: i18n Integrity<br/>Keys synchronized"]
-    SHIP["🚀 SHIP"]
+    SCORE["📊 Score ≥80<br/>→ 🚀 SHIP"]
 
-    G1 --> G2 --> G3 --> G4 --> G5 --> G6 --> SHIP
+    G1 --> G2 --> G3 --> G4 --> G5 --> G6 --> SCORE
 ```
+
+Each gate outputs a numeric score. The aggregate determines ship readiness:
+
+| Score | Result | Action |
+|-------|--------|--------|
+| ≥ 80 | ✅ PASS | Ship to production |
+| 60-79 | ⚠️ WARN | Review flagged items, then decide |
+| < 60 | ❌ FAIL | Must fix before proceeding |
 
 **G3 (Blind Review):** Reviewer only sees the diff — no task description, no implementation context. Forces genuine code review.
 

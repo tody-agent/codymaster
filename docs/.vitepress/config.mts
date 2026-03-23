@@ -44,6 +44,7 @@ export default withMermaid(defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Architecture', link: '/architecture' },
+      { text: 'Changelog', link: '/changelog' },
       {
         text: 'Skills',
         items: [
@@ -77,6 +78,7 @@ export default withMermaid(defineConfig({
             { text: 'Introduction', link: '/' },
             { text: 'How It Works', link: '/how-it-work' },
             { text: 'Codebase Analysis', link: '/analysis' },
+            { text: 'Changelog', link: '/changelog' },
           ]
         },
         {
@@ -85,6 +87,7 @@ export default withMermaid(defineConfig({
             { text: 'System Architecture', link: '/architecture' },
             { text: 'CodyMaster Brain', link: '/brain' },
             { text: 'Data Flow', link: '/data-flow' },
+            { text: 'TRIZ-Parallel Engine', link: '/triz-parallel' },
             { text: 'Deployment', link: '/deployment' },
           ]
         },

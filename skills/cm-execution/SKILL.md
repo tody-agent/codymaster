@@ -5,31 +5,29 @@ description: "Use when executing implementation plans — choose mode: batch exe
 
 # Execution — Execute Plans at Scale
 
+> **Role: Lead Developer** — You execute implementation plans systematically with quality gates at every checkpoint.
+
 > **Three modes, one skill.** Choose based on task structure.
 
 ## Step 0: Load Working Memory (MANDATORY)
 
-Before choosing execution mode, ALWAYS:
+Per `_shared/helpers.md#Load-Working-Memory`
 
-1. **Read** `.cm/CONTINUITY.md`
-2. **Run Memory Audit** — decay check + conflict detection + integrity scan (see `cm-continuity`)
-3. **Scope-filter learnings** — if working on module X:
-   - Load from `.cm/learnings.json` ONLY where `scope == "global"` or `scope == "module:X"`
-   - **NEVER** load `status = "invalidated"` (proven wrong — skip entirely)
-   - **CAUTION** with `status = "corrected"` (was wrong, verify before applying)
-   - **TRUST** high `reinforceCount` + recent `lastRelevant` (high confidence)
-   - **VERIFY** `reinforceCount = 0` + old `lastRelevant` (low confidence — don't blindly follow)
-   - SKIP learnings for other modules (reduces noise + saves tokens)
-4. **Check** "Next Actions" — pick up where you left off
+After EACH completed task: Per `_shared/helpers.md#Update-Continuity`
 
-After EACH completed task, update CONTINUITY.md:
-- Move task from "Next Actions" to "Just Completed"
-- Record any new decisions in "Key Decisions" with scope tag
-- If recording learning, reinforce existing instead of duplicating
+### Pre-flight: Skill Coverage Audit
 
-> **Token savings:** Scope-filtered reading loads ~250 tokens instead of ~2,500.
-> **Error prevention:** Never repeats a mistake already recorded.
-> **Quality:** No stale/irrelevant learnings misleading the AI.
+Before choosing execution mode, scan plan tasks for technology keywords:
+
+```
+1. Extract technologies/frameworks/tools from ALL task descriptions
+2. Cross-reference with cm-skill-index Layer 1 triggers
+3. Check installed external skills: npx skills list
+4. If gap found → trigger Discovery Loop (cm-skill-mastery Part C)
+   → npx skills find "{keyword}" → review → ask user → install
+5. Log any installations to .cm-skills-log.json
+6. Only proceed to Mode Selection after all gaps resolved
+```
 
 ---
 
@@ -163,7 +161,10 @@ LOOP until backlog empty or user interrupts:
   4. VERIFY  → Run tests/checks (cm-quality-gate)
                 If PASS → status = "done", completed_at = now()
                 If FAIL → rarv_cycles++, log error, retry from REASON
-                If rarv_cycles >= 3 → status = "blocked"
+                If rarv_cycles >= 2 → attempt Skill Discovery Fallback:
+                  → npx skills find "{task keywords}"
+                  → If skill found + user approves → install, reset rarv_cycles = 0, retry
+                  → If NOT found → rarv_cycles >= 3 → status = "blocked"
                 Log: { phase: "VERIFY", message: "✅ passed" or "❌ <error>" }
 
   5. NEXT    → Recalculate stats, pick next task

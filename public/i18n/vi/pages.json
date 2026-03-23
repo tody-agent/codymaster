@@ -722,7 +722,7 @@
         },
         {
           "q": "Tôi có thể tạo skill riêng không?",
-          "a": "Hoàn toàn có thể! Dùng cm-skill-mastery hoặc skill-creator-ultra để tạo skill tùy chỉnh. Format tương thích với Antigravity, Claude, Cursor, và OpenClaw."
+          "a": "Hoàn toàn có thể! Dùng cm-skill-mastery để tạo skill tùy chỉnh. Format tương thích với Antigravity, Claude, Cursor, và OpenClaw."
         }
       ]
     },
@@ -1545,5 +1545,425 @@
   "cliTitlePart2": "CLI ",
   "cliTitlePart3": "Quyền Năng",
   "cliSub": "Dành cho lập trình viên tư duy bằng dòng lệnh. Mọi slash command, mọi workflow, tất cả ở một nơi.",
-  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm"
+  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm",
+  "parallelPage": {
+    "hero": {
+      "badge": "TRIZ-PARALLEL ENGINE",
+      "title": "Code song song bằng AI<br><span>Không hỗn loạn</span>",
+      "sub": "Chạy nhiều agent AI cùng lúc. Không xung đột merge. Không bug ẩn. 6 nguyên lý sáng tạo TRIZ giúp code song song vừa nhanh VÀ đáng tin cậy.",
+      "stat1": "Tốc độ nhanh hơn",
+      "stat2": "Xung đột Merge",
+      "stat3": "Nguyên lý TRIZ",
+      "stat4": "Hệ thống an toàn"
+    },
+    "problem": {
+      "label": "VẤN ĐỀ",
+      "title": "Code song song bằng AI đang hỏng",
+      "sub": "Nghiên cứu ngành 2025-2026 chỉ ra sự thật phũ phàng: agent AI song song tạo code nhanh hơn nhưng gây ra nhiều vấn đề hơn là giải quyết.",
+      "card1": "Tăng thời gian review PR. Nhiều code hơn nhưng review không kịp — nút thắt chất lượng chuyển xuống downstream.",
+      "card2": "Thêm cảnh báo phân tích tĩnh mỗi phiên. Nợ kỹ thuật tăng âm thầm với mỗi lần chạy song song.",
+      "card3": "Code AI tạo chứa lỗ hổng OWASP. Nhanh mà không quét bảo mật là liều lĩnh.",
+      "card4": "Lập trình viên nói code AI \"trông đúng nhưng không phải.\" Bug ẩn vượt qua kiểm tra ban đầu và xuất hiện trong production."
+    },
+    "demo": {
+      "label": "XEM SỰ KHÁC BIỆT",
+      "title": "Cùng 5 task. Hai kết quả rất khác nhau.",
+      "sub": "Kịch bản: Xây dựng tính năng xác thực người dùng. 5 task — API routes, form đăng nhập, JWT middleware, database schema, và unit tests. Xem điều gì xảy ra.",
+      "withoutTitle": "❌ Không dùng CodyMaster — Chạy song song thô",
+      "withoutScenario": "$ dispatch --parallel 5 tasks<br>→ Cả 5 agent khởi chạy đồng thời. Không phân tích.",
+      "w1": "<strong>Agent A</strong> bắt đầu <code class=\"err-code\">auth.ts</code> — API routes",
+      "w2": "<strong>Agent B</strong> bắt đầu <code class=\"err-code\">auth.ts</code> — JWT middleware ⚠️ cùng file!",
+      "w3": "<strong>Agent C</strong> bắt đầu form đăng nhập, <strong>D</strong> bắt đầu DB, <strong>E</strong> bắt đầu tests",
+      "w4": "<strong>Agent A</strong> xong — ghi auth routes vào <code class=\"err-code\">auth.ts</code>",
+      "w5": "<strong>Agent B</strong> xong — GHI ĐÈ code Agent A trong <code class=\"err-code\">auth.ts</code> 💥",
+      "w6": "<strong>Agent E</strong> test fail — API routes biến mất, imports hỏng",
+      "w7": "🔥 Lập trình viên merge xung đột thủ công. Bắt đầu debug...",
+      "w8": "Cuối cùng sửa xong. Nhưng 2 bug ẩn vẫn còn — phát hiện trong production sau.",
+      "withoutResult": "⏱ 45 phút · 💥 1 xung đột · 🐛 2 bug ẩn · 😤 Merge thủ công",
+      "withTitle": "✅ Dùng CodyMaster — TRIZ-Parallel",
+      "withScenario": "$ cm-execution --mode E --tasks 5<br>→ Phân tích dependency trước. Batching thông minh.",
+      "c1": "<strong>PHÂN TÍCH</strong> — quét dependency file: A→<code>auth.ts</code>, B→<code>auth.ts</code> ⚠️ trùng!",
+      "c2": "<strong>ĐỒ THỊ</strong> — Batch 1: [A, C, D] (không trùng) · Batch 2: [B, E] (sau A)",
+      "c3": "<strong>DISPATCH</strong> Batch 1 — 3 agent làm song song, mỗi agent trên file độc lập",
+      "c4": "<strong>KIỂM TRA</strong> — mỗi agent chạy mini-gate: ✅ cú pháp ✅ test ✅ tự review",
+      "c5": "<strong>PRE-FLIGHT</strong> Batch 2 — sổ cái sạch. An toàn để dispatch [B, E]",
+      "c6": "<strong>DISPATCH</strong> Batch 2 — Agent B thêm JWT vào <code>auth.ts</code> (xây trên code A)",
+      "c7": "<strong>KIỂM TRA</strong> Batch 2 — tất cả mini-gate pass. <strong>GHI NHẬN</strong> phiên: 0 xung đột ✅",
+      "withResult": "⏱ 12 phút · ✅ 0 xung đột · ✅ 0 bug · 🤖 Tự động hoàn toàn"
+    },
+    "triz": {
+      "label": "GIẢI PHÁP",
+      "title": "6 Nguyên lý TRIZ giải quyết mọi thứ",
+      "sub": "TRIZ phân tích 2,5 triệu bằng sáng chế để tìm các mẫu giải quyết vấn đề phổ quát. CodyMaster áp dụng 6 nguyên lý để giải quyết mâu thuẫn Tốc độ ↔ Chất lượng.",
+      "p1": {
+        "title": "Phân đoạn",
+        "desc": "Đồ thị dependency file đảm bảo chỉ các task THẬT SỰ độc lập chạy cùng nhau. Hai agent không thể chạm cùng file. Loại bỏ 100% xung đột merge trước khi dispatch."
+      },
+      "p3": {
+        "title": "Chất lượng cục bộ",
+        "desc": "Mỗi agent tự kiểm tra thay đổi CỦA MÌNH — cú pháp, test, tự review — trước khi báo hoàn thành. Bug được bắt tại nguồn, không gom cuối."
+      },
+      "p10": {
+        "title": "Hành động trước",
+        "desc": "Pre-flight check quét sổ cái xung đột TRƯỚC mỗi dispatch. Nếu agent đang chạy đã giữ file, task mới bị chặn — không bao giờ được khởi chạy vào nguy hiểm."
+      },
+      "p15": {
+        "title": "Tính động",
+        "desc": "Batch size bắt đầu từ 2 và tự điều chỉnh: 3 lần chạy sạch → tăng lên (tối đa 5). Bất kỳ xung đột → giảm xuống (tối thiểu 1 = tuần tự). Hệ thống học từ lịch sử."
+      },
+      "p18": {
+        "title": "Phản hồi",
+        "desc": "Sổ cái xung đột real-time theo dõi mọi file thay đổi. Khi agent xong, file thực tế được so sánh với các agent khác. Phát hiện trùng → dừng ngay."
+      },
+      "p40": {
+        "title": "Tổng hợp",
+        "desc": "Mỗi agent là 3 vai trò trong 1: Implementer (code) + Tester (viết test) + Reviewer (tự review). Chỉ báo XONG khi cả ba vai trò đều pass."
+      }
+    },
+    "lifecycle": {
+      "label": "CÁCH HOẠT ĐỘNG",
+      "title": "Vòng đời 8 bước",
+      "s1": "Trích xuất dependency file từ mô tả task bằng pattern matching. Biết file nào mỗi task sẽ động vào.",
+      "s2": "Xây đồ thị dependency. Nhóm task thành batch độc lập bằng tô màu đồ thị — chỉ task không trùng trong cùng batch.",
+      "s3": "Đọc lịch sử song song. Tính batch size tối ưu dựa trên tỷ lệ thành công/xung đột. Bắt đầu thận trọng, mở rộng khi tự tin.",
+      "s4": "Kiểm tra sổ cái xung đột với các agent đang chạy. Không trùng → an toàn dispatch. Có xung đột → chặn và chờ.",
+      "s5": "Gửi task độc lập cho agent với Quality Contract nghiêm ngặt. Mỗi agent biết phạm vi file, timeout, và yêu cầu kiểm tra.",
+      "s6": "Agent báo cáo file thực tế đã sửa về sổ cái. Phát hiện real-time bắt trùng lặp bất ngờ ngay lập tức.",
+      "s7": "Mỗi agent chạy mini quality gate — cú pháp + test + tự review — trước khi báo hoàn thành. Không \"tin tôi đi nó chạy.\"",
+      "s8": "Lưu số liệu phiên vào lịch sử song song. Batch size tương lai dựa trên dữ liệu thật, không phải linh cảm."
+    },
+    "compare": {
+      "label": "SO SÁNH",
+      "title": "Song song thường vs TRIZ-Parallel",
+      "thAspect": "Khía cạnh",
+      "thNormal": "Song song thường",
+      "thTriz": "TRIZ-Parallel",
+      "r1": {
+        "aspect": "Phòng ngừa xung đột",
+        "normal": "✗ Không có",
+        "triz": "✓ Đồ thị Dependency"
+      },
+      "r2": {
+        "aspect": "Kiểm tra chất lượng",
+        "normal": "Một lần cuối cùng",
+        "triz": "✓ Gate mỗi Agent"
+      },
+      "r3": {
+        "aspect": "Batch Size",
+        "normal": "Cố định (thủ công)",
+        "triz": "✓ Tự thích nghi"
+      },
+      "r4": {
+        "aspect": "Vai trò Agent",
+        "normal": "Chỉ code",
+        "triz": "✓ Code+Test+Review"
+      },
+      "r5": {
+        "aspect": "Phát hiện xung đột",
+        "normal": "✗ Sau merge (muộn)",
+        "triz": "✓ Sổ cái Real-time"
+      },
+      "r6": {
+        "aspect": "Rollback",
+        "normal": "✗ Revert thủ công",
+        "triz": "✓ Tự dừng + Giảm xuống"
+      },
+      "r7": {
+        "aspect": "Học hỏi",
+        "normal": "✗ Không có",
+        "triz": "✓ Lịch sử phiên"
+      }
+    },
+    "safety": {
+      "label": "ROLLBACK & AN TOÀN",
+      "title": "Hệ thống phòng thủ 4 tầng",
+      "t1": {
+        "title": "Phòng ngừa",
+        "desc": "Đồ thị dependency chặn task xung đột. Pre-flight quét sổ cái trước mỗi dispatch."
+      },
+      "t2": {
+        "title": "Phát hiện sớm",
+        "desc": "Sổ cái xung đột real-time bắt trùng lặp bất ngờ ngay lập tức. Agent tự xác nhận trước khi báo cáo."
+      },
+      "t3": {
+        "title": "Tự phục hồi",
+        "desc": "Batch sizing tự thích nghi giảm khi có xung đột. Size tối thiểu = 1 → fallback tuần tự được đảm bảo."
+      },
+      "t4": {
+        "title": "Rollback rõ ràng",
+        "desc": "Xung đột → dừng → không merge → code an toàn. Mỗi agent trong worktree riêng qua cm-git-worktrees."
+      }
+    },
+    "cta": {
+      "title": "Sẵn sàng code nhanh 3-5x — an toàn?",
+      "sub": "Mã nguồn mở. Dựa trên khoa học TRIZ. Cài đặt trong 30 giây.",
+      "button": "Bắt đầu ngay →",
+      "docs": "Đọc tài liệu kỹ thuật →",
+      "why": "Tại sao CodyMaster →"
+    }
+  },
+  "vibeCoding": {
+    "meta": {
+      "title": "Vibe Coding cho người không biết code | CodyMaster",
+      "description": "Hướng dẫn vibe coding dành cho người không phải dân dev. Chỉ cần chat, AI sẽ code cho bạn. Miễn phí & mã nguồn mở."
+    },
+    "hero": {
+      "badge": "Dành cho người không biết code · Miễn phí 100%",
+      "title1": "Bạn không cần biết code.",
+      "title2": "Bạn chỉ cần biết nói.",
+      "subtitle": "Vibe coding là cách bạn nói chuyện với AI để nó viết code, thiết kế giao diện, và deploy sản phẩm cho bạn. Không cần học lập trình. Không cần thuê dev. Chỉ cần mô tả ý tưởng bằng ngôn ngữ tự nhiên.",
+      "ctaPrimary": "Xem cách hoạt động ↓",
+      "ctaSecondary": "Cài đặt ngay — Miễn phí",
+      "chatTitle": "CodyMaster — Vibe Coding",
+      "chatUser": "Tạo cho tôi 1 trang web booking spa có form đặt lịch, giao diện đẹp, deploy luôn lên mạng nhé 🙏",
+      "chatAiLabel": "🧠 CodyMaster",
+      "chatAi": "Tôi sẽ thực hiện theo workflow: phân tích yêu cầu → thiết kế UX → code + test → deploy an toàn. Bạn chỉ cần ngồi review thôi! ✨"
+    },
+    "analogy": {
+      "label": "HIỂU VIBE CODING TRONG 10 GIÂY",
+      "title": "Bạn là đạo diễn. AI là đoàn làm phim.",
+      "oldIcon": "🏗️",
+      "oldTitle": "Cách cũ: Tự xây",
+      "oldDesc": "Bạn phải học xây gạch, hàn sắt, kéo điện, sơn tường... để xây một căn nhà. Mất 6 tháng - 1 năm.",
+      "newIcon": "🎬",
+      "newTitle": "Vibe Coding: Chỉ đạo",
+      "newDesc": "Bạn mô tả căn nhà bạn muốn. Đội thợ AI sẽ thiết kế, xây dựng, kiểm tra chất lượng cho bạn. Mất vài ngày."
+    },
+    "pains": {
+      "label": "NHỮNG RÀO CẢN BẠN ĐANG GẶP",
+      "title": "Chúng tôi hiểu bạn đang vướng ở đâu",
+      "cards": [
+        {
+          "icon": "🤯",
+          "title": "Không biết code — cảm thấy bất lực",
+          "desc": "Bạn có idea sản phẩm rõ ràng nhưng không thể tự hiện thực hóa. Mỗi lần nhờ dev là mỗi lần đau ví."
+        },
+        {
+          "icon": "😱",
+          "title": "Sợ dùng AI — không biết bắt đầu từ đâu",
+          "desc": "ChatGPT, Claude, Gemini... nhiều công cụ quá nhưng không biết cách dùng đúng. Copy-paste code rồi bị lỗi là chuyện thường."
+        },
+        {
+          "icon": "🧱",
+          "title": "No-code bị giới hạn",
+          "desc": "Wix, Squarespace chỉ tạo được page tĩnh. Muốn có dashboard, auth, API, database? No-code bó tay."
+        },
+        {
+          "icon": "🔥",
+          "title": "AI code xong thì... hỏng",
+          "desc": "AI viết code nhanh nhưng không test, không có hệ thống. Sửa 1 chỗ hỏng 5 chỗ khác. Chaos."
+        }
+      ]
+    },
+    "workflow": {
+      "label": "WORKFLOW 5 BƯỚC",
+      "title": "Từ ý tưởng đến sản phẩm, bạn chỉ cần chat",
+      "subtitle": "Đây là quy trình CodyMaster tự động thực hiện khi bạn nhờ nó làm việc.",
+      "steps": [
+        {
+          "title": "💬 Bạn Chat — Mô tả ý tưởng",
+          "desc": "Nói với AI bạn muốn gì, bằng tiếng Việt. Không cần thuật ngữ kỹ thuật.",
+          "example": "\"Tạo cho tôi 1 trang web giới thiệu spa, có form đặt lịch, giao diện sang trọng\""
+        },
+        {
+          "title": "📋 AI Phân tích & Lập kế hoạch",
+          "desc": "CodyMaster tự động phân tích yêu cầu, hỏi thêm nếu cần, rồi viết ra kế hoạch chi tiết. Bạn duyệt trước khi nó bắt tay vào làm.",
+          "example": "→ cm-brainstorm-idea + cm-planning tự động kích hoạt"
+        },
+        {
+          "title": "🎨 AI Thiết kế giao diện",
+          "desc": "Áp dụng 48 quy tắc UX, xây design system phù hợp thương hiệu của bạn. Bạn review bản preview trước khi code.",
+          "example": "→ cm-ux-master + cm-ui-preview tạo mockup trực quan"
+        },
+        {
+          "title": "💻 AI Code & Test tự động",
+          "desc": "Viết code theo phương pháp TDD (test trước, code sau). Quét bảo mật. Kiểm tra lỗi. Bạn không cần đọc code.",
+          "example": "→ cm-tdd + cm-debugging + cm-secret-shield bảo vệ code"
+        },
+        {
+          "title": "🚀 Deploy — Sản phẩm lên mạng",
+          "desc": "8 cổng kiểm tra an toàn trước khi đưa lên internet. Tự động tạo tài liệu. Rollback nếu có lỗi.",
+          "example": "→ cm-safe-deploy → Sản phẩm live trên CDN toàn cầu!"
+        }
+      ]
+    },
+    "prompts": {
+      "label": "PROMPT MẪU — COPY & DÁN",
+      "title": "Bạn nói thế này, AI hiểu ngay",
+      "subtitle": "Đây là những prompt thực tế mà người không biết code có thể dùng ngay.",
+      "cards": [
+        {
+          "label": "🌐 Tạo Website",
+          "prompt": "\"Tạo 1 landing page cho quán cà phê tên Morning Brew. Cần menu, gallery ảnh, và nút gọi đặt bàn.\"",
+          "result": "<strong>AI sẽ:</strong> Lập kế hoạch → Thiết kế UI sang trọng → Code HTML/CSS/JS → Deploy lên internet."
+        },
+        {
+          "label": "📊 Xây Dashboard",
+          "prompt": "\"Tạo 1 dashboard quản lý doanh thu cho shop bán hàng online. Cần biểu đồ, bảng đơn hàng, và filter theo ngày.\"",
+          "result": "<strong>AI sẽ:</strong> Phân tích data flow → Xây dashboard với chart → Thêm auth + database."
+        },
+        {
+          "label": "🐛 Sửa Lỗi",
+          "prompt": "\"Trang web của tôi bị lỗi khi bấm nút đặt hàng. Hãy tìm và sửa lỗi cho tôi.\"",
+          "result": "<strong>AI sẽ:</strong> Phân tích lỗi có hệ thống → Tìm root cause → Viết test → Sửa → Kiểm tra lại."
+        },
+        {
+          "label": "📱 App Booking",
+          "prompt": "\"Tạo 1 hệ thống đặt lịch hẹn cho phòng khám nha khoa. Bệnh nhân chọn bác sĩ, ngày giờ, và nhận email xác nhận.\"",
+          "result": "<strong>AI sẽ:</strong> Thiết kế UX → Xây booking flow → Tích hợp email → Deploy hoàn chỉnh."
+        },
+        {
+          "label": "✍️ Content Marketing",
+          "prompt": "\"Tạo 1 blog về skincare cho brand mỹ phẩm Serenity. Cần 10 bài viết SEO, trang blog hoàn chỉnh.\"",
+          "result": "<strong>AI sẽ:</strong> Research keyword → Viết 10 bài → Audit chất lượng → Xây blog đẹp → Deploy."
+        },
+        {
+          "label": "📝 Tài liệu & SOP",
+          "prompt": "\"Đọc toàn bộ code của dự án này và tạo tài liệu kỹ thuật + hướng dẫn sử dụng cho team.\"",
+          "result": "<strong>AI sẽ:</strong> Scan codebase → Tạo architecture docs → SOP → API reference → User guide."
+        }
+      ]
+    },
+    "mistakes": {
+      "label": "SAI LẦM THƯỜNG GẶP",
+      "title": "Nói thế nào để AI hiểu đúng?",
+      "subtitle": "Prompt tốt = kết quả tốt. Đây là những sai lầm phổ biến và cách sửa.",
+      "cards": [
+        {
+          "title": "Quá chung chung",
+          "wrongLabel": "❌ SAI",
+          "wrong": "\"Tạo 1 website đẹp cho tôi\"",
+          "rightLabel": "✅ ĐÚNG",
+          "right": "\"Tạo 1 landing page cho studio yoga tên ZenFlow. Tone pastel, tím nhạt + trắng. Cần section giới thiệu, bảng giá 3 gói, và form đăng ký trial.\""
+        },
+        {
+          "title": "Muốn tất cả 1 lần",
+          "wrongLabel": "❌ SAI",
+          "wrong": "\"Tạo 1 app hoàn chỉnh có mọi thứ: đăng nhập, quản lý, báo cáo, thanh toán, chat...\"",
+          "rightLabel": "✅ ĐÚNG",
+          "right": "\"Bước 1: Tạo trang đăng nhập + đăng ký. Xong bước này sẽ làm tiếp.\""
+        },
+        {
+          "title": "Không review kế hoạch",
+          "wrongLabel": "❌ SAI",
+          "wrong": "AI đưa plan → Bạn: \"Oke làm đi\" (không đọc)",
+          "rightLabel": "✅ ĐÚNG",
+          "right": "Đọc plan → Góp ý: \"Bỏ phần chat, thêm phần gallery vào\" → AI sửa → Rồi mới approve."
+        }
+      ]
+    },
+    "beforeAfter": {
+      "label": "THAY ĐỔI",
+      "title": "Trước và Sau khi dùng Vibe Coding",
+      "beforeTitle": "❌ Trước đây",
+      "beforeItems": [
+        "Thuê agency 30-50 triệu cho 1 MVP",
+        "Mất 3-6 tháng mới xong sản phẩm",
+        "Mô tả rồi nhưng dev hiểu sai",
+        "Sửa 1 dòng chữ phải chờ dev 2 ngày",
+        "Deploy xong cầu nguyện không bị lỗi",
+        "AI code thì hỏng, không dám dùng"
+      ],
+      "afterTitle": "✅ Sau khi dùng CodyMaster",
+      "afterItems": [
+        "$0 — hoàn toàn miễn phí",
+        "Từ ý tưởng đến live trong vài ngày",
+        "Bạn mô tả, AI xây đúng ý",
+        "Chat sửa ngay, AI cập nhật tức thì",
+        "8 cổng kiểm tra trước khi deploy",
+        "AI có \"kỷ luật\" — không phá code cũ"
+      ]
+    },
+    "tips": {
+      "label": "MẸO SỬ DỤNG",
+      "title": "7 mẹo để vibe coding hiệu quả hơn",
+      "cards": [
+        {
+          "icon": "🎯",
+          "title": "Mô tả cụ thể",
+          "desc": "Nói rõ: tên brand, màu sắc, bao nhiêu section, chức năng gì. Càng cụ thể AI càng làm đúng."
+        },
+        {
+          "icon": "🪜",
+          "title": "Làm từng bước",
+          "desc": "Đừng yêu cầu \"tạo app hoàn chỉnh\" ngay. Chia nhỏ: trang chủ → form → dashboard → deploy."
+        },
+        {
+          "icon": "👀",
+          "title": "Review kế hoạch",
+          "desc": "AI luôn đưa plan trước khi code. Hãy đọc và góp ý. Đây là lúc bạn \"chỉ đạo\" quan trọng nhất."
+        },
+        {
+          "icon": "🗣️",
+          "title": "Nói tiếng Việt",
+          "desc": "CodyMaster hiểu tiếng Việt. Bạn không cần dùng tiếng Anh hay thuật ngữ kỹ thuật."
+        },
+        {
+          "icon": "📸",
+          "title": "Đưa ảnh tham khảo",
+          "desc": "Có website bạn thích? Gửi URL hoặc screenshot. AI sẽ phân tích và tạo thiết kế tương tự."
+        },
+        {
+          "icon": "🔄",
+          "title": "Iterate liên tục",
+          "desc": "\"Sửa nút CTA to hơn\", \"Đổi font chữ\", \"Thêm section testimonials\". Chat tự nhiên để tinh chỉnh."
+        },
+        {
+          "icon": "💾",
+          "title": "Dùng /cm-start",
+          "desc": "Gõ <code style=\"color:var(--accent-cyan);\">/cm-start \"mô tả dự án\"</code> để CodyMaster tự động chạy toàn bộ workflow."
+        }
+      ]
+    },
+    "faq": {
+      "label": "CÂU HỎI THƯỜNG GẶP",
+      "title": "Giải đáp thắc mắc",
+      "items": [
+        {
+          "q": "Tôi hoàn toàn không biết code, dùng được không?",
+          "a": "Hoàn toàn được! Người tạo ra CodyMaster (Tody Le) cũng không phải developer — anh ấy là Product Manager. CodyMaster được thiết kế để bạn chỉ cần chat bằng ngôn ngữ tự nhiên, AI xử lý toàn bộ phần kỹ thuật."
+        },
+        {
+          "q": "Vibe coding khác gì ChatGPT copy-paste code?",
+          "a": "ChatGPT chỉ đưa đoạn code rời rạc, bạn phải tự ghép, tự test, tự deploy. CodyMaster là một hệ thống hoàn chỉnh: 34 skills tự động chạy — từ lập kế hoạch, thiết kế, code, test, kiểm tra bảo mật, đến deploy. Giống như thuê cả team senior thay vì hỏi 1 người random."
+        },
+        {
+          "q": "Tôi cần cài gì trước khi bắt đầu?",
+          "a": "Bạn cần 1 trong các AI coding agent: Cursor IDE, Claude Code, Gemini Antigravity, hoặc bất kỳ agent nào hỗ trợ skills. Sau đó chạy 1 lệnh cài đặt CodyMaster và bắt đầu chat. Xem hướng dẫn chi tiết ở trang <a href=\"start.html\" style=\"color:var(--accent-lime);\">Get Started</a>."
+        },
+        {
+          "q": "Tốn phí bao nhiêu?",
+          "a": "CodyMaster hoàn toàn miễn phí và mã nguồn mở. Bạn chỉ cần trả phí cho AI agent bạn sử dụng (ví dụ: Cursor subscription hoặc Claude API). Nhiều agent có free tier đủ để bắt đầu."
+        },
+        {
+          "q": "Nếu muốn sửa đổi sau thì sao?",
+          "a": "Chat lại! CodyMaster có \"bộ nhớ\" (cm-continuity) nên nó nhớ context dự án. Bạn chỉ cần nói: \"Đổi màu nền thành xanh navy\" hoặc \"Thêm section testimonials\" — AI sẽ cập nhật mà không phá code cũ."
+        },
+        {
+          "q": "Có thể tạo những loại sản phẩm nào?",
+          "a": "Landing pages, blog, e-commerce, dashboard, booking system, SaaS, portfolio, tài liệu kỹ thuật, content marketing... Bất kỳ sản phẩm web nào. CodyMaster thậm chí còn hỗ trợ thiết kế mobile app UI."
+        }
+      ]
+    },
+    "finalCta": {
+      "title1": "Ý tưởng của bạn xứng đáng tồn tại.",
+      "title2": "Hãy biến nó thành sản phẩm thật.",
+      "subtitle": "Miễn phí. Không cần thẻ tín dụng. Từ ý tưởng → sản phẩm live ngay hôm nay.",
+      "ctaPrimary": "Bắt đầu ngay — Miễn phí →",
+      "ctaSecondary": "📖 Đọc hướng dẫn chi tiết"
+    },
+    "footer": {
+      "tagline": "Biến ý tưởng thành sản phẩm nhanh 10x",
+      "products": "Sản phẩm",
+      "getStarted": "Bắt đầu",
+      "docs": "Tài liệu",
+      "learn": "Tìm hiểu",
+      "whyCodyMaster": "Tại sao CodyMaster",
+      "compare": "So sánh",
+      "story": "Câu chuyện",
+      "community": "Cộng đồng",
+      "copyright": "© 2026 CodyMaster Kit. Miễn phí & Mã nguồn mở.",
+      "made": "Made with ❤️ and AI"
+    }
+  }
 }

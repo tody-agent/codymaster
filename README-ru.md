@@ -9,7 +9,7 @@
 **34 навыка · 11 команд · 1 плагин · 7+ платформ · 6 языков**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-3.4.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.0.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-34-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />

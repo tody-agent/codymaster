@@ -38,7 +38,11 @@
     "brain": "Thông thái",
     "playbook": "Sổ Tay",
     "cli": "CLI",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "parallelCoding": "Code Song Song",
+    "how": "Cách dùng",
+    "vibeCoding": "Vibe Coding",
+    "useCases": "Tình huống"
   },
   "socialProof": {
     "label": "ĐƯỢC TIN TƯỞNG BỞI BUILDERS",

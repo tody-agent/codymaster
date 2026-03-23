@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Coding cho người không biết code | CodyMaster</title>
+  <meta name="description"
+    content="Hướng dẫn vibe coding dành cho người không phải dân dev. Chỉ cần chat, AI sẽ code cho bạn. Miễn phí & mã nguồn mở.">
+  <meta property="og:title" content="Vibe Coding cho người không biết code | CodyMaster">
+  <meta property="og:description"
+    content="Bạn không cần biết code. Bạn chỉ cần biết nói. AI sẽ biến ý tưởng thành sản phẩm thật.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/kit.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --persona-accent: #a78bfa;
+    }
+
+    /* ─── Vibe Coding Custom Styles ─── */
+    .vc-hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .vc-hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+    }
+
+    .vc-hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      background: rgba(20, 20, 32, 0.5);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .vc-hero__badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-lime);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .vc-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .vc-hero__title .text-gradient {
+      background: linear-gradient(135deg, var(--accent-lime), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .vc-hero__subtitle {
+      font-size: clamp(17px, 1.5vw, 21px);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .vc-hero__ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    /* ─── Chat Bubble Demo ─── */
+    .vc-chat-demo {
+      max-width: 700px;
+      margin: 60px auto 0;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    .vc-chat-window {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .vc-chat-window__bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .vc-chat-window__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .vc-chat-window__dot--r {
+      background: #EF4444;
+    }
+
+    .vc-chat-window__dot--y {
+      background: #F59E0B;
+    }
+
+    .vc-chat-window__dot--g {
+      background: #22C55E;
+    }
+
+    .vc-chat-window__title {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .vc-chat-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .vc-msg {
+      max-width: 85%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 15px;
+      line-height: 1.5;
+      animation: fadeInUp 0.4s ease-out both;
+    }
+
+    .vc-msg--user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      color: #fff;
+      border-bottom-right-radius: 4px;
+      animation-delay: 0.8s;
+    }
+
+    .vc-msg--ai {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      border-bottom-left-radius: 4px;
+      animation-delay: 1.4s;
+    }
+
+    .vc-msg--ai .vc-msg__label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-lime);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ─── Analogy Section ─── */
+    .vc-analogy {
+      padding: 80px 48px;
+    }
+
+    .vc-analogy__grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .vc-analogy__card {
+      padding: 40px 32px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .vc-analogy__card--old {
+      background: rgba(239, 68, 68, 0.06);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .vc-analogy__card--new {
+      background: rgba(196, 248, 42, 0.06);
+      border-color: rgba(196, 248, 42, 0.2);
+    }
+
+    .vc-analogy__icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .vc-analogy__title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .vc-analogy__desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .vc-analogy__arrow {
+      font-size: 36px;
+      color: var(--accent-lime);
+    }
+
+    /* ─── Workflow Section ─── */
+    .vc-workflow {
+      padding: 80px 48px;
+      background: linear-gradient(180deg, rgba(20, 20, 32, 0.3) 0%, transparent 100%);
+    }
+
+    .vc-workflow__steps {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .vc-wf-step {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 28px 0;
+      position: relative;
+    }
+
+    .vc-wf-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 72px;
+      bottom: -28px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-purple), transparent);
+    }
+
+    .vc-wf-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .vc-wf-body h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .vc-wf-body p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .vc-wf-body .vc-wf-example {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: var(--bg-code);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-cyan);
+      border-left: 3px solid var(--accent-purple);
+    }
+
+    /* ─── Prompt Examples Section ─── */
+    .vc-prompts {
+      padding: 80px 48px;
+    }
+
+    .vc-prompts__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .vc-prompt-card {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all var(--transition-normal);
+    }
+
+    .vc-prompt-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .vc-prompt-card__label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-lime);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .vc-prompt-card__prompt {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--accent-cyan);
+      background: var(--bg-code);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      line-height: 1.5;
+      margin-bottom: 14px;
+      border-left: 3px solid var(--accent-purple);
+    }
+
+    .vc-prompt-card__result {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .vc-prompt-card__result strong {
+      color: var(--text-primary);
+    }
+
+    /* ─── Tips Section ─── */
+    .vc-tips {
+      padding: 80px 48px;
+      background: linear-gradient(180deg, transparent 0%, rgba(20, 20, 32, 0.3) 50%, transparent 100%);
+    }
+
+    .vc-tips__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .vc-tip-card {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .vc-tip-card__icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .vc-tip-card h4 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .vc-tip-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── Before/After ─── */
+    .vc-ba {
+      padding: 80px 48px;
+    }
+
+    .vc-ba__container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .vc-ba__col {
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .vc-ba__col--before {
+      background: rgba(239, 68, 68, 0.05);
+      border-color: rgba(239, 68, 68, 0.15);
+    }
+
+    .vc-ba__col--after {
+      background: rgba(196, 248, 42, 0.05);
+      border-color: rgba(196, 248, 42, 0.15);
+    }
+
+    .vc-ba__col h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .vc-ba__col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .vc-ba__col ul li {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .vc-ba__col--before ul li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--accent-red);
+      font-weight: 700;
+    }
+
+    .vc-ba__col--after ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent-lime);
+      font-weight: 700;
+    }
+
+    /* ─── FAQ ─── */
+    .vc-faq {
+      padding: 80px 48px;
+    }
+
+    .vc-faq__list {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .vc-faq__item {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .vc-faq__item summary {
+      padding: 20px 24px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background var(--transition-fast);
+    }
+
+    .vc-faq__item summary:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .vc-faq__item summary::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--accent-lime);
+      transition: transform var(--transition-fast);
+    }
+
+    .vc-faq__item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .vc-faq__item .vc-faq__answer {
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ─── CTA Final ─── */
+    .vc-final-cta {
+      padding: 100px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vc-final-cta__content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .vc-final-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .vc-final-cta p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    .vc-final-cta__buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ─── Mistakes Section ─── */
+    .vc-mistakes {
+      padding: 80px 48px;
+    }
+
+    .vc-mistakes__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .vc-mistake-card {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+    }
+
+    .vc-mistake-card__wrong {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-red);
+      background: rgba(239, 68, 68, 0.08);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+    }
+
+    .vc-mistake-card__right {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-green);
+      background: rgba(6, 214, 160, 0.08);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+    }
+
+    .vc-mistake-card h4 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+
+    .vc-mistake-card__label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .vc-mistake-card__label--wrong {
+      color: var(--accent-red);
+    }
+
+    .vc-mistake-card__label--right {
+      color: var(--accent-green);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      .vc-hero {
+        padding: 100px 24px 60px;
+        min-height: auto;
+      }
+
+      .vc-analogy__grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .vc-analogy__arrow {
+        transform: rotate(90deg);
+        text-align: center;
+      }
+
+      .vc-ba__container {
+        grid-template-columns: 1fr;
+      }
+
+      .vc-workflow,
+      .vc-prompts,
+      .vc-tips,
+      .vc-ba,
+      .vc-faq,
+      .vc-mistakes,
+      .vc-analogy {
+        padding: 60px 24px;
+      }
+
+      .vc-final-cta {
+        padding: 80px 24px;
+      }
+
+      .vc-prompts__grid,
+      .vc-tips__grid,
+      .vc-mistakes__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-JCHYEW645C');
+  </script>
+</head>
+
+<body>
+
+  <!-- ═══════════╗ NAVIGATION ╔═══════════ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-icon">⚡</span>
+      <span>CodyMaster</span>
+    </a>
+
+    <ul class="nav__links" id="navLinks">
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.whyUs">Why Us</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="why-cody-master.html" class="nav-dropdown__item"><span class="lang-flag">💡</span> <span data-i18n="nav.whyCodyMaster">Why CodyMaster</span></a>
+          <a href="skills.html" class="nav-dropdown__item"><span class="lang-flag">🧠</span> <span data-i18n="nav.skills">Skills</span></a>
+          <a href="vs-scrum.html" class="nav-dropdown__item"><span class="lang-flag">🤺</span> <span data-i18n="nav.vsScrum">vs Scrum</span></a>
+          <a href="vs-others.html" class="nav-dropdown__item"><span class="lang-flag">🔄</span> <span data-i18n="nav.vsOthers">vs Others</span></a>
+          <a href="story.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.story">Our Story</span></a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.how">How</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="vibe-coding.html" class="nav-dropdown__item"><span class="lang-flag">🎨</span> <span data-i18n="nav.vibeCoding">Vibe Coding</span></a>
+          <a href="playbook.html" class="nav-dropdown__item"><span class="lang-flag">📖</span> <span data-i18n="nav.useCases">Use Cases</span></a>
+          <a href="parallel-coding.html" class="nav-dropdown__item"><span class="lang-flag">⚡</span> <span data-i18n="nav.parallelCoding">Parallel Coding</span></a>
+          <a href="cli.html" class="nav-dropdown__item"><span class="lang-flag">⌨️</span> <span data-i18n="nav.cli">CLI</span></a>
+        </div>
+      </li>
+      <li><a href="/docs/" class="nav__link" data-i18n="nav.docs">Docs</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown__toggle">
+          <span data-i18n="nav.personas">For You</span>
+          <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+        </button>
+        <div class="nav-dropdown__menu">
+          <a href="for-founders.html" class="nav-dropdown__item"><span class="lang-flag">🚀</span> <span data-i18n="personas.cards.0.title">For Founders</span></a>
+          <a href="for-cmos.html" class="nav-dropdown__item"><span class="lang-flag">📢</span> <span data-i18n="personas.cards.1.title">For CMOs</span></a>
+          <a href="for-pms.html" class="nav-dropdown__item"><span class="lang-flag">📋</span> <span data-i18n="personas.cards.2.title">For PMs</span></a>
+          <a href="for-tech-teams.html" class="nav-dropdown__item"><span class="lang-flag">💻</span> <span data-i18n="personas.cards.3.title">For Tech Teams</span></a>
+          <a href="for-designers.html" class="nav-dropdown__item"><span class="lang-flag">🎨</span> <span data-i18n="personas.cards.4.title">For Designers</span></a>
+          <a href="for-claw-family.html" class="nav-dropdown__item"><span class="lang-flag">🦞</span> <span data-i18n="personas.cards.5.title">For Claw Family</span></a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="nav__controls">
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-btn" id="lang-toggle" aria-label="Select language" aria-expanded="false">
+            <span class="lang-btn-icon">🌍</span>
+            <span class="lang-btn-text" id="lang-btn-text">EN</span>
+            <span class="lang-btn-caret">▾</span>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button class="lang-option" data-lang="en">
+              <span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="vi">
+              <span class="lang-flag">🇻🇳</span> <span class="lang-name">Tiếng Việt</span>
+            </button>
+            <button class="lang-option" data-lang="zh">
+              <span class="lang-flag">🇨🇳</span> <span class="lang-name">中文</span>
+            </button>
+            <button class="lang-option" data-lang="ru">
+              <span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span>
+            </button>
+            <button class="lang-option" data-lang="ko">
+              <span class="lang-flag">🇰🇷</span> <span class="lang-name">한국어</span>
+            </button>
+            <button class="lang-option" data-lang="hi">
+              <span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी</span>
+            </button>
+          </div>
+        </div>
+        <a href="start.html" class="nav__cta" data-i18n="nav.getStarted">Get Started</a>
+        <div class="nav__hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+      </div>
+  </nav>
+
+  <!-- ═══════════╗ HERO ╔═══════════ -->
+  <section class="vc-hero" id="vcHero">
+    <div class="bg-mesh"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="hero__orb hero__orb--1" style="top:20%;left:30%;width:400px;height:400px;position:absolute;border-radius:50%;filter:blur(80px);background:radial-gradient(circle,rgba(167,139,250,0.25),transparent);animation:orbFloat 8s ease-in-out infinite;"></div>
+    <div class="hero__orb hero__orb--2" style="top:40%;right:20%;width:300px;height:300px;position:absolute;border-radius:50%;filter:blur(80px);background:radial-gradient(circle,rgba(196,248,42,0.1),transparent);animation:orbFloat 8s ease-in-out infinite;animation-delay:-3s;"></div>
+
+    <div class="vc-hero__content">
+      <div class="vc-hero__badge">
+        <span class="vc-hero__badge-dot"></span>
+        <span data-i18n="vibeCoding.hero.badge">Dành cho người không biết code · Miễn phí 100%</span>
+      </div>
+
+      <h1 class="vc-hero__title">
+        <span data-i18n="vibeCoding.hero.title1">Bạn không cần biết code.</span><br>
+        <span class="text-gradient" data-i18n="vibeCoding.hero.title2">Bạn chỉ cần biết nói.</span>
+      </h1>
+
+      <p class="vc-hero__subtitle" data-i18n="vibeCoding.hero.subtitle">
+        Vibe coding là cách bạn nói chuyện với AI để nó viết code, thiết kế giao diện, 
+        và deploy sản phẩm cho bạn. Không cần học lập trình. Không cần thuê dev.
+        Chỉ cần mô tả ý tưởng bằng ngôn ngữ tự nhiên.
+      </p>
+
+      <div class="vc-hero__ctas">
+        <a href="#workflow" class="btn btn--primary" data-i18n="vibeCoding.hero.ctaPrimary">Xem cách hoạt động ↓</a>
+        <a href="start.html" class="btn btn--secondary" data-i18n="vibeCoding.hero.ctaSecondary">Cài đặt ngay — Miễn phí</a>
+      </div>
+
+      <!-- Chat Demo -->
+      <div class="vc-chat-demo">
+        <div class="vc-chat-window">
+          <div class="vc-chat-window__bar">
+            <div class="vc-chat-window__dot vc-chat-window__dot--r"></div>
+            <div class="vc-chat-window__dot vc-chat-window__dot--y"></div>
+            <div class="vc-chat-window__dot vc-chat-window__dot--g"></div>
+            <div class="vc-chat-window__title" data-i18n="vibeCoding.hero.chatTitle">CodyMaster — Vibe Coding</div>
+          </div>
+          <div class="vc-chat-body">
+            <div class="vc-msg vc-msg--user" data-i18n="vibeCoding.hero.chatUser">
+              Tạo cho tôi 1 trang web booking spa có form đặt lịch, giao diện đẹp, deploy luôn lên mạng nhé 🙏
+            </div>
+            <div class="vc-msg vc-msg--ai">
+              <div class="vc-msg__label" data-i18n="vibeCoding.hero.chatAiLabel">🧠 CodyMaster</div>
+              <span data-i18n="vibeCoding.hero.chatAi">Tôi sẽ thực hiện theo workflow: phân tích yêu cầu → thiết kế UX → code + test → deploy an toàn.
+              Bạn chỉ cần ngồi review thôi! ✨</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ ANALOGY — BẠN LÀ ĐẠO DIỄN ╔═══════════ -->
+  <section class="vc-analogy reveal">
+    <div class="section__header">
+      <p class="section__label" data-i18n="vibeCoding.analogy.label">HIỂU VIBE CODING TRONG 10 GIÂY</p>
+      <h2 class="section__title" data-i18n="vibeCoding.analogy.title">Bạn là đạo diễn. AI là đoàn làm phim.</h2>
+    </div>
+    <div class="vc-analogy__grid">
+      <div class="vc-analogy__card vc-analogy__card--old">
+        <div class="vc-analogy__icon">🏗️</div>
+        <h3 class="vc-analogy__title" data-i18n="vibeCoding.analogy.oldTitle">Cách cũ: Tự xây</h3>
+        <p class="vc-analogy__desc" data-i18n="vibeCoding.analogy.oldDesc">Bạn phải học xây gạch, hàn sắt, kéo điện, sơn tường... để xây một căn nhà. Mất 6 tháng - 1 năm.</p>
+      </div>
+      <div class="vc-analogy__arrow">→</div>
+      <div class="vc-analogy__card vc-analogy__card--new">
+        <div class="vc-analogy__icon">🎬</div>
+        <h3 class="vc-analogy__title" data-i18n="vibeCoding.analogy.newTitle">Vibe Coding: Chỉ đạo</h3>
+        <p class="vc-analogy__desc" data-i18n="vibeCoding.analogy.newDesc">Bạn mô tả căn nhà bạn muốn. Đội thợ AI sẽ thiết kế, xây dựng, kiểm tra chất lượng cho bạn. Mất vài ngày.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ PAIN POINTS ╔═══════════ -->
+  <section class="section reveal">
+    <div class="section__header">
+      <p class="section__label" data-i18n="vibeCoding.pains.label">NHỮNG RÀO CẢN BẠN ĐANG GẶP</p>
+      <h2 class="section__title" data-i18n="vibeCoding.pains.title">Chúng tôi hiểu bạn đang vướng ở đâu</h2>
+    </div>
+    <div class="persona-pains__grid">
+      <div class="persona-pain-card reveal">
+        <span class="persona-pain-card__icon">🤯</span>
+        <h3 class="persona-pain-card__title" data-i18n="vibeCoding.pains.cards.0.title">Không biết code — cảm thấy bất lực</h3>
+        <p class="persona-pain-card__desc" data-i18n="vibeCoding.pains.cards.0.desc">Bạn có idea sản phẩm rõ ràng nhưng không thể tự hiện thực hóa. Mỗi lần nhờ dev là mỗi lần đau ví.</p>
+      </div>
+      <div class="persona-pain-card reveal">
+        <span class="persona-pain-card__icon">😱</span>
+        <h3 class="persona-pain-card__title" data-i18n="vibeCoding.pains.cards.1.title">Sợ dùng AI — không biết bắt đầu từ đâu</h3>
+        <p class="persona-pain-card__desc" data-i18n="vibeCoding.pains.cards.1.desc">ChatGPT, Claude, Gemini... nhiều công cụ quá nhưng không biết cách dùng đúng. Copy-paste code rồi bị lỗi là chuyện thường.</p>
+      </div>
+      <div class="persona-pain-card reveal">
+        <span class="persona-pain-card__icon">🧱</span>
+        <h3 class="persona-pain-card__title" data-i18n="vibeCoding.pains.cards.2.title">No-code bị giới hạn</h3>
+        <p class="persona-pain-card__desc" data-i18n="vibeCoding.pains.cards.2.desc">Wix, Squarespace chỉ tạo được page tĩnh. Muốn có dashboard, auth, API, database? No-code bó tay.</p>
+      </div>
+      <div class="persona-pain-card reveal">
+        <span class="persona-pain-card__icon">🔥</span>
+        <h3 class="persona-pain-card__title" data-i18n="vibeCoding.pains.cards.3.title">AI code xong thì... hỏng</h3>
+        <p class="persona-pain-card__desc" data-i18n="vibeCoding.pains.cards.3.desc">AI viết code nhanh nhưng không test, không có hệ thống. Sửa 1 chỗ hỏng 5 chỗ khác. Chaos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ 5-STEP WORKFLOW ╔═══════════ -->
+  <section class="vc-workflow reveal" id="workflow">
+    <div class="section__header">
+      <p class="section__label" data-i18n="vibeCoding.workflow.label">WORKFLOW 5 BƯỚC</p>
+      <h2 class="section__title" data-i18n="vibeCoding.workflow.title">Từ ý tưởng đến sản phẩm, bạn chỉ cần chat</h2>
+      <p class="section__subtitle" data-i18n="vibeCoding.workflow.subtitle">Đây là quy trình CodyMaster tự động thực hiện khi bạn nhờ nó làm việc.</p>
+    </div>
+
+    <div class="vc-workflow__steps">
+      <div class="vc-wf-step reveal">
+        <div class="vc-wf-num">1</div>
+        <div class="vc-wf-body">
+          <h3 data-i18n="vibeCoding.workflow.steps.0.title">💬 Bạn Chat — Mô tả ý tưởng</h3>
+          <p data-i18n="vibeCoding.workflow.steps.0.desc">Nói với AI bạn muốn gì, bằng tiếng Việt. Không cần thuật ngữ kỹ thuật.</p>
+          <div class="vc-wf-example" data-i18n="vibeCoding.workflow.steps.0.example">"Tạo cho tôi 1 trang web giới thiệu spa, có form đặt lịch, giao diện sang trọng"</div>
+        </div>
+      </div>
+
+      <div class="vc-wf-step reveal">
+        <div class="vc-wf-num">2</div>
+        <div class="vc-wf-body">
+          <h3 data-i18n="vibeCoding.workflow.steps.1.title">📋 AI Phân tích & Lập kế hoạch</h3>
+          <p data-i18n="vibeCoding.workflow.steps.1.desc">CodyMaster tự động phân tích yêu cầu, hỏi thêm nếu cần, rồi viết ra kế hoạch chi tiết. Bạn duyệt trước khi nó bắt tay vào làm.</p>
+          <div class="vc-wf-example" data-i18n="vibeCoding.workflow.steps.1.example">→ cm-brainstorm-idea + cm-planning tự động kích hoạt</div>
+        </div>
+      </div>
+
+      <div class="vc-wf-step reveal">
+        <div class="vc-wf-num">3</div>
+        <div class="vc-wf-body">
+          <h3 data-i18n="vibeCoding.workflow.steps.2.title">🎨 AI Thiết kế giao diện</h3>
+          <p data-i18n="vibeCoding.workflow.steps.2.desc">Áp dụng 48 quy tắc UX, xây design system phù hợp thương hiệu của bạn. Bạn review bản preview trước khi code.</p>
+          <div class="vc-wf-example" data-i18n="vibeCoding.workflow.steps.2.example">→ cm-ux-master + cm-ui-preview tạo mockup trực quan</div>
+        </div>
+      </div>
+
+      <div class="vc-wf-step reveal">
+        <div class="vc-wf-num">4</div>
+        <div class="vc-wf-body">
+          <h3 data-i18n="vibeCoding.workflow.steps.3.title">💻 AI Code & Test tự động</h3>
+          <p data-i18n="vibeCoding.workflow.steps.3.desc">Viết code theo phương pháp TDD (test trước, code sau). Quét bảo mật. Kiểm tra lỗi. Bạn không cần đọc code.</p>
+          <div class="vc-wf-example" data-i18n="vibeCoding.workflow.steps.3.example">→ cm-tdd + cm-debugging + cm-secret-shield bảo vệ code</div>
+        </div>
+      </div>
+
+      <div class="vc-wf-step reveal">
+        <div class="vc-wf-num">5</div>
+        <div class="vc-wf-body">
+          <h3 data-i18n="vibeCoding.workflow.steps.4.title">🚀 Deploy — Sản phẩm lên mạng</h3>
+          <p data-i18n="vibeCoding.workflow.steps.4.desc">8 cổng kiểm tra an toàn trước khi đưa lên internet. Tự động tạo tài liệu. Rollback nếu có lỗi.</p>
+          <div class="vc-wf-example" data-i18n="vibeCoding.workflow.steps.4.example">→ cm-safe-deploy → Sản phẩm live trên CDN toàn cầu!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ PROMPT EXAMPLES ╔═══════════ -->
+  <section class="vc-prompts reveal">
+    <div class="section__header">
+      <p class="section__label" data-i18n="vibeCoding.prompts.label">PROMPT MẪU — COPY & DÁN</p>
+      <h2 class="section__title" data-i18n="vibeCoding.prompts.title">Bạn nói thế này, AI hiểu ngay</h2>
+      <p class="section__subtitle" data-i18n="vibeCoding.prompts.subtitle">Đây là những prompt thực tế mà người không biết code có thể dùng ngay.</p>
+    </div>
+
+    <div class="vc-prompts__grid">
+      <div class="vc-prompt-card reveal">
+        <div class="vc-prompt-card__label" data-i18n="vibeCoding.prompts.cards.0.label">🌐 Tạo Website</div>
+        <div class="vc-prompt-card__prompt" data-i18n="vibeCoding.prompts.cards.0.prompt">"Tạo 1 landing page cho quán cà phê tên Morning Brew. Cần menu, gallery ảnh, và nút gọi đặt bàn."</div>
+        <p class="vc-prompt-card__result" data-i18n="vibeCoding.prompts.cards.0.result"><strong>AI sẽ:</strong> Lập kế hoạch → Thiết kế UI sang trọng → Code HTML/CSS/JS → Deploy lên internet.</p>
+      </div>
+
+      <div class="vc-prompt-card reveal">
+        <div class="vc-prompt-card__label" data-i18n="vibeCoding.prompts.cards.1.label">📊 Xây Dashboard</div>
+        <div class="vc-prompt-card__prompt" data-i18n="vibeCoding.prompts.cards.1.prompt">"Tạo 1 dashboard quản lý doanh thu cho shop bán hàng online. Cần biểu đồ, bảng đơn hàng, và filter theo ngày."</div>
+        <p class="vc-prompt-card__result" data-i18n="vibeCoding.prompts.cards.1.result"><strong>AI sẽ:</strong> Phân tích data flow → Xây dashboard với chart → Thêm auth + database.</p>
+      </div>
+
+      <div class="vc-prompt-card reveal">
+        <div class="vc-prompt-card__label" data-i18n="vibeCoding.prompts.cards.2.label">🐛 Sửa Lỗi</div>
+        <div class="vc-prompt-card__prompt" data-i18n="vibeCoding.prompts.cards.2.prompt">"Trang web của tôi bị lỗi khi bấm nút đặt hàng. Hãy tìm và sửa lỗi cho tôi."</div>
+        <p class="vc-prompt-card__result" data-i18n="vibeCoding.prompts.cards.2.result"><strong>AI sẽ:</strong> Phân tích lỗi có hệ thống → Tìm root cause → Viết test → Sửa → Kiểm tra lại.</p>
+      </div>
+
+      <div class="vc-prompt-card reveal">
+        <div class="vc-prompt-card__label" data-i18n="vibeCoding.prompts.cards.3.label">📱 App Booking</div>
+        <div class="vc-prompt-card__prompt" data-i18n="vibeCoding.prompts.cards.3.prompt">"Tạo 1 hệ thống đặt lịch hẹn cho phòng khám nha khoa. Bệnh nhân chọn bác sĩ, ngày giờ, và nhận email xác nhận."</div>
+        <p class="vc-prompt-card__result" data-i18n="vibeCoding.prompts.cards.3.result"><strong>AI sẽ:</strong> Thiết kế UX → Xây booking flow → Tích hợp email → Deploy hoàn chỉnh.</p>
+      </div>
+
+      <div class="vc-prompt-card reveal">
+        <div class="vc-prompt-card__label" data-i18n="vibeCoding.prompts.cards.4.label">✍️ Content Marketing</div>
+        <div class="vc-prompt-card__prompt" data-i18n="vibeCoding.prompts.cards.4.prompt">"Tạo 1 blog về skincare cho brand mỹ phẩm Serenity. Cần 10 bài viết SEO, trang blog hoàn chỉnh."</div>
+        <p class="vc-prompt-card__result" data-i18n="vibeCoding.prompts.cards.4.result"><strong>AI sẽ:</strong> Research keyword → Viết 10 bài → Audit chất lượng → Xây blog đẹp → Deploy.</p>
+      </div>
+
+      <div class="vc-prompt-card reveal">
+        <div class="vc-prompt-card__label" data-i18n="vibeCoding.prompts.cards.5.label">📝 Tài liệu & SOP</div>
+        <div class="vc-prompt-card__prompt" data-i18n="vibeCoding.prompts.cards.5.prompt">"Đọc toàn bộ code của dự án này và tạo tài liệu kỹ thuật + hướng dẫn sử dụng cho team."</div>
+        <p class="vc-prompt-card__result" data-i18n="vibeCoding.prompts.cards.5.result"><strong>AI sẽ:</strong> Scan codebase → Tạo architecture docs → SOP → API reference → User guide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ COMMON MISTAKES ╔═══════════ -->
+  <section class="vc-mistakes reveal">
+    <div class="section__header">
+      <p class="section__label" data-i18n="vibeCoding.mistakes.label">SAI LẦM THƯỜNG GẶP</p>
+      <h2 class="section__title" data-i18n="vibeCoding.mistakes.title">Nói thế nào để AI hiểu đúng?</h2>
+      <p class="section__subtitle" data-i18n="vibeCoding.mistakes.subtitle">Prompt tốt = kết quả tốt. Đây là những sai lầm phổ biến và cách sửa.</p>
+    </div>
+
+    <div class="vc-mistakes__grid">
+      <div class="vc-mistake-card reveal">
+        <h4 data-i18n="vibeCoding.mistakes.cards.0.title">Quá chung chung</h4>
+        <p class="vc-mistake-card__label vc-mistake-card__label--wrong" data-i18n="vibeCoding.mistakes.cards.0.wrongLabel">❌ SAI</p>
+        <div class="vc-mistake-card__wrong" data-i18n="vibeCoding.mistakes.cards.0.wrong">"Tạo 1 website đẹp cho tôi"</div>
+        <p class="vc-mistake-card__label vc-mistake-card__label--right" data-i18n="vibeCoding.mistakes.cards.0.rightLabel">✅ ĐÚNG</p>
+        <div class="vc-mistake-card__right" data-i18n="vibeCoding.mistakes.cards.0.right">"Tạo 1 landing page cho studio yoga tên ZenFlow. Tone pastel, tím nhạt + trắng. Cần section giới thiệu, bảng giá 3 gói, và form đăng ký trial."</div>
+      </div>
+
+      <div class="vc-mistake-card reveal">
+        <h4 data-i18n="vibeCoding.mistakes.cards.1.title">Muốn tất cả 1 lần</h4>
+        <p class="vc-mistake-card__label vc-mistake-card__label--wrong" data-i18n="vibeCoding.mistakes.cards.1.wrongLabel">❌ SAI</p>
+        <div class="vc-mistake-card__wrong" data-i18n="vibeCoding.mistakes.cards.1.wrong">"Tạo 1 app hoàn chỉnh có mọi thứ: đăng nhập, quản lý, báo cáo, thanh toán, chat..."</div>
+        <p class="vc-mistake-card__label vc-mistake-card__label--right" data-i18n="vibeCoding.mistakes.cards.1.rightLabel">✅ ĐÚNG</p>
+        <div class="vc-mistake-card__right" data-i18n="vibeCoding.mistakes.cards.1.right">"Bước 1: Tạo trang đăng nhập + đăng ký. Xong bước này sẽ làm tiếp."</div>
+      </div>
+
+      <div class="vc-mistake-card reveal">
+        <h4 data-i18n="vibeCoding.mistakes.cards.2.title">Không review kế hoạch</h4>
+        <p class="vc-mistake-card__label vc-mistake-card__label--wrong" data-i18n="vibeCoding.mistakes.cards.2.wrongLabel">❌ SAI</p>
+        <div class="vc-mistake-card__wrong" data-i18n="vibeCoding.mistakes.cards.2.wrong">AI đưa plan → Bạn: "Oke làm đi" (không đọc)</div>
+        <p class="vc-mistake-card__label vc-mistake-card__label--right" data-i18n="vibeCoding.mistakes.cards.2.rightLabel">✅ ĐÚNG</p>
+        <div class="vc-mistake-card__right" data-i18n="vibeCoding.mistakes.cards.2.right">Đọc plan → Góp ý: "Bỏ phần chat, thêm phần gallery vào" → AI sửa → Rồi mới approve.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ BEFORE / AFTER ╔═══════════ -->
+  <section class="vc-ba reveal">
+    <div class="section__header">
+      <p class="section__label" data-i18n="vibeCoding.beforeAfter.label">THAY ĐỔI</p>
+      <h2 class="section__title" data-i18n="vibeCoding.beforeAfter.title">Trước và Sau khi dùng Vibe Coding</h2>
+    </div>
+    <div class="vc-ba__container">
+      <div class="vc-ba__col vc-ba__col--before">
+        <h3 data-i18n="vibeCoding.beforeAfter.beforeTitle">❌ Trước đây</h3>
+        <ul>
+          <li data-i18n="vibeCoding.beforeAfter.beforeItems.0">Thuê agency 30-50 triệu cho 1 MVP</li>
+          <li data-i18n="vibeCoding.beforeAfter.beforeItems.1">Mất 3-6 tháng mới xong sản phẩm</li>
+          <li data-i18n="vibeCoding.beforeAfter.beforeItems.2">Mô tả rồi nhưng dev hiểu sai</li>
+          <li data-i18n="vibeCoding.beforeAfter.beforeItems.3">Sửa 1 dòng chữ phải chờ dev 2 ngày</li>
+          <li data-i18n="vibeCoding.beforeAfter.beforeItems.4">Deploy xong cầu nguyện không bị lỗi</li>
+          <li data-i18n="vibeCoding.beforeAfter.beforeItems.5">AI code thì hỏng, không dám dùng</li>
+        </ul>
+      </div>
+      <div class="vc-ba__col vc-ba__col--after">
+        <h3 data-i18n="vibeCoding.beforeAfter.afterTitle">✅ Sau khi dùng CodyMaster</h3>
+        <ul>
+          <li data-i18n="vibeCoding.beforeAfter.afterItems.0">$0 — hoàn toàn miễn phí</li>
+          <li data-i18n="vibeCoding.beforeAfter.afterItems.1">Từ ý tưởng đến live trong vài ngày</li>
+          <li data-i18n="vibeCoding.beforeAfter.afterItems.2">Bạn mô tả, AI xây đúng ý</li>
+          <li data-i18n="vibeCoding.beforeAfter.afterItems.3">Chat sửa ngay, AI cập nhật tức thì</li>
+          <li data-i18n="vibeCoding.beforeAfter.afterItems.4">8 cổng kiểm tra trước khi deploy</li>
+          <li data-i18n="vibeCoding.beforeAfter.afterItems.5">AI có "kỷ luật" — không phá code cũ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ TIPS ╔═══════════ -->
+  <section class="vc-tips reveal">
+    <div class="section__header">
+      <p class="section__label" data-i18n="vibeCoding.tips.label">MẸO SỬ DỤNG</p>
+      <h2 class="section__title" data-i18n="vibeCoding.tips.title">7 mẹo để vibe coding hiệu quả hơn</h2>
+    </div>
+    <div class="vc-tips__grid">
+      <div class="vc-tip-card reveal">
+        <div class="vc-tip-card__icon">🎯</div>
+        <h4 data-i18n="vibeCoding.tips.cards.0.title">Mô tả cụ thể</h4>
+        <p data-i18n="vibeCoding.tips.cards.0.desc">Nói rõ: tên brand, màu sắc, bao nhiêu section, chức năng gì. Càng cụ thể AI càng làm đúng.</p>
+      </div>
+      <div class="vc-tip-card reveal">
+        <div class="vc-tip-card__icon">🪜</div>
+        <h4 data-i18n="vibeCoding.tips.cards.1.title">Làm từng bước</h4>
+        <p data-i18n="vibeCoding.tips.cards.1.desc">Đừng yêu cầu "tạo app hoàn chỉnh" ngay. Chia nhỏ: trang chủ → form → dashboard → deploy.</p>
+      </div>
+      <div class="vc-tip-card reveal">
+        <div class="vc-tip-card__icon">👀</div>
+        <h4 data-i18n="vibeCoding.tips.cards.2.title">Review kế hoạch</h4>
+        <p data-i18n="vibeCoding.tips.cards.2.desc">AI luôn đưa plan trước khi code. Hãy đọc và góp ý. Đây là lúc bạn "chỉ đạo" quan trọng nhất.</p>
+      </div>
+      <div class="vc-tip-card reveal">
+        <div class="vc-tip-card__icon">🗣️</div>
+        <h4 data-i18n="vibeCoding.tips.cards.3.title">Nói tiếng Việt</h4>
+        <p data-i18n="vibeCoding.tips.cards.3.desc">CodyMaster hiểu tiếng Việt. Bạn không cần dùng tiếng Anh hay thuật ngữ kỹ thuật.</p>
+      </div>
+      <div class="vc-tip-card reveal">
+        <div class="vc-tip-card__icon">📸</div>
+        <h4 data-i18n="vibeCoding.tips.cards.4.title">Đưa ảnh tham khảo</h4>
+        <p data-i18n="vibeCoding.tips.cards.4.desc">Có website bạn thích? Gửi URL hoặc screenshot. AI sẽ phân tích và tạo thiết kế tương tự.</p>
+      </div>
+      <div class="vc-tip-card reveal">
+        <div class="vc-tip-card__icon">🔄</div>
+        <h4 data-i18n="vibeCoding.tips.cards.5.title">Iterate liên tục</h4>
+        <p data-i18n="vibeCoding.tips.cards.5.desc">"Sửa nút CTA to hơn", "Đổi font chữ", "Thêm section testimonials". Chat tự nhiên để tinh chỉnh.</p>
+      </div>
+      <div class="vc-tip-card reveal">
+        <div class="vc-tip-card__icon">💾</div>
+        <h4 data-i18n="vibeCoding.tips.cards.6.title">Dùng /cm-start</h4>
+        <p data-i18n="vibeCoding.tips.cards.6.desc">Gõ <code style="color:var(--accent-cyan);">/cm-start "mô tả dự án"</code> để CodyMaster tự động chạy toàn bộ workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ FAQ ╔═══════════ -->
+  <section class="vc-faq reveal">
+    <div class="section__header">
+      <p class="section__label" data-i18n="vibeCoding.faq.label">CÂU HỎI THƯỜNG GẶP</p>
+      <h2 class="section__title" data-i18n="vibeCoding.faq.title">Giải đáp thắc mắc</h2>
+    </div>
+
+    <div class="vc-faq__list">
+      <details class="vc-faq__item">
+        <summary data-i18n="vibeCoding.faq.items.0.q">Tôi hoàn toàn không biết code, dùng được không?</summary>
+        <div class="vc-faq__answer" data-i18n="vibeCoding.faq.items.0.a">Hoàn toàn được! Người tạo ra CodyMaster (Tody Le) cũng không phải developer — anh ấy là Product Manager. CodyMaster được thiết kế để bạn chỉ cần chat bằng ngôn ngữ tự nhiên, AI xử lý toàn bộ phần kỹ thuật.</div>
+      </details>
+
+      <details class="vc-faq__item">
+        <summary data-i18n="vibeCoding.faq.items.1.q">Vibe coding khác gì ChatGPT copy-paste code?</summary>
+        <div class="vc-faq__answer" data-i18n="vibeCoding.faq.items.1.a">ChatGPT chỉ đưa đoạn code rời rạc, bạn phải tự ghép, tự test, tự deploy. CodyMaster là một hệ thống hoàn chỉnh: 34 skills tự động chạy — từ lập kế hoạch, thiết kế, code, test, kiểm tra bảo mật, đến deploy. Giống như thuê cả team senior thay vì hỏi 1 người random.</div>
+      </details>
+
+      <details class="vc-faq__item">
+        <summary data-i18n="vibeCoding.faq.items.2.q">Tôi cần cài gì trước khi bắt đầu?</summary>
+        <div class="vc-faq__answer" data-i18n="vibeCoding.faq.items.2.a">Bạn cần 1 trong các AI coding agent: Cursor IDE, Claude Code, Gemini Antigravity, hoặc bất kỳ agent nào hỗ trợ skills. Sau đó chạy 1 lệnh cài đặt CodyMaster và bắt đầu chat. Xem hướng dẫn chi tiết ở trang <a href="start.html" style="color:var(--accent-lime);">Get Started</a>.</div>
+      </details>
+
+      <details class="vc-faq__item">
+        <summary data-i18n="vibeCoding.faq.items.3.q">Tốn phí bao nhiêu?</summary>
+        <div class="vc-faq__answer" data-i18n="vibeCoding.faq.items.3.a">CodyMaster hoàn toàn miễn phí và mã nguồn mở. Bạn chỉ cần trả phí cho AI agent bạn sử dụng (ví dụ: Cursor subscription hoặc Claude API). Nhiều agent có free tier đủ để bắt đầu.</div>
+      </details>
+
+      <details class="vc-faq__item">
+        <summary data-i18n="vibeCoding.faq.items.4.q">Nếu muốn sửa đổi sau thì sao?</summary>
+        <div class="vc-faq__answer" data-i18n="vibeCoding.faq.items.4.a">Chat lại! CodyMaster có "bộ nhớ" (cm-continuity) nên nó nhớ context dự án. Bạn chỉ cần nói: "Đổi màu nền thành xanh navy" hoặc "Thêm section testimonials" — AI sẽ cập nhật mà không phá code cũ.</div>
+      </details>
+
+      <details class="vc-faq__item">
+        <summary data-i18n="vibeCoding.faq.items.5.q">Có thể tạo những loại sản phẩm nào?</summary>
+        <div class="vc-faq__answer" data-i18n="vibeCoding.faq.items.5.a">Landing pages, blog, e-commerce, dashboard, booking system, SaaS, portfolio, tài liệu kỹ thuật, content marketing... Bất kỳ sản phẩm web nào. CodyMaster thậm chí còn hỗ trợ thiết kế mobile app UI.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ FINAL CTA ╔═══════════ -->
+  <section class="vc-final-cta">
+    <div class="bg-mesh"></div>
+    <div class="bg-noise"></div>
+    <div class="hero__orb" style="position:absolute;bottom:10%;left:30%;width:300px;height:300px;border-radius:50%;filter:blur(80px);background:radial-gradient(circle,rgba(124,58,237,0.2),transparent);animation:orbFloat 8s ease-in-out infinite;"></div>
+
+    <div class="vc-final-cta__content">
+      <h2><span data-i18n="vibeCoding.finalCta.title1">Ý tưởng của bạn xứng đáng tồn tại.</span><br>
+        <span style="background: linear-gradient(135deg, var(--accent-lime), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-i18n="vibeCoding.finalCta.title2">Hãy biến nó thành sản phẩm thật.</span>
+      </h2>
+      <p data-i18n="vibeCoding.finalCta.subtitle">Miễn phí. Không cần thẻ tín dụng. Từ ý tưởng → sản phẩm live ngay hôm nay.</p>
+      <div class="vc-final-cta__buttons">
+        <a href="start.html" class="btn btn--primary btn--large" data-i18n="vibeCoding.finalCta.ctaPrimary">Bắt đầu ngay — Miễn phí →</a>
+        <a href="/docs/vibe-coding-guide" class="btn btn--secondary" data-i18n="vibeCoding.finalCta.ctaSecondary">📖 Đọc hướng dẫn chi tiết</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════╗ FOOTER ╔═══════════ -->
+  <footer class="footer" id="siteFooter">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo">⚡ CodyMaster Kit</span>
+        <p class="footer__tagline" data-i18n="footer.tagline">Turn Ideas into Products 10x Faster</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.product">Product</h4>
+        <a href="brain.html" data-i18n="nav.brain">Brain</a>
+        <a href="skills.html" data-i18n="nav.skills">Skills</a>
+        <a href="start.html" data-i18n="nav.getStarted">Get Started</a>
+        <a href="/docs/" data-i18n="nav.docs">Docs</a>
+        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.whyUs">Why Us</h4>
+        <a href="why-cody-master.html" data-i18n="nav.whyCodyMaster">Why CodyMaster</a>
+        <a href="vs-others.html" data-i18n="nav.vsOthers">vs Others</a>
+        <a href="story.html" data-i18n="nav.story">Our Story</a>
+        <a href="cli.html" data-i18n="nav.cli">CLI</a>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title" data-i18n="footer.community">Community</h4>
+        <a href="https://github.com/tody-agent/codymaster" target="_blank">GitHub</a>
+        <a href="#" target="_blank">Discord</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p data-i18n="footer.copy">© 2026 CodyMaster Kit. Free & Open Source.</p>
+      <p class="footer__made" data-i18n="footer.madeWith">Made with ❤️ and AI</p>
+    </div>
+  </footer>
+
+  <script src="js/kit.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+  <script src="js/ga-events.js"></script>
+</body>
+
+</html>

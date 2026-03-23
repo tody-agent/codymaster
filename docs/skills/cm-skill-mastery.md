@@ -138,24 +138,28 @@ When you encounter something you don't have a skill for:
 
 ---
 
-## The Cody Master Kit (13 skills)
+## On-Demand Skill Creation
 
-| # | Skill | Purpose |
-|---|-------|---------|
-| 1 | `cm-project-bootstrap` | Start new projects |
-| 2 | `cm-planning` | Brainstorm + write plans |
-| 3 | `cm-execution` | Execute plans (batch/subagent/parallel) |
-| 4 | `cm-tdd` | Test-driven development |
-| 5 | `cm-quality-gate` | Test + verify + frontend safety |
-| 6 | `cm-code-review` | Request + receive + finish branch |
-| 7 | `cm-safe-deploy` | 6-gate deploy pipeline |
-| 8 | `cm-safe-i18n` | i18n batching + safety |
-| 9 | `cm-debugging` | Systematic root-cause debugging |
-| 10 | `cm-terminal` | Terminal command monitoring |
-| 11 | `cm-git-worktrees` | Isolated workspaces |
-| 12 | `cm-skill-mastery` | This skill (meta) |
-| 13 | `cm-identity-guard` | Git/deploy identity safety |
+Don't need a separate skill creator tool. When you need a new skill:
+
+1. **Follow Part B above** — use the structure template
+2. **Reference `cm-example`** — see `skills/cm-example/SKILL.md` for the universal format
+3. **Use `_shared/helpers.md`** — reference helpers instead of embedding logic
+4. **Test before deploying** — run the skill through 3 real scenarios
+
+> **Note:** The AI agent will suggest creating a skill when it detects a repeating pattern (3+ times). No separate command needed.
+
+## The Cody Master Kit (34 skills)
+
+| Domain | Key Skills |
+|--------|------------|
+| 🔧 Engineering | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` |
+| ⚙️ Operations | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
+| 🎨 Product & UX | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
+| 📈 Growth/CRO | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
+| 🎯 Orchestration | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` |
+| 🖥️ Workflow | `cm-start` `cm-dashboard` `cm-status` |
 
 ## The Bottom Line
 
-**Skills are discipline, not overhead. Use them. Create them. Never skip them.**
+**Skills are discipline, not overhead. Use them. Create them on demand. Never skip them.**

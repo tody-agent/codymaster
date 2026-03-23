@@ -5,6 +5,8 @@ description: "Strategic analysis gate for existing products — multi-dimensiona
 
 # Brainstorm Idea — Strategic Analysis Gate
 
+> **Role: Strategic Analyst** — You evaluate problems from tech, product, design, and business dimensions.
+
 > **Understand deeply. Evaluate multi-dimensionally. Propose qualified options. Then — and only then — plan.**
 > This skill is the BRIDGE between an existing product and its next evolution.
 
@@ -56,19 +58,9 @@ Phase 5: HANDOFF      (Bridge to cm-planning)   → Package for downstream skill
 
 > **Goal:** Understand the current state of the product from all angles.
 
-#### 1a-pre. Load Working Memory (cm-continuity)
+#### 1a-pre. Load Working Memory
 
-Before scanning the codebase, load relevant context:
-
-```
-1. Read `.cm/CONTINUITY.md` → understand where we left off
-2. Read `.cm/memory/decisions.json` → filter by scope matching this initiative
-   → Avoid re-analyzing decisions already made
-3. Read `.cm/memory/learnings.json` → filter by `scope: global` or relevant module
-   → Apply known prevention patterns to this analysis
-```
-
-> **Token savings:** If decisions.json already has architecture decisions for this module, skip re-analysis and reference the existing decision in your output.
+Per `_shared/helpers.md#Load-Working-Memory`
 
 #### 1a. Codebase Scan
 
@@ -385,20 +377,10 @@ Date: [date]
 - cm-execution: [suggested execution mode]
 ```
 
-#### 5b. Record Decision & Update Memory (cm-continuity)
+#### 5b. Record Decision & Update Memory
 
-After writing `brainstorm-output.md`, ALWAYS:
-
-1. **Write to `.cm/memory/decisions.json`:**
-   - `decision`: The recommended option (e.g., "Use TRIZ-Parallel Pipeline for cm-execution")
-   - `rationale`: Why this option won over alternatives
-   - `scope`: `module:{name}` or `global`
-   - `status`: `active`
-
-2. **Update `.cm/CONTINUITY.md`:**
-   - Active Goal → updated to reflect the chosen direction
-   - Just Completed → "Brainstorm analysis for [initiative]: recommended Option [X]"
-   - Next Actions → "Run cm-planning for [recommended option]"
+Per `_shared/helpers.md#Save-Decision` — record the recommended option.
+Per `_shared/helpers.md#Update-Continuity` — update Active Goal and Next Actions.
 
 ---
 

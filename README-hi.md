@@ -9,7 +9,7 @@
 **34 स्किल्स · 11 कमांड्स · 1 प्लगइन · 7+ प्लेटफॉर्म्स · 6 भाषाएं**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-3.4.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.0.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-34-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />

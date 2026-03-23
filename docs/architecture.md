@@ -123,6 +123,32 @@ Dispatches tasks to AI agents with platform-specific adapters:
 - Validates dispatch preconditions (agent assigned, project path exists)
 - Supports **force re-dispatch** for retries
 
+## Shared Helpers Layer (v4.0)
+
+Skills reference reusable helpers from `skills/_shared/helpers.md` instead of embedding their own logic:
+
+| Helper | Purpose |
+|--------|---------|
+| `#Load-Working-Memory` | Read CONTINUITY.md + learnings at start |
+| `#Save-Decision` | Record architecture decision to decisions.json |
+| `#Update-Continuity` | Save session state for next session |
+| `#Identity-Check` | Verify git/deploy identity before push |
+| `#Project-Level-Detection` | Auto-detect L0-L3 complexity |
+| `#Outputs-Convention` | Standardize `.cm/outputs/` structure |
+
+**Token savings:** ~750-1000 tokens per skill invocation.
+
+## Project Level System (v4.0)
+
+| Level | Task Type | Workflow Depth |
+|-------|-----------|----------------|
+| L0 | Quick fix, typo, config | Direct execution |
+| L1 | Single feature, bug fix | Planning → TDD → Execute |
+| L2 | Multi-component feature | Planning → FR/NFR → TDD → Quality Gate → Deploy |
+| L3 | System redesign, migration | Full RARV cycle with all gates |
+
+Auto-detected by `cm-start` based on task description and codebase analysis.
+
 ## Design Decisions
 
 ### Why File-based JSON Storage?

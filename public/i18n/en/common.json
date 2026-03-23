@@ -38,7 +38,11 @@
     "brain": "Brain",
     "playbook": "Playbook",
     "cli": "CLI",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "parallelCoding": "Parallel Coding",
+    "how": "How",
+    "vibeCoding": "Vibe Coding",
+    "useCases": "Use Cases"
   },
   "socialProof": {
     "label": "TRUSTED BY BUILDERS",

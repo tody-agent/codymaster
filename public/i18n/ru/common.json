@@ -38,7 +38,11 @@
     "brain": "Мозг",
     "playbook": "Руководство",
     "cli": "CLI",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "parallelCoding": "Параллельное кодирование",
+    "how": "Как",
+    "vibeCoding": "Vibe Coding",
+    "useCases": "Сценарии"
   },
   "socialProof": {
     "label": "НАМ ДОВЕРЯЮТ",

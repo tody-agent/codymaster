@@ -1,6 +1,6 @@
 {
   "name": "codymaster",
-  "version": "3.4.0",
+  "version": "4.1.0",
   "description": "34 Skills. Ship 10x faster.",
   "main": "dist/index.js",
   "bin": {
@@ -20,8 +20,9 @@
     "gate:syntax": "node scripts/gate-1-syntax.js",
     "gate:dist": "node scripts/gate-5-dist-verify.js",
     "gate:smoke": "node scripts/gate-6-smoke-test.js",
-    "deploy": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run build:html && npm run docs:build && npm run gate:dist && export $(grep -v '^#' .env | xargs) && wrangler pages deploy public && npm run gate:smoke",
-    "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run build:html && npm run docs:build && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'"
+    "gate:i18n": "node scripts/gate-3-i18n.js",
+    "deploy": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:i18n && npm run build:html && npm run docs:build && npm run gate:dist && export $(grep -v '^#' .env | xargs) && wrangler pages deploy public && npm run gate:smoke",
+    "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:i18n && npm run build:html && npm run docs:build && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'"
   },
   "keywords": [],
   "author": "",

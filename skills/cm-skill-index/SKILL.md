@@ -11,9 +11,9 @@ description: "Progressive Disclosure skill index — efficient skill loading in 
 ## The Problem
 
 Traditional approach: Load every SKILL.md to decide which skill to use.
-- 30+ skills × ~4000 tokens each = **120,000 tokens just for discovery**
+- 30+ skills × ~3000 tokens each = **90,000+ tokens just for discovery**
 - Agent only needs ~500 tokens to make the choice
-- **119,500 tokens wasted on reading full skills**
+- **89,500 tokens wasted on reading full skills**
 
 ## The Solution: 3-Layer Loading
 
@@ -33,7 +33,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
                       │ (confirmed?)
                       v
 ┌────────────────────────────────────────────────┐
-│ LAYER 3: FULL SKILL.md (3000-5000 tokens)       │
+│ LAYER 3: FULL SKILL.md (1500-5000 tokens)       │
 │ Load ONLY during execution. "How to use it."     │
 │ Complete instructions, examples, red flags       │
 └────────────────────────────────────────────────┘
@@ -121,7 +121,136 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `tailwind-mastery` *(planned)* | Tailwind, utility-first, responsive, v4 | Tailwind CSS utilities, responsive, accessibility |
 | `pandasai-analytics` *(planned)* | DataFrame, analytics, forecast, time-series | Natural language DataFrame analysis and visual reports |
 | `google-forms-sheet` *(planned)* | Google Form, sheet, App Script | Form-to-sheet integration with auto-retry |
-| `skill-creator-ultra` *(planned)* | create skill, new skill, automate workflow | Create new AI skills from ideas or workflows |
+
+### Community Skills Registry 🌐
+
+> **59 pre-indexed community skills** from skills.sh. Install on-demand: `npx skills add {source} --skill {name} -a antigravity`
+> If tech not listed here → fall back to `npx skills find "{keyword}"`
+
+#### 🖥️ Frontend Frameworks (10)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `react-best-practices` | vercel-labs/agent-skills | react, react performance, RSC |
+| `composition-patterns` | vercel-labs/agent-skills | react composition, compound components |
+| `react-native-guidelines` | vercel-labs/agent-skills | react native, expo, mobile app |
+| `react-native-best-practices` | callstackincubator/agent-skills | react native, expo, mobile |
+| `nextjs-app-router-patterns` | wshobson/agents | next.js, app router, RSC |
+| `react:components` | google-labs-code/stitch-skills | react components, stitch |
+| `frontend-design` | anthropics/skills | frontend architecture, patterns |
+| `angular-directives` | analogjs/angular-skills | angular, directives, components |
+| `svelte-best-practices` | community | svelte, sveltekit |
+| `astro-best-practices` | community | astro, static site, islands |
+
+#### 🎨 CSS & UI Design (8)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `web-design-guidelines` | vercel-labs/agent-skills | UI review, accessibility, UX audit |
+| `tailwind-design-system` | wshobson/agents | tailwind, design tokens, utility CSS |
+| `tailwind-v4-shadcn` | jezweb/claude-skills | tailwind v4, shadcn/ui |
+| `tailwindcss-advanced-layouts` | josiahsiegel/claude-plugin-marketplace | tailwind layouts, responsive |
+| `remotion-best-practices` | remotion-dev/skills | remotion, programmatic video |
+| `shadcn-ui-patterns` | community | shadcn, radix, component library |
+| `css-architecture` | community | CSS modules, BEM, CSS-in-JS |
+| `framer-motion` | community | animation, framer motion, gestures |
+
+#### 🗄️ Databases & ORM (9)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `supabase-postgres-best-practices` | supabase/agent-skills | supabase, postgres, RLS, SQL |
+| `prisma-database-setup` | prisma/skills | prisma, schema, migration |
+| `prisma-client-api` | prisma/skills | prisma client, type-safe queries |
+| `prisma-expert` | sickn33/antigravity-awesome-skills | prisma, advanced patterns |
+| `drizzle-orm` | community | drizzle, ORM, type-safe SQL |
+| `mongodb-patterns` | community | mongodb, mongoose, NoSQL |
+| `pinecone-db` | community | pinecone, vector DB, embeddings |
+| `turso-database` | community | turso, libSQL, edge database |
+| `planetscale` | community | planetscale, MySQL, branching |
+
+#### 🔐 Authentication (6)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `clerk-nextjs-patterns` | clerk/skills | clerk, auth, nextjs auth |
+| `clerk-auth-v5` | clerk/skills | clerk v5, middleware, session |
+| `better-auth-best-practices` | community | better-auth, auth library |
+| `next-auth-v5` | the-misfits/agent-skills | nextauth, auth.js, OAuth |
+| `auth-js-v5` | the-misfits/agent-skills | auth.js, session, JWT |
+| `supabase-auth` | community | supabase auth, RLS, magic link |
+
+#### 💳 Payments & Commerce (4)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `stripe-client` | community | stripe, payment, checkout |
+| `stripe-webhook` | community | stripe webhook, event handling |
+| `stripe-checkout` | community | stripe checkout, subscription |
+| `stripe-connect` | community | stripe connect, marketplace |
+
+#### 🧪 Testing (5)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `testing-library` | community | testing library, react testing |
+| `vitest-best-practices` | the-misfits/agent-skills | vitest, unit test, coverage |
+| `playwright-e2e` | the-misfits/agent-skills | playwright, e2e, browser test |
+| `cypress-patterns` | community | cypress, e2e, component test |
+| `testing-guidelines` | anthropics/skills | test strategy, TDD, test design |
+
+#### ☁️ Cloud & Deployment (7)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `vercel-deploy-claimable` | vercel-labs/agent-skills | vercel deploy, preview URL |
+| `vercel-deployment-best-practices` | community | vercel, edge functions, ISR |
+| `azure-deployment` | microsoft/skills | azure, cloud, Microsoft |
+| `aws-deployment` | microsoft/skills | AWS, Lambda, S3 |
+| `docker-expert` | community | docker, container, Dockerfile |
+| `docker-compose-orchestration` | community | docker compose, multi-container |
+| `multi-stage-dockerfile` | community | docker build, multi-stage, CI |
+
+#### 🤖 AI & ML (5)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `vercel-ai-sdk-best-practices` | community | AI SDK, streaming, LLM |
+| `langchain-skills` | community | langchain, agents, RAG |
+| `openai-skills` | community | openai, GPT, embeddings |
+| `tavily-search` | community | tavily, web search, research |
+| `ai-sdk-patterns` | community | AI SDK, tool calling, generative UI |
+
+#### 📡 APIs & Integrations (3)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `nextjs-supabase-auth` | sickn33/antigravity-awesome-skills | next.js + supabase, full-stack |
+| `supabase-edge-functions` | nice-wolf-studio/claude-code-supabase-skills | edge functions, Deno |
+| `nextjs-seo` | laguagu/claude-code-nextjs-skills | SEO, meta tags, sitemap |
+
+#### 📱 Mobile & Cross-Platform (2)
+
+| Skill | Source | Install Keywords |
+|-------|--------|-----------------|
+| `expo-patterns` | community | expo, EAS, mobile deploy |
+| `capacitor-patterns` | community | capacitor, ionic, hybrid app |
+
+---
+
+**Discovery Protocol:**
+```
+1. Check THIS index first (59 skills above)
+   → Match found? → npx skills add {source} --skill {name} -a antigravity
+2. No match? → npx skills find "{keyword}" on skills.sh
+3. Still nothing? → Proceed without skill, note gap in .cm-skills-log.json
+
+Trigger points:
+  - cm-start Step 0.5 (before planning)
+  - cm-planning Phase A Step 4 (scope analysis)
+  - cm-execution Pre-flight (before dispatch)
+  - cm-execution RARV (after 2 failed retries)
+```
 
 ## Layer 2: Skill Summary
 
@@ -164,9 +293,9 @@ view_file /path/to/skills/cm-tdd/SKILL.md
    - Follow the skill's instructions completely
 
 4. SAVINGS:
-   - Without index: 34 × 4000 = 132,000 tokens
-   - With index: 2800 + 300 + 4000 = 7,100 tokens
-   - Saved: ~124,900 tokens (~94%)
+    - Without index: 34 × 3000 = 102,000 tokens
+    - With index: 2800 + 300 + 3000 = 6,100 tokens
+    - Saved: ~95,900 tokens (~94%)
 ```
 
 ## Skill Domain Mapping
@@ -181,7 +310,7 @@ product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-ui-preview, cm-docki
 growth: [cm-content-factory, cm-ads-tracker, cro-methodology]
 orchestration: [cm-execution, cm-continuity, cm-skill-mastery, cm-skill-chain, cm-deep-search, cm-readit, cm-how-it-work]
 commands: [cm-start, cm-dashboard, cm-status]
-# planned (no SKILL.md yet): mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, google-forms-sheet, skill-creator-ultra
+# planned (no SKILL.md yet): mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, google-forms-sheet
 ```
 
 ## The Bottom Line

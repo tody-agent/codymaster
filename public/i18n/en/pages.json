@@ -722,7 +722,7 @@
         },
         {
           "q": "Can I create my own skills?",
-          "a": "Absolutely! Use cm-skill-mastery or skill-creator-ultra to create custom skills. The format is compatible with Antigravity, Claude, Cursor, and OpenClaw."
+          "a": "Absolutely! Use cm-skill-mastery to learn how to create custom skills. Just follow the SKILL.md format — it's compatible with Antigravity, Claude, Cursor, and OpenClaw."
         }
       ]
     },
@@ -1545,5 +1545,425 @@
   "cliTitlePart2": "CLI ",
   "cliTitlePart3": "Power Guide",
   "cliSub": "For developers who think in terminal commands. Every slash command, every workflow, all in one place.",
-  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm"
+  "cliWindowTitle": "codymaster — node /opt/homebrew/bin/cm",
+  "parallelPage": {
+    "hero": {
+      "badge": "TRIZ-PARALLEL ENGINE",
+      "title": "Parallel AI Coding<br><span>Without the Chaos</span>",
+      "sub": "Run multiple AI agents simultaneously. Zero merge conflicts. Zero hidden bugs. 6 TRIZ inventive principles make parallel coding both fast AND reliable.",
+      "stat1": "Faster Throughput",
+      "stat2": "Merge Conflicts",
+      "stat3": "TRIZ Principles",
+      "stat4": "Safety System"
+    },
+    "problem": {
+      "label": "THE PROBLEM",
+      "title": "Parallel AI Coding Is Broken",
+      "sub": "2025-2026 industry research reveals a harsh truth: parallel AI agents produce code faster but create more problems than they solve.",
+      "card1": "Increase in PR review time. More code, but reviews can't keep up — quality bottleneck shifts downstream.",
+      "card2": "More static analysis warnings per session. Technical debt grows silently with every parallel run.",
+      "card3": "Of AI-generated code contains OWASP vulnerabilities. Speed without security scanning is reckless.",
+      "card4": "Of developers say AI code \"looks correct but isn't.\" Hidden bugs bypass initial scrutiny and surface in production."
+    },
+    "demo": {
+      "label": "SEE THE DIFFERENCE",
+      "title": "Same 5 Tasks. Two Very Different Outcomes.",
+      "sub": "Scenario: Build a user authentication feature. 5 tasks — API routes, login form, JWT middleware, database schema, and unit tests. Watch what happens.",
+      "withoutTitle": "❌ Without CodyMaster — Raw Parallel",
+      "withoutScenario": "$ dispatch --parallel 5 tasks<br>→ All 5 agents launched simultaneously. No analysis.",
+      "w1": "<strong>Agent A</strong> starts <code class=\"err-code\">auth.ts</code> — API routes",
+      "w2": "<strong>Agent B</strong> starts <code class=\"err-code\">auth.ts</code> — JWT middleware ⚠️ same file!",
+      "w3": "<strong>Agent C</strong> starts login form, <strong>D</strong> starts DB, <strong>E</strong> starts tests",
+      "w4": "<strong>Agent A</strong> finishes — writes auth routes to <code class=\"err-code\">auth.ts</code>",
+      "w5": "<strong>Agent B</strong> finishes — OVERWRITES Agent A's code in <code class=\"err-code\">auth.ts</code> 💥",
+      "w6": "<strong>Agent E</strong> tests fail — API routes are gone, imports broken",
+      "w7": "🔥 Developer manually merges conflicts. Debugging starts...",
+      "w8": "Finally fixed. But 2 hidden bugs remain — discovered in production later.",
+      "withoutResult": "⏱ 45 min · 💥 1 conflict · 🐛 2 hidden bugs · 😤 Manual merge",
+      "withTitle": "✅ With CodyMaster — TRIZ-Parallel",
+      "withScenario": "$ cm-execution --mode E --tasks 5<br>→ Dependency analysis first. Smart batching.",
+      "c1": "<strong>ANALYZE</strong> — scans file dependencies: A→<code>auth.ts</code>, B→<code>auth.ts</code> ⚠️ overlap!",
+      "c2": "<strong>GRAPH</strong> — Batch 1: [A, C, D] (no overlaps) · Batch 2: [B, E] (after A)",
+      "c3": "<strong>DISPATCH</strong> Batch 1 — 3 agents work in parallel, each on independent files",
+      "c4": "<strong>VERIFY</strong> — each agent runs mini-gate: ✅ syntax ✅ tests ✅ self-review",
+      "c5": "<strong>PRE-FLIGHT</strong> Batch 2 — ledger clean. Safe to dispatch [B, E]",
+      "c6": "<strong>DISPATCH</strong> Batch 2 — Agent B adds JWT to <code>auth.ts</code> (builds on A's work)",
+      "c7": "<strong>VERIFY</strong> Batch 2 — all mini-gates pass. <strong>RECORD</strong> session: 0 conflicts ✅",
+      "withResult": "⏱ 12 min · ✅ 0 conflicts · ✅ 0 bugs · 🤖 Fully automated"
+    },
+    "triz": {
+      "label": "THE SOLUTION",
+      "title": "6 TRIZ Principles That Fix Everything",
+      "sub": "TRIZ analyzed 2.5 million patents to find universal problem-solving patterns. CodyMaster applies 6 of those principles to resolve the Speed ↔ Quality contradiction.",
+      "p1": {
+        "title": "Segmentation",
+        "desc": "File-dependency graph ensures only TRULY independent tasks run together. Two agents can't touch the same file. Eliminates 100% of merge conflicts before dispatch."
+      },
+      "p3": {
+        "title": "Local Quality",
+        "desc": "Each agent validates its OWN changes — syntax, tests, self-review — before reporting completion. Bugs are caught at the source, not batched at the end."
+      },
+      "p10": {
+        "title": "Prior Action",
+        "desc": "Pre-flight check scans the conflict ledger BEFORE every dispatch. If a running agent already holds a file, new tasks are blocked — never launched into danger."
+      },
+      "p15": {
+        "title": "Dynamicity",
+        "desc": "Batch size starts at 2 and adapts: 3 clean runs → scale up (max 5). Any conflict → scale down (min 1 = sequential). The system learns from its own history."
+      },
+      "p18": {
+        "title": "Feedback",
+        "desc": "Real-time conflict ledger tracks every file modification. When an agent finishes, actual files are compared against others. Overlap detected → immediate halt."
+      },
+      "p40": {
+        "title": "Composite",
+        "desc": "Each agent is 3 personas in one: Implementer (code) + Tester (write tests) + Reviewer (self-review). Reports DONE only when all three roles pass."
+      }
+    },
+    "lifecycle": {
+      "label": "HOW IT WORKS",
+      "title": "The 8-Step Lifecycle",
+      "s1": "Extract file dependencies from task descriptions using pattern matching. Know which files each task will touch.",
+      "s2": "Build a dependency graph. Group tasks into independent batches using graph coloring — only non-overlapping tasks in the same batch.",
+      "s3": "Read parallel history. Compute optimal batch size based on past success/conflict rates. Start cautious, scale with confidence.",
+      "s4": "Check the conflict ledger against any running agents. No overlap → safe to dispatch. Any conflict → block and wait.",
+      "s5": "Send independent tasks to agents with strict Quality Contracts. Each agent knows its file scope, timeout, and required checks.",
+      "s6": "Agents report actual modified files back to the conflict ledger. Real-time detection catches unexpected overlaps instantly.",
+      "s7": "Each agent runs its mini quality gate — syntax + tests + self-review — before reporting completion. No \"trust me it works.\"",
+      "s8": "Save session metrics to parallel history. Future batch sizes are informed by real data, not hunches."
+    },
+    "compare": {
+      "label": "COMPARISON",
+      "title": "Normal Parallel vs TRIZ-Parallel",
+      "thAspect": "Aspect",
+      "thNormal": "Normal Parallel",
+      "thTriz": "TRIZ-Parallel",
+      "r1": {
+        "aspect": "Conflict Prevention",
+        "normal": "✗ None",
+        "triz": "✓ Dependency Graph"
+      },
+      "r2": {
+        "aspect": "Quality Check",
+        "normal": "Once at end",
+        "triz": "✓ Per-Agent Gate"
+      },
+      "r3": {
+        "aspect": "Batch Sizing",
+        "normal": "Fixed (manual)",
+        "triz": "✓ Adaptive"
+      },
+      "r4": {
+        "aspect": "Agent Role",
+        "normal": "Code only",
+        "triz": "✓ Code+Test+Review"
+      },
+      "r5": {
+        "aspect": "Conflict Detection",
+        "normal": "✗ Post-merge (late)",
+        "triz": "✓ Real-time Ledger"
+      },
+      "r6": {
+        "aspect": "Rollback",
+        "normal": "✗ Manual revert",
+        "triz": "✓ Auto-halt + Scale Down"
+      },
+      "r7": {
+        "aspect": "Learning",
+        "normal": "✗ None",
+        "triz": "✓ Session History"
+      }
+    },
+    "safety": {
+      "label": "ROLLBACK & SAFETY",
+      "title": "4-Tier Defense System",
+      "t1": {
+        "title": "Prevention",
+        "desc": "Dependency graph blocks conflicting tasks. Pre-flight scans the ledger before every dispatch."
+      },
+      "t2": {
+        "title": "Early Detection",
+        "desc": "Real-time conflict ledger catches unexpected overlaps instantly. Agents self-validate before reporting."
+      },
+      "t3": {
+        "title": "Self-Healing",
+        "desc": "Adaptive batch sizing throttles down on conflict. Minimum size = 1 → sequential fallback guaranteed."
+      },
+      "t4": {
+        "title": "Explicit Rollback",
+        "desc": "Conflict → halt → no merge → code is safe. Each agent in its own worktree via cm-git-worktrees."
+      }
+    },
+    "cta": {
+      "title": "Ready to code 3-5x faster — safely?",
+      "sub": "Open source. Backed by TRIZ science. Install in 30 seconds.",
+      "button": "Get Started →",
+      "docs": "Read the Technical Docs →",
+      "why": "Why CodyMaster →"
+    }
+  },
+  "vibeCoding": {
+    "meta": {
+      "title": "Vibe Coding for Non-Developers | CodyMaster",
+      "description": "Learn vibe coding for non-developers. Just chat, AI will code for you. Free & open source."
+    },
+    "hero": {
+      "badge": "For non-developers · 100% Free",
+      "title1": "You don't need to know code.",
+      "title2": "You just need to know how to talk.",
+      "subtitle": "Vibe coding is how you talk to AI to write code, design interfaces, and deploy products for you. No coding required. No hiring devs. Just describe your idea in natural language.",
+      "ctaPrimary": "See how it works ↓",
+      "ctaSecondary": "Install now — Free",
+      "chatTitle": "CodyMaster — Vibe Coding",
+      "chatUser": "Create a spa booking website with a scheduling form, beautiful UI, and deploy it live for me 🙏",
+      "chatAiLabel": "🧠 CodyMaster",
+      "chatAi": "I'll follow the workflow: analyze requirements → design UX → code + test → safe deploy. You just sit back and review! ✨"
+    },
+    "analogy": {
+      "label": "UNDERSTAND VIBE CODING IN 10 SECONDS",
+      "title": "You're the director. AI is the crew.",
+      "oldIcon": "🏗️",
+      "oldTitle": "Old way: Build it yourself",
+      "oldDesc": "You had to learn bricklaying, welding, wiring, painting... to build a house. Takes 6 months - 1 year.",
+      "newIcon": "🎬",
+      "newTitle": "Vibe Coding: Direct it",
+      "newDesc": "You describe the house you want. The AI crew designs, builds, and quality-checks it for you. Takes a few days."
+    },
+    "pains": {
+      "label": "BARRIERS YOU'RE FACING",
+      "title": "We understand where you're stuck",
+      "cards": [
+        {
+          "icon": "🤯",
+          "title": "Can't code — feeling helpless",
+          "desc": "You have a clear product idea but can't build it yourself. Every time you hire a dev, it hurts your wallet."
+        },
+        {
+          "icon": "😱",
+          "title": "Afraid of AI — don't know where to start",
+          "desc": "ChatGPT, Claude, Gemini... too many tools but no idea how to use them right. Copy-paste code then get errors is the norm."
+        },
+        {
+          "icon": "🧱",
+          "title": "No-code is limited",
+          "desc": "Wix, Squarespace only create static pages. Want a dashboard, auth, API, database? No-code can't handle it."
+        },
+        {
+          "icon": "🔥",
+          "title": "AI codes then... breaks",
+          "desc": "AI writes code fast but doesn't test, no system. Fix 1 thing, break 5 others. Chaos."
+        }
+      ]
+    },
+    "workflow": {
+      "label": "5-STEP WORKFLOW",
+      "title": "From idea to product, you just chat",
+      "subtitle": "This is the process CodyMaster automatically runs when you ask it to work.",
+      "steps": [
+        {
+          "title": "💬 You Chat — Describe your idea",
+          "desc": "Tell AI what you want, in your language. No technical terms needed.",
+          "example": "\"Create a spa introduction page with a booking form, elegant design\""
+        },
+        {
+          "title": "📋 AI Analyzes & Plans",
+          "desc": "CodyMaster automatically analyzes requirements, asks questions if needed, then writes a detailed plan. You approve before it starts building.",
+          "example": "→ cm-brainstorm-idea + cm-planning auto-activate"
+        },
+        {
+          "title": "🎨 AI Designs the interface",
+          "desc": "Applies 48 UX rules, builds a design system matching your brand. You review the preview before coding.",
+          "example": "→ cm-ux-master + cm-ui-preview create visual mockups"
+        },
+        {
+          "title": "💻 AI Codes & Tests automatically",
+          "desc": "Writes code using TDD (test first, code second). Security scanning. Error checking. You don't need to read code.",
+          "example": "→ cm-tdd + cm-debugging + cm-secret-shield protect code"
+        },
+        {
+          "title": "🚀 Deploy — Product goes live",
+          "desc": "8 safety gates before going to the internet. Auto-generates docs. Rollback if errors.",
+          "example": "→ cm-safe-deploy → Product live on global CDN!"
+        }
+      ]
+    },
+    "prompts": {
+      "label": "SAMPLE PROMPTS — COPY & PASTE",
+      "title": "Say it like this, AI gets it instantly",
+      "subtitle": "These are real prompts that non-developers can use right away.",
+      "cards": [
+        {
+          "label": "🌐 Create Website",
+          "prompt": "\"Create a landing page for a coffee shop called Morning Brew. Need menu, photo gallery, and a table booking button.\"",
+          "result": "<strong>AI will:</strong> Plan → Design elegant UI → Code HTML/CSS/JS → Deploy to internet."
+        },
+        {
+          "label": "📊 Build Dashboard",
+          "prompt": "\"Create a revenue management dashboard for an online shop. Need charts, order table, and date filter.\"",
+          "result": "<strong>AI will:</strong> Analyze data flow → Build dashboard with charts → Add auth + database."
+        },
+        {
+          "label": "🐛 Fix Bugs",
+          "prompt": "\"My website has an error when clicking the order button. Find and fix it for me.\"",
+          "result": "<strong>AI will:</strong> Systematic error analysis → Find root cause → Write test → Fix → Verify."
+        },
+        {
+          "label": "📱 Booking App",
+          "prompt": "\"Create a booking system for a dental clinic. Patients choose doctor, date/time, and receive email confirmation.\"",
+          "result": "<strong>AI will:</strong> Design UX → Build booking flow → Integrate email → Deploy complete."
+        },
+        {
+          "label": "✍️ Content Marketing",
+          "prompt": "\"Create a skincare blog for cosmetics brand Serenity. Need 10 SEO articles, complete blog page.\"",
+          "result": "<strong>AI will:</strong> Research keywords → Write 10 articles → Quality audit → Build blog → Deploy."
+        },
+        {
+          "label": "📝 Docs & SOP",
+          "prompt": "\"Read all the code in this project and create technical docs + user guide for the team.\"",
+          "result": "<strong>AI will:</strong> Scan codebase → Create architecture docs → SOP → API reference → User guide."
+        }
+      ]
+    },
+    "mistakes": {
+      "label": "COMMON MISTAKES",
+      "title": "How to talk so AI understands?",
+      "subtitle": "Good prompt = good result. Here are common mistakes and how to fix them.",
+      "cards": [
+        {
+          "title": "Too vague",
+          "wrongLabel": "❌ WRONG",
+          "wrong": "\"Create a beautiful website for me\"",
+          "rightLabel": "✅ RIGHT",
+          "right": "\"Create a landing page for yoga studio ZenFlow. Pastel tone, light purple + white. Need intro section, 3-tier pricing, and trial signup form.\""
+        },
+        {
+          "title": "Wanting everything at once",
+          "wrongLabel": "❌ WRONG",
+          "wrong": "\"Create a complete app with everything: login, management, reports, payments, chat...\"",
+          "rightLabel": "✅ RIGHT",
+          "right": "\"Step 1: Create login + signup page. Will continue after this step is done.\""
+        },
+        {
+          "title": "Not reviewing the plan",
+          "wrongLabel": "❌ WRONG",
+          "wrong": "AI shows plan → You: \"Ok go ahead\" (without reading)",
+          "rightLabel": "✅ RIGHT",
+          "right": "Read plan → Feedback: \"Remove chat section, add gallery\" → AI revises → Then approve."
+        }
+      ]
+    },
+    "beforeAfter": {
+      "label": "TRANSFORMATION",
+      "title": "Before and After Vibe Coding",
+      "beforeTitle": "❌ Before",
+      "beforeItems": [
+        "Hire agency $10K-50K for 1 MVP",
+        "Takes 3-6 months to finish",
+        "You describe, dev misunderstands",
+        "Change 1 line of text, wait 2 days for dev",
+        "Deploy and pray for no bugs",
+        "AI code breaks, afraid to use it"
+      ],
+      "afterTitle": "✅ After using CodyMaster",
+      "afterItems": [
+        "$0 — completely free",
+        "Idea to live in days",
+        "You describe, AI builds exactly right",
+        "Chat to edit, AI updates instantly",
+        "8 safety gates before deploy",
+        "AI has \"discipline\" — won't break existing code"
+      ]
+    },
+    "tips": {
+      "label": "USAGE TIPS",
+      "title": "7 tips for more effective vibe coding",
+      "cards": [
+        {
+          "icon": "🎯",
+          "title": "Be specific",
+          "desc": "State clearly: brand name, colors, how many sections, what features. The more specific, the more accurate AI is."
+        },
+        {
+          "icon": "🪜",
+          "title": "Step by step",
+          "desc": "Don't request \"complete app\" right away. Break it down: homepage → form → dashboard → deploy."
+        },
+        {
+          "icon": "👀",
+          "title": "Review the plan",
+          "desc": "AI always shows the plan before coding. Read it and give feedback. This is your most important \"directing\" moment."
+        },
+        {
+          "icon": "🗣️",
+          "title": "Use your language",
+          "desc": "CodyMaster understands your language. You don't need English or technical jargon."
+        },
+        {
+          "icon": "📸",
+          "title": "Share reference images",
+          "desc": "Like a website? Send URL or screenshot. AI will analyze and create a similar design."
+        },
+        {
+          "icon": "🔄",
+          "title": "Iterate continuously",
+          "desc": "\"Make the CTA button bigger\", \"Change the font\", \"Add testimonials section\". Chat naturally to refine."
+        },
+        {
+          "icon": "💾",
+          "title": "Use /cm-start",
+          "desc": "Type <code style=\"color:var(--accent-cyan);\">/cm-start \"project description\"</code> to have CodyMaster run the entire workflow automatically."
+        }
+      ]
+    },
+    "faq": {
+      "label": "FREQUENTLY ASKED QUESTIONS",
+      "title": "Answers to your questions",
+      "items": [
+        {
+          "q": "I don't know any code at all, can I use this?",
+          "a": "Absolutely! CodyMaster's creator (Tody Le) isn't a developer either — he's a Product Manager. CodyMaster is designed so you just chat in natural language, AI handles all the technical stuff."
+        },
+        {
+          "q": "How is vibe coding different from ChatGPT copy-paste?",
+          "a": "ChatGPT only gives disconnected code snippets, you have to assemble, test, deploy yourself. CodyMaster is a complete system: 34 skills auto-run — from planning, design, code, test, security check, to deploy. Like hiring an entire senior team instead of asking 1 random person."
+        },
+        {
+          "q": "What do I need to install first?",
+          "a": "You need one of these AI coding agents: Cursor IDE, Claude Code, Gemini Antigravity, or any agent that supports skills. Then run 1 install command and start chatting. See the detailed guide on the <a href=\"start.html\" style=\"color:var(--accent-lime);\">Get Started</a> page."
+        },
+        {
+          "q": "How much does it cost?",
+          "a": "CodyMaster is completely free and open source. You only pay for the AI agent you use (e.g., Cursor subscription or Claude API). Many agents have free tiers to get started."
+        },
+        {
+          "q": "What if I want to change things later?",
+          "a": "Chat again! CodyMaster has \"memory\" (cm-continuity) so it remembers the project context. Just say: \"Change background to navy blue\" or \"Add testimonials section\" — AI updates without breaking existing code."
+        },
+        {
+          "q": "What types of products can I create?",
+          "a": "Landing pages, blogs, e-commerce, dashboards, booking systems, SaaS, portfolios, technical docs, content marketing... Any web product. CodyMaster even supports mobile app UI design."
+        }
+      ]
+    },
+    "finalCta": {
+      "title1": "Your idea deserves to exist.",
+      "title2": "Turn it into a real product.",
+      "subtitle": "Free. No credit card needed. From idea → live product today.",
+      "ctaPrimary": "Start now — Free →",
+      "ctaSecondary": "📖 Read detailed guide"
+    },
+    "footer": {
+      "tagline": "Turn ideas into products 10x faster",
+      "products": "Products",
+      "getStarted": "Get Started",
+      "docs": "Docs",
+      "learn": "Learn",
+      "whyCodyMaster": "Why CodyMaster",
+      "compare": "Compare",
+      "story": "Story",
+      "community": "Community",
+      "copyright": "© 2026 CodyMaster Kit. Free & Open Source.",
+      "made": "Made with ❤️ and AI"
+    }
+  }
 }
