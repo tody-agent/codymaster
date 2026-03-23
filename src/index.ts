@@ -22,6 +22,16 @@ const VERSION = '3.4.0';
 
 // ─── Branding ───────────────────────────────────────────────────────────────
 
+function safeUnlinkSync(filePath: string) {
+  try {
+    fs.unlinkSync(filePath);
+  } catch (err: any) {
+    if (err.code !== 'ENOENT') {
+      console.log(chalk.yellow(`Failed to delete ${filePath}: ${err.message}`));
+    }
+  }
+}
+
 function showBanner() {
   console.log(chalk.cyan(`
    ██████╗ ██████╗  ██████╗  ██╗   ██╗
@@ -270,16 +280,16 @@ program
 
 function isDashboardRunning(): boolean {
   try { if (!fs.existsSync(PID_FILE)) return false; const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8').trim()); process.kill(pid, 0); return true; }
-  catch { try { fs.unlinkSync(PID_FILE); } catch { } return false; }
+  catch { safeUnlinkSync(PID_FILE); return false; }
 }
 
 function stopDashboard() {
   try {
     if (!fs.existsSync(PID_FILE)) { console.log(chalk.yellow('⚠️  No dashboard running.')); return; }
     const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8').trim());
-    process.kill(pid, 'SIGTERM'); try { fs.unlinkSync(PID_FILE); } catch { }
+    process.kill(pid, 'SIGTERM'); safeUnlinkSync(PID_FILE);
     console.log(chalk.green(`✅ Dashboard stopped (PID ${pid}).`));
-  } catch (err: any) { console.log(chalk.red(`Failed to stop: ${err.message}`)); try { fs.unlinkSync(PID_FILE); } catch { } }
+  } catch (err: any) { console.log(chalk.red(`Failed to stop: ${err.message}`)); safeUnlinkSync(PID_FILE); }
 }
 
 function dashboardStatus(port: number) {
@@ -888,7 +898,7 @@ function downloadFile(url: string, dest: string): Promise<boolean> {
       fs.mkdirSync(path.dirname(dest), { recursive: true });
       const file = fs.createWriteStream(dest);
       https.get(url, (res) => {
-        if (res.statusCode !== 200) { file.close(); try { fs.unlinkSync(dest); } catch { } resolve(false); return; }
+        if (res.statusCode !== 200) { file.close(); safeUnlinkSync(dest); resolve(false); return; }
         res.pipe(file);
         file.on('finish', () => { file.close(); resolve(true); });
       }).on('error', () => { file.close(); resolve(false); });
