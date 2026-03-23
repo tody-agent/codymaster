@@ -147,13 +147,16 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     // Upserts by conversationId — creates task if missing, transitions if status changes.
     app.post('/api/tasks/auto-sync', (req, res) => {
         const data = (0, data_1.loadData)();
-        const { conversationId, title, status, agent, skill, projectId, projectName } = req.body;
+        const { conversationId, title, status, agent, skill, projectId, projectName, priority } = req.body;
         if (!conversationId || !title) {
             res.status(400).json({ error: 'conversationId and title are required' });
             return;
         }
         // Map status to column
         const STATUS_TO_COLUMN = {
+            'backlog': 'backlog',
+            'pending': 'backlog',
+            'todo': 'backlog',
             'started': 'in-progress',
             'active': 'in-progress',
             'in-progress': 'in-progress',
@@ -215,7 +218,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
                 description: `Auto-synced from conversation ${conversationId}`,
                 column,
                 order: maxOrder + 1,
-                priority: 'medium',
+                priority: (['low', 'medium', 'high', 'urgent'].includes(priority) ? priority : 'medium'),
                 agent: (agent || '').trim(),
                 skill: (skill || '').trim(),
                 createdAt: now,

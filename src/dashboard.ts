@@ -144,7 +144,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
   app.post('/api/tasks/auto-sync', (req, res) => {
     const data = loadData();
-    const { conversationId, title, status, agent, skill, projectId, projectName } = req.body;
+    const { conversationId, title, status, agent, skill, projectId, projectName, priority } = req.body;
 
     if (!conversationId || !title) {
       res.status(400).json({ error: 'conversationId and title are required' });
@@ -153,6 +153,9 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
     // Map status to column
     const STATUS_TO_COLUMN: Record<string, Task['column']> = {
+      'backlog': 'backlog',
+      'pending': 'backlog',
+      'todo': 'backlog',
       'started': 'in-progress',
       'active': 'in-progress',
       'in-progress': 'in-progress',
@@ -219,7 +222,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
         description: `Auto-synced from conversation ${conversationId}`,
         column,
         order: maxOrder + 1,
-        priority: 'medium',
+        priority: (['low', 'medium', 'high', 'urgent'].includes(priority) ? priority : 'medium') as Task['priority'],
         agent: (agent || '').trim(),
         skill: (skill || '').trim(),
         createdAt: now,

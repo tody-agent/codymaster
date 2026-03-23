@@ -9,6 +9,10 @@
 #    bash install.sh --claude --global  Claude Code, user scope
 #    bash install.sh --claude --project Claude Code, project scope
 #    bash install.sh --gemini           Gemini CLI
+#    bash install.sh --aider            Aider
+#    bash install.sh --continue         Continue.dev
+#    bash install.sh --amazon-q         Amazon Q CLI (q)
+#    bash install.sh --amp              Amp
 #    bash install.sh --all              All detected platforms
 # ════════════════════════════════════════════════════════════════
 
@@ -153,7 +157,35 @@ detect_agents() {
     echo -e "  ${G}5) 📦 OpenCode${NC}           $(msg not_found)"
   fi
 
-  echo -e "  ${W}6) 📋 Manual copy${NC}         (any platform)"
+  if command -v aider &>/dev/null; then
+    echo -e "  ${O}${BOLD}6) 🤖 Aider${NC}              $(msg found)"
+    DETECTED+=("aider")
+  else
+    echo -e "  ${O}6) 🤖 Aider${NC}              $(msg not_found)"
+  fi
+
+  if [ -d "$HOME/.continue" ]; then
+    echo -e "  ${B}${BOLD}7) 🔗 Continue.dev${NC}       $(msg found)"
+    DETECTED+=("continue")
+  else
+    echo -e "  ${B}7) 🔗 Continue.dev${NC}       $(msg not_found)"
+  fi
+
+  if command -v q &>/dev/null; then
+    echo -e "  ${W}${BOLD}8) ☁️  Amazon Q CLI${NC}      $(msg found)"
+    DETECTED+=("amazon-q")
+  else
+    echo -e "  ${W}8) ☁️  Amazon Q CLI${NC}      $(msg not_found)"
+  fi
+
+  if command -v amp &>/dev/null; then
+    echo -e "  ${G}${BOLD}9) ⚡ Amp${NC}                $(msg found)"
+    DETECTED+=("amp")
+  else
+    echo -e "  ${G}9) ⚡ Amp${NC}                $(msg not_found)"
+  fi
+
+  echo -e "  ${W}10) 📋 Manual copy${NC}        (any platform)"
   echo ""
 }
 
@@ -213,11 +245,85 @@ install_gemini() {
   echo -e "${C}${BOLD}Gemini CLI — Installing Cody Master${NC}"
   echo ""
   if command -v gemini &>/dev/null; then
-    gemini extensions install "$REPO_URL"
-    echo -e "  ${G}✅ Installed via Gemini extensions${NC}"
+    echo -e "  ${W}Trying gemini extensions install...${NC}"
+    if gemini extensions install "$REPO_URL" 2>/dev/null; then
+      echo -e "  ${G}✅ Installed via Gemini extensions${NC}"
+    else
+      echo -e "  ${W}Falling back to direct skills copy...${NC}"
+      install_antigravity "$HOME/.gemini/skills"
+      echo -e "  ${G}✅ Skills copied to ~/.gemini/skills/${NC}"
+      echo -e "  ${C}ℹ  Add to your GEMINI.md: @~/.gemini/skills/*/SKILL.md${NC}"
+    fi
   else
+    echo ""
+    echo -e "  ${R}Gemini CLI not found. Install from:${NC}"
+    echo -e "  ${C}https://github.com/google-gemini/gemini-cli${NC}"
+    echo ""
+    echo -e "  Then run:"
     echo -e "  ${C}gemini extensions install ${REPO_URL}${NC}"
   fi
+}
+
+# ── Aider installer ──────────────────────────────────────────────
+install_aider() {
+  echo ""
+  echo -e "${O}${BOLD}Aider — Installing Cody Master${NC}"
+  echo ""
+  if command -v aider &>/dev/null; then
+    local target="$HOME/.aider/skills"
+    install_antigravity "$target"
+    # Create .aiderignore entry if not present
+    if [ ! -f ".aider.conf.yml" ] || ! grep -q "read:" .aider.conf.yml 2>/dev/null; then
+      echo -e "  ${W}Tip: add skills context to .aider.conf.yml:${NC}"
+      echo -e "  ${C}read: - ~/.aider/skills/cm-planning/SKILL.md${NC}"
+    fi
+    echo -e "  ${G}✅ Skills installed to ${target}${NC}"
+  else
+    echo -e "  ${R}Aider not found. Install: ${C}pip install aider-chat${NC}"
+    echo -e "  Or: ${C}https://aider.chat${NC}"
+  fi
+}
+
+# ── Continue.dev installer ───────────────────────────────────────
+install_continue() {
+  echo ""
+  echo -e "${B}${BOLD}Continue.dev — Installing Cody Master${NC}"
+  echo ""
+  local rules_dir="$HOME/.continue/rules"
+  mkdir -p "$rules_dir"
+  local count=0
+  for skill_dir in skills/*/; do
+    skill_name=$(basename "$skill_dir")
+    if [ -f "${skill_dir}SKILL.md" ]; then
+      cp "${skill_dir}SKILL.md" "${rules_dir}/${skill_name}.md"
+      count=$((count + 1))
+    fi
+  done
+  echo -e "  ${G}✅ ${count} skill rules installed to ${rules_dir}${NC}"
+  echo -e "  ${C}ℹ  Rules are auto-loaded by Continue.dev from ~/.continue/rules/${NC}"
+}
+
+# ── Amazon Q CLI installer ───────────────────────────────────────
+install_amazon_q() {
+  echo ""
+  echo -e "${W}${BOLD}Amazon Q CLI — Installing Cody Master${NC}"
+  echo ""
+  local target="$HOME/.aws/amazonq/skills"
+  install_antigravity "$target"
+  echo -e "  ${G}✅ Skills installed to ${target}${NC}"
+  echo -e "  ${W}To use in Q chat, reference skills:${NC}"
+  echo -e "  ${C}q chat --context ~/.aws/amazonq/skills/cm-planning/SKILL.md${NC}"
+}
+
+# ── Amp installer ────────────────────────────────────────────────
+install_amp() {
+  echo ""
+  echo -e "${G}${BOLD}Amp — Installing Cody Master${NC}"
+  echo ""
+  local target="$HOME/.amp/skills"
+  install_antigravity "$target"
+  echo -e "  ${G}✅ Skills installed to ${target}${NC}"
+  echo -e "  ${C}ℹ  Reference skills in Amp via your AGENTS.md or system prompt${NC}"
 }
 
 # ── Gemini/Antigravity file copy ─────────────────────────────────
@@ -283,11 +389,35 @@ if [[ "$1" == "--gemini" ]]; then
   exit 0
 fi
 
+if [[ "$1" == "--aider" ]]; then
+  install_aider
+  exit 0
+fi
+
+if [[ "$1" == "--continue" ]]; then
+  install_continue
+  exit 0
+fi
+
+if [[ "$1" == "--amazon-q" ]]; then
+  install_amazon_q
+  exit 0
+fi
+
+if [[ "$1" == "--amp" ]]; then
+  install_amp
+  exit 0
+fi
+
 if [[ "$1" == "--all" ]]; then
   echo -e "${W}${BOLD}Installing to all detected platforms...${NC}"
   echo ""
   command -v claude &>/dev/null && install_claude "$SCOPE"
   command -v gemini &>/dev/null && install_gemini
+  command -v aider  &>/dev/null && install_aider
+  [ -d "$HOME/.continue" ]    && install_continue
+  command -v q      &>/dev/null && install_amazon_q
+  command -v amp    &>/dev/null && install_amp
   exit 0
 fi
 
@@ -308,12 +438,16 @@ else
   for n in "${nums[@]}"; do
     n=$(echo "$n" | tr -d ' ')
     case "$n" in
-      1) platforms+=("claude") ;;
-      2) platforms+=("gemini") ;;
-      3) platforms+=("cursor") ;;
-      4) platforms+=("codex") ;;
-      5) platforms+=("opencode") ;;
-      6) platforms+=("manual") ;;
+      1)  platforms+=("claude") ;;
+      2)  platforms+=("gemini") ;;
+      3)  platforms+=("cursor") ;;
+      4)  platforms+=("codex") ;;
+      5)  platforms+=("opencode") ;;
+      6)  platforms+=("aider") ;;
+      7)  platforms+=("continue") ;;
+      8)  platforms+=("amazon-q") ;;
+      9)  platforms+=("amp") ;;
+      10) platforms+=("manual") ;;
     esac
   done
 fi
@@ -343,6 +477,18 @@ for platform in "${platforms[@]}"; do
       echo -e "${G}${BOLD}OpenCode — Install${NC}"
       echo -e "  Tell OpenCode: ${C}Fetch and follow ${RAW_URL}/.opencode/INSTALL.md${NC}"
       ;;
+    aider)
+      install_aider
+      ;;
+    continue)
+      install_continue
+      ;;
+    amazon-q)
+      install_amazon_q
+      ;;
+    amp)
+      install_amp
+      ;;
     manual)
       echo ""
       echo -e "${W}${BOLD}Manual Copy — Any Platform${NC}"
@@ -350,8 +496,11 @@ for platform in "${platforms[@]}"; do
       echo -e "  ${C}# Gemini CLI${NC}"
       echo -e "  gemini extensions install ${REPO_URL}"
       echo ""
-      echo -e "  ${C}# Antigravity (global)${NC}"
-      echo -e "  bash install.sh && choose option 3"
+      echo -e "  ${C}# Aider${NC}"
+      echo -e "  bash install.sh --aider"
+      echo ""
+      echo -e "  ${C}# Continue.dev${NC}"
+      echo -e "  bash install.sh --continue"
       echo ""
       echo -e "  ${C}# Any platform (copy)${NC}"
       echo -e "  cp -r skills/* ~/.gemini/skills/"

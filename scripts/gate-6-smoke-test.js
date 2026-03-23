@@ -5,7 +5,7 @@
  * Usage: node scripts/gate-6-smoke-test.js [optional-url]
  */
 
-const DEPLOY_URL = process.argv[2] || process.env.DEPLOY_URL || 'https://cody-master.pages.dev';
+const DEPLOY_URL = process.argv[2] || process.env.DEPLOY_URL || 'https://cody.todyle.com';
 
 async function smokeTest() {
   console.log(`🔍 Smoke testing: ${DEPLOY_URL}`);
