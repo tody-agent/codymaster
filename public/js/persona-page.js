@@ -9,9 +9,12 @@
   // ─── HTML Escape Helper (XSS Prevention) ────────
   function esc(str) {
     if (str == null) return '';
-    const div = document.createElement('div');
-    div.appendChild(document.createTextNode(String(str)));
-    return div.innerHTML;
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   // ─── i18n Engine (standalone for this page) ────────
