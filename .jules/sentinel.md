@@ -1,0 +1,4 @@
+## 2024-03-24 - [DOM-Based HTML Escaping Vulnerability]
+**Vulnerability:** The dashboard UI (`public/dashboard/app.js` and `public/js/persona-page.js`) used `document.createElement('div'); d.textContent = str; return d.innerHTML;` for XSS protection. This pattern is vulnerable to mutation XSS (mXSS) depending on the browser, can fail on specific null byte inputs, and performs slower due to direct DOM manipulation.
+**Learning:** Depending on the browser's DOM parser for sanitizing strings intended for HTML injection is inconsistent and poses an mXSS risk. The preferred and universally safe approach is simple regex character replacement for `<, >, &, ', "`.
+**Prevention:** Always use regex-based character replacement for HTML escaping. If complex HTML is needed, use a dedicated library like DOMPurify or the custom whitelist sanitizer seen in `public/js/sanitize.js`.
