@@ -1,22 +1,42 @@
 ---
-title: "cm-execution"
+name: cm-execution
 description: "Use when executing implementation plans — choose mode: batch execution with checkpoints, subagent-per-task, or parallel dispatch for independent problems."
-keywords: ["cm-execution", "cody master", "ai skill"]
-robots: "index, follow"
 ---
-
-> **📋 Full Skill Source** — This is the complete, unedited SKILL.md file. Nothing is hidden or summarized.
-
-[← Back to Skills Library](./index.md)
 
 # Execution — Execute Plans at Scale
 
+> **Role: Lead Developer** — You execute implementation plans systematically with quality gates at every checkpoint.
+
 > **Three modes, one skill.** Choose based on task structure.
+
+## Step 0: Load Working Memory (MANDATORY)
+
+Per `_shared/helpers.md#Load-Working-Memory`
+
+After EACH completed task: Per `_shared/helpers.md#Update-Continuity`
+
+### Pre-flight: Skill Coverage Audit
+
+Before choosing execution mode, scan plan tasks for technology keywords:
+
+```
+1. Extract technologies/frameworks/tools from ALL task descriptions
+2. Cross-reference with cm-skill-index Layer 1 triggers
+3. Check installed external skills: npx skills list
+4. If gap found → trigger Discovery Loop (cm-skill-mastery Part C)
+   → npx skills find "{keyword}" → review → ask user → install
+5. Log any installations to .cm-skills-log.json
+6. Only proceed to Mode Selection after all gaps resolved
+```
+
+---
 
 ## Mode Selection
 
 ```
 Have a plan with independent tasks?
+├── Need SPEED + QUALITY on 3+ tasks?
+│   └── YES → Mode E: TRIZ-Parallel ⚡ (recommended)
 ├── Stay in this session?
 │   ├── YES → Mode B: Subagent-Driven
 │   └── NO → Mode A: Batch Execution
@@ -29,6 +49,7 @@ Have a plan with independent tasks?
 | **A: Batch** | Plan with checkpoints | Execute 3 tasks → report → feedback → next batch |
 | **B: Subagent** | Plan with independent tasks, same session | Fresh subagent per task + 2-stage review |
 | **C: Parallel** | 2+ independent problems | One agent per problem domain |
+| **E: TRIZ-Parallel** ⚡ | 3+ independent tasks, need speed + quality | Dependency-aware parallel dispatch with per-agent quality gates |
 
 ---
 
@@ -140,7 +161,10 @@ LOOP until backlog empty or user interrupts:
   4. VERIFY  → Run tests/checks (cm-quality-gate)
                 If PASS → status = "done", completed_at = now()
                 If FAIL → rarv_cycles++, log error, retry from REASON
-                If rarv_cycles >= 3 → status = "blocked"
+                If rarv_cycles >= 2 → attempt Skill Discovery Fallback:
+                  → npx skills find "{task keywords}"
+                  → If skill found + user approves → install, reset rarv_cycles = 0, retry
+                  → If NOT found → rarv_cycles >= 3 → status = "blocked"
                 Log: { phase: "VERIFY", message: "✅ passed" or "❌ <error>" }
 
   5. NEXT    → Recalculate stats, pick next task
@@ -171,6 +195,93 @@ After EVERY phase, you MUST:
 - **Respect interrupts** — if user sends a message, pause and respond
 
 ---
+
+## Mode E: TRIZ-Parallel ⚡
+
+> **Speed AND quality.** 6 TRIZ principles resolve the contradiction.
+
+### When
+- 3+ tasks that can potentially run in parallel
+- Speed is important but quality cannot be sacrificed
+- Tasks are well-defined with clear file scope
+- You need to maximize throughput without merge conflicts
+
+### TRIZ Principles Applied
+
+| # | Principle | How Applied |
+|---|-----------|-------------|
+| **#1** | Segmentation | Tasks split by file-dependency graph → only truly independent tasks run together |
+| **#3** | Local Quality | Each agent runs its own mini quality gate (syntax + tests) before reporting |
+| **#10** | Prior Action | Pre-flight check scans for file overlaps BEFORE dispatch |
+| **#15** | Dynamicity | Batch size adapts: starts at 2, scales up after clean runs, down after conflicts |
+| **#18** | Feedback | Real-time conflict detection via shared ledger of modified files |
+| **#40** | Composite | Each agent = implementer + tester + reviewer (3 roles in 1) |
+
+### Process
+
+```
+1. ANALYZE    → Extract file dependencies from task descriptions
+2. GRAPH      → Build dependency graph, group into independent batches
+3. ADAPT      → Read parallel history, compute optimal batch size
+4. PRE-FLIGHT → Check conflict ledger for overlaps with running agents
+5. DISPATCH   → Send batch to agents with quality contracts
+6. MONITOR    → Each agent reports modified files → detect conflicts
+7. VERIFY     → Each agent runs mini quality gate before reporting done
+8. RECORD     → Update parallel history for future batch sizing
+```
+
+### Rules
+- **Never dispatch conflicting tasks** — pre-flight must pass
+- **Each agent must self-validate** — no "trust me it works"
+- **Adaptive sizing is mandatory** — don't hardcode batch sizes
+- **File scope is enforced** — agents must not modify files outside their scope
+- **Conflict = halt** — stop further dispatch until conflict is resolved
+
+### Common Mistakes
+- ❌ "All tasks are independent" → Always run dependency analysis first
+- ❌ "Skip pre-flight, save time" → Pre-flight prevents wasted agent work
+- ❌ "Batch size 5 for everything" → Start at 2, let the system adapt
+- ❌ "One task failed, continue anyway" → Fix before next batch
+
+---
+
+## Security Rules (Learned: March 2026)
+
+> **Code that touches files, subprocesses, or the DOM MUST follow these rules. No exceptions.**
+
+### Frontend — DOM Safety
+
+| Pattern | Risk | Fix |
+|---------|------|-----|
+| `innerHTML = \`...\${data}...\`` | DOM XSS | `innerHTML = \`...\${esc(data)}...\`` |
+| `innerHTML = variable` | DOM XSS | `textContent = variable` |
+| `eval(input)` / `new Function(input)` | Code injection | Avoid entirely |
+| `document.write(data)` | DOM XSS | Use DOM API |
+| `el.setAttribute('on*', data)` | Event injection | `el.addEventListener()` |
+
+**Always:** Escape before innerHTML, prefer `textContent`, validate URLs via allowlist.
+
+### Backend — Python
+
+| Pattern | Risk | Fix |
+|---------|------|-----|
+| `Path(user_input) / "file"` | Path Traversal | `safe_resolve(base, user_input)` |
+| `subprocess.run(f"cmd {arg}", shell=True)` | Command Injection | `subprocess.run(["cmd", arg])` |
+| `open(config["path"])` | Path Traversal | `safe_open(base, config["path"])` |
+| `json.load()` → paths unvalidated | Path Traversal | Validate ALL paths from config via `safe_resolve()` |
+
+**Always:** Import `safe_path`, validate EVERY path from CLI/config/API against a base directory.
+
+### Backend — Express/Node
+
+| Pattern | Risk | Fix |
+|---------|------|-----|
+| Missing `app.disable('x-powered-by')` | Info leak | Add after `express()` |
+| No body size limit | DoS | `express.json({ limit: '1mb' })` |
+| `path.resolve(userInput)` without validation | Path Traversal | Check null bytes + `relative_to(baseDir)` |
+| `Object.assign(config, userInput)` | Prototype Pollution | Filter `__proto__`, `constructor` keys |
+
+
 
 ## Integration
 

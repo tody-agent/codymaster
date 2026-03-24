@@ -145,7 +145,7 @@
   "install.tabGlobal": "Global Install (Recommended)",
   "install.tabManual": "Manual Setup",
   "install.universalSubtitle": "One command to rule them all. Auto-detects and installs across all your AI agents and IDEs.",
-  "readme.ctaGithub": "<i data-lucide=\"github\" style=\"width:18px;height:18px\"></i> View on GitHub",
+  "readme.ctaGithub": "View on GitHub",
   "readme.ctaInstall": "1-Minute Install",
   "readme.feat1Desc": "No gaps. No manual handoffs. Idea → Plan → Design → Test → Code → Debug → Deploy → Document. Every single phase is covered systematically.",
   "readme.feat1Title": "🔄 Full Lifecycle Coverage",

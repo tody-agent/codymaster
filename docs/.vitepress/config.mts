@@ -91,6 +91,7 @@ export default withMermaid(defineConfig({
             { text: 'Data Flow', link: '/data-flow' },
             { text: 'TRIZ-Parallel Engine', link: '/triz-parallel' },
             { text: 'Deployment', link: '/deployment' },
+            { text: 'Security', link: '/security' },
           ]
         },
         {
@@ -124,6 +125,7 @@ export default withMermaid(defineConfig({
               text: '🔒 Security',
               collapsed: true,
               items: [
+                { text: 'Security Overview', link: '/security' },
                 { text: 'cm-secret-shield', link: '/skills/cm-secret-shield' },
               ]
             },

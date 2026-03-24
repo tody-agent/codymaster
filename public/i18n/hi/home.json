@@ -145,7 +145,7 @@
   "install.tabGlobal": "ग्लोबल इंस्टॉल (अनुशंसित)",
   "install.tabManual": "मैन्युअल सेटअप",
   "install.universalSubtitle": "एक कमांड से सब कुछ। सभी AI एजेंट और IDE को स्वचालित रूप से पहचानता और इंस्टॉल करता है।",
-  "readme.ctaGithub": "<i data-lucide=\"github\" style=\"width:18px;height:18px\"></i> GitHub पर देखें",
+  "readme.ctaGithub": "GitHub पर देखें",
   "readme.ctaInstall": "1 मिनट में इंस्टॉल",
   "readme.feat1Desc": "कोई कमी नहीं। कोई मैन्युअल हैंडऑफ नहीं। आइडिया → प्लान → डिज़ाइन → टेस्ट → कोड → डिबग → डिप्लॉय → डॉक्यूमेंट। हर चरण व्यवस्थित रूप से कवर।",
   "readme.feat1Title": "🔄 पूरा लाइफसाइकल कवरेज",

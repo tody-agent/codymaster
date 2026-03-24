@@ -21,6 +21,7 @@ NO LANGUAGE FILE WITHOUT KEY PARITY.
 NO DEPLOY WITHOUT FULL SYNTAX VALIDATION.
 NO HTML TAG MODIFICATION — TEXT CONTENT ONLY.
 NO REGEX TO FIX REGEX ERRORS — USE LEXICAL SCANNER.
+NO HTML MARKUP IN TRANSLATION JSON VALUES — ICONS AND STRUCTURAL HTML BELONG IN HTML TEMPLATES.
 ```
 
 ## When to Use
@@ -420,7 +421,7 @@ After final validation passes:
 
 ---
 
-## The 13 Bug Categories — Quick Reference
+## The 14 Bug Categories — Quick Reference
 
 | # | Bug | Pattern | Detection Gate |
 |---|-----|---------|---------------|
@@ -437,6 +438,7 @@ After final validation passes:
 | 11 | Missed files | Only scanned app.js | Phase 1 scan ALL |
 | 12 | Line number drift | Stale line refs across batches | Target by function name |
 | 13 | **Flat vs nested key count mismatch** | Test vs Gate metrics | i18n-sync test design |
+| 14 | **HTML markup in translation values** | `<i data-lucide>`, `<a href>` in JSON | `grep '<[a-z]' *.json` |
 
 ---
 
@@ -447,6 +449,7 @@ After final validation passes:
 - ❌ Committing all translations in a single commit
 - ❌ Skipping key parity check across language files
 - ❌ "It's just a string replacement, it'll be fine"
+- ❌ Putting HTML tags (`<i>`, `<a>`, `<svg>`) inside translation JSON values — icons and structural markup belong in HTML/JSX templates, not in i18n strings. Only `<strong>`, `<em>`, `<br>` are acceptable.
 
 ## Rationalization Table
 

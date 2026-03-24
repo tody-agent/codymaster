@@ -891,35 +891,63 @@
     "finalButton": "Explore 34 Skills",
     "platforms": [
       {
+        "id": "npm",
+        "label": "NPM (Universal)",
+        "emoji": "📦",
+        "recommended": true,
+        "steps": [
+          {
+            "title": "Install via NPM",
+            "description": "One command. Works on Mac, Linux, and Windows. Requires Node.js 18+.",
+            "code": "npm install -g codymaster",
+            "output": "✓ codymaster installed globally\n📦 Commands available: cm, cody, codymaster"
+          },
+          {
+            "title": "Run Interactive Setup",
+            "description": "Auto-detects your AI tools (Claude, Gemini, Cursor…) and installs skills to each.",
+            "code": "codymaster",
+            "output": "  ██████   CodyMaster v4.1.2\n  █ CM █   34 Skills. Ship 10x faster.\n  ██████   Choose your platform..."
+          },
+          {
+            "title": "Use CLI & Skills",
+            "description": "The CLI gives you dashboard, task management, and all 34 skills instantly.",
+            "code": "cm dashboard\ncm task add \"My first task\"\ncm status",
+            "note": "Update anytime: npm update -g codymaster"
+          }
+        ]
+      },
+      {
         "id": "google-antigravity",
         "label": "Google Antigravity",
         "emoji": "🚀",
         "recommended": true,
         "oneliner": {
           "label": "⚡ One-liner — auto-detect, multi-language",
-          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh)"
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity"
         },
         "steps": [
           {
-            "title": "Access Antigravity",
-            "description": "Antigravity is the advanced agentic coding environment from Google DeepMind.",
-            "items": [
-              "Open your Antigravity-enabled environment",
-              "Ensure you have the latest version of the tools",
-              "Works natively with CodyMaster skills"
-            ]
+            "title": "Clone CodyMaster",
+            "description": "Clone the repository once to your home directory. This gives you all 34 skills.",
+            "code": "git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Cloned — 34 SKILL.md files ready at ~/.cody-master/skills/"
           },
           {
-            "title": "Install All 34 Skills",
-            "description": "One command installs everything — TDD, debugging, planning, UX, and more.",
-            "code": "npx codymaster add --all --platform gemini",
-            "output": "✓ 34 skills installed to .gemini/antigravity/skills/\n📦 cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+            "title": "Copy Skills to Antigravity",
+            "description": "Copy all skills into your Antigravity skills directory.",
+            "code": "mkdir -p ~/.gemini/antigravity/skills\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/",
+            "output": "✓ 34 skills installed to ~/.gemini/antigravity/skills/"
           },
           {
-            "title": "Verify Installation",
-            "description": "Skills activate automatically. Try mentioning a skill to start.",
-            "code": "@cm-planning Design a new feature",
-            "note": "Mention @cm-status anytime to see your current progress."
+            "title": "Add Skills to GEMINI.md",
+            "description": "Add skill references to your project's GEMINI.md so Antigravity loads them automatically.",
+            "code": "# Add these lines to your project's GEMINI.md:\n@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md\n@~/.gemini/antigravity/skills/cm-continuity/SKILL.md\n@~/.gemini/antigravity/skills/cm-start/SKILL.md",
+            "note": "Skills activate automatically. Mention @cm-status anytime to see your current progress."
+          },
+          {
+            "title": "Update Later",
+            "description": "Keep CodyMaster up to date by re-running the installer or pulling the latest.",
+            "code": "cd ~/.cody-master && git pull && cp -r skills/* ~/.gemini/antigravity/skills/"
           }
         ]
       },
@@ -978,10 +1006,15 @@
             ]
           },
           {
-            "title": "Install CodyMaster",
-            "description": "Install directly from GitHub — no npm package needed.",
-            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
-            "output": "✓ cody-master installed\n✓ 34 skills available in Gemini CLI"
+            "title": "Clone CodyMaster",
+            "description": "Clone the repository and copy skills to the Gemini skills directory.",
+            "code": "git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/",
+            "output": "✓ 34 skills installed to ~/.gemini/antigravity/skills/"
+          },
+          {
+            "title": "Or Use Auto-Installer",
+            "description": "The auto-installer clones and copies everything in one command.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity"
           },
           {
             "title": "Use Skills",
@@ -992,7 +1025,7 @@
           {
             "title": "Update Later",
             "description": "Keep CodyMaster up to date with one command.",
-            "code": "gemini extensions update cody-master"
+            "code": "cd ~/.cody-master && git pull && cp -r skills/* ~/.gemini/antigravity/skills/"
           }
         ]
       },

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ════════════════════════════════════════════════════════════════
-#  CodyMaster Skills Kit v3.4.0 — Universal Installer
+#  CodyMaster Skills Kit v4.1.2 — Universal Installer
 #  Inspired by: npx skills add (vercel-labs/skills)
 #
 #  Usage:
@@ -24,7 +24,7 @@ C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'
 
 REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
-VERSION="3.4.0"
+VERSION="4.1.2"
 SCOPE="user"   # default scope for Claude Code
 
 # ── i18n ────────────────────────────────────────────────────────
@@ -239,29 +239,17 @@ install_claude() {
   fi
 }
 
-# ── Gemini CLI installer ─────────────────────────────────────────
+# ── Gemini CLI / Antigravity installer ────────────────────────────
 install_gemini() {
   echo ""
-  echo -e "${C}${BOLD}Gemini CLI — Installing Cody Master${NC}"
+  echo -e "${C}${BOLD}Gemini CLI / Antigravity — Installing Cody Master${NC}"
   echo ""
-  if command -v gemini &>/dev/null; then
-    echo -e "  ${W}Trying gemini extensions install...${NC}"
-    if gemini extensions install "$REPO_URL" 2>/dev/null; then
-      echo -e "  ${G}✅ Installed via Gemini extensions${NC}"
-    else
-      echo -e "  ${W}Falling back to direct skills copy...${NC}"
-      install_antigravity "$HOME/.gemini/skills"
-      echo -e "  ${G}✅ Skills copied to ~/.gemini/skills/${NC}"
-      echo -e "  ${C}ℹ  Add to your GEMINI.md: @~/.gemini/skills/*/SKILL.md${NC}"
-    fi
-  else
-    echo ""
-    echo -e "  ${R}Gemini CLI not found. Install from:${NC}"
-    echo -e "  ${C}https://github.com/google-gemini/gemini-cli${NC}"
-    echo ""
-    echo -e "  Then run:"
-    echo -e "  ${C}gemini extensions install ${REPO_URL}${NC}"
-  fi
+  target="$HOME/.gemini/antigravity/skills"
+  install_skills_to "$target"
+  echo ""
+  echo -e "  ${G}✅ Skills installed to ${target}${NC}"
+  echo -e "  ${C}ℹ  Add to your GEMINI.md: @~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
+  echo -e "  ${C}ℹ  Skills will auto-activate in Antigravity and Gemini CLI${NC}"
 }
 
 # ── Aider installer ──────────────────────────────────────────────
@@ -269,19 +257,11 @@ install_aider() {
   echo ""
   echo -e "${O}${BOLD}Aider — Installing Cody Master${NC}"
   echo ""
-  if command -v aider &>/dev/null; then
-    local target="$HOME/.aider/skills"
-    install_antigravity "$target"
-    # Create .aiderignore entry if not present
-    if [ ! -f ".aider.conf.yml" ] || ! grep -q "read:" .aider.conf.yml 2>/dev/null; then
-      echo -e "  ${W}Tip: add skills context to .aider.conf.yml:${NC}"
-      echo -e "  ${C}read: - ~/.aider/skills/cm-planning/SKILL.md${NC}"
-    fi
-    echo -e "  ${G}✅ Skills installed to ${target}${NC}"
-  else
-    echo -e "  ${R}Aider not found. Install: ${C}pip install aider-chat${NC}"
-    echo -e "  Or: ${C}https://aider.chat${NC}"
-  fi
+  target="$HOME/.aider/skills"
+  install_skills_to "$target"
+  echo -e "  ${W}Tip: add skills context to .aider.conf.yml:${NC}"
+  echo -e "  ${C}read: - ~/.aider/skills/cm-planning/SKILL.md${NC}"
+  echo -e "  ${G}✅ Skills installed to ${target}${NC}"
 }
 
 # ── Continue.dev installer ───────────────────────────────────────
@@ -289,17 +269,8 @@ install_continue() {
   echo ""
   echo -e "${B}${BOLD}Continue.dev — Installing Cody Master${NC}"
   echo ""
-  local rules_dir="$HOME/.continue/rules"
-  mkdir -p "$rules_dir"
-  local count=0
-  for skill_dir in skills/*/; do
-    skill_name=$(basename "$skill_dir")
-    if [ -f "${skill_dir}SKILL.md" ]; then
-      cp "${skill_dir}SKILL.md" "${rules_dir}/${skill_name}.md"
-      count=$((count + 1))
-    fi
-  done
-  echo -e "  ${G}✅ ${count} skill rules installed to ${rules_dir}${NC}"
+  target="$HOME/.continue/rules"
+  install_skills_to "$target" "md"
   echo -e "  ${C}ℹ  Rules are auto-loaded by Continue.dev from ~/.continue/rules/${NC}"
 }
 
@@ -308,8 +279,8 @@ install_amazon_q() {
   echo ""
   echo -e "${W}${BOLD}Amazon Q CLI — Installing Cody Master${NC}"
   echo ""
-  local target="$HOME/.aws/amazonq/skills"
-  install_antigravity "$target"
+  target="$HOME/.aws/amazonq/skills"
+  install_skills_to "$target"
   echo -e "  ${G}✅ Skills installed to ${target}${NC}"
   echo -e "  ${W}To use in Q chat, reference skills:${NC}"
   echo -e "  ${C}q chat --context ~/.aws/amazonq/skills/cm-planning/SKILL.md${NC}"
@@ -320,34 +291,76 @@ install_amp() {
   echo ""
   echo -e "${G}${BOLD}Amp — Installing Cody Master${NC}"
   echo ""
-  local target="$HOME/.amp/skills"
-  install_antigravity "$target"
+  target="$HOME/.amp/skills"
+  install_skills_to "$target"
   echo -e "  ${G}✅ Skills installed to ${target}${NC}"
   echo -e "  ${C}ℹ  Reference skills in Amp via your AGENTS.md or system prompt${NC}"
 }
 
-# ── Gemini/Antigravity file copy ─────────────────────────────────
-install_antigravity() {
+# ── Ensure clone exists ──────────────────────────────────────────
+CLONE_DIR=""
+ensure_clone() {
+  # If we're in the repo root with skills/ dir, use it directly
+  if [ -d "skills" ]; then
+    CLONE_DIR="."
+    return
+  fi
+
+  # If ~/.cody-master already exists and has skills, use it
+  if [ -d "$HOME/.cody-master/skills" ]; then
+    CLONE_DIR="$HOME/.cody-master"
+    return
+  fi
+
+  # Clone the repo
+  echo -e "  ${W}Cloning CodyMaster to ~/.cody-master...${NC}"
+  git clone --depth 1 "${REPO_URL}.git" "$HOME/.cody-master" 2>/dev/null || {
+    echo -e "  ${R}Error: Failed to clone ${REPO_URL}${NC}"
+    echo -e "  ${R}Check your internet connection and try again.${NC}"
+    exit 1
+  }
+  CLONE_DIR="$HOME/.cody-master"
+  echo -e "  ${G}✅ Cloned to ~/.cody-master${NC}"
+}
+
+# ── Copy skills to target directory ──────────────────────────────
+install_skills_to() {
   local target="$1"
+  local format="${2:-raw}"
+  ensure_clone
   echo ""
   echo -e "${G}${BOLD}Installing skills to: ${target}${NC}"
   echo ""
-  if [ ! -d "skills" ]; then
-    echo -e "${R}Error: Run from the cody-master repo root.${NC}"
-    exit 1
-  fi
   mkdir -p "$target"
   local count=0
-  for skill_dir in skills/*/; do
+  for skill_dir in "${CLONE_DIR}"/skills/*/; do
     skill_name=$(basename "$skill_dir")
     if [ -f "${skill_dir}SKILL.md" ]; then
-      cp -r "$skill_dir" "${target}/${skill_name}"
-      echo -e "  ${G}✅${NC} $skill_name"
+      if [[ "$format" == "mdc" ]]; then
+        # Create Cursor glob native format
+        echo "---" > "${target}/${skill_name}.mdc"
+        echo "description: ${skill_name}" >> "${target}/${skill_name}.mdc"
+        echo "globs: *" >> "${target}/${skill_name}.mdc"
+        echo "---" >> "${target}/${skill_name}.mdc"
+        cat "${skill_dir}SKILL.md" >> "${target}/${skill_name}.mdc"
+        echo -e "  ${G}✅${NC} ${skill_name}.mdc"
+      elif [[ "$format" == "md" ]]; then
+        cp "${skill_dir}SKILL.md" "${target}/${skill_name}.md"
+        echo -e "  ${G}✅${NC} ${skill_name}.md"
+      else
+        cp -r "$skill_dir" "${target}/${skill_name}"
+        echo -e "  ${G}✅${NC} $skill_name"
+      fi
       count=$((count + 1))
     fi
   done
   echo ""
   echo -e "${G}${count} skills installed to ${target}${NC}"
+}
+
+# ── Legacy alias ─────────────────────────────────────────────────
+install_antigravity() {
+  install_skills_to "$1"
 }
 
 # ── Scope selector for Claude ────────────────────────────────────
@@ -384,28 +397,89 @@ if [[ "$1" == "--claude" ]]; then
   exit 0
 fi
 
-if [[ "$1" == "--gemini" ]]; then
+if [[ "$1" == "--gemini" ]] || [[ "$1" == "--antigravity" ]]; then
   install_gemini
+  print_onboarding
+  exit 0
+fi
+
+if [[ "$1" == "--cursor" ]]; then
+  echo ""
+  echo -e "${B}${BOLD}Cursor — Installing Cody Master${NC}"
+  echo ""
+  target=".cursor/rules"
+  install_skills_to "$target" "mdc"
+  echo -e "  ${C}ℹ  Cursor will automatically load .mdc rules from this project${NC}"
+  print_onboarding
   exit 0
 fi
 
 if [[ "$1" == "--aider" ]]; then
   install_aider
+  print_onboarding
   exit 0
 fi
 
 if [[ "$1" == "--continue" ]]; then
   install_continue
+  print_onboarding
   exit 0
 fi
 
 if [[ "$1" == "--amazon-q" ]]; then
   install_amazon_q
+  print_onboarding
   exit 0
 fi
 
 if [[ "$1" == "--amp" ]]; then
   install_amp
+  print_onboarding
+  exit 0
+fi
+
+if [[ "$1" == "--kiro" ]]; then
+  echo ""
+  echo -e "${O}${BOLD}Kiro — Installing Cody Master${NC}"
+  echo ""
+  install_skills_to ".kiro/steering" "raw"
+  print_onboarding
+  exit 0
+fi
+
+if [[ "$1" == "--windsurf" ]]; then
+  echo ""
+  echo -e "${O}${BOLD}Windsurf — Installing Cody Master${NC}"
+  echo ""
+  install_skills_to ".windsurf/rules" "raw"
+  print_onboarding
+  exit 0
+fi
+
+if [[ "$1" == "--cline" ]]; then
+  echo ""
+  echo -e "${O}${BOLD}Cline/RooCode — Installing Cody Master${NC}"
+  echo ""
+  install_skills_to ".cline/skills" "raw"
+  print_onboarding
+  exit 0
+fi
+
+if [[ "$1" == "--opencode" ]]; then
+  echo ""
+  echo -e "${G}${BOLD}OpenCode — Installing Cody Master${NC}"
+  echo ""
+  install_skills_to ".opencode/skills" "raw"
+  print_onboarding
+  exit 0
+fi
+
+if [[ "$1" == "--copilot" ]]; then
+  echo ""
+  echo -e "${G}${BOLD}GitHub Copilot — Installing Cody Master${NC}"
+  echo ""
+  echo -e "  Please use the Node CLI to automatically add skills to copilot-instructions.md:"
+  echo -e "  ${C}npx codymaster add --all --platform copilot${NC}"
   exit 0
 fi
 
@@ -413,11 +487,15 @@ if [[ "$1" == "--all" ]]; then
   echo -e "${W}${BOLD}Installing to all detected platforms...${NC}"
   echo ""
   command -v claude &>/dev/null && install_claude "$SCOPE"
-  command -v gemini &>/dev/null && install_gemini
+  install_gemini
   command -v aider  &>/dev/null && install_aider
   [ -d "$HOME/.continue" ]    && install_continue
   command -v q      &>/dev/null && install_amazon_q
   command -v amp    &>/dev/null && install_amp
+  [ -d "$HOME/.cursor" ] || [ -d "/Applications/Cursor.app" ] && {
+    install_skills_to ".cursor/rules" "mdc"
+  }
+  print_onboarding
   exit 0
 fi
 
@@ -493,8 +571,9 @@ for platform in "${platforms[@]}"; do
       echo ""
       echo -e "${W}${BOLD}Manual Copy — Any Platform${NC}"
       echo ""
-      echo -e "  ${C}# Gemini CLI${NC}"
-      echo -e "  gemini extensions install ${REPO_URL}"
+      echo -e "  ${C}# Gemini CLI / Antigravity${NC}"
+      echo -e "  git clone --depth 1 ${REPO_URL}.git ~/.cody-master"
+      echo -e "  cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/"
       echo ""
       echo -e "  ${C}# Aider${NC}"
       echo -e "  bash install.sh --aider"
@@ -503,7 +582,7 @@ for platform in "${platforms[@]}"; do
       echo -e "  bash install.sh --continue"
       echo ""
       echo -e "  ${C}# Any platform (copy)${NC}"
-      echo -e "  cp -r skills/* ~/.gemini/skills/"
+      echo -e "  cp -r ~/.cody-master/skills/* <your-platform-skills-dir>/"
       ;;
   esac
 done

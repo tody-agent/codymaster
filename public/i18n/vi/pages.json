@@ -891,35 +891,63 @@
     "finalButton": "Khám phá 34 kỹ năng",
     "platforms": [
       {
+        "id": "npm",
+        "label": "NPM (Đa nền tảng)",
+        "emoji": "📦",
+        "recommended": true,
+        "steps": [
+          {
+            "title": "Cài qua NPM",
+            "description": "Một lệnh duy nhất. Hoạt động trên Mac, Linux và Windows. Yêu cầu Node.js 18+.",
+            "code": "npm install -g codymaster",
+            "output": "✓ codymaster đã cài toàn cục\n📦 Lệnh sẵn sàng: cm, cody, codymaster"
+          },
+          {
+            "title": "Chạy cài đặt tương tác",
+            "description": "Tự phát hiện công cụ AI (Claude, Gemini, Cursor…) và cài skills cho từng công cụ.",
+            "code": "codymaster",
+            "output": "  ██████   CodyMaster v4.1.2\n  █ CM █   34 Skills. Ship 10x faster.\n  ██████   Chọn nền tảng của bạn..."
+          },
+          {
+            "title": "Sử dụng CLI & Skills",
+            "description": "CLI cung cấp dashboard, quản lý task, và toàn bộ 34 skills ngay lập tức.",
+            "code": "cm dashboard\ncm task add \"Task đầu tiên\"\ncm status",
+            "note": "Cập nhật bất kỳ lúc nào: npm update -g codymaster"
+          }
+        ]
+      },
+      {
         "id": "google-antigravity",
         "label": "Google Antigravity",
         "emoji": "🚀",
         "recommended": true,
         "oneliner": {
           "label": "⚡ Lệnh một dòng — tự phát hiện, đa ngôn ngữ",
-          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh)"
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity"
         },
         "steps": [
           {
-            "title": "Truy cập Antigravity",
-            "description": "Antigravity là môi trường lập trình agentic tiên tiến từ Google DeepMind.",
-            "items": [
-              "Mở môi trường đã kích hoạt Antigravity của bạn",
-              "Đảm bảo bạn đang sử dụng phiên bản công cụ mới nhất",
-              "Hoạt động tương thích hoàn toàn với CodyMaster skills"
-            ]
+            "title": "Clone CodyMaster",
+            "description": "Clone repository về thư mục home. Lấy toàn bộ 34 kỹ năng.",
+            "code": "git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Đã clone — 34 SKILL.md sẵn sàng tại ~/.cody-master/skills/"
           },
           {
-            "title": "Cài đặt 34 kỹ năng",
-            "description": "Một lệnh cài đặt tất cả — TDD, debug, planning, UX, và nhiều hơn nữa.",
-            "code": "npx codymaster add --all --platform gemini",
-            "output": "✓ Đã cài 34 kỹ năng vào .gemini/antigravity/skills/\n📦 cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+            "title": "Copy Skills vào Antigravity",
+            "description": "Sao chép tất cả skills vào thư mục Antigravity skills.",
+            "code": "mkdir -p ~/.gemini/antigravity/skills\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/",
+            "output": "✓ 34 skills đã cài vào ~/.gemini/antigravity/skills/"
           },
           {
-            "title": "Xác minh cài đặt",
-            "description": "Kỹ năng tự động kích hoạt. Thử nhắc đến một kỹ năng để bắt đầu.",
-            "code": "@cm-planning Thiết kế tính năng mới",
-            "note": "Gõ @cm-status bất kỳ lúc nào để xem tiến độ hiện tại."
+            "title": "Thêm Skills vào GEMINI.md",
+            "description": "Thêm tham chiếu skill vào GEMINI.md của dự án để Antigravity tự tải.",
+            "code": "# Thêm các dòng này vào GEMINI.md của project:\n@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md\n@~/.gemini/antigravity/skills/cm-continuity/SKILL.md\n@~/.gemini/antigravity/skills/cm-start/SKILL.md",
+            "note": "Kỹ năng tự kích hoạt. Gõ @cm-status bất kỳ lúc nào để xem tiến độ."
+          },
+          {
+            "title": "Cập nhật sau này",
+            "description": "Cập nhật CodyMaster bằng cách chạy lại installer hoặc pull mới nhất.",
+            "code": "cd ~/.cody-master && git pull && cp -r skills/* ~/.gemini/antigravity/skills/"
           }
         ]
       },
@@ -978,10 +1006,15 @@
             ]
           },
           {
-            "title": "Cài CodyMaster",
-            "description": "Cài trực tiếp từ GitHub — không cần npm package.",
-            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
-            "output": "✓ cody-master đã cài\n✓ 34 kỹ năng sẵn sàng trong Gemini CLI"
+            "title": "Clone CodyMaster",
+            "description": "Clone repository và sao chép skills vào thư mục Gemini skills.",
+            "code": "git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/",
+            "output": "✓ 34 skills đã cài vào ~/.gemini/antigravity/skills/"
+          },
+          {
+            "title": "Hoặc dùng Auto-Installer",
+            "description": "Auto-installer clone và sao chép mọi thứ chỉ bằng một lệnh.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity"
           },
           {
             "title": "Sử dụng kỹ năng",
@@ -992,7 +1025,7 @@
           {
             "title": "Cập nhật sau này",
             "description": "Cập nhật CodyMaster bằng một lệnh.",
-            "code": "gemini extensions update cody-master"
+            "code": "cd ~/.cody-master && git pull && cp -r skills/* ~/.gemini/antigravity/skills/"
           }
         ]
       },

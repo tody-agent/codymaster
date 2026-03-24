@@ -2,9 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
-Categories: 🚀 **Improvements** | 🐛 **Bug Fixes**
+Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
-## [4.1.1] - 2026-03-24
+## [4.2.0] - 2026-03-24
+
+### 🔒 Security
+- **DOM XSS Remediation** — Sanitized all `innerHTML` injections across 6 JS files (`kit.js`, `skills-page.js`, `demo-page.js`, `docs-page.js`, `story-page.js`, `index.html`) with `escapeHtml()` + `escapeAttr()`
+- **sanitize.js** — New shared utility providing `escapeHtml()`, `escapeHtmlWithBreaks()`, `escapeAttr()` loaded in 23 HTML pages
+- **safe_path.py** — New Python utility for path traversal prevention with `safe_resolve()`, `safe_join()`, `safe_open()`
+- **Snyk Code SAST** — 0 medium+ findings after full remediation scan
+- **Security rules in skill kit** — 5 skills updated with security learnings:
+  - `cm-execution`: Frontend DOM + Python + Node security rules
+  - `cm-quality-gate`: Layer 8 XSS scan + Gate 6 Snyk Code integration
+  - `cm-planning`: Security checklist in scope definition
+  - `cm-tdd`: Security TDD examples (XSS, path traversal tests)
+  - `cm-code-review`: Part D Security Review Checklist
+
+### 🚀 Improvements
+- **CLI Terminal UI Redesign** — New premium terminal interface with onboarding, theme system, and hamster mascot
+- **Security Assessment** — Full audit of Agent Trust Hub API (`ai.gendigital.com`)
+
+### 🐛 Bug Fixes
+- Fixed unescaped i18n data in persona cards, skill cards, JTBD canvas, FAQ, and IDE instructions
+- Fixed `docs-page.js` ~40 unescaped values across 5 render functions
+
+---
+
 
 ### 🚀 Improvements
 - Documentation Changelog Integration — automated changelog generation added to VitePress docs

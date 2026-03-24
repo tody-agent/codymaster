@@ -9,7 +9,7 @@
 **34 Skills · 11 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.0.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.1.2-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-34-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
@@ -17,6 +17,16 @@
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
 </p>
+
+```
+    ( . \ --- / . )
+     /   ^   ^   \
+    (      u      )
+     |  \ ___ /  |
+      '--w---w--'
+       Meet CodyMaster 🐹
+  Your smart coding companion.
+```
 
 ![CodyMaster Kanban Dashboard](assets/images/dashboard.png)
 
@@ -32,14 +42,14 @@ You installed an AI coding agent. It's *brilliant*. It writes code faster than a
 
 But then reality hits:
 
-| 😤 What Actually Happens | 💀 The Real Cost |
-|--------------------------|-----------------|
-| AI designs **differently every single time** — same brand, 3 different styles | Clients think you're 3 different companies |
-| AI fixes one bug, **silently breaks 5 other things** | You redo the same work 3-4 times |
-| AI **forgets everything** between sessions | You re-explain the same codebase every morning |
-| AI writes zero tests, zero docs | Your codebase becomes a house of cards |
-| You install 15 different skills — **none of them talk to each other** | Frankenstein toolkit with zero synergy |
-| Deploy to production = **deploy and pray** 🙏 | Broken deploys at 2 AM, no rollback |
+| 😤 What Actually Happens                                                            | 💀 The Real Cost                               |
+| ----------------------------------------------------------------------------------- | ---------------------------------------------- |
+| AI designs**differently every single time** — same brand, 3 different styles | Clients think you're 3 different companies     |
+| AI fixes one bug,**silently breaks 5 other things**                           | You redo the same work 3-4 times               |
+| AI**forgets everything** between sessions                                     | You re-explain the same codebase every morning |
+| AI writes zero tests, zero docs                                                     | Your codebase becomes a house of cards         |
+| You install 15 different skills —**none of them talk to each other**         | Frankenstein toolkit with zero synergy         |
+| Deploy to production =**deploy and pray** 🙏                                  | Broken deploys at 2 AM, no rollback            |
 
 > *"AI gave me 100 hands. But without discipline, those hands created chaos."*
 > — **Tody Le**, Head of Product · 10+ years · Creator of CodyMaster
@@ -135,6 +145,7 @@ Got a legacy product with no design system? **cm-design-system** scans your webs
 ### 📝 Zero Documentation? No Problem.
 
 Don't know what the old code does? **`cm-dockit`** reads your entire codebase and generates:
+
 - 📚 Technical architecture docs
 - 📖 User guides & SOPs
 - 🔌 API references
@@ -151,16 +162,16 @@ No more guessing. Track every task, every agent, every deployment on a real-time
 
 ## 🆚 Scattered Skills vs CodyMaster
 
-| | 😵 15 Random Skills | 🧠 CodyMaster |
-|---|---|---|
-| **Integration** | Each skill is standalone, no shared context | 34 skills that chain, share memory, and communicate |
-| **Lifecycle** | Covers coding only | Covers Idea → Design → Code → Test → Deploy → Docs → Learn |
-| **Memory** | Forgets everything between sessions | 4-tier memory system: Working → Episodic → Semantic → Deep Search |
-| **Safety** | YOLO deploys | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
-| **Design** | Random UI every time | Extracts & enforces design system + visual preview |
-| **Documentation** | "Maybe write a README later" | Auto-generates complete docs, SOPs, API refs from code |
-| **Self-improvement** | Static — what you install is what you get | Learns from mistakes, auto-discovers new skills, gets smarter daily |
-| **Maintenance** | Update 15 repos separately | One `git pull` updates everything |
+|                            | 😵 15 Random Skills                         | 🧠 CodyMaster                                                         |
+| -------------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
+| **Integration**      | Each skill is standalone, no shared context | 34 skills that chain, share memory, and communicate                   |
+| **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn      |
+| **Memory**           | Forgets everything between sessions         | 4-tier memory system: Working → Episodic → Semantic → Deep Search  |
+| **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
+| **Design**           | Random UI every time                        | Extracts & enforces design system + visual preview                    |
+| **Documentation**    | "Maybe write a README later"                | Auto-generates complete docs, SOPs, API refs from code                |
+| **Self-improvement** | Static — what you install is what you get  | Learns from mistakes, auto-discovers new skills, gets smarter daily   |
+| **Maintenance**      | Update 15 repos separately                  | One `git pull` updates everything                                   |
 
 ---
 
@@ -169,6 +180,7 @@ No more guessing. Track every task, every agent, every deployment on a real-time
 We're going to be honest: **CodyMaster was built for lazy people.**
 
 If you want to:
+
 - ✅ Type a chat message and get a **working product** back
 - ✅ Have your AI **learn from its mistakes** and get better every day
 - ✅ Never setup the same boilerplate twice
@@ -177,6 +189,7 @@ If you want to:
 **→ CodyMaster is for you.**
 
 If you prefer:
+
 - ❌ Manually reviewing every line of AI output
 - ❌ Doing the same setup ritual for every project
 - ❌ Slow, manual deploys with no safety net
@@ -187,24 +200,69 @@ If you prefer:
 
 ## 🚀 1-Minute Install
 
-### Claude Code (Recommended)
+### NPM (Universal, Interactive Onboarding)
+
+```bash
+npm install -g codymaster
+codymaster
+```
+
+The CLI will greet you with Cody the Hamster 🐹 and guide you through a **5-step self-onboarding**:
+
+```
+    ( . \ --- / . )
+     /   ^   ^   \        Hi! I'm Cody 🐹
+    (      u      )        Your smart coding companion.
+     |  \ ___ /  |
+      '--w---w--'
+
+  Step 1 of 5  ● ○ ○ ○ ○
+
+◆  What should I call you?
+│  _
+
+◆  Where do you code?         ← 9 platforms supported!
+│  ● ✦  Google Antigravity (Gemini)
+│  ○ 🟣 Claude Code
+│  ○ ⬡  Cursor
+│  ○ 🌊 Windsurf
+│  ○ 🔶 Cline / RooCode
+│  ○ 📦 OpenCode
+│  ○ 🪁 Kiro
+│  ○ 🤖 GitHub Copilot
+│  ○ 🔧 Other / Not sure
+```
+
+### Claude Code
+
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
 ```
+
 *Or: `claude plugin marketplace add tody-agent/codymaster` → `claude plugin install cm@codymaster`*
 
 ### Cursor IDE
+
 ```
 /add-plugin cody-master
 ```
 
 ### Gemini CLI / Antigravity
+
 ```bash
-gemini extensions install https://github.com/tody-agent/codymaster
+# Clone and install skills
+git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master
+cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
+```
+
+*Or use the auto-installer:*
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
 ```
 
 <details>
-<summary><b>Other Platforms: Codex, OpenCode, Kiro, Copilot, Windsurf, Cline</b></summary>
+<summary><b>Other Platforms: Cline, OpenCode, Kiro, Copilot, Windsurf</b></summary>
 
 ```bash
 # Universal: clone once, copy to any platform
@@ -212,38 +270,53 @@ git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
 
 # Then drop skills into your platform's directory:
 cp -r ~/.cody-master/skills/* .cursor/skills/
-cp -r ~/.cody-master/skills/* .codex/skills/
+cp -r ~/.cody-master/skills/* .cline/skills/
 cp -r ~/.cody-master/skills/* .kiro/steering/
 cp -r ~/.cody-master/skills/* .opencode/skills/
 cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
+
+# GitHub Copilot: add to copilot-instructions.md
+cat ~/.cody-master/AGENTS.md >> .github/copilot-instructions.md
 ```
+
 </details>
 
 ---
 
 ## 🧰 The 34-Skill Arsenal
 
-| Domain | Skills |
-|--------|--------|
-| 🔧 **Engineering** | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` |
-| ⚙️ **Operations** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
-| 🎨 **Product & UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
-| 📈 **Growth/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
-| 🎯 **Orchestration** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` |
-| 🖥️ **Workflow** | `cm-start` `cm-dashboard` `cm-status` |
+| Domain                    | Skills                                                                                                                                                          |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🔧**Engineering**   | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review`                                                                             |
+| ⚙️**Operations**  | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                                             |
+| 🎨**Product & UX**  | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
+| 📈**Growth/CRO**    | `cm-content-factory` `cm-ads-tracker` `cro-methodology`                                                                                                   |
+| 🎯**Orchestration** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work`                             |
+| 🖥️**Workflow**    | `cm-start` `cm-dashboard` `cm-status`                                                                                                                     |
 
 ---
 
 ## 🎮 Commands
 
 ```
+cm                → Quick menu with Cody 🐹
+cm task add "..." → Add a task
+cm task list      → View tasks
+cm status         → Project health
+cm dashboard      → Open Mission Control
+cm list           → Browse 34 skills
+cm profile        → Your stats & achievements
+cm deploy <env>   → Record deployment
+```
+
+**Slash Commands (inside AI agents):**
+
+```
 /cm:demo         → Interactive onboarding tour
-/cm:bootstrap    → Scaffold a new project from scratch
 /cm:plan         → Plan a feature with analysis
 /cm:build        → Build with strict TDD
 /cm:debug        → Systematic debugging
 /cm:ux           → Design system extraction & UI preview
-/cm:track        → Marketing pixel & tracking setup
 ```
 
 ---
@@ -277,9 +350,9 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 <div align="center">
 
-*MIT License — Free to use, modify, and distribute.* <br/>
+*MIT License — Free to use, modify, and distribute.* `<br/>`
 **Built with ❤️ for the vibe coding community.**
 
-*"Cody" = "Code Đi" (Vietnamese: "Go code!") — just start building.*
+*"CodyMaster" = "Code Đi" (Vietnamese: "Go code!") — just start building.*
 
 </div>

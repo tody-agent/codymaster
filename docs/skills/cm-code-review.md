@@ -1,13 +1,7 @@
 ---
-title: "cm-code-review"
-description: "Full review lifecycle — request reviews, handle feedback with technical rigor, and complete branch integration. Use when completing tasks, receiving feedback, o"
-keywords: ["cm-code-review", "cody master", "ai skill"]
-robots: "index, follow"
+name: cm-code-review
+description: "Full review lifecycle — request reviews, handle feedback with technical rigor, and complete branch integration. Use when completing tasks, receiving feedback, or finishing feature branches."
 ---
-
-> **📋 Full Skill Source** — This is the complete, unedited SKILL.md file. Nothing is hidden or summarized.
-
-[← Back to Skills Library](./index.md)
 
 # Code Review — Request + Receive + Complete
 
@@ -122,6 +116,51 @@ When implementation is complete and all tests pass.
 - Never merge with failing tests
 - Never force push main/production
 - Always use `cm-identity-guard` before git push
+
+---
+
+## Part D: Security Review Checklist (Learned: March 2026)
+
+> **Every code review MUST include a security pass.** Check these patterns:
+
+### Frontend
+- [ ] No `innerHTML` with unescaped dynamic data
+- [ ] `sanitize.js` loaded before any JS that uses `innerHTML`
+- [ ] URLs from params validated against allowlist
+- [ ] No `eval()`, `new Function()`, or `document.write()` with user data
+
+### Backend (Python)
+- [ ] All file paths from config/input use `safe_resolve(base, path)`
+- [ ] No `subprocess.run(..., shell=True)` with dynamic args
+- [ ] No `open(user_input)` without path validation
+
+### Backend (Node/Express)
+- [ ] `app.disable('x-powered-by')` set
+- [ ] Body size limits configured
+- [ ] No `Object.assign(config, userInput)` (prototype pollution)
+- [ ] API error responses don't leak stack traces
+
+### General
+- [ ] No secrets/API keys in committed code
+- [ ] `.snyk` exclusions documented with mitigation rationale
+
+---
+
+### Step FINAL: Record Review Learnings
+
+After processing review feedback, ALWAYS update `.cm/CONTINUITY.md`:
+
+- **Key Decisions:** If reviewer changed architecture approach, record with scope:
+  `[Decision]: [Rationale] — scope: [global|module:{name}]`
+- **Mistakes & Learnings:** If reviewer caught a pattern mistake, record with scope:
+  - What Failed: [the pattern that was wrong]
+  - How to Prevent: [correct pattern going forward]
+  - Scope: [global | module:{name} | file:{path}]
+
+**Anti-duplicate:** If similar learning exists, reinforce it instead of creating new.
+
+> **Token savings:** Future code reviews in same project avoid repeating
+> the same feedback. Reviewer patterns become accumulated knowledge.
 
 ---
 

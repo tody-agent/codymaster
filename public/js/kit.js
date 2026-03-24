@@ -89,7 +89,7 @@
           if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
             el.placeholder = value;
           } else {
-            el.innerHTML = (window.SecurityUtils ? window.SecurityUtils.escapeHtmlWithBreaks(value) : value.replace(/\n/g, '<br>'));
+            el.innerHTML = (window.SecurityUtils ? window.SecurityUtils.sanitizeHtml(value) : value.replace(/\n/g, '<br>'));
           }
         }
       });

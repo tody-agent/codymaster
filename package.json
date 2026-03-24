@@ -5,14 +5,14 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/omisocial/codymaster.git"
+    "url": "https://github.com/tody-agent/codymaster.git"
   },
-  "homepage": "https://codymaster.ai",
+  "homepage": "https://cody.todyle.com",
   "bugs": {
-    "url": "https://github.com/omisocial/codymaster/issues"
+    "url": "https://github.com/tody-agent/codymaster/issues"
   },
   "bin": {
-    "cody": "dist/index.js",
+    "CodyMaster": "dist/index.js",
     "cm": "dist/index.js",
     "codymaster": "dist/index.js"
   },
@@ -59,13 +59,13 @@
     "access": "public"
   },
   "dependencies": {
+    "@clack/prompts": "^1.1.0",
     "chalk": "^5.6.2",
     "commander": "^14.0.3",
     "express": "^5.2.1",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
-    "@clack/prompts": "^1.1.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
     "@types/prompts": "^2.4.9",

@@ -249,3 +249,29 @@ describe('no stale "cody-master" in installation code blocks', () => {
     expect(raw).not.toContain('cm@cody-master');
   });
 });
+
+// ─── 8. NPM Installation Method ──────────────────
+describe('NPM installation method', () => {
+  test.each(['en', 'vi'])('pages.json (%s) has npm platform', (lang) => {
+    const pages = readJSON(`public/i18n/${lang}/pages.json`);
+    const platforms = pages.startPage?.platforms ?? [];
+    const ids = platforms.map((p: any) => p.id);
+    expect(ids).toContain('npm');
+  });
+
+  test.each(['en', 'vi'])('pages.json (%s) npm platform has "npm install -g codymaster"', (lang) => {
+    const pages = readJSON(`public/i18n/${lang}/pages.json`);
+    const platforms = pages.startPage?.platforms ?? [];
+    const npm = platforms.find((p: any) => p.id === 'npm');
+    expect(npm).toBeDefined();
+    const codes = collectCodeValues(npm!.steps);
+    const installCmd = codes.find((c: string) => c.includes('npm install -g codymaster'));
+    expect(installCmd).toBeDefined();
+  });
+
+  test('docs/sop/installation.md mentions npm install method', () => {
+    const doc = readText('docs/sop/installation.md');
+    expect(doc).toContain('npm install -g codymaster');
+    expect(doc).toContain('npm update -g codymaster');
+  });
+});

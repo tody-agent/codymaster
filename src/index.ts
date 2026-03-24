@@ -18,34 +18,89 @@ import path from 'path';
 import os from 'os';
 import https from 'https';
 
-const VERSION = '3.4.0';
+// 🐹 Hamster Shell UI modules
+import { brand, brandBold, dim, muted, success, error, warning, info, COL, PRI, STATUS, ICONS } from './ui/theme';
+import { renderBox, renderTable, renderProgressBar, renderBadge, renderPriority, renderFooter, renderDivider, renderSpeechBubble, stripAnsi } from './ui/box';
+import type { TableColumn } from './ui/box';
+import { getHamsterArt, renderHamsterBanner, renderHamsterMessage, getCelebration, getEncouragement, getErrorGuidance } from './ui/hamster';
+import { loadProfile, saveProfile, isFirstRun, recordCommand, checkAchievements, formatAchievement, getContextualTrigger, formatProfileSummary, getLevelDisplay } from './ui/hooks';
+import { runOnboarding, showReturningWelcome } from './ui/onboarding';
+
+const VERSION = require('../package.json').version;
+
+// ─── Update Check ───────────────────────────────────────────────────────────
+
+let _updateMessage = '';
+
+async function checkForUpdates(): Promise<void> {
+  try {
+    const cacheDir = path.join(os.homedir(), '.codymaster');
+    const cacheFile = path.join(cacheDir, '.update-check');
+
+    // Check cache (24h TTL)
+    try {
+      if (fs.existsSync(cacheFile)) {
+        const stat = fs.statSync(cacheFile);
+        const age = Date.now() - stat.mtimeMs;
+        if (age < 24 * 60 * 60 * 1000) {
+          const cached = fs.readFileSync(cacheFile, 'utf-8').trim();
+          if (cached && cached !== VERSION) {
+            _updateMessage = cached;
+          }
+          return;
+        }
+      }
+    } catch { /* ignore cache errors */ }
+
+    // Fetch latest version from npm (2s timeout)
+    const latestVersion = await new Promise<string>((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('timeout')), 2000);
+      https.get('https://registry.npmjs.org/codymaster/latest', { headers: { 'Accept': 'application/json' } }, (res) => {
+        let data = '';
+        res.on('data', (chunk: Buffer) => { data += chunk; });
+        res.on('end', () => {
+          clearTimeout(timer);
+          try {
+            const json = JSON.parse(data);
+            resolve(json.version || VERSION);
+          } catch { resolve(VERSION); }
+        });
+      }).on('error', () => { clearTimeout(timer); reject(new Error('fetch failed')); });
+    });
+
+    // Cache result
+    try {
+      if (!fs.existsSync(cacheDir)) fs.mkdirSync(cacheDir, { recursive: true });
+      fs.writeFileSync(cacheFile, latestVersion);
+    } catch { /* ignore */ }
+
+    if (latestVersion !== VERSION) {
+      _updateMessage = latestVersion;
+    }
+  } catch { /* silently skip — offline or timeout */ }
+}
+
+function printUpdateNotice() {
+  if (_updateMessage) {
+    console.log(chalk.yellow(`  ⚠️  Update available: ${VERSION} → ${_updateMessage}`) + chalk.gray('  Run: ') + chalk.cyan('npm i -g codymaster'));
+  }
+}
 
 // ─── Branding ───────────────────────────────────────────────────────────────
 
 function showBanner() {
   const cPath = process.cwd().replace(os.homedir(), '~');
-  const bg = chalk.bgHex('#F59E0B');
-  console.log('');
-  console.log(`  ${bg('      ')}   ${chalk.bold.white('CodyMaster')} ${chalk.gray(`v${VERSION}`)}`);
-  console.log(`  ${bg.black.bold('  CM  ')}   ${chalk.gray('34 Skills. Ship 10x faster.')}`);
-  console.log(`  ${bg('      ')}   ${chalk.gray(cPath)}`);
-  console.log(chalk.gray('  ' + '─'.repeat(46)));
+  const profile = loadProfile();
+  console.log(renderHamsterBanner(profile.userName || undefined, VERSION, cPath));
+  printUpdateNotice();
 }
 
 // ─── Utility ────────────────────────────────────────────────────────────────
 
-const COL_COLORS: Record<string, (s: string) => string> = {
-  'backlog': chalk.gray, 'in-progress': chalk.blue, 'review': chalk.yellow, 'done': chalk.green,
-};
-
-const PRIORITY_COLORS: Record<string, (s: string) => string> = {
-  'low': chalk.green, 'medium': chalk.yellow, 'high': chalk.red, 'urgent': chalk.magenta,
-};
-
-const STATUS_COLORS: Record<string, (s: string) => string> = {
-  'success': chalk.green, 'failed': chalk.red, 'pending': chalk.yellow,
-  'running': chalk.blue, 'rolled_back': chalk.magenta,
-};
+// Color maps now imported from ./ui/theme (COL, PRI, STATUS)
+const COL_COLORS = COL;
+const PRIORITY_COLORS = PRI;
+const STATUS_COLORS = STATUS;
 
 function padRight(str: string, len: number): string {
   return str.length >= len ? str.substring(0, len) : str + ' '.repeat(len - str.length);
@@ -63,145 +118,142 @@ function openUrl(url: string) {
 // ─── Post-install Onboarding ─────────────────────────────────────────────────
 
 async function postInstallOnboarding(platform: string) {
-  console.log();
-  console.log(chalk.green('╔══════════════════════════════════════════════════╗'));
-  console.log(chalk.green('║  🎉 You\'re all set! What would you like to do?   ║'));
-  console.log(chalk.green('╚══════════════════════════════════════════════════╝'));
-  console.log();
-
-  const p = (await import('prompts')).default;
-  const invoke =
-    platform === 'claude' ? '/cm:demo  (type in Claude Code)' :
-      platform === 'gemini' ? '@[/cm-planning] in Gemini CLI' :
-        platform === 'cursor' ? '@cm-planning in Cursor Agent' :
-          '@cm-planning in your AI tool';
-
-  const resp = await p({
-    type: 'select',
-    name: 'action',
-    message: 'Choose an action:',
-    choices: [
-      {
-        title: chalk.cyan('📊 Launch Dashboard'), value: 'dashboard',
-        description: `Open Mission Control → http://localhost:${DEFAULT_PORT}`
-      },
-      {
-        title: chalk.magenta('🚀 Start in ' + platform.charAt(0).toUpperCase() + platform.slice(1)), value: 'invoke',
-        description: invoke
-      },
-      {
-        title: chalk.white('🧩 Browse all 34 skills'), value: 'skills',
-        description: 'See every skill, domain, and usage'
-      },
-      {
-        title: chalk.yellow('⚡ Install `cm` globally'), value: 'global',
-        description: 'Add cody / cm / codymaster to your PATH'
-      },
-      { title: chalk.gray('✅ Done'), value: 'done' },
-    ],
-    hint: '↑↓ navigate · Enter select · Ctrl+C exit',
-  });
-
-  switch (resp?.action) {
-    case 'dashboard': {
-      console.log();
-      if (!isDashboardRunning()) {
-        launchDashboard(DEFAULT_PORT, false);
-        await new Promise(r => setTimeout(r, 800)); // let server start
-      }
-      console.log(chalk.cyan(`🌐 Opening http://localhost:${DEFAULT_PORT} ...`));
-      openUrl(`http://localhost:${DEFAULT_PORT}`);
-      console.log(chalk.gray('   Dashboard is running. Press Ctrl+C to stop.\n'));
-      break;
+  // Run the self-onboarding wizard
+  const profile = loadProfile();
+  if (!profile.onboardingComplete) {
+    // Set platform from install if not already set
+    if (platform && !profile.platform) {
+      profile.platform = platform;
+      saveProfile(profile);
     }
-    case 'invoke':
-      console.log();
-      if (platform === 'claude') {
-        console.log(chalk.white('Open Claude Code and type:\n'));
-        console.log(chalk.cyan('  /cm:demo'));
-        console.log(chalk.gray('\n  This will run an interactive tour of all 34 skills.\n'));
-      } else {
-        console.log(chalk.cyan(`  ${invoke}\n`));
-      }
-      break;
-    case 'skills':
-      console.log();
-      skillList();
-      break;
-    case 'global':
-      console.log();
-      console.log(chalk.white('Run this to install the `cm` CLI globally:\n'));
-      console.log(chalk.cyan('  npm install -g codymaster'));
-      console.log(chalk.gray('\nThen use:'));
-      console.log(chalk.cyan('  cm task add "My task"'));
-      console.log(chalk.cyan('  cm dashboard'));
-      console.log(chalk.cyan('  cm status\n'));
-      break;
-    default:
-      console.log(chalk.gray('\nRun `npx codymaster` any time to open the menu.\n'));
+    await runOnboarding(VERSION);
+  } else {
+    // Already onboarded — show returning welcome
+    const p = await import('@clack/prompts');
+    console.log('');
+    console.log(getHamsterArt('celebrating'));
+    console.log('');
+    console.log(`    ${success('🎉')} ${brandBold(`Welcome back, ${profile.userName || 'friend'}!`)}`);
+    console.log('');
+
+    const action = await p.select({
+      message: 'What would you like to do?',
+      options: [
+        { label: `${ICONS.dashboard}  Launch Dashboard`, value: 'dashboard', hint: `localhost:${DEFAULT_PORT}` },
+        { label: `${ICONS.skill}  Browse all 34 skills`, value: 'skills' },
+        { label: `${ICONS.deploy}  Start with your AI`, value: 'invoke', hint: profile.platform || 'any agent' },
+        { label: `${success('✓')}  Done`, value: 'done' },
+      ],
+    });
+
+    if (p.isCancel(action)) return;
+
+    switch (action) {
+      case 'dashboard':
+        if (!isDashboardRunning()) {
+          launchDashboard(DEFAULT_PORT, false);
+          await new Promise(r => setTimeout(r, 800));
+        }
+        console.log(info(`\n  🌐 Opening http://localhost:${DEFAULT_PORT} ...\n`));
+        openUrl(`http://localhost:${DEFAULT_PORT}`);
+        break;
+      case 'skills':
+        console.log('');
+        skillList();
+        break;
+      case 'invoke':
+        console.log('');
+        const invoke = profile.platform === 'claude' ? '/cm:demo' :
+          profile.platform === 'gemini' ? '@[/cm-planning]' :
+            '@cm-planning';
+        console.log(`  ${brand('→')} Type ${brandBold(invoke)} in your AI agent\n`);
+        break;
+      default:
+        console.log(dim('\n  Run cm any time! 🐹\n'));
+    }
   }
 }
 
 // ─── Interactive Quick Menu (no-args entry point) ─────────────────────────────
 
 async function showInteractiveMenu() {
+  const profile = loadProfile();
+
+  // 🎳 First Run → Start onboarding wizard
+  if (!profile.onboardingComplete) {
+    await runOnboarding(VERSION);
+    return;
+  }
+
+  // 🪝 Hook: Record command + check achievements
+  recordCommand(profile, 'menu');
+  const newAchievements = checkAchievements(profile);
+  saveProfile(profile);
+
+  // Show banner with hamster
   showBanner();
 
+  // 🪝 Hook: Contextual trigger
+  const data = loadData();
+  const taskCounts = {
+    tasksInProgress: data.tasks.filter(t => t.column === 'in-progress').length,
+    tasksInReview: data.tasks.filter(t => t.column === 'review').length,
+    tasksDone: data.tasks.filter(t => t.column === 'done').length,
+    totalTasks: data.tasks.length,
+  };
+  const trigger = getContextualTrigger(profile, taskCounts);
+  console.log(`  ${brand(ICONS.hamster)} ${dim(trigger)}`);
+
+  // Dashboard status
   const dashStatus = isDashboardRunning()
-    ? chalk.green('● RUNNING') + chalk.gray(` http://localhost:${DEFAULT_PORT}`)
-    : chalk.gray('○ stopped');
+    ? success(`${ICONS.dot} RUNNING`) + dim(` http://localhost:${DEFAULT_PORT}`)
+    : muted(`${ICONS.dotEmpty} stopped`);
+  console.log(`  ${dim('Dashboard:')} ${dashStatus}`);
+  console.log('');
 
-  console.log(chalk.gray(`  Dashboard: ${dashStatus}`));
-  console.log();
+  // Show new achievements
+  for (const id of newAchievements) {
+    console.log(formatAchievement(id));
+  }
+  if (newAchievements.length > 0) console.log('');
 
-  const p = (await import('prompts')).default;
-  const resp = await p({
-    type: 'select',
-    name: 'action',
-    message: 'Quick menu:',
-    choices: [
-      {
-        title: chalk.cyan('📊 Dashboard'), value: 'dashboard',
-        description: isDashboardRunning() ? 'Open in browser' : 'Start & open in browser'
-      },
-      {
-        title: chalk.white('📋 My Tasks'), value: 'tasks',
-        description: 'View all tasks across projects'
-      },
-      {
-        title: chalk.white('📈 Status'), value: 'status',
-        description: 'Project health snapshot'
-      },
-      {
-        title: chalk.magenta('🧩 Browse Skills'), value: 'skills',
-        description: 'All 34 skills by domain'
-      },
-      {
-        title: chalk.yellow('➕ Add a Task'), value: 'addtask',
-        description: 'Quickly add a task to backlog'
-      },
-      {
-        title: chalk.green('⚡ Install/Update Skills'), value: 'install',
-        description: 'npx codymaster add --all'
-      },
-      { title: chalk.gray('❓ Help'), value: 'help' },
+  // Level indicator
+  console.log(`  ${dim('Level:')} ${getLevelDisplay(profile.level)} ${dim('•')} ${dim('Streak:')} ${profile.streak > 0 ? brand(`${ICONS.fire} ${profile.streak}d`) : muted('—')}`);
+  console.log('');
+
+  // Quick menu with @clack/prompts
+  const p = await import('@clack/prompts');
+  const action = await p.select({
+    message: 'Quick menu',
+    options: [
+      { label: `${ICONS.dashboard}  Dashboard`, value: 'dashboard', hint: isDashboardRunning() ? 'Open' : 'Start & open' },
+      { label: `${ICONS.task}  My Tasks`, value: 'tasks', hint: `${taskCounts.totalTasks} total` },
+      { label: `📈 Status`, value: 'status', hint: 'Health snapshot' },
+      { label: `${ICONS.skill}  Browse Skills`, value: 'skills', hint: '34 skills' },
+      { label: `➕ Add a Task`, value: 'addtask', hint: 'Quick add' },
+      { label: `⚡ Install Skills`, value: 'install', hint: 'Update all' },
+      { label: `${ICONS.hamster}  My Profile`, value: 'profile', hint: `${profile.level}` },
+      { label: `❓ Help`, value: 'help' },
     ],
-    hint: '↑↓ navigate · Enter select · Ctrl+C exit',
   });
 
-  console.log();
-  switch (resp?.action) {
+  if (p.isCancel(action)) {
+    console.log(dim('\n  See you soon! 🐹\n'));
+    return;
+  }
+
+  console.log('');
+  switch (action) {
     case 'dashboard':
       if (!isDashboardRunning()) {
         launchDashboard(DEFAULT_PORT, false);
         await new Promise(r => setTimeout(r, 800));
       }
-      console.log(chalk.cyan(`🌐 Opening http://localhost:${DEFAULT_PORT} ...`));
+      console.log(info(`  🌐 Opening http://localhost:${DEFAULT_PORT} ...`));
       openUrl(`http://localhost:${DEFAULT_PORT}`);
-      console.log(chalk.gray('Dashboard is running. Ctrl+C to stop.\n'));
+      console.log(dim('  Dashboard is running. Ctrl+C to stop.\n'));
       break;
     case 'tasks':
-      // Inline task list
       require('child_process').spawnSync(process.execPath, [process.argv[1], 'task', 'list'], { stdio: 'inherit' });
       break;
     case 'status':
@@ -211,25 +263,40 @@ async function showInteractiveMenu() {
       skillList();
       break;
     case 'addtask': {
-      const t = await p({ type: 'text', name: 'title', message: 'Task title:' });
-      if (t?.title) {
-        require('child_process').spawnSync(process.execPath, [process.argv[1], 'task', 'add', t.title], { stdio: 'inherit' });
+      const title = await p.text({
+        message: 'Task title:',
+        placeholder: 'What are you working on?',
+        validate: (val: string | undefined) => {
+          if (!val || val.trim().length === 0) return 'Give your task a title!';
+          return undefined;
+        },
+      });
+      if (!p.isCancel(title) && title) {
+        require('child_process').spawnSync(process.execPath, [process.argv[1], 'task', 'add', title as string], { stdio: 'inherit' });
       }
       break;
     }
     case 'install':
-      console.log(chalk.cyan('Run:  npx codymaster add --all\n'));
+      console.log(`  ${brand('→')} Run: ${brandBold('npx codymaster add --all')}\n`);
+      break;
+    case 'profile':
+      console.log(formatProfileSummary(profile));
       break;
     case 'help':
-    default:
-      console.log(chalk.white('Usage: cm <command> [options]\n'));
-      console.log(chalk.gray('  cm dashboard          Open Mission Control'));
-      console.log(chalk.gray('  cm status             Project overview'));
-      console.log(chalk.gray('  cm task add "Title"   Add a task'));
-      console.log(chalk.gray('  cm task list          View tasks'));
-      console.log(chalk.gray('  cm list               Browse 34 skills'));
-      console.log(chalk.gray('  cm deploy staging     Record deployment'));
-      console.log(chalk.gray('  npx codymaster add --all   Install/update skills\n'));
+    default: {
+      const helpItems = [
+        `${brand('cm')}                   ${dim('Quick menu')}`,
+        `${brand('cm task add')} ${dim('"..."')}    ${dim('Add a task')}`,
+        `${brand('cm task list')}          ${dim('View tasks')}`,
+        `${brand('cm status')}             ${dim('Project health')}`,
+        `${brand('cm dashboard')}          ${dim('Mission Control')}`,
+        `${brand('cm list')}               ${dim('Browse 34 skills')}`,
+        `${brand('cm deploy')} ${dim('<env>')}       ${dim('Record deploy')}`,
+        `${brand('cm profile')}            ${dim('Your stats')}`,
+      ];
+      console.log(renderBox(helpItems, { title: 'Commands', width: 52 }));
+      console.log('');
+    }
   }
 }
 
@@ -868,6 +935,10 @@ const PLATFORM_TARGETS: Record<string, { dir: string; invoke: string; note: stri
   opencode: { dir: '.opencode/skills', invoke: '@[/<skill>]', note: 'OpenCode skills directory' },
   kiro: { dir: '.kiro/steering', invoke: '@<skill>', note: 'Kiro steering documents' },
   copilot: { dir: '.github', invoke: '(auto-context)', note: 'Added to copilot-instructions.md' },
+  aider: { dir: '.aider/skills', invoke: '@[/<skill>]', note: 'Aider skills directory (reference in .aider.conf.yml)' },
+  continue: { dir: '.continue/rules', invoke: '@<skill>', note: 'Continue.dev rules directory' },
+  amazonq: { dir: '.aws/amazonq/skills', invoke: '@<skill>', note: 'Amazon Q skills directory' },
+  amp: { dir: '.amp/skills', invoke: '@<skill>', note: 'Amp skills directory' },
 };
 
 const RAW_BASE = 'https://raw.githubusercontent.com/tody-agent/codymaster/main';
@@ -938,18 +1009,8 @@ async function doAddSkills(skills: string[], platform: string) {
     return;
   }
 
-  if (platform === 'gemini') {
-    console.log(chalk.cyan('💻 Gemini CLI — Installing via extensions'));
-    try {
-      execFileSync('gemini', ['extensions', 'install', 'https://github.com/tody-agent/codymaster'], { stdio: 'inherit' });
-      console.log('\n' + chalk.green('✅ All 34 skills installed for Gemini CLI!'));
-      await postInstallOnboarding('gemini');
-    } catch {
-      console.log(chalk.yellow('💡 Run this in your terminal:\n'));
-      console.log(chalk.cyan('   gemini extensions install https://github.com/tody-agent/codymaster\n'));
-    }
-    return;
-  }
+  // Removed the fictional gemini extensions install block.
+  // Gemini now falls through to the standard file-cloning logic below.
 
   const target = PLATFORM_TARGETS[platform];
   if (!target) {
@@ -981,8 +1042,31 @@ async function doAddSkills(skills: string[], platform: string) {
   let ok = 0, fail = 0;
   for (const skill of skills) {
     const url = `${RAW_BASE}/skills/${skill}/SKILL.md`;
-    const dest = path.join(target.dir, skill, 'SKILL.md');
+    let dest = path.join(target.dir, skill, 'SKILL.md');
+    
+    // Formatting logic to adapt to specific IDE required formats
+    if (platform === 'cursor') {
+      dest = path.join(target.dir, `${skill}.mdc`);
+    } else if (platform === 'continue') {
+      dest = path.join(target.dir, `${skill}.md`);
+    }
+
     const success = await downloadFile(url, dest);
+    
+    // Prepend Cursor MDC glob formatting
+    if (success && platform === 'cursor') {
+      try {
+        const content = fs.readFileSync(dest, 'utf-8');
+        if (!content.startsWith('---')) {
+          const yamlFrontmatter = `---\ndescription: ${skill}\nglobs: *\n---\n`;
+          fs.writeFileSync(dest, yamlFrontmatter + content);
+        } else if (!content.includes('globs:')) {
+          const newContent = content.replace(/^---/, '---\nglobs: *');
+          fs.writeFileSync(dest, newContent);
+        }
+      } catch (err) {}
+    }
+
     if (success) { process.stdout.write(chalk.green(`  ✅ ${skill}\n`)); ok++; }
     else { process.stdout.write(chalk.red(`  ❌ ${skill}\n`)); fail++; }
   }
@@ -1034,13 +1118,17 @@ program
         type: 'select', name: 'platform', message: 'Select your AI coding platform:',
         choices: [
           { title: '🟣 Claude Code  (recommended)', value: 'claude' },
-          { title: '💻 Gemini CLI', value: 'gemini' },
+          { title: '💻 Gemini CLI & Antigravity', value: 'gemini' },
           { title: '🔵 Cursor', value: 'cursor' },
           { title: '🟠 Windsurf', value: 'windsurf' },
           { title: '⚫ Cline / RooCode', value: 'cline' },
           { title: '📦 OpenCode', value: 'opencode' },
           { title: '🔶 Kiro (AWS)', value: 'kiro' },
           { title: '🐙 GitHub Copilot', value: 'copilot' },
+          { title: '🤖 Aider', value: 'aider' },
+          { title: '🔗 Continue.dev', value: 'continue' },
+          { title: '☁️  Amazon Q', value: 'amazonq' },
+          { title: '⚡ Amp', value: 'amp' },
         ],
       });
       if (!resp.platform) return;
@@ -1085,6 +1173,26 @@ program
   .option('-d, --domain <domain>', 'Filter by domain')
   .action((opts) => {
     skillList(opts.domain);
+  });
+
+// ─── Profile Command ──────────────────────────────────────────────────────────
+
+program
+  .command('profile')
+  .description('View your CodyMaster profile, stats, and achievements')
+  .action(() => {
+    const profile = loadProfile();
+    if (!profile.onboardingComplete) {
+      console.log(dim('\n  Run cm first to complete setup! 🐹\n'));
+      return;
+    }
+    recordCommand(profile, 'profile');
+    const newAchievements = checkAchievements(profile);
+    saveProfile(profile);
+    console.log(formatProfileSummary(profile));
+    for (const id of newAchievements) {
+      console.log(formatAchievement(id));
+    }
   });
 
 // ─── Continuity Command (Working Memory) ────────────────────────────────────
@@ -2223,5 +2331,8 @@ if (!SKIP_DASHBOARD_CMDS.has(firstArg) && firstArg !== '' && !firstArg.startsWit
     launchDashboard(DEFAULT_PORT, true);
   }
 }
+
+// Kick off update check (non-blocking)
+checkForUpdates().catch(() => {});
 
 program.parse(process.argv);

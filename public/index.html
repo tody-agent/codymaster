@@ -146,9 +146,9 @@
       </p>
       <div class="home-hero__ctas">
         <a href="#install" class="btn btn--primary" data-i18n="readme.ctaInstall">1-Minute Install</a>
-        <a href="https://github.com/tody-agent/codymaster" target="_blank" class="btn btn--secondary"
-          data-i18n="readme.ctaGithub">
-          <i data-lucide="github" style="width:18px;height:18px"></i> View on GitHub
+        <a href="https://github.com/tody-agent/codymaster" target="_blank" class="btn btn--secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span data-i18n="readme.ctaGithub">View on GitHub</span>
         </a>
       </div>
     </header>
@@ -451,9 +451,11 @@
           <span class="home-supported__item"><i data-lucide="rocket"></i> Antigravity</span>
           <span class="home-supported__item"><i data-lucide="terminal-square"></i> Cursor</span>
           <span class="home-supported__item"><i data-lucide="code-xml"></i> OpenCode</span>
-          <span class="home-supported__item"><i data-lucide="zap"></i> OpenFang</span>
+          <span class="home-supported__item"><i data-lucide="zap"></i> Cline / RooCode</span>
           <span class="home-supported__item"><i data-lucide="bot"></i> Claude</span>
-          <span class="home-supported__item"><i data-lucide="code-2"></i> Windsurf / Roo</span>
+          <span class="home-supported__item"><i data-lucide="code-2"></i> Windsurf</span>
+          <span class="home-supported__item"><i data-lucide="wind"></i> Kiro</span>
+          <span class="home-supported__item"><i data-lucide="github"></i> Copilot</span>
           <span class="home-supported__item"><i data-lucide="command"></i> CLI</span>
         </div>
       </div>
@@ -488,7 +490,7 @@
           </div>
           <div class="home-manual-card">
             <h4><i data-lucide="rocket"></i> Antigravity / Gemini</h4>
-            <code>gemini extensions install https://github.com/tody-agent/codymaster</code>
+            <code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity</code>
           </div>
           <div class="home-manual-card">
             <h4><i data-lucide="code-xml"></i> Global / Others</h4>
@@ -501,6 +503,44 @@
         <a href="start.html" class="btn btn--outline" data-i18n="install.detailedGuide">View Full Installation Guide</a>
       </div>
     </section>
+
+    <!-- CLI Terminal Mockup — "What you'll see after install" -->
+    <div style="text-align:center;margin-bottom:16px;" class="reveal">
+      <p style="font-family:var(--font-display);font-size:1.1rem;color:var(--text-secondary);" data-i18n="install.afterInstall">After running the command, Cody will guide you through setup:</p>
+    </div>
+    <div class="app-window reveal"
+      style="max-width: 720px; text-align: left; margin-bottom: 80px; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);">
+      <div class="app-window__bar">
+        <div class="app-window__dots">
+          <div class="app-window__dot app-window__dot--r"></div>
+          <div class="app-window__dot app-window__dot--y"></div>
+          <div class="app-window__dot app-window__dot--g"></div>
+        </div>
+        <div class="app-window__title">cm — Cody the Hamster 🐹</div>
+        <div class="app-window__right"></div>
+      </div>
+      <div style="padding: 24px 28px; background: #1a1b26; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.8; color: #a9b1d6; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+        <pre style="margin:0;color:#f7b955;">    ( . \ --- / . )
+     /   ^   ^   \
+    (      u      )
+     |  \ ___ /  |
+      '--w---w--'</pre>
+        <p style="margin:8px 0 0;color:#f7b955;font-weight:bold;">    Hi there! I'm Cody 🐹</p>
+        <p style="margin:0 0 12px;color:#787c99;">    Your smart coding companion.</p>
+        <p style="margin:0 0 16px;color:#787c99;">  Step 2 of 5  <span style="color:#f7b955;">● ●</span> ○ ○ ○</p>
+        <p style="margin:0;color:#7aa2f7;">◆  Where do you code?</p>
+        <p style="margin:0;">│  <span style="color:#f7b955;">●</span> ✦  Google Antigravity (Gemini) <span style="color:#9ece6a;font-size:11px;">recommended</span></p>
+        <p style="margin:0;">│  ○ 🟣 Claude Code</p>
+        <p style="margin:0;">│  ○ ⬡  Cursor</p>
+        <p style="margin:0;">│  ○ 🌊 Windsurf</p>
+        <p style="margin:0;">│  ○ 🔶 Cline / RooCode</p>
+        <p style="margin:0;">│  ○ 📦 OpenCode</p>
+        <p style="margin:0;">│  ○ 🪁 Kiro</p>
+        <p style="margin:0;">│  ○ 🤖 GitHub Copilot</p>
+        <p style="margin:0;">│  ○ 🔧 Other / Not sure</p>
+        <p style="margin:16px 0 0;color:#787c99;font-size:11px;">  ↑↓ navigate • Enter select</p>
+      </div>
+    </div>
 
   </main>
 
@@ -578,9 +618,9 @@
         'Antigravity': {
           title: getT('ideSetup.antigravity.title', '🚀 Antigravity / Gemini CLI'),
           steps: [
-            { label: getT('ideSetup.antigravity.step1', 'Clone the skill kit'), code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
-            { label: getT('ideSetup.antigravity.step2', 'Symlink skills into Antigravity'), code: 'ln -sf ~/.cody-master/skills ~/.gemini/antigravity/skills' },
-            { label: getT('ideSetup.antigravity.step3', 'Add GEMINI.md rules'), code: 'cp ~/.cody-master/GEMINI.md ~/your-project/GEMINI.md' },
+            { label: getT('ideSetup.antigravity.step1', 'Clone the skill kit'), code: 'git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+            { label: getT('ideSetup.antigravity.step2', 'Copy skills into Antigravity'), code: 'cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/' },
+            { label: getT('ideSetup.antigravity.step3', 'Add GEMINI.md skills reference'), code: '# Add to your GEMINI.md:\n@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md\n@~/.gemini/antigravity/skills/cm-continuity/SKILL.md\n@~/.gemini/antigravity/skills/cm-start/SKILL.md' },
             { label: autoInstall, code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity' }
           ]
         },
@@ -602,13 +642,13 @@
             { label: autoInstall, code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --opencode' }
           ]
         },
-        'OpenFang': {
-          title: '⚡ OpenFang',
+        'Cline / RooCode': {
+          title: '🔶 Cline / RooCode',
           steps: [
             { label: cloneIfNotDone, code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
-            { label: getT('ideSetup.opencode.step2', 'Symlink skills'), code: 'ln -sf ~/.cody-master/skills ~/.openfang/skills' },
-            { label: getT('ideSetup.opencode.step3', 'Copy instructions'), code: 'cp ~/.cody-master/AGENTS.md .openfang/AGENTS.md' },
-            { label: autoInstall, code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --openfang' }
+            { label: getT('ideSetup.opencode.step2', 'Symlink skills'), code: 'ln -sf ~/.cody-master/skills ~/.cline/skills' },
+            { label: getT('ideSetup.opencode.step3', 'Copy instructions'), code: 'cp ~/.cody-master/AGENTS.md .cline/AGENTS.md' },
+            { label: autoInstall, code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --cline' }
           ]
         },
         'Claude': {
@@ -620,13 +660,31 @@
             { label: autoInstall, code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude' }
           ]
         },
-        'Windsurf / Roo': {
-          title: '🌊 Windsurf / Roo',
+        'Windsurf': {
+          title: '🌊 Windsurf',
           steps: [
             { label: cloneIfNotDone, code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
             { label: getT('ideSetup.claude.step3', 'Copy skills'), code: 'cp -r ~/.cody-master/skills .windsurf/skills/' },
             { label: getT('ideSetup.cursor.step3', 'Copy rules file'), code: 'cp ~/.cody-master/.windsurfrules .windsurfrules' },
             { label: autoInstall, code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --windsurf' }
+          ]
+        },
+        'Kiro': {
+          title: '🪁 Kiro',
+          steps: [
+            { label: cloneIfNotDone, code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+            { label: 'Copy skills to steering docs', code: 'cp -r ~/.cody-master/skills .kiro/steering/' },
+            { label: 'Copy instructions', code: 'cp ~/.cody-master/AGENTS.md .kiro/AGENTS.md' },
+            { label: autoInstall, code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --kiro' }
+          ]
+        },
+        'Copilot': {
+          title: '🤖 GitHub Copilot',
+          steps: [
+            { label: cloneIfNotDone, code: 'git clone https://github.com/tody-agent/codymaster.git ~/.cody-master' },
+            { label: 'Add to copilot instructions', code: 'cat ~/.cody-master/AGENTS.md >> .github/copilot-instructions.md' },
+            { label: 'Copy skills', code: 'cp -r ~/.cody-master/skills .github/skills/' },
+            { label: autoInstall, code: 'bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --copilot' }
           ]
         },
         'CLI': {

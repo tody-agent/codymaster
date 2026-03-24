@@ -145,7 +145,7 @@
   "install.tabGlobal": "全局安装（推荐）",
   "install.tabManual": "手动安装",
   "install.universalSubtitle": "一条命令搞定一切。自动检测并安装到所有 AI 代理和 IDE。",
-  "readme.ctaGithub": "<i data-lucide=\"github\" style=\"width:18px;height:18px\"></i> 在 GitHub 查看",
+  "readme.ctaGithub": "在 GitHub 查看",
   "readme.ctaInstall": "1 分钟安装",
   "readme.feat1Desc": "无间隙。无手动交接。创意 → 规划 → 设计 → 测试 → 编码 → 调试 → 部署 → 文档。每个阶段系统化覆盖。",
   "readme.feat1Title": "🔄 全生命周期覆盖",

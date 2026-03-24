@@ -191,8 +191,8 @@ Team 5 Dev + CodyMaster:
 
 ```bash
 # 5 phút setup cho toàn team:
-npm install -g cody-master
-cm dashboard start
+npm install -g codymaster
+codymaster # Cài đặt tương tác & Dashboard
 cm continuity init
 ```
 
@@ -213,7 +213,7 @@ cm continuity init
 > ✅ Dev thường YÊU CodyMaster. Vì: 1) Code review nhanh hơn (5 gates done). 2) Working Memory → không explain lại context. 3) Open-source → dev inspect, customize, contribute.
 
 **❓ "Setup cho team lớn?"**
-> ✅ Mỗi dev `npm install -g cody-master` → xong. Skills load tự động. Dashboard chạy trên `localhost:6969`. Không cần infra team setup.
+> ✅ Mỗi dev `npm install -g codymaster` → `codymaster` để cài đặt. Xong. Skills load tự động. Dashboard chạy trên `localhost:6969`. Không cần infra team setup.
 
 **❓ "Có per-seat pricing?"**
 > ✅ KHÔNG. MIT License. Free forever. Dev chỉ trả phí cho AI provider (Gemini/Claude) — CodyMaster = 0$.

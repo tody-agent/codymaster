@@ -187,6 +187,13 @@ flowchart LR
 
 ## 🚀 1 分钟安装
 
+### NPM (通用，交互式安装)
+```bash
+npm install -g codymaster
+codymaster
+```
+*自动检测并安装 Claude Code、Cursor、Gemini 等平台。*
+
 ### Claude Code（推荐）
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
@@ -199,7 +206,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 ### Gemini CLI / Antigravity
 ```bash
-gemini extensions install https://github.com/tody-agent/codymaster
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
 ```
 
 <details>

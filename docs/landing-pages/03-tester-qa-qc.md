@@ -91,7 +91,7 @@ AI viết code
 
 | Bước | Hành động | Impact cho QA |
 |------|-----------|---------------|
-| **1️⃣** | Dev team cài `npm install -g cody-master` | AI enforce TDD + quality gate |
+| **1️⃣** | Dev team cài `npm install -g codymaster` | AI enforce TDD + quality gate |
 | **2️⃣** | QA customize quality rules vào gates | QA định nghĩa luật → AI follow |
 | **3️⃣** | Monitor Dashboard `localhost:6969` | QA = Quality ENGINEER, ko phải Bug HUNTER |
 
@@ -155,8 +155,8 @@ Quality Engineer day = Dashboard 0 bugs ✅ → Quality metrics 97%
 # 🛡️ Giải Phóng QA Khỏi Bug AI
 
 ```bash
-npm install -g cody-master    # Dev cài
-cm dashboard start             # QA monitor
+npm install -g codymaster      # Dev cài
+codymaster                     # QA monitor qua Dashboard
 # Skill cm-test-gate → 4-layer test auto setup
 ```
 

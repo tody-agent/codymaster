@@ -12,6 +12,29 @@ robots: "index, follow"
 > - **Prerequisites**: Claude Code CLI (or another supported AI platform)
 > - **Difficulty**: Beginner
 
+## Method 0: NPM (Universal — Fastest)
+
+The quickest way to install CodyMaster on **any** platform.
+
+```bash
+npm install -g codymaster
+```
+
+Then run the interactive setup:
+
+```bash
+codymaster
+```
+
+This gives you:
+- The `cm` / `cody` / `codymaster` CLI commands
+- Interactive platform installer (auto-detects your AI tools)
+- Dashboard, task management, and all 34 skills
+
+> Works on Mac, Linux, and Windows. Requires Node.js 18+.
+
+---
+
 ## Method 1: Claude Code (Recommended)
 
 Cody Master installs as a Claude Code plugin bundle — no npm, no separate server, nothing to maintain.
@@ -61,20 +84,33 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 ---
 
-## Method 2: Gemini CLI (Antigravity)
+## Method 2: Gemini CLI / Google Antigravity
+
+### Option A: Auto-installer (Recommended)
 
 ```bash
-gemini extensions install https://github.com/tody-agent/codymaster
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
+```
+
+This automatically clones the repo and copies all 34 skills to `~/.gemini/antigravity/skills/`.
+
+### Option B: Manual clone + copy
+
+```bash
+# Clone once
+git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master
+
+# Copy skills to Antigravity
+cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 ```
 
 > [!TIP]
-> **Fallback Installation**: If the automated extension install fails, CodyMaster will automatically attempt a direct skills copy to `~/.gemini/skills/`. You can also force this via:
-> `bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity`
-
-To update later:
-```bash
-gemini extensions update codymaster
-```
+> **GEMINI.md**: Add skill references to your project's `GEMINI.md`:
+> ```
+> @~/.gemini/antigravity/skills/cm-skill-index/SKILL.md
+> @~/.gemini/antigravity/skills/cm-continuity/SKILL.md
+> @~/.gemini/antigravity/skills/cm-start/SKILL.md
+> ```
 
 ---
 
@@ -178,11 +214,17 @@ Skills also activate **automatically** when relevant — just describe what you 
 ## Updating
 
 ```bash
+# NPM (Universal)
+npm update -g codymaster
+
 # Claude Code
 claude plugin update cm@codymaster
 
-# Gemini CLI
-gemini extensions update codymaster
+# Gemini CLI / Antigravity — re-run the installer
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
+
+# Or update the clone and re-copy
+cd ~/.cody-master && git pull && cp -r skills/* ~/.gemini/antigravity/skills/
 ```
 
 ## Troubleshooting

@@ -187,6 +187,13 @@ flowchart LR
 
 ## 🚀 Установка за 1 минуту
 
+### NPM (Универсальная установка)
+```bash
+npm install -g codymaster
+codymaster
+```
+*Автоматически обнаруживает и устанавливает для Claude Code, Cursor, Gemini и других.*
+
 ### Claude Code (Рекомендуется)
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
@@ -199,7 +206,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 ### Gemini CLI / Antigravity
 ```bash
-gemini extensions install https://github.com/tody-agent/codymaster
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
 ```
 
 <details>
@@ -279,6 +286,6 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 *Лицензия MIT — можно свободно использовать, изменять и распространять.* <br/>
 **Создано с ❤️ для сообщества вайб-кодинга.**
 
-*"Cody" = "Code Đi" (вьетнамский: «Иди кодь!») — просто начни создавать.*
+*"CodyMaster" = "Code Đi" (вьетнамский: «Иди кодь!») — просто начни создавать.*
 
 </div>

@@ -145,7 +145,7 @@
   "install.tabGlobal": "Cài Đặt Toàn Cục (Khuyến nghị)",
   "install.tabManual": "Cài Đặt Thủ Công",
   "install.universalSubtitle": "Một lệnh duy nhất. Tự động nhận diện và cài đặt cho tất cả AI agent và IDE.",
-  "readme.ctaGithub": "<i data-lucide=\"github\" style=\"width:18px;height:18px\"></i> Xem trên GitHub",
+  "readme.ctaGithub": "Xem trên GitHub",
   "readme.ctaInstall": "Cài Đặt 1 Phút",
   "readme.feat1Desc": "Không lỗ hổng. Không chuyển giao thủ công. Ý tưởng → Kế hoạch → Thiết kế → Test → Code → Debug → Deploy → Tài liệu. Mọi giai đoạn đều được xử lý có hệ thống.",
   "readme.feat1Title": "🔄 Bao Phủ Toàn Bộ Vòng Đời",

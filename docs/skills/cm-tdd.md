@@ -1,15 +1,11 @@
 ---
-title: "cm-tdd"
-description: "Use when implementing any feature or bugfix, before writing implementation code"
-keywords: ["cm-tdd", "cody master", "ai skill"]
-robots: "index, follow"
+name: cm-tdd
+description: Use when implementing any feature or bugfix, before writing implementation code
 ---
 
-> **📋 Full Skill Source** — This is the complete, unedited SKILL.md file. Nothing is hidden or summarized.
-
-[← Back to Skills Library](./index.md)
-
 # Test-Driven Development (TDD)
+
+> **Role: Test Engineer** — You write failing tests first, then minimal code to pass, then refactor. No exceptions.
 
 ## Overview
 
@@ -74,11 +70,15 @@ digraph tdd_cycle {
 }
 ```
 
+### Step 0: Check Working Memory
+
+Per `_shared/helpers.md#Load-Working-Memory` — focus on known edge cases and past failures for this module.
+
 ### RED - Write Failing Test
 
 Write one minimal test showing what should happen.
 
-&lt;Good&gt;
+<Good>
 ```typescript
 test('retries failed operations 3 times', async () => {
   let attempts = 0;
@@ -95,9 +95,9 @@ test('retries failed operations 3 times', async () => {
 });
 ```
 Clear name, tests real behavior, one thing
-&lt;/Good&gt;
+</Good>
 
-&lt;Bad&gt;
+<Bad>
 ```typescript
 test('retry works', async () => {
   const mock = jest.fn()
@@ -109,7 +109,7 @@ test('retry works', async () => {
 });
 ```
 Vague name, tests mock not code
-&lt;/Bad&gt;
+</Bad>
 
 **Requirements:**
 - One behavior
@@ -137,7 +137,7 @@ Confirm:
 
 Write simplest code to pass the test.
 
-&lt;Good&gt;
+<Good>
 ```typescript
 async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
   for (let i = 0; i < 3; i++) {
@@ -151,9 +151,9 @@ async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
 }
 ```
 Just enough to pass
-&lt;/Good&gt;
+</Good>
 
-&lt;Bad&gt;
+<Bad>
 ```typescript
 async function retryOperation<T>(
   fn: () => Promise<T>,
@@ -167,7 +167,7 @@ async function retryOperation<T>(
 }
 ```
 Over-engineered
-&lt;/Bad&gt;
+</Bad>
 
 Don't add features, refactor other code, or "improve" beyond the test.
 
@@ -359,6 +359,44 @@ Can't check all boxes? You skipped TDD. Start over.
 Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix and prevents regression.
 
 Never fix bugs without a test.
+
+## Security TDD (Learned: March 2026)
+
+> **Security bugs get tests too.** Every XSS, path traversal, or injection fix starts with a failing test.
+
+### Example: XSS Prevention
+
+**RED**
+```javascript
+test('escapeHtml prevents script injection', () => {
+  const malicious = '<script>alert("xss")</script>';
+  const result = escapeHtml(malicious);
+  expect(result).not.toContain('<script>');
+  expect(result).toContain('&lt;script&gt;');
+});
+
+test('no unescaped innerHTML with dynamic data in JS files', () => {
+  const result = execSync(
+    `grep -rn 'innerHTML.*\\\${' public/js/*.js | grep -v 'esc\\|SecurityUtils' || true`,
+    { encoding: 'utf-8' }
+  );
+  expect(result.trim()).toBe('');
+});
+```
+
+### Example: Path Traversal Prevention
+
+**RED**
+```python
+def test_safe_resolve_blocks_traversal():
+    with pytest.raises(ValueError, match="Path traversal detected"):
+        safe_resolve("/app/data", "../../etc/passwd")
+```
+
+### Rule
+- **Every security fix = failing test first**
+- Test the ATTACK, not just the happy path
+- Security regression tests are permanent — never delete
 
 ## Final Rule
 

@@ -32,6 +32,12 @@ Your Idea → Cody Master Skills → Production-Ready Code
 
 ::: code-group
 
+```bash [NPM (Universal)]
+# Fastest & Interactive setup
+npm install -g codymaster
+codymaster
+```
+
 ```bash [Claude Code]
 # One-liner installer (auto-detect language & scope)
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
@@ -44,7 +50,7 @@ claude plugin install cm@codymaster
 
 ```bash [Gemini CLI]
 # Method A: Extension Install
-gemini extensions install https://github.com/tody-agent/codymaster
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
 
 # Method B: Direct Install (Fallback)
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity

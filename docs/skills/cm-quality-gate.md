@@ -1,15 +1,11 @@
 ---
-title: "cm-quality-gate"
-description: "Use before any deployment or completion claim. Enforces test gates, evidence-based verification, and frontend safety checks. No deploy without passing. No claim"
-keywords: ["cm-quality-gate", "cody master", "ai skill"]
-robots: "index, follow"
+name: cm-quality-gate
+description: "Use before any deployment or completion claim. Enforces test gates, evidence-based verification, and frontend safety checks. No deploy without passing. No claims without evidence."
 ---
 
-> **📋 Full Skill Source** — This is the complete, unedited SKILL.md file. Nothing is hidden or summarized.
-
-[← Back to Skills Library](./index.md)
-
 # Quality Gate — Test + Verify + Ship Safe
+
+> **Role: QA Lead** — You enforce test gates, evidence-based verification, and frontend safety. No deploy without passing you.
 
 > **Three checkpoints, one skill:** Pre-deploy testing, evidence verification, frontend safety.
 
@@ -69,7 +65,7 @@ Guarantees all language files have identical key counts.
 ### Protocol
 
 1.  **Check for skip override** (explicit user words only):
-    -   ✅ "skip tests", "bỏ qua test", "deploy without testing"
+    -   ✅ "skip tests", "skip testing", "deploy without testing"
     -   ❌ "deploy", "quick deploy", "just push it" (= tests required)
 
 2.  **Run test gate:**
@@ -137,6 +133,32 @@ Setting up or enhancing test suites for projects with frontend JavaScript/TypeSc
 | 5. Corruption Patterns | Known bad patterns (empty functions, truncation) | Required |
 | 6. Import/Export | Module references resolve | Recommended |
 | 7. CSS Validation | CSS files parse correctly | Recommended |
+| 8. XSS/Injection Safety | No unescaped innerHTML with dynamic data | **CRITICAL** |
+
+### Layer 8: XSS/Injection Safety (Learned: March 2026)
+
+```javascript
+import { execSync } from 'child_process';
+
+test('no unescaped innerHTML with dynamic data', () => {
+  // Scan all JS files for innerHTML with template literals NOT using escape
+  const result = execSync(
+    `grep -rn 'innerHTML.*\\\${' public/js/*.js | grep -v 'esc\\|SecurityUtils' || true`,
+    { encoding: 'utf-8' }
+  );
+  expect(result.trim()).toBe(''); // Must be empty = all escaped
+});
+
+test('sanitize.js loaded in all HTML pages', () => {
+  const htmlFiles = execSync('ls public/*.html', { encoding: 'utf-8' }).trim().split('\n');
+  for (const file of htmlFiles) {
+    const content = fs.readFileSync(file, 'utf-8');
+    if (content.includes('kit.js')) {
+      expect(content).toContain('sanitize.js'); // Must load before kit.js
+    }
+  }
+});
+```
 
 ### Setup
 
@@ -157,6 +179,96 @@ test('app.js has valid syntax', () => {
 ```
 
 > This single test would have prevented the March 2026 white-screen incident.
+
+---
+
+### Gate 4: Update Working Memory
+
+Per `_shared/helpers.md#Update-Continuity`
+
+After ALL gates pass → record `✅ Quality gate passed: [test count] tests, 0 failures`
+
+After ANY gate fails → **FIRST run Memory Integrity Check:**
+1. List active learnings/decisions for the failing module
+2. Ask: "Did AI follow a learning/decision that caused this failure?"
+3. If YES → HEAL memory (invalidate/correct/scope-reduce) BEFORE recording new learning
+4. Record meta-learning in `.cm/meta-learnings.json` if memory was the cause
+
+---
+
+### Gate 5: Quality Score Report
+
+After all gates execute, output a numeric quality score:
+
+```
+🎯 Gate Score: 87/100
+├── Secret Scan:      10/10 ✅
+├── Syntax:           10/10 ✅
+├── Tests:             8/10 ⚠️  (2 skipped tests)
+├── i18n Parity:      10/10 ✅
+├── Build:            10/10 ✅
+├── Dist Verify:      10/10 ✅
+├── Frontend Safety:   9/10 ✅
+└── Coverage:          7/10 ⚠️  (75% vs 80% target)
+```
+
+**Scoring Rules:**
+| Component | Max | How to Score |
+|-----------|-----|-------------|
+| Secret Scan | 10 | 10 = clean, 0 = any secret found |
+| Syntax | 10 | 10 = no errors, 0 = parse fails |
+| Tests | 15 | 15 = all pass, −2 per failure, −1 per skip |
+| i18n | 10 | 10 = parity, −5 per mismatch |
+| Build | 15 | 15 = clean build, 0 = build fails |
+| Dist Verify | 10 | 10 = all files present, −2 per missing |
+| Frontend Safety | 15 | 15 = all layers pass, −3 per failure |
+| Coverage | 15 | 15 = ≥80%, scale down linearly |
+
+**Thresholds:**
+- **≥80** → ✅ **PASS** — safe to deploy
+- **60-79** → ⚠️ **WARN** — deploy with caution, document risks
+- **<60** → ❌ **FAIL** — fix before deploy
+
+---
+
+### Gate 6: Security Scan (Snyk Code) (Added: March 2026)
+
+> Run SAST scan to catch path traversal, XSS, injection, and other vulnerabilities BEFORE deploy.
+
+```bash
+# If snyk CLI installed:
+snyk code test --severity-threshold=high
+
+# Gate decision:
+# 0 HIGH findings → proceed
+# Any HIGH findings → STOP. Fix before deploy.
+# MEDIUM findings → review, add to .snyk if mitigated
+```
+
+**When findings are false positives:**
+1. Verify the mitigation is real (e.g., `safe_resolve()` for path traversal, `esc()` for XSS)
+2. Add to `.snyk` exclude with documentation explaining the mitigation
+3. Never suppress without documenting WHY
+
+**Scoring:**
+| Component | Max | How to Score |
+|-----------|-----|-------------|
+| Security Scan | 10 | 10 = 0 HIGH, −5 per HIGH, −1 per unreviewed MEDIUM |
+
+---
+
+### Gate 7: i18n HTML Safety (Added: March 2026)
+
+> Translation JSON files must NOT contain structural HTML markup (icons, links, scripts). Only safe formatting tags (`<strong>`, `<em>`, `<br>`, `<code>`) are acceptable. Structural HTML in translations conflicts with XSS sanitizers.
+
+```bash
+# Check for dangerous HTML in translation files
+grep -rn '<i \|<a \|<script\|<svg\|onclick\|onerror\|href=' public/i18n/**/*.json || true
+
+# Gate decision:
+# 0 matches → proceed
+# Any matches → STOP. Move HTML markup to templates, not translation values.
+```
 
 ---
 

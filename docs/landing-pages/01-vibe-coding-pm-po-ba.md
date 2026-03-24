@@ -207,8 +207,8 @@ Hãy tưởng tượng **6 tháng nữa**, bạn vẫn:
 
 ```bash
 # Cài đặt trong 30 giây:
-npm install -g cody-master
-cm dashboard start
+npm install -g codymaster
+codymaster # Cài đặt tương tác & Dashboard
 ```
 
 #### Transitional CTA:
@@ -237,7 +237,7 @@ cm dashboard start
 > ✅ CodyMaster là open-source (MIT License). Bạn chỉ trả phí cho AI provider bạn đang dùng (Gemini, Claude, v.v.) — CodyMaster hoàn toàn miễn phí.
 
 **❓ "Setup có phức tạp không?"**
-> ✅ 5 phút: `npm install -g cody-master` → `cm dashboard start`. Xong. Chạy trên 7 AI platforms, không cần config phức tạp.
+> ✅ 5 phút: `npm install -g codymaster` → `codymaster` để cài đặt. Xong. Chạy trên 7 AI platforms, không cần config phức tạp.
 
 ---
 

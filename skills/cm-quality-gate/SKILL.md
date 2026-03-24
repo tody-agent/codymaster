@@ -257,6 +257,21 @@ snyk code test --severity-threshold=high
 
 ---
 
+### Gate 7: i18n HTML Safety (Added: March 2026)
+
+> Translation JSON files must NOT contain structural HTML markup (icons, links, scripts). Only safe formatting tags (`<strong>`, `<em>`, `<br>`, `<code>`) are acceptable. Structural HTML in translations conflicts with XSS sanitizers.
+
+```bash
+# Check for dangerous HTML in translation files
+grep -rn '<i \|<a \|<script\|<svg\|onclick\|onerror\|href=' public/i18n/**/*.json || true
+
+# Gate decision:
+# 0 matches → proceed
+# Any matches → STOP. Move HTML markup to templates, not translation values.
+```
+
+---
+
 ## Integration
 | Skill | Relationship |
 |-------|-------------|

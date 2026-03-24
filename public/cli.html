@@ -883,7 +883,7 @@
       </div>
   </nav>
 
-  <!-- ═══════ HERO: CLI MOCKUP ═══════ -->
+  <!-- ═══════ HERO: DAILY DRIVER VIEW ═══════ -->
   <section class="cli-hero">
     <div class="bg-mesh bg-mesh--lime"></div>
     <div class="bg-grid"></div>
@@ -893,11 +893,9 @@
       <div class="hero__orb hero__orb--lime"></div>
     </div>
     <div class="cli-hero__content">
-      <div class="cli-hero__badge" data-i18n="pages.cliBadge">$ terminal</div>
-      <h1 class="cli-hero__title"><span data-i18n="pages.cliTitlePart1">The </span><span
-          data-i18n="pages.cliTitlePart2">CLI </span><span data-i18n="pages.cliTitlePart3">Power Guide</span></h1>
-      <p class="cli-hero__sub" data-i18n="pages.cliSub">For developers who think in terminal commands. Every slash
-        command, every workflow, all in one place.</p>
+      <div class="cli-hero__badge">$ terminal</div>
+      <h1 class="cli-hero__title">The CLI Power Guide</h1>
+      <p class="cli-hero__sub">34 AI skills. One command. Every workflow from idea to production.</p>
     </div>
 
     <div class="app-window text-left">
@@ -907,210 +905,32 @@
           <div class="app-window__dot app-window__dot--y"></div>
           <div class="app-window__dot app-window__dot--g"></div>
         </div>
-        <div class="app-window__title" data-i18n="pages.cliWindowTitle">codymaster — node /opt/homebrew/bin/cm</div>
+        <div class="app-window__title">cm — Cody the Hamster 🐹</div>
         <div class="app-window__right"></div>
       </div>
-      <div class="term-body">
-        <div class="term-line term-line--gap"><span class="text-gray" data-i18n="pages.cli_auto_18">[dev@macbook-pro
-            ~/proj] %</span><span data-i18n="pages.cli_auto_19">cm</span></div>
-
-        <div class="term-ascii">
-          ██████╗ ██████╗ ██████╗ ██╗ ██╗
-          ██╔════╝██╔═══██╗██╔══██╗╚██╗ ██╔╝
-          ██║ ██║ ██║██║ ██║ ╚████╔╝
-          ██║ ██║ ██║██║ ██║ ╚██╔╝
-          ╚██████╗╚██████╔╝██████╔╝ ██║
-          ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝
-        </div>
-
-        <div class="term-line" style="margin-left: 200px; margin-top: -85px;">
+      <div class="term-body" style="background:#1a1b26;color:#a9b1d6;line-height:1.8;">
+        <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;">
+          <pre style="margin:0;color:#f7b955;">    ( . \ --- / . )
+     /   ^   ^   \
+    (      u      )
+     |  \ ___ /  |
+      '--w---w--'</pre>
           <div>
-            <span class="text-cyan">Cody v3.4.0</span><br>
-            <span class="text-gray">34 Skills. Ship 10x faster.</span><br>
-            <span class="text-gray">Dashboard: </span><span class="text-cyan">http://localhost:6969</span>
+            <p style="margin:0;color:#f7b955;font-weight:bold;">Cody v4.1.2</p>
+            <p style="margin:0;color:#787c99;">34 Skills · Ship 10x faster</p>
+            <p style="margin:0;color:#787c99;">Dashboard: <span style="color:#9ece6a;">● RUNNING</span> <span style="color:#7aa2f7;">http://localhost:6969</span></p>
           </div>
         </div>
 
-        <div class="term-line" style="margin-top: 40px; margin-bottom: 20px;">
-          <span class="text-gray">Dashboard: </span> &nbsp;<span class="text-green">● RUNNING</span>&nbsp; <span
-            class="text-gray">http://localhost:6969</span>
-        </div>
-
-        <div class="term-line text-white">
-          <span class="text-cyan">?</span> Quick menu: <span class="text-gray">› ↑↓ navigate · Enter select · Ctrl+C
-            exit</span>
-        </div>
-        <div class="term-line"><span class="text-cyan">❯</span> &nbsp;📊 <span class="text-cyan"
-            style="text-decoration: underline;">Dashboard</span> <span class="text-gray">— Open in browser</span></div>
-        <div class="term-line">&nbsp;&nbsp;📋 My Tasks</div>
-        <div class="term-line">&nbsp;&nbsp;📈 Status</div>
-        <div class="term-line">&nbsp;&nbsp;<span class="text-purple">🧩 Browse Skills</span></div>
-        <div class="term-line">&nbsp;&nbsp;<span class="text-gray">➕ Add a Task</span></div>
-        <div class="term-line">&nbsp;&nbsp;<span class="text-green">⚡ Install/Update Skills</span></div>
-        <div class="term-line">&nbsp;&nbsp;<span class="text-red">❓ Help</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ QUICK START ═══════ -->
-  <section class="cli-section reveal">
-    <p class="cli-section__label">// ONBOARDING</p>
-    <h2 class="cli-section__title">3 Commands to Get Going</h2>
-    <p class="cli-section__sub">Copy your skills folder, pick a command, and let AI do the rest.</p>
-
-    <div class="cli-terminal">
-      <div class="cli-terminal__bar">
-        <span class="cli-terminal__dot app-window__dot--r"></span>
-        <span class="cli-terminal__dot app-window__dot--y"></span>
-        <span class="cli-terminal__dot app-window__dot--g"></span>
-        <span class="cli-terminal__title">zsh — Getting Started</span>
-      </div>
-      <div class="cli-terminal__body">
-        <span class="comment"># 1. Install — just copy the skills folder to your project</span><br>
-        <span class="prompt">$</span> cp -r codymaster/skills/ ./skills/<br><br>
-        <span class="comment"># 2. Start autonomous mode — AI picks the right skills</span><br>
-        <span class="prompt">$</span> <span class="string">/cm-start</span> <span class="flag">"Build a landing page for
-          my SaaS product"</span><br><br>
-        <span class="comment"># 3. Check progress anytime</span><br>
-        <span class="prompt">$</span> <span class="string">/cm-status</span><br>
-        <span class="output"> ✓ Identity verified (omisocial/github)</span><br>
-        <span class="output"> ✓ Plan approved (implementation_plan.md)</span><br>
-        <span class="output"> ⧖ Building components (3/7 done)</span><br>
-        <span class="output"> ○ Tests pending</span><br>
-        <span class="output"> ○ Deploy pending</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ DASHBOARD EXTENSION MOCKUP ═══════ -->
-  <section class="cli-section cli-section--wide reveal">
-    <p class="cli-section__label">// EXTENSION</p>
-    <h2 class="cli-section__title">Mission Control Dashboard</h2>
-    <p class="cli-section__sub">For users who need a shared mission control. Run <code>cm dashboard</code> or click the
-      menu to orchestrate multiple AI agents (Claude, Antigravity) across all your projects in a visual Kanban board.
-    </p>
-
-    <div class="app-window app-window--wide text-left">
-      <div class="app-window__bar">
-        <div class="app-window__dots">
-          <div class="app-window__dot app-window__dot--r"></div>
-          <div class="app-window__dot app-window__dot--y"></div>
-          <div class="app-window__dot app-window__dot--g"></div>
-        </div>
-        <div class="app-window__title">Dashboard</div>
-        <div class="app-window__right"></div>
-      </div>
-
-      <div class="dash-body"
-        style="padding: 0; overflow: hidden; height: 600px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; background: #000;">
-        <iframe src="dashboard-static.html" title="Dashboard Preview"
-          style="width: 100%; height: 100%; border: none;"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ WORKFLOW RECIPES ═══════ -->
-  <section class="cli-section reveal">
-    <p class="cli-section__label">// SCENARIOS</p>
-    <h2 class="cli-section__title">Common Workflow Recipes</h2>
-    <p class="cli-section__sub">Copy-paste these into your AI chat. Each recipe chains skills in the right order.</p>
-
-    <div class="cli-workflow-grid">
-      <!-- Recipe 1 -->
-      <div>
-        <div class="cli-wf-label">🚀 New Project (Full Lifecycle)</div>
-        <div class="cli-terminal">
-          <div class="cli-terminal__bar">
-            <span class="cli-terminal__dot app-window__dot--r"></span>
-            <span class="cli-terminal__dot app-window__dot--y"></span>
-            <span class="cli-terminal__dot app-window__dot--g"></span>
-            <span class="cli-terminal__title">new-project.sh</span>
-          </div>
-          <div class="cli-terminal__body">
-            <span class="comment"># Verify identity first</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-identity-guard</span><br><br>
-            <span class="comment"># Scaffold everything</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-project-bootstrap</span><br><br>
-            <span class="comment"># Plan your first feature</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-planning</span> <span class="flag">"User auth with
-              email + OAuth"</span><br><br>
-            <span class="comment"># Build with TDD</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-tdd</span><br><br>
-            <span class="comment"># Deploy when ready</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-safe-deploy</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recipe 2 -->
-      <div>
-        <div class="cli-wf-label">🐛 Bug Fix (Root Cause First)</div>
-        <div class="cli-terminal">
-          <div class="cli-terminal__bar">
-            <span class="cli-terminal__dot app-window__dot--r"></span>
-            <span class="cli-terminal__dot app-window__dot--y"></span>
-            <span class="cli-terminal__dot app-window__dot--g"></span>
-            <span class="cli-terminal__title">bugfix.sh</span>
-          </div>
-          <div class="cli-terminal__body">
-            <span class="comment"># Isolate in a worktree</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-git-worktrees</span> <span
-              class="flag">fix/login-crash</span><br><br>
-            <span class="comment"># Find the real cause</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-debugging</span> <span class="flag">"Login page
-              crashes on submit"</span><br><br>
-            <span class="comment"># Write regression test, then fix</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-tdd</span><br><br>
-            <span class="comment"># Review and merge</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-code-review</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recipe 3 -->
-      <div>
-        <div class="cli-wf-label">🌍 i18n Translation Batch</div>
-        <div class="cli-terminal">
-          <div class="cli-terminal__bar">
-            <span class="cli-terminal__dot app-window__dot--r"></span>
-            <span class="cli-terminal__dot app-window__dot--y"></span>
-            <span class="cli-terminal__dot app-window__dot--g"></span>
-            <span class="cli-terminal__title">i18n.sh</span>
-          </div>
-          <div class="cli-terminal__body">
-            <span class="comment"># Translate a page to all languages</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-safe-i18n</span> <span class="flag">"Translate
-              pricing.html to vi, zh, ko, hi, ru"</span><br><br>
-            <span class="comment"># Outputs:</span><br>
-            <span class="output"> ✓ Extracted 47 strings</span><br>
-            <span class="output"> ✓ Translated to 5 languages (parallel)</span><br>
-            <span class="output"> ✓ Passed 8/8 audit gates</span><br>
-            <span class="output"> ✓ Updated en.json, vi.json, zh.json...</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recipe 4 -->
-      <div>
-        <div class="cli-wf-label">🎨 UI Redesign</div>
-        <div class="cli-terminal">
-          <div class="cli-terminal__bar">
-            <span class="cli-terminal__dot app-window__dot--r"></span>
-            <span class="cli-terminal__dot app-window__dot--y"></span>
-            <span class="cli-terminal__dot app-window__dot--g"></span>
-            <span class="cli-terminal__title">redesign.sh</span>
-          </div>
-          <div class="cli-terminal__body">
-            <span class="comment"># Analyze current design</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-brainstorm-idea</span> <span class="flag">"Improve
-              conversion on pricing"</span><br><br>
-            <span class="comment"># Design with UX laws</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-ux-master</span><br><br>
-            <span class="comment"># Preview before coding</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-ui-preview</span><br><br>
-            <span class="comment"># Plan the implementation</span><br>
-            <span class="prompt">$</span> <span class="string">/cm-planning</span>
-          </div>
+        <div style="margin-top:20px;">
+          <p style="margin:0;color:#a9b1d6;"><span style="color:#7aa2f7;">?</span> Quick menu: <span style="color:#787c99;font-size:12px;">› ↑↓ navigate · Enter select · Ctrl+C exit</span></p>
+          <p style="margin:0;"><span style="color:#7aa2f7;">❯</span>  📊 <span style="color:#7aa2f7;text-decoration:underline;">Dashboard</span> <span style="color:#787c99;">— Open in browser</span></p>
+          <p style="margin:0;">   📋 My Tasks</p>
+          <p style="margin:0;">   📈 Status</p>
+          <p style="margin:0;">   <span style="color:#c084fc;">🧩 Browse Skills</span></p>
+          <p style="margin:0;">   <span style="color:#787c99;">➕ Add a Task</span></p>
+          <p style="margin:0;">   <span style="color:#9ece6a;">⚡ Install/Update Skills</span></p>
+          <p style="margin:0;">   <span style="color:#f7768e;">❓ Help</span></p>
         </div>
       </div>
     </div>
@@ -1120,7 +940,7 @@
   <section class="cli-section reveal">
     <p class="cli-section__label">// CHEAT SHEET</p>
     <h2 class="cli-section__title">All 34 Skills at a Glance</h2>
-    <p class="cli-section__sub">The complete reference. Copy any command and paste it in your AI chat.</p>
+    <p class="cli-section__sub">Type <code>/cm-</code> in your AI chat to access any skill. Copy any command below and paste it directly.</p>
 
     <div class="cli-table-wrap">
       <table class="cli-table">
@@ -1297,6 +1117,165 @@
     </div>
   </section>
 
+
+  <!-- ═══════ WORKFLOW RECIPES ═══════ -->
+  <section class="cli-section reveal">
+    <p class="cli-section__label">// SCENARIOS</p>
+    <h2 class="cli-section__title">Common Workflow Recipes</h2>
+    <p class="cli-section__sub">Copy-paste these into your AI chat. Each recipe chains skills in the right order.</p>
+
+    <div class="cli-workflow-grid">
+      <!-- Recipe 1 -->
+      <div>
+        <div class="cli-wf-label">🚀 New Project (Full Lifecycle)</div>
+        <div class="cli-terminal">
+          <div class="cli-terminal__bar">
+            <span class="cli-terminal__dot app-window__dot--r"></span>
+            <span class="cli-terminal__dot app-window__dot--y"></span>
+            <span class="cli-terminal__dot app-window__dot--g"></span>
+            <span class="cli-terminal__title">new-project.sh</span>
+          </div>
+          <div class="cli-terminal__body">
+            <span class="comment"># Verify identity first</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-identity-guard</span><br><br>
+            <span class="comment"># Scaffold everything</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-project-bootstrap</span><br><br>
+            <span class="comment"># Plan your first feature</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-planning</span> <span class="flag">"User auth with
+              email + OAuth"</span><br><br>
+            <span class="comment"># Build with TDD</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-tdd</span><br><br>
+            <span class="comment"># Deploy when ready</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-safe-deploy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe 2 -->
+      <div>
+        <div class="cli-wf-label">🐛 Bug Fix (Root Cause First)</div>
+        <div class="cli-terminal">
+          <div class="cli-terminal__bar">
+            <span class="cli-terminal__dot app-window__dot--r"></span>
+            <span class="cli-terminal__dot app-window__dot--y"></span>
+            <span class="cli-terminal__dot app-window__dot--g"></span>
+            <span class="cli-terminal__title">bugfix.sh</span>
+          </div>
+          <div class="cli-terminal__body">
+            <span class="comment"># Isolate in a worktree</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-git-worktrees</span> <span
+              class="flag">fix/login-crash</span><br><br>
+            <span class="comment"># Find the real cause</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-debugging</span> <span class="flag">"Login page
+              crashes on submit"</span><br><br>
+            <span class="comment"># Write regression test, then fix</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-tdd</span><br><br>
+            <span class="comment"># Review and merge</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-code-review</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe 3 -->
+      <div>
+        <div class="cli-wf-label">🌍 i18n Translation Batch</div>
+        <div class="cli-terminal">
+          <div class="cli-terminal__bar">
+            <span class="cli-terminal__dot app-window__dot--r"></span>
+            <span class="cli-terminal__dot app-window__dot--y"></span>
+            <span class="cli-terminal__dot app-window__dot--g"></span>
+            <span class="cli-terminal__title">i18n.sh</span>
+          </div>
+          <div class="cli-terminal__body">
+            <span class="comment"># Translate a page to all languages</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-safe-i18n</span> <span class="flag">"Translate
+              pricing.html to vi, zh, ko, hi, ru"</span><br><br>
+            <span class="comment"># Outputs:</span><br>
+            <span class="output"> ✓ Extracted 47 strings</span><br>
+            <span class="output"> ✓ Translated to 5 languages (parallel)</span><br>
+            <span class="output"> ✓ Passed 8/8 audit gates</span><br>
+            <span class="output"> ✓ Updated en.json, vi.json, zh.json...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe 4 -->
+      <div>
+        <div class="cli-wf-label">🎨 UI Redesign</div>
+        <div class="cli-terminal">
+          <div class="cli-terminal__bar">
+            <span class="cli-terminal__dot app-window__dot--r"></span>
+            <span class="cli-terminal__dot app-window__dot--y"></span>
+            <span class="cli-terminal__dot app-window__dot--g"></span>
+            <span class="cli-terminal__title">redesign.sh</span>
+          </div>
+          <div class="cli-terminal__body">
+            <span class="comment"># Analyze current design</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-brainstorm-idea</span> <span class="flag">"Improve
+              conversion on pricing"</span><br><br>
+            <span class="comment"># Design with UX laws</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-ux-master</span><br><br>
+            <span class="comment"># Preview before coding</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-ui-preview</span><br><br>
+            <span class="comment"># Plan the implementation</span><br>
+            <span class="prompt">$</span> <span class="string">/cm-planning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ FIRST-TIME ONBOARDING (condensed) ═══════ -->
+  <section class="cli-section reveal">
+    <p class="cli-section__label">// FIRST RUN</p>
+    <h2 class="cli-section__title">What Happens When You Run <code>cm</code></h2>
+    <p class="cli-section__sub">First-time users get a 5-step guided setup. Cody walks you through name, platform, first task, skill discovery — coding in under 2 minutes.</p>
+
+    <div class="cli-terminal">
+      <div class="cli-terminal__bar">
+        <span class="cli-terminal__dot app-window__dot--r"></span>
+        <span class="cli-terminal__dot app-window__dot--y"></span>
+        <span class="cli-terminal__dot app-window__dot--g"></span>
+        <span class="cli-terminal__title">cm — First Run Experience</span>
+      </div>
+      <div class="cli-terminal__body" style="background:#1a1b26;color:#a9b1d6;line-height:1.7;font-size:13px;">
+        <pre style="margin:0;color:#f7b955;">    ( . \ --- / . )
+     /   ^   ^   \
+    (      u      )
+     |  \ ___ /  |
+      '--w---w--'</pre>
+        <p style="margin:8px 0 0;color:#f7b955;font-weight:bold;">    Hi there! I'm Cody 🐹</p>
+        <p style="margin:0 0 8px;color:#787c99;">    Your smart coding companion.</p>
+
+        <p style="margin:0;color:#787c99;">  Step 1 of 5  <span style="color:#f7b955;">●</span> ○ ○ ○ ○</p>
+        <p style="margin:0;color:#7aa2f7;">◇  What should I call you?</p>
+        <p style="margin:0;color:#787c99;">│  <span style="color:#a9b1d6;">Tody</span></p>
+        <p style="margin:4px 0 8px;color:#9ece6a;">    ✓ Nice to meet you, Tody!</p>
+
+        <p style="margin:0;color:#787c99;">  Step 2 of 5  <span style="color:#f7b955;">● ●</span> ○ ○ ○</p>
+        <p style="margin:0;color:#7aa2f7;">◆  Where do you code?</p>
+        <p style="margin:0;">│  <span style="color:#f7b955;">●</span> ✦  Google Antigravity (Gemini) <span style="color:#9ece6a;font-size:11px;">recommended</span></p>
+        <p style="margin:0;">│  ○ 🟣 Claude Code  ·  ⬡ Cursor  ·  🌊 Windsurf  ·  🔶 Cline</p>
+        <p style="margin:0;">│  ○ 📦 OpenCode  ·  🪁 Kiro  ·  🤖 Copilot  ·  🔧 Other</p>
+        <p style="margin:4px 0 8px;color:#9ece6a;">    ✓ Great choice! gemini</p>
+
+        <p style="margin:0;color:#787c99;">  Step 3 of 5  <span style="color:#f7b955;">● ● ●</span> ○ ○</p>
+        <p style="margin:0;color:#7aa2f7;">◇  What are you working on?</p>
+        <p style="margin:0;color:#787c99;">│  <span style="color:#a9b1d6;">Landing page</span></p>
+        <p style="margin:4px 0 8px;color:#9ece6a;">    ✅ First task created! 🤖 "Landing page"</p>
+
+        <p style="margin:0;color:#787c99;">  Step 4 of 5  <span style="color:#f7b955;">● ● ● ●</span> ○  —  <span style="color:#f7b955;">34 superpowers</span> discovered! 🧩</p>
+        <p style="margin:0;color:#787c99;">  Step 5 of 5  <span style="color:#f7b955;">● ● ● ● ●</span>  —  <span style="color:#f7b955;font-weight:bold;">🎉 You're all set!</span></p>
+
+        <div style="border:1px solid #3b4261;border-radius:6px;padding:8px 14px;margin:8px 0 4px;font-size:12px;">
+          <p style="margin:0;color:#7aa2f7;font-weight:600;">── Quick Reference ──</p>
+          <p style="margin:2px 0 0;"><span style="color:#a3e635;">cm</span> <span style="color:#787c99;">Quick menu</span> · <span style="color:#a3e635;">cm status</span> <span style="color:#787c99;">Progress</span> · <span style="color:#a3e635;">cm list</span> <span style="color:#787c99;">Skills</span> · <span style="color:#a3e635;">cm dashboard</span> <span style="color:#787c99;">Mission Control</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════ BEST PRACTICES & EXCEPTIONS ═══════ -->
   <section class="cli-section reveal">
     <p class="cli-section__label">// BEST PRACTICES</p>
@@ -1348,10 +1327,13 @@
     </div>
   </section>
 
+
   <!-- ═══════ CTA ═══════ -->
   <section class="cli-cta reveal">
     <h2 class="cli-cta__title">Ready to ship from the terminal?</h2>
-    <p class="cli-cta__sub">Install the skills, type your first command, and let AI handle the rest.</p>
+    <p class="cli-cta__sub">Install the CLI, type <code>cm</code>, and let Cody handle the rest.<br>
+      <span style="opacity:0.7;font-size:14px;">Run <code>cm dashboard</code> anytime to open the visual Mission Control board.</span>
+    </p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
       <a href="start.html" class="btn btn--primary btn--large">Get Started →</a>
       <a href="playbook.html" class="btn btn--secondary">Read the Playbook →</a>

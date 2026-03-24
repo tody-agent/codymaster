@@ -72,9 +72,20 @@
 
 ## Cài đặt CodyMaster (5 phút)
 
-### Cách 1: Cài tự động (Khuyên dùng)
+### Cách 1: Cài đặt qua NPM (Khuyên dùng - Nhanh nhất)
 
-Mở Terminal (trên Mac: tìm "Terminal" trong Spotlight) và paste lệnh này:
+Mở Terminal (trên Mac: tìm "Terminal" trong Spotlight) và gõ lệnh:
+
+```bash
+npm install -g codymaster
+codymaster
+```
+
+Lệnh `codymaster` sẽ mở menu chọn AI Agent (Cursor, Claude, Gemini...) và tự động cài đặt mọi thứ cho bạn.
+
+### Cách 2: Cài tự động bằng Script
+
+Nếu máy bạn không có npm, hãy dùng lệnh sau:
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
@@ -82,7 +93,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 Lệnh này tự động phát hiện và cài CodyMaster cho tất cả AI agent trên máy bạn.
 
-### Cách 2: Cài riêng cho từng agent
+### Cách 3: Cài riêng lẻ cho từng agent
 
 **Cursor IDE:**
 ```bash
@@ -97,7 +108,7 @@ claude plugin install cm@codymaster
 
 **Gemini Antigravity:**
 ```bash
-gemini extensions install https://github.com/tody-agent/codymaster
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
 ```
 
 ### Kiểm tra cài đặt thành công

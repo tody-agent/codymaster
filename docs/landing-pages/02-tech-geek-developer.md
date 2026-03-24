@@ -261,10 +261,10 @@ VERIFY   → Quality gate → ✅ next task | ❌ retry (max 3)
 
 ```bash
 # Install in 30 seconds
-npm install -g cody-master
+npm install -g codymaster
 
-# Launch dashboard
-cm dashboard start
+# Launch setup & dashboard
+codymaster
 
 # Init working memory
 cm continuity init
@@ -310,7 +310,7 @@ cm continuity init
 
 **CodyMaster cho AI discipline của Senior Engineer.**
 
-`[⚡ npm install -g cody-master]`
+`[⚡ npm install -g codymaster]`
 
 *Open-source. MIT. Forever free.*
 

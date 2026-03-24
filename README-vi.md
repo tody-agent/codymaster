@@ -187,6 +187,13 @@ Nếu bạn thích:
 
 ## 🚀 Cài đặt trong 1 phút
 
+### NPM (Cài đặt tương tác, Nhanh nhất)
+```bash
+npm install -g codymaster
+codymaster
+```
+*Tự động phát hiện và cài đặt cho Cursor, Claude, Web, v.v.*
+
 ### Claude Code (Được khuyến nghị)
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
@@ -199,7 +206,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 ### Gemini CLI / Antigravity
 ```bash
-gemini extensions install https://github.com/tody-agent/codymaster
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
 ```
 
 <details>
@@ -279,6 +286,6 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 *Giấy phép MIT — Miễn phí sử dụng, sửa đổi và phân phối.* <br/>
 **Được xây dựng với ❤️ dành cho cộng đồng vibe coding.**
 
-*"Cody" = "Code Đi" — hãy bắt đầu xây dựng ngay thôi.*
+*"CodyMaster" = "Code Đi" — hãy bắt đầu xây dựng ngay thôi.*
 
 </div>

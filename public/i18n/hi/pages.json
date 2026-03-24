@@ -891,35 +891,63 @@
     "finalButton": "34 स्किल्स एक्सप्लोर करें",
     "platforms": [
       {
+        "id": "npm",
+        "label": "NPM (Universal)",
+        "emoji": "📦",
+        "recommended": true,
+        "steps": [
+          {
+            "title": "Install via NPM",
+            "description": "One command. Works on Mac, Linux, and Windows. Requires Node.js 18+.",
+            "code": "npm install -g codymaster",
+            "output": "✓ codymaster installed globally\n📦 Commands available: cm, cody, codymaster"
+          },
+          {
+            "title": "Run Interactive Setup",
+            "description": "Auto-detects your AI tools (Claude, Gemini, Cursor…) and installs skills to each.",
+            "code": "codymaster",
+            "output": "  ██████   CodyMaster v4.1.2\n  █ CM █   34 Skills. Ship 10x faster.\n  ██████   Choose your platform..."
+          },
+          {
+            "title": "Use CLI & Skills",
+            "description": "The CLI gives you dashboard, task management, and all 34 skills instantly.",
+            "code": "cm dashboard\ncm task add \"My first task\"\ncm status",
+            "note": "Update anytime: npm update -g codymaster"
+          }
+        ]
+      },
+      {
         "id": "google-antigravity",
         "label": "Google Antigravity",
         "emoji": "🚀",
         "recommended": true,
         "oneliner": {
-          "label": "⚡ वन-लाइनर — ऑटो-डिटेक्ट, बहुभाषी",
-          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh)"
+          "label": "⚡ One-liner — auto-detect, multi-language",
+          "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity"
         },
         "steps": [
           {
-            "title": "Antigravity एक्सेस करें",
-            "description": "Antigravity Google DeepMind का उन्नत एजेंट कोडिंग वातावरण है।",
-            "items": [
-              "अपना Antigravity-सक्षम वातावरण खोलें",
-              "सुनिश्चित करें कि आपके पास टूल का नवीनतम संस्करण है",
-              "CodyMaster कौशल के साथ मूल रूप से काम करता है"
-            ]
+            "title": "Clone CodyMaster",
+            "description": "Clone the repository once to your home directory. This gives you all 34 skills.",
+            "code": "git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master",
+            "output": "✓ Cloned — 34 SKILL.md files ready at ~/.cody-master/skills/"
           },
           {
-            "title": "सभी 34 कौशल स्थापित करें",
-            "description": "एक कमांड सब कुछ स्थापित करता है — TDD, डिबगिंग, प्लानिंग, UX, और बहुत कुछ।",
-            "code": "npx codymaster add --all --platform gemini",
-            "output": "✓ सभी 34 कौशल .gemini/antigravity/skills/ में स्थापित\n📦 cm-tdd, cm-debugging, cm-planning, cm-safe-deploy..."
+            "title": "Copy Skills to Antigravity",
+            "description": "Copy all skills into your Antigravity skills directory.",
+            "code": "mkdir -p ~/.gemini/antigravity/skills\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/",
+            "output": "✓ 34 skills installed to ~/.gemini/antigravity/skills/"
           },
           {
-            "title": "स्थापना सत्यापित करें",
-            "description": "कौशल स्वचालित रूप से सक्रिय हो जाते हैं। शुरू करने के लिए किसी कौशल का उल्लेख करें।",
-            "code": "@cm-planning Design a new feature",
-            "note": "अपनी वर्तमान प्रगति देखने के लिए किसी भी समय @cm-status का उल्लेख करें।"
+            "title": "Add Skills to GEMINI.md",
+            "description": "Add skill references to your project's GEMINI.md so Antigravity loads them automatically.",
+            "code": "# Add these lines to your project's GEMINI.md:\n@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md\n@~/.gemini/antigravity/skills/cm-continuity/SKILL.md\n@~/.gemini/antigravity/skills/cm-start/SKILL.md",
+            "note": "Skills activate automatically. Mention @cm-status anytime to see your current progress."
+          },
+          {
+            "title": "Update Later",
+            "description": "Keep CodyMaster up to date by re-running the installer or pulling the latest.",
+            "code": "cd ~/.cody-master && git pull && cp -r skills/* ~/.gemini/antigravity/skills/"
           }
         ]
       },
@@ -978,10 +1006,15 @@
             ]
           },
           {
-            "title": "Install CodyMaster",
-            "description": "Install directly from GitHub — no npm package needed.",
-            "code": "gemini extensions install https://github.com/tody-agent/codymaster",
-            "output": "✓ cody-master installed\n✓ 34 skills available in Gemini CLI"
+            "title": "Clone CodyMaster",
+            "description": "Clone the repository and copy skills to the Gemini skills directory.",
+            "code": "git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master\ncp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/",
+            "output": "✓ 34 skills installed to ~/.gemini/antigravity/skills/"
+          },
+          {
+            "title": "Or Use Auto-Installer",
+            "description": "The auto-installer clones and copies everything in one command.",
+            "code": "bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity"
           },
           {
             "title": "Use Skills",
@@ -992,7 +1025,7 @@
           {
             "title": "Update Later",
             "description": "Keep CodyMaster up to date with one command.",
-            "code": "gemini extensions update cody-master"
+            "code": "cd ~/.cody-master && git pull && cp -r skills/* ~/.gemini/antigravity/skills/"
           }
         ]
       },
@@ -1002,25 +1035,25 @@
         "emoji": "🔵",
         "steps": [
           {
-            "title": "Cursor Agent Chat खोलें",
-            "description": "Cursor खोलें और chat panel में Agent mode पर स्विच करें।",
+            "title": "Open Cursor Agent Chat",
+            "description": "Open Cursor and switch to Agent mode in the chat panel.",
             "items": [
-              "Cursor IDE खोलें",
-              "Cmd+I (Mac) या Ctrl+I (Windows) दबाएं",
-              "Agent mode में स्विच करें"
+              "Open Cursor IDE",
+              "Press Cmd+I (Mac) or Ctrl+I (Windows)",
+              "Switch to Agent mode"
             ]
           },
           {
-            "title": "प्लगइन इंस्टॉल करें",
-            "description": "Cursor agent chat में इंस्टॉल कमांड चलाएं या marketplace में सर्च करें।",
-            "code": "/ऐड-प्लगइन कोडी-मास्टर",
-            "note": "या: Extensions → 'cody-master' सर्च → Install"
+            "title": "Install the Plugin",
+            "description": "Run the install command in Cursor agent chat — or search 'cody-master' in the marketplace.",
+            "code": "/add-plugin cody-master",
+            "note": "Or: Extensions → Search 'cody-master' → Install"
           },
           {
-            "title": "स्किल्स उपयोग करें",
-            "description": "स्किल्स context के अनुसार ऑटो एक्टिवेट होते हैं। @mention से एक्सप्लिसिट कॉल।",
-            "code": "@cm-planning नई auth system डिज़ाइन करो",
-            "note": "34 स्किल्स: @cm-tdd, @cm-debugging, @cm-safe-deploy..."
+            "title": "Use Skills",
+            "description": "Skills activate automatically based on context. Invoke explicitly with @mention.",
+            "code": "@cm-planning Design a new auth system for my app",
+            "note": "All 34 skills: @cm-tdd, @cm-debugging, @cm-safe-deploy, @cm-ux-master..."
           }
         ]
       },
@@ -1204,31 +1237,31 @@
         "emoji": "📦",
         "steps": [
           {
-            "title": "OpenCode इंस्टॉल करें",
-            "description": "सुनिश्चित करें कि OpenCode इंस्टॉल और प्रमाणित है।",
+            "title": "Install OpenCode",
+            "description": "Make sure you have OpenCode installed and authenticated.",
             "items": [
-              "इंस्टॉल: npm install -g opencode-ai (या brew install opencode)",
-              "जांचें: opencode --version",
-              "प्रोजेक्ट डायरेक्टरी में चलाएं: opencode"
+              "Install: npm install -g opencode-ai (or brew install opencode)",
+              "Verify: opencode --version",
+              "Run: opencode in your project directory"
             ]
           },
           {
-            "title": "npx से स्किल्स जोड़ें",
-            "description": "OpenCode प्रोजेक्ट में स्किल्स इंस्टॉल करने के लिए CodyMaster CLI का उपयोग करें।",
-            "code": "एनपीएक्स कोडीमास्टर ऐड --ऑल --प्लेटफॉर्म ओपनकोड",
-            "output": "📦 opencode — सभी 34 स्किल्स इंस्टॉल हो रही हैं\n  ✅ cm-tdd\n  ... (कुल 34)\n✅ 34 स्किल्स इंस्टॉल → ./.opencode/skills/"
+            "title": "Add Skills via npx",
+            "description": "Use the CodyMaster CLI to install skills directly into your OpenCode project.",
+            "code": "npx codymaster add --all --platform opencode",
+            "output": "📦 opencode — Installing all 34 skills\n  ✅ cm-tdd\n  ✅ cm-debugging\n  ✅ cm-planning\n  ... (34 total)\n✅ 34 skills installed → ./.opencode/skills/"
           },
           {
-            "title": "या मैन्युअली क्लोन करें",
-            "description": "रेपो क्लोन करें और OpenCode डायरेक्टरी में स्किल्स कॉपी करें।",
-            "code": "गिट क्लोन https://github.com/tody-agent/codymaster.git /tmp/cody\nसीपी -आर /टीएमपी/कोडी/कौशल/* .ओपनकोड/कौशल/",
-            "output": "✓ 34 SKILL.md फाइलें .opencode/skills/ में तैयार"
+            "title": "Or clone manually",
+            "description": "Clone and copy skills to your OpenCode skills directory.",
+            "code": "git clone https://github.com/tody-agent/codymaster.git /tmp/cody\ncp -r /tmp/cody/skills/* .opencode/skills/",
+            "output": "✓ 34 SKILL.md files ready in .opencode/skills/"
           },
           {
-            "title": "स्किल्स का उपयोग करें",
-            "description": "स्किल्स स्वचालित रूप से सक्रिय होती हैं। OpenCode सेशन में नाम से कॉल करें।",
-            "code": "@[/cm-planning] मेरे ऐप के लिए नई फीचर डिज़ाइन करें",
-            "note": "सभी 34 स्किल्स: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy]..."
+            "title": "Use Skills",
+            "description": "Skills activate automatically. Reference them by name in any OpenCode session.",
+            "code": "@[/cm-planning] Design a new feature for my app",
+            "note": "All 34 skills: @[/cm-tdd], @[/cm-debugging], @[/cm-safe-deploy], @[/cm-ux-master]..."
           }
         ]
       },

@@ -145,7 +145,7 @@
   "install.tabGlobal": "전역 설치 (권장)",
   "install.tabManual": "수동 설치",
   "install.universalSubtitle": "하나의 명령으로 모든 것을 해결. 모든 AI 에이전트와 IDE를 자동으로 감지하고 설치합니다.",
-  "readme.ctaGithub": "<i data-lucide=\"github\" style=\"width:18px;height:18px\"></i> GitHub에서 보기",
+  "readme.ctaGithub": "GitHub에서 보기",
   "readme.ctaInstall": "1분 설치",
   "readme.feat1Desc": "빈틈 없음. 수동 전달 없음. 아이디어 → 계획 → 디자인 → 테스트 → 코드 → 디버그 → 배포 → 문서. 모든 단계가 체계적으로 처리됩니다.",
   "readme.feat1Title": "🔄 전체 라이프사이클 커버리지",

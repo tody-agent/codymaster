@@ -145,7 +145,7 @@
   "install.tabGlobal": "Глобальная установка (рекомендуется)",
   "install.tabManual": "Ручная установка",
   "install.universalSubtitle": "Одна команда для всего. Автоматически находит и устанавливает для всех AI-агентов и IDE.",
-  "readme.ctaGithub": "<i data-lucide=\"github\" style=\"width:18px;height:18px\"></i> Смотреть на GitHub",
+  "readme.ctaGithub": "Смотреть на GitHub",
   "readme.ctaInstall": "Установка за 1 минуту",
   "readme.feat1Desc": "Без пробелов. Без ручных передач. Идея → План → Дизайн → Тест → Код → Отладка → Деплой → Документация. Каждый этап покрыт системно.",
   "readme.feat1Title": "🔄 Полный жизненный цикл",
