@@ -345,8 +345,7 @@ program
         case 'start':
         case undefined:
             if (isDashboardRunning()) {
-                console.log(chalk_1.default.yellow('⚠️  Dashboard already running.'));
-                console.log(chalk_1.default.gray(`   URL: http://localhost:${port}`));
+                console.log((0, box_1.renderResult)('warning', 'Dashboard already running.', [`${(0, theme_1.dim)('URL:')} ${(0, theme_1.brand)(`http://localhost:${port}`)}`]));
                 return;
             }
             (0, dashboard_1.launchDashboard)(port);
@@ -358,15 +357,13 @@ program
             dashboardStatus(port);
             break;
         case 'open':
-            console.log(chalk_1.default.blue(`🌐 Opening http://localhost:${port} ...`));
+            console.log((0, box_1.renderResult)('info', `Opening http://localhost:${port} ...`));
             openUrl(`http://localhost:${port}`);
             break;
         case 'url':
             console.log(`http://localhost:${port}`);
             break;
-        default:
-            console.log(chalk_1.default.red(`Unknown: ${cmd}`));
-            console.log(chalk_1.default.gray('Available: start, stop, status, open, url'));
+        default: console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: start, stop, status, open, url')]));
     }
 });
 function isDashboardRunning() {
@@ -388,7 +385,7 @@ function isDashboardRunning() {
 function stopDashboard() {
     try {
         if (!fs_1.default.existsSync(data_1.PID_FILE)) {
-            console.log(chalk_1.default.yellow('⚠️  No dashboard running.'));
+            console.log((0, box_1.renderResult)('warning', 'No dashboard running.'));
             return;
         }
         const pid = parseInt(fs_1.default.readFileSync(data_1.PID_FILE, 'utf-8').trim());
@@ -397,10 +394,10 @@ function stopDashboard() {
             fs_1.default.unlinkSync(data_1.PID_FILE);
         }
         catch (_a) { }
-        console.log(chalk_1.default.green(`✅ Dashboard stopped (PID ${pid}).`));
+        console.log((0, box_1.renderResult)('success', `Dashboard stopped (PID ${pid}).`));
     }
     catch (err) {
-        console.log(chalk_1.default.red(`Failed to stop: ${err.message}`));
+        console.log((0, box_1.renderResult)('error', `Failed to stop: ${err.message}`));
         try {
             fs_1.default.unlinkSync(data_1.PID_FILE);
         }
@@ -410,13 +407,10 @@ function stopDashboard() {
 function dashboardStatus(port) {
     if (isDashboardRunning()) {
         const pid = fs_1.default.readFileSync(data_1.PID_FILE, 'utf-8').trim();
-        console.log(chalk_1.default.green(`✅ Dashboard RUNNING`));
-        console.log(chalk_1.default.gray(`   PID: ${pid}`));
-        console.log(chalk_1.default.gray(`   URL: http://localhost:${port}`));
+        console.log((0, box_1.renderResult)('success', 'Dashboard RUNNING', [`${(0, theme_1.dim)('PID:')} ${(0, theme_1.brand)(pid)}`, `${(0, theme_1.dim)('URL:')} ${(0, theme_1.brand)(`http://localhost:${port}`)}`]));
     }
     else {
-        console.log(chalk_1.default.yellow('⚫ Dashboard NOT running'));
-        console.log(chalk_1.default.gray('   Start with: cm dashboard start'));
+        console.log((0, box_1.renderResult)('warning', 'Dashboard NOT running', [(0, theme_1.dim)('Start with: cm dashboard start')]));
     }
 }
 // ─── Task Command ───────────────────────────────────────────────────────────
@@ -456,14 +450,12 @@ program
         case 'stuck':
             taskStuck(opts);
             break;
-        default:
-            console.log(chalk_1.default.red(`Unknown: ${cmd}`));
-            console.log(chalk_1.default.gray('Available: add, list, move, done, rm, dispatch, stuck'));
+        default: console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: add, list, move, done, rm, dispatch, stuck')]));
     }
 });
 function taskAdd(title, opts) {
     if (!title) {
-        console.log(chalk_1.default.red('❌ Title required. Usage: cm task add "My task"'));
+        console.log((0, box_1.renderResult)('error', 'Title required. Usage: cm task add "My task"'));
         return;
     }
     const data = (0, data_1.loadData)();
@@ -471,7 +463,7 @@ function taskAdd(title, opts) {
     if (opts.project) {
         const project = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!project) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         projectId = project.id;
@@ -493,8 +485,9 @@ function taskAdd(title, opts) {
     (0, data_1.logActivity)(data, 'task_created', `Task "${task.title}" created via CLI`, projectId, opts.agent || '');
     (0, data_1.saveData)(data);
     const project = data.projects.find(p => p.id === projectId);
-    console.log(chalk_1.default.green(`✅ Task created: ${title}`));
-    console.log(chalk_1.default.gray(`   ID: ${(0, data_1.shortId)(task.id)} | Project: ${(project === null || project === void 0 ? void 0 : project.name) || 'Default'} | ${column} | ${opts.priority || 'medium'}`));
+    console.log((0, box_1.renderResult)('success', `Task created: ${title}`, [
+        `${(0, theme_1.dim)('ID:')} ${(0, theme_1.brand)((0, data_1.shortId)(task.id))} ${(0, theme_1.dim)('|')} ${(0, theme_1.dim)('Project:')} ${(0, theme_1.brand)((project === null || project === void 0 ? void 0 : project.name) || 'Default')} ${(0, theme_1.dim)('|')} ${(0, theme_1.dim)(column)} ${(0, theme_1.dim)('|')} ${(0, theme_1.dim)(opts.priority || 'medium')}`,
+    ]));
 }
 function taskList(opts) {
     const data = (0, data_1.loadData)();
@@ -502,45 +495,45 @@ function taskList(opts) {
     if (opts.project && !opts.all) {
         const project = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!project) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         tasks = tasks.filter(t => t.projectId === project.id);
-        console.log(chalk_1.default.cyan(`\n📋 Tasks — ${project.name}\n`));
+        console.log((0, box_1.renderCommandHeader)(`Tasks — ${project.name}`, '📋'));
     }
     else {
-        console.log(chalk_1.default.cyan('\n📋 All Tasks\n'));
+        console.log((0, box_1.renderCommandHeader)('All Tasks', '📋'));
     }
     if (tasks.length === 0) {
-        console.log(chalk_1.default.gray('  No tasks found.\n'));
+        console.log(`  ${(0, theme_1.dim)('No tasks found.')}\n`);
         return;
     }
-    console.log(chalk_1.default.gray('  ' + padRight('ID', 10) + padRight('Title', 36) + padRight('Column', 14) + padRight('Priority', 10) + padRight('Agent', 14) + 'Project'));
-    console.log(chalk_1.default.gray('  ' + '─'.repeat(100)));
+    console.log((0, theme_1.dim)('  ' + padRight('ID', 10) + padRight('Title', 36) + padRight('Column', 14) + padRight('Priority', 10) + padRight('Agent', 14) + 'Project'));
+    console.log((0, theme_1.dim)('  ' + '─'.repeat(100)));
     const co = ['backlog', 'in-progress', 'review', 'done'];
     tasks.sort((a, b) => co.indexOf(a.column) - co.indexOf(b.column) || a.order - b.order);
     for (const task of tasks) {
         const cc = COL_COLORS[task.column] || chalk_1.default.white;
         const pc = PRIORITY_COLORS[task.priority] || chalk_1.default.white;
         const project = data.projects.find(p => p.id === task.projectId);
-        console.log('  ' + chalk_1.default.gray(padRight((0, data_1.shortId)(task.id), 10)) + padRight(task.title.substring(0, 34), 36) + cc(padRight(task.column, 14)) + pc(padRight(task.priority, 10)) + chalk_1.default.gray(padRight(task.agent || '—', 14)) + chalk_1.default.gray((project === null || project === void 0 ? void 0 : project.name) || '—'));
+        console.log('  ' + (0, theme_1.dim)(padRight((0, data_1.shortId)(task.id), 10)) + padRight(task.title.substring(0, 34), 36) + cc(padRight(task.column, 14)) + pc(padRight(task.priority, 10)) + (0, theme_1.dim)(padRight(task.agent || '—', 14)) + (0, theme_1.dim)((project === null || project === void 0 ? void 0 : project.name) || '—'));
     }
-    console.log(chalk_1.default.gray(`\n  Total: ${tasks.length} tasks\n`));
+    console.log((0, theme_1.dim)(`\n  Total: ${tasks.length} tasks\n`));
 }
 function taskMove(idPrefix, targetColumn) {
     if (!idPrefix || !targetColumn) {
-        console.log(chalk_1.default.red('❌ Usage: cm task move <id> <column>'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm task move <id> <column>'));
         return;
     }
     const vc = ['backlog', 'in-progress', 'review', 'done'];
     if (!vc.includes(targetColumn)) {
-        console.log(chalk_1.default.red(`❌ Invalid column: ${targetColumn}. Valid: ${vc.join(', ')}`));
+        console.log((0, box_1.renderResult)('error', `Invalid column: ${targetColumn}`, [(0, theme_1.dim)(`Valid: ${vc.join(', ')}`)]));
         return;
     }
     const data = (0, data_1.loadData)();
     const task = (0, data_1.findTaskByIdPrefix)(data, idPrefix);
     if (!task) {
-        console.log(chalk_1.default.red(`❌ Task not found: ${idPrefix}`));
+        console.log((0, box_1.renderResult)('error', `Task not found: ${idPrefix}`));
         return;
     }
     const oldCol = task.column;
@@ -553,12 +546,11 @@ function taskMove(idPrefix, targetColumn) {
     };
     const allowed = VALID_TRANSITIONS[oldCol] || [];
     if (oldCol !== targetColumn && !allowed.includes(targetColumn)) {
-        console.log(chalk_1.default.red(`❌ Invalid transition: ${oldCol} → ${targetColumn}`));
-        console.log(chalk_1.default.gray(`   Allowed transitions: ${allowed.join(', ')}`));
+        console.log((0, box_1.renderResult)('error', `Invalid transition: ${oldCol} → ${targetColumn}`, [(0, theme_1.dim)(`Allowed: ${allowed.join(', ')}`)]));
         return;
     }
     if (oldCol === targetColumn) {
-        console.log(chalk_1.default.gray(`  Task already in ${targetColumn}.`));
+        console.log(`  ${(0, theme_1.dim)(`Task already in ${targetColumn}.`)}`);
         return;
     }
     task.column = targetColumn;
@@ -566,8 +558,9 @@ function taskMove(idPrefix, targetColumn) {
     task.stuckSince = undefined;
     (0, data_1.logActivity)(data, targetColumn === 'done' ? 'task_done' : 'task_transitioned', `Task "${task.title}" moved: ${oldCol} → ${targetColumn} (CLI)`, task.projectId, task.agent, { from: oldCol, to: targetColumn });
     (0, data_1.saveData)(data);
-    console.log(chalk_1.default.green(`✅ Moved "${task.title}"`));
-    console.log(chalk_1.default.gray(`   ${oldCol} → `) + (COL_COLORS[targetColumn] || chalk_1.default.white)(targetColumn));
+    console.log((0, box_1.renderResult)('success', `Moved "${task.title}"`, [
+        `${(0, theme_1.dim)(oldCol)} ${(0, theme_1.brand)('→')} ${(COL_COLORS[targetColumn] || chalk_1.default.white)(targetColumn)}`,
+    ]));
 }
 function taskStuck(opts) {
     const data = (0, data_1.loadData)();
@@ -577,7 +570,7 @@ function taskStuck(opts) {
     if (opts.project) {
         const project = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!project) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         tasks = tasks.filter(t => t.projectId === project.id);
@@ -587,56 +580,56 @@ function taskStuck(opts) {
         return elapsed > thresholdMin * 60 * 1000;
     }).sort((a, b) => new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime());
     if (stuck.length === 0) {
-        console.log(chalk_1.default.green(`\n  ✅ No stuck tasks! All in-progress tasks updated within ${thresholdMin}m.\n`));
+        console.log((0, box_1.renderResult)('success', `No stuck tasks! All in-progress tasks updated within ${thresholdMin}m.`));
         return;
     }
-    console.log(chalk_1.default.yellow(`\n⚠️  ${stuck.length} Stuck Tasks (>${thresholdMin}m in progress)\n`));
-    console.log(chalk_1.default.gray('  ' + padRight('ID', 10) + padRight('Title', 36) + padRight('Stuck For', 12) + padRight('Agent', 14) + 'Priority'));
-    console.log(chalk_1.default.gray('  ' + '─'.repeat(86)));
+    console.log((0, box_1.renderCommandHeader)(`${stuck.length} Stuck Tasks (>${thresholdMin}m in progress)`, '⚠️'));
+    console.log((0, theme_1.dim)('  ' + padRight('ID', 10) + padRight('Title', 36) + padRight('Stuck For', 12) + padRight('Agent', 14) + 'Priority'));
+    console.log((0, theme_1.dim)('  ' + '─'.repeat(86)));
     for (const task of stuck) {
         const elapsed = now - new Date(task.updatedAt).getTime();
         const minutes = Math.round(elapsed / 60000);
         const timeStr = minutes < 60 ? `${minutes}m` : `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
         const project = data.projects.find(p => p.id === task.projectId);
         const pc = PRIORITY_COLORS[task.priority] || chalk_1.default.white;
-        console.log('  ' + chalk_1.default.gray(padRight((0, data_1.shortId)(task.id), 10)) + padRight(task.title.substring(0, 34), 36) + chalk_1.default.yellow(padRight(timeStr, 12)) + chalk_1.default.gray(padRight(task.agent || '—', 14)) + pc(task.priority));
+        console.log('  ' + (0, theme_1.dim)(padRight((0, data_1.shortId)(task.id), 10)) + padRight(task.title.substring(0, 34), 36) + (0, theme_1.warning)(padRight(timeStr, 12)) + (0, theme_1.dim)(padRight(task.agent || '—', 14)) + pc(task.priority));
     }
     console.log();
-    console.log(chalk_1.default.gray('  Tip: Move tasks with: cm task move <id> review|done|backlog'));
+    console.log((0, theme_1.dim)('  Tip: Move tasks with: cm task move <id> review|done|backlog'));
     console.log();
 }
 function taskDone(idPrefix) {
     if (!idPrefix) {
-        console.log(chalk_1.default.red('❌ Usage: cm task done <id>'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm task done <id>'));
         return;
     }
     taskMove(idPrefix, 'done');
 }
 function taskRemove(idPrefix) {
     if (!idPrefix) {
-        console.log(chalk_1.default.red('❌ Usage: cm task rm <id>'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm task rm <id>'));
         return;
     }
     const data = (0, data_1.loadData)();
     const idx = data.tasks.findIndex(t => t.id === idPrefix || t.id.startsWith(idPrefix));
     if (idx === -1) {
-        console.log(chalk_1.default.red(`❌ Task not found: ${idPrefix}`));
+        console.log((0, box_1.renderResult)('error', `Task not found: ${idPrefix}`));
         return;
     }
     const [removed] = data.tasks.splice(idx, 1);
     (0, data_1.logActivity)(data, 'task_deleted', `Task "${removed.title}" deleted via CLI`, removed.projectId, removed.agent);
     (0, data_1.saveData)(data);
-    console.log(chalk_1.default.green(`✅ Deleted: "${removed.title}" (${(0, data_1.shortId)(removed.id)})`));
+    console.log((0, box_1.renderResult)('success', `Deleted: "${removed.title}" (${(0, data_1.shortId)(removed.id)})`));
 }
 function taskDispatch(idPrefix, opts) {
     if (!idPrefix) {
-        console.log(chalk_1.default.red('❌ Usage: cm task dispatch <id> [--force]'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm task dispatch <id> [--force]'));
         return;
     }
     const data = (0, data_1.loadData)();
     const task = (0, data_1.findTaskByIdPrefix)(data, idPrefix);
     if (!task) {
-        console.log(chalk_1.default.red(`❌ Task not found: ${idPrefix}`));
+        console.log((0, box_1.renderResult)('error', `Task not found: ${idPrefix}`));
         return;
     }
     const project = data.projects.find(p => p.id === task.projectId);
@@ -650,20 +643,21 @@ function taskDispatch(idPrefix, opts) {
             taskId: task.id, filePath: result.filePath, force: opts.force || false,
         });
         (0, data_1.saveData)(data);
-        console.log(chalk_1.default.green(`\n🚀 Task dispatched to ${task.agent}!`));
-        console.log(chalk_1.default.gray(`   Task:    ${task.title}`));
-        console.log(chalk_1.default.gray(`   Agent:   ${task.agent}`));
+        const details = [
+            `${(0, theme_1.dim)('Task:')} ${(0, theme_1.brand)(task.title)}`,
+            `${(0, theme_1.dim)('Agent:')} ${(0, theme_1.brand)(task.agent)}`,
+        ];
         if (task.skill)
-            console.log(chalk_1.default.gray(`   Skill:   ${task.skill}`));
-        console.log(chalk_1.default.gray(`   File:    ${result.filePath}`));
-        console.log();
+            details.push(`${(0, theme_1.dim)('Skill:')} ${(0, theme_1.brand)(task.skill)}`);
+        details.push(`${(0, theme_1.dim)('File:')} ${(0, theme_1.brand)(result.filePath)}`);
+        console.log((0, box_1.renderResult)('success', `Task dispatched to ${task.agent}!`, details));
     }
     else {
         task.dispatchStatus = 'failed';
         task.dispatchError = result.error;
         task.updatedAt = new Date().toISOString();
         (0, data_1.saveData)(data);
-        console.log(chalk_1.default.red(`❌ Dispatch failed: ${result.error}`));
+        console.log((0, box_1.renderResult)('error', `Dispatch failed: ${result.error}`));
     }
 }
 // ─── Project Command ────────────────────────────────────────────────────────
@@ -685,14 +679,12 @@ program
         case 'delete':
             projectRemove(args[0]);
             break;
-        default:
-            console.log(chalk_1.default.red(`Unknown: ${cmd}`));
-            console.log(chalk_1.default.gray('Available: add, list, rm'));
+        default: console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: add, list, rm')]));
     }
 });
 function projectAdd(name, opts) {
     if (!name) {
-        console.log(chalk_1.default.red('❌ Usage: cm project add "my-project"'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm project add "my-project"'));
         return;
     }
     const data = (0, data_1.loadData)();
@@ -700,35 +692,36 @@ function projectAdd(name, opts) {
     data.projects.push(project);
     (0, data_1.logActivity)(data, 'project_created', `Project "${project.name}" created via CLI`, project.id);
     (0, data_1.saveData)(data);
-    console.log(chalk_1.default.green(`✅ Project created: ${name}`));
-    console.log(chalk_1.default.gray(`   ID: ${(0, data_1.shortId)(project.id)} | Path: ${project.path}`));
+    console.log((0, box_1.renderResult)('success', `Project created: ${name}`, [
+        `${(0, theme_1.dim)('ID:')} ${(0, theme_1.brand)((0, data_1.shortId)(project.id))} ${(0, theme_1.dim)('|')} ${(0, theme_1.dim)('Path:')} ${(0, theme_1.brand)(project.path)}`,
+    ]));
 }
 function projectList() {
     const data = (0, data_1.loadData)();
     if (data.projects.length === 0) {
-        console.log(chalk_1.default.gray('\n  No projects.\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No projects.')}\n`);
         return;
     }
-    console.log(chalk_1.default.cyan('\n📦 Projects\n'));
-    console.log(chalk_1.default.gray('  ' + padRight('ID', 10) + padRight('Name', 24) + padRight('Tasks', 8) + padRight('Agents', 20) + 'Path'));
-    console.log(chalk_1.default.gray('  ' + '─'.repeat(90)));
+    console.log((0, box_1.renderCommandHeader)('Projects', '📦'));
+    console.log((0, theme_1.dim)('  ' + padRight('ID', 10) + padRight('Name', 24) + padRight('Tasks', 8) + padRight('Agents', 20) + 'Path'));
+    console.log((0, theme_1.dim)('  ' + '─'.repeat(90)));
     for (const project of data.projects) {
         const pt = data.tasks.filter(t => t.projectId === project.id);
         const agents = [...new Set(pt.map(t => t.agent).filter(Boolean))];
         const done = pt.filter(t => t.column === 'done').length;
-        console.log('  ' + chalk_1.default.gray(padRight((0, data_1.shortId)(project.id), 10)) + chalk_1.default.white(padRight(project.name, 24)) + chalk_1.default.gray(padRight(`${done}/${pt.length}`, 8)) + chalk_1.default.gray(padRight(agents.join(', ') || '—', 20)) + chalk_1.default.gray(project.path || '—'));
+        console.log('  ' + (0, theme_1.dim)(padRight((0, data_1.shortId)(project.id), 10)) + (0, theme_1.brand)(padRight(project.name, 24)) + (0, theme_1.dim)(padRight(`${done}/${pt.length}`, 8)) + (0, theme_1.dim)(padRight(agents.join(', ') || '—', 20)) + (0, theme_1.dim)(project.path || '—'));
     }
     console.log();
 }
 function projectRemove(query) {
     if (!query) {
-        console.log(chalk_1.default.red('❌ Usage: cm project rm <name-or-id>'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm project rm <name-or-id>'));
         return;
     }
     const data = (0, data_1.loadData)();
     const project = (0, data_1.findProjectByNameOrId)(data, query);
     if (!project) {
-        console.log(chalk_1.default.red(`❌ Project not found: ${query}`));
+        console.log((0, box_1.renderResult)('error', `Project not found: ${query}`));
         return;
     }
     const tc = data.tasks.filter(t => t.projectId === project.id).length;
@@ -736,7 +729,7 @@ function projectRemove(query) {
     data.tasks = data.tasks.filter(t => t.projectId !== project.id);
     (0, data_1.logActivity)(data, 'project_deleted', `Project "${project.name}" deleted via CLI`, project.id);
     (0, data_1.saveData)(data);
-    console.log(chalk_1.default.green(`✅ Deleted project "${project.name}" and ${tc} tasks.`));
+    console.log((0, box_1.renderResult)('success', `Deleted project "${project.name}" and ${tc} tasks.`));
 }
 // ─── Deploy Command ─────────────────────────────────────────────────────────
 program
@@ -761,9 +754,7 @@ program
         case 'ls':
             deployList(opts);
             break;
-        default:
-            console.log(chalk_1.default.red(`Unknown: ${cmd}`));
-            console.log(chalk_1.default.gray('Available: staging, production, list'));
+        default: console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: staging, production, list')]));
     }
 });
 function deployRecord(env, opts) {
@@ -772,7 +763,7 @@ function deployRecord(env, opts) {
     if (opts.project) {
         const p = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!p) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         projectId = p.id;
@@ -781,7 +772,7 @@ function deployRecord(env, opts) {
         projectId = data.projects[0].id;
     }
     else {
-        console.log(chalk_1.default.red('❌ No projects. Create one first: cm project add "my-project"'));
+        console.log((0, box_1.renderResult)('error', 'No projects. Create one first: cm project add "my-project"'));
         return;
     }
     const now = new Date().toISOString();
@@ -794,17 +785,18 @@ function deployRecord(env, opts) {
     data.deployments.unshift(dep);
     (0, data_1.logActivity)(data, env === 'staging' ? 'deploy_staging' : 'deploy_production', `Deployed to ${env}: ${dep.message}`, projectId, opts.agent || '', { deploymentId: dep.id });
     (0, data_1.saveData)(data);
-    const envColor = env === 'production' ? chalk_1.default.green : chalk_1.default.yellow;
+    const envColor = env === 'production' ? theme_1.success : theme_1.warning;
     const project = data.projects.find(p => p.id === projectId);
-    console.log(chalk_1.default.green(`\n🚀 Deployment recorded!`));
-    console.log(chalk_1.default.gray(`   ID:      ${(0, data_1.shortId)(dep.id)}`));
-    console.log(`   Env:     ${envColor(env)}`);
-    console.log(chalk_1.default.gray(`   Project: ${(project === null || project === void 0 ? void 0 : project.name) || '—'}`));
-    console.log(chalk_1.default.gray(`   Message: ${dep.message}`));
+    const details = [
+        `${(0, theme_1.dim)('ID:')} ${(0, theme_1.brand)((0, data_1.shortId)(dep.id))}`,
+        `${(0, theme_1.dim)('Env:')} ${envColor(env)}`,
+        `${(0, theme_1.dim)('Project:')} ${(0, theme_1.brand)((project === null || project === void 0 ? void 0 : project.name) || '—')}`,
+        `${(0, theme_1.dim)('Message:')} ${dep.message}`,
+    ];
     if (dep.commit)
-        console.log(chalk_1.default.gray(`   Commit:  ${dep.commit}`));
-    console.log(chalk_1.default.gray(`   Branch:  ${dep.branch}`));
-    console.log();
+        details.push(`${(0, theme_1.dim)('Commit:')} ${(0, theme_1.brand)(dep.commit)}`);
+    details.push(`${(0, theme_1.dim)('Branch:')} ${(0, theme_1.brand)(dep.branch)}`);
+    console.log((0, box_1.renderResult)('success', 'Deployment recorded!', details));
 }
 function deployList(opts) {
     const data = (0, data_1.loadData)();
@@ -812,26 +804,26 @@ function deployList(opts) {
     if (opts.project) {
         const p = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!p) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         deps = deps.filter(d => d.projectId === p.id);
     }
     if (deps.length === 0) {
-        console.log(chalk_1.default.gray('\n  No deployments yet.\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No deployments yet.')}\n`);
         return;
     }
-    console.log(chalk_1.default.cyan('\n🚀 Deployment History\n'));
-    console.log(chalk_1.default.gray('  ' + padRight('ID', 10) + padRight('Env', 12) + padRight('Status', 14) + padRight('Message', 32) + padRight('Branch', 12) + 'Time'));
-    console.log(chalk_1.default.gray('  ' + '─'.repeat(100)));
+    console.log((0, box_1.renderCommandHeader)('Deployment History', '🚀'));
+    console.log((0, theme_1.dim)('  ' + padRight('ID', 10) + padRight('Env', 12) + padRight('Status', 14) + padRight('Message', 32) + padRight('Branch', 12) + 'Time'));
+    console.log((0, theme_1.dim)('  ' + '─'.repeat(100)));
     for (const dep of deps.slice(0, 20)) {
         const sc = STATUS_COLORS[dep.status] || chalk_1.default.white;
-        const ec = dep.env === 'production' ? chalk_1.default.green : chalk_1.default.yellow;
+        const ec = dep.env === 'production' ? theme_1.success : theme_1.warning;
         const timeAgo = formatTimeAgoCli(dep.startedAt);
         const rollbackFlag = dep.rollbackOf ? ' ⏪' : '';
-        console.log('  ' + chalk_1.default.gray(padRight((0, data_1.shortId)(dep.id), 10)) + ec(padRight(dep.env, 12)) + sc(padRight(dep.status.replace('_', ' ') + rollbackFlag, 14)) + padRight(dep.message.substring(0, 30), 32) + chalk_1.default.gray(padRight(dep.branch || '—', 12)) + chalk_1.default.gray(timeAgo));
+        console.log('  ' + (0, theme_1.dim)(padRight((0, data_1.shortId)(dep.id), 10)) + ec(padRight(dep.env, 12)) + sc(padRight(dep.status.replace('_', ' ') + rollbackFlag, 14)) + padRight(dep.message.substring(0, 30), 32) + (0, theme_1.dim)(padRight(dep.branch || '—', 12)) + (0, theme_1.dim)(timeAgo));
     }
-    console.log(chalk_1.default.gray(`\n  Total: ${deps.length} deployments\n`));
+    console.log((0, theme_1.dim)(`\n  Total: ${deps.length} deployments\n`));
 }
 // ─── Rollback Command ───────────────────────────────────────────────────────
 program
@@ -843,11 +835,11 @@ program
     const data = (0, data_1.loadData)();
     const dep = data.deployments.find(d => d.id === deployId || d.id.startsWith(deployId));
     if (!dep) {
-        console.log(chalk_1.default.red(`❌ Deployment not found: ${deployId}`));
+        console.log((0, box_1.renderResult)('error', `Deployment not found: ${deployId}`));
         return;
     }
     if (dep.status === 'rolled_back') {
-        console.log(chalk_1.default.yellow('⚠️  Already rolled back.'));
+        console.log((0, box_1.renderResult)('warning', 'Already rolled back.'));
         return;
     }
     dep.status = 'rolled_back';
@@ -860,10 +852,11 @@ program
     data.deployments.unshift(rollback);
     (0, data_1.logActivity)(data, 'rollback', `Rolled back ${dep.env} deploy: ${dep.message}`, dep.projectId, opts.agent || '', { originalDeployId: dep.id, rollbackId: rollback.id });
     (0, data_1.saveData)(data);
-    console.log(chalk_1.default.magenta(`\n⏪ Rollback complete!`));
-    console.log(chalk_1.default.gray(`   Original deploy: ${(0, data_1.shortId)(dep.id)} (${dep.env})`));
-    console.log(chalk_1.default.gray(`   Rollback ID:     ${(0, data_1.shortId)(rollback.id)}`));
-    console.log(chalk_1.default.gray(`   Status:          ${dep.message} → rolled back\n`));
+    console.log((0, box_1.renderResult)('success', 'Rollback complete!', [
+        `${(0, theme_1.dim)('Original:')} ${(0, theme_1.brand)((0, data_1.shortId)(dep.id))} ${(0, theme_1.dim)(`(${dep.env})`)}`,
+        `${(0, theme_1.dim)('Rollback ID:')} ${(0, theme_1.brand)((0, data_1.shortId)(rollback.id))}`,
+        `${(0, theme_1.dim)('Status:')} ${dep.message} → rolled back`,
+    ]));
 });
 // ─── History Command ────────────────────────────────────────────────────────
 program
@@ -878,7 +871,7 @@ program
     if (opts.project) {
         const p = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!p) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         acts = acts.filter(a => a.projectId === p.id);
@@ -886,23 +879,23 @@ program
     const limit = parseInt(opts.limit) || 20;
     acts = acts.slice(0, limit);
     if (acts.length === 0) {
-        console.log(chalk_1.default.gray('\n  No activity yet.\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No activity yet.')}\n`);
         return;
     }
-    const ICONS = {
+    const ACT_ICONS = {
         'task_created': '✨', 'task_moved': '↔️', 'task_done': '✅', 'task_deleted': '🗑️', 'task_updated': '✏️',
         'project_created': '📦', 'project_deleted': '🗑️',
         'deploy_staging': '🟡', 'deploy_production': '🚀', 'deploy_failed': '❌', 'rollback': '⏪',
         'git_push': '📤', 'changelog_added': '📝',
     };
-    console.log(chalk_1.default.cyan(`\n📜 Activity History (latest ${acts.length})\n`));
+    console.log((0, box_1.renderCommandHeader)(`Activity History (latest ${acts.length})`, '📜'));
     for (const a of acts) {
-        const icon = ICONS[a.type] || '📌';
+        const icon = ACT_ICONS[a.type] || '📌';
         const proj = data.projects.find(p => p.id === a.projectId);
-        const projTag = proj ? chalk_1.default.gray(` [${proj.name}]`) : '';
-        const agentTag = a.agent ? chalk_1.default.gray(` @${a.agent}`) : '';
+        const projTag = proj ? (0, theme_1.dim)(` [${proj.name}]`) : '';
+        const agentTag = a.agent ? (0, theme_1.dim)(` @${a.agent}`) : '';
         const time = formatTimeAgoCli(a.createdAt);
-        console.log(`  ${icon} ${a.message}${projTag}${agentTag} ${chalk_1.default.gray(`← ${time}`)}`);
+        console.log(`  ${icon} ${a.message}${projTag}${agentTag} ${(0, theme_1.dim)(`← ${time}`)}`);
     }
     console.log();
 });
@@ -922,14 +915,12 @@ program
         case 'ls':
             changelogList(opts);
             break;
-        default:
-            console.log(chalk_1.default.red(`Unknown: ${cmd}`));
-            console.log(chalk_1.default.gray('Available: add, list'));
+        default: console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: add, list')]));
     }
 });
 function changelogAdd(args, opts) {
     if (args.length < 2) {
-        console.log(chalk_1.default.red('❌ Usage: cm changelog add <version> "<title>" [changes...]'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm changelog add <version> "<title>" [changes...]'));
         return;
     }
     const data = (0, data_1.loadData)();
@@ -937,7 +928,7 @@ function changelogAdd(args, opts) {
     if (opts.project) {
         const p = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!p) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         projectId = p.id;
@@ -955,13 +946,11 @@ function changelogAdd(args, opts) {
     data.changelog.unshift(entry);
     (0, data_1.logActivity)(data, 'changelog_added', `Changelog ${version}: ${title}`, projectId, opts.agent || '');
     (0, data_1.saveData)(data);
-    console.log(chalk_1.default.green(`\n📝 Changelog entry added!`));
-    console.log(chalk_1.default.gray(`   Version: ${version}`));
-    console.log(chalk_1.default.gray(`   Title:   ${title}`));
+    const details = [`${(0, theme_1.dim)('Version:')} ${(0, theme_1.brand)(version)}`, `${(0, theme_1.dim)('Title:')} ${title}`];
     if (changes.length > 0) {
-        changes.forEach(c => console.log(chalk_1.default.gray(`   • ${c}`)));
+        changes.forEach(c => details.push(`${(0, theme_1.dim)('•')} ${c}`));
     }
-    console.log();
+    console.log((0, box_1.renderResult)('success', 'Changelog entry added!', details));
 }
 function changelogList(opts) {
     const data = (0, data_1.loadData)();
@@ -969,21 +958,21 @@ function changelogList(opts) {
     if (opts.project) {
         const p = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!p) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         entries = entries.filter(c => c.projectId === p.id);
     }
     if (entries.length === 0) {
-        console.log(chalk_1.default.gray('\n  No changelog entries.\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No changelog entries.')}\n`);
         return;
     }
-    console.log(chalk_1.default.cyan('\n📝 Changelog\n'));
+    console.log((0, box_1.renderCommandHeader)('Changelog', '📝'));
     for (const entry of entries) {
         const proj = data.projects.find(p => p.id === entry.projectId);
-        console.log(chalk_1.default.blue(`  ${entry.version}`) + chalk_1.default.white(` — ${entry.title}`) + chalk_1.default.gray(` (${formatTimeAgoCli(entry.createdAt)})${proj ? ' [' + proj.name + ']' : ''}`));
+        console.log((0, theme_1.brand)(`  ${entry.version}`) + ` — ${entry.title}` + (0, theme_1.dim)(` (${formatTimeAgoCli(entry.createdAt)})${proj ? ' [' + proj.name + ']' : ''}`));
         if (entry.changes.length > 0) {
-            entry.changes.forEach(c => console.log(chalk_1.default.gray(`    • ${c}`)));
+            entry.changes.forEach(c => console.log((0, theme_1.dim)(`    • ${c}`)));
         }
     }
     console.log();
@@ -996,32 +985,32 @@ program
     .action(() => {
     const data = (0, data_1.loadData)();
     showBanner();
-    console.log(chalk_1.default.white('📊 Status Overview\n'));
+    console.log((0, box_1.renderCommandHeader)('Status Overview', '📊'));
     // Projects
-    console.log(chalk_1.default.cyan(`  Projects: ${data.projects.length}`));
+    console.log((0, theme_1.brand)(`  Projects: ${data.projects.length}`));
     for (const p of data.projects) {
         const pt = data.tasks.filter(t => t.projectId === p.id);
         const done = pt.filter(t => t.column === 'done').length;
         const pct = pt.length > 0 ? Math.round((done / pt.length) * 100) : 0;
-        console.log(chalk_1.default.gray(`    📦 ${padRight(p.name, 20)} ${progressBar(pct)} ${done}/${pt.length} (${pct}%)`));
+        console.log((0, theme_1.dim)(`    📦 ${padRight(p.name, 20)} ${progressBar(pct)} ${done}/${pt.length} (${pct}%)`));
     }
     // Tasks
     const total = data.tasks.length;
     const byCol = { backlog: 0, 'in-progress': 0, review: 0, done: 0 };
     data.tasks.forEach(t => { byCol[t.column] = (byCol[t.column] || 0) + 1; });
     console.log();
-    console.log(chalk_1.default.white(`  Tasks: ${total}`));
-    console.log(chalk_1.default.gray(`    ⚪ Backlog:     ${byCol.backlog}`));
-    console.log(chalk_1.default.blue(`    🔵 In Progress: ${byCol['in-progress']}`));
-    console.log(chalk_1.default.yellow(`    🟡 Review:      ${byCol.review}`));
-    console.log(chalk_1.default.green(`    🟢 Done:        ${byCol.done}`));
+    console.log((0, theme_1.brand)(`  Tasks: ${total}`));
+    console.log((0, theme_1.dim)(`    ⚪ Backlog:     ${byCol.backlog}`));
+    console.log((0, theme_1.info)(`    🟢 In Progress: ${byCol['in-progress']}`));
+    console.log((0, theme_1.warning)(`    🟡 Review:      ${byCol.review}`));
+    console.log((0, theme_1.success)(`    🟢 Done:        ${byCol.done}`));
     // Deploys
     if (data.deployments.length > 0) {
         console.log();
-        console.log(chalk_1.default.white(`  Deployments: ${data.deployments.length}`));
+        console.log((0, theme_1.brand)(`  Deployments: ${data.deployments.length}`));
         const latest = data.deployments[0];
         const sc = STATUS_COLORS[latest.status] || chalk_1.default.white;
-        console.log(chalk_1.default.gray(`    Latest: ${latest.env} — ${sc(latest.status)} — ${latest.message} (${formatTimeAgoCli(latest.startedAt)})`));
+        console.log((0, theme_1.dim)(`    Latest: ${latest.env} — ${sc(latest.status)} — ${latest.message} (${formatTimeAgoCli(latest.startedAt)})`));
     }
     // Agents
     const agentCounts = {};
@@ -1030,18 +1019,18 @@ program
     const agentNames = Object.keys(agentCounts);
     if (agentNames.length > 0) {
         console.log();
-        console.log(chalk_1.default.white(`  Active Agents: ${agentNames.length}`));
+        console.log((0, theme_1.brand)(`  Active Agents: ${agentNames.length}`));
         for (const agent of agentNames.sort()) {
-            console.log(chalk_1.default.gray(`    🤖 ${padRight(agent, 16)} ${agentCounts[agent]} tasks`));
+            console.log((0, theme_1.dim)(`    🤖 ${padRight(agent, 16)} ${agentCounts[agent]} tasks`));
         }
     }
     // Dashboard
     console.log();
     if (isDashboardRunning()) {
-        console.log(chalk_1.default.green(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${data_1.DEFAULT_PORT}`));
+        console.log((0, theme_1.success)(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${data_1.DEFAULT_PORT}`));
     }
     else {
-        console.log(chalk_1.default.gray(`  ⚫ Dashboard: not running (start with: cm dashboard)`));
+        console.log((0, theme_1.dim)(`  ⚫ Dashboard: not running (start with: cm dashboard)`));
     }
     console.log();
 });
@@ -1069,22 +1058,24 @@ program
     .description('Install an agent skill')
     .option('-p, --platform <platform>', 'Target platform (gemini|claude|cursor|windsurf|cline)')
     .action((skill, opts) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(chalk_1.default.blue(`Installing skill: ${skill}...`));
+    console.log((0, theme_1.brand)(`  Installing skill: ${skill}...`));
     if (!opts.platform) {
-        const prompts = (yield Promise.resolve().then(() => __importStar(require('prompts')))).default;
-        const response = yield prompts({
-            type: 'select', name: 'platform', message: 'Which platform?',
-            choices: [
-                { title: 'Google Antigravity', value: 'gemini' },
-                { title: 'Claude Code', value: 'claude' },
-                { title: 'Cursor', value: 'cursor' },
-                { title: 'Windsurf', value: 'windsurf' },
-                { title: 'Cline / RooCode', value: 'cline' },
-            ]
+        const p = yield Promise.resolve().then(() => __importStar(require('@clack/prompts')));
+        const platform = yield p.select({
+            message: 'Which platform?',
+            options: [
+                { label: '🟢 Google Antigravity', value: 'gemini' },
+                { label: '🟣 Claude Code', value: 'claude' },
+                { label: '🔵 Cursor', value: 'cursor' },
+                { label: '🟠 Windsurf', value: 'windsurf' },
+                { label: '🟤 Cline / RooCode', value: 'cline' },
+            ],
         });
-        opts.platform = response.platform;
+        if (p.isCancel(platform))
+            return;
+        opts.platform = platform;
     }
-    console.log(chalk_1.default.green(`\n✅ Skill '${skill}' installed for ${opts.platform}!`));
+    console.log((0, box_1.renderResult)('success', `Skill '${skill}' installed for ${opts.platform}!`));
 }));
 // ─── Add Command (npx codymaster add --skill cm-debugging) ───────────────────
 const ALL_SKILLS = [
@@ -1162,12 +1153,11 @@ function doAddSkills(skills, platform) {
         console.log();
         const { execFileSync } = require('child_process');
         if (platform === 'claude') {
-            console.log(chalk_1.default.magenta('🟣 Claude Code — Installing via plugin system'));
-            console.log(chalk_1.default.gray('   (Claude installs all 34 skills as one bundle)\n'));
-            // Step 1: Register marketplace — "already installed" is OK, just continue
-            console.log(chalk_1.default.gray('   $ claude plugin marketplace add tody-agent/codymaster'));
+            console.log((0, theme_1.brand)('🟣 Claude Code — Installing via plugin system'));
+            console.log((0, theme_1.dim)('   (Claude installs all 34 skills as one bundle)\n'));
+            // Step 1: Register marketplace
+            console.log((0, theme_1.dim)('   $ claude plugin marketplace add tody-agent/codymaster'));
             try {
-                // Use 'pipe' so we can inspect output on failure; print stdout ourselves
                 const r1 = require('child_process').spawnSync('claude', ['plugin', 'marketplace', 'add', 'tody-agent/codymaster'], { encoding: 'utf8' });
                 if (r1.stdout)
                     process.stdout.write(r1.stdout);
@@ -1175,27 +1165,27 @@ function doAddSkills(skills, platform) {
                     process.stderr.write(r1.stderr);
                 const combined = String(r1.stdout || '') + String(r1.stderr || '');
                 if (r1.status !== 0 && !combined.includes('already installed') && !combined.includes('already exists')) {
-                    console.log(chalk_1.default.yellow('   ⚠️  Marketplace warning — continuing anyway'));
+                    console.log((0, box_1.renderResult)('warning', 'Marketplace warning — continuing anyway'));
                 }
                 else if (combined.includes('already installed') || combined.includes('already exists')) {
-                    console.log(chalk_1.default.gray('   ℹ️  Marketplace already registered'));
+                    console.log((0, theme_1.dim)('   ℹ️  Marketplace already registered'));
                 }
             }
             catch (_a) {
-                console.log(chalk_1.default.yellow('   ⚠️  Could not reach marketplace — continuing'));
+                console.log((0, box_1.renderResult)('warning', 'Could not reach marketplace — continuing'));
             }
             // Step 2: Install / update the plugin
-            console.log(chalk_1.default.gray('   $ claude plugin install codymaster@codymaster'));
+            console.log((0, theme_1.dim)('   $ claude plugin install codymaster@codymaster'));
             try {
                 execFileSync('claude', ['plugin', 'install', 'codymaster@codymaster'], { stdio: 'inherit' });
-                console.log('\n' + chalk_1.default.green('✅ All 34 skills installed!'));
+                console.log((0, box_1.renderResult)('success', 'All 34 skills installed!'));
                 yield postInstallOnboarding('claude');
             }
             catch (_b) {
-                console.log(chalk_1.default.yellow('\n⚠️  Plugin install failed. Run manually:\n'));
-                console.log(chalk_1.default.cyan('  claude plugin install codymaster@codymaster'));
-                console.log(chalk_1.default.gray('\n  Or one-liner:'));
-                console.log(chalk_1.default.cyan('  bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude'));
+                console.log((0, box_1.renderResult)('warning', 'Plugin install failed. Run manually:'));
+                console.log((0, theme_1.brand)('  claude plugin install codymaster@codymaster'));
+                console.log((0, theme_1.dim)('\n  Or one-liner:'));
+                console.log((0, theme_1.brand)('  bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude'));
             }
             return;
         }
@@ -1203,8 +1193,7 @@ function doAddSkills(skills, platform) {
         // Gemini now falls through to the standard file-cloning logic below.
         const target = PLATFORM_TARGETS[platform];
         if (!target) {
-            console.log(chalk_1.default.red(`❌ Unknown platform: ${platform}`));
-            console.log(chalk_1.default.gray(`   Supported: claude, gemini, cursor, windsurf, cline, opencode, kiro, copilot`));
+            console.log((0, box_1.renderResult)('error', `Unknown platform: ${platform}`, [(0, theme_1.dim)('Supported: claude, gemini, cursor, windsurf, cline, opencode, kiro, copilot')]));
             return;
         }
         if (platform === 'copilot') {
@@ -1216,15 +1205,14 @@ function doAddSkills(skills, platform) {
             if (!existing.includes('Cody Master Skills')) {
                 fs_1.default.appendFileSync(instrFile, header + lines + '\n');
             }
-            console.log(chalk_1.default.green(`✅ ${skills.length} skills referenced in ${instrFile}`));
-            console.log(chalk_1.default.gray('   GitHub Copilot will use these as context automatically.'));
+            console.log((0, box_1.renderResult)('success', `${skills.length} skills referenced in ${instrFile}`, [(0, theme_1.dim)('GitHub Copilot will use these as context automatically.')]));
             return;
         }
         const icons = { cursor: '🔵', windsurf: '🟠', cline: '⚫', opencode: '📦', kiro: '🔶' };
         const icon = icons[platform] || '📦';
         const label = skills.length === ALL_SKILLS.length ? 'all 34 skills' : skills.join(', ');
-        console.log(`${icon} ${platform} — Installing ${label}`);
-        console.log(chalk_1.default.gray(`   Target: ./${target.dir}/\n`));
+        console.log(`${icon} ${(0, theme_1.brand)(`${platform} — Installing ${label}`)}`);
+        console.log((0, theme_1.dim)(`   Target: ./${target.dir}/\n`));
         let ok = 0, fail = 0;
         for (const skill of skills) {
             const url = `${RAW_BASE}/skills/${skill}/SKILL.md`;
@@ -1236,9 +1224,9 @@ function doAddSkills(skills, platform) {
             else if (platform === 'continue') {
                 dest = path_1.default.join(target.dir, `${skill}.md`);
             }
-            const success = yield downloadFile(url, dest);
+            const ok_result = yield downloadFile(url, dest);
             // Prepend Cursor MDC glob formatting
-            if (success && platform === 'cursor') {
+            if (ok_result && platform === 'cursor') {
                 try {
                     const content = fs_1.default.readFileSync(dest, 'utf-8');
                     if (!content.startsWith('---')) {
@@ -1252,27 +1240,26 @@ function doAddSkills(skills, platform) {
                 }
                 catch (err) { }
             }
-            if (success) {
-                process.stdout.write(chalk_1.default.green(`  ✅ ${skill}\n`));
+            if (ok_result) {
+                process.stdout.write((0, theme_1.success)(`  ✅ ${skill}\n`));
                 ok++;
             }
             else {
-                process.stdout.write(chalk_1.default.red(`  ❌ ${skill}\n`));
+                process.stdout.write((0, theme_1.error)(`  ❌ ${skill}\n`));
                 fail++;
             }
         }
         console.log();
         if (ok > 0) {
-            console.log(chalk_1.default.green(`✅ ${ok} skill${ok > 1 ? 's' : ''} installed → ./${target.dir}/`));
+            console.log((0, box_1.renderResult)('success', `${ok} skill${ok > 1 ? 's' : ''} installed → ./${target.dir}/`));
             const invoke = target.invoke.replace('<skill>', skills[0]);
-            console.log(chalk_1.default.cyan(`📖 Usage: ${invoke}  Your prompt here`));
+            console.log((0, theme_1.brand)(`  📖 Usage: ${invoke}  Your prompt here`));
             if (target.note)
-                console.log(chalk_1.default.gray(`   Note: ${target.note}`));
+                console.log((0, theme_1.dim)(`   Note: ${target.note}`));
             yield postInstallOnboarding(platform);
         }
         if (fail > 0) {
-            console.log(chalk_1.default.yellow(`⚠️  ${fail} failed — check connection or clone manually:`));
-            console.log(chalk_1.default.gray(`   git clone https://github.com/tody-agent/codymaster.git`));
+            console.log((0, box_1.renderResult)('warning', `${fail} failed — check connection or clone manually:`, [(0, theme_1.dim)('git clone https://github.com/tody-agent/codymaster.git')]));
         }
     });
 }
@@ -1296,8 +1283,8 @@ program
     }
     else if (opts.skill) {
         if (!ALL_SKILLS.includes(opts.skill)) {
-            console.log(chalk_1.default.red(`❌ Unknown skill: ${opts.skill}`));
-            console.log(chalk_1.default.gray('   Run: npx codymaster add --list'));
+            console.log((0, box_1.renderResult)('error', `Unknown skill: ${opts.skill}`, [(0, theme_1.dim)('Run: npx codymaster add --list')]));
+            return;
             return;
         }
         skills = [opts.skill];
@@ -1305,27 +1292,27 @@ program
     // Detect or prompt platform
     let platform = opts.platform || autoDetectPlatform();
     if (platform === 'manual') {
-        const prompts = (yield Promise.resolve().then(() => __importStar(require('prompts')))).default;
-        const resp = yield prompts({
-            type: 'select', name: 'platform', message: 'Select your AI coding platform:',
-            choices: [
-                { title: '🟣 Claude Code  (recommended)', value: 'claude' },
-                { title: '💻 Gemini CLI & Antigravity', value: 'gemini' },
-                { title: '🔵 Cursor', value: 'cursor' },
-                { title: '🟠 Windsurf', value: 'windsurf' },
-                { title: '⚫ Cline / RooCode', value: 'cline' },
-                { title: '📦 OpenCode', value: 'opencode' },
-                { title: '🔶 Kiro (AWS)', value: 'kiro' },
-                { title: '🐙 GitHub Copilot', value: 'copilot' },
-                { title: '🤖 Aider', value: 'aider' },
-                { title: '🔗 Continue.dev', value: 'continue' },
-                { title: '☁️  Amazon Q', value: 'amazonq' },
-                { title: '⚡ Amp', value: 'amp' },
+        const p = yield Promise.resolve().then(() => __importStar(require('@clack/prompts')));
+        const platform_choice = yield p.select({
+            message: 'Select your AI coding platform:',
+            options: [
+                { label: '🟣 Claude Code  (recommended)', value: 'claude' },
+                { label: '💻 Gemini CLI & Antigravity', value: 'gemini' },
+                { label: '🔵 Cursor', value: 'cursor' },
+                { label: '🟠 Windsurf', value: 'windsurf' },
+                { label: '⚫ Cline / RooCode', value: 'cline' },
+                { label: '📦 OpenCode', value: 'opencode' },
+                { label: '🔶 Kiro (AWS)', value: 'kiro' },
+                { label: '🐙 GitHub Copilot', value: 'copilot' },
+                { label: '🤖 Aider', value: 'aider' },
+                { label: '🔗 Continue.dev', value: 'continue' },
+                { label: '☁️  Amazon Q', value: 'amazonq' },
+                { label: '⚡ Amp', value: 'amp' },
             ],
         });
-        if (!resp.platform)
+        if (p.isCancel(platform_choice))
             return;
-        platform = resp.platform;
+        platform = platform_choice;
     }
     // If no skills chosen yet, prompt
     if (!skills) {
@@ -1333,25 +1320,27 @@ program
             skills = ALL_SKILLS;
         }
         else {
-            const prompts = (yield Promise.resolve().then(() => __importStar(require('prompts')))).default;
-            const resp = yield prompts({
-                type: 'select', name: 'mode', message: 'What to install?',
-                choices: [
-                    { title: 'All 34 skills (full kit)', value: 'all' },
-                    { title: 'Search & pick one skill', value: 'pick' },
+            const p = yield Promise.resolve().then(() => __importStar(require('@clack/prompts')));
+            const mode = yield p.select({
+                message: 'What to install?',
+                options: [
+                    { label: 'All 34 skills (full kit)', value: 'all' },
+                    { label: 'Search & pick one skill', value: 'pick' },
                 ],
             });
-            if (resp.mode === 'all') {
+            if (p.isCancel(mode))
+                return;
+            if (mode === 'all') {
                 skills = ALL_SKILLS;
             }
             else {
-                const pick = yield prompts({
-                    type: 'autocomplete', name: 'skill', message: 'Type to search skill:',
-                    choices: ALL_SKILLS.map(s => ({ title: s, value: s })),
+                const pick = yield p.select({
+                    message: 'Select a skill:',
+                    options: ALL_SKILLS.map(s => ({ label: s, value: s })),
                 });
-                if (!pick.skill)
+                if (p.isCancel(pick))
                     return;
-                skills = [pick.skill];
+                skills = [pick];
             }
         }
     }
@@ -1418,43 +1407,38 @@ program
 });
 function continuityInit(projectPath) {
     if ((0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  .cm/ directory already exists.'));
-        console.log(chalk_1.default.gray(`   Path: ${projectPath}/.cm/`));
+        console.log((0, box_1.renderResult)('warning', '.cm/ directory already exists.', [(0, theme_1.dim)(`Path: ${projectPath}/.cm/`)]));
         return;
     }
     (0, continuity_1.ensureCmDir)(projectPath);
-    console.log(chalk_1.default.green('✅ Working memory initialized!'));
-    console.log(chalk_1.default.gray(`   Created: ${projectPath}/.cm/`));
-    console.log(chalk_1.default.gray('   ├── CONTINUITY.md     (working memory)'));
-    console.log(chalk_1.default.gray('   ├── config.yaml       (RARV settings)'));
-    console.log(chalk_1.default.gray('   └── memory/'));
-    console.log(chalk_1.default.gray('       ├── learnings.json (error patterns)'));
-    console.log(chalk_1.default.gray('       └── decisions.json (architecture decisions)'));
-    console.log();
-    console.log(chalk_1.default.cyan('💡 Protocol: Read CONTINUITY.md at session start, update at session end.'));
+    console.log((0, box_1.renderResult)('success', 'Working memory initialized!', [
+        (0, theme_1.dim)(`Created: ${projectPath}/.cm/`),
+        (0, theme_1.dim)('├── CONTINUITY.md     (working memory)'),
+        (0, theme_1.dim)('├── config.yaml       (RARV settings)'),
+        (0, theme_1.dim)('└── memory/'),
+        (0, theme_1.dim)('    ├── learnings.json (error patterns)'),
+        (0, theme_1.dim)('    └── decisions.json (architecture decisions)'),
+    ]));
+    console.log((0, theme_1.info)('💡 Protocol: Read CONTINUITY.md at session start, update at session end.'));
 }
 function continuityStatus(projectPath) {
     const status = (0, continuity_1.getContinuityStatus)(projectPath);
     if (!status.initialized) {
-        console.log(chalk_1.default.yellow('⚫ Working memory not initialized.'));
-        console.log(chalk_1.default.gray('   Run: cm continuity init'));
+        console.log((0, box_1.renderResult)('warning', 'Working memory not initialized.', [(0, theme_1.dim)('Run: cm continuity init')]));
         return;
     }
-    console.log(chalk_1.default.cyan('\n🧠 Working Memory Status\n'));
-    console.log(`  ${chalk_1.default.white('Project:')}     ${status.project}`);
-    console.log(`  ${chalk_1.default.white('Phase:')}       ${phaseColor(status.phase)(status.phase)}`);
-    console.log(`  ${chalk_1.default.white('Iteration:')}   ${status.iteration}`);
-    if (status.activeGoal) {
-        console.log(`  ${chalk_1.default.white('Goal:')}        ${status.activeGoal}`);
-    }
-    if (status.currentTask) {
-        console.log(`  ${chalk_1.default.white('Task:')}        ${status.currentTask}`);
-    }
-    console.log();
-    console.log(chalk_1.default.gray(`  ✅ Completed: ${status.completedCount}  |  🚧 Blockers: ${status.blockerCount}`));
-    console.log(chalk_1.default.gray(`  📚 Learnings: ${status.learningCount}  |  📋 Decisions: ${status.decisionCount}`));
+    console.log((0, box_1.renderCommandHeader)('Working Memory Status', '🧠'));
+    console.log((0, box_1.renderKeyValue)([
+        ['Project', String(status.project)],
+        ['Phase', phaseColor(status.phase)(status.phase)],
+        ['Iteration', String(status.iteration)],
+        ...(status.activeGoal ? [['Goal', String(status.activeGoal)]] : []),
+        ...(status.currentTask ? [['Task', String(status.currentTask)]] : []),
+    ]));
+    console.log((0, theme_1.dim)(`  ✅ Completed: ${status.completedCount}  |  🚧 Blockers: ${status.blockerCount}`));
+    console.log((0, theme_1.dim)(`  📚 Learnings: ${status.learningCount}  |  📋 Decisions: ${status.decisionCount}`));
     if (status.lastUpdated) {
-        console.log(chalk_1.default.gray(`  🕐 Updated:   ${formatTimeAgoCli(status.lastUpdated)}`));
+        console.log((0, theme_1.dim)(`  🕐 Updated:   ${formatTimeAgoCli(status.lastUpdated)}`));
     }
     console.log();
 }
@@ -1467,46 +1451,45 @@ function phaseColor(phase) {
 }
 function continuityReset(projectPath) {
     if (!(0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  No .cm/ directory found.'));
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found.'));
         return;
     }
     (0, continuity_1.resetContinuity)(projectPath);
-    console.log(chalk_1.default.green('✅ Working memory reset.'));
-    console.log(chalk_1.default.gray('   CONTINUITY.md cleared. Learnings preserved.'));
+    console.log((0, box_1.renderResult)('success', 'Working memory reset.', [(0, theme_1.dim)('CONTINUITY.md cleared. Learnings preserved.')]));
 }
 function continuityLearnings(projectPath) {
     if (!(0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found. Run: cm continuity init'));
         return;
     }
     const learnings = (0, continuity_1.getLearnings)(projectPath);
     if (learnings.length === 0) {
-        console.log(chalk_1.default.gray('\n  No learnings captured yet. 🎉\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No learnings captured yet. 🎉')}\n`);
         return;
     }
-    console.log(chalk_1.default.cyan(`\n📚 Mistakes & Learnings (${learnings.length})\n`));
+    console.log((0, box_1.renderCommandHeader)(`Mistakes & Learnings (${learnings.length})`, '📚'));
     for (const l of learnings.slice(-10)) {
-        console.log(chalk_1.default.red(`  ❌ ${l.whatFailed}`));
-        console.log(chalk_1.default.gray(`     Why: ${l.whyFailed}`));
-        console.log(chalk_1.default.green(`     Fix: ${l.howToPrevent}`));
-        console.log(chalk_1.default.gray(`     ${formatTimeAgoCli(l.timestamp)} | ${l.agent || 'unknown'}\n`));
+        console.log((0, theme_1.error)(`  ❌ ${l.whatFailed}`));
+        console.log((0, theme_1.dim)(`     Why: ${l.whyFailed}`));
+        console.log((0, theme_1.success)(`     Fix: ${l.howToPrevent}`));
+        console.log((0, theme_1.dim)(`     ${formatTimeAgoCli(l.timestamp)} | ${l.agent || 'unknown'}\n`));
     }
 }
 function continuityDecisions(projectPath) {
     if (!(0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found. Run: cm continuity init'));
         return;
     }
     const decisions = (0, continuity_1.getDecisions)(projectPath);
     if (decisions.length === 0) {
-        console.log(chalk_1.default.gray('\n  No decisions recorded yet.\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No decisions recorded yet.')}\n`);
         return;
     }
-    console.log(chalk_1.default.cyan(`\n📋 Key Decisions (${decisions.length})\n`));
+    console.log((0, box_1.renderCommandHeader)(`Key Decisions (${decisions.length})`, '📋'));
     for (const d of decisions.slice(-10)) {
-        console.log(chalk_1.default.white(`  📌 ${d.decision}`));
-        console.log(chalk_1.default.gray(`     Rationale: ${d.rationale}`));
-        console.log(chalk_1.default.gray(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
+        console.log((0, theme_1.brand)(`  📌 ${d.decision}`));
+        console.log((0, theme_1.dim)(`     Rationale: ${d.rationale}`));
+        console.log((0, theme_1.dim)(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
     }
 }
 // ─── Brain Command (Enhanced Memory Explorer) ────────────────────────────────
@@ -1549,13 +1532,11 @@ program
             brainExport(projectPath, opts);
             break;
         default:
-            // Try as delete: cm brain learning <id> or cm brain decision <id>
             if (cmd === 'learning' || cmd === 'decision') {
-                console.log(chalk_1.default.gray(`Did you mean: cm brain ${cmd}s ?`));
+                console.log((0, theme_1.dim)(`Did you mean: cm brain ${cmd}s ?`));
             }
             else {
-                console.log(chalk_1.default.red(`Unknown: ${cmd}`));
-                console.log(chalk_1.default.gray('Available: status, learnings, decisions, delete, stats, export'));
+                console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: status, learnings, decisions, delete, stats, export')]));
             }
     }
 });
@@ -1570,40 +1551,38 @@ program
 function brainStatus(projectPath) {
     const status = (0, continuity_1.getContinuityStatus)(projectPath);
     if (!status.initialized) {
-        console.log(chalk_1.default.yellow('\n⚫ Working memory not initialized.'));
-        console.log(chalk_1.default.gray('   Run: cm continuity init'));
+        console.log((0, box_1.renderResult)('warning', 'Working memory not initialized.', [(0, theme_1.dim)('Run: cm continuity init')]));
         return;
     }
     showBanner();
-    console.log(chalk_1.default.cyan('\n🧠 Brain — Memory Status\n'));
+    console.log((0, box_1.renderCommandHeader)('Brain — Memory Status', '🧠'));
     // Stats row
-    console.log(chalk_1.default.white('  ┌──────────────┬──────────────┬──────────────┬──────────────┐'));
-    console.log(chalk_1.default.white('  │') + chalk_1.default.red(` ❤ Learn: ${padRight(String(status.learningCount), 4)}`) +
-        chalk_1.default.white(' │') + chalk_1.default.blue(` 📋 Decide: ${padRight(String(status.decisionCount), 3)}`) +
-        chalk_1.default.white(' │') + phaseColor(status.phase)(` ● ${padRight(status.phase, 9)}`) +
-        chalk_1.default.white(' │') + chalk_1.default.gray(` #${padRight(String(status.iteration), 10)}`) + chalk_1.default.white('│'));
-    console.log(chalk_1.default.white('  └──────────────┴──────────────┴──────────────┴──────────────┘'));
+    console.log((0, theme_1.brand)('  ┌──────────────┬──────────────┬──────────────┬──────────────┐'));
+    console.log((0, theme_1.brand)('  │') + (0, theme_1.error)(` ❤ Learn: ${padRight(String(status.learningCount), 4)}`) +
+        (0, theme_1.brand)(' │') + (0, theme_1.brand)(` 📋 Decide: ${padRight(String(status.decisionCount), 3)}`) +
+        (0, theme_1.brand)(' │') + phaseColor(status.phase)(` ● ${padRight(status.phase, 9)}`) +
+        (0, theme_1.brand)(' │') + (0, theme_1.dim)(` #${padRight(String(status.iteration), 10)}`) + (0, theme_1.brand)('│'));
+    console.log((0, theme_1.brand)('  └──────────────┴──────────────┴──────────────┴──────────────┘'));
     console.log();
-    console.log(`  ${chalk_1.default.white('Project:')}     ${status.project}`);
-    if (status.activeGoal)
-        console.log(`  ${chalk_1.default.white('Goal:')}        ${status.activeGoal}`);
-    if (status.currentTask)
-        console.log(`  ${chalk_1.default.white('Task:')}        ${status.currentTask}`);
-    console.log(`  ${chalk_1.default.white('Completed:')}   ${status.completedCount} items`);
-    console.log(`  ${chalk_1.default.white('Blockers:')}    ${status.blockerCount > 0 ? chalk_1.default.yellow(`🚧 ${status.blockerCount}`) : chalk_1.default.green('✅ None')}`);
-    if (status.lastUpdated)
-        console.log(`  ${chalk_1.default.white('Updated:')}     ${formatTimeAgoCli(status.lastUpdated)}`);
+    console.log((0, box_1.renderKeyValue)([
+        ['Project', String(status.project)],
+        ...(status.activeGoal ? [['Goal', String(status.activeGoal)]] : []),
+        ...(status.currentTask ? [['Task', String(status.currentTask)]] : []),
+        ['Completed', `${status.completedCount} items`],
+        ['Blockers', status.blockerCount > 0 ? (0, theme_1.warning)(`🚧 ${status.blockerCount}`) : (0, theme_1.success)('✅ None')],
+        ...(status.lastUpdated ? [['Updated', formatTimeAgoCli(status.lastUpdated)]] : []),
+    ]));
     console.log();
-    console.log(chalk_1.default.gray('  Commands:'));
-    console.log(chalk_1.default.gray('    cm brain learnings    — View mistakes & lessons'));
-    console.log(chalk_1.default.gray('    cm brain decisions    — View architecture decisions'));
-    console.log(chalk_1.default.gray('    cm brain stats        — Memory statistics'));
-    console.log(chalk_1.default.gray('    cm brain export       — Export memory data'));
+    console.log((0, theme_1.dim)('  Commands:'));
+    console.log((0, theme_1.dim)('    cm brain learnings    — View mistakes & lessons'));
+    console.log((0, theme_1.dim)('    cm brain decisions    — View architecture decisions'));
+    console.log((0, theme_1.dim)('    cm brain stats        — Memory statistics'));
+    console.log((0, theme_1.dim)('    cm brain export       — Export memory data'));
     console.log();
 }
 function brainLearnings(projectPath, opts) {
     if (!(0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found. Run: cm continuity init'));
         return;
     }
     let learnings = (0, continuity_1.getLearnings)(projectPath);
@@ -1618,95 +1597,96 @@ function brainLearnings(projectPath, opts) {
     const limit = opts.last ? parseInt(opts.last) : 15;
     const display = learnings.slice(-limit);
     if (display.length === 0) {
-        console.log(chalk_1.default.gray(`\n  No learnings ${opts.search ? 'matching "' + opts.search + '"' : 'captured yet'}. 🎉\n`));
+        console.log(`\n  ${(0, theme_1.dim)(`No learnings ${opts.search ? 'matching "' + opts.search + '"' : 'captured yet'}. 🎉`)}\n`);
         return;
     }
-    console.log(chalk_1.default.cyan(`\n📚 Learnings (${display.length}${learnings.length > limit ? '/' + learnings.length : ''})\n`));
+    console.log((0, box_1.renderCommandHeader)(`Learnings (${display.length}${learnings.length > limit ? '/' + learnings.length : ''})`, '📚'));
     for (const l of display) {
         const shortId = l.id ? l.id.substring(0, 8) : '???';
-        console.log(chalk_1.default.red(`  ❌ ${l.whatFailed}`) + chalk_1.default.gray(` [${shortId}]`));
+        console.log((0, theme_1.error)(`  ❌ ${l.whatFailed}`) + (0, theme_1.dim)(` [${shortId}]`));
         if (l.whyFailed)
-            console.log(chalk_1.default.gray(`     Why: ${l.whyFailed}`));
+            console.log((0, theme_1.dim)(`     Why: ${l.whyFailed}`));
         if (l.howToPrevent)
-            console.log(chalk_1.default.green(`     Fix: ${l.howToPrevent}`));
-        console.log(chalk_1.default.gray(`     ${formatTimeAgoCli(l.timestamp)} | ${l.agent || 'unknown'}${l.module ? ' | 📦 ' + l.module : ''}\n`));
+            console.log((0, theme_1.success)(`     Fix: ${l.howToPrevent}`));
+        console.log((0, theme_1.dim)(`     ${formatTimeAgoCli(l.timestamp)} | ${l.agent || 'unknown'}${l.module ? ' | 📦 ' + l.module : ''}\n`));
     }
 }
 function brainDecisions(projectPath, opts) {
     if (!(0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found. Run: cm continuity init'));
         return;
     }
     const decisions = (0, continuity_1.getDecisions)(projectPath);
     const limit = opts.last ? parseInt(opts.last) : 15;
     const display = decisions.slice(-limit);
     if (display.length === 0) {
-        console.log(chalk_1.default.gray('\n  No decisions recorded yet.\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No decisions recorded yet.')}\n`);
         return;
     }
-    console.log(chalk_1.default.cyan(`\n📋 Key Decisions (${display.length}${decisions.length > limit ? '/' + decisions.length : ''})\n`));
+    console.log((0, box_1.renderCommandHeader)(`Key Decisions (${display.length}${decisions.length > limit ? '/' + decisions.length : ''})`, '📋'));
     for (const d of display) {
         const shortId = d.id ? d.id.substring(0, 8) : '???';
-        console.log(chalk_1.default.white(`  📌 ${d.decision}`) + chalk_1.default.gray(` [${shortId}]`));
+        console.log((0, theme_1.brand)(`  📌 ${d.decision}`) + (0, theme_1.dim)(` [${shortId}]`));
         if (d.rationale)
-            console.log(chalk_1.default.gray(`     Rationale: ${d.rationale}`));
-        console.log(chalk_1.default.gray(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
+            console.log((0, theme_1.dim)(`     Rationale: ${d.rationale}`));
+        console.log((0, theme_1.dim)(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
     }
 }
 function brainDelete(projectPath, type, id) {
     if (!(0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  No .cm/ directory found.'));
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found.'));
         return;
     }
     if (type === 'learning' || type === 'l') {
         const learnings = (0, continuity_1.getLearnings)(projectPath);
         const target = learnings.find(l => l.id && l.id.startsWith(id));
         if (!target) {
-            console.log(chalk_1.default.red(`❌ Learning not found with ID prefix: ${id}`));
+            console.log((0, box_1.renderResult)('error', `Learning not found with ID prefix: ${id}`));
             return;
         }
-        const success = (0, continuity_1.deleteLearning)(projectPath, target.id);
-        if (success) {
-            console.log(chalk_1.default.green(`✅ Deleted learning: ${target.whatFailed}`));
+        const del_success = (0, continuity_1.deleteLearning)(projectPath, target.id);
+        if (del_success) {
+            console.log((0, box_1.renderResult)('success', `Deleted learning: ${target.whatFailed}`));
         }
         else {
-            console.log(chalk_1.default.red('❌ Failed to delete'));
+            console.log((0, box_1.renderResult)('error', 'Failed to delete'));
         }
     }
     else if (type === 'decision' || type === 'd') {
         const decisions = (0, continuity_1.getDecisions)(projectPath);
         const target = decisions.find(d => d.id && d.id.startsWith(id));
         if (!target) {
-            console.log(chalk_1.default.red(`❌ Decision not found with ID prefix: ${id}`));
+            console.log((0, box_1.renderResult)('error', `Decision not found with ID prefix: ${id}`));
             return;
         }
-        const success = (0, continuity_1.deleteDecision)(projectPath, target.id);
-        if (success) {
-            console.log(chalk_1.default.green(`✅ Deleted decision: ${target.decision}`));
+        const del_success = (0, continuity_1.deleteDecision)(projectPath, target.id);
+        if (del_success) {
+            console.log((0, box_1.renderResult)('success', `Deleted decision: ${target.decision}`));
         }
         else {
-            console.log(chalk_1.default.red('❌ Failed to delete'));
+            console.log((0, box_1.renderResult)('error', 'Failed to delete'));
         }
     }
     else {
-        console.log(chalk_1.default.red(`❌ Unknown type: ${type}`));
-        console.log(chalk_1.default.gray('   Use: cm brain-delete learning <id> | cm brain-delete decision <id>'));
+        console.log((0, box_1.renderResult)('error', `Unknown type: ${type}`, [(0, theme_1.dim)('Use: cm brain-delete learning <id> | cm brain-delete decision <id>')]));
     }
 }
 function brainStats(projectPath) {
     if (!(0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  No .cm/ directory found. Run: cm continuity init'));
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found. Run: cm continuity init'));
         return;
     }
     const status = (0, continuity_1.getContinuityStatus)(projectPath);
     const learnings = (0, continuity_1.getLearnings)(projectPath);
     const decisions = (0, continuity_1.getDecisions)(projectPath);
-    console.log(chalk_1.default.cyan('\n📊 Brain Statistics\n'));
-    console.log(`  ${chalk_1.default.white('Learnings:')}    ${learnings.length}`);
-    console.log(`  ${chalk_1.default.white('Decisions:')}    ${decisions.length}`);
-    console.log(`  ${chalk_1.default.white('Completed:')}    ${status.completedCount} items`);
-    console.log(`  ${chalk_1.default.white('Blockers:')}     ${status.blockerCount}`);
-    console.log(`  ${chalk_1.default.white('Iteration:')}    #${status.iteration}`);
+    console.log((0, box_1.renderCommandHeader)('Brain Statistics', '📊'));
+    console.log((0, box_1.renderKeyValue)([
+        ['Learnings', String(learnings.length)],
+        ['Decisions', String(decisions.length)],
+        ['Completed', `${status.completedCount} items`],
+        ['Blockers', String(status.blockerCount)],
+        ['Iteration', `#${status.iteration}`],
+    ]));
     // Agent breakdown
     const agentMap = {};
     learnings.forEach(l => { if (l.agent)
@@ -1716,9 +1696,9 @@ function brainStats(projectPath) {
     const agents = Object.entries(agentMap).sort((a, b) => b[1] - a[1]);
     if (agents.length > 0) {
         console.log();
-        console.log(chalk_1.default.white('  Agents:'));
+        console.log((0, theme_1.brand)('  Agents:'));
         for (const [agent, count] of agents) {
-            console.log(chalk_1.default.gray(`    🤖 ${padRight(agent, 20)} ${count} entries`));
+            console.log((0, theme_1.dim)(`    🤖 ${padRight(agent, 20)} ${count} entries`));
         }
     }
     // Module breakdown
@@ -1728,23 +1708,23 @@ function brainStats(projectPath) {
     const modules = Object.entries(moduleMap).sort((a, b) => b[1] - a[1]);
     if (modules.length > 0) {
         console.log();
-        console.log(chalk_1.default.white('  Modules (most error-prone):'));
+        console.log((0, theme_1.brand)('  Modules (most error-prone):'));
         for (const [mod, count] of modules.slice(0, 5)) {
-            console.log(chalk_1.default.gray(`    📦 ${padRight(mod, 20)} ${count} learnings`));
+            console.log((0, theme_1.dim)(`    📦 ${padRight(mod, 20)} ${count} learnings`));
         }
     }
     // Time range
     const allTimestamps = [...learnings.map(l => l.timestamp), ...decisions.map(d => d.timestamp)].filter(Boolean).sort();
     if (allTimestamps.length > 0) {
         console.log();
-        console.log(chalk_1.default.gray(`  First entry: ${formatTimeAgoCli(allTimestamps[0])}`));
-        console.log(chalk_1.default.gray(`  Latest:      ${formatTimeAgoCli(allTimestamps[allTimestamps.length - 1])}`));
+        console.log((0, theme_1.dim)(`  First entry: ${formatTimeAgoCli(allTimestamps[0])}`));
+        console.log((0, theme_1.dim)(`  Latest:      ${formatTimeAgoCli(allTimestamps[allTimestamps.length - 1])}`));
     }
     console.log();
 }
 function brainExport(projectPath, opts) {
     if (!(0, continuity_1.hasCmDir)(projectPath)) {
-        console.log(chalk_1.default.yellow('⚠️  No .cm/ directory found.'));
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found.'));
         return;
     }
     const learnings = (0, continuity_1.getLearnings)(projectPath);
@@ -1755,8 +1735,7 @@ function brainExport(projectPath, opts) {
         const data = { status, learnings, decisions, exportedAt: new Date().toISOString() };
         const outFile = `brain-export-${new Date().toISOString().slice(0, 10)}.json`;
         fs_1.default.writeFileSync(outFile, JSON.stringify(data, null, 2));
-        console.log(chalk_1.default.green(`✅ Exported to ${outFile}`));
-        console.log(chalk_1.default.gray(`   ${learnings.length} learnings, ${decisions.length} decisions`));
+        console.log((0, box_1.renderResult)('success', `Exported to ${outFile}`, [(0, theme_1.dim)(`${learnings.length} learnings, ${decisions.length} decisions`)]));
     }
     else if (format === 'md') {
         let md = `# Brain Export\n\n**Project:** ${status.project || 'Unknown'}\n**Exported:** ${new Date().toISOString()}\n\n`;
@@ -1770,12 +1749,10 @@ function brainExport(projectPath, opts) {
         }
         const outFile = `brain-export-${new Date().toISOString().slice(0, 10)}.md`;
         fs_1.default.writeFileSync(outFile, md);
-        console.log(chalk_1.default.green(`✅ Exported to ${outFile}`));
-        console.log(chalk_1.default.gray(`   ${learnings.length} learnings, ${decisions.length} decisions`));
+        console.log((0, box_1.renderResult)('success', `Exported to ${outFile}`, [(0, theme_1.dim)(`${learnings.length} learnings, ${decisions.length} decisions`)]));
     }
     else {
-        console.log(chalk_1.default.red(`❌ Unknown format: ${format}`));
-        console.log(chalk_1.default.gray('   Use: --format json | --format md'));
+        console.log((0, box_1.renderResult)('error', `Unknown format: ${format}`, [(0, theme_1.dim)('Use: --format json | --format md')]));
     }
 }
 // ─── Skill Command ──────────────────────────────────────────────────────────
@@ -1857,7 +1834,7 @@ program
             break;
         case 'info':
             if (!name) {
-                console.log(chalk_1.default.red('❌ Usage: cm skill info <skill-name>'));
+                console.log((0, box_1.renderResult)('error', 'Usage: cm skill info <skill-name>'));
                 return;
             }
             skillInfo(name);
@@ -1875,52 +1852,51 @@ function skillList(filterDomain) {
         ? Object.entries(SKILL_CATALOG).filter(([d]) => d.toLowerCase().startsWith(filterDomain.toLowerCase()))
         : Object.entries(SKILL_CATALOG);
     if (entries.length === 0) {
-        console.log(chalk_1.default.red(`❌ Domain not found: ${filterDomain}`));
-        console.log(chalk_1.default.gray('   Domains: engineering, operations, product, growth, orchestration, workflow'));
+        console.log((0, box_1.renderResult)('error', `Domain not found: ${filterDomain}`, [(0, theme_1.dim)('Domains: engineering, operations, product, growth, orchestration, workflow')]));
         return;
     }
-    console.log(chalk_1.default.cyan('\n🧩 Cody Master — 34 Skills\n'));
+    console.log((0, box_1.renderCommandHeader)('Cody Master — 34 Skills', '🧩'));
     let total = 0;
     for (const [domain, data] of entries) {
-        console.log(chalk_1.default.white(`  ${data.icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)}`));
+        console.log((0, theme_1.brand)(`  ${data.icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)}`));
         for (const skill of data.skills) {
-            console.log(`    ${chalk_1.default.cyan(padRight(skill.name, 26))} ${chalk_1.default.gray(skill.desc)}`);
+            console.log(`    ${(0, theme_1.brand)(padRight(skill.name, 26))} ${(0, theme_1.dim)(skill.desc)}`);
             total++;
         }
         console.log();
     }
-    console.log(chalk_1.default.gray(`  ${total} skills across ${entries.length} domains`));
-    console.log(chalk_1.default.gray(`  Install: npx codymaster add --all`));
-    console.log(chalk_1.default.gray(`  Add one: npx codymaster add --skill <name>\n`));
+    console.log((0, theme_1.dim)(`  ${total} skills across ${entries.length} domains`));
+    console.log((0, theme_1.dim)(`  Install: npx codymaster add --all`));
+    console.log((0, theme_1.dim)(`  Add one: npx codymaster add --skill <name>\n`));
 }
 function skillInfo(name) {
     for (const [domain, data] of Object.entries(SKILL_CATALOG)) {
         const skill = data.skills.find(s => s.name === name);
         if (skill) {
-            console.log(chalk_1.default.cyan(`\n🧩 Skill: ${skill.name}\n`));
-            console.log(`  ${chalk_1.default.white('Domain:')}      ${domain}`);
-            console.log(`  ${chalk_1.default.white('Description:')} ${skill.desc}`);
+            console.log((0, box_1.renderCommandHeader)(`Skill: ${skill.name}`, '🧩'));
             const agents = (0, judge_1.suggestAgentsForSkill)(skill.name);
-            console.log(`  ${chalk_1.default.white('Best Agents:')} ${agents.join(', ')}`);
-            console.log(`  ${chalk_1.default.white('Invoke:')}      @[/${skill.name}]  (Antigravity/Gemini)`);
-            console.log(`               /${skill.name}  (Claude Code)`);
-            console.log(`               @${skill.name}  (Cursor/Windsurf/Cline)`);
+            console.log((0, box_1.renderKeyValue)([
+                ['Domain', domain],
+                ['Description', skill.desc],
+                ['Best Agents', agents.join(', ')],
+                ['Invoke', `@[/${skill.name}]  (Antigravity/Gemini)`],
+                ['', `/${skill.name}  (Claude Code)`],
+                ['', `@${skill.name}  (Cursor/Windsurf/Cline)`],
+            ]));
             console.log();
             return;
         }
     }
-    console.log(chalk_1.default.red(`❌ Skill not found: ${name}`));
-    console.log(chalk_1.default.gray('   Use "cm skill list" to see all available skills.'));
+    console.log((0, box_1.renderResult)('error', `Skill not found: ${name}`, [(0, theme_1.dim)('Use "cm skill list" to see all available skills.')]));
 }
 function skillDomains() {
-    console.log(chalk_1.default.cyan('\n🎯 Skill Domains\n'));
+    console.log((0, box_1.renderCommandHeader)('Skill Domains', '🎯'));
     let total = 0;
     for (const [domain, data] of Object.entries(SKILL_CATALOG)) {
-        console.log(`  ${data.icon} ${chalk_1.default.white(padRight(domain.charAt(0).toUpperCase() + domain.slice(1), 16))} ${chalk_1.default.gray(`${data.skills.length} skills`)}`);
+        console.log(`  ${data.icon} ${(0, theme_1.brand)(padRight(domain.charAt(0).toUpperCase() + domain.slice(1), 16))} ${(0, theme_1.dim)(`${data.skills.length} skills`)}`);
         total += data.skills.length;
     }
-    console.log(chalk_1.default.gray(`\n  Total: ${total} skills across ${Object.keys(SKILL_CATALOG).length} domains`));
-    console.log();
+    console.log((0, theme_1.dim)(`\n  Total: ${total} skills across ${Object.keys(SKILL_CATALOG).length} domains\n`));
 }
 // ─── Judge Command ──────────────────────────────────────────────────────────
 program
@@ -1934,7 +1910,7 @@ program
         // Single task evaluation
         const task = (0, data_1.findTaskByIdPrefix)(data, taskId);
         if (!task) {
-            console.log(chalk_1.default.red(`❌ Task not found: ${taskId}`));
+            console.log((0, box_1.renderResult)('error', `Task not found: ${taskId}`));
             return;
         }
         const project = data.projects.find(p => p.id === task.projectId);
@@ -1943,15 +1919,17 @@ program
             learnings = (0, continuity_1.getLearnings)(project.path);
         }
         const decision = (0, judge_1.evaluateTaskState)(task, data.tasks, learnings);
-        console.log(chalk_1.default.cyan(`\n🤖 Judge Decision\n`));
-        console.log(`  ${chalk_1.default.white('Task:')}       ${task.title}`);
-        console.log(`  ${chalk_1.default.white('Column:')}     ${task.column}`);
-        console.log(`  ${chalk_1.default.white('Action:')}     ${decision.badge} ${decision.action}`);
-        console.log(`  ${chalk_1.default.white('Reason:')}     ${decision.reason}`);
-        console.log(`  ${chalk_1.default.white('Confidence:')} ${Math.round(decision.confidence * 100)}%`);
-        if (decision.suggestedNextSkill) {
-            console.log(`  ${chalk_1.default.white('Suggested:')}  ${decision.suggestedNextSkill}`);
-        }
+        console.log((0, box_1.renderCommandHeader)('Judge Decision', '🤖'));
+        const details = [
+            ['Task', task.title],
+            ['Column', task.column],
+            ['Action', `${decision.badge} ${decision.action}`],
+            ['Reason', decision.reason],
+            ['Confidence', `${Math.round(decision.confidence * 100)}%`],
+        ];
+        if (decision.suggestedNextSkill)
+            details.push(['Suggested', decision.suggestedNextSkill]);
+        console.log((0, box_1.renderKeyValue)(details));
         console.log();
     }
     else {
@@ -1960,7 +1938,7 @@ program
         if (opts.project) {
             const project = (0, data_1.findProjectByNameOrId)(data, opts.project);
             if (!project) {
-                console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+                console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
                 return;
             }
             tasks = tasks.filter(t => t.projectId === project.id);
@@ -1973,19 +1951,19 @@ program
         }
         const decisions = (0, judge_1.evaluateAllTasks)(tasks, allLearnings);
         if (decisions.size === 0) {
-            console.log(chalk_1.default.gray('\n  No active tasks to evaluate.\n'));
+            console.log(`\n  ${(0, theme_1.dim)('No active tasks to evaluate.')}\n`);
             return;
         }
-        console.log(chalk_1.default.cyan(`\n🤖 Judge Decisions (${decisions.size} active tasks)\n`));
-        console.log(chalk_1.default.gray('  ' + padRight('Badge', 8) + padRight('Action', 12) + padRight('Confidence', 12) + 'Task'));
-        console.log(chalk_1.default.gray('  ' + '─'.repeat(70)));
+        console.log((0, box_1.renderCommandHeader)(`Judge Decisions (${decisions.size} active tasks)`, '🤖'));
+        console.log((0, theme_1.dim)('  ' + padRight('Badge', 8) + padRight('Action', 12) + padRight('Confidence', 12) + 'Task'));
+        console.log((0, theme_1.dim)('  ' + '─'.repeat(70)));
         for (const [tid, dec] of decisions) {
             const task = tasks.find(t => t.id === tid);
-            const actionColor = dec.action === 'CONTINUE' ? chalk_1.default.green
-                : dec.action === 'COMPLETE' ? chalk_1.default.blue
-                    : dec.action === 'ESCALATE' ? chalk_1.default.yellow
-                        : chalk_1.default.magenta;
-            console.log('  ' + padRight(dec.badge, 8) + actionColor(padRight(dec.action, 12)) + chalk_1.default.gray(padRight(`${Math.round(dec.confidence * 100)}%`, 12)) + ((task === null || task === void 0 ? void 0 : task.title) || tid.substring(0, 8)));
+            const actionColor = dec.action === 'CONTINUE' ? theme_1.success
+                : dec.action === 'COMPLETE' ? theme_1.brand
+                    : dec.action === 'ESCALATE' ? theme_1.warning
+                        : theme_1.brand;
+            console.log('  ' + padRight(dec.badge, 8) + actionColor(padRight(dec.action, 12)) + (0, theme_1.dim)(padRight(`${Math.round(dec.confidence * 100)}%`, 12)) + ((task === null || task === void 0 ? void 0 : task.title) || tid.substring(0, 8)));
         }
         console.log();
     }
@@ -2003,8 +1981,7 @@ program
     // Check if already exists
     const existing = data.projects.find(p => p.path === projectPath || p.name === projectName);
     if (existing) {
-        console.log(chalk_1.default.yellow(`⚠️  Project already exists: ${existing.name}`));
-        console.log(chalk_1.default.gray(`   ID: ${(0, data_1.shortId)(existing.id)} | Path: ${existing.path}`));
+        console.log((0, box_1.renderResult)('warning', `Project already exists: ${existing.name}`, [(0, theme_1.dim)(`ID: ${(0, data_1.shortId)(existing.id)} | Path: ${existing.path}`)]));
         return;
     }
     const project = {
@@ -2019,19 +1996,19 @@ program
     (0, data_1.saveData)(data);
     // Also init working memory
     (0, continuity_1.ensureCmDir)(projectPath);
-    console.log(chalk_1.default.green(`\n✅ Project initialized: ${projectName}`));
-    console.log(chalk_1.default.gray(`   ID:   ${(0, data_1.shortId)(project.id)}`));
-    console.log(chalk_1.default.gray(`   Path: ${projectPath}`));
-    console.log(chalk_1.default.gray(`   .cm/  Working memory created`));
+    console.log((0, box_1.renderResult)('success', `Project initialized: ${projectName}`, [
+        (0, theme_1.dim)(`ID:   ${(0, data_1.shortId)(project.id)}`),
+        (0, theme_1.dim)(`Path: ${projectPath}`),
+        (0, theme_1.dim)(`.cm/  Working memory created`),
+    ]));
     console.log();
     if (!isDashboardRunning()) {
         (0, dashboard_1.launchDashboard)(data_1.DEFAULT_PORT);
-        console.log(chalk_1.default.green(`   🚀 Dashboard auto-started! You can track progress at http://codymaster.localhost:${data_1.DEFAULT_PORT}`));
+        console.log((0, theme_1.success)(`   🚀 Dashboard auto-started! You can track progress at http://codymaster.localhost:${data_1.DEFAULT_PORT}`));
     }
-    console.log(chalk_1.default.cyan('💡 Next steps:'));
-    console.log(chalk_1.default.gray('   cm task add "My first task"'));
-    console.log(chalk_1.default.gray('   cm open'));
-    console.log();
+    console.log((0, theme_1.info)('💡 Next steps:'));
+    console.log((0, theme_1.dim)('   cm task add "My first task"'));
+    console.log((0, theme_1.dim)('   cm open\n'));
 });
 // ─── Open Command ───────────────────────────────────────────────────────────
 program
@@ -2042,12 +2019,12 @@ program
     .action((opts) => {
     const port = parseInt(opts.port) || data_1.DEFAULT_PORT;
     if (!isDashboardRunning()) {
-        console.log(chalk_1.default.yellow('⚠️  Dashboard not running. Starting it first...'));
+        console.log((0, box_1.renderResult)('warning', 'Dashboard not running. Starting it first...'));
         (0, dashboard_1.launchDashboard)(port);
         setTimeout(() => openUrl(`http://codymaster.localhost:${port}`), 1500);
     }
     else {
-        console.log(chalk_1.default.blue(`🌐 Opening http://codymaster.localhost:${port} ...`));
+        console.log((0, theme_1.info)(`🌐 Opening http://codymaster.localhost:${port} ...`));
         openUrl(`http://codymaster.localhost:${port}`);
     }
 });
@@ -2057,31 +2034,32 @@ program
     .alias('cfg')
     .description('Show configuration & data paths')
     .action(() => {
-    console.log(chalk_1.default.cyan(`\n⚙️  Cody Configuration\n`));
-    console.log(`  ${chalk_1.default.white('Version:')}    ${VERSION}`);
-    console.log(`  ${chalk_1.default.white('Data Dir:')}   ${data_1.DATA_DIR}`);
-    console.log(`  ${chalk_1.default.white('Data File:')}  ${data_1.DATA_FILE}`);
-    console.log(`  ${chalk_1.default.white('PID File:')}   ${data_1.PID_FILE}`);
-    console.log(`  ${chalk_1.default.white('Port:')}       ${data_1.DEFAULT_PORT}`);
-    console.log(`  ${chalk_1.default.white('CLI Names:')}  cm | cm | codymaster`);
+    console.log((0, box_1.renderCommandHeader)('Cody Configuration', '⚙️'));
+    console.log((0, box_1.renderKeyValue)([
+        ['Version', VERSION],
+        ['Data Dir', data_1.DATA_DIR],
+        ['Data File', data_1.DATA_FILE],
+        ['PID File', data_1.PID_FILE],
+        ['Port', String(data_1.DEFAULT_PORT)],
+        ['CLI Names', 'cm | cm | codymaster'],
+    ]));
     console.log();
     // Show data stats
     const data = (0, data_1.loadData)();
-    console.log(chalk_1.default.white('  Data Stats:'));
-    console.log(chalk_1.default.gray(`    Projects:    ${data.projects.length}`));
-    console.log(chalk_1.default.gray(`    Tasks:       ${data.tasks.length}`));
-    console.log(chalk_1.default.gray(`    Deploys:     ${data.deployments.length}`));
-    console.log(chalk_1.default.gray(`    Activities:  ${data.activities.length}`));
-    console.log(chalk_1.default.gray(`    Changelog:   ${data.changelog.length}`));
+    console.log((0, theme_1.brand)('  Data Stats:'));
+    console.log((0, theme_1.dim)(`    Projects:    ${data.projects.length}`));
+    console.log((0, theme_1.dim)(`    Tasks:       ${data.tasks.length}`));
+    console.log((0, theme_1.dim)(`    Deploys:     ${data.deployments.length}`));
+    console.log((0, theme_1.dim)(`    Activities:  ${data.activities.length}`));
+    console.log((0, theme_1.dim)(`    Changelog:   ${data.changelog.length}`));
     console.log();
     // Dashboard status
     if (isDashboardRunning()) {
-        console.log(chalk_1.default.green(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${data_1.DEFAULT_PORT}`));
+        console.log((0, theme_1.success)(`  🚀 Dashboard: RUNNING at http://codymaster.localhost:${data_1.DEFAULT_PORT}\n`));
     }
     else {
-        console.log(chalk_1.default.gray(`  ⚫ Dashboard: not running`));
+        console.log((0, theme_1.dim)(`  ⚫ Dashboard: not running\n`));
     }
-    console.log();
 });
 // ─── Agents Command ─────────────────────────────────────────────────────────
 const AGENT_LIST = [
@@ -2102,24 +2080,23 @@ program
         // Suggest best agents for skill
         const domain = (0, judge_1.getSkillDomain)(skill);
         const agents = (0, judge_1.suggestAgentsForSkill)(skill);
-        console.log(chalk_1.default.cyan(`\n🤖 Agent Suggestions for ${chalk_1.default.white(skill)}\n`));
-        console.log(chalk_1.default.gray(`   Domain: ${domain}\n`));
+        console.log((0, box_1.renderCommandHeader)(`Agent Suggestions for ${skill}`, '🤖'));
+        console.log((0, theme_1.dim)(`   Domain: ${domain}\n`));
         agents.forEach((agentId, index) => {
             const agent = AGENT_LIST.find(a => a.id === agentId);
-            const affinity = index === 0 ? chalk_1.default.green('★ BEST') : index === 1 ? chalk_1.default.yellow('● GOOD') : chalk_1.default.gray('○ OK');
+            const affinity = index === 0 ? (0, theme_1.success)('★ BEST') : index === 1 ? (0, theme_1.warning)('● GOOD') : (0, theme_1.dim)('○ OK');
             console.log(`  ${(agent === null || agent === void 0 ? void 0 : agent.icon) || '🤖'} ${padRight((agent === null || agent === void 0 ? void 0 : agent.name) || agentId, 24)} ${affinity}`);
         });
         console.log();
     }
     else {
         // List all agents
-        console.log(chalk_1.default.cyan('\n🤖 Available Agents\n'));
+        console.log((0, box_1.renderCommandHeader)('Available Agents', '🤖'));
         for (const agent of AGENT_LIST) {
-            console.log(`  ${agent.icon} ${chalk_1.default.white(padRight(agent.name, 24))} ${chalk_1.default.gray(agent.id)}`);
+            console.log(`  ${agent.icon} ${(0, theme_1.brand)(padRight(agent.name, 24))} ${(0, theme_1.dim)(agent.id)}`);
         }
         console.log();
-        console.log(chalk_1.default.gray('  💡 Tip: cm agents <skill-name> to see best agents for a skill'));
-        console.log();
+        console.log((0, theme_1.dim)('  💡 Tip: cm agents <skill-name> to see best agents for a skill\n'));
     }
 });
 // ─── Sync Command ───────────────────────────────────────────────────────────
@@ -2132,7 +2109,7 @@ program
     .action((file, opts) => {
     const filePath = path_1.default.resolve(file);
     if (!fs_1.default.existsSync(filePath)) {
-        console.log(chalk_1.default.red(`❌ File not found: ${filePath}`));
+        console.log((0, box_1.renderResult)('error', `File not found: ${filePath}`));
         return;
     }
     let tasks;
@@ -2144,8 +2121,7 @@ program
             throw new Error('Invalid format');
     }
     catch (err) {
-        console.log(chalk_1.default.red(`❌ Invalid JSON file: ${err.message}`));
-        console.log(chalk_1.default.gray('   Expected format: [{"title": "...", "priority": "...", "column": "..."}]'));
+        console.log((0, box_1.renderResult)('error', `Invalid JSON file: ${err.message}`, [(0, theme_1.dim)('Expected format: [{"title": "...", "priority": "...", "column": "..."}]')]));
         return;
     }
     const data = (0, data_1.loadData)();
@@ -2153,7 +2129,7 @@ program
     if (opts.project) {
         const p = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!p) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         projectId = p.id;
@@ -2188,12 +2164,11 @@ program
     (0, data_1.logActivity)(data, 'task_created', `Synced ${count} tasks from ${path_1.default.basename(filePath)}`, projectId, opts.agent || '', { count, file: filePath });
     (0, data_1.saveData)(data);
     const project = data.projects.find(p => p.id === projectId);
-    console.log(chalk_1.default.green(`\n✅ Synced ${count} tasks!`));
-    console.log(chalk_1.default.gray(`   Project: ${(project === null || project === void 0 ? void 0 : project.name) || 'Default'}`));
-    console.log(chalk_1.default.gray(`   Source:  ${filePath}`));
-    if (opts.agent)
-        console.log(chalk_1.default.gray(`   Agent:   ${opts.agent}`));
-    console.log();
+    console.log((0, box_1.renderResult)('success', `Synced ${count} tasks!`, [
+        (0, theme_1.dim)(`Project: ${(project === null || project === void 0 ? void 0 : project.name) || 'Default'}`),
+        (0, theme_1.dim)(`Source:  ${filePath}`),
+        ...(opts.agent ? [(0, theme_1.dim)(`Agent:   ${opts.agent}`)] : []),
+    ]));
 });
 // ─── Chain Command ──────────────────────────────────────────────────────────
 // TRIZ #40 Composite Materials — skills compose into pipelines
@@ -2237,67 +2212,66 @@ program
             chainHistory();
             break;
         default:
-            console.log(chalk_1.default.red(`Unknown: ${cmd}`));
-            console.log(chalk_1.default.gray('Available: list, info, start, status, advance, skip, abort, auto, history'));
+            console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: list, info, start, status, advance, skip, abort, auto, history')]));
     }
 });
 function chainList() {
     const chains = (0, skill_chain_1.listChains)();
-    console.log(chalk_1.default.cyan('\n🔗 Available Skill Chains\n'));
+    console.log((0, box_1.renderCommandHeader)('Available Skill Chains', '🔗'));
     for (const chain of chains) {
-        console.log(`  ${chain.icon} ${chalk_1.default.white(padRight(chain.name, 24))} ${chalk_1.default.gray(chain.description)}`);
-        console.log(chalk_1.default.gray(`     ID: ${chain.id} | Steps: ${chain.steps.length} | Triggers: ${chain.triggers.slice(0, 4).join(', ')}...`));
+        console.log(`  ${chain.icon} ${(0, theme_1.brand)(padRight(chain.name, 24))} ${(0, theme_1.dim)(chain.description)}`);
+        console.log((0, theme_1.dim)(`     ID: ${chain.id} | Steps: ${chain.steps.length} | Triggers: ${chain.triggers.slice(0, 4).join(', ')}...`));
         console.log();
     }
-    console.log(chalk_1.default.gray(`  Total: ${chains.length} chains\n`));
-    console.log(chalk_1.default.cyan('💡 Quick start:'));
-    console.log(chalk_1.default.gray('   cm chain auto "Build user authentication"    # Auto-detect chain'));
-    console.log(chalk_1.default.gray('   cm chain start feature-development "My task"  # Start specific chain'));
-    console.log();
+    console.log((0, theme_1.dim)(`  Total: ${chains.length} chains\n`));
+    console.log((0, theme_1.info)('💡 Quick start:'));
+    console.log((0, theme_1.dim)('   cm chain auto "Build user authentication"    # Auto-detect chain'));
+    console.log((0, theme_1.dim)('   cm chain start feature-development "My task"  # Start specific chain\n'));
 }
 function chainInfo(chainId) {
     if (!chainId) {
-        console.log(chalk_1.default.red('❌ Usage: cm chain info <chain-id>'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm chain info <chain-id>'));
         return;
     }
     const chain = (0, skill_chain_1.findChain)(chainId);
     if (!chain) {
-        console.log(chalk_1.default.red(`❌ Chain not found: ${chainId}`));
-        console.log(chalk_1.default.gray('   Use "cm chain list" to see available chains.'));
+        console.log((0, box_1.renderResult)('error', `Chain not found: ${chainId}`, [(0, theme_1.dim)('Use "cm chain list" to see available chains.')]));
         return;
     }
-    console.log(chalk_1.default.cyan(`\n${chain.icon} Chain: ${chain.name}\n`));
-    console.log(`  ${chalk_1.default.white('ID:')}          ${chain.id}`);
-    console.log(`  ${chalk_1.default.white('Description:')} ${chain.description}`);
-    console.log(`  ${chalk_1.default.white('Steps:')}       ${chain.steps.length}`);
-    console.log(`  ${chalk_1.default.white('Triggers:')}    ${chain.triggers.join(', ')}`);
+    console.log((0, box_1.renderCommandHeader)(`Chain: ${chain.name}`, chain.icon));
+    console.log((0, box_1.renderKeyValue)([
+        ['ID', chain.id],
+        ['Description', chain.description],
+        ['Steps', String(chain.steps.length)],
+        ['Triggers', chain.triggers.join(', ')],
+    ]));
     console.log();
-    console.log(chalk_1.default.white('  Pipeline:'));
+    console.log((0, theme_1.brand)('  Pipeline:'));
     for (let i = 0; i < chain.steps.length; i++) {
         const step = chain.steps[i];
-        const condBadge = step.condition === 'always' ? chalk_1.default.green('ALWAYS') : step.condition === 'if-complex' ? chalk_1.default.yellow('IF-COMPLEX') : chalk_1.default.blue('IF-READY');
-        const optBadge = step.optional ? chalk_1.default.gray(' (optional)') : '';
+        const condBadge = step.condition === 'always' ? (0, theme_1.success)('ALWAYS') : step.condition === 'if-complex' ? (0, theme_1.warning)('IF-COMPLEX') : (0, theme_1.brand)('IF-READY');
+        const optBadge = step.optional ? (0, theme_1.dim)(' (optional)') : '';
         const connector = i < chain.steps.length - 1 ? '  │' : '   ';
-        console.log(`  ${chalk_1.default.cyan(`${i + 1}.`)} ${padRight(step.skill, 24)} ${condBadge}${optBadge}`);
-        console.log(chalk_1.default.gray(`  ${connector}  ${step.description}`));
+        console.log(`  ${(0, theme_1.brand)(`${i + 1}.`)} ${padRight(step.skill, 24)} ${condBadge}${optBadge}`);
+        console.log((0, theme_1.dim)(`  ${connector}  ${step.description}`));
         if (i < chain.steps.length - 1)
-            console.log(chalk_1.default.gray('  │'));
+            console.log((0, theme_1.dim)('  │'));
     }
     console.log();
 }
 function chainStart(chainId, taskTitle, opts) {
     var _a, _b, _c;
     if (!chainId) {
-        console.log(chalk_1.default.red('❌ Usage: cm chain start <chain-id> "Task title"'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm chain start <chain-id> "Task title"'));
         return;
     }
     if (!taskTitle) {
-        console.log(chalk_1.default.red('❌ Task title required. Usage: cm chain start <chain-id> "My task"'));
+        console.log((0, box_1.renderResult)('error', 'Task title required. Usage: cm chain start <chain-id> "My task"'));
         return;
     }
     const chain = (0, skill_chain_1.findChain)(chainId);
     if (!chain) {
-        console.log(chalk_1.default.red(`❌ Chain not found: ${chainId}`));
+        console.log((0, box_1.renderResult)('error', `Chain not found: ${chainId}`));
         return;
     }
     const data = (0, data_1.loadData)();
@@ -2305,7 +2279,7 @@ function chainStart(chainId, taskTitle, opts) {
     if (opts.project) {
         const project = (0, data_1.findProjectByNameOrId)(data, opts.project);
         if (!project) {
-            console.log(chalk_1.default.red(`❌ Project not found: ${opts.project}`));
+            console.log((0, box_1.renderResult)('error', `Project not found: ${opts.project}`));
             return;
         }
         projectId = project.id;
@@ -2314,7 +2288,7 @@ function chainStart(chainId, taskTitle, opts) {
         projectId = data.projects[0].id;
     }
     else {
-        console.log(chalk_1.default.red('❌ No projects. Create one first: cm init'));
+        console.log((0, box_1.renderResult)('error', 'No projects. Create one first: cm init'));
         return;
     }
     const agent = opts.agent || 'antigravity';
@@ -2333,18 +2307,16 @@ function chainStart(chainId, taskTitle, opts) {
     });
     (0, data_1.saveData)(data);
     const project = data.projects.find(p => p.id === projectId);
-    console.log(chalk_1.default.green(`\n🔗 Chain started!`));
-    console.log(chalk_1.default.gray(`   Chain:     ${chain.icon} ${chain.name}`));
-    console.log(chalk_1.default.gray(`   Task:      ${taskTitle}`));
-    console.log(chalk_1.default.gray(`   Project:   ${(project === null || project === void 0 ? void 0 : project.name) || '—'}`));
-    console.log(chalk_1.default.gray(`   Agent:     ${agent}`));
-    console.log(chalk_1.default.gray(`   Steps:     ${chain.steps.length}`));
-    console.log(chalk_1.default.gray(`   Exec ID:   ${(0, data_1.shortId)(execution.id)}`));
-    console.log();
-    console.log(chalk_1.default.cyan(`  ▶ Current step: ${(_b = execution.steps[0]) === null || _b === void 0 ? void 0 : _b.skill} — ${(_c = execution.steps[0]) === null || _c === void 0 ? void 0 : _c.description}`));
-    console.log();
-    console.log(chalk_1.default.gray(`  Next: cm chain advance ${(0, data_1.shortId)(execution.id)} "output summary"`));
-    console.log();
+    console.log((0, box_1.renderResult)('success', 'Chain started!', [
+        (0, theme_1.dim)(`Chain:     ${chain.icon} ${chain.name}`),
+        (0, theme_1.dim)(`Task:      ${taskTitle}`),
+        (0, theme_1.dim)(`Project:   ${(project === null || project === void 0 ? void 0 : project.name) || '—'}`),
+        (0, theme_1.dim)(`Agent:     ${agent}`),
+        (0, theme_1.dim)(`Steps:     ${chain.steps.length}`),
+        (0, theme_1.dim)(`Exec ID:   ${(0, data_1.shortId)(execution.id)}`),
+    ]));
+    console.log((0, theme_1.brand)(`  ▶ Current step: ${(_b = execution.steps[0]) === null || _b === void 0 ? void 0 : _b.skill} — ${(_c = execution.steps[0]) === null || _c === void 0 ? void 0 : _c.description}`));
+    console.log((0, theme_1.dim)(`\n  Next: cm chain advance ${(0, data_1.shortId)(execution.id)} "output summary"\n`));
 }
 function chainStatus(execIdPrefix) {
     const data = (0, data_1.loadData)();
@@ -2352,7 +2324,7 @@ function chainStatus(execIdPrefix) {
         // Show specific execution
         const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
         if (!exec) {
-            console.log(chalk_1.default.red(`❌ Chain execution not found: ${execIdPrefix}`));
+            console.log((0, box_1.renderResult)('error', `Chain execution not found: ${execIdPrefix}`));
             return;
         }
         console.log();
@@ -2363,34 +2335,33 @@ function chainStatus(execIdPrefix) {
     // Show all active executions
     const active = data.chainExecutions.filter(e => e.status === 'running' || e.status === 'paused');
     if (active.length === 0) {
-        console.log(chalk_1.default.gray('\n  No active chain executions.'));
-        console.log(chalk_1.default.gray('  Start one with: cm chain auto "task description"\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No active chain executions.')}`);
+        console.log(`  ${(0, theme_1.dim)('Start one with: cm chain auto "task description"')}\n`);
         return;
     }
-    console.log(chalk_1.default.cyan(`\n🔗 Active Chains (${active.length})\n`));
+    console.log((0, box_1.renderCommandHeader)(`Active Chains (${active.length})`, '🔗'));
     for (const exec of active) {
         const project = data.projects.find(p => p.id === exec.projectId);
         const currentSkill = (0, skill_chain_1.getCurrentSkill)(exec);
         const progressBar = (0, skill_chain_1.formatChainProgressBar)(exec);
-        console.log(`  ${chalk_1.default.white(exec.chainName)} — "${exec.taskTitle}"`);
-        console.log(chalk_1.default.gray(`   ${progressBar} | Step ${exec.currentStepIndex + 1}/${exec.steps.length}: ${currentSkill || 'done'}`));
-        console.log(chalk_1.default.gray(`   ID: ${(0, data_1.shortId)(exec.id)} | Agent: ${exec.agent} | Project: ${(project === null || project === void 0 ? void 0 : project.name) || '—'}`));
-        console.log();
+        console.log(`  ${(0, theme_1.brand)(exec.chainName)} — "${exec.taskTitle}"`);
+        console.log((0, theme_1.dim)(`   ${progressBar} | Step ${exec.currentStepIndex + 1}/${exec.steps.length}: ${currentSkill || 'done'}`));
+        console.log((0, theme_1.dim)(`   ID: ${(0, data_1.shortId)(exec.id)} | Agent: ${exec.agent} | Project: ${(project === null || project === void 0 ? void 0 : project.name) || '—'}\n`));
     }
 }
 function chainAdvance(execIdPrefix, output) {
     if (!execIdPrefix) {
-        console.log(chalk_1.default.red('❌ Usage: cm chain advance <exec-id> ["output summary"]'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm chain advance <exec-id> ["output summary"]'));
         return;
     }
     const data = (0, data_1.loadData)();
     const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
     if (!exec) {
-        console.log(chalk_1.default.red(`❌ Chain execution not found: ${execIdPrefix}`));
+        console.log((0, box_1.renderResult)('error', `Chain execution not found: ${execIdPrefix}`));
         return;
     }
     if (exec.status !== 'running') {
-        console.log(chalk_1.default.yellow(`⚠️  Chain is ${exec.status}, cannot advance.`));
+        console.log((0, box_1.renderResult)('warning', `Chain is ${exec.status}, cannot advance.`));
         return;
     }
     const completedStep = exec.steps[exec.currentStepIndex];
@@ -2410,10 +2381,10 @@ function chainAdvance(execIdPrefix, output) {
             executionId: exec.id, totalSteps: exec.steps.length,
         });
         (0, data_1.saveData)(data);
-        console.log(chalk_1.default.green(`\n✅ Chain completed! All ${exec.steps.length} steps done.`));
-        console.log(chalk_1.default.gray(`   Chain: ${exec.chainName}`));
-        console.log(chalk_1.default.gray(`   Task:  ${exec.taskTitle}`));
-        console.log();
+        console.log((0, box_1.renderResult)('success', `Chain completed! All ${exec.steps.length} steps done.`, [
+            (0, theme_1.dim)(`Chain: ${exec.chainName}`),
+            (0, theme_1.dim)(`Task:  ${exec.taskTitle}`),
+        ]));
     }
     else {
         (0, data_1.logActivity)(data, 'chain_step_completed', `Chain step completed: ${completedStep === null || completedStep === void 0 ? void 0 : completedStep.skill} → next: ${result.nextSkill}`, exec.projectId, exec.agent, {
@@ -2421,52 +2392,51 @@ function chainAdvance(execIdPrefix, output) {
         });
         (0, data_1.saveData)(data);
         const nextStep = exec.steps[exec.currentStepIndex];
-        console.log(chalk_1.default.green(`\n✅ Step completed: ${completedStep === null || completedStep === void 0 ? void 0 : completedStep.skill}`));
-        console.log(chalk_1.default.cyan(`  ▶ Next step: ${result.nextSkill} — ${nextStep === null || nextStep === void 0 ? void 0 : nextStep.description}`));
-        console.log(chalk_1.default.gray(`   Progress: ${(0, skill_chain_1.formatChainProgressBar)(exec)}`));
-        console.log();
+        console.log((0, box_1.renderResult)('success', `Step completed: ${completedStep === null || completedStep === void 0 ? void 0 : completedStep.skill}`));
+        console.log((0, theme_1.brand)(`  ▶ Next step: ${result.nextSkill} — ${nextStep === null || nextStep === void 0 ? void 0 : nextStep.description}`));
+        console.log((0, theme_1.dim)(`   Progress: ${(0, skill_chain_1.formatChainProgressBar)(exec)}\n`));
     }
 }
 function chainSkip(execIdPrefix, reason) {
     if (!execIdPrefix) {
-        console.log(chalk_1.default.red('❌ Usage: cm chain skip <exec-id> ["reason"]'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm chain skip <exec-id> ["reason"]'));
         return;
     }
     const data = (0, data_1.loadData)();
     const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
     if (!exec) {
-        console.log(chalk_1.default.red(`❌ Chain execution not found: ${execIdPrefix}`));
+        console.log((0, box_1.renderResult)('error', `Chain execution not found: ${execIdPrefix}`));
         return;
     }
     if (exec.status !== 'running') {
-        console.log(chalk_1.default.yellow(`⚠️  Chain is ${exec.status}, cannot skip.`));
+        console.log((0, box_1.renderResult)('warning', `Chain is ${exec.status}, cannot skip.`));
         return;
     }
     const skippedStep = exec.steps[exec.currentStepIndex];
     const result = (0, skill_chain_1.skipChainStep)(exec, reason);
     (0, data_1.saveData)(data);
-    console.log(chalk_1.default.yellow(`  ⏭️  Skipped: ${skippedStep === null || skippedStep === void 0 ? void 0 : skippedStep.skill}`));
+    console.log((0, theme_1.warning)(`  ⏭️  Skipped: ${skippedStep === null || skippedStep === void 0 ? void 0 : skippedStep.skill}`));
     if (result.completed) {
-        console.log(chalk_1.default.green(`  ✅ Chain completed!`));
+        console.log((0, theme_1.success)(`  ✅ Chain completed!`));
     }
     else {
-        console.log(chalk_1.default.cyan(`  ▶ Next: ${result.nextSkill}`));
+        console.log((0, theme_1.brand)(`  ▶ Next: ${result.nextSkill}`));
     }
     console.log();
 }
 function chainAbort(execIdPrefix, reason) {
     if (!execIdPrefix) {
-        console.log(chalk_1.default.red('❌ Usage: cm chain abort <exec-id> ["reason"]'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm chain abort <exec-id> ["reason"]'));
         return;
     }
     const data = (0, data_1.loadData)();
     const exec = data.chainExecutions.find(e => e.id === execIdPrefix || e.id.startsWith(execIdPrefix));
     if (!exec) {
-        console.log(chalk_1.default.red(`❌ Chain execution not found: ${execIdPrefix}`));
+        console.log((0, box_1.renderResult)('error', `Chain execution not found: ${execIdPrefix}`));
         return;
     }
     if (exec.status !== 'running' && exec.status !== 'paused') {
-        console.log(chalk_1.default.yellow(`⚠️  Chain already ${exec.status}.`));
+        console.log((0, box_1.renderResult)('warning', `Chain already ${exec.status}.`));
         return;
     }
     (0, skill_chain_1.abortChain)(exec, reason);
@@ -2474,30 +2444,25 @@ function chainAbort(execIdPrefix, reason) {
         executionId: exec.id,
     });
     (0, data_1.saveData)(data);
-    console.log(chalk_1.default.red(`\n🛑 Chain aborted: ${exec.chainName}`));
-    if (reason)
-        console.log(chalk_1.default.gray(`   Reason: ${reason}`));
-    console.log();
+    console.log((0, box_1.renderResult)('error', `Chain aborted: ${exec.chainName}`, reason ? [(0, theme_1.dim)(`Reason: ${reason}`)] : []));
 }
 function chainAuto(taskTitle, opts) {
     if (!taskTitle) {
-        console.log(chalk_1.default.red('❌ Usage: cm chain auto "task description"'));
-        console.log(chalk_1.default.gray('   Example: cm chain auto "Build user authentication"'));
+        console.log((0, box_1.renderResult)('error', 'Usage: cm chain auto "task description"', [(0, theme_1.dim)('Example: cm chain auto "Build user authentication"')]));
         return;
     }
     const chain = (0, skill_chain_1.matchChain)(taskTitle);
     if (!chain) {
-        console.log(chalk_1.default.yellow(`\n⚠️  No matching chain found for: "${taskTitle}"`));
-        console.log(chalk_1.default.gray('   Available chains:'));
-        for (const c of (0, skill_chain_1.listChains)()) {
-            console.log(chalk_1.default.gray(`     ${c.icon} ${c.id}: ${c.triggers.slice(0, 3).join(', ')}...`));
-        }
-        console.log(chalk_1.default.gray('\n   Use "cm chain start <chain-id> <title>" to start manually.'));
+        const listHint = (0, skill_chain_1.listChains)().map(c => `     ${c.icon} ${c.id}: ${c.triggers.slice(0, 3).join(', ')}...`);
+        console.log((0, box_1.renderResult)('warning', `No matching chain found for: "${taskTitle}"`, [
+            (0, theme_1.dim)('Available chains:'),
+            ...listHint.map(l => (0, theme_1.dim)(l)),
+            (0, theme_1.dim)('\n   Use "cm chain start <chain-id> <title>" to start manually.'),
+        ]));
         return;
     }
-    console.log(chalk_1.default.cyan(`\n🤖 Auto-detected chain: ${chain.icon} ${chain.name}`));
-    console.log(chalk_1.default.gray(`   Matched from: "${taskTitle}"`));
-    console.log();
+    console.log((0, box_1.renderCommandHeader)(`Auto-detected chain: ${chain.name}`, chain.icon));
+    console.log((0, theme_1.dim)(`   Matched from: "${taskTitle}"\n`));
     // Delegate to chainStart
     chainStart(chain.id, taskTitle, opts);
 }
@@ -2505,21 +2470,21 @@ function chainHistory() {
     const data = (0, data_1.loadData)();
     const execs = data.chainExecutions;
     if (execs.length === 0) {
-        console.log(chalk_1.default.gray('\n  No chain executions yet.\n'));
+        console.log(`\n  ${(0, theme_1.dim)('No chain executions yet.')}\n`);
         return;
     }
     const STATUS_ICONS = {
         pending: '⚪', running: '🔵', paused: '⏸️', completed: '✅', failed: '❌', aborted: '🛑',
     };
-    console.log(chalk_1.default.cyan(`\n🔗 Chain History (${execs.length})\n`));
-    console.log(chalk_1.default.gray('  ' + padRight('Status', 8) + padRight('Chain', 24) + padRight('Task', 30) + padRight('Progress', 14) + 'Time'));
-    console.log(chalk_1.default.gray('  ' + '─'.repeat(86)));
+    console.log((0, box_1.renderCommandHeader)(`Chain History (${execs.length})`, '🔗'));
+    console.log((0, theme_1.dim)('  ' + padRight('Status', 8) + padRight('Chain', 24) + padRight('Task', 30) + padRight('Progress', 14) + 'Time'));
+    console.log((0, theme_1.dim)('  ' + '─'.repeat(86)));
     for (const exec of execs.slice(0, 20)) {
         const icon = STATUS_ICONS[exec.status] || '❓';
         const completed = exec.steps.filter(s => s.status === 'completed' || s.status === 'skipped').length;
         const progress = `${completed}/${exec.steps.length} steps`;
         const time = formatTimeAgoCli(exec.startedAt);
-        console.log('  ' + padRight(icon, 8) + padRight(exec.chainName.substring(0, 22), 24) + padRight(exec.taskTitle.substring(0, 28), 30) + chalk_1.default.gray(padRight(progress, 14)) + chalk_1.default.gray(time));
+        console.log('  ' + padRight(icon, 8) + (0, theme_1.brand)(padRight(exec.chainName.substring(0, 22), 24)) + padRight(exec.taskTitle.substring(0, 28), 30) + (0, theme_1.dim)(padRight(progress, 14)) + (0, theme_1.dim)(time));
     }
     console.log();
 }

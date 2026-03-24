@@ -78,7 +78,7 @@ Per `_shared/helpers.md#Load-Working-Memory` — focus on known edge cases and p
 
 Write one minimal test showing what should happen.
 
-<Good>
+::: tip Good
 ```typescript
 test('retries failed operations 3 times', async () => {
   let attempts = 0;
@@ -95,9 +95,9 @@ test('retries failed operations 3 times', async () => {
 });
 ```
 Clear name, tests real behavior, one thing
-</Good>
+:::
 
-<Bad>
+::: danger Bad
 ```typescript
 test('retry works', async () => {
   const mock = jest.fn()
@@ -109,7 +109,7 @@ test('retry works', async () => {
 });
 ```
 Vague name, tests mock not code
-</Bad>
+:::
 
 **Requirements:**
 - One behavior
@@ -137,7 +137,7 @@ Confirm:
 
 Write simplest code to pass the test.
 
-<Good>
+::: tip Good
 ```typescript
 async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
   for (let i = 0; i < 3; i++) {
@@ -151,9 +151,9 @@ async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
 }
 ```
 Just enough to pass
-</Good>
+:::
 
-<Bad>
+::: danger Bad
 ```typescript
 async function retryOperation<T>(
   fn: () => Promise<T>,
@@ -167,7 +167,7 @@ async function retryOperation<T>(
 }
 ```
 Over-engineered
-</Bad>
+:::
 
 Don't add features, refactor other code, or "improve" beyond the test.
 

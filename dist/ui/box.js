@@ -17,6 +17,9 @@ exports.renderPriority = renderPriority;
 exports.renderSpeechBubble = renderSpeechBubble;
 exports.renderStepProgress = renderStepProgress;
 exports.renderFooter = renderFooter;
+exports.renderCommandHeader = renderCommandHeader;
+exports.renderKeyValue = renderKeyValue;
+exports.renderResult = renderResult;
 exports.stripAnsi = stripAnsi;
 const chalk_1 = __importDefault(require("chalk"));
 const theme_1 = require("./theme");
@@ -177,6 +180,52 @@ function renderStepProgress(current, total) {
  */
 function renderFooter(hints) {
     return `  ${hints.map(h => (0, theme_1.dim)(h)).join((0, theme_1.dim)(' • '))}`;
+}
+// ─── Command Header ────────────────────────────────────────────────────────
+/**
+ * Render a branded command header:  ⚙️  Configuration
+ */
+function renderCommandHeader(title, icon) {
+    const iconStr = icon ? `${icon}  ` : '';
+    return `\n  ${iconStr}${(0, theme_1.brand)(title)}\n`;
+}
+// ─── Key-Value Display ─────────────────────────────────────────────────────
+/**
+ * Render aligned key-value pairs with branded styling
+ * Input: [['Version', '4.1.3'], ['Port', '4321']]
+ * Output:
+ *   Version   4.1.3
+ *   Port      4321
+ */
+function renderKeyValue(pairs, opts) {
+    var _a, _b;
+    const indent = ' '.repeat((_a = opts === null || opts === void 0 ? void 0 : opts.indent) !== null && _a !== void 0 ? _a : 2);
+    const maxKey = (_b = opts === null || opts === void 0 ? void 0 : opts.keyWidth) !== null && _b !== void 0 ? _b : Math.max(...pairs.map(([k]) => k.length)) + 1;
+    return pairs.map(([key, value]) => {
+        const paddedKey = (key + ':').padEnd(maxKey + 1);
+        return `${indent}${(0, theme_1.dim)(paddedKey)} ${value}`;
+    }).join('\n');
+}
+// ─── Result Messages ───────────────────────────────────────────────────────
+const RESULT_CONFIG = {
+    success: { icon: '✅', color: theme_1.success },
+    error: { icon: '❌', color: theme_1.error },
+    warning: { icon: '⚠️', color: theme_1.warning },
+    info: { icon: 'ℹ️', color: (s) => s },
+};
+/**
+ * Render standardized result message with optional detail lines
+ */
+function renderResult(type, message, details) {
+    const cfg = RESULT_CONFIG[type];
+    const lines = [`\n  ${cfg.icon} ${cfg.color(message)}`];
+    if (details) {
+        for (const d of details) {
+            lines.push(`     ${d}`);
+        }
+    }
+    lines.push('');
+    return lines.join('\n');
 }
 // ─── Utilities ─────────────────────────────────────────────────────────────
 /**

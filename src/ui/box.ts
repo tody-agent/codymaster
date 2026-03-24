@@ -208,6 +208,58 @@ export function renderFooter(hints: string[]): string {
   return `  ${hints.map(h => dim(h)).join(dim(' • '))}`;
 }
 
+// ─── Command Header ────────────────────────────────────────────────────────
+
+/**
+ * Render a branded command header:  ⚙️  Configuration
+ */
+export function renderCommandHeader(title: string, icon?: string): string {
+  const iconStr = icon ? `${icon}  ` : '';
+  return `\n  ${iconStr}${brand(title)}\n`;
+}
+
+// ─── Key-Value Display ─────────────────────────────────────────────────────
+
+/**
+ * Render aligned key-value pairs with branded styling
+ * Input: [['Version', '4.1.3'], ['Port', '4321']]
+ * Output:
+ *   Version   4.1.3
+ *   Port      4321
+ */
+export function renderKeyValue(pairs: [string, string][], opts?: { indent?: number; keyWidth?: number }): string {
+  const indent = ' '.repeat(opts?.indent ?? 2);
+  const maxKey = opts?.keyWidth ?? Math.max(...pairs.map(([k]) => k.length)) + 1;
+  return pairs.map(([key, value]) => {
+    const paddedKey = (key + ':').padEnd(maxKey + 1);
+    return `${indent}${dim(paddedKey)} ${value}`;
+  }).join('\n');
+}
+
+// ─── Result Messages ───────────────────────────────────────────────────────
+
+const RESULT_CONFIG: Record<string, { icon: string; color: (s: string) => string }> = {
+  success: { icon: '✅', color: success },
+  error:   { icon: '❌', color: error },
+  warning: { icon: '⚠️', color: warning },
+  info:    { icon: 'ℹ️', color: (s: string) => s },
+};
+
+/**
+ * Render standardized result message with optional detail lines
+ */
+export function renderResult(type: 'success' | 'error' | 'warning' | 'info', message: string, details?: string[]): string {
+  const cfg = RESULT_CONFIG[type];
+  const lines = [`\n  ${cfg.icon} ${cfg.color(message)}`];
+  if (details) {
+    for (const d of details) {
+      lines.push(`     ${d}`);
+    }
+  }
+  lines.push('');
+  return lines.join('\n');
+}
+
 // ─── Utilities ─────────────────────────────────────────────────────────────
 
 /**
