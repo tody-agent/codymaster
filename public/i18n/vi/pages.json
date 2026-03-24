@@ -906,7 +906,7 @@
             "title": "Chạy cài đặt tương tác",
             "description": "Tự phát hiện công cụ AI (Claude, Gemini, Cursor…) và cài skills cho từng công cụ.",
             "code": "codymaster",
-            "output": "  ██████   CodyMaster v4.1.2\n  █ CM █   34 Skills. Ship 10x faster.\n  ██████   Chọn nền tảng của bạn..."
+            "output": "  ██████   CodyMaster v4.1.3\n  █ CM █   34 Skills. Ship 10x faster.\n  ██████   Chọn nền tảng của bạn..."
           },
           {
             "title": "Sử dụng CLI & Skills",

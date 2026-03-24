@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ════════════════════════════════════════════════════════════════
-#  CodyMaster Skills Kit v4.1.2 — Universal Installer
+#  CodyMaster Skills Kit v4.1.3 — Universal Installer
 #  Inspired by: npx skills add (vercel-labs/skills)
 #
 #  Usage:
@@ -24,7 +24,7 @@ C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'
 
 REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
-VERSION="4.1.2"
+VERSION="4.1.3"
 SCOPE="user"   # default scope for Claude Code
 
 # ── i18n ────────────────────────────────────────────────────────
