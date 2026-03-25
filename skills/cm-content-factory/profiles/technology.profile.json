@@ -1,0 +1,275 @@
+{
+    "id": "technology",
+    "name": "Technology — Technical Writing Standard",
+    "version": "1.0",
+    "domain": "technology",
+    "description": "Technical content writing protocol with RFC/standard references, code examples validation, benchmark citations, and accuracy markers. For tech blogs, developer documentation, and software tutorials.",
+    "evidence_system": {
+        "enabled": true,
+        "levels": [
+            {
+                "level": "I",
+                "label": "Official Documentation / RFC / W3C Standard",
+                "marker": "[Official]"
+            },
+            {
+                "level": "II",
+                "label": "Peer-reviewed paper / Conference (ACM, IEEE)",
+                "marker": "[Paper]"
+            },
+            {
+                "level": "III",
+                "label": "Official benchmark / Performance report",
+                "marker": "[Benchmark]"
+            },
+            {
+                "level": "IV",
+                "label": "Reputable tech blog / Case study",
+                "marker": "[Case]"
+            },
+            {
+                "level": "V",
+                "label": "Community consensus / Stack Overflow",
+                "marker": "[Community]"
+            }
+        ],
+        "marker_pattern": "\\[(Official|Paper|Benchmark|Case|Community)\\]|\\[LoE:\\s*[IViv]+",
+        "min_per_tier": {
+            "T1": 1,
+            "T2": 2,
+            "T3": 1
+        }
+    },
+    "citation_standard": {
+        "sources": [
+            {
+                "priority": "P0",
+                "org": "MDN",
+                "label": "MDN Web Docs",
+                "example": "[MDN — Array.prototype.map()]"
+            },
+            {
+                "priority": "P0",
+                "org": "Official Docs",
+                "label": "Official Framework Docs",
+                "example": "[React Docs — useState Hook]"
+            },
+            {
+                "priority": "P1",
+                "org": "RFC",
+                "label": "IETF RFC",
+                "example": "[RFC 7231 — HTTP/1.1 Semantics]"
+            },
+            {
+                "priority": "P1",
+                "org": "W3C",
+                "label": "W3C Standard",
+                "example": "[W3C — CSS Grid Layout Module]"
+            },
+            {
+                "priority": "P2",
+                "org": "GitHub",
+                "label": "GitHub Repository / Issues",
+                "example": "[github.com/vercel/next.js#12345]"
+            },
+            {
+                "priority": "P2",
+                "org": "ACM/IEEE",
+                "label": "Academic Paper",
+                "example": "[ACM SIGPLAN 2024]"
+            },
+            {
+                "priority": "P3",
+                "org": "Blog",
+                "label": "Tech Blog / Case Study",
+                "example": "[Vercel Blog — Edge Functions 2024]"
+            }
+        ],
+        "recognized_orgs": [
+            "MDN",
+            "W3C",
+            "IETF",
+            "RFC",
+            "ECMA",
+            "ISO",
+            "IEEE",
+            "ACM",
+            "NIST",
+            "OWASP",
+            "Google",
+            "Microsoft",
+            "AWS",
+            "Cloudflare"
+        ],
+        "min_citations": {
+            "T1": 2,
+            "T2": 3,
+            "T3": 2
+        },
+        "reference_section_patterns": [
+            "##\\s*\\d*\\.?\\s*TÀI LIỆU THAM KHẢO",
+            "##\\s*\\d*\\.?\\s*REFERENCES",
+            "##\\s*\\d*\\.?\\s*FURTHER READING",
+            "##\\s*\\d*\\.?\\s*RESOURCES"
+        ],
+        "require_inline": true,
+        "banned_phrases": [
+            "Theo các chuyên gia",
+            "Nhiều developer cho rằng",
+            "Theo khảo sát"
+        ]
+    },
+    "safety_markers": [
+        {
+            "id": "tech_note",
+            "icon": "💡",
+            "label": "GHI CHÚ KỸ THUẬT",
+            "pattern": "GHI CHÚ KỸ THUẬT|TECHNICAL NOTE|NOTE",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "breaking_change",
+            "icon": "⚠️",
+            "label": "BREAKING CHANGE",
+            "pattern": "BREAKING CHANGE|CẢNH BÁO|DEPRECATED",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "reference",
+            "icon": "📚",
+            "label": "THAM KHẢO",
+            "pattern": "THAM KHẢO|REFERENCES|RESOURCES|FURTHER READING",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        },
+        {
+            "id": "disclaimer",
+            "icon": "ℹ️",
+            "label": "DISCLAIMER",
+            "pattern": "DISCLAIMER|thay đổi theo phiên bản|version-specific",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        }
+    ],
+    "anti_hallucination": {
+        "rules": [
+            "Không bịa tên API/function — chỉ ghi API có thật trong docs",
+            "Không bịa version number — kiểm tra phiên bản hiện tại",
+            "Không bịa benchmark — chỉ ghi số liệu có nguồn",
+            "Không bịa npm package — chỉ ghi package có trên registry",
+            "Khi không chắc → ghi rõ phiên bản áp dụng"
+        ],
+        "safe_phrases": [
+            "Hiệu năng có thể khác tùy môi trường và cấu hình",
+            "Theo official docs phiên bản X.Y...",
+            "Benchmark trên máy cấu hình... (kết quả có thể khác)",
+            "API có thể thay đổi trong các phiên bản tương lai"
+        ],
+        "suspicious_patterns": []
+    },
+    "content_tiers": {
+        "T1": {
+            "name": "Concept / Overview",
+            "min_words": 1200
+        },
+        "T2": {
+            "name": "Deep Dive / Tutorial",
+            "min_words": 1500
+        },
+        "T3": {
+            "name": "How-to / Recipe",
+            "min_words": 800
+        }
+    },
+    "tier_detection": {
+        "prefix_map": {},
+        "default_tier": "T2"
+    },
+    "cross_reference": {
+        "require_icd10_tiers": [],
+        "icd10_pattern": "",
+        "min_cross_links": 2,
+        "cross_link_patterns": [
+            "Xem thêm",
+            "Related",
+            "→\\s*Xem",
+            "See also",
+            "Bài liên quan"
+        ],
+        "code_format": "→ See also: [{code}] {title}"
+    },
+    "prompt_injection": {
+        "T1": "TECHNICAL WRITING REQUIREMENTS:\n1. Mỗi concept phải có code example minh họa\n2. Trích dẫn source từ official docs\n3. Cuối bài có \"## REFERENCES\" với links\n4. Version/dependency requirements ghi rõ\n5. KHÔNG bịa API names hoặc function signatures",
+        "T2": "TECHNICAL WRITING REQUIREMENTS:\n1. Code examples phải runnable (có imports đầy đủ)\n2. Trích dẫn ≥ 3 sources (official docs, RFC, benchmark)\n3. Benchmark data phải có nguồn + environment info\n4. Section \"⚠️ BREAKING CHANGE\" nếu có API changes\n5. Cuối bài có \"## REFERENCES\"\n6. KHÔNG bịa benchmark numbers — dùng khoảng ước tính",
+        "T3": "TECHNICAL WRITING REQUIREMENTS:\n1. Step-by-step với code blocks rõ ràng\n2. Prerequisites section (versions, dependencies)\n3. Code phải copy-paste ready\n4. Cuối bài có \"## REFERENCES\" ≥ 2 sources\n5. Ghi rõ version API/library áp dụng"
+    },
+    "scoring": {
+        "dimensions": [
+            {
+                "name": "Technical Accuracy",
+                "weight": 10,
+                "check": "loe_count",
+                "description": "Trích dẫn docs/RFC chính xác"
+            },
+            {
+                "name": "Code Quality",
+                "weight": 10,
+                "check": "code_examples",
+                "description": "Code examples hữu ích"
+            },
+            {
+                "name": "Source Credibility",
+                "weight": 10,
+                "check": "citation_count",
+                "description": "Nguồn đáng tin cậy"
+            },
+            {
+                "name": "Structure",
+                "weight": 10,
+                "check": "structure_complete",
+                "description": "Đúng template"
+            },
+            {
+                "name": "Version Clarity",
+                "weight": 10,
+                "check": "version_info",
+                "description": "Ghi rõ phiên bản"
+            },
+            {
+                "name": "Safety Markers",
+                "weight": 10,
+                "check": "safety_markers",
+                "description": "Breaking changes, disclaimers"
+            },
+            {
+                "name": "Cross-References",
+                "weight": 10,
+                "check": "cross_links",
+                "description": "Liên kết liên quan"
+            },
+            {
+                "name": "Word Count",
+                "weight": 10,
+                "check": "word_count",
+                "description": "Đủ độ dài"
+            }
+        ],
+        "max_score": 80,
+        "thresholds": {
+            "excellent": 72,
+            "good": 56,
+            "average": 40
+        }
+    },
+    "disclaimer_text": "ℹ️ **DISCLAIMER:** Nội dung kỹ thuật trong bài viết dựa trên phiên bản hiện tại tại thời điểm viết.\nAPI, framework, và công cụ **có thể thay đổi** trong các phiên bản tương lai.\nLuôn kiểm tra official documentation để có thông tin mới nhất."
+}

@@ -1,0 +1,274 @@
+{
+  "name": "ux-master",
+  "version": "2.0.0",
+  "description": "Ultimate UX Design Intelligence with 48 UX Laws, 37 Design Tests, and AI-powered validation",
+  "schema_version": "2024-11-05",
+  "server": {
+    "command": "python",
+    "args": ["-m", "mcp.server"],
+    "env": {
+      "PORT": "3000",
+      "HOST": "0.0.0.0"
+    }
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "search_ux_laws",
+      "description": "Search 48 UX Laws applicable to product type. Returns laws with definitions, applications, pass/fail criteria, and severity levels.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query for UX Laws"
+          },
+          "product_type": {
+            "type": "string",
+            "description": "Product type filter (mobile, dashboard, landing, e-commerce, etc.)"
+          },
+          "max_results": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Maximum results to return"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "search_design_tests",
+      "description": "Search 37 Design Tests with pass/fail criteria. Use for validating UI implementations against measurable criteria.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query for Design Tests"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target component (mobile, landing, dashboard, forms, etc.)"
+          },
+          "max_results": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "validate_design",
+      "description": "Validate HTML/CSS code against Design Tests. Returns detailed pass/fail report with fix suggestions.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "html": {
+            "type": "string",
+            "description": "HTML content to validate"
+          },
+          "css": {
+            "type": "string",
+            "description": "Optional CSS content"
+          },
+          "test_suite": {
+            "type": "string",
+            "enum": ["all", "mobile", "landing", "dashboard", "a11y", "forms"],
+            "default": "all",
+            "description": "Test suite to run"
+          }
+        },
+        "required": ["html"]
+      }
+    },
+    {
+      "name": "generate_design_system",
+      "description": "Generate a complete design system recommendation based on project description. Includes colors, typography, patterns, and applicable UX Laws.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Description of what you're building"
+          },
+          "project_name": {
+            "type": "string",
+            "description": "Project name"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["json", "markdown"],
+            "default": "json"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "extract_design_system",
+      "description": "Extract design tokens from a website URL using AI-powered analysis.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Website URL to extract design system from"
+          },
+          "depth": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 3,
+            "description": "Crawl depth"
+          },
+          "include_screenshots": {
+            "type": "boolean",
+            "default": false,
+            "description": "Include screenshots in extraction"
+          }
+        },
+        "required": ["url"]
+      }
+    },
+    {
+      "name": "search_domain",
+      "description": "Search specific domain in UX-Master knowledge base.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "ux-laws", "design-tests", "style", "color",
+              "typography", "product", "landing", "chart",
+              "animation", "responsive", "accessibility", "devices"
+            ],
+            "description": "Domain to search"
+          },
+          "max_results": {
+            "type": "integer",
+            "default": 3,
+            "minimum": 1,
+            "maximum": 10
+          }
+        },
+        "required": ["query", "domain"]
+      }
+    },
+    {
+      "name": "export_to_figma",
+      "description": "Export design tokens to Figma as Variables collection.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_key": {
+            "type": "string",
+            "description": "Figma file key"
+          },
+          "design_tokens": {
+            "type": "object",
+            "description": "Design tokens to export"
+          },
+          "collection_name": {
+            "type": "string",
+            "default": "UX-Master Tokens",
+            "description": "Variable collection name"
+          }
+        },
+        "required": ["file_key", "design_tokens"]
+      }
+    },
+    {
+      "name": "get_stack_guidelines",
+      "description": "Get technology stack specific guidelines (React, Vue, Tailwind, etc.)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "What you need guidelines for"
+          },
+          "stack": {
+            "type": "string",
+            "enum": [
+              "html-tailwind", "react", "nextjs", "vue", "nuxtjs",
+              "nuxt-ui", "svelte", "astro", "swiftui", "react-native",
+              "flutter", "shadcn", "jetpack-compose", "angular",
+              "htmx", "electron", "tauri"
+            ],
+            "description": "Technology stack"
+          }
+        },
+        "required": ["query", "stack"]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "uxmaster://ux-laws/all",
+      "name": "All UX Laws",
+      "mimeType": "application/json",
+      "description": "Complete list of 48 UX Laws with definitions and applications"
+    },
+    {
+      "uri": "uxmaster://design-tests/all",
+      "name": "All Design Tests",
+      "mimeType": "application/json",
+      "description": "Complete list of 37 Design Tests with pass/fail criteria"
+    },
+    {
+      "uri": "uxmaster://domains/list",
+      "name": "Available Domains",
+      "mimeType": "application/json",
+      "description": "List of 16 searchable domains"
+    },
+    {
+      "uri": "uxmaster://stacks/list",
+      "name": "Supported Stacks",
+      "mimeType": "application/json",
+      "description": "List of 17 supported technology stacks"
+    }
+  ],
+  "integrations": {
+    "figma": {
+      "enabled": true,
+      "features": [
+        "variable_export",
+        "style_import",
+        "token_sync"
+      ]
+    },
+    "stitch": {
+      "enabled": true,
+      "features": [
+        "design_system_export",
+        "prompt_enhancement"
+      ]
+    },
+    "vscode": {
+      "enabled": true,
+      "features": [
+        "inline_validation",
+        "quick_fixes",
+        "design_system_panel"
+      ]
+    }
+  }
+}

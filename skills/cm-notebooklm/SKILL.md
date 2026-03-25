@@ -1,0 +1,159 @@
+---
+name: cm-notebooklm
+description: |
+  CodyMaster NotebookLM — Cloud-based AI brain/soul engine. Stores the most
+  valuable knowledge (skills, lessons learned, coding experiences, key decisions)
+  into Google NotebookLM for cross-machine sync and AI-powered recall.
+  Combines cm-dockit (codebase → docs) + cm-deep-search (local BM25) +
+  NotebookLM (cloud AI memory + podcast + flashcards).
+
+  Offers LOCAL vs CLOUD choice for large codebases. Auto-sync mechanism.
+  Selective indexing — only high-value content, not everything.
+
+  Use when user says: "notebooklm", "notebook lm", "nlm", "nạp kiến thức",
+  "knowledge base", "create notebook", "sync skills to notebook", "tạo notebook",
+  "knowledge memory", "podcast từ skills", "flashcards từ docs",
+  "add to notebooklm", "query notebooklm", "hỏi notebooklm",
+  "lưu kinh nghiệm", "bộ nhớ AI", "AI memory", "tạo podcast",
+  "codymaster notebook", "skill notebook", "sync knowledge",
+  "cloud brain", "soul sync", "cross-machine sync".
+---
+
+# Goal
+
+Cloud brain / soul cho AI — lưu trữ kiến thức **giá trị nhất**, đồng bộ qua
+nhiều máy tính. `brain.md` = compiled source of truth, upload 1 lần thay vì 50.
+
+# How It Works
+
+```
+Skills + Lessons + Experiences
+        ↓ compile
+  ~/.codymaster/brain.md  (local file = backup)
+        ↓ upload (1 API call)
+  NotebookLM (cloud = cross-machine sync)
+```
+
+All automation via `scripts/brain-sync.sh` — AI chỉ cần gọi script.
+
+# Instructions
+
+## Decision Gate — Cloud vs Local
+
+Khi codebase lớn (>200 src hoặc >50 docs), hỏi user:
+
+| Option | Tool | Best for |
+|--------|------|----------|
+| ☁️ Cloud | NotebookLM | Cross-machine, podcast, flashcards |
+| 💻 Local | qmd (cm-deep-search) | Offline, nhanh, ổn định |
+| 🔀 **Hybrid** (default) | Cả hai | Local = code, Cloud = wisdom |
+
+Nếu ko chọn → **Hybrid**: qmd cho code search, NotebookLM cho high-value only.
+
+## First-Time Setup
+
+```bash
+# 1. Install CLI (third-party, user quyết định)
+uv tool install notebooklm-mcp-cli
+
+# 2. One command setup: login → create notebook → compile → upload
+bash ~/.gemini/antigravity/skills/cm-notebooklm/scripts/brain-sync.sh init
+```
+
+## Daily Usage
+
+```bash
+SCRIPT=~/.gemini/antigravity/skills/cm-notebooklm/scripts/brain-sync.sh
+
+# Add a lesson learned
+bash $SCRIPT lesson "Tên bài học"
+# → Edit ~/.codymaster/lessons.md → fill in details
+
+# Add coding experience
+bash $SCRIPT experience "Tên pattern"
+# → Edit ~/.codymaster/experiences.md → fill in details
+
+# Sync to cloud (compile + hash check + upload if changed)
+bash $SCRIPT sync
+
+# Check status
+bash $SCRIPT status
+
+# Query brain
+nlm notebook query codymaster "your question"
+```
+
+## Auto-Sync Triggers
+
+AI detect và **hỏi user** (không tự động):
+
+| Trigger | Prompt |
+|---------|--------|
+| Skill mới tạo | "Sync skill mới vào brain?" → `bash $SCRIPT sync` |
+| Bug fixed / post-mortem | "Lưu bài học?" → `bash $SCRIPT lesson "..."` |
+| Architecture changed | "Update brain?" → `bash $SCRIPT sync` |
+| User nói "sync/update" | → `bash $SCRIPT sync` |
+
+## Cross-Machine (Máy Mới)
+
+```bash
+uv tool install notebooklm-mcp-cli
+nlm login
+nlm notebook list          # CodyMaster Brain already there
+nlm alias set codymaster <id>
+# Done! Query ngay: nlm notebook query codymaster "..."
+```
+
+## Content Generation
+
+```bash
+nlm audio create codymaster --format deep_dive --confirm   # Podcast
+nlm report create codymaster --format "Study Guide" --confirm
+nlm flashcards create codymaster --difficulty medium --confirm
+nlm studio status codymaster
+```
+
+# What Gets Indexed
+
+```
+✅ HIGH-VALUE (auto-compiled into brain.md):
+├── Skill Index (names + descriptions — NOT full SKILL.md)
+├── Lessons Learned (~/.codymaster/lessons.md)
+├── Coding Experiences (~/.codymaster/experiences.md)
+└── AGENTS.md (project identity)
+
+❌ NOT INDEXED (use qmd/cm-deep-search instead):
+├── Full SKILL.md files (too many, hard to maintain)
+├── Source code, tests, configs
+└── Duplicated content
+```
+
+# Memory Architecture
+
+```
+Session  → variables        → temporary
+Working  → CONTINUITY.md    → ~500 words/turn
+Local    → qmd              → BM25+vector, offline, stable
+Cloud    → NotebookLM       → AI brain, cross-machine, podcast
+```
+
+# Integration
+
+| Skill | Role |
+|-------|------|
+| `cm-deep-search` | Local search complement (code) |
+| `cm-dockit` | Generate docs → select high-value → feed to brain |
+| `cm-continuity` | Session memory, brain = long-term |
+| `skill-creator-ultra` | TRIGGER: new skill → prompt sync |
+| `cm-debugging` | TRIGGER: bug fixed → prompt lesson |
+
+# Constraints
+
+- 🔌 `nlm` CLI = **third-party** (jacob-bd). May break. Fallback: cm-deep-search.
+- 🧠 **Selective only** — quality > quantity. Don't dump everything.
+- 🔐 NO secrets in NotebookLM — cloud service.
+- ❌ NO delete without user confirmation.
+- 🤖 NO `nlm chat start` — use `nlm notebook query` only.
+- 🔄 Auto-sync = **ask first**, never silent upload.
+
+<!-- Generated by Skill Creator Ultra v1.0 -->

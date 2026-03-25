@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$name</title>
+    <style>
+        :root {
+            --color-primary: $primary_color;
+            --color-secondary: $secondary_color;
+            --color-background: $background_color;
+            --color-text: $text_color;
+            --font-heading: '$heading_font', system-ui, sans-serif;
+            --font-body: '$body_font', system-ui, sans-serif;
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-heading);
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 200ms ease;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-md);
+            transition: all 200ms ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: var(--space-2xl) 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: var(--space-md);
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            opacity: 0.8;
+            max-width: 65ch;
+            margin: 0 auto var(--space-lg);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container">
+        <nav style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-md) 0;">
+            <a href="/"
+                style="font-weight:700; font-size:1.25rem; color:var(--color-primary); text-decoration:none;">$name</a>
+            <div style="display:flex; gap:var(--space-lg);">
+                <a href="#features" style="color:var(--color-text); text-decoration:none;">Features</a>
+                <a href="#about" style="color:var(--color-text); text-decoration:none;">About</a>
+                <button class="btn-primary">Get Started</button>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="hero">
+            <h1>Welcome to $name</h1>
+            <p>Your project description goes here. Edit this template to match your design system.</p>
+            <button class="btn-primary">Get Started</button>
+        </section>
+        <section id="features" style="padding: var(--space-2xl) 0;">
+            <h2 style="text-align:center; margin-bottom:var(--space-xl);">Features</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:var(--space-lg);">
+                <div class="card">
+                    <h3>Feature 1</h3>
+                    <p>Description</p>
+                </div>
+                <div class="card">
+                    <h3>Feature 2</h3>
+                    <p>Description</p>
+                </div>
+                <div class="card">
+                    <h3>Feature 3</h3>
+                    <p>Description</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container" style="padding:var(--space-xl) 0; text-align:center; opacity:0.6;">
+        <p>&copy; 2025 $name. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

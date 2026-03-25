@@ -1,0 +1,84 @@
+{
+  "_metadata": {
+    "source": "https://showcase.myharavan.com/admin/dashboard/generals?startDate=2026-02-25&endDate=2026-02-25",
+    "title": "Demo Haravan ~ Tổng quan ~ Haravan",
+    "generated_by": "UX Master — Semi-Sync Harvester",
+    "timestamp": "2026-02-25T00:48:32.503Z"
+  },
+  "semi-color-primary": {
+    "value": "#2463EB",
+    "type": "color"
+  },
+  "semi-color-warning": {
+    "value": "#FFFBEB",
+    "type": "color"
+  },
+  "semi-color-bg-0": {
+    "value": "#F3F4F6",
+    "type": "color"
+  },
+  "semi-color-bg-1": {
+    "value": "#FFFFFF",
+    "type": "color"
+  },
+  "semi-color-bg-2": {
+    "value": "#111827",
+    "type": "color"
+  },
+  "semi-color-border": {
+    "value": "#E5E7EB",
+    "type": "color"
+  },
+  "semi-color-text-0": {
+    "value": "#111827",
+    "type": "color"
+  },
+  "semi-color-text-1": {
+    "value": "#111827",
+    "type": "color"
+  },
+  "semi-color-text-2": {
+    "value": "#4B5563",
+    "type": "color"
+  },
+  "semi-font-family-regular": {
+    "value": "-apple-system, system-ui, Segoe UI, Roboto, Inter, sans-serif",
+    "type": "fontFamilies"
+  },
+  "semi-font-size-regular": {
+    "value": "14px",
+    "type": "fontSizes"
+  },
+  "semi-border-radius-medium": {
+    "value": "8px",
+    "type": "color"
+  },
+  "semi-border-radius-large": {
+    "value": "16px",
+    "type": "color"
+  },
+  "semi-shadow-elevated": {
+    "value": "rgba(0, 0, 0, 0.24) 0px 0px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 2px 0px",
+    "type": "boxShadow"
+  },
+  "semi-color-primary-hover": {
+    "value": "#2059D3",
+    "type": "color"
+  },
+  "semi-color-primary-active": {
+    "value": "#1C4FBC",
+    "type": "color"
+  },
+  "semi-color-primary-light-default": {
+    "value": "#DEE7FC",
+    "type": "color"
+  },
+  "semi-color-warning-hover": {
+    "value": "#E5E1D3",
+    "type": "color"
+  },
+  "semi-color-warning-active": {
+    "value": "#CCC8BC",
+    "type": "color"
+  }
+}

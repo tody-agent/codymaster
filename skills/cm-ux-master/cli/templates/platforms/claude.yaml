@@ -1,0 +1,21 @@
+platform: claude
+display_name: Claude Code
+install_type: full
+folder_structure:
+  root: ".claude"
+  skillPath: "skills/ux-master"
+  filename: "SKILL.md"
+script_path: "skills/ux-master/scripts/search.py"
+frontmatter:
+  name: "ux-master"
+  description: "Ultimate UX Design Intelligence with 48 UX Laws, 37 Design Tests, Design System Extractor, and Multi-Device Support. Actions: plan, build, create, design, implement, review, fix, improve, validate, extract, optimize. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app, web app. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive. Domains: ux-laws, design-tests, style, color, typography, animation, responsive, accessibility. Stacks: React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, Angular, HTMX."
+sections:
+  quick_reference: true
+title: "UX Master - Ultimate Design Intelligence"
+description: "Comprehensive design guide with psychology-driven UX Laws, automated Design Tests, and design system extraction. Contains 48 UX Laws, 37 Design Tests, 67 styles, 96 color palettes across 17 technology stacks."
+skill_or_workflow: "Skill"
+mcp_capabilities:
+  - search
+  - validate
+  - extract
+tool_endpoints: []

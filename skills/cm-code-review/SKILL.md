@@ -119,33 +119,6 @@ When implementation is complete and all tests pass.
 
 ---
 
-## Part D: Security Review Checklist (Learned: March 2026)
-
-> **Every code review MUST include a security pass.** Check these patterns:
-
-### Frontend
-- [ ] No `innerHTML` with unescaped dynamic data
-- [ ] `sanitize.js` loaded before any JS that uses `innerHTML`
-- [ ] URLs from params validated against allowlist
-- [ ] No `eval()`, `new Function()`, or `document.write()` with user data
-
-### Backend (Python)
-- [ ] All file paths from config/input use `safe_resolve(base, path)`
-- [ ] No `subprocess.run(..., shell=True)` with dynamic args
-- [ ] No `open(user_input)` without path validation
-
-### Backend (Node/Express)
-- [ ] `app.disable('x-powered-by')` set
-- [ ] Body size limits configured
-- [ ] No `Object.assign(config, userInput)` (prototype pollution)
-- [ ] API error responses don't leak stack traces
-
-### General
-- [ ] No secrets/API keys in committed code
-- [ ] `.snyk` exclusions documented with mitigation rationale
-
----
-
 ### Step FINAL: Record Review Learnings
 
 After processing review feedback, ALWAYS update `.cm/CONTINUITY.md`:

@@ -1,0 +1,147 @@
+{
+    "niche": "legal-services",
+    "brand": {
+        "name": "LegalEdge Insights",
+        "slogan": "Expert Legal Knowledge You Can Trust",
+        "tone": "authoritative-accessible",
+        "language": "en",
+        "colors": {
+            "primary": "#1A1A2E",
+            "secondary": "#D4AF37",
+            "accent": "#FAFAFA"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "legal-guide",
+                "title_template": "{topic_name}: Complete Legal Guide & What You Need to Know",
+                "category": "guides",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "legal guide",
+                    "law",
+                    "rights"
+                ]
+            },
+            {
+                "id": "process-explainer",
+                "title_template": "How to File for {topic_name}: Step-by-Step Legal Process",
+                "category": "process",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "how to",
+                    "process",
+                    "filing"
+                ]
+            },
+            {
+                "id": "cost-breakdown",
+                "title_template": "{topic_name} Lawyer Cost: Fees, Hourly Rates & What to Expect",
+                "category": "costs",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "cost",
+                    "attorney fees",
+                    "pricing"
+                ]
+            },
+            {
+                "id": "state-guide",
+                "title_template": "{topic_name} Laws by State: Your Rights & Key Differences",
+                "category": "state-laws",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "state law",
+                    "regulations",
+                    "rights"
+                ]
+            },
+            {
+                "id": "faq-article",
+                "title_template": "{topic_name}: Frequently Asked Legal Questions Answered",
+                "category": "faq",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "FAQ",
+                    "legal questions",
+                    "answers"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "jurisdiction"
+            ]
+        },
+        "word_count": {
+            "min": 1200,
+            "max": 3000
+        },
+        "language": "en",
+        "disclaimer": "This content is for informational purposes only and does not constitute legal advice. Consult a licensed attorney."
+    },
+    "sources": {
+        "type": "markdown",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 2,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": true
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

@@ -26,7 +26,12 @@ Before choosing execution mode, scan plan tasks for technology keywords:
 4. If gap found → trigger Discovery Loop (cm-skill-mastery Part C)
    → npx skills find "{keyword}" → review → ask user → install
 5. Log any installations to .cm-skills-log.json
-6. Only proceed to Mode Selection after all gaps resolved
+6. Code Intelligence Context (cm-codeintell):
+   → IF codegraph available: codegraph_context(task) for each task
+   → IF modifying shared code: codegraph_impact(symbol, depth=2)
+   → IF impact > 10 files: WARN "High impact change"
+   → Inject context into agent prompts → agents skip grep/glob
+7. Only proceed to Mode Selection after all gaps resolved
 ```
 
 ---

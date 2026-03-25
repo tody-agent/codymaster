@@ -21,7 +21,6 @@ NO LANGUAGE FILE WITHOUT KEY PARITY.
 NO DEPLOY WITHOUT FULL SYNTAX VALIDATION.
 NO HTML TAG MODIFICATION — TEXT CONTENT ONLY.
 NO REGEX TO FIX REGEX ERRORS — USE LEXICAL SCANNER.
-NO HTML MARKUP IN TRANSLATION JSON VALUES — ICONS AND STRUCTURAL HTML BELONG IN HTML TEMPLATES.
 ```
 
 ## When to Use
@@ -74,16 +73,6 @@ digraph i18n_flow {
 ---
 
 ### Phase 0: Pre-Flight Checks (NEW)
-
-#### 0a. Load i18n Learnings (cm-continuity)
-
-Before ANY i18n work, read `.cm/memory/learnings.json` filtered by `scope: "module:i18n"`.
-Apply all active prevention patterns. Known high-value learnings:
-- **L001**: Always run i18n-sync test after each batch extraction
-- **L004**: Use namespace-split architecture (not monolithic JSON)
-- **L005**: Add exclusion list to extraction scripts to prevent junk keys
-
-> If learnings.json has relevant entries, reference them before starting. If no `.cm/` directory exists, proceed but create learnings after this workflow.
 
 Before ANY i18n work:
 
@@ -401,13 +390,6 @@ git checkout main
 git merge i18n/...
 ```
 
-#### Post-completion: Update Memory (cm-continuity)
-
-After final validation passes:
-1. Update `.cm/CONTINUITY.md` → Just Completed: "i18n: [N] strings across [M] languages"
-2. Record any NEW bug patterns to `.cm/memory/learnings.json` with `scope: "module:i18n"`
-3. **Anti-duplicate**: If same pattern as existing learning → reinforce (count++), don't create new entry
-
 ---
 
 ## Quick Reference: Key Naming Convention
@@ -421,7 +403,7 @@ After final validation passes:
 
 ---
 
-## The 14 Bug Categories — Quick Reference
+## The 13 Bug Categories — Quick Reference
 
 | # | Bug | Pattern | Detection Gate |
 |---|-----|---------|---------------|
@@ -438,7 +420,6 @@ After final validation passes:
 | 11 | Missed files | Only scanned app.js | Phase 1 scan ALL |
 | 12 | Line number drift | Stale line refs across batches | Target by function name |
 | 13 | **Flat vs nested key count mismatch** | Test vs Gate metrics | i18n-sync test design |
-| 14 | **HTML markup in translation values** | `<i data-lucide>`, `<a href>` in JSON | `grep '<[a-z]' *.json` |
 
 ---
 
@@ -449,7 +430,6 @@ After final validation passes:
 - ❌ Committing all translations in a single commit
 - ❌ Skipping key parity check across language files
 - ❌ "It's just a string replacement, it'll be fine"
-- ❌ Putting HTML tags (`<i>`, `<a>`, `<svg>`) inside translation JSON values — icons and structural markup belong in HTML/JSX templates, not in i18n strings. Only `<strong>`, `<em>`, `<br>` are acceptable.
 
 ## Rationalization Table
 
@@ -467,7 +447,6 @@ After final validation passes:
 | `cm-quality-gate` | Final test gate before deploy |
 | `cm-execution` | Phase 4: Parallel language translation |
 | `cm-terminal` | While running audit commands |
-| `cm-continuity` | Phase 0: load i18n learnings; Post-completion: record new patterns |
 
 ## The Bottom Line
 

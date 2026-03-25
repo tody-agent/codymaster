@@ -1,0 +1,106 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "uxmaster"
+version = "2.0.0"
+description = "Ultimate UX Design Intelligence - CLI tool with 48 UX Laws, 37 Design Tests, MCP server, Figma & Stitch integrations"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.9"
+authors = [
+    {name = "UX Master Team", email = "hello@ux-master.dev"}
+]
+keywords = [
+    "ui", "ux", "design", "design-system", "accessibility", "wcag",
+    "claude", "cursor", "windsurf", "ai", "mcp", "figma", "stitch",
+    "frontend", "tailwind", "react", "vue"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: User Interfaces",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "click>=8.0.0",
+    "rich>=13.0.0",
+    "PyYAML>=6.0",
+    "pydantic>=2.0.0",
+    "httpx>=0.25.0",
+    "playwright>=1.40.0",
+    "beautifulsoup4>=4.12.0",
+    "cssutils>=2.9.0",
+    "pillow>=10.0.0",
+    "numpy>=1.24.0",
+    "scikit-learn>=1.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+mcp = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "python-multipart>=0.0.6",
+    "websockets>=12.0",
+]
+figma = [
+    "httpx>=0.25.0",
+]
+all = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "python-multipart>=0.0.6",
+    "websockets>=12.0",
+    "httpx>=0.25.0",
+]
+
+[project.scripts]
+uxmaster = "uxmaster.__main__:cli"
+uxm = "uxmaster.__main__:cli"
+
+[project.urls]
+Homepage = "https://ux-master.dev"
+Documentation = "https://docs.ux-master.dev"
+Repository = "https://github.com/relukdev/ux-master"
+"Bug Tracker" = "https://github.com/relukdev/ux-master/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["uxmaster"]
+
+[tool.black]
+line-length = 100
+target-version = ['py39']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

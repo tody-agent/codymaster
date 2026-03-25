@@ -1,0 +1,167 @@
+{
+  "name": "ux-master-mcp",
+  "displayName": "UX-Master Design Intelligence",
+  "description": "Ultimate UX design intelligence with 48 UX Laws, 37 Design Tests, and AI-powered validation",
+  "version": "2.0.0",
+  "publisher": "ux-master",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Machine Learning",
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "ux",
+    "design",
+    "ui",
+    "accessibility",
+    "figma",
+    "design-system",
+    "ai"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "uxmaster.searchUXLaws",
+        "title": "Search UX Laws",
+        "category": "UX-Master"
+      },
+      {
+        "command": "uxmaster.searchDesignTests",
+        "title": "Search Design Tests",
+        "category": "UX-Master"
+      },
+      {
+        "command": "uxmaster.validateFile",
+        "title": "Validate Current File",
+        "category": "UX-Master",
+        "icon": "$(check)"
+      },
+      {
+        "command": "uxmaster.generateDesignSystem",
+        "title": "Generate Design System",
+        "category": "UX-Master"
+      },
+      {
+        "command": "uxmaster.exportToFigma",
+        "title": "Export to Figma",
+        "category": "UX-Master"
+      },
+      {
+        "command": "uxmaster.openMCPPanel",
+        "title": "Open MCP Panel",
+        "category": "UX-Master",
+        "icon": "$(window)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "uxmaster.validateFile",
+          "group": "9_cutcopypaste@5",
+          "when": "editorLangId == html || editorLangId == typescriptreact || editorLangId == vue"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "uxmaster.validateFile",
+          "group": "2_workspace@5",
+          "when": "resourceExtname == .html || resourceExtname == .tsx || resourceExtname == .vue"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "uxmaster.designSystem",
+          "name": "Design System",
+          "when": "uxmaster.hasDesignSystem"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "uxmaster",
+          "title": "UX-Master",
+          "icon": "$(symbol-color)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "UX-Master",
+      "properties": {
+        "uxmaster.mcpServerUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "URL of the UX-Master MCP server"
+        },
+        "uxmaster.figmaToken": {
+          "type": "string",
+          "default": "",
+          "description": "Figma personal access token"
+        },
+        "uxmaster.autoValidate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically validate files on save"
+        },
+        "uxmaster.validationRules": {
+          "type": "array",
+          "default": ["all"],
+          "description": "Which validation rules to apply",
+          "items": {
+            "type": "string",
+            "enum": ["all", "mobile", "a11y", "performance", "landing"]
+          }
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "uxmaster.validateFile",
+        "key": "ctrl+shift+u",
+        "mac": "cmd+shift+u",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "uxmaster.searchUXLaws",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/relukdev/ux-master"
+  },
+  "bugs": {
+    "url": "https://github.com/relukdev/ux-master/issues"
+  },
+  "license": "MIT"
+}

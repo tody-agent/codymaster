@@ -52,6 +52,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `cm-quality-gate` | deploy, ship, verify, quality, gate | 6-gate verification: static analysis → blind review → ship |
 | `cm-test-gate` | test setup, CI, test infrastructure | Setup 4-layer test gate for any project type |
 | `cm-code-review` | review, PR, feedback, branch | Request reviews, handle feedback, complete branches |
+| `cm-codeintell` | understand codebase, call graph, impact, architecture, what calls X, what breaks | AST knowledge graph + architecture diagrams + smart context (30% fewer tokens) |
 
 ### Operations Swarm ⚙️
 
@@ -303,7 +304,7 @@ view_file /path/to/skills/cm-tdd/SKILL.md
 For dynamic agent selection (Phase 3), skills map to domains:
 
 ```yaml
-engineering: [cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review]
+engineering: [cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review, cm-codeintell]
 operations: [cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-safe-i18n]
 security: [cm-secret-shield]
 product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-ui-preview, cm-dockit, cm-project-bootstrap, cm-jtbd]

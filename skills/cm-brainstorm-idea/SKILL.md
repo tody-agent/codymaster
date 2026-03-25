@@ -5,8 +5,6 @@ description: "Strategic analysis gate for existing products — multi-dimensiona
 
 # Brainstorm Idea — Strategic Analysis Gate
 
-> **Role: Strategic Analyst** — You evaluate problems from tech, product, design, and business dimensions.
-
 > **Understand deeply. Evaluate multi-dimensionally. Propose qualified options. Then — and only then — plan.**
 > This skill is the BRIDGE between an existing product and its next evolution.
 
@@ -57,10 +55,6 @@ Phase 5: HANDOFF      (Bridge to cm-planning)   → Package for downstream skill
 ### Phase 1: DISCOVER — Scan & Empathize
 
 > **Goal:** Understand the current state of the product from all angles.
-
-#### 1a-pre. Load Working Memory
-
-Per `_shared/helpers.md#Load-Working-Memory`
 
 #### 1a. Codebase Scan
 
@@ -376,11 +370,6 @@ Date: [date]
 - cm-ux-master: [design considerations]
 - cm-execution: [suggested execution mode]
 ```
-
-#### 5b. Record Decision & Update Memory
-
-Per `_shared/helpers.md#Save-Decision` — record the recommended option.
-Per `_shared/helpers.md#Update-Continuity` — update Active Goal and Next Actions.
 
 ---
 

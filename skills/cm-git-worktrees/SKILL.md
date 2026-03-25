@@ -105,12 +105,6 @@ if [ -f Cargo.toml ]; then cargo build; fi
 
 Run tests to ensure worktree starts clean (via `cm-quality-gate` conventions).
 
-### 5. Update Working Memory (cm-continuity)
-
-After worktree is created and baseline verified:
-- Update `.cm/CONTINUITY.md` → Working Context: "Now working in worktree: [path], branch: [branch]"
-- Note: `CONTINUITY.md` lives in the **MAIN workspace**, not the worktree. Always read from/write to the main workspace's `.cm/` directory.
-
 ## Quick Reference
 
 | Situation | Action |
@@ -161,4 +155,3 @@ After worktree is created and baseline verified:
 
 **Pairs with:**
 - **cm-code-review** - For cleanup after work complete
-- **cm-continuity** - Update Working Context with worktree location

@@ -1,0 +1,377 @@
+<!-- UX-Master Landing Page - For Designers & PMs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX-Master - AI Design Intelligence for Figma</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #7C3AED;
+            --primary-light: #A78BFA;
+            --gradient: linear-gradient(135deg, #7C3AED 0%, #4ECDC4 50%, #45B7D1 100%);
+            --bg: #0F172A;
+            --bg-light: #1E293B;
+            --text: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 16px 32px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .logo span { font-size: 28px; }
+        
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        
+        .btn-nav {
+            background: var(--primary); color: white; padding: 10px 20px;
+            border-radius: 8px; text-decoration: none; font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(124,58,237,0.3); }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 120px 32px 80px;
+            position: relative; overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.15) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .hero-content { position: relative; z-index: 1; max-width: 800px; }
+        
+        .badge {
+            display: inline-block; padding: 8px 16px;
+            background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.3);
+            border-radius: 20px; font-size: 14px; color: var(--primary-light);
+            margin-bottom: 24px;
+        }
+        
+        h1 {
+            font-size: 64px; font-weight: 800; line-height: 1.1;
+            margin-bottom: 24px;
+            background: var(--gradient); background-clip: text; -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 20px; color: var(--text-muted);
+            margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+        
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        
+        .btn-primary {
+            background: var(--gradient); background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+            color: white; padding: 16px 32px; border-radius: 12px;
+            text-decoration: none; font-weight: 600; font-size: 16px;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.2s; border: none; cursor: pointer;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(124,58,237,0.3); }
+        
+        .btn-secondary {
+            background: var(--bg-light); color: var(--text);
+            padding: 16px 32px; border-radius: 12px; text-decoration: none;
+            font-weight: 600; font-size: 16px; border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover { border-color: var(--primary); }
+        
+        /* Features */
+        .features { padding: 100px 32px; background: var(--bg-light); }
+        
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .section-header { text-align: center; margin-bottom: 64px; }
+        .section-header h2 { font-size: 40px; margin-bottom: 16px; }
+        .section-header p { color: var(--text-muted); font-size: 18px; }
+        
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .feature-card {
+            background: var(--bg); padding: 32px; border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124,58,237,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .feature-icon {
+            width: 56px; height: 56px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; margin-bottom: 20px;
+            background: rgba(124,58,237,0.2);
+        }
+        
+        .feature-card h3 { font-size: 20px; margin-bottom: 12px; }
+        .feature-card p { color: var(--text-muted); font-size: 15px; }
+        
+        /* How It Works */
+        .how-it-works { padding: 100px 32px; }
+        
+        .steps {
+            display: flex; flex-direction: column; gap: 32px;
+            max-width: 800px; margin: 0 auto;
+        }
+        
+        .step {
+            display: flex; gap: 24px; align-items: flex-start;
+            background: var(--bg-light); padding: 32px; border-radius: 16px;
+        }
+        
+        .step-number {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: var(--gradient); display: flex;
+            align-items: center; justify-content: center;
+            font-weight: 700; font-size: 20px; flex-shrink: 0;
+        }
+        
+        .step h3 { font-size: 20px; margin-bottom: 8px; }
+        .step p { color: var(--text-muted); }
+        
+        /* Stats */
+        .stats {
+            display: flex; justify-content: center; gap: 64px;
+            flex-wrap: wrap; padding: 64px 32px;
+            background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg) 100%);
+        }
+        
+        .stat { text-align: center; }
+        .stat-number {
+            font-size: 48px; font-weight: 800;
+            background: var(--gradient); background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .stat-label { color: var(--text-muted); font-size: 14px; margin-top: 8px; }
+        
+        /* Figma Plugin CTA */
+        .figma-cta {
+            padding: 100px 32px; text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.1) 0%, transparent 50%);
+        }
+        
+        .figma-cta h2 { font-size: 40px; margin-bottom: 16px; }
+        .figma-cta p { color: var(--text-muted); font-size: 18px; margin-bottom: 32px; }
+        
+        .btn-figma {
+            background: #1E293B; color: white; padding: 16px 32px;
+            border-radius: 12px; text-decoration: none; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s;
+        }
+        .btn-figma:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .btn-figma svg { width: 24px; height: 24px; }
+        
+        /* Footer */
+        footer {
+            padding: 48px 32px; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+        }
+        
+        footer a { color: var(--primary-light); text-decoration: none; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 40px; }
+            .nav-links { display: none; }
+            .hero { padding: 100px 20px 60px; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><span>✦</span> UX-Master</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="/docs">Documentation</a>
+            <a href="https://github.com/relukdev/ux-master">GitHub</a>
+        </div>
+        <a href="#install" class="btn-nav">Get Started Free</a>
+    </nav>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="badge">✨ Now with Figma Plugin</div>
+            <h1>AI Design Intelligence<br>for Figma</h1>
+            <p>Generate complete design systems with 48 UX Laws and 37 Design Tests. No CLI required. Just describe your project and watch the magic happen.</p>
+            <div class="hero-buttons">
+                <a href="https://www.figma.com/community/plugin/ux-master" class="btn-primary">
+                    <span>🎨</span> Install Figma Plugin
+                </a>
+                <a href="/docs/quickstart.html" class="btn-secondary">
+                    📖 Read Documentation
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-number">48</div>
+            <div class="stat-label">UX Laws</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">37</div>
+            <div class="stat-label">Design Tests</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">16</div>
+            <div class="stat-label">Search Domains</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">17</div>
+            <div class="stat-label">Tech Stacks</div>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Everything You Need</h2>
+                <p>From design generation to validation, all in one place</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>AI Design Generation</h3>
+                    <p>Describe your project and get a complete design system with colors, typography, and UX patterns in seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>48 UX Laws</h3>
+                    <p>Built on proven psychology principles like Fitts's Law, Hick's Law, and Doherty Threshold.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>37 Design Tests</h3>
+                    <p>Validate your designs with measurable pass/fail criteria. No guessing, just facts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Figma Integration</h3>
+                    <p>Export design tokens directly to Figma Variables. Seamless workflow for designers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">↓</div>
+                    <h3>Design Extraction</h3>
+                    <p>Extract design systems from any website. Just paste a URL and get the tokens.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>17 Tech Stacks</h3>
+                    <p>Guidelines for React, Vue, Tailwind, SwiftUI, Flutter, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>No coding required. Three simple steps.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h3>Describe Your Project</h3>
+                        <p>Tell us what you're building. "A fintech dashboard with dark mode" or "A mobile fitness app". The AI understands context.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h3>AI Generates Everything</h3>
+                        <p>Our AI consults 48 UX Laws and analyzes 37 Design Tests to create a complete design system tailored to your project.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h3>Apply to Figma</h3>
+                        <p>One click exports colors, typography, and spacing to Figma Variables. Start designing immediately with validated decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Figma CTA -->
+    <section class="figma-cta" id="install">
+        <h2>Ready to Experience the Magic?</h2>
+        <p>Join thousands of designers using UX-Master to create better products faster.</p>
+        <a href="https://www.figma.com/community/plugin/ux-master" class="btn-figma">
+            <svg viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
+                <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
+                <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
+                <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
+                <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
+            </svg>
+            Install Figma Plugin
+        </a>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>Made with ✦ by the UX-Master Team • <a href="https://github.com/relukdev/ux-master">GitHub</a> • <a href="/docs">Documentation</a></p>
+    </footer>
+</body>
+</html>

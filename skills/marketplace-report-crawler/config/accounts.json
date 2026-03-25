@@ -1,0 +1,41 @@
+{
+  "defaultOutputRoot": "/Users/todyle/Builder/Boxme/AutomateReport/data",
+  "accounts": [
+    {
+      "id": "vita-dairy",
+      "brand": "Vita Dairy",
+      "brandSlug": "Vita_Dairy",
+      "platforms": ["shopee", "lazada", "tiktok"],
+      "chromeProfile": "Vita Dairy",
+      "active": true,
+      "notes": "Primary brand across all platforms"
+    },
+    {
+      "id": "dutch-lady",
+      "brand": "Dutch Lady",
+      "brandSlug": "Dutch_Lady",
+      "platforms": ["shopee", "lazada", "tiktok"],
+      "chromeProfile": "Dutch Lady",
+      "active": true,
+      "notes": "Active on all 3 platforms"
+    },
+    {
+      "id": "friso",
+      "brand": "Friso",
+      "brandSlug": "Friso",
+      "platforms": ["tiktok"],
+      "chromeProfile": "Friso",
+      "active": true,
+      "notes": "TikTok only (from flow analysis)"
+    },
+    {
+      "id": "wilmar",
+      "brand": "Wilmar",
+      "brandSlug": "Wilmar",
+      "platforms": ["tiktok"],
+      "chromeProfile": "Wilmar",
+      "active": true,
+      "notes": "TikTok only (from flow analysis)"
+    }
+  ]
+}

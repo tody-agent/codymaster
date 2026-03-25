@@ -1,0 +1,523 @@
+{
+  "_version": "1.0",
+  "color/primary": {
+    "value": "#0F79F3",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/primary/hover": {
+    "value": "#0D6CDA",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/primary/active": {
+    "value": "#0C60C2",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/primary/disabled": {
+    "value": "#9FC9FA",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/primary/light/default": {
+    "value": "#E2EEFD",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/primary/light/hover": {
+    "value": "#D3E6FC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/primary/light/active": {
+    "value": "#C3DDFC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/success": {
+    "value": "#EAFBF2",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/success/hover": {
+    "value": "#D2E1D9",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/success/active": {
+    "value": "#BBC8C1",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/success/disabled": {
+    "value": "#F6FDF9",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/success/light/default": {
+    "value": "#FCFEFD",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/success/light/hover": {
+    "value": "#FBFEFC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/success/light/active": {
+    "value": "#F9FEFB",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/warning": {
+    "value": "#FFB264",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/warning/hover": {
+    "value": "#E5A05A",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/warning/active": {
+    "value": "#CC8E50",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/warning/disabled": {
+    "value": "#FFE0C1",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/warning/light/default": {
+    "value": "#FFF5EC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/warning/light/hover": {
+    "value": "#FFF1E3",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/warning/light/active": {
+    "value": "#FFEBD8",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/danger": {
+    "value": "#FDEBF3",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/danger/hover": {
+    "value": "#E3D3DA",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/danger/active": {
+    "value": "#CABCC2",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/danger/disabled": {
+    "value": "#FEF7FA",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/danger/light/default": {
+    "value": "#FEFCFD",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/danger/light/hover": {
+    "value": "#FEFBFC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/danger/light/active": {
+    "value": "#FEFAFC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/info": {
+    "value": "#F6F5FE",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/info/hover": {
+    "value": "#DDDCE4",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/info/active": {
+    "value": "#C4C4CB",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/info/disabled": {
+    "value": "#FBFBFE",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/info/light/default": {
+    "value": "#FDFDFE",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/info/light/hover": {
+    "value": "#FDFDFE",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/info/light/active": {
+    "value": "#FCFCFE",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/link": {
+    "value": "#919AA3",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/text/0": {
+    "value": "#919AA3",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/text/1": {
+    "value": "#475569",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/bg/0": {
+    "value": "#EFF3F9",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/bg/1": {
+    "value": "#FFFFFF",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/bg/3": {
+    "value": "#FFFFFF",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/50": {
+    "value": "#FFFFFF",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/100": {
+    "value": "#F7F7F7",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/200": {
+    "value": "#F7F7F7",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/300": {
+    "value": "#F6F5FE",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/400": {
+    "value": "#F4F6FC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/500": {
+    "value": "#F4F6FC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/600": {
+    "value": "#EFF3F9",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/700": {
+    "value": "#E7EFFD",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/800": {
+    "value": "#E7EFFD",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/neutral/900": {
+    "value": "#919AA3",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/fill/0": {
+    "value": "rgba(247, 247, 247, 0.05)",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/fill/1": {
+    "value": "rgba(247, 247, 247, 0.1)",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/fill/2": {
+    "value": "rgba(247, 247, 247, 0.15)",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/border": {
+    "value": "#F7F7F7",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/disabled/bg": {
+    "value": "#F7F7F7",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/disabled/text": {
+    "value": "#F4F6FC",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/white": {
+    "value": "#FFFFFF",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/black": {
+    "value": "#000000",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/overlay/bg": {
+    "value": "rgba(0, 0, 0, 0.6)",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "color/shadow": {
+    "value": "rgba(0, 0, 0, 0.04)",
+    "type": "color",
+    "description": "Generated from Fila design system"
+  },
+  "font/family/regular": {
+    "value": "Outfit, sans-serif",
+    "type": "fontFamilies",
+    "description": "Generated from Fila design system"
+  },
+  "font/size/header/1": {
+    "value": "18px",
+    "type": "fontSizes",
+    "description": "Generated from Fila design system"
+  },
+  "font/size/header/2": {
+    "value": "26px",
+    "type": "fontSizes",
+    "description": "Generated from Fila design system"
+  },
+  "font/size/header/3": {
+    "value": "17px",
+    "type": "fontSizes",
+    "description": "Generated from Fila design system"
+  },
+  "font/size/header/4": {
+    "value": "16px",
+    "type": "fontSizes",
+    "description": "Generated from Fila design system"
+  },
+  "font/size/header/5": {
+    "value": "18px",
+    "type": "fontSizes",
+    "description": "Generated from Fila design system"
+  },
+  "font/size/regular": {
+    "value": "14.08px",
+    "type": "fontSizes",
+    "description": "Generated from Fila design system"
+  },
+  "line/height/regular": {
+    "value": "21.12px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  },
+  "font/weight/light": {
+    "value": "200",
+    "type": "fontWeights",
+    "description": "Generated from Fila design system"
+  },
+  "font/weight/regular": {
+    "value": "400",
+    "type": "fontWeights",
+    "description": "Generated from Fila design system"
+  },
+  "font/weight/medium": {
+    "value": "500",
+    "type": "fontWeights",
+    "description": "Generated from Fila design system"
+  },
+  "font/weight/semibold": {
+    "value": "600",
+    "type": "fontWeights",
+    "description": "Generated from Fila design system"
+  },
+  "font/weight/bold": {
+    "value": "700",
+    "type": "fontWeights",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/none": {
+    "value": "1px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/super/tight": {
+    "value": "1px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/extra/tight": {
+    "value": "4px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/tight": {
+    "value": "8px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/base/tight": {
+    "value": "12px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/base": {
+    "value": "14px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/base/loose": {
+    "value": "18px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/loose": {
+    "value": "22px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/extra/loose": {
+    "value": "30px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "spacing/super/loose": {
+    "value": "40px",
+    "type": "spacing",
+    "description": "Generated from Fila design system"
+  },
+  "border/thickness/control": {
+    "value": "1px",
+    "type": "other",
+    "description": "Generated from Fila design system"
+  },
+  "border/thickness": {
+    "value": "0",
+    "type": "other",
+    "description": "Generated from Fila design system"
+  },
+  "border/thickness/control/focus": {
+    "value": "1px",
+    "type": "other",
+    "description": "Generated from Fila design system"
+  },
+  "border/radius/xs": {
+    "value": "10px",
+    "type": "borderRadius",
+    "description": "Generated from Fila design system"
+  },
+  "border/radius/sm": {
+    "value": "3px",
+    "type": "borderRadius",
+    "description": "Generated from Fila design system"
+  },
+  "border/radius/md": {
+    "value": "2px",
+    "type": "borderRadius",
+    "description": "Generated from Fila design system"
+  },
+  "border/radius/lg": {
+    "value": "50%",
+    "type": "borderRadius",
+    "description": "Generated from Fila design system"
+  },
+  "border/radius/full": {
+    "value": "100px",
+    "type": "borderRadius",
+    "description": "Generated from Fila design system"
+  },
+  "border/radius/circle": {
+    "value": "50%",
+    "type": "borderRadius",
+    "description": "Generated from Fila design system"
+  },
+  "shadow/sm": {
+    "value": "0 0 1px rgba(0, 0, 0, 0.1)",
+    "type": "boxShadow",
+    "description": "Generated from Fila design system"
+  },
+  "shadow/elevated": {
+    "value": "0 0 1px rgba(0, 0, 0, 0.3), 0 4px 14px rgba(0, 0, 0, 0.1)",
+    "type": "boxShadow",
+    "description": "Generated from Fila design system"
+  },
+  "shadow/lg": {
+    "value": "0 0 1px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.12)",
+    "type": "boxShadow",
+    "description": "Generated from Fila design system"
+  },
+  "height/control/small": {
+    "value": "24px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  },
+  "height/control/default": {
+    "value": "32px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  },
+  "height/control/large": {
+    "value": "40px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  },
+  "width/icon/extra/small": {
+    "value": "8px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  },
+  "width/icon/small": {
+    "value": "12px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  },
+  "width/icon/medium": {
+    "value": "16px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  },
+  "width/icon/large": {
+    "value": "20px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  },
+  "width/icon/extra/large": {
+    "value": "24px",
+    "type": "sizing",
+    "description": "Generated from Fila design system"
+  }
+}

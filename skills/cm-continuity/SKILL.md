@@ -155,6 +155,13 @@ Tier 4: EXTERNAL SEMANTIC MEMORY (optional — for large projects)
   → AI queries via MCP: qmd query "keyword" → relevant snippets
   → See cm-deep-search skill for setup & detection thresholds
   → ONLY suggested when project >50 docs or >200 source files
+
+Tier 5: STRUCTURAL CODE MEMORY (optional — for code-heavy projects)
+  → CodeGraph — tree-sitter AST → SQLite graph → MCP server
+  → Indexes symbols, call graphs, imports, class hierarchies
+  → AI queries: codegraph_context, codegraph_impact, codegraph_callers
+  → See cm-codeintell skill for setup & integration
+  → ONLY suggested when project >50 source files
 ```
 
 **CONTINUITY.md = "what am I doing NOW?"**

@@ -19,16 +19,12 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "test:gate": "vitest run --reporter=verbose",
-    "build:html": "node scripts/inject-header.js && node scripts/inject-footer.js && node scripts/inject-ga.js",
-    "docs:build": "cd docs && npx vitepress build && rm -rf ../public/docs && cp -r .vitepress/dist ../public/docs",
-    "docs:dev": "cd docs && npx vitepress dev",
     "gate:secrets": "node scripts/gate-0-secrets.js",
     "gate:syntax": "node scripts/gate-1-syntax.js",
     "gate:dist": "node scripts/gate-5-dist-verify.js",
     "gate:smoke": "node scripts/gate-6-smoke-test.js",
-    "gate:i18n": "node scripts/gate-3-i18n.js",
-    "deploy": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:i18n && npm run build:html && npm run docs:build && npm run gate:dist && export $(grep -v '^#' .env | xargs) && wrangler pages deploy public && npm run gate:smoke",
-    "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:i18n && npm run build:html && npm run docs:build && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'"
+    "deploy": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:dist && npm run gate:smoke",
+    "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'"
   },
   "keywords": [
     "ai",
@@ -69,7 +65,6 @@
     "@types/node": "^25.5.0",
     "@types/prompts": "^2.4.9",
     "acorn": "^8.16.0",
-    "jsdom": "^29.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"

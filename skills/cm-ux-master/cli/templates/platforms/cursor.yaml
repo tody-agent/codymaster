@@ -1,0 +1,21 @@
+platform: cursor
+display_name: Cursor
+install_type: full
+folder_structure:
+  root: ".cursor"
+  skillPath: "skills/ux-master"
+  filename: "SKILL.md"
+script_path: "skills/ux-master/scripts/search.py"
+frontmatter:
+  name: "ux-master"
+  description: "Ultimate UX Design Intelligence with 48 UX Laws, 37 Design Tests, Design System Extractor, and Multi-Device Support. Use for: designing UI/UX, validating designs, extracting design systems, implementing accessible interfaces."
+sections:
+  quick_reference: true
+title: "UX Master - Ultimate Design Intelligence"
+description: "Comprehensive design guide with psychology-driven UX Laws, automated Design Tests, and design system extraction."
+skill_or_workflow: "Skill"
+mcp_capabilities:
+  - search
+  - validate
+  - extract
+tool_endpoints: []

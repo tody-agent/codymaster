@@ -20,6 +20,15 @@ When this workflow is called, the AI Assistant should execute the following acti
       `npx skills find "{keyword}"` → review → ask user → install if approved
     - Log any discovered skills to `.cm-skills-log.json`
 
+0.7. **Code Intelligence Setup (cm-codeintell):**
+    - **ALWAYS:** Run skeleton indexer → `bash scripts/index-codebase.sh` → `.cm/skeleton.md`
+    - Read `.cm/skeleton.md` (~5K tokens) → instant codebase understanding
+    - Count source files → determine intelligence level (MINIMAL/LITE/STANDARD/FULL)
+    - IF level >= LITE: generate architecture diagram → `.cm/architecture.mmd`
+    - IF level >= STANDARD: check CodeGraph → `codegraph status` → index if needed
+    - IF level >= FULL: also check qmd (cm-deep-search)
+    - Log intelligence level to `CONTINUITY.md`
+
 1. **Understand Requirements (Planning & JTBD):**
     - Read the objective provided in the `/cm-start` command.
     - Analyze requirements, ask clarifying questions if needed (apply `cm-planning`).

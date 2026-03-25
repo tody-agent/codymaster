@@ -148,8 +148,12 @@ qmd embed
 Tier 1: Sensory Memory     → temporary variables in session (not persisted)
 Tier 2: Working Memory      → CONTINUITY.md (~500 words)
 Tier 3: Long-Term Memory    → learnings.json, decisions.json
-Tier 4: External Semantic   → qmd (optional, used when project is large)
+Tier 4: External Semantic   → qmd (optional, text search for large docs)
+Tier 5: Structural Code     → CodeGraph (optional, AST graph for code — see cm-codeintell)
 ```
+
+> **qmd** finds text across docs/code. **CodeGraph** finds symbols, call graphs, and impact.
+> They complement each other — use both for maximum intelligence on large projects.
 
 ---
 

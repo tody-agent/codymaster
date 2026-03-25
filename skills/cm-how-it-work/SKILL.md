@@ -29,11 +29,11 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 ### Phase 0.5: Strategic Analysis 🔍
 > **For complex initiatives and enhancements on existing products.**
 
-- **Skill:** `cm-brainstorm-idea`
+- **Skills:** `cm-brainstorm-idea` + `cm-codeintell`
 - **When:** When the task is complex and requires multi-dimensional analysis (tech, product, design, business) before planning.
 - **Action:**
-    1. Scan codebase and interview user (Design Thinking: Empathize).
-    2. Analyze with 9 Windows (TRIZ) to see the full picture across past/present/future.
+    1. Scan codebase with **code intelligence** (AST graph + architecture diagram via `cm-codeintell`).
+    2. Interview user and analyze with 9 Windows (TRIZ).
     3. Propose 2-3 options, evaluate multi-dimensionally, recommend the best option.
 - **Output:** `brainstorm-output.md` — qualified problem + recommended option → passes to `cm-planning`.
 
@@ -92,6 +92,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 | `cm-quality-gate` | 6-gate verification: static analysis → blind review → ship. |
 | `cm-test-gate` | Setup 4-layer test infrastructure (unit → integration → e2e → security). |
 | `cm-code-review` | Manage PR lifecycle: request → receive feedback → complete branch. |
+| `cm-codeintell` | AST knowledge graph + architecture diagrams + smart context (30% fewer tokens). |
 
 ### ⚙️ Operations
 | Skill | Primary Function |

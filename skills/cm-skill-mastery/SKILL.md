@@ -1,6 +1,6 @@
 ---
 name: cm-skill-mastery
-description: "Meta-skill for the CodyMaster kit — when to invoke skills, how to create new skills, and skill discovery. Use at conversation start to establish skill discipline."
+description: "Meta-skill for the Cody Master kit — when to invoke skills, how to create new skills, and skill discovery. Use at conversation start to establish skill discipline."
 ---
 
 # Skill Mastery — Use + Create + Discover
@@ -8,16 +8,6 @@ description: "Meta-skill for the CodyMaster kit — when to invoke skills, how t
 > **The meta-skill:** How to find, use, and create cm-* skills.
 
 ## Part A: Using Skills
-
-### Rule #0: Memory First (cm-continuity)
-
-Before invoking ANY skill, ensure `cm-continuity` is active:
-
-1. Has `.cm/CONTINUITY.md` been read this session? If not → **read it first**
-2. Are there relevant learnings for the module you're about to work on? → **Load them**
-3. After skill completes → **update CONTINUITY.md**
-
-> Memory is the foundation that makes all other skills smarter. Without it, you repeat every mistake.
 
 ### The Rule
 
@@ -27,9 +17,6 @@ Before invoking ANY skill, ensure `cm-continuity` is active:
 
 ```
 User message received
-  → CONTINUITY.md loaded? (Rule #0)
-    → NO: Read .cm/CONTINUITY.md first
-    → YES: Continue
   → Might any skill apply? (even 1%)
     → YES: Read the skill → Follow it
     → NO: Respond directly
@@ -145,7 +132,7 @@ When you encounter something you don't have a skill for:
 
 ---
 
-## The CodyMaster Kit (14 skills)
+## The Cody Master Kit (14 skills)
 
 | # | Skill | Purpose |
 |---|-------|---------|

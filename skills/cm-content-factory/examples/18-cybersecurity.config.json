@@ -1,0 +1,147 @@
+{
+    "niche": "cybersecurity",
+    "brand": {
+        "name": "SecureStack",
+        "slogan": "Protect Your Business from Cyber Threats",
+        "tone": "authoritative-urgent",
+        "language": "en",
+        "colors": {
+            "primary": "#0F172A",
+            "secondary": "#22D3EE",
+            "accent": "#F0F9FF"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "threat-guide",
+                "title_template": "{topic_name} Attack: How It Works, Impact & How to Defend",
+                "category": "threats",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "cybersecurity",
+                    "attack",
+                    "defense"
+                ]
+            },
+            {
+                "id": "tool-review",
+                "title_template": "Best {topic_name} Security Tools 2025: Enterprise & SMB Reviews",
+                "category": "tools",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "security tools",
+                    "review",
+                    "enterprise"
+                ]
+            },
+            {
+                "id": "compliance-guide",
+                "title_template": "{topic_name} Compliance: Requirements, Checklist & Audit Prep",
+                "category": "compliance",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "compliance",
+                    "regulations",
+                    "audit"
+                ]
+            },
+            {
+                "id": "best-practices",
+                "title_template": "{topic_name} Security Best Practices: Expert Checklist for 2025",
+                "category": "best-practices",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "best practices",
+                    "checklist",
+                    "security"
+                ]
+            },
+            {
+                "id": "incident-response",
+                "title_template": "{topic_name} Breach Response: Step-by-Step Recovery Plan",
+                "category": "incident-response",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "incident response",
+                    "breach",
+                    "recovery"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "severity",
+                "cveId"
+            ]
+        },
+        "word_count": {
+            "min": 1500,
+            "max": 3500
+        },
+        "language": "en"
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 2,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 5,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": false
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

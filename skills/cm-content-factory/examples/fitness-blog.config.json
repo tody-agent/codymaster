@@ -1,0 +1,116 @@
+{
+    "niche": "fitness-blog",
+    "brand": {
+        "name": "FitZone Academy",
+        "slogan": "Science-Based Fitness for Everyone",
+        "tone": "casual-energetic",
+        "language": "en",
+        "colors": {
+            "primary": "#FF6B35",
+            "secondary": "#1A1A2E",
+            "accent": "#F5F5F5"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "exercise-guide",
+                "title_template": "How to Do {topic_name}: Complete Form Guide + Variations",
+                "category": "exercises",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "workout",
+                    "form",
+                    "technique"
+                ]
+            },
+            {
+                "id": "nutrition-article",
+                "title_template": "{topic_name}: What Science Says + Meal Plan",
+                "category": "nutrition",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "nutrition",
+                    "diet",
+                    "meal prep"
+                ]
+            },
+            {
+                "id": "program-review",
+                "title_template": "{topic_name} Program Review: Is It Worth It?",
+                "category": "reviews",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "review",
+                    "program",
+                    "results"
+                ]
+            },
+            {
+                "id": "faq-article",
+                "title_template": "{topic_name}: Top 10 Questions Answered by Experts",
+                "category": "faq",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "FAQ",
+                    "beginners",
+                    "tips"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "readingTime"
+            ]
+        },
+        "word_count": {
+            "min": 800,
+            "max": 2000
+        },
+        "language": "en",
+        "disclaimer": "Always consult a healthcare professional before starting any new exercise program."
+    },
+    "sources": {
+        "type": "markdown",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 3,
+        "require_faq": false,
+        "require_cta": false,
+        "require_disclaimer": true
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

@@ -224,16 +224,6 @@ git remote get-url origin  # Must match expected
 gh auth status  # Must show correct account
 ```
 
-#### Record Identity Decision (cm-continuity)
-
-After locking identity for a new project, write to `.cm/memory/decisions.json`:
-- `decision`: "GitHub identity locked to [account], CF account [id], DB: [provider/project]"
-- `rationale`: "Multi-account safety — prevents wrong-account deploys"
-- `scope`: `global`
-- `status`: `active`
-
-Also update `.cm/CONTINUITY.md` Working Context with the locked identity.
-
 ---
 
 ## Phase 4: Multi-Account Git Setup (OS Level)
@@ -401,7 +391,6 @@ npm run deploy
 | `cm-safe-deploy` | Gate 0 secret hygiene checks wrangler.jsonc |
 | `cm-test-gate` | Phase 4 secret hygiene in test gate setup |
 | `cm-secret-shield` | Layer 5 token lifecycle extends identity management |
-| `cm-continuity` | Record identity decisions to decisions.json |
 
 ## The Bottom Line
 

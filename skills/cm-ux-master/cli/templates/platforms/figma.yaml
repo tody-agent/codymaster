@@ -1,0 +1,24 @@
+platform: figma
+display_name: Figma Plugin
+install_type: reference
+folder_structure:
+  root: "figma-plugins"
+  skillPath: "ux-master"
+  filename: "manifest.json"
+script_path: "code.ts"
+frontmatter: null
+sections:
+  quick_reference: false
+title: "UX Master for Figma"
+description: "Figma plugin for design system management and UX validation."
+skill_or_workflow: "Figma Plugin"
+mcp_capabilities:
+  - import_design_tokens
+  - validate_selection
+  - apply_ux_laws
+  - generate_palette
+tool_endpoints:
+  - name: "import_from_url"
+    description: "Extract and import design tokens from website"
+  - name: "validate_selection"
+    description: "Check selected layers against Design Tests"

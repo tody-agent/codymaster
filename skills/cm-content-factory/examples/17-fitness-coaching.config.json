@@ -1,0 +1,148 @@
+{
+    "niche": "fitness-coaching",
+    "brand": {
+        "name": "IronMind Athletics",
+        "slogan": "Transform Your Body, Upgrade Your Life",
+        "tone": "motivational-scientific",
+        "language": "en",
+        "colors": {
+            "primary": "#DC2626",
+            "secondary": "#1F2937",
+            "accent": "#FEF2F2"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "workout-program",
+                "title_template": "{topic_name} Workout Program: Complete Training Plan + Results",
+                "category": "programs",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "workout",
+                    "training plan",
+                    "program"
+                ]
+            },
+            {
+                "id": "exercise-guide",
+                "title_template": "How to Do {topic_name}: Perfect Form, Muscles Worked & Variations",
+                "category": "exercises",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "exercise",
+                    "form",
+                    "technique"
+                ]
+            },
+            {
+                "id": "nutrition-plan",
+                "title_template": "{topic_name} Nutrition Plan: Macros, Meal Prep & Supplement Stack",
+                "category": "nutrition",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "nutrition",
+                    "macros",
+                    "supplements"
+                ]
+            },
+            {
+                "id": "supplement-review",
+                "title_template": "Best {topic_name} Supplements 2025: Evidence-Based Reviews",
+                "category": "supplements",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "supplements",
+                    "review",
+                    "science-backed"
+                ]
+            },
+            {
+                "id": "transformation",
+                "title_template": "{topic_name} Transformation: Before/After Results & Program Breakdown",
+                "category": "transformations",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "transformation",
+                    "results",
+                    "progress"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "difficulty",
+                "duration"
+            ]
+        },
+        "word_count": {
+            "min": 1000,
+            "max": 2500
+        },
+        "language": "en",
+        "disclaimer": "Consult a healthcare professional before starting any exercise program."
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": true
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

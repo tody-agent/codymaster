@@ -1,0 +1,146 @@
+{
+    "niche": "home-services",
+    "brand": {
+        "name": "HomeFixPro",
+        "slogan": "Expert Home Solutions at Your Fingertips",
+        "tone": "helpful-practical",
+        "language": "en",
+        "colors": {
+            "primary": "#1E3A5F",
+            "secondary": "#E7A93E",
+            "accent": "#F9FAFB"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "cost-guide",
+                "title_template": "{topic_name} Cost Guide 2025: Average Prices & How to Save",
+                "category": "costs",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "cost",
+                    "pricing",
+                    "budget"
+                ]
+            },
+            {
+                "id": "how-to",
+                "title_template": "DIY {topic_name}: Step-by-Step Guide (When to Call a Pro)",
+                "category": "diy",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "DIY",
+                    "how to",
+                    "home repair"
+                ]
+            },
+            {
+                "id": "hiring-guide",
+                "title_template": "How to Hire a {topic_name} Contractor: Red Flags & Checklist",
+                "category": "hiring",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "contractor",
+                    "hiring",
+                    "checklist"
+                ]
+            },
+            {
+                "id": "comparison",
+                "title_template": "{topic_name}: Top Companies & Services Compared (Local & National)",
+                "category": "comparisons",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "best companies",
+                    "services",
+                    "review"
+                ]
+            },
+            {
+                "id": "maintenance-tips",
+                "title_template": "{topic_name} Maintenance: Seasonal Checklist to Prevent Costly Repairs",
+                "category": "maintenance",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "maintenance",
+                    "prevention",
+                    "tips"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "serviceArea"
+            ]
+        },
+        "word_count": {
+            "min": 1000,
+            "max": 2500
+        },
+        "language": "en"
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": false
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

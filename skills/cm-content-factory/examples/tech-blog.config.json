@@ -1,0 +1,107 @@
+{
+    "niche": "tech-blog",
+    "brand": {
+        "name": "DevStack Weekly",
+        "slogan": "Practical Engineering, No Fluff",
+        "tone": "technical-conversational",
+        "language": "en",
+        "colors": {
+            "primary": "#0F172A",
+            "secondary": "#38BDF8",
+            "accent": "#F8FAFC"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "tutorial",
+                "title_template": "{topic_name}: Step-by-Step Tutorial with Code Examples",
+                "category": "tutorials",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "tutorial",
+                    "code",
+                    "development"
+                ]
+            },
+            {
+                "id": "comparison",
+                "title_template": "{topic_name}: Pros, Cons & When to Use Each",
+                "category": "comparisons",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "comparison",
+                    "tools",
+                    "architecture"
+                ]
+            },
+            {
+                "id": "deep-dive",
+                "title_template": "Understanding {topic_name}: A Deep Dive",
+                "category": "concepts",
+                "seo_intent": "educational",
+                "tags_base": [
+                    "concepts",
+                    "architecture",
+                    "internals"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category",
+                "date"
+            ],
+            "optional": [
+                "author",
+                "tags",
+                "image",
+                "series",
+                "difficulty"
+            ]
+        },
+        "word_count": {
+            "min": 1000,
+            "max": 3000
+        },
+        "language": "en"
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/posts/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 2,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main",
+        "build_command": "npm run build"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI",
+            "I'm sorry"
+        ],
+        "min_headings": 4,
+        "require_faq": false,
+        "require_cta": false,
+        "require_disclaimer": false
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

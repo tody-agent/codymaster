@@ -1,0 +1,147 @@
+{
+    "niche": "beauty-skincare",
+    "brand": {
+        "name": "GlowScience Lab",
+        "slogan": "Science-Backed Beauty for Real Results",
+        "tone": "friendly-expert",
+        "language": "en",
+        "colors": {
+            "primary": "#E8B4B8",
+            "secondary": "#2D2D2D",
+            "accent": "#FFF5F5"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "product-review",
+                "title_template": "Best {topic_name} Products 2025: Dermatologist-Tested Reviews",
+                "category": "reviews",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "review",
+                    "best products",
+                    "tested"
+                ]
+            },
+            {
+                "id": "ingredient-guide",
+                "title_template": "{topic_name} in Skincare: Benefits, How to Use & Side Effects",
+                "category": "ingredients",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "ingredient",
+                    "benefits",
+                    "skincare"
+                ]
+            },
+            {
+                "id": "routine-guide",
+                "title_template": "{topic_name} Skincare Routine: Morning & Night Steps for Your Skin Type",
+                "category": "routines",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "routine",
+                    "skincare",
+                    "steps"
+                ]
+            },
+            {
+                "id": "comparison",
+                "title_template": "{topic_name} vs Alternatives: Which Is Better for Your Skin?",
+                "category": "comparisons",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "comparison",
+                    "vs",
+                    "alternative"
+                ]
+            },
+            {
+                "id": "concern-article",
+                "title_template": "How to Treat {topic_name}: Expert Tips & Product Recommendations",
+                "category": "concerns",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "treatment",
+                    "tips",
+                    "recommendations"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "skinType",
+                "affiliateLinks"
+            ]
+        },
+        "word_count": {
+            "min": 1000,
+            "max": 2500
+        },
+        "language": "en"
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": false
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

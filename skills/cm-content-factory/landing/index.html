@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Factory — Self-Learning AI Content Engine | Tody AI</title>
+  <meta name="description"
+    content="AI-powered content engine that researches, writes, audits, and publishes — then learns from feedback. 20+ niche templates, 8 operating modes, $0 writer cost. Config-driven, self-improving." />
+  <meta name="keywords"
+    content="AI content factory, content automation, SEO content, self-learning AI, content pipeline, AI writer" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Content Factory — Self-Learning AI Content Engine" />
+  <meta property="og:description"
+    content="Config-driven AI content engine. Researches, writes, audits, publishes — and gets smarter with every use." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="translations.js"></script>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+          </svg>
+        </div>
+        Content Factory
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a>
+        <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <select id="lang-select" class="lang-select" aria-label="Select Language">
+          <option value="en">EN</option>
+          <option value="vi">VI</option>
+          <option value="zh">ZH</option>
+          <option value="ru">RU</option>
+        </select>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="https://github.com/todyai/content-factory" class="nav-github" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+          Star
+        </a>
+        <a href="#pricing" class="nav-cta" data-i18n="nav.tryFree">Try It Free →</a>
+      </div>
+
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero section" id="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-badge animate-in">
+        <div class="hero-badge-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span data-i18n="hero.badge">Marketers & Founders using on 8+ AI platforms</span>
+      </div>
+
+      <h1 class="animate-in delay-1" data-i18n="hero.title">
+        You write one config.<br />
+        <span class="gradient-text">AI produces content that sells.</span>
+      </h1>
+
+      <p class="hero-sub animate-in delay-2" data-i18n="hero.subtitle1">
+        No copywriter needed. No SEO expert required.<br />
+        <strong>Content Factory</strong> turns any AI tool into a content production powerhouse.
+      </p>
+      <p class="hero-sub-small animate-in delay-2" data-i18n="hero.subtitle2">
+        Works with Cursor, Claude, Gemini, Amp, and any AI coding tool you use.
+      </p>
+
+      <div class="hero-ctas animate-in delay-3">
+        <a href="#pricing" class="btn-primary" data-i18n="hero.btnStart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          Start Free — 60 seconds
+        </a>
+        <a href="#features" class="btn-secondary" data-i18n="hero.btnSee">
+          See the magic ↓
+        </a>
+      </div>
+
+      <div class="hero-stats animate-in delay-4">
+        <div class="stat-item">
+          <span class="stat-value">20+</span>
+          <span class="stat-label" data-i18n="hero.statTemplates">Niche Templates</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">8</span>
+          <span class="stat-label" data-i18n="hero.statModes">Operating Modes</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">$0</span>
+          <span class="stat-label" data-i18n="hero.statCost">Writer Cost</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">3</span>
+          <span class="stat-label" data-i18n="hero.statMemory">Layer Memory</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== PROBLEM ===== -->
+  <section class="problem section" id="problem">
+    <div class="container">
+      <p class="section-label reveal" data-i18n="problem.label">THE REAL PROBLEM</p>
+      <h2 class="section-title reveal" data-i18n="problem.title">
+        You have great products.<br />
+        But your content doesn't convert.
+      </h2>
+      <p class="section-subtitle reveal" data-i18n="problem.subtitle">
+        93% of AI-generated content fails to rank or convert. Generic prompts create generic output.
+      </p>
+
+      <div class="problem-grid">
+        <div class="problem-card without reveal">
+          <div class="problem-card-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+            <span data-i18n="problem.withoutTitle">WITHOUT CONTENT FACTORY</span>
+          </div>
+          <ul class="problem-list">
+            <li><span class="icon"></span><span data-i18n="problem.without1">Generic AI content — no brand voice, no
+                personality</span></li>
+            <li><span class="icon"></span><span data-i18n="problem.without2">SEO is an afterthought — content never
+                ranks</span></li>
+            <li><span class="icon"></span><span data-i18n="problem.without3">No system — every article starts from
+                scratch</span></li>
+            <li><span class="icon"></span><span data-i18n="problem.without4">Hire a copywriter: $2,000–$8,000/month.
+                Wait weeks.</span></li>
+            <li><span class="icon"></span><span data-i18n="problem.without5">Same mistakes repeated — AI never learns
+                from feedback</span></li>
+          </ul>
+        </div>
+
+        <div class="problem-card with reveal">
+          <div class="problem-card-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            <span data-i18n="problem.withTitle">WITH CONTENT FACTORY</span>
+          </div>
+          <ul class="problem-list">
+            <li><span class="icon"></span><span data-i18n="problem.with1">Brand-perfect content — learns <strong>your
+                  voice</strong> from config</span></li>
+            <li><span class="icon"></span><span data-i18n="problem.with2">Auto SEO built-in — title, meta, schema,
+                internal links</span></li>
+            <li><span class="icon"></span><span data-i18n="problem.with3">Config-driven pipeline — <strong>one JSON,
+                  infinite content</strong></span></li>
+            <li><span class="icon"></span><span data-i18n="problem.with4">$0 cost. 0 wait. Results in
+                <strong>minutes.</strong></span></li>
+            <li><span class="icon"></span><span data-i18n="problem.with5">Self-learning memory — gets
+                <strong>smarter</strong> with every use</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="problem-quote reveal" data-i18n="problem.quote">
+        "Content that doesn't convert isn't content — it's <strong>noise.</strong>"
+      </p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== MODES GRID ===== -->
+  <section class="modes section" id="features">
+    <div class="container">
+      <p class="section-label reveal">8 OPERATING MODES</p>
+      <h2 class="section-title reveal">
+        One engine. Every content workflow.
+      </h2>
+      <p class="section-subtitle reveal">
+        From research to publish — each mode is a specialist. Run one at a time, or chain them all in Pipeline mode.
+      </p>
+
+      <div class="modes-grid">
+        <div class="mode-card reveal">
+          <div class="mode-card-icon extract">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+          </div>
+          <h3>Extract</h3>
+          <p>Pull structured knowledge from docs, PDFs, URLs into your knowledge base.</p>
+        </div>
+
+        <div class="mode-card reveal">
+          <div class="mode-card-icon plan">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <line x1="10" y1="9" x2="8" y2="9" />
+            </svg>
+          </div>
+          <h3>Plan</h3>
+          <p>Generate topic queues from your knowledge base — prioritized by monetization potential.</p>
+        </div>
+
+        <div class="mode-card reveal">
+          <div class="mode-card-icon write">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+          </div>
+          <h3>Write</h3>
+          <p>AI writes with memory context — learning from past wins and mistakes.</p>
+        </div>
+
+        <div class="mode-card reveal">
+          <div class="mode-card-icon audit">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1-2 2h11" />
+            </svg>
+          </div>
+          <h3>Audit</h3>
+          <p>Auto quality-check every article. Auto-fix issues. Penalty for fails.</p>
+        </div>
+
+        <div class="mode-card reveal">
+          <div class="mode-card-icon seo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </div>
+          <h3>SEO</h3>
+          <p>Extract & apply: title, meta, schema markup, internal links, keyword density.</p>
+        </div>
+
+        <div class="mode-card reveal">
+          <div class="mode-card-icon publish">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 16 12 12 8 16" />
+              <line x1="12" y1="12" x2="12" y2="21" />
+              <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+            </svg>
+          </div>
+          <h3>Publish</h3>
+          <p>Build and deploy content to production. One command, zero friction.</p>
+        </div>
+
+        <div class="mode-card reveal">
+          <div class="mode-card-icon research">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+          </div>
+          <h3>Research</h3>
+          <p>Auto-research any topic: web search, competitor analysis, knowledge synthesis.</p>
+        </div>
+
+        <div class="mode-card reveal">
+          <div class="mode-card-icon learn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+          </div>
+          <h3>Learn</h3>
+          <p>Detects edits & deletes. Extracts patterns. Gets smarter over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== 3-STEP PROCESS ===== -->
+  <section class="process section" id="how-it-works">
+    <div class="container">
+      <p class="section-label reveal">HOW IT WORKS</p>
+      <h2 class="section-title reveal">
+        3 steps. That's it.
+      </h2>
+      <p class="section-subtitle reveal">
+        No complex setup. No learning curve. One config file drives everything.
+      </p>
+
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="process-step-number">1</div>
+          <h3>Configure</h3>
+          <p>Set your niche, brand voice, content types, and SEO rules in one JSON config. 20+ ready-made templates
+            included.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-number">2</div>
+          <h3>Run Pipeline</h3>
+          <p>One command fires the full engine: research → plan → write → audit → SEO → publish. Fully automated.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-number">3</div>
+          <h3>Publish &amp; Learn</h3>
+          <p>Content deploys instantly. The system learns from your feedback, scoring every article to improve the next
+            batch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== INTELLIGENCE ===== -->
+  <section class="intelligence section" id="intelligence">
+    <div class="container">
+      <p class="section-label reveal">SELF-LEARNING INTELLIGENCE</p>
+      <h2 class="section-title reveal">
+        The more you use it,<br />
+        <span class="gradient-text">the smarter it gets.</span>
+      </h2>
+      <p class="section-subtitle reveal">
+        3-layer memory architecture + reward/penalty scoreboard. Every edit, every publish, every feedback loop makes
+        the engine sharper.
+      </p>
+
+      <div class="memory-visual">
+        <div class="memory-card reveal">
+          <div class="memory-card-icon semantic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+          </div>
+          <h3>Semantic Memory</h3>
+          <p>Long-term patterns: writing style, SEO rules, recurring mistakes to avoid.</p>
+        </div>
+        <div class="memory-card reveal">
+          <div class="memory-card-icon episodic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <h3>Episodic Memory</h3>
+          <p>Per-session experiences with outcomes — what worked, what failed, and why.</p>
+        </div>
+        <div class="memory-card reveal">
+          <div class="memory-card-icon working">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+          </div>
+          <h3>Working Memory</h3>
+          <p>Current session context — active config, topic queue, and live scoring.</p>
+        </div>
+      </div>
+
+      <div class="scoreboard reveal">
+        <div class="score-tier">
+          <div class="score-tier-badge">🏆</div>
+          <div class="score-tier-name">S-Tier</div>
+          <div class="score-tier-range">100+ pts</div>
+        </div>
+        <div class="score-tier">
+          <div class="score-tier-badge">🥇</div>
+          <div class="score-tier-name">A-Tier</div>
+          <div class="score-tier-range">50–99 pts</div>
+        </div>
+        <div class="score-tier">
+          <div class="score-tier-badge">🥈</div>
+          <div class="score-tier-name">B-Tier</div>
+          <div class="score-tier-range">20–49 pts</div>
+        </div>
+        <div class="score-tier">
+          <div class="score-tier-badge">🥉</div>
+          <div class="score-tier-name">C-Tier</div>
+          <div class="score-tier-range">0–19 pts</div>
+        </div>
+        <div class="score-tier">
+          <div class="score-tier-badge">📉</div>
+          <div class="score-tier-name">D-Tier</div>
+          <div class="score-tier-range">&lt;0 pts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== PRICING ===== -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <p class="section-label reveal">PRICING</p>
+      <h2 class="section-title reveal">
+        Start free. Upgrade when you're ready.
+      </h2>
+      <p class="section-subtitle reveal">
+        No credit card. No lock-in. The engine is yours to run.
+      </p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pricing-plan-name">Free</div>
+          <div class="pricing-price"><span class="currency">$</span>0</div>
+          <div class="pricing-period">Free forever</div>
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Core pipeline (Extract → Write → Publish)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              5 niche templates included
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Basic audit & SEO
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Community support
+            </li>
+          </ul>
+          <a href="#" class="pricing-btn free">Get Started Free</a>
+        </div>
+
+        <div class="pricing-card pro reveal">
+          <div class="pricing-plan-name">Pro</div>
+          <div class="pricing-price"><span class="currency">$</span>29</div>
+          <div class="pricing-period">per month</div>
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              All 8 operating modes
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              20+ niche templates
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              3-layer memory system
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Auto-research & monetization scoring
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              OpenClaw extensions
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Priority support
+            </li>
+          </ul>
+          <a href="#" class="pricing-btn pro-btn">Get Pro Access</a>
+        </div>
+      </div>
+
+      <div class="pricing-ticker reveal">
+        ⚡ Early adopter pricing — price increases after 500 users. Lock in your rate now.
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <p class="section-label reveal">FAQ</p>
+      <h2 class="section-title reveal">Common questions</h2>
+
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            What AI platforms does Content Factory work with?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Content Factory is a <strong>skill/agent system</strong> — it works with any AI coding tool: Cursor,
+              Claude, Gemini, Amp, Windsurf, and more. It gives your AI the knowledge to produce professional,
+              SEO-optimized content.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            How does the self-learning memory work?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Three layers: <strong>Semantic</strong> (long-term patterns), <strong>Episodic</strong> (per-session
+              outcomes), and <strong>Working</strong> (current context). When you edit or delete content, the system
+              detects it via git diffs and adjusts its writing patterns. High-scoring content styles get reinforced;
+              low-scoring ones get avoided.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            Can I use it for my specific niche?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. Content Factory is <strong>config-driven and niche-agnostic</strong>. We include 20+
+              ready-made templates: real estate, health & wellness, SaaS, dental, fitness, crypto, e-commerce, and more.
+              You can also create custom configs for any niche.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            How long does setup take?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>About <strong>60 seconds</strong>. Copy a template config, adjust your niche and brand settings, and run
+              the pipeline. No installation, no dependencies beyond Python 3 and your AI tool.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            Is this just another AI writing tool?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. Most AI tools generate generic content from a prompt. Content Factory is a <strong>complete
+                production system</strong> — it researches, plans topics by monetization potential, writes with brand
+              memory, auto-audits quality, optimizes SEO, and publishes. Then it learns from the results. It's a
+              factory, not a chat box.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            Can I extend it with custom scripts?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Content Factory has a built-in <strong>hook system</strong> and <strong>OpenClaw adapter</strong>
+              for extensions. You can add custom pre/post hooks at any pipeline phase, integrate external tools, or
+              build entirely new modes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER CTA ===== -->
+  <div class="section-divider"></div>
+
+  <section class="footer-cta">
+    <div class="container">
+      <h2 class="reveal">
+        Stop producing noise.<br />
+        <span class="gradient-text">Start producing content that converts.</span>
+      </h2>
+      <p class="reveal">One config. One command. Infinite, self-improving content.</p>
+      <div class="reveal">
+        <a href="#pricing" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          Start Free Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+            </svg>
+          </div>
+          Content Factory
+        </div>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://github.com/todyai/content-factory" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="footer-copy">
+          Built by <strong>Tody AI</strong> — Part of the AgentSkills Kit
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

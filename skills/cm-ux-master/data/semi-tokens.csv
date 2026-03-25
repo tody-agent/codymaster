@@ -1,0 +1,52 @@
+Variable,Category,Default,Description,Keywords
+--semi-color-primary,brand,#0077FA,Primary brand color for buttons, links, and interactive elements,primary brand accent action button
+--semi-color-primary-hover,brand,#0066D6,Primary color hover state (darker),primary hover interaction
+--semi-color-primary-active,brand,#0055B3,Primary color active/pressed state (darkest),primary active pressed
+--semi-color-primary-light-default,brand,#E6F0FF,Primary color light background variant,primary light background
+--semi-color-secondary,brand,#AAB2BF,Secondary brand color,secondary brand muted
+--semi-color-tertiary,brand,#C2C7CE,Tertiary brand color,tertiary brand subtle
+--semi-color-success,semantic,#00B42A,Success state color (green),success green positive complete
+--semi-color-success-hover,semantic,#009A24,Success hover state,success hover
+--semi-color-success-active,semantic,#00801E,Success active state,success active
+--semi-color-warning,semantic,#FF7D00,Warning state color (orange),warning orange caution alert
+--semi-color-warning-hover,semantic,#D66A00,Warning hover state,warning hover
+--semi-color-warning-active,semantic,#B35800,Warning active state,warning active
+--semi-color-danger,semantic,#F53F3F,Danger/error state color (red),danger error red destructive delete
+--semi-color-danger-hover,semantic,#CC3535,Danger hover state,danger hover
+--semi-color-danger-active,semantic,#A62C2C,Danger active state,danger active
+--semi-color-info,semantic,#0077FA,Info state color (blue),info blue information
+--semi-color-bg-0,surface,#F4F5F5,Application root background,background app surface root
+--semi-color-bg-1,surface,#FFFFFF,Card/panel background,background card panel white surface
+--semi-color-bg-2,surface,#FAFAFA,Elevated surface background,background elevated surface
+--semi-color-bg-3,surface,#F0F0F0,Inset/recessed background,background inset recessed input
+--semi-color-bg-4,surface,#C6C6C6,Disabled background,background disabled
+--semi-color-fill-0,fill,#FFFFFF,Fill color level 0,fill default white
+--semi-color-fill-1,fill,#F5F5F5,Fill color level 1,fill subtle
+--semi-color-fill-2,fill,#E8E8E8,Fill color level 2,fill medium
+--semi-color-text-0,text,#1C1F23,Title/heading text (darkest),text title heading primary dark
+--semi-color-text-1,text,#4E5969,Body text color,text body paragraph secondary
+--semi-color-text-2,text,#86909C,Muted/caption text,text muted caption tertiary light
+--semi-color-text-3,text,#C9CDD4,Placeholder text,text placeholder disabled
+--semi-color-link,text,#0077FA,Hyperlink text color,link anchor href text
+--semi-color-border,border,#E5E6EB,Default border color,border divider separator line
+--semi-color-border-transparent,border,transparent,Transparent border,border transparent
+--semi-font-family-regular,typography,"Inter\, -apple-system\, BlinkMacSystemFont\, sans-serif",Regular text font family,font family body text
+--semi-font-family-mono,typography,"SFMono-Regular\, Consolas\, monospace",Monospace code font,font family code mono
+--semi-font-size-small,typography,12px,Small text size,font size small caption
+--semi-font-size-regular,typography,14px,Regular body text size,font size regular body default
+--semi-font-size-header-6,typography,16px,H6 heading size,font size heading h6
+--semi-font-size-header-5,typography,18px,H5 heading size,font size heading h5
+--semi-font-size-header-4,typography,20px,H4 heading size,font size heading h4
+--semi-font-size-header-3,typography,24px,H3 heading size,font size heading h3
+--semi-font-size-header-2,typography,28px,H2 heading size,font size heading h2
+--semi-font-size-header-1,typography,32px,H1 heading size,font size heading h1
+--semi-border-radius-small,geometry,2px,Small border-radius (tags),border radius small tag
+--semi-border-radius-medium,geometry,4px,Medium border-radius (buttons),border radius medium button input
+--semi-border-radius-large,geometry,8px,Large border-radius (cards),border radius large card panel modal
+--semi-border-radius-full,geometry,9999px,Full border-radius (pills),border radius full pill round circle
+--semi-shadow-elevated,shadow,"0px 4px 14px rgba(0\, 0\, 0\, 0.1)",Elevated element shadow (cards),shadow elevated card raised
+--semi-shadow-raised,shadow,"0px 0px 1px rgba(0\, 0\, 0\, 0.3)\, 0px 1px 3px rgba(0\, 0\, 0\, 0.1)",Raised element shadow,shadow raised subtle
+--semi-spacing-extra-tight,spacing,4px,Extra tight spacing,spacing gap margin padding tight
+--semi-spacing-tight,spacing,8px,Tight spacing,spacing gap margin padding tight
+--semi-spacing-base,spacing,12px,Base spacing unit,spacing gap margin padding base
+--semi-spacing-loose,spacing,16px,Loose spacing,spacing gap margin padding loose

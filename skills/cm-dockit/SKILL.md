@@ -12,25 +12,23 @@ A professional knowledge systematization engine powered by codebase analysis and
 - User asks to "create documentation", "generate docs"
 - User mentions "SOP", "user guide", "manual"
 - User wants technical docs from a codebase
-- User mentions "changelog", "release notes", "version history"
 - User runs `/DocKit Master`
 
 ## Document Types
 
 | Type | Skill File | Description |
 |------|-----------|-------------|
-| **knowledge** | *(generated directly by AI agent)* | Personas, JTBD, Process Flows — knowledge foundation |
+| **knowledge** | `skills/persona-builder.md` + `skills/jtbd-analyzer.md` + `skills/flow-mapper.md` *(files pending)* | Personas, JTBD, Process Flows — knowledge foundation |
 | **tech** | `skills/tech-docs.md` | Architecture, database, deployment, data flow |
 | **sop** | `skills/sop-guide.md` | Step-by-step user guides (enriched with knowledge) |
 | **api** | `skills/api-reference.md` | API endpoint reference with examples |
-| **changelog** | `skills/changelog-guide.md` | Release notes & version history (🚀 Improvements / 🐛 Bug Fixes) |
 | **all** | All above | Full knowledge base + documentation suite |
 
-| Support Skill | Purpose |
-|--------------|--------|
-| **SEO Checklist** | Per-page SEO audit (title, meta, headings, robots) — applied inline by AI agent |
-| **Content Writing** | SEO copywriting, keywords, active voice, FAQ — applied inline by AI agent |
-| **LLM Optimization** | AI-readable structure, NotebookLM-friendly — applied inline by AI agent |
+| Support Skill | File | Purpose |
+|--------------|------|---------|
+| **SEO Checklist** | `skills/seo-checklist.md` | Per-page SEO audit (title, meta, headings, robots) |
+| **Content Writing** | `skills/content-writing.md` | SEO copywriting, keywords, active voice, FAQ |
+| **LLM Optimization** | `skills/llm-optimization.md` | AI-readable structure, NotebookLM-friendly |
 
 ## Output Formats
 
@@ -50,7 +48,7 @@ Please answer the following questions so I can automatically create an execution
 
 | # | Question | Options | Default |
 |---|---------|---------|--------|
-| 1 | **📑 Document type?** | `knowledge` · `tech` · `sop` · `api` · `changelog` · `all` | `all` |
+| 1 | **📑 Document type?** | `knowledge` · `tech` · `sop` · `api` · `all` | `all` |
 | 2 | **🎨 Output format?** | `markdown` (plain) · `vitepress` (premium site) | `vitepress` |
 | 3 | **📂 Code scan scope?** | `full` (entire project) · `focused` (specific folder/feature) | `full` |
 | 4 | **🎯 Focus area?** *(only if `focused`)* | Folder name, module, or specific feature | — |
@@ -86,7 +84,7 @@ After receiving answers, **immediately create an execution plan** (do NOT ask mo
 Map the answers to this execution config:
 
 ```
-DOC_TYPE     = [knowledge | tech | sop | api | changelog | all]
+DOC_TYPE     = [knowledge | tech | sop | api | all]
 FORMAT       = [markdown | vitepress]
 SCOPE        = [full | focused]
 FOCUS_TARGET = [directory/module name if focused, else null]
@@ -144,13 +142,13 @@ Key rules to enforce:
 
 ### Step 3b: Apply SEO & LLM Guidelines (If enabled)
 
-**If SEO = yes:** Apply these SEO content writing guidelines directly:
+**If SEO = yes:** Read `skills/content-writing.md` for:
 - Keyword placement (title, H1, first paragraph, H2s, meta)
 - Inverted pyramid structure (answer first, details later)
 - Active voice (≥80%), transition words (≥30%)
 - FAQ in schema-ready format for rich snippets
 
-**If LLM_OPTIMIZE = yes:** Apply these AI-readability guidelines directly:
+**If LLM_OPTIMIZE = yes:** Read `skills/llm-optimization.md` for:
 - Clean heading hierarchy (no skipped levels)
 - Text descriptions alongside all Mermaid diagrams
 - Self-contained sections (≤500 words per H2)
@@ -161,10 +159,10 @@ Key rules to enforce:
 
 Based on the chosen type, read and follow the corresponding skill file:
 
-- **knowledge** → AI agent generates directly:
-  1. `docs/personas/` (Buyer & User Personas)
-  2. `docs/jtbd/` (JTBD Canvases)
-  3. `docs/flows/` (Workflow, Sequence, Lifecycle, Journey)
+- **knowledge** → Run 3 skills sequentially:
+  1. Read `skills/persona-builder.md` → `docs/personas/` (Buyer & User Personas)
+  2. Read `skills/jtbd-analyzer.md` → `docs/jtbd/` (JTBD Canvases)
+  3. Read `skills/flow-mapper.md` → `docs/flows/` (Workflow, Sequence, Lifecycle, Journey)
 
 - **tech** → Read `skills/tech-docs.md`, generate:
   - `docs/architecture.md` — System architecture + ADR
@@ -181,14 +179,7 @@ Based on the chosen type, read and follow the corresponding skill file:
   - `docs/api/` — Organized by resource
   - Each file: Quick Ref → Endpoints table → Multi-language examples
 
-- **changelog** → Read `skills/changelog-guide.md`, generate:
-  - `docs/changelog.md` — Full release history with 2 categories:
-    - 🚀 **Improvements** — features, enhancements, refactors
-    - 🐛 **Bug Fixes** — fixes, patches, corrections
-  - Reads from `CHANGELOG.md` at project root (generated by `cm-safe-deploy` Gate 8)
-  - If `CHANGELOG.md` doesn't exist, generates from git tags/history
-
-- **all** → Run `knowledge` → `tech` → `sop` → `api` → `changelog` sequentially
+- **all** → Run `knowledge` → `tech` → `sop` → `api` sequentially
 
 ### Step 5: Export
 
@@ -214,7 +205,7 @@ Read and follow `workflows/generate-sitemap.md`:
 
 ### Step 5c: Run SEO Audit (If SEO = yes)
 
-Read `skills/content-guidelines.md` SEO checklist section and audit every generated page:
+Read `skills/seo-checklist.md` and audit every generated page:
 - Title (50–60 chars, keyword) ✔️
 - Meta description (150–160 chars) ✔️
 - Single H1, no skipped levels ✔️
@@ -250,23 +241,15 @@ See also: `cm-deep-search` skill.
 
 ## CLI Quick Start
 
-For a fast interactive experience, use the built-in CLI scripts:
+For a fast interactive experience, users can run the doc generation script from the skill root:
 
 ```bash
-# Main documentation generator
+# Run from the cm-dockit skill directory
 bash scripts/doc-gen.sh
-
-# Full runner with DAG-based task execution
-bash scripts/dockit-runner.sh -p /path/to/project -t all
-
-# Dashboard view of progress
-bash scripts/dockit-dashboard.sh
-
-# Individual task runner
-bash scripts/dockit-task.sh
 ```
 
-> Run these scripts from the `cm-dockit` skill directory.
+> **Note:** The `scripts/` directory and `doc-gen.sh` script need to be created.
+> For now, trigger this skill by invoking `cm-dockit` directly via the AI assistant.
 
 ## UX Principles Applied
 
