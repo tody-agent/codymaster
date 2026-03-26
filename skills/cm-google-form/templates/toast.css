@@ -1,0 +1,152 @@
+/* ============================================
+   FORM TOAST NOTIFICATION
+   ============================================ 
+   
+   Copy this into your main CSS file.
+   
+   Dependencies: none
+   CSS Variables used (override if needed):
+   - --space-2 through --space-8
+   - --radius-lg, --radius-full
+   - --text-sm
+   - --transition-fast
+   - --white
+   
+   If your project doesn't use CSS variables, 
+   replace them with fixed values:
+   - --space-2: 8px, --space-3: 12px, --space-4: 16px, --space-5: 20px
+   - --radius-lg: 12px, --radius-full: 9999px
+   - --text-sm: 14px
+   - --transition-fast: 150ms ease
+*/
+
+.form-toast-container {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: calc(100% - 32px);
+    max-width: 440px;
+    pointer-events: none;
+}
+
+.form-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: toastSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-toast.hiding {
+    animation: toastSlideDown 0.25s ease-in forwards;
+}
+
+/* Variants */
+.form-toast--success {
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    color: #065F46;
+}
+
+.form-toast--error {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #991B1B;
+}
+
+.form-toast--retrying {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    color: #92400E;
+}
+
+/* Elements */
+.form-toast-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 1px;
+}
+
+.form-toast-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-toast-title {
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.form-toast-msg {
+    opacity: 0.85;
+}
+
+.form-toast-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    opacity: 0.5;
+    padding: 4px;
+    color: inherit;
+    transition: opacity 150ms ease;
+}
+
+.form-toast-close:hover {
+    opacity: 1;
+}
+
+/* Fallback contact button (Zalo, Messenger, etc.) */
+.form-toast-zalo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background: #0068FF;
+    color: #fff !important;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 150ms ease, transform 150ms ease;
+}
+
+.form-toast-zalo:hover {
+    background: #0054cc;
+    transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes toastSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastSlideDown {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(20px); }
+}
+
+/* Mobile: push toast above sticky CTAs */
+@media (max-width: 768px) {
+    .form-toast-container {
+        bottom: 80px;
+        width: calc(100% - 24px);
+    }
+}
