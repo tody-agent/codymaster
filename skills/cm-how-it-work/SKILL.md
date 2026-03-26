@@ -26,6 +26,20 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 
 ---
 
+### Phase 0.3: Knowledge Infrastructure Setup 🧠
+> **For large codebases, establish the memory foundation before planning.**
+
+- **Skills:** `cm-codeintell` + `cm-dockit` + `cm-deep-search` + `cm-notebooklm`
+- **When:** When onboarding to a new codebase or starting a massive refactoring initiative.
+- **Action:**
+    1. Scan structure with `cm-codeintell` to build the Skeleton Index.
+    2. Generate missing architectural docs with `cm-dockit`.
+    3. Index the docs for fast local retrieval with `cm-deep-search` (qmd).
+    4. Sync high-value patterns to the Cloud Brain with `cm-notebooklm`.
+- **Output:** A fully indexed 5-tier memory ecosystem ready for precise, low-token AI problem solving.
+
+---
+
 ### Phase 0.5: Strategic Analysis 🔍
 > **For complex initiatives and enhancements on existing products.**
 
@@ -132,6 +146,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 | `cm-skill-chain` | Compose skills into automated multi-step pipelines (5 built-in chains). |
 | `cm-skill-index` | Progressive disclosure index — 90% token savings on skill discovery. |
 | `cm-deep-search` | Semantic search via qmd for large codebases (>200 src / >50 docs files). |
+| `cm-notebooklm` | Cloud Brain sync — cross-machine knowledge persistence via NotebookLM. |
 | `cm-how-it-work` | Full vibe coding guide — phases, skills per phase, use cases. |
 
 ### 🖥️ Workflow Commands

@@ -94,13 +94,20 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
-### 🧠 실수로부터 배우는 두뇌
+### 🧠 통합 두뇌: 5계층 메모리 아키텍처
 
-귀하의 AI는 단지 실행만 하는 것이 아닙니다 — **기억하고 개선합니다**:
+귀하의 AI는 단지 실행만 하는 것이 아닙니다 — 세션과 기기 간에 지속되는 5계층 통합 두뇌 시스템을 사용하여 **이해하고 기억합니다**:
 
-- **`cm-continuity`** — 세션 간 작업 기억. AI는 무엇이 잘못되었는지 기억하고 동일한 실수를 절대 반복하지 않습니다.
-- **`cm-skill-mastery`** — 어떻게 하는지 모르시나요? **자동으로 적절한 스킬을 찾아** 스스로를 업그레이드합니다.
-- **`cm-deep-search`** — 200개가 넘는 파일의 코드베이스에서 길을 잃으셨나요? 몇 초 만에 모든 것을 대상으로 시맨틱 검색을 수행합니다.
+1. **Sensory Memory (세션)** — 활성 파일 및 터미널의 즉각적인 컨텍스트.
+2. **Working Memory (`cm-continuity`)** — 세션 간 스크래치 패드. AI는 동일한 실수를 절대 반복하지 않습니다.
+3. **Long-Term Memory (`learnings.json`)** — 스마트 에빙하우스 TTL 감쇠가 적용된 강화된 학습 내용.
+4. **Semantic Memory (`cm-deep-search`)** — `qmd`를 사용한 문서 간 로컬 벡터 검색.
+5. **Structural Memory (`cm-codeintell`)** — AST 기반 코드 그래프(CodeGraph). 전체 코드베이스 컨텍스트에 대해 최대 95%의 토큰 압축률.
+
+☁️ **The Cloud Brain (`cm-notebooklm`)**
+가치가 높은 지식과 디자인 패턴은 NotebookLM에 동기화되어 프로젝트에 기기 간에 공유되는 보편적인 "영혼"을 제공합니다. 팟캐스트와 플래시카드를 자동 생성하여 AI와 함께 일하는 인간 개발자의 온보딩을 돕습니다.
+
+📖 [전체 지식 아키텍처 읽기 (EN) →](docs/knowledge-architecture.md)
 
 ### 🛡️ 다중 레이어 보호 (코드베이스가 파괴되지 않도록 보호합니다)
 
@@ -143,9 +150,15 @@ flowchart LR
 
 **한 번의 스캔 = 완벽한 지식 베이스.**
 
-### 📊 비주얼 대시보드 — 한눈에 모든 것을 확인하세요
+### 💡 전략적 브레인스토밍 (Design Thinking + 9 Windows)
 
-더 이상 추측할 필요가 없습니다. 실시간 칸반 보드에서 모든 작업, 모든 에이전트, 모든 배포를 추적하세요. 파이프라인 진행 상황, 토큰 추적기, 이벤트 로그를 모두 한 화면에서 볼 수 있습니다.
+복잡한 요청에 대한 코딩을 시작하기 전에 **`cm-brainstorm-idea`**가 다차원 분석(기술, 제품, 디자인, 비즈니스)을 통해 제품을 평가합니다. 9 Windows (TRIZ) 프레임워크를 사용하여 2-3개의 검증된 옵션을 생성하고, 세부 계획 전에 방향을 확인하기 위해 **Pencil.dev** 또는 **Google Stitch**를 통한 시각적 UI 미리보기를 제공합니다.
+
+### 🏭 AI Content Factory v2.0 & 비주얼 대시보드
+
+콘텐츠 확장이 필요하신가요? **`cm-content-factory`**는 자가 학습이 가능한 다중 에이전트 콘텐츠 엔진입니다. 콘텐츠 마스터리 프레임워크 (StoryBrand + Cialdini)를 통해 자동으로 조사, 작성, 감사(SEO 및 설득력 검증)를 수행하고 전환율이 높은 기사를 배포하여 결과를 보장합니다.
+
+**비주얼 대시보드** (`cm-dashboard`)에서 모든 것을 추적하세요: 더 이상 추측할 필요가 없습니다. 실시간 칸반 보드에서 모든 작업, 모든 에이전트, 모든 배포를 추적하세요. 파이프라인 진행 상황, 토큰 추적기, 이벤트 로그를 모두 한 화면에서 볼 수 있습니다.
 
 ---
 
@@ -155,7 +168,7 @@ flowchart LR
 |---|---|---|
 | **통합** | 각 스킬이 독립적이며 컨텍스트 공유 없음 | 체인으로 연결되고 메모리를 공유하며 소통하는 34개의 스킬 |
 | **라이프사이클** | 코딩만 지원 | 아이디어 → 디자인 → 코드 → 테스트 → 배포 → 문서화 → 학습까지 지원 |
-| **메모리** | 세션 사이에 모든 것을 잊음 | 4단계 메모리 시스템: Working → Episodic → Semantic → Deep Search |
+| **메모리** | 세션 사이에 모든 것을 잊음 | 5계층 통합 두뇌 시스템: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
 | **안전성** | YOLO 배포 | 4레이어 보호: TDD → 보안 → 격리 → 다중 게이트 배포 |
 | **디자인** | 매번 무작위 UI | 디자인 시스템 추출 및 강제 적용 + 시각적 미리보기 |
 | **문서화** | "나중에 README나 써야지" | 코드에서 완전한 문서, SOP, API 참조를 자동 생성 |
@@ -227,7 +240,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 ---
 
-## 🧰 33가지 스킬 아스널
+## 🧰 34가지 스킬 아스널
 
 | 도메인 | 스킬 |
 |--------|--------|
@@ -235,7 +248,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 | ⚙️ **오퍼레이션** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
 | 🎨 **프로덕트 & UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **그로스/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
-| 🎯 **오케스트레이션** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` |
+| 🎯 **오케스트레이션** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-notebooklm` `cm-how-it-work` |
 | 🖥️ **워크플로우** | `cm-start` `cm-dashboard` `cm-status` |
 
 ---

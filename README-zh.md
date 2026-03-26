@@ -94,13 +94,20 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
-### 🧠 一个从错误中学习的大脑
+### 🧠 统一大脑：5层记忆架构
 
-您的 AI 不仅仅是执行 —— 它还会**记忆并改进**：
+您的 AI 不仅仅是执行 —— 它还会通过跨会话和跨机器持久化的5层统一大脑系统来**理解并记忆**：
 
-- **`cm-continuity`** — 跨会话的工作记忆。AI 记得哪里出了错，且永不重复同样的错误
-- **`cm-skill-mastery`** — 不知道该怎么做？它会**自动找到合适的技能**并升级自己
-- **`cm-deep-search`** — 在拥有 200 多个文件的代码库中迷失了方向？数秒内即可对所有内容进行语义搜索
+1. **Sensory Memory (会话上下文)** — 当前活动文件和终端的即时上下文。
+2. **Working Memory (`cm-continuity`)** — 跨会话的草稿本。AI 绝不会重复同样的错误。
+3. **Long-Term Memory (`learnings.json`)** — 带有智能艾宾浩斯 TTL 衰减机制的强化经验。
+4. **Semantic Memory (`cm-deep-search`)** — 使用 `qmd` 对文档进行本地向量搜索。
+5. **Structural Memory (`cm-codeintell`)** — 基于 AST 的代码图。压缩高达95%的 token 以获取完整的代码库上下文。
+
+☁️ **Cloud Brain (`cm-notebooklm`)**
+高价值的知识和设计模式将同步到 NotebookLM，为您的项目提供通用且跨机器的"灵魂"。自动生成播客和抽认卡，以便在 AI 旁边培训人类开发者。
+
+📖 [阅读完整的知识架构文档 (EN) →](docs/knowledge-architecture.md)
 
 ### 🛡️ 多层保护（你的代码库不会被毁掉）
 
@@ -143,9 +150,15 @@ flowchart LR
 
 **一次扫描 = 完整的知识库。**
 
-### 📊 可视化仪表盘 —— 一切尽在掌握
+### 💡 战略级头脑风暴 (Design Thinking + 9 Windows)
 
-不再凭空猜测。在实时看板上跟踪每个任务、每个代理和每次部署。流水线进度、 Token 追踪器、事件日志 —— 尽在一个屏幕中。
+在为复杂请求编写代码之前，**`cm-brainstorm-idea`** 会通过多维度分析（技术、产品、设计、业务）来评估您的产品。它使用 9 窗口 (TRIZ) 框架生成 2-3 个合格的选项，并通过 **Pencil.dev** 或 **Google Stitch** 提供可视化的 UI 预览，以便在详细规划之前验证方向。
+
+### 🏭 AI 内容工厂 v2.0 与可视化仪表盘
+
+需要扩大内容规模？**`cm-content-factory`** 是一个具有自学习能力的多智能体内容引擎。它会自动研究、写作、审核（SEO 和 说服力转化）并部署高转化率的文章，并结合 Content Mastery 框架 (StoryBrand + Cialdini) 保证转化率。
+
+在**可视化仪表盘** (`cm-dashboard`) 上跟踪一切：不再凭空猜测。在实时看板上跟踪每个任务、每个智能体和每次部署。流水线进度、 Token 追踪器、事件日志 —— 尽在一个屏幕中。
 
 ---
 
@@ -155,7 +168,7 @@ flowchart LR
 |---|---|---|
 | **集成** | 每个技能都是独立的，没有共享上下文 | 34 个技能相互链接、共享记忆并进行通信 |
 | **生命周期** | 仅涵盖编码 | 涵盖 想法 → 设计 → 代码 → 测试 → 部署 → 文档 → 学习 |
-| **记忆** | 会话之间会遗忘所有内容 | 4 层记忆系统：工作记忆 → 情节记忆 → 语义记忆 → 深度搜索 |
+| **记忆** | 会话之间会遗忘所有内容 | 5层统一大脑系统：Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
 | **安全性** | YOLO 式部署 | 4 层保护：TDD → 安全 → 隔离 → 多重门禁部署 |
 | **设计** | 每次都是随机 UI | 提取并强制执行设计系统 + 视觉预览 |
 | **文档** | “以后再写 README 吧” | 从代码自动生成完整的文档、SOP 和 API 参考 |
@@ -227,7 +240,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 ---
 
-## 🧰 33项技能军火库
+## 🧰 34项技能军火库
 
 | 领域 | 技能 |
 |--------|--------|
@@ -235,7 +248,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 | ⚙️ **运维** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
 | 🎨 **产品与UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **增长/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
-| 🎯 **编排** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` |
+| 🎯 **编排** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-notebooklm` `cm-how-it-work` |
 | 🖥️ **工作流** | `cm-start` `cm-dashboard` `cm-status` |
 
 ---

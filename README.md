@@ -104,14 +104,20 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
-### 🧠 Dual-Brain Architecture: Semantic + Structural
+### 🧠 The Unified Brain: 5-Tier Memory Architecture
 
-Your AI doesn't just execute — it **understands and remembers** using a multi-scale Dual-Brain system:
+Your AI doesn't just execute — it **understands and remembers** using a multi-scale, 5-Tier Unified Brain system that persists across sessions and machines:
 
-- **Semantic Memory (`qmd`)** — Understands the *meaning* and *context* of docs and code.
-- **Structural Memory (`CodeGraph`)** — Understands the *AST structure*, *call trees*, and *impact radius*.
-- **`cm-continuity`** — Working memory across sessions. AI never repeats the same mistake.
-- **`cm-deep-search`** — Lost in a 200+ file codebase? Semantic search across everything in seconds.
+1. **Sensory Memory (Session)** — Immediate context of active files and terminals.
+2. **Working Memory (`cm-continuity`)** — Cross-session scratchpad. AI never repeats the same mistake.
+3. **Long-Term Memory (`learnings.json`)** — Reinforced lessons with smart Ebbinghaus TTL decay.
+4. **Semantic Memory (`cm-deep-search`)** — Local vector search across docs using `qmd`.
+5. **Structural Memory (`cm-codeintell`)** — AST-based CodeGraph. Up to 95% token compression for full codebase context.
+
+☁️ **The Cloud Brain (`cm-notebooklm`)**
+High-value knowledge and design patterns are synced to NotebookLM, providing a universal, cross-machine "Soul" for your project. Auto-generate podcasts and flashcards to onboard human developers alongside the AI.
+
+📖 [Read the full Knowledge Architecture →](docs/knowledge-architecture.md)
 
 ### 🛡️ Multi-Layer Protection (Your Codebase Won't Get Destroyed)
 
@@ -155,9 +161,15 @@ Don't know what the old code does? **`cm-dockit`** reads your entire codebase an
 
 **One scan = Complete knowledge base.**
 
-### 📊 Visual Dashboard — See Everything at a Glance
+### 💡 Strategic Brainstorming (Design Thinking + 9 Windows)
 
-No more guessing. Track every task, every agent, every deployment on a real-time Kanban board. Pipeline progress, token tracker, event log — all on one screen.
+Before diving into code for complex requests, **`cm-brainstorm-idea`** evaluates your product using multi-dimensional analysis (Tech, Product, Design, Business). It generates 2-3 qualified options using the 9 Windows (TRIZ) framework and provides a visual UI Preview via **Pencil.dev** or **Google Stitch** to validate the direction before detailed planning. 
+
+### 🏭 AI Content Factory v2.0 & Visual Dashboard
+
+Need to scale content? **`cm-content-factory`** is a self-learning, multi-agent content engine. It automatically researches, writes, audits (SEO & Persuasion), and deploys high-converting articles with the Content Mastery framework (StoryBrand + Cialdini) to guarantee conversion.
+
+Track it all on the **Visual Dashboard** (`cm-dashboard`): No more guessing. Track every task, every agent, every deployment on a real-time Kanban board. Pipeline progress, token tracker, event log — all on one screen.
 
 ---
 
@@ -167,7 +179,7 @@ No more guessing. Track every task, every agent, every deployment on a real-time
 | -------------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
 | **Integration**      | Each skill is standalone, no shared context | 34 skills that chain, share memory, and communicate                   |
 | **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn      |
-| **Memory**           | Forgets everything between sessions         | 5-tier Dual-Brain: Sensory → Working → Long-term → Semantic → Structural  |
+| **Memory**           | Forgets everything between sessions         | 5-tier Unified Brain: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain  |
 | **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
 | **Design**           | Random UI every time                        | Extracts & enforces design system + visual preview                    |
 | **Documentation**    | "Maybe write a README later"                | Auto-generates complete docs, SOPs, API refs from code                |
