@@ -833,6 +833,7 @@ docs/plans/       — Implementation plans
 3. i18n extraction: MAX 30 strings per batch
 4. Run test:gate before every deploy
 5. Check `.project-identity.json` for deploy targets
+6. Use `qmd` (cm-deep-search) for semantic codebase search. Ensure `.qmd` index is fresh.
 ```
 
 ### Step 2: Git Safety Protocol

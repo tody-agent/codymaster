@@ -6,11 +6,11 @@
 
 ### 您的 AI 智能体很聪明。CodyMaster 让它变得*睿智*。
 
-**34 项技能 · 11 条命令 · 1 个插件 · 7+ 个平台 · 6 种语言**
+**35 项技能 · 11 条命令 · 1 个插件 · 7+ 个平台 · 6 种语言**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.0.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-34-success.svg" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.3.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-35-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
@@ -48,7 +48,7 @@
 
 ## 🟢 解决方案：一个套件包含整个资深团队
 
-CodyMaster 不仅仅是“另一个 AI 技能包”。它是 **10 多年的产品管理经验 + 6 个月经过实战测试的 vibe coding** 的结晶，浓缩成了 34 项互连技能，作为一个**单一的集成系统**运行。
+CodyMaster 不仅仅是“另一个 AI 技能包”。它是 **10 多年的产品管理经验 + 6 个月经过实战测试的 vibe coding** 的结晶，浓缩成了 35 项互连技能，作为一个**单一的集成系统**运行。
 
 当您安装 CodyMaster 时，您不仅仅是在添加技能。
 **您是在聘请一整个资深团队：**
@@ -166,7 +166,7 @@ flowchart LR
 
 | | 😵 15 个随机技能 | 🧠 CodyMaster |
 |---|---|---|
-| **集成** | 每个技能都是独立的，没有共享上下文 | 34 个技能相互链接、共享记忆并进行通信 |
+| **集成** | 每个技能都是独立的，没有共享上下文 | 35 个技能相互链接、共享记忆并进行通信 |
 | **生命周期** | 仅涵盖编码 | 涵盖 想法 → 设计 → 代码 → 测试 → 部署 → 文档 → 学习 |
 | **记忆** | 会话之间会遗忘所有内容 | 5层统一大脑系统：Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
 | **安全性** | YOLO 式部署 | 4 层保护：TDD → 安全 → 隔离 → 多重门禁部署 |
@@ -238,7 +238,7 @@ CLI 会在漫长的编码会话中与您打招呼并帮助您保持条理！
 
 ---
 
-## 🧰 34项技能军火库
+## 🧰 35项技能军火库
 
 | 领域 | 技能 |
 |--------|--------|
@@ -269,7 +269,7 @@ CLI 会在漫长的编码会话中与您打招呼并帮助您保持条理！
 
 **Tody Le** — 拥有10+年经验的产品负责人。不会写代码。连续6个月使用AI构建真实产品。这个工具包中的每一项技能都源于真实的失败，这些失败耗费了真实的时间和泪水。
 
-> *“34项技能。每一项技能都是一课。每一课都是一个不眠之夜。而现在，你无需再经历那些夜晚。”*
+> *“35项技能。每一项技能都是一课。每一课都是一个不眠之夜。而现在，你无需再经历那些夜晚。”*
 
 📖 [阅读完整故事 →](https://cody.todyle.com/story)
 
@@ -279,7 +279,7 @@ CLI 会在漫长的编码会话中与您打招呼并帮助您保持条理！
 
 - 🌍 [网站](https://cody.todyle.com) — 概览与演示
 - 📖 [文档](https://cody.todyle.com/docs) — 完整深度探索
-- 🛠️ [技能参考](skills/) — 浏览所有34个SKILL.md文件
+- 🛠️ [技能参考](skills/) — 浏览所有35个SKILL.md文件
 - 📖 [我们的故事](https://cody.todyle.com/story) — 为什么存在这个项目
 
 ---

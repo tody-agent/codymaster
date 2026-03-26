@@ -279,7 +279,7 @@ CLI sẽ tương tác và giúp bạn tổ chức công việc trong những phi
 
 - 🌍 [Website](https://cody.todyle.com) — Tổng quan & bản demo
 - 📖 [Tài liệu](https://cody.todyle.com/docs) — Phân tích chuyên sâu toàn diện
-- 🛠️ [Tham khảo kỹ năng](skills/) — Xem toàn bộ 34 tệp SKILL.md
+- 🛠️ [Tham khảo kỹ năng](skills/) — Xem toàn bộ 35 tệp SKILL.md
 - 📖 [Câu chuyện của chúng tôi](https://cody.todyle.com/story) — Tại sao công cụ này tồn tại
 
 ---

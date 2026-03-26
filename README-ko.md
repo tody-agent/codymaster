@@ -6,11 +6,11 @@
 
 ### 귀하의 AI 에이전트는 똑똑합니다. CodyMaster는 이를 *현명하게* 만듭니다.
 
-**34가지 스킬 · 11가지 명령어 · 1가지 플러그인 · 7개 이상의 플랫폼 · 6개 국어**
+**35가지 스킬 · 11가지 명령어 · 1가지 플러그인 · 7개 이상의 플랫폼 · 6개 국어**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.0.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-34-success.svg" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.3.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-35-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
@@ -166,7 +166,7 @@ flowchart LR
 
 | | 😵 15개의 무작위 스킬들 | 🧠 CodyMaster |
 |---|---|---|
-| **통합** | 각 스킬이 독립적이며 컨텍스트 공유 없음 | 체인으로 연결되고 메모리를 공유하며 소통하는 34개의 스킬 |
+| **통합** | 각 스킬이 독립적이며 컨텍스트 공유 없음 | 체인으로 연결되고 메모리를 공유하며 소통하는 35개의 스킬 |
 | **라이프사이클** | 코딩만 지원 | 아이디어 → 디자인 → 코드 → 테스트 → 배포 → 문서화 → 학습까지 지원 |
 | **메모리** | 세션 사이에 모든 것을 잊음 | 5계층 통합 두뇌 시스템: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
 | **안전성** | YOLO 배포 | 4레이어 보호: TDD → 보안 → 격리 → 다중 게이트 배포 |
@@ -238,7 +238,7 @@ cm
 
 ---
 
-## 🧰 34가지 스킬 아스널
+## 🧰 35가지 스킬 아스널
 
 | 도메인 | 스킬 |
 |--------|--------|
@@ -269,7 +269,7 @@ cm
 
 **Tody Le** — 10년 이상의 경력을 가진 Head of Product. 코드를 짤 줄 모릅니다. 6개월 동안 AI를 사용하여 실제 프로덕트를 만들었습니다. 이 키트의 모든 스킬은 실제 시간과 눈물을 쏟게 했던 실제 실패에서 탄생했습니다.
 
-> *"34개의 스킬. 각 스킬은 하나의 교훈입니다. 각 교훈은 잠 못 이루는 밤이었습니다. 이제 여러분은 그 밤들을 겪지 않아도 됩니다."*
+> *"35개의 스킬. 각 스킬은 하나의 교훈입니다. 각 교훈은 잠 못 이루는 밤이었습니다. 이제 여러분은 그 밤들을 겪지 않아도 됩니다."*
 
 📖 [전체 이야기 읽기 →](https://cody.todyle.com/story)
 
@@ -279,7 +279,7 @@ cm
 
 - 🌍 [웹사이트](https://cody.todyle.com) — 개요 및 데모
 - 📖 [문서](https://cody.todyle.com/docs) — 상세 가이드
-- 🛠️ [스킬 레퍼런스](skills/) — 34개의 모든 SKILL.md 파일 찾아보기
+- 🛠️ [스킬 레퍼런스](skills/) — 35개의 모든 SKILL.md 파일 찾아보기
 - 📖 [스토리](https://cody.todyle.com/story) — 이것이 존재하는 이유
 
 ---

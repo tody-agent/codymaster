@@ -26,7 +26,7 @@ When this workflow is called, the AI Assistant should execute the following acti
     - Count source files → determine intelligence level (MINIMAL/LITE/STANDARD/FULL)
     - IF level >= LITE: generate architecture diagram → `.cm/architecture.mmd`
     - IF level >= STANDARD: check CodeGraph → `codegraph status` → index if needed
-    - IF level >= FULL: also check qmd (cm-deep-search)
+    - IF level >= STANDARD: also check qmd (cm-deep-search) for existing semantic vector databases and initialize/update if needed.
     - Log intelligence level to `CONTINUITY.md`
 
 1. **Understand Requirements (Planning & JTBD):**
