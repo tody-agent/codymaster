@@ -6,11 +6,11 @@
 
 ### AI Agent của bạn thông minh. CodyMaster làm nó trở nên *thông thái*.
 
-**34 Kỹ năng · 11 Lệnh · 1 Plugin · 7+ Nền tảng · 6 Ngôn ngữ**
+**35 Kỹ năng · 11 Lệnh · 1 Plugin · 7+ Nền tảng · 6 Ngôn ngữ**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.0.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-34-success.svg" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.3.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-35-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
@@ -48,7 +48,7 @@ Nhưng rồi thực tế ập đến:
 
 ## 🟢 Giải pháp: Cả một đội ngũ Senior trong một bộ công cụ
 
-CodyMaster không chỉ là "một gói kỹ năng AI khác". Đó là **10+ năm kinh nghiệm quản lý sản phẩm + 6 tháng vibe coding thực chiến**, được đúc kết thành 34 kỹ năng kết nối với nhau, hoạt động như một **hệ thống tích hợp duy nhất**.
+CodyMaster không chỉ là "một gói kỹ năng AI khác". Đó là **10+ năm kinh nghiệm quản lý sản phẩm + 6 tháng vibe coding thực chiến**, được đúc kết thành 35 kỹ năng kết nối với nhau, hoạt động như một **hệ thống tích hợp duy nhất**.
 
 Khi bạn cài đặt CodyMaster, bạn không chỉ thêm các kỹ năng.
 **Bạn đang thuê cả một đội ngũ senior:**
@@ -166,7 +166,7 @@ Theo dõi mọi thứ trên **Bảng điều khiển trực quan** (`cm-dashboar
 
 | | 😵 15 kỹ năng ngẫu nhiên | 🧠 CodyMaster |
 |---|---|---|
-| **Tích hợp** | Mỗi kỹ năng là độc lập, không có ngữ cảnh chung | 34 kỹ năng liên kết thành chuỗi, chia sẻ bộ nhớ và giao tiếp với nhau |
+| **Tích hợp** | Mỗi kỹ năng là độc lập, không có ngữ cảnh chung | 35 kỹ năng liên kết thành chuỗi, chia sẻ bộ nhớ và giao tiếp với nhau |
 | **Vòng đời** | Chỉ bao gồm phần lập trình (coding) | Bao gồm Ý tưởng → Thiết kế → Code → Kiểm thử → Triển khai → Tài liệu → Học tập |
 | **Bộ nhớ** | Quên mọi thứ giữa các phiên làm việc | Hệ thống Bộ Não Hợp Nhất 5 tầng: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
 | **An toàn** | Triển khai kiểu phó mặc (YOLO) | Bảo vệ 4 lớp: TDD → Security → Isolation → Triển khai đa cổng |
@@ -240,7 +240,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 ---
 
-## 🧰 Kho vũ khí 34 kỹ năng
+## 🧰 Kho vũ khí 35 kỹ năng
 
 | Lĩnh vực | Kỹ năng |
 |--------|--------|
@@ -271,7 +271,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 
 **Tody Le** — Trưởng bộ phận Sản phẩm với hơn 10 năm kinh nghiệm. Không biết viết code. Đã dùng AI để xây dựng các sản phẩm thực tế trong 6 tháng liên tục. Mỗi kỹ năng trong bộ công cụ này đều ra đời từ những thất bại thực tế tiêu tốn nhiều thời gian và cả những giọt nước mắt thực sự.
 
-> *"34 kỹ năng. Mỗi kỹ năng là một bài học. Mỗi bài học là một đêm mất ngủ. Và giờ đây, bạn không cần phải trải qua những đêm đó nữa."*
+> *"35 kỹ năng. Mỗi kỹ năng là một bài học. Mỗi bài học là một đêm mất ngủ. Và giờ đây, bạn không cần phải trải qua những đêm đó nữa."*
 
 📖 [Đọc toàn bộ câu chuyện →](https://cody.todyle.com/story)
 
