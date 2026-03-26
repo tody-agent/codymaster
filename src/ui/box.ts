@@ -222,9 +222,9 @@ export function renderCommandHeader(title: string, icon?: string): string {
 
 /**
  * Render aligned key-value pairs with branded styling
- * Input: [['Version', '4.1.3'], ['Port', '4321']]
+ * Input: [['Version', '4.3.0'], ['Port', '4321']]
  * Output:
- *   Version   4.1.3
+ *   Version   4.3.0
  *   Port      4321
  */
 export function renderKeyValue(pairs: [string, string][], opts?: { indent?: number; keyWidth?: number }): string {
