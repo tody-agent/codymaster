@@ -300,7 +300,7 @@ function showInteractiveMenu() {
                 break;
             }
             case 'install':
-                console.log(`  ${(0, theme_1.brand)('→')} Run: ${(0, theme_1.brandBold)('npx codymaster add --all')}\n`);
+                console.log(`  ${(0, theme_1.brand)('→')} Run: ${(0, theme_1.brandBold)('bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all')}\n`);
                 break;
             case 'profile':
                 console.log((0, hooks_1.formatProfileSummary)(profile));

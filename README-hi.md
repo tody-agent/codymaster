@@ -200,43 +200,41 @@ flowchart LR
 
 ## 🚀 1-मिनट इंस्टालेशन
 
-### NPM (यूनिवर्सल, इंटरैक्टिव सेटअप)
+### 1. एआई कौशल इंस्टॉल करें (सभी प्लेटफॉर्म)
+
+एक कमांड आपके वातावरण में सभी 35 कौशल स्थापित करता है। यह Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode आदि का समर्थन करता है:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+```
+
+*Cursor IDE उपयोगकर्ताओं के लिए, आप सीधे अपने चैट में `/add-plugin cody-master` टाइप कर सकते हैं।*
+
+### 2. डैशबोर्ड इंस्टॉल करें (वैकल्पिक लेकिन अनुशंसित)
+
+अपने हैम्स्टर Cody 🐹 के साथ प्रगति को ट्रैक करें, कार्यों को प्रबंधित करें।
+
 ```bash
 npm install -g codymaster
-codymaster
-```
-*Claude Code, Cursor, Gemini और अन्य के लिए स्वचालित रूप से पता लगाता है और स्थापित करता है।*
-
-### Claude Code (अनुशंसित)
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
-```
-*या: `claude plugin marketplace add tody-agent/codymaster` → `claude plugin install cm@codymaster`*
-
-### Cursor IDE
-```
-/add-plugin cody-master
-
-### Gemini CLI / Antigravity
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
+cm
 ```
 
-<details>
-<summary><b>अन्य प्लेटफॉर्म्स: Codex, OpenCode, Kiro, Copilot, Windsurf, Cline</b></summary>
+यह CLI लंबे कोडिंग सत्रों के दौरान आपको व्यवस्थित रखेगा!
 
-```bash
-# Universal: clone once, copy to any platform
-git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
+```text
+    ( . \ --- / . )
+     /   ^   ^   \        Hi! I'm Cody 🐹
+    (      u      )        Your smart coding companion.
+     |  \ ___ /  |
+      '--w---w--'
 
-# Then drop skills into your platform's directory:
-cp -r ~/.cody-master/skills/* .cursor/skills/
-cp -r ~/.cody-master/skills/* .codex/skills/
-cp -r ~/.cody-master/skills/* .kiro/steering/
-cp -r ~/.cody-master/skills/* .opencode/skills/
-cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
+│
+◆  Quick menu
+│  ● 📊  Dashboard (Start & open)
+│  ○ 📋  My Tasks
+│  ○ 📈 Status
+│  ○ 🧩  Browse Skills
 ```
-</details>
 
 ---
 

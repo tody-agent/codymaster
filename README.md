@@ -213,83 +213,40 @@ If you prefer:
 
 ## 🚀 1-Minute Install
 
-### NPM (Universal, Interactive Onboarding)
+### 1. Install AI Skills (All Platforms)
+
+One command installs all 35 skills to your environment. Supports Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, and more:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+```
+
+*For Cursor IDE users, you can also just type `/add-plugin cody-master` in your agent chat.*
+
+### 2. Install Mission Control Dashboard (Optional but Recommended)
+
+Visualize your progress, manage tasks, and track your 10x coding streak with Cody the Hamster 🐹.
 
 ```bash
 npm install -g codymaster
-codymaster
+cm
 ```
 
-The CLI will greet you with Cody the Hamster 🐹 and guide you through a **5-step self-onboarding**:
+The CLI will greet you and keep you organized on your long coding sessions!
 
-```
+```text
     ( . \ --- / . )
      /   ^   ^   \        Hi! I'm Cody 🐹
     (      u      )        Your smart coding companion.
      |  \ ___ /  |
       '--w---w--'
 
-  Step 1 of 5  ● ○ ○ ○ ○
-
-◆  What should I call you?
-│  _
-
-◆  Where do you code?         ← 9 platforms supported!
-│  ● ✦  Google Antigravity (Gemini)
-│  ○ 🟣 Claude Code
-│  ○ ⬡  Cursor
-│  ○ 🌊 Windsurf
-│  ○ 🔶 Cline / RooCode
-│  ○ 📦 OpenCode
-│  ○ 🪁 Kiro
-│  ○ 🤖 GitHub Copilot
-│  ○ 🔧 Other / Not sure
-```
-
-### Claude Code
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
-```
-
-*Or: `claude plugin marketplace add tody-agent/codymaster` → `claude plugin install cm@codymaster`*
-
-### Cursor IDE
-
-```
-/add-plugin cody-master
-```
-
-### Gemini CLI / Antigravity
-
-```bash
-# Clone and install skills
-git clone --depth 1 https://github.com/tody-agent/codymaster.git ~/.cody-master
-cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
-```
-
-*Or use the auto-installer:*
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
-```
-
-<details>
-<summary><b>Other Platforms: Cline, OpenCode, Kiro, Copilot, Windsurf</b></summary>
-
-```bash
-# Universal: clone once, copy to any platform
-git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
-
-# Then drop skills into your platform's directory:
-cp -r ~/.cody-master/skills/* .cursor/skills/
-cp -r ~/.cody-master/skills/* .cline/skills/
-cp -r ~/.cody-master/skills/* .kiro/steering/
-cp -r ~/.cody-master/skills/* .opencode/skills/
-cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
-
-# GitHub Copilot: add to copilot-instructions.md
-cat ~/.cody-master/AGENTS.md >> .github/copilot-instructions.md
+│
+◆  Quick menu
+│  ● 📊  Dashboard (Start & open)
+│  ○ 📋  My Tasks
+│  ○ 📈 Status
+│  ○ 🧩  Browse Skills
 ```
 
 </details>

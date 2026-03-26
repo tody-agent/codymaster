@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ════════════════════════════════════════════════════════════════
-#  CodyMaster Skills Kit v4.1.3 — Universal Installer
+#  CodyMaster Skills Kit v4.3.0 — Universal Installer
 #  Inspired by: npx skills add (vercel-labs/skills)
 #
 #  Usage:
@@ -24,7 +24,7 @@ C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'
 
 REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
-VERSION="4.1.3"
+VERSION="4.3.0"
 SCOPE="user"   # default scope for Claude Code
 
 # ── i18n ────────────────────────────────────────────────────────
@@ -478,8 +478,8 @@ if [[ "$1" == "--copilot" ]]; then
   echo ""
   echo -e "${G}${BOLD}GitHub Copilot — Installing Cody Master${NC}"
   echo ""
-  echo -e "  Please use the Node CLI to automatically add skills to copilot-instructions.md:"
-  echo -e "  ${C}npx codymaster add --all --platform copilot${NC}"
+  echo -e "  Please manually add skills context to copilot-instructions.md:"
+  echo -e "  ${C}cat ~/.cody-master/skills/cm-planning/SKILL.md >> .github/copilot-instructions.md${NC}"
   exit 0
 fi
 

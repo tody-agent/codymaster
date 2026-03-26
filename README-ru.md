@@ -200,43 +200,41 @@ flowchart LR
 
 ## 🚀 Установка за 1 минуту
 
-### NPM (Универсальная установка)
+### 1. Установка AI-навыков (Все платформы)
+
+Одна команда устанавливает все 35 навыков в вашу среду. Поддерживает Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode и многие другие платформы:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+```
+
+*Пользователи Cursor IDE также могут просто ввести `/add-plugin cody-master` в чате агента.*
+
+### 2. Установка панели управления (Опционально, но рекомендуется)
+
+Визуализируйте свой прогресс, управляйте задачами и отслеживайте свои достижения в кодинге с хомяком Cody 🐹.
+
 ```bash
 npm install -g codymaster
-codymaster
-```
-*Автоматически обнаруживает и устанавливает для Claude Code, Cursor, Gemini и других.*
-
-### Claude Code (Рекомендуется)
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
-```
-*Или: `claude plugin marketplace add tody-agent/codymaster` → `claude plugin install cm@codymaster`*
-
-### Cursor IDE
-```
-/add-plugin cody-master
-
-### Gemini CLI / Antigravity
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
+cm
 ```
 
-<details>
-<summary><b>Другие платформы: Codex, OpenCode, Kiro, Copilot, Windsurf, Cline</b></summary>
+CLI поприветствует вас и поможет организовать долгие сессии кодинга!
 
-```bash
-# Universal: clone once, copy to any platform
-git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
+```text
+    ( . \ --- / . )
+     /   ^   ^   \        Hi! I'm Cody 🐹
+    (      u      )        Your smart coding companion.
+     |  \ ___ /  |
+      '--w---w--'
 
-# Then drop skills into your platform's directory:
-cp -r ~/.cody-master/skills/* .cursor/skills/
-cp -r ~/.cody-master/skills/* .codex/skills/
-cp -r ~/.cody-master/skills/* .kiro/steering/
-cp -r ~/.cody-master/skills/* .opencode/skills/
-cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
+│
+◆  Quick menu
+│  ● 📊  Dashboard (Start & open)
+│  ○ 📋  My Tasks
+│  ○ 📈 Status
+│  ○ 🧩  Browse Skills
 ```
-</details>
 
 ---
 

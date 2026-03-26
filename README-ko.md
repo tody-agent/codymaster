@@ -200,43 +200,41 @@ flowchart LR
 
 ## 🚀 1분 설치
 
-### NPM (유니버설, 대화형 설정)
+### 1. AI 스킬 설치 (모든 플랫폼)
+
+단일 명령어로 35개의 스킬을 환경에 설치합니다. Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode 등을 지원합니다:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+```
+
+*Cursor IDE 사용자의 경우 에이전트 채팅에서 `/add-plugin cody-master`를 입력해도 됩니다.*
+
+### 2. 미션 컨트롤 대시보 설치 (선택 사항이지만 권장됨)
+
+햄스터 Cody 🐹와 함께 진행 상황을 시각화하고 작업을 관리하며 10배 코딩 기록을 추적하세요.
+
 ```bash
 npm install -g codymaster
-codymaster
-```
-*Claude Code, Cursor, Gemini 등을 자동으로 감지하고 설치합니다.*
-
-### Claude Code (권장)
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
-```
-*또는: `claude plugin marketplace add tody-agent/codymaster` → `claude plugin install cm@codymaster`*
-
-### Cursor IDE
-```
-/add-plugin cody-master
-
-### Gemini CLI / Antigravity
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
+cm
 ```
 
-<details>
-<summary><b>기타 플랫폼: Codex, OpenCode, Kiro, Copilot, Windsurf, Cline</b></summary>
+긴 코딩 세션 동안 CLI가 여러분을 맞이하고 체계적으로 유지하도록 도와줄 것입니다!
 
-```bash
-# Universal: clone once, copy to any platform
-git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
+```text
+    ( . \ --- / . )
+     /   ^   ^   \        Hi! I'm Cody 🐹
+    (      u      )        Your smart coding companion.
+     |  \ ___ /  |
+      '--w---w--'
 
-# Then drop skills into your platform's directory:
-cp -r ~/.cody-master/skills/* .cursor/skills/
-cp -r ~/.cody-master/skills/* .codex/skills/
-cp -r ~/.cody-master/skills/* .kiro/steering/
-cp -r ~/.cody-master/skills/* .opencode/skills/
-cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
+│
+◆  Quick menu
+│  ● 📊  Dashboard (Start & open)
+│  ○ 📋  My Tasks
+│  ○ 📈 Status
+│  ○ 🧩  Browse Skills
 ```
-</details>
 
 ---
 

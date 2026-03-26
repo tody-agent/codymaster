@@ -200,43 +200,41 @@ flowchart LR
 
 ## 🚀 1 分钟安装
 
-### NPM (通用，交互式安装)
+### 1. 安装 AI 技能 (所有平台)
+
+一条命令即可将所有 35 项技能安装到您的环境中。支持 Claude Code、Gemini CLI、Cursor、Aider、Windsurf、Cline、OpenCode 等更多平台：
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+```
+
+*对于 Cursor IDE 用户，您也可以直接在智能体聊天中输入 `/add-plugin cody-master`。*
+
+### 2. 安装控制台仪表盘 (可选但推荐)
+
+使用仓鼠 Cody 🐹 可视化您的进度、管理任务并追踪您的 10 倍编码连续记录。
+
 ```bash
 npm install -g codymaster
-codymaster
-```
-*自动检测并安装 Claude Code、Cursor、Gemini 等平台。*
-
-### Claude Code（推荐）
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --claude
-```
-*或：`claude plugin marketplace add tody-agent/codymaster` → `claude plugin install cm@codymaster`*
-
-### Cursor IDE
-```
-/add-plugin cody-master
-
-### Gemini CLI / Antigravity
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --antigravity
+cm
 ```
 
-<details>
-<summary><b>其他平台：Codex, OpenCode, Kiro, Copilot, Windsurf, Cline</b></summary>
+CLI 会在漫长的编码会话中与您打招呼并帮助您保持条理！
 
-```bash
-# Universal: clone once, copy to any platform
-git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
+```text
+    ( . \ --- / . )
+     /   ^   ^   \        Hi! I'm Cody 🐹
+    (      u      )        Your smart coding companion.
+     |  \ ___ /  |
+      '--w---w--'
 
-# Then drop skills into your platform's directory:
-cp -r ~/.cody-master/skills/* .cursor/skills/
-cp -r ~/.cody-master/skills/* .codex/skills/
-cp -r ~/.cody-master/skills/* .kiro/steering/
-cp -r ~/.cody-master/skills/* .opencode/skills/
-cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
+│
+◆  Quick menu
+│  ● 📊  Dashboard (Start & open)
+│  ○ 📋  My Tasks
+│  ○ 📈 Status
+│  ○ 🧩  Browse Skills
 ```
-</details>
 
 ---
 
