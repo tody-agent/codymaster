@@ -33,7 +33,7 @@ ALWAYS trigger for: chain, pipeline, workflow, multi-step, end-to-end,
 Step names use short-form identifiers — the `cm-` prefix is stripped by convention.
 Full skill names: `cm-brainstorm-idea`, `cm-planning`, `cm-tdd`, `cm-execution`, `cm-quality-gate`,
 `cm-safe-deploy`, `cm-debugging`, `cm-content-factory`, `cm-ads-tracker`, `cm-project-bootstrap`,
-`cm-code-review`. Exception: `cro-methodology` has no `cm-` prefix.
+`cm-code-review`. All skills now use the `cm-` prefix convention.
 
 ## Built-in Chains
 
@@ -44,7 +44,7 @@ Full skill names: `cm-brainstorm-idea`, `cm-planning`, `cm-tdd`, `cm-execution`,
 `debugging → tdd → quality-gate`
 
 ### 📝 content-launch (3 steps)
-`content-factory → ads-tracker → cro-methodology`
+`content-factory → ads-tracker → cm-cro-methodology`
 
 ### 🏗️ new-project (6 steps)
 `project-bootstrap → planning → tdd → execution → quality-gate → safe-deploy`

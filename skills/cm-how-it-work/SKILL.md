@@ -121,7 +121,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 |-------|-----------------|
 | `cm-content-factory` | Self-learning content engine: research → generate → audit → deploy. |
 | `cm-ads-tracker` | Conversion tracking setup: GTM, Meta CAPI, TikTok, Google Ads. |
-| `cro-methodology` | CRO audit: funnel mapping → persuasion assets → A/B test design. |
+| `cm-cro-methodology` | CRO audit: funnel mapping → persuasion assets → A/B test design. |
 
 ### 🎯 Orchestration
 | Skill | Primary Function |

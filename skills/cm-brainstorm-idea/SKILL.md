@@ -62,23 +62,24 @@ Read and map the existing system:
 
 ```
 ✅ DO:
-- Read AGENTS.md for project overview
-- Scan project structure (list_dir)
-- Read key config files (package.json, wrangler.toml, etc.)
-- Identify tech stack, patterns, dependencies
-- Check test coverage and existing quality
+- Read .cm/skeleton.md for instant overview. If missing, run `cm index skeleton`.
+- Read .cm/architecture.mmd for an instant architectural diagram.
+- IF codegraph is available (`codegraph status`):
+  → Use `codegraph_files` to summarize project.
+  → Use graph to identify most connected modules and dead code.
+- Read AGENTS.md and key config files.
+- Check test coverage and existing quality.
 
 📋 OUTPUT: Codebase Summary
-- Tech stack: [...]
-- Architecture pattern: [...]
-- Key dependencies: [...]
-- Test coverage: [high/medium/low/none]
-- Code health signals: [...]
+- Tech stack & Architecture: [...]
+- Key dependencies & Test coverage: [...]
+- Code health & Codebase insights (from skeleton/codegraph): [...]
+- Present architecture diagram to user (if .cm/architecture.mmd exists).
 - Corpus size: [total source files] src / [total doc files] docs
 
-🔍 SIZE CHECK (auto — triggers cm-deep-search):
+🔍 SIZE CHECK (auto — triggers cm-deep-search/cm-codeintell):
   IF docs/ > 50 files OR source > 200 files:
-    → Suggest: "This project is quite large. See cm-deep-search to setup semantic search with qmd."
+    → Suggest: "This project is quite large. Run `cm index skeleton` and see cm-deep-search to setup semantic search."
     → Non-blocking: continue Phase 1 regardless of user response
 ```
 
@@ -391,13 +392,14 @@ Date: [date]
 | Skill | Relationship |
 |-------|-------------|
 | `cm-project-bootstrap` | UPSTREAM: Product must exist before brainstorming improvements |
+| `cm-codeintell` | USED IN Phase 1a: Instant structural overview + architecture diagram + CodeGraph |
 | `cm-ui-preview` | USED IN Phase 4.5: Visual preview with Stitch or Pencil (auto-detected) |
 | `cm-deep-search` | TRIGGERED IN Phase 1a: Suggests qmd when project corpus exceeds thresholds |
 | `cm-planning` | DOWNSTREAM: Receives qualified output, writes implementation plan |
 | `cm-execution` | DOWNSTREAM: Executes the plan that originated from this analysis |
 | `cm-ux-master` | USED IN Phase 1 & 3: UX assessment and design ideation |
 | `cm-debugging` | REDIRECT: Simple bugs don't need brainstorming |
-| `cro-methodology` | COMPLEMENT: CRO analysis for conversion-specific improvements |
+| `cm-cro-methodology` | COMPLEMENT: CRO analysis for conversion-specific improvements |
 | `cm-jtbd` | COMPLEMENT: JTBD research for user-need discovery |
 
 ### Lifecycle Position

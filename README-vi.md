@@ -58,7 +58,7 @@ graph TD
     A["🧠 CodyMaster Kit"] --> B["👨‍💻 Senior Developer<br/><i>cm-tdd · cm-debugging · cm-code-review</i>"]
     A --> C["🎨 UX Lead<br/><i>cm-design-system · cm-ux-master · cm-ui-preview</i>"]
     A --> D["📋 Product Manager<br/><i>cm-planning · cm-brainstorm-idea · cm-jtbd</i>"]
-    A --> E["🔒 DevOps Engineer<br/><i>cm-safe-deploy · cm-secret-shield · cm-identity-guard</i>"]
+    A --> E["🔒 DevOps Engineer<br/><i>cm-safe-deploy · cm-secret-shield · cm-security-gate · cm-identity-guard</i>"]
     A --> F["📝 Technical Writer<br/><i>cm-dockit · cm-content-factory</i>"]
     A --> G["📈 Growth Marketer<br/><i>cm-ads-tracker · cro-methodology</i>"]
     style A fill:#fbc531,stroke:#e1b12c,color:#2f3640,stroke-width:3px
@@ -112,7 +112,7 @@ flowchart LR
         A["cm-tdd<br/>Viết kiểm thử trước"] --> B["cm-code-review"]
     end
     subgraph "Lớp 2: Secure"
-        B --> C["cm-secret-shield<br/>Quét rò rỉ"] --> D["cm-identity-guard<br/>Đúng tài khoản"]
+        B --> C["cm-secret-shield<br/>Quét rò rỉ"] --> S["cm-security-gate<br/>Quét bảo mật"] --> D["cm-identity-guard<br/>Đúng tài khoản"]
     end
     subgraph "Lớp 3: Isolate"
         D --> E["cm-git-worktrees<br/>Nhánh cô lập"]
@@ -232,7 +232,7 @@ cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/
 | Lĩnh vực | Kỹ năng |
 |--------|--------|
 | 🔧 **Kỹ thuật** | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` |
-| ⚙️ **Vận hành** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
+| ⚙️ **Vận hành** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
 | 🎨 **Sản phẩm & UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **Tăng trưởng/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
 | 🎯 **Điều phối** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` |

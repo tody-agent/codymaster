@@ -20,6 +20,9 @@ EXPERIENCES_FILE="${BRAIN_DIR}/experiences.md"
 HASH_FILE="${BRAIN_DIR}/.brain-hash"
 SKILLS_DIR="${HOME}/.gemini/antigravity/skills"
 NOTEBOOK_ALIAS="codymaster"
+GRADUATED_FILE="${BRAIN_DIR}/graduated_wisdom.md"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GRADUATE_SCRIPT="${SCRIPT_DIR}/graduate_wisdom.py"
 
 # --- Helpers ---
 info()  { echo "🧠 $*"; }
@@ -54,6 +57,11 @@ save_hash() {
 }
 
 # --- Commands ---
+
+cmd_graduate() {
+  info "Graduating proven wisdom from local .cm/ folder..."
+  python3 "$GRADUATE_SCRIPT" || warn "Graduation script encountered an error."
+}
 
 cmd_compile() {
   ensure_dir
@@ -108,6 +116,16 @@ HEADER
     cat "$EXPERIENCES_FILE" >> "$BRAIN_FILE"
     local exp_count=$(grep -c "^## Experience:" "$EXPERIENCES_FILE" 2>/dev/null || echo 0)
     info "  → $exp_count experiences included"
+  fi
+
+  # Section 3b: Graduated Project Wisdom
+  if [ -f "$GRADUATED_FILE" ]; then
+    echo "---" >> "$BRAIN_FILE"
+    echo "# Graduated Project Wisdom" >> "$BRAIN_FILE"
+    echo "" >> "$BRAIN_FILE"
+    cat "$GRADUATED_FILE" >> "$BRAIN_FILE"
+    local grad_count=$(grep -c "\*\*ID:\*\*" "$GRADUATED_FILE" 2>/dev/null || echo 0)
+    info "  → $grad_count graduated items included"
   fi
 
   # Section 4: Project identity (if exists)
@@ -169,6 +187,7 @@ cmd_upload() {
 }
 
 cmd_sync() {
+  cmd_graduate
   cmd_compile
   if [ "$(current_hash)" != "$(saved_hash)" ]; then
     echo ""
@@ -273,6 +292,13 @@ cmd_status() {
   local skill_count=$(find "$SKILLS_DIR" -maxdepth 2 -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' ')
   echo "📦 Skills found: $skill_count"
 
+  if [ -f "$GRADUATED_FILE" ]; then
+    local gc=$(grep -c "\*\*ID:\*\*" "$GRADUATED_FILE" 2>/dev/null || echo 0)
+    echo "🎓 Graduated:    $gc items"
+  else
+    echo "🎓 Graduated:    0 items"
+  fi
+
   # NLM status (if available)
   if command -v nlm &>/dev/null; then
     echo ""
@@ -305,18 +331,102 @@ cmd_init() {
   cmd_compile
   cmd_upload
 
-  info "✅ Setup complete! Your brain is ready."
+  info "✅ Setup complete! Your master brain is ready."
   echo ""
   echo "Quick commands:"
   echo "  brain-sync.sh status    — Check status"
   echo "  brain-sync.sh lesson    — Add lesson learned"
   echo "  brain-sync.sh sync      — Recompile & upload"
+  echo "  brain-sync.sh init-project — Create a project-specific brain (Dual-Brain)"
   echo "  nlm notebook query codymaster 'your question'"
+}
+
+cmd_init_project() {
+  check_nlm
+  check_auth
+  
+  local project_name="${PWD##*/}"
+  info "Initializing Project Brain for: $project_name"
+  
+  mkdir -p .cm
+  if [ -f ".cm/notebook_id" ]; then
+    warn "Project Brain already initialized. ID: $(cat .cm/notebook_id)"
+    return 0
+  fi
+  
+  local output=$(nlm notebook create "Project $project_name" 2>/dev/null)
+  
+  # output has format:
+  # ✓ Created notebook: Project test
+  #   ID: 7a97...
+  local nb_id=$(echo "$output" | grep "ID:" | awk '{print $2}')
+  
+  if [ -z "$nb_id" ]; then
+    error "Failed to create Project Brain. Output: $output"
+  fi
+  
+  echo "$nb_id" > .cm/notebook_id
+  info "✅ Project Brain created! ID saved in .cm/notebook_id"
+  echo "Use 'brain-sync.sh sync-project' to upload your local docs."
+}
+
+cmd_sync_project() {
+  check_nlm
+  check_auth
+  
+  [ -f ".cm/notebook_id" ] || error "Project Brain not initialized. Run 'init-project' first."
+  local nb_id=$(cat .cm/notebook_id)
+  
+  info "Compiling project documents..."
+  local temp_compile=".cm/project_context.md"
+  mkdir -p .cm
+  
+  echo "# Project Context: ${PWD##*/}" > "$temp_compile"
+  echo "Compiled: $(date +%Y-%m-%d' '%H:%M)" >> "$temp_compile"
+  echo "" >> "$temp_compile"
+  
+  local doc_count=0
+  
+  # Search for docs and READMEs
+  for md in $(find . -maxdepth 3 -type f -name "*.md" ! -path "*/node_modules/*" ! -path "*/.git/*" ! -path "*/.cm/*" 2>/dev/null); do
+    echo "## File: $md" >> "$temp_compile"
+    cat "$md" >> "$temp_compile"
+    echo "" >> "$temp_compile"
+    doc_count=$((doc_count + 1))
+  done
+  
+  info "  → $doc_count markdown files compiled."
+  if [ $doc_count -eq 0 ]; then
+    warn "No local markdown files found to sync."
+    return 0
+  fi
+  
+  info "Uploading Context to Project Brain ($nb_id)..."
+  
+  # Delete old Project Context source and re-add 
+  local existing=$(nlm source list "$nb_id" --quiet 2>/dev/null | head -1)
+  if [ -n "$existing" ]; then
+    local source_id=$(nlm source list "$nb_id" --json 2>/dev/null | \
+      python3 -c "import sys,json; sources=json.load(sys.stdin); [print(s['id']) for s in sources if 'Project Context' in s.get('title','')]" 2>/dev/null | head -1)
+    if [ -n "$source_id" ]; then
+      nlm source delete "$source_id" --confirm 2>/dev/null || true
+      sleep 2
+    fi
+  fi
+  
+  nlm source add "$nb_id" \
+    --text "$(cat "$temp_compile")" \
+    --title "Project Context — Local Docs"
+    
+  info "✅ Project Brain synced successfully!"
 }
 
 # --- Main ---
 case "${1:-help}" in
-  compile)    cmd_compile ;;
+  graduate)     cmd_graduate ;;
+  init-project) cmd_init_project ;;
+  sync-project) cmd_sync_project ;;
+  compile)      cmd_compile ;;
   upload)     cmd_upload ;;
   sync)       cmd_sync ;;
   lesson)     cmd_lesson "${2:-}" ;;
@@ -329,11 +439,14 @@ case "${1:-help}" in
     echo "Usage: brain-sync.sh <command>"
     echo ""
     echo "Commands:"
-    echo "  init        First-time setup (create notebook + compile + upload)"
-    echo "  compile     Compile brain.md from skills + lessons + experiences"
-    echo "  upload      Upload brain.md to NotebookLM"
-    echo "  sync        Compile + upload if changed (asks confirmation)"
-    echo "  lesson      Add a lesson learned"
+    echo "  init          First-time setup (create master notebook + compile + upload)"
+    echo "  init-project  Create an isolated Project Brain for the current directory"
+    echo "  graduate      Extract proven local learnings & decisions to global limits"
+    echo "  compile       Compile brain.md from skills + lessons + experiences"
+    echo "  upload        Upload brain.md to NotebookLM"
+    echo "  sync          Compile + upload if changed (asks confirmation)"
+    echo "  sync-project  Merge local markdown files and push to isolated Project Brain"
+    echo "  lesson        Add a lesson learned"
     echo "  experience  Add a coding experience"
     echo "  status      Show brain status"
     ;;

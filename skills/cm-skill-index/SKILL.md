@@ -53,6 +53,8 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `cm-test-gate` | test setup, CI, test infrastructure | Setup 4-layer test gate for any project type |
 | `cm-code-review` | review, PR, feedback, branch | Request reviews, handle feedback, complete branches |
 | `cm-codeintell` | understand codebase, call graph, impact, architecture, what calls X, what breaks | AST knowledge graph + architecture diagrams + smart context (30% fewer tokens) |
+| `cm-reactor` | rewrite, pivot, migrate, direction change, architecture wrong, restructure | TRIZ-powered strategic codebase re-direction — 5-phase incremental migration |
+| `cm-clean-code` | clean, dead code, refactor, code smell, DRY, SOLID, naming, messy | 7-point hygiene gate: dead code, imports, naming, SRP, DRY, nesting |
 
 ### Operations Swarm ⚙️
 
@@ -87,7 +89,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 |-------|----------|---------|
 | `cm-content-factory` | content, blog, article, marketing | AI content engine: research → generate → audit → deploy |
 | `cm-ads-tracker` | pixel, tracking, GTM, Meta, TikTok, Google Ads | Complete conversion tracking setup across platforms |
-| `cro-methodology` | conversion, A/B test, landing page, funnel | CRO audit: funnel mapping → persuasion → objection handling |
+| `cm-cro-methodology` | conversion, A/B test, landing page, funnel | CRO audit: funnel mapping → persuasion → objection handling |
 
 ### Orchestration Swarm 🎯
 
@@ -121,7 +123,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `medical-research` *(planned)* | medical, OB/GYN, clinical, evidence-based | Evidence-based medical writing with citation standards |
 | `tailwind-mastery` *(planned)* | Tailwind, utility-first, responsive, v4 | Tailwind CSS utilities, responsive, accessibility |
 | `pandasai-analytics` *(planned)* | DataFrame, analytics, forecast, time-series | Natural language DataFrame analysis and visual reports |
-| `google-forms-sheet` *(planned)* | Google Form, sheet, App Script | Form-to-sheet integration with auto-retry |
+| `cm-google-form` *(planned)* | Google Form, sheet, App Script | Form-to-sheet integration with auto-retry |
 
 ### Community Skills Registry 🌐
 
@@ -138,7 +140,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `react-native-best-practices` | callstackincubator/agent-skills | react native, expo, mobile |
 | `nextjs-app-router-patterns` | wshobson/agents | next.js, app router, RSC |
 | `react:components` | google-labs-code/stitch-skills | react components, stitch |
-| `frontend-design` | anthropics/skills | frontend architecture, patterns |
+| `cm-ux-master` | UI/UX, design system, frontend | UI/UX design intelligence + Harvester v4 |
 | `angular-directives` | analogjs/angular-skills | angular, directives, components |
 | `svelte-best-practices` | community | svelte, sveltekit |
 | `astro-best-practices` | community | astro, static site, islands |
@@ -304,14 +306,14 @@ view_file /path/to/skills/cm-tdd/SKILL.md
 For dynamic agent selection (Phase 3), skills map to domains:
 
 ```yaml
-engineering: [cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review, cm-codeintell]
+engineering: [cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review, cm-codeintell, cm-reactor, cm-clean-code]
 operations: [cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-safe-i18n]
 security: [cm-secret-shield]
 product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-ui-preview, cm-dockit, cm-project-bootstrap, cm-jtbd]
-growth: [cm-content-factory, cm-ads-tracker, cro-methodology]
+growth: [cm-content-factory, cm-ads-tracker, cm-cro-methodology]
 orchestration: [cm-execution, cm-continuity, cm-skill-mastery, cm-skill-chain, cm-deep-search, cm-readit, cm-how-it-work]
 commands: [cm-start, cm-dashboard, cm-status]
-# planned (no SKILL.md yet): mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, google-forms-sheet
+# planned (no SKILL.md yet): mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, cm-google-form
 ```
 
 ## The Bottom Line

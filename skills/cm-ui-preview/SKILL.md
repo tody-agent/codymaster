@@ -126,7 +126,8 @@ Structure your prompt exactly like this:
    ```markdown
    🎨 **UI Preview Generated!**
 
-   - **View & Edit:** [Google Stitch Link]
+   - **Stitch Project ID:** `<id>`
+   - **View & Edit:** [Open in Google Stitch](https://stitch.withgoogle.com/projects/<id>)
    - **AI Insights:** [Any suggestions or notes returned by Stitch]
 
    What's next?

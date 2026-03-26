@@ -68,7 +68,7 @@ graph TD
     A["🧠 CodyMaster Kit"] --> B["👨‍💻 Senior Developer<br/><i>cm-tdd · cm-debugging · cm-code-review</i>"]
     A --> C["🎨 UX Lead<br/><i>cm-design-system · cm-ux-master · cm-ui-preview</i>"]
     A --> D["📋 Product Manager<br/><i>cm-planning · cm-brainstorm-idea · cm-jtbd</i>"]
-    A --> E["🔒 DevOps Engineer<br/><i>cm-safe-deploy · cm-secret-shield · cm-identity-guard</i>"]
+    A --> E["🔒 DevOps Engineer<br/><i>cm-safe-deploy · cm-secret-shield · cm-security-gate · cm-identity-guard</i>"]
     A --> F["📝 Technical Writer<br/><i>cm-dockit · cm-content-factory</i>"]
     A --> G["📈 Growth Marketer<br/><i>cm-ads-tracker · cro-methodology</i>"]
     style A fill:#fbc531,stroke:#e1b12c,color:#2f3640,stroke-width:3px
@@ -104,13 +104,14 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
-### 🧠 A Brain That Learns From Mistakes
+### 🧠 Dual-Brain Architecture: Semantic + Structural
 
-Your AI doesn't just execute — it **remembers and improves**:
+Your AI doesn't just execute — it **understands and remembers** using a multi-scale Dual-Brain system:
 
-- **`cm-continuity`** — Working memory across sessions. AI remembers what went wrong and never repeats the same mistake
-- **`cm-skill-mastery`** — Doesn't know how to do something? It **finds the right skill automatically** and upgrades itself
-- **`cm-deep-search`** — Lost in a 200+ file codebase? Semantic search across everything in seconds
+- **Semantic Memory (`qmd`)** — Understands the *meaning* and *context* of docs and code.
+- **Structural Memory (`CodeGraph`)** — Understands the *AST structure*, *call trees*, and *impact radius*.
+- **`cm-continuity`** — Working memory across sessions. AI never repeats the same mistake.
+- **`cm-deep-search`** — Lost in a 200+ file codebase? Semantic search across everything in seconds.
 
 ### 🛡️ Multi-Layer Protection (Your Codebase Won't Get Destroyed)
 
@@ -122,7 +123,7 @@ flowchart LR
         A["cm-tdd<br/>Tests First"] --> B["cm-code-review"]
     end
     subgraph "Layer 2: Secure"
-        B --> C["cm-secret-shield<br/>Leak Scan"] --> D["cm-identity-guard<br/>Right Account"]
+        B --> C["cm-secret-shield<br/>Leak Scan"] --> S["cm-security-gate<br/>Vuln Scan"] --> D["cm-identity-guard<br/>Right Account"]
     end
     subgraph "Layer 3: Isolate"
         D --> E["cm-git-worktrees<br/>Isolated Branch"]
@@ -166,7 +167,7 @@ No more guessing. Track every task, every agent, every deployment on a real-time
 | -------------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
 | **Integration**      | Each skill is standalone, no shared context | 34 skills that chain, share memory, and communicate                   |
 | **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn      |
-| **Memory**           | Forgets everything between sessions         | 4-tier memory system: Working → Episodic → Semantic → Deep Search  |
+| **Memory**           | Forgets everything between sessions         | 5-tier Dual-Brain: Sensory → Working → Long-term → Semantic → Structural  |
 | **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
 | **Design**           | Random UI every time                        | Extracts & enforces design system + visual preview                    |
 | **Documentation**    | "Maybe write a README later"                | Auto-generates complete docs, SOPs, API refs from code                |
@@ -288,7 +289,7 @@ cat ~/.cody-master/AGENTS.md >> .github/copilot-instructions.md
 | Domain                    | Skills                                                                                                                                                          |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 🔧**Engineering**   | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review`                                                                             |
-| ⚙️**Operations**  | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                                             |
+| ⚙️**Operations**  | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                                             |
 | 🎨**Product & UX**  | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈**Growth/CRO**    | `cm-content-factory` `cm-ads-tracker` `cro-methodology`                                                                                                   |
 | 🎯**Orchestration** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work`                             |

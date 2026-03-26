@@ -38,26 +38,36 @@ All automation via `scripts/brain-sync.sh` — AI chỉ cần gọi script.
 
 # Instructions
 
-## Decision Gate — Cloud vs Local
+## The Dual-Brain Architecture
 
-Khi codebase lớn (>200 src hoặc >50 docs), hỏi user:
+CodyMaster uses a **Dual-Brain** approach to scale memory across multiple projects without context collapse:
 
-| Option | Tool | Best for |
-|--------|------|----------|
-| ☁️ Cloud | NotebookLM | Cross-machine, podcast, flashcards |
-| 💻 Local | qmd (cm-deep-search) | Offline, nhanh, ổn định |
-| 🔀 **Hybrid** (default) | Cả hai | Local = code, Cloud = wisdom |
+1. **Master Brain (`codymaster`)**: Global brain storing Meta-Learnings, proven Architecture Decisions, and universal patterns. Evolved via the "Rule of 3" (knowledge graduation).
+2. **Project Brain (Isolated)**: Optional local brain created per project to hold internal PRDs, APIs, and local code context from `./docs`.
 
-Nếu ko chọn → **Hybrid**: qmd cho code search, NotebookLM cho high-value only.
+| Level | Goal | Query Command |
+|-------|------|---------------|
+| **Master** | Tìm pattern chung | `nlm notebook query codymaster "..."` |
+| **Project** | Tìm context domain | `nlm notebook query $(cat .cm/notebook_id) "..."` |
 
-## First-Time Setup
+> 🤖 **AI Rule:** Tự đưa quyết định khi hỏi: Hỏi `codymaster` cho các giải pháp mang tính hệ thống chung. Hỏi qua `.cm/notebook_id` cho các business logic đặc thù dự án đang làm.
+
+## Master Brain Setup (Global)
 
 ```bash
-# 1. Install CLI (third-party, user quyết định)
+# 1. Install CLI
 uv tool install notebooklm-mcp-cli
 
-# 2. One command setup: login → create notebook → compile → upload
+# 2. Setup Master Brain
 bash ~/.gemini/antigravity/skills/cm-notebooklm/scripts/brain-sync.sh init
+```
+
+## Project Brain Setup (Local - Optional)
+
+Nếu dự án đủ lớn và nhiều doc:
+```bash
+# Tạo Project Brain riêng cho thư mục hiện tại
+bash ~/.gemini/antigravity/skills/cm-notebooklm/scripts/brain-sync.sh init-project
 ```
 
 ## Daily Usage
@@ -73,13 +83,16 @@ bash $SCRIPT lesson "Tên bài học"
 bash $SCRIPT experience "Tên pattern"
 # → Edit ~/.codymaster/experiences.md → fill in details
 
-# Sync to cloud (compile + hash check + upload if changed)
+# Sync to Master Brain (Thêm rule of 3)
 bash $SCRIPT sync
+
+# Sync to Project Brain (Up tài liệu local docs/)
+bash $SCRIPT sync-project
 
 # Check status
 bash $SCRIPT status
 
-# Query brain
+# Query
 nlm notebook query codymaster "your question"
 ```
 

@@ -94,5 +94,5 @@ Save JTBD canvas to `docs/jtbd/jtbd-canvas-[date].md`.
 |-------|-------------|
 | `cm-brainstorm-idea` | UPSTREAM: JTBD feeds into strategic analysis |
 | `cm-planning` | DOWNSTREAM: Validated jobs inform feature plans |
-| `cro-methodology` | COMPLEMENT: JTBD objections → CRO objection handling |
+| `cm-cro-methodology` | COMPLEMENT: JTBD objections → CRO objection handling |
 | `cm-dockit` | OUTPUT: JTBD canvases are a document type in DocKit |
