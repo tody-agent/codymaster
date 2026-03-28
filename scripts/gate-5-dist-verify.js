@@ -8,30 +8,19 @@ const fs = require('fs');
 const path = require('path');
 
 const publicDir = 'public';
-const langs = ['en', 'vi', 'zh', 'ru', 'ko', 'hi'];
-const i18nNamespaces = ['common', 'home', 'pages', 'personas', 'skills', 'vs'];
-
 // Critical HTML pages
 const requiredHtml = [
-  'index.html',
-  'cli.html',
-  'faq.html',
-  'skills.html',
-  'story.html',
-  'start.html',
-  'playbook.html',
+  'dashboard/index.html',
 ];
 
 // Critical JS files
 const requiredJs = [
-  'js/kit.js',
-  'js/ga-events.js',
+  'dashboard/app.js',
 ];
 
 // Critical CSS files
 const requiredCss = [
-  'css/kit.css',
-  'css/home.css',
+  'dashboard/style.css',
 ];
 
 // Build required file list
@@ -52,12 +41,6 @@ for (const css of requiredCss) {
   required.push(path.join(publicDir, css));
 }
 
-// i18n files for all languages × namespaces
-for (const lang of langs) {
-  for (const ns of i18nNamespaces) {
-    required.push(path.join(publicDir, 'i18n', lang, `${ns}.json`));
-  }
-}
 
 // Check all required files
 const missing = required.filter(f => !fs.existsSync(f));

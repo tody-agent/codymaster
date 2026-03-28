@@ -1,7 +1,7 @@
 {
   "name": "codymaster",
-  "version": "4.3.0",
-  "description": "35 Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
+  "version": "4.4.0",
+  "description": "65 Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -20,11 +20,14 @@
     "start": "ts-node src/index.ts",
     "test:gate": "vitest run --reporter=verbose",
     "gate:secrets": "node scripts/gate-0-secrets.js",
+    "gate:fix": "node scripts/security-fixer.js --fix",
+    "gate:check": "node scripts/security-fixer.js",
     "gate:syntax": "node scripts/gate-1-syntax.js",
     "gate:dist": "node scripts/gate-5-dist-verify.js",
     "gate:smoke": "node scripts/gate-6-smoke-test.js",
     "deploy": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:dist && npm run gate:smoke",
-    "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'"
+    "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'",
+    "postinstall": "node scripts/postinstall.js"
   },
   "keywords": [
     "ai",
@@ -46,6 +49,7 @@
     "skills/",
     "adapters/",
     "commands/",
+    "public/",
     "README.md",
     "CHANGELOG.md",
     "install.sh"
@@ -65,6 +69,7 @@
     "@types/node": "^25.5.0",
     "@types/prompts": "^2.4.9",
     "acorn": "^8.16.0",
+    "jsdom": "^29.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"

@@ -6,11 +6,11 @@
 
 ### Your AI Agent is smart. CodyMaster makes it *wise*.
 
-**35 Skills · 11 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
+**60+ Skills · 11 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-4.3.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-35-success.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-60+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
@@ -58,7 +58,7 @@ But then reality hits:
 
 ## 🟢 The Solution: An Entire Senior Team in One Kit
 
-CodyMaster isn't just "another AI skills pack." It's **10+ years of product management experience + 6 months of battle-tested vibe coding**, distilled into 35 interconnected skills that work as a **single integrated system**.
+CodyMaster isn't just "another AI skills pack." It's **10+ years of product management experience + 6 months of battle-tested vibe coding**, distilled into 60+ interconnected skills that work as a **single integrated system**.
 
 When you install CodyMaster, you're not adding skills.
 **You're hiring an entire senior team:**
@@ -80,7 +80,7 @@ graph TD
 
 ## ⚡ What Makes CodyMaster Different
 
-Other skill packs give you loose tools. CodyMaster gives you an **interconnected operating system** for your AI.
+Other skill packs give you loose tools. CodyMaster gives you an **interconnected operating system** for your AI. CodyMaster provides 60+ skills that chain, share memory, and communicate.
 
 ### 🔄 Full Lifecycle Coverage (Idea → Production)
 
@@ -177,7 +177,7 @@ Track it all on the **Visual Dashboard** (`cm-dashboard`): No more guessing. Tra
 
 |                            | 😵 15 Random Skills                         | 🧠 CodyMaster                                                         |
 | -------------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
-| **Integration**      | Each skill is standalone, no shared context | 35 skills that chain, share memory, and communicate                   |
+| **Integration**      | Each skill is standalone, no shared context | 60+ skills that chain, share memory, and communicate                   |
 | **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn      |
 | **Memory**           | Forgets everything between sessions         | 5-tier Unified Brain: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain  |
 | **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
@@ -215,7 +215,7 @@ If you prefer:
 
 ### 1. Install AI Skills (All Platforms)
 
-One command installs all 35 skills to your environment. Supports Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, and more:
+One command installs all 60+ skills to your environment. Supports Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, and more:
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
@@ -253,7 +253,7 @@ The CLI will greet you and keep you organized on your long coding sessions!
 
 ---
 
-## 🧰 The 35-Skill Arsenal
+## 🧰 The 60+ Skill Arsenal
 
 | Domain                    | Skills                                                                                                                                                          |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -274,7 +274,7 @@ cm task add "..." → Add a task
 cm task list      → View tasks
 cm status         → Project health
 cm dashboard      → Open Mission Control
-cm list           → Browse 35 skills
+cm list           → Browse 60+ skills
 cm profile        → Your stats & achievements
 cm deploy <env>   → Record deployment
 ```
@@ -295,7 +295,7 @@ cm deploy <env>   → Record deployment
 
 **Tody Le** — Head of Product with 10+ years of experience. Can't write code. Used AI to build real products for 6 months straight. Every skill in this kit was born from a real failure that cost real time and real tears.
 
-> *"35 skills. Each skill is a lesson. Each lesson is a sleepless night. And now, you don't have to go through those nights."*
+> *"60+ skills. Each skill is a lesson. Each lesson is a sleepless night. And now, you don't have to go through those nights."*
 
 📖 [Read the full story →](https://cody.todyle.com/story)
 
@@ -305,7 +305,7 @@ cm deploy <env>   → Record deployment
 
 - 🌍 [Website](https://cody.todyle.com) — Overview & demos
 - 📖 [Documentation](https://cody.todyle.com/docs) — Full deep-dive
-- 🛠️ [Skills Reference](skills/) — Browse all 35 SKILL.md files
+- 🛠️ [Skills Reference](skills/) — Browse all 60+ SKILL.md files
 - 📖 [Our Story](https://cody.todyle.com/story) — Why this exists
 
 ---

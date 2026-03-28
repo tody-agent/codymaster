@@ -24,3 +24,5 @@ projects/**/__pycache__/
 projects/**/*.pyc
 projects/**/.venv/
 projects/**/node_modules/
+
+security-report.json

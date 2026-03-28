@@ -140,7 +140,7 @@ async function postInstallOnboarding(platform: string) {
       message: 'What would you like to do?',
       options: [
         { label: `${ICONS.dashboard}  Launch Dashboard`, value: 'dashboard', hint: `localhost:${DEFAULT_PORT}` },
-        { label: `${ICONS.skill}  Browse all 34 skills`, value: 'skills' },
+        { label: `${ICONS.skill}  Browse all 65 skills`, value: 'skills' },
         { label: `${ICONS.deploy}  Start with your AI`, value: 'invoke', hint: profile.platform || 'any agent' },
         { label: `${success('✓')}  Done`, value: 'done' },
       ],
@@ -229,7 +229,7 @@ async function showInteractiveMenu() {
       { label: `${ICONS.dashboard}  Dashboard`, value: 'dashboard', hint: isDashboardRunning() ? 'Open' : 'Start & open' },
       { label: `${ICONS.task}  My Tasks`, value: 'tasks', hint: `${taskCounts.totalTasks} total` },
       { label: `📈 Status`, value: 'status', hint: 'Health snapshot' },
-      { label: `${ICONS.skill}  Browse Skills`, value: 'skills', hint: '34 skills' },
+      { label: `${ICONS.skill}  Browse Skills`, value: 'skills', hint: '65 skills' },
       { label: `➕ Add a Task`, value: 'addtask', hint: 'Quick add' },
       { label: `⚡ Install Skills`, value: 'install', hint: 'Update all' },
       { label: `${ICONS.hamster}  My Profile`, value: 'profile', hint: `${profile.level}` },
@@ -290,7 +290,7 @@ async function showInteractiveMenu() {
         `${brand('cm task list')}          ${dim('View tasks')}`,
         `${brand('cm status')}             ${dim('Project health')}`,
         `${brand('cm dashboard')}          ${dim('Mission Control')}`,
-        `${brand('cm list')}               ${dim('Browse 34 skills')}`,
+        `${brand('cm list')}               ${dim('Browse 65 skills')}`,
         `${brand('cm deploy')} ${dim('<env>')}       ${dim('Record deploy')}`,
         `${brand('cm profile')}            ${dim('Your stats')}`,
       ];
@@ -306,7 +306,7 @@ const program = new Command();
 
 program
   .name('cm')
-  .description('Cody — 34 Skills. Ship 10x faster.')
+  .description('Cody — 65 Skills. Ship 10x faster.')
   .version(VERSION, '-v, --version', 'Show version')
   .argument('[cmd]', 'Command to run', '')
   .action(async (cmd) => {
@@ -985,7 +985,7 @@ async function doAddSkills(skills: string[], platform: string) {
 
   if (platform === 'claude') {
     console.log(brand('🟣 Claude Code — Installing via plugin system'));
-    console.log(dim('   (Claude installs all 34 skills as one bundle)\n'));
+    console.log(dim('   (Claude installs all 65 skills as one bundle)\n'));
 
     // Step 1: Register marketplace
     console.log(dim('   $ claude plugin marketplace add tody-agent/codymaster'));
@@ -1010,7 +1010,7 @@ async function doAddSkills(skills: string[], platform: string) {
     console.log(dim('   $ claude plugin install codymaster@codymaster'));
     try {
       execFileSync('claude', ['plugin', 'install', 'codymaster@codymaster'], { stdio: 'inherit' });
-      console.log(renderResult('success', 'All 34 skills installed!'));
+      console.log(renderResult('success', 'All 65 skills installed!'));
       await postInstallOnboarding('claude');
     } catch {
       console.log(renderResult('warning', 'Plugin install failed. Run manually:'));
@@ -1045,7 +1045,7 @@ async function doAddSkills(skills: string[], platform: string) {
 
   const icons: Record<string, string> = { cursor: '🔵', windsurf: '🟠', cline: '⚫', opencode: '📦', kiro: '🔶' };
   const icon = icons[platform] || '📦';
-  const label = skills.length === ALL_SKILLS.length ? 'all 34 skills' : skills.join(', ');
+  const label = skills.length === ALL_SKILLS.length ? 'all 65 skills' : skills.join(', ');
   console.log(`${icon} ${brand(`${platform} — Installing ${label}`)}`);
   console.log(dim(`   Target: ./${target.dir}/\n`));
 
@@ -1098,7 +1098,7 @@ program
   .command('add')
   .description('Add skills to your AI agent  (npx codymaster add --skill cm-debugging)')
   .option('--skill <name>', 'Specific skill to add (e.g. cm-debugging)')
-  .option('--all', 'Add all 34 skills')
+  .option('--all', 'Add all 65 skills')
   .option('--platform <platform>', 'Target: claude|gemini|cursor|windsurf|cline|opencode|kiro|copilot')
   .option('--list', 'Show available skills and exit')
   .action(async (opts) => {
@@ -1153,7 +1153,7 @@ program
         const mode = await p.select({
           message: 'What to install?',
           options: [
-            { label: 'All 34 skills (full kit)', value: 'all' },
+            { label: 'All 65 skills (full kit)', value: 'all' },
             { label: 'Search & pick one skill', value: 'pick' },
           ],
         });
@@ -1179,7 +1179,7 @@ program
 program
   .command('list')
   .alias('ls')
-  .description('List all 34 available skills')
+  .description('List all 65 available skills')
   .option('-d, --domain <domain>', 'Filter by domain')
   .action((opts) => {
     skillList(opts.domain);
@@ -1666,7 +1666,7 @@ const SKILL_CATALOG: Record<string, { icon: string; skills: { name: string; desc
       { name: 'cm-start', desc: 'Onboarding & session kick-off wizard' },
       { name: 'cm-dashboard', desc: 'Project status & task Kanban board' },
       { name: 'cm-status', desc: 'Quick project health snapshot' },
-      { name: 'cm-how-it-work', desc: 'Interactive explainer for all 34 skills' },
+      { name: 'cm-how-it-work', desc: 'Interactive explainer for all 65 skills' },
       { name: 'cm-example', desc: 'Minimal template for new skills' },
     ],
   },
@@ -1708,7 +1708,7 @@ function skillList(filterDomain?: string) {
     return;
   }
 
-  console.log(renderCommandHeader('Cody Master — 34 Skills', '🧩'));
+  console.log(renderCommandHeader('Cody Master — 65 Skills', '🧩'));
   let total = 0;
   for (const [domain, data] of entries) {
     console.log(brand(`  ${data.icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)}`));

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cody — Mission Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JCHYEW645C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JCHYEW645C');
+</script>
+
+</head>
+<body>
+  <!-- ── Sidebar ────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header" style="justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="logo">🧠</span>
+        <h1 class="sidebar-title">Cody <span class="sidebar-subtitle">Mission Control</span></h1>
+      </div>
+      <button class="sidebar-close" id="sidebar-close" title="Close sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-header" style="justify-content: space-between;">
+        <span class="sidebar-section-title">Projects</span>
+        <button class="sidebar-action-btn" id="btn-sidebar-refresh" title="Refresh Projects">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+        </button>
+      </div>
+      <nav class="project-list" id="project-list"></nav>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Active Agents</span>
+      <div class="agent-list" id="agent-list"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Views</span>
+      <nav class="project-list" id="view-list">
+        <div class="project-item tab-btn active" data-tab="kanban"><span class="project-name">Kanban</span></div>
+        <div class="project-item tab-btn" data-tab="history"><span class="project-name">History</span></div>
+        <div class="project-item tab-btn" data-tab="deploys"><span class="project-name">Deploys</span></div>
+        <div class="project-item tab-btn" data-tab="changelog"><span class="project-name">Changelog</span></div>
+        <div class="project-item tab-btn" data-tab="brain"><span class="project-name">🧠 Brain</span></div>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="sidebar-version">v3.0 — port 6969</span>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ───────────────────────────────────── -->
+  <div class="main-wrapper">
+    <!-- ── Header ───────────────────────────────────────── -->
+    <header class="header">
+      <div class="header-left">
+        <button class="btn-icon sidebar-toggle" id="sidebar-toggle" title="Toggle sidebar">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <h2 class="header-project-name hide-xs" id="header-project-name">All Projects</h2>
+      </div>
+      <div class="header-right">
+        <div class="task-stats hide-xs" id="task-stats"></div>
+        <div class="sync-status hide-sm" id="sync-status" title="Auto-refresh active">
+          <span class="sync-dot synced" id="sync-dot"></span>
+          <span class="sync-label" id="sync-label">Synced</span>
+        </div>
+        
+        <div class="header-actions-dropdown">
+          <button class="btn-icon btn-more-menu" id="btn-more-menu" title="More options">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="3" r="1.5" fill="currentColor"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="8" cy="13" r="1.5" fill="currentColor"/></svg>
+          </button>
+          <div class="header-actions" id="header-actions">
+            <button class="theme-toggle" id="theme-toggle" title="Toggle theme (Ctrl+Shift+T)">
+              <svg id="theme-icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 9.2A6.5 6.5 0 016.8 2 6 6 0 1014 9.2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="btn-icon" id="btn-refresh" title="Refresh (Ctrl+R)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            </button>
+            <button class="btn-icon auto-refresh-toggle" id="btn-auto-refresh" title="Toggle auto-refresh">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ── Tab Navigation (Removed) ─────────────────────────── -->
+
+    <!-- ── Tab: Kanban Board ──────────────────────────────── -->
+    <main class="tab-panel active" id="panel-kanban">
+      <div class="board" id="board">
+        <div class="column" data-column="backlog">
+          <div class="column-header"><div class="column-indicator backlog"></div><h2 class="column-title">Backlog</h2><span class="column-count" data-count="backlog">0</span></div>
+          <div class="card-list" data-column="backlog" id="list-backlog"></div>
+        </div>
+        <div class="column" data-column="in-progress">
+          <div class="column-header"><div class="column-indicator in-progress"></div><h2 class="column-title">In Progress</h2><span class="column-count" data-count="in-progress">0</span></div>
+          <div class="card-list" data-column="in-progress" id="list-in-progress"></div>
+        </div>
+        <div class="column" data-column="review">
+          <div class="column-header"><div class="column-indicator review"></div><h2 class="column-title">Review</h2><span class="column-count" data-count="review">0</span></div>
+          <div class="card-list" data-column="review" id="list-review"></div>
+        </div>
+        <div class="column" data-column="done">
+          <div class="column-header"><div class="column-indicator done"></div><h2 class="column-title">Done</h2><span class="column-count" data-count="done">0</span></div>
+          <div class="card-list" data-column="done" id="list-done"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ── Tab: History ───────────────────────────────────── -->
+    <div class="tab-panel" id="panel-history">
+      <div class="timeline-container">
+        <div class="timeline-header">
+          <h3>Activity History</h3>
+          <span class="timeline-count" id="activity-count">0 events</span>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+
+    <!-- ── Tab: Deploys ───────────────────────────────────── -->
+    <div class="tab-panel" id="panel-deploys">
+      <div class="deploys-container">
+        <div class="deploys-header">
+          <h3>Deployment History</h3>
+        </div>
+        <div class="deploy-list" id="deploy-list"></div>
+      </div>
+    </div>
+
+    <!-- ── Tab: Changelog ─────────────────────────────────── -->
+    <div class="tab-panel" id="panel-changelog">
+      <div class="changelog-container">
+        <div class="changelog-header">
+          <h3>Changelog</h3>
+        </div>
+        <div class="changelog-list" id="changelog-list"></div>
+      </div>
+    </div>
+
+    <!-- ── Tab: Brain ──────────────────────────────────────── -->
+    <div class="tab-panel" id="panel-brain">
+      <div class="brain-container">
+        <!-- Stats Cards -->
+        <div class="brain-stats" id="brain-stats"></div>
+
+        <!-- Brain Memory Actions -->
+        <div class="brain-section" id="brain-actions">
+          <div class="brain-section-header">
+            <h3>Force Memory Generation</h3>
+          </div>
+          <div class="brain-actions-content" style="padding: 16px; background: var(--bg-card); border: 1px dashed var(--border); border-radius: var(--radius);">
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">If the codebase lacks complete memory, force-generate using Dockit:</p>
+            <div style="background: var(--bg-input); padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; color: var(--col-in-progress); margin-bottom: 12px; border: 1px solid var(--border);">
+              cm run dockit "generate docs & learning"
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted);">Then follow the standard CM Continuity workflow to ensure the AI remembers everything.</p>
+          </div>
+        </div>
+
+        <!-- Continuity Status -->
+        <div class="brain-section" id="brain-continuity">
+          <div class="brain-section-header">
+            <h3>🧠 Working Memory (CONTINUITY.md)</h3>
+          </div>
+          <div class="brain-continuity-content" id="brain-continuity-content"></div>
+        </div>
+
+        <!-- Learnings Explorer -->
+        <div class="brain-section" id="brain-learnings-section">
+          <div class="brain-section-header">
+            <h3>📚 Learnings</h3>
+            <div class="brain-section-actions">
+              <input type="text" class="brain-search" id="brain-search" placeholder="Search learnings…" />
+            </div>
+          </div>
+          <div class="brain-learnings-list" id="brain-learnings-list"></div>
+        </div>
+
+        <!-- Decisions Timeline -->
+        <div class="brain-section" id="brain-decisions-section">
+          <div class="brain-section-header">
+            <h3>📋 Key Decisions</h3>
+          </div>
+          <div class="brain-decisions-list" id="brain-decisions-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ── Toast Notification ─────────────────────────────── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/app.js"></script>
+<script src="js/ga-events.js"></script>
+</body>
+</html>

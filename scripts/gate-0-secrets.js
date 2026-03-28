@@ -10,7 +10,10 @@ let failed = false;
 
 // 1. Check wrangler config files for hardcoded secret values
 const wranglerFiles = ['wrangler.toml', 'wrangler.jsonc', 'wrangler.json'];
-const dangerous = ['SERVICE_KEY', 'ANON_KEY', 'DB_PASSWORD', 'SECRET_KEY', 'PRIVATE_KEY', 'API_SECRET'];
+const dangerous = [
+  'SERVICE_KEY', 'ANON_KEY', 'DB_PASSWORD', 'SECRET_KEY', 'PRIVATE_KEY', 'API_SECRET',
+  'GCP_SERVICE_ACCOUNT', 'AZURE_CONNECTION_STRING', 'HEROKU_API_KEY', 'POSTMAN_API_KEY'
+];
 
 for (const wf of wranglerFiles) {
   if (!fs.existsSync(wf)) continue;

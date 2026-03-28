@@ -20,11 +20,11 @@ set -e
 
 # ── Colors ──────────────────────────────────────────────────────
 G='\033[0;32m'; B='\033[0;34m'; P='\033[0;35m'; O='\033[0;33m'
-C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'
+C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'; DIM='\033[2m'
 
 REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
-VERSION="4.3.0"
+VERSION="4.4.0"
 SCOPE="user"   # default scope for Claude Code
 
 # ── i18n ────────────────────────────────────────────────────────
@@ -46,7 +46,7 @@ msg() {
   local key="$1"
   case "$LANG_CODE:$key" in
     vi:welcome)   echo "Chào mừng bạn đến với CodyMaster v${VERSION}" ;;
-    vi:tagline)   echo "34+ kỹ năng AI cho Claude Code và các AI agents khác" ;;
+    vi:tagline)   echo "60+ kỹ năng AI cho Claude Code và các AI agents khác" ;;
     vi:detecting) echo "🔍 Đang phát hiện các AI agent đã cài..." ;;
     vi:found)     echo "✅ Đã tìm thấy" ;;
     vi:not_found) echo "❌ Không tìm thấy" ;;
@@ -55,11 +55,11 @@ msg() {
     vi:scope_user)    echo "User (tất cả projects)" ;;
     vi:scope_project) echo "Project (chỉ project này)" ;;
     vi:done)      echo "✅ Hoàn tất!" ;;
-    vi:onboard)   echo "🎯 Bắt đầu ngay trong Claude Code:" ;;
+    vi:onboard)   echo "🎯 Bắt đầu ngay với AI Agent của bạn:" ;;
     vi:docs)      echo "📚 Tài liệu:" ;;
 
     zh:welcome)   echo "欢迎使用 CodyMaster v${VERSION}" ;;
-    zh:tagline)   echo "Claude Code 的 34+ AI 技能" ;;
+    zh:tagline)   echo "Claude Code 的 60+ AI 技能" ;;
     zh:detecting) echo "🔍 检测已安装的 AI Agent..." ;;
     zh:found)     echo "✅ 已找到" ;;
     zh:not_found) echo "❌ 未找到" ;;
@@ -68,11 +68,11 @@ msg() {
     zh:scope_user)    echo "用户级（所有项目）" ;;
     zh:scope_project) echo "项目级（仅此项目）" ;;
     zh:done)      echo "✅ 完成！" ;;
-    zh:onboard)   echo "🎯 在 Claude Code 中立即开始:" ;;
+    zh:onboard)   echo "🎯 立即开始与您的 AI Agent 合作:" ;;
     zh:docs)      echo "📚 文档:" ;;
 
     ko:welcome)   echo "CodyMaster v${VERSION}에 오신 것을 환영합니다" ;;
-    ko:tagline)   echo "Claude Code용 34+ AI 스킬" ;;
+    ko:tagline)   echo "Claude Code용 60+ AI 스킬" ;;
     ko:detecting) echo "🔍 설치된 AI Agent 감지 중..." ;;
     ko:found)     echo "✅ 발견됨" ;;
     ko:not_found) echo "❌ 없음" ;;
@@ -81,13 +81,13 @@ msg() {
     ko:scope_user)    echo "사용자 (모든 프로젝트)" ;;
     ko:scope_project) echo "프로젝트 (이 프로젝트만)" ;;
     ko:done)      echo "✅ 완료!" ;;
-    ko:onboard)   echo "🎯 Claude Code에서 바로 시작:" ;;
+    ko:onboard)   echo "🎯 AI Agent와 즉시 시작하세요:" ;;
     ko:docs)      echo "📚 문서:" ;;
 
     *)
       case "$key" in
         welcome)   echo "Welcome to CodyMaster v${VERSION}" ;;
-        tagline)   echo "34+ AI skills for Claude Code and other AI agents" ;;
+        tagline)   echo "60+ AI skills for Claude Code and other AI agents" ;;
         detecting) echo "🔍 Detecting installed AI agents..." ;;
         found)     echo "✅ Found" ;;
         not_found) echo "❌ Not found" ;;
@@ -96,7 +96,7 @@ msg() {
         scope_user)    echo "User — available across all projects (recommended)" ;;
         scope_project) echo "Project — this project only (committed to .claude/)" ;;
         done)      echo "✅ Done!" ;;
-        onboard)   echo "🎯 Get started immediately in Claude Code:" ;;
+        onboard)   echo "🎯 Get started immediately with your AI Agent:" ;;
         docs)      echo "📚 Documentation:" ;;
       esac
       ;;
@@ -105,17 +105,25 @@ msg() {
 
 # ── Header ───────────────────────────────────────────────────────
 print_header() {
+  clear
+  hamster_sentiment "start"
+  echo -e "    ${O}( . \ --- / . )${NC}"
+  echo -e "     ${O}/${NC}   ${O}${BOLD}^   ^${NC}   ${O}\\\\${NC}"
+  echo -e "    ${O}(${NC}      ${O}${BOLD}u${NC}      ${O})${NC}"
+  echo -e "     ${O}|  \\ ___ /  |${NC}"
+  echo -e "      ${O}'--w---w--'${NC}"
   echo ""
-  echo -e "${C}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
-  echo -e "${C}${BOLD}║  🧠 CodyMaster Skills Kit                        ║${NC}"
-  echo -e "${C}${BOLD}║  $(msg welcome | head -c 48 | awk '{printf "%-48s", $0}')║${NC}"
-  echo -e "${C}${BOLD}║  $(msg tagline | head -c 48 | awk '{printf "%-48s", $0}')║${NC}"
-  echo -e "${C}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
+  echo -e "    ${O}${BOLD}$(msg welcome)${NC} 🐹"
+  echo ""
+  echo -e "    ${DIM}CodyMaster${NC} ${O}v${VERSION}${NC} ${DIM}• 65 Skills • ~${NC}"
+  echo -e "${DIM}  ──────────────────────────────────────────────────${NC}"
   echo ""
 }
 
 # ── Agent Detection ──────────────────────────────────────────────
 detect_agents() {
+  hamster_sentiment "progress"
+  echo ""
   echo -e "${W}$(msg detecting)${NC}"
   echo ""
 
@@ -189,25 +197,278 @@ detect_agents() {
   echo ""
 }
 
+# ── Hamster Sentiment ─────────────────────────────────────────────
+hamster_sentiment() {
+  local state="${1:-finish}"
+  local idx=$(( RANDOM % 3 ))
+  
+  case $state in
+    "start")
+      case $idx in
+        0) echo -e "    ${C}🐹: Whiskers twitching... CodyMaster incoming!${NC}" ;;
+        1) echo -e "    ${C}🐹: Let's fill these cheeks with 65 skills! ✨${NC}" ;;
+        2) echo -e "    ${C}🐹: Waking up from a power nap! Let's build! 🐭${NC}" ;;
+      esac
+      ;;
+    "progress")
+      case $idx in
+        0) echo -e "    ${C}🐹: Sniffing out your AI agents...${NC}" ;;
+        1) echo -e "    ${C}🐹: Running on the wheel to speed this up! 🏃‍♂️💨${NC}" ;;
+        2) echo -e "    ${C}🐹: Found a skill! Stashing it in my pocket... 💎${NC}" ;;
+      esac
+      ;;
+    "finish")
+      case $idx in
+        0) echo -e "    ${C}🐹: Mission accomplished! Can I have a walnut now? 🥜${NC}" ;;
+        1) echo -e "    ${C}🐹: My cheeks are stuffed with 65 skills for you! ✨${NC}" ;;
+        2) echo -e "    ${C}🐹: Terminal is Hamster-approved! Better than a wheel! 🎡${NC}" ;;
+      esac
+      ;;
+  esac
+}
+
+# ── Onboarding block ─────────────────────────────────────────────
+# ── Skill Guides Hub ─────────────────────────────────────────────
+show_skill_guide() {
+  local choice="$1"
+  clear
+  hamster_sentiment "finish"
+  echo ""
+  
+  if [ "$LANG_CODE" = "vi" ]; then
+    case "$choice" in
+      1)
+        echo -e "${Y}${BOLD}1. Hướng dẫn toàn tập${NC} (${C}cm-how-it-work${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Bạn mới cài CodyMaster và chưa biết bắt đầu từ đâu."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-how-it-work\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Giải thích quy trình từ ý tưởng đến lúc deploy một ứng dụng web bằng bộ skill này.\""
+        ;;
+      2)
+        echo -e "${Y}${BOLD}2. Vibe Coding (Zero Code)${NC} (${C}cm-start${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Bạn có ý tưởng nhưng lười gõ từng dòng code."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-start\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Tôi muốn làm một trang web bán cà phê có giỏ hàng, dùng Tailwind CSS.\""
+        ;;
+      3)
+        echo -e "${Y}${BOLD}3. Tham gia dự án có sẵn${NC} (${C}cm-brainstorm-idea${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Bạn nhảy vào một dự án có sẵn và thấy code quá rắc rối."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-brainstorm-idea\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Đọc toàn bộ project này và chỉ cho tôi 3 điểm yếu lớn nhất cần cải thiện ngay.\""
+        ;;
+      4)
+        echo -e "${Y}${BOLD}4. Thiết kế giao diện (UX/UI)${NC} (${C}cm-ux-master / cm-ui-preview${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Bạn muốn web của mình đẹp như Apple hay Linear."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-ux-master\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Lấy style từ trang stripe.com và thiết kế cho tôi một trang thanh toán cực sang.\""
+        ;;
+      5)
+        echo -e "${Y}${BOLD}5. Lập trình TDD & Pair code${NC} (${C}cm-tdd${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Bạn muốn code chắc chắn, không có lỗi khi chạy production."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-tdd\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Viết test case trước, sau đó code chức năng đăng ký người dùng cho tôi.\""
+        ;;
+      6)
+        echo -e "${Y}${BOLD}6. Dọn dẹp & Tái cấu trúc${NC} (${C}cm-clean-code${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Code chạy được nhưng nhìn như \"bãi rác\"."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-clean-code\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Tối ưu lại file này: xóa code thừa, đặt lại tên biến cho chuẩn và dễ hiểu hơn.\""
+        ;;
+      7)
+        echo -e "${Y}${BOLD}7. Quét & Sửa lỗi bảo mật${NC} (${C}cm-security-gate${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Sợ lộ API key hoặc web bị hack XSS."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-security-gate\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Kiểm tra xem project có lỗ hổng bảo mật nào không trước khi tôi push lên GitHub.\""
+        ;;
+      8)
+        echo -e "${Y}${BOLD}8. Viết tài liệu Docs & API${NC} (${C}cm-dockit${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Lười viết tài liệu hướng dẫn cho đồng nghiệp hoặc khách hàng."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-dockit\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Tự động tạo file hướng dẫn sử dụng (README) cho toàn bộ project này.\""
+        ;;
+      9)
+        echo -e "${Y}${BOLD}9. Tạo WOW Landing Page${NC} (${C}cm-cro-methodology${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Web có người vào nhưng không ai mua hàng/đăng ký."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-cro-methodology\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Phân tích trang web này và chỉ cách tăng gấp đôi tỷ lệ khách hàng đăng ký.\""
+        ;;
+      10)
+        echo -e "${Y}${BOLD}10. Bảng theo dõi tiến độ${NC} (${C}cm dashboard${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Muốn biết mình đã làm được bao nhiêu % công việc rồi."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm dashboard\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Hiện bảng dashboard để tôi xem tiến độ các task hiện tại.\""
+        ;;
+      11)
+        echo -e "${Y}${BOLD}11. Xem Demo (Claude Code)${NC} (${C}/cm:demo${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Muốn xem CodyMaster tự \"múa\" code như thế nào."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`/cm:demo\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Bắt đầu demo: tự tạo một ứng dụng TodoList từ A-Z trong 1 phút.\""
+        ;;
+      12)
+        echo -e "${Y}${BOLD}12. Trợ giúp & Cú pháp lệnh${NC} (${C}cm help${NC})"
+        echo -e "${W}🎯 Tình huống:${NC} Quên lệnh hoặc muốn tìm thêm skill xịn khác."
+        echo -e "${W}🚀 Câu lệnh:${NC} \`cm help\`"
+        echo -e "${W}💡 Thử copy prompt này:${NC} \"Liệt kê các skill liên quan đến Growth Hacking và Marketing.\""
+        ;;
+    esac
+  else
+    case "$choice" in
+      1)
+        echo -e "${Y}${BOLD}1. The Ultimate Guide${NC} (${C}cm-how-it-work${NC})"
+        echo -e "${W}🎯 Situation:${NC} You just installed CodyMaster and don't know where to start."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-how-it-work\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Explain the process from idea to deployment using this skill kit.\""
+        ;;
+      2)
+        echo -e "${Y}${BOLD}2. Vibe Coding (Zero Code)${NC} (${C}cm-start${NC})"
+        echo -e "${W}🎯 Situation:${NC} You have an idea but are too lazy to write code manually."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-start\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Build a coffee shop website with a cart using Tailwind CSS.\""
+        ;;
+      3)
+        echo -e "${Y}${BOLD}3. Code an Existing Project${NC} (${C}cm-brainstorm-idea${NC})"
+        echo -e "${W}🎯 Situation:${NC} You're joining an existing project and the code is a mess."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-brainstorm-idea\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Read this entire project and tell me the 3 biggest weaknesses.\""
+        ;;
+      4)
+        echo -e "${Y}${BOLD}4. Generate UX/UI Designs${NC} (${C}cm-ux-master / cm-ui-preview${NC})"
+        echo -e "${W}🎯 Situation:${NC} You want your web app to look as premium as Apple or Linear."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-ux-master\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Copy the style from stripe.com and design a high-end checkout page.\""
+        ;;
+      5)
+        echo -e "${Y}${BOLD}5. Code TDD & Pair Coding${NC} (${C}cm-tdd${NC})"
+        echo -e "${W}🎯 Situation:${NC} You want reliable code that doesn't break in production."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-tdd\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Write test cases first, then implement user registration for me.\""
+        ;;
+      6)
+        echo -e "${Y}${BOLD}6. Clean & Refactor Codebase${NC} (${C}cm-clean-code${NC})"
+        echo -e "${W}🎯 Situation:${NC} The code works but it looks like a \"garbage dump\"."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-clean-code\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Optimize this file: remove dead code and rename variables for clarity.\""
+        ;;
+      7)
+        echo -e "${Y}${BOLD}7. Scan for Vulnerabilities${NC} (${C}cm-security-gate${NC})"
+        echo -e "${W}🎯 Situation:${NC} Worried about leaking API keys or XSS hacks."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-security-gate\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Check if there are any security vulnerabilities before I push to GitHub.\""
+        ;;
+      8)
+        echo -e "${Y}${BOLD}8. Write Docs & Generate APIs${NC} (${C}cm-dockit${NC})"
+        echo -e "${W}🎯 Situation:${NC} Lazy to write documentation for teammates or clients."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-dockit\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Automatically generate a README guide for this entire project.\""
+        ;;
+      9)
+        echo -e "${Y}${BOLD}9. Release WOW Landing Page${NC} (${C}cm-cro-methodology${NC})"
+        echo -e "${W}🎯 Situation:${NC} Visitors come to your site but don't buy or sign up."
+        echo -e "${W}🚀 Command:${NC} \`cm @/cm-cro-methodology\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Analyze this website and show me how to double my sign-up rate.\""
+        ;;
+      10)
+        echo -e "${Y}${BOLD}10. Open Progress Dashboard${NC} (${C}cm dashboard${NC})"
+        echo -e "${W}🎯 Situation:${NC} Want to know how much work is actually completed."
+        echo -e "${W}🚀 Command:${NC} \`cm dashboard\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Show the dashboard so I can see the progress of current tasks.\""
+        ;;
+      11)
+        echo -e "${Y}${BOLD}11. See an Interactive Demo${NC} (${C}/cm:demo${NC})"
+        echo -e "${W}🎯 Situation:${NC} Want to see CodyMaster perform its magic automatically."
+        echo -e "${W}🚀 Command:${NC} \`/cm:demo\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"Start demo: build a TodoList app from scratch in 1 minute.\""
+        ;;
+      12)
+        echo -e "${Y}${BOLD}12. Help & Command List${NC} (${C}cm help${NC})"
+        echo -e "${W}🎯 Situation:${NC} Forgot a command or looking for more cool skills."
+        echo -e "${W}🚀 Command:${NC} \`cm help\`"
+        echo -e "${W}💡 Try this prompt:${NC} \"List all skills related to Growth Hacking and Marketing.\""
+        ;;
+    esac
+  fi
+
+  echo ""
+  echo -e "${DIM}──────────────────────────────────────────────────${NC}"
+  echo -e "${W}$(msg press_enter) ${DIM}or 'q' to exit${NC}"
+  read -r next_step
+  if [ "$next_step" = "q" ]; then
+    exit 0
+  fi
+}
+
 # ── Onboarding block ─────────────────────────────────────────────
 print_onboarding() {
-  local scope="$1"
-  echo ""
-  echo -e "${G}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
-  echo -e "${G}${BOLD}║  $(msg done | awk '{printf "%-48s", $0}')║${NC}"
-  echo -e "${G}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
-  echo ""
-  echo -e "${W}${BOLD}$(msg onboard)${NC}"
-  echo ""
-  echo -e "  ${C}/cm:demo${NC}       ← Run this first! Interactive tour"
-  echo -e "  ${C}/cm:plan${NC}       ← Start a new feature"
-  echo -e "  ${C}/cm:build${NC}      ← Build with TDD"
-  echo -e "  ${C}/cm:debug${NC}      ← Fix a bug"
-  echo -e "  ${C}/cm:review${NC}     ← Code review"
-  echo -e "  ${C}/cm:deploy${NC}     ← Deploy safely"
-  echo ""
-  echo -e "${W}${BOLD}$(msg docs)${NC} ${C}https://cody.todyle.com/docs${NC}"
-  echo ""
+  while true; do
+    clear
+    print_header
+    
+    if [ "$LANG_CODE" = "vi" ]; then
+      echo -e "    ${W}${BOLD}🎉 Thành công! Bạn đã mở khóa 65 kỹ năng AI toàn năng:${NC}"
+      echo ""
+      hamster_sentiment "finish"
+      echo ""
+      echo -e "  ${C}🎯 Orchestration${NC} : Lên kế hoạch & Điều phối Agent"
+      echo -e "  ${C}🎨 Product${NC}       : Thiết kế UX/UI & Tâm lý hành vi"
+      echo -e "  ${C}🔧 Engineering${NC}   : Code Full-stack & Tái cấu trúc"
+      echo -e "  ${C}🔒 Security${NC}      : Bảo mật tự động & Chống rò rỉ"
+      echo -e "  ${C}⚙️ Operations${NC}    : Triển khai an toàn & Quản lý CI/CD"
+      echo -e "  ${C}📈 Growth${NC}        : Tối ưu chuyển đổi (CRO) & Tracking"
+      echo ""
+      echo -e "    ${W}${BOLD}💡 Nhập số (1-12) để xem hướng dẫn & ví dụ:${NC}"
+      echo ""
+      echo -e "   1. ${Y}Cách CodyMaster vận hành    ${NC} → cm-how-it-work"
+      echo -e "   2. ${Y}Vibe coding (Zero code)     ${NC} → cm-start"
+      echo -e "   3. ${Y}Tham gia dự án có sẵn       ${NC} → cm-brainstorm-idea"
+      echo -e "   4. ${Y}Code giao diện từ URL/Ảnh   ${NC} → cm-ux-master"
+      echo -e "   5. ${Y}Lập trình TDD & Pair code   ${NC} → cm-tdd"
+      echo -e "   6. ${Y}Dọn dẹp & Tái cấu trúc      ${NC} → cm-clean-code"
+      echo -e "   7. ${Y}Quét & Sửa lỗi bảo mật      ${NC} → cm-security-gate"
+      echo -e "   8. ${Y}Viết tài liệu Docs & API    ${NC} → cm-dockit"
+      echo -e "   9. ${Y}Tạo Landing Page \"WOW\"      ${NC} → cm-cro-methodology"
+      echo -e "  10. ${Y}Bảng theo dõi tiến độ       ${NC} → cm dashboard"
+      echo -e "  11. ${Y}Xem Demo tự động            ${NC} → /cm:demo"
+      echo -e "  12. ${Y}Trợ giúp & Cú pháp lệnh      ${NC} → cm help"
+    else
+      echo -e "    ${W}${BOLD}🎉 Success! You just unlocked 65 omnipotent AI skills:${NC}"
+      echo ""
+      hamster_sentiment "finish"
+      echo ""
+      echo -e "  ${C}🎯 Orchestration${NC} : Task Planning & Agent Synergy"
+      echo -e "  ${C}🎨 Product${NC}       : UX/UI Mastery & User Psychology"
+      echo -e "  ${C}🔧 Engineering${NC}   : Full-stack TDD & Refactoring"
+      echo -e "  ${C}🔒 Security${NC}      : Automated Gates & Secret Shields"
+      echo -e "  ${C}⚙️ Operations${NC}    : Safe Deployments & CI/CD Excellence"
+      echo -e "  ${C}📈 Growth${NC}        : Conversion Tracking & Hacks"
+      echo ""
+      echo -e "    ${W}${BOLD}💡 Type a number (1-12) for guide & examples:${NC}"
+      echo ""
+      echo -e "   1. ${Y}The ultimate guide          ${NC} → cm-how-it-work"
+      echo -e "   2. ${Y}Vibe coding (Zero code)     ${NC} → cm-start"
+      echo -e "   3. ${Y}Code an existing project    ${NC} → cm-brainstorm-idea"
+      echo -e "   4. ${Y}Generate UX/UI designs      ${NC} → cm-ux-master"
+      echo -e "   5. ${Y}Code TDD & Pair coding      ${NC} → cm-tdd"
+      echo -e "   6. ${Y}Clean & Refactor codebase   ${NC} → cm-clean-code"
+      echo -e "   7. ${Y}Scan for vulnerabilities    ${NC} → cm-security-gate"
+      echo -e "   8. ${Y}Write docs & generate APIs  ${NC} → cm-dockit"
+      echo -e "   9. ${Y}Release WOW landing page    ${NC} → cm-cro-methodology"
+      echo -e "  10. ${Y}Open progress dashboard     ${NC} → cm dashboard"
+      echo -e "  11. ${Y}See an interactive demo     ${NC} → /cm:demo"
+      echo -e "  12. ${Y}Help & Command list         ${NC} → cm help"
+    fi
+    
+    echo ""
+    echo -e "    ${W}${BOLD}$(msg docs)${NC} ${C}https://cody.todyle.com/docs${NC}"
+    echo ""
+    echo -e "    ${DIM}Press 'q' to exit.${NC}"
+    echo -n "    > "
+    read -r user_choice
+    
+    if [[ "$user_choice" =~ ^[0-9]+$ ]] && [ "$user_choice" -gt 0 ] && [ "$user_choice" -le 12 ]; then
+      show_skill_guide "$user_choice"
+    elif [ "$user_choice" = "q" ]; then
+      break
+    fi
+  done
 }
 
 # ── Claude Code installer ────────────────────────────────────────
@@ -295,6 +556,23 @@ install_amp() {
   install_skills_to "$target"
   echo -e "  ${G}✅ Skills installed to ${target}${NC}"
   echo -e "  ${C}ℹ  Reference skills in Amp via your AGENTS.md or system prompt${NC}"
+}
+
+# ── CLI installer ────────────────────────────────────────────────
+install_cli() {
+  if command -v npm &>/dev/null; then
+    echo ""
+    echo -e "${G}${BOLD}CLI Dashboard — Installing Cody Master CLI${NC}"
+    echo ""
+    echo -e "  To get the full experience with the ${C}cm${NC} command and visual dashboard,"
+    echo -e "  it is recommended to install the global npm package."
+    echo ""
+    read -p "  Install codymaster globally? (y/N): " install_npm
+    if [[ "$install_npm" =~ ^[Yy]$ ]]; then
+      echo -e "  ${W}Running: npm install -g codymaster${NC}"
+      npm install -g codymaster || echo -e "  ${O}Note: You might need sudo for global install: sudo npm install -g codymaster${NC}"
+    fi
+  fi
 }
 
 # ── Ensure clone exists ──────────────────────────────────────────
@@ -495,6 +773,7 @@ if [[ "$1" == "--all" ]]; then
   [ -d "$HOME/.cursor" ] || [ -d "/Applications/Cursor.app" ] && {
     install_skills_to ".cursor/rules" "mdc"
   }
+  install_cli
   print_onboarding
   exit 0
 fi
@@ -586,6 +865,9 @@ for platform in "${platforms[@]}"; do
       ;;
   esac
 done
+
+install_cli
+print_onboarding
 
 echo ""
 echo -e "${C}$(msg docs) https://cody.todyle.com/docs${NC}"

@@ -22,7 +22,7 @@ const STEP_INFO: Record<number, { title: string; desc: string }> = {
   1: { title: 'Meet your assistant', desc: 'What should I call you?' },
   2: { title: 'Pick your platform', desc: 'Where do you code?' },
   3: { title: 'Your first task', desc: 'Add something to build' },
-  4: { title: 'See the magic', desc: 'Discover your 34 skills' },
+  4: { title: 'See the magic', desc: 'Discover your 65 skills' },
   5: { title: 'You\'re ready!', desc: 'Welcome to the team' },
 };
 
@@ -193,7 +193,7 @@ export async function runOnboarding(version: string): Promise<UserProfile> {
   if (startStep < 4) {
     console.log(renderStepProgress(4, TOTAL_STEPS));
     console.log('');
-    console.log(`    ${brandBold('You have 34 superpowers!')} ${ICONS.skill}`);
+    console.log(`    ${brandBold('You have 65 superpowers!')} ${ICONS.skill}`);
     console.log(`    ${dim('Grouped by what they help you do:')}`);
     console.log('');
 
@@ -202,31 +202,37 @@ export async function runOnboarding(version: string): Promise<UserProfile> {
         { name: 'cm-tdd', desc: 'Test-driven development' },
         { name: 'cm-debugging', desc: 'Smart bug hunting' },
         { name: 'cm-quality-gate', desc: 'Pre-deploy verification' },
+        { name: 'cm-clean-code', desc: 'Code hygiene gate' },
       ]},
       { domain: '🚀 Operations', skills: [
         { name: 'cm-safe-deploy', desc: 'Multi-gate deploy' },
         { name: 'cm-secret-shield', desc: 'Secret scanning' },
         { name: 'cm-git-worktrees', desc: 'Isolated branches' },
+        { name: 'cm-identity-guard', desc: 'Account & project safety' },
       ]},
       { domain: '🎨 Product & Design', skills: [
         { name: 'cm-planning', desc: 'Plan before you code' },
         { name: 'cm-ui-preview', desc: 'AI-powered UI design' },
         { name: 'cm-ux-master', desc: '48 UX Laws + design system' },
+        { name: 'cm-design-system', desc: 'Design token intelligence' },
       ]},
       { domain: '📈 Growth & Content', skills: [
         { name: 'cm-content-factory', desc: 'Self-learning content engine' },
         { name: 'cm-ads-tracker', desc: 'Conversion tracking setup' },
-        { name: 'cro-methodology', desc: 'Conversion rate optimization' },
+        { name: 'cm-growth-hacking', desc: 'Booking popups & CTAs' },
+        { name: 'cm-readit', desc: 'Audio-enabled experience' },
       ]},
       { domain: '🤖 Orchestration', skills: [
         { name: 'cm-execution', desc: 'Parallel agent dispatch' },
         { name: 'cm-skill-chain', desc: 'Multi-skill pipelines' },
         { name: 'cm-continuity', desc: 'Working memory protocol' },
+        { name: 'cm-skill-mastery', desc: 'Meta-skill kit discipline' },
       ]},
       { domain: '🔧 Workflow', skills: [
         { name: 'cm-start', desc: 'Idea → production code' },
         { name: 'cm-project-bootstrap', desc: 'Zero-to-production setup' },
         { name: 'cm-dashboard', desc: 'Visual Mission Control' },
+        { name: 'cm-notebooklm', desc: 'AI brain & soul engine' },
       ]},
     ];
 
@@ -237,11 +243,11 @@ export async function runOnboarding(version: string): Promise<UserProfile> {
       }
       console.log('');
     }
-    console.log(`    ${dim(`Total: 34 skills across 6 domains`)}`);
+    console.log(`    ${dim(`Total: 65 skills across 6 domains`)}`);
     console.log('');
 
     const viewAll = await p.confirm({
-      message: 'Want to browse all 34 skills in detail?',
+      message: 'Want to browse all 65 skills in detail?',
       initialValue: false,
     });
 
