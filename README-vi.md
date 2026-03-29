@@ -154,6 +154,8 @@ Không biết mã nguồn cũ thực hiện những gì? **`cm-dockit`** đọc 
 
 Trước khi bắt tay vào code cho các yêu cầu phức tạp, **`cm-brainstorm-idea`** sẽ nhận định sản phẩm của bạn bằng phân tích đa chiều (Công nghệ, Sản phẩm, Thiết kế, Kinh doanh). Kỹ năng này đưa ra 2-3 tùy chọn khả thi bằng khung giải quyết vấn đề 9 Windows (TRIZ) và cung cấp cho bạn một bản xem trước UI thông qua **Pencil.dev** hoặc **Google Stitch** để xác nhận hướng đi trước khi lập kế hoạch chi tiết.
 
+📖 [Đọc thêm về Giai đoạn Xem trước Giao diện (UI Preview) →](docs/Brainstorm-UI-Preview.md)
+
 ### 🏭 AI Content Factory v2.0 & Bảng điều khiển trực quan
 
 Cần mở rộng nội dung? **`cm-content-factory`** là một cỗ máy tạo nội dung đa tác nhân (multi-agent) có khả năng tự học hỏi. Nó tự động nghiên cứu, viết, kiểm duyệt (Tối ưu SEO & Thuyết phục) và tự động triển khai các bài viết có tỷ lệ chuyển đổi cao cùng bộ khung Content Mastery (StoryBrand + Cialdini).

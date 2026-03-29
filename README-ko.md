@@ -154,6 +154,8 @@ flowchart LR
 
 복잡한 요청에 대한 코딩을 시작하기 전에 **`cm-brainstorm-idea`**가 다차원 분석(기술, 제품, 디자인, 비즈니스)을 통해 제품을 평가합니다. 9 Windows (TRIZ) 프레임워크를 사용하여 2-3개의 검증된 옵션을 생성하고, 세부 계획 전에 방향을 확인하기 위해 **Pencil.dev** 또는 **Google Stitch**를 통한 시각적 UI 미리보기를 제공합니다.
 
+📖 [UI 미리보기 단계에 대해 더 알아보기 →](docs/Brainstorm-UI-Preview.md)
+
 ### 🏭 AI Content Factory v2.0 & 비주얼 대시보드
 
 콘텐츠 확장이 필요하신가요? **`cm-content-factory`**는 자가 학습이 가능한 다중 에이전트 콘텐츠 엔진입니다. 콘텐츠 마스터리 프레임워크 (StoryBrand + Cialdini)를 통해 자동으로 조사, 작성, 감사(SEO 및 설득력 검증)를 수행하고 전환율이 높은 기사를 배포하여 결과를 보장합니다.

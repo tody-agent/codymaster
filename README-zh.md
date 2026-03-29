@@ -154,6 +154,8 @@ flowchart LR
 
 在为复杂请求编写代码之前，**`cm-brainstorm-idea`** 会通过多维度分析（技术、产品、设计、业务）来评估您的产品。它使用 9 窗口 (TRIZ) 框架生成 2-3 个合格的选项，并通过 **Pencil.dev** 或 **Google Stitch** 提供可视化的 UI 预览，以便在详细规划之前验证方向。
 
+📖 [阅读更多关于 UI 预览阶段的信息 →](docs/Brainstorm-UI-Preview.md)
+
 ### 🏭 AI 内容工厂 v2.0 与可视化仪表盘
 
 需要扩大内容规模？**`cm-content-factory`** 是一个具有自学习能力的多智能体内容引擎。它会自动研究、写作、审核（SEO 和 说服力转化）并部署高转化率的文章，并结合 Content Mastery 框架 (StoryBrand + Cialdini) 保证转化率。
