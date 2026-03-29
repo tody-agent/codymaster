@@ -165,6 +165,9 @@ Don't know what the old code does? **`cm-dockit`** reads your entire codebase an
 
 Before diving into code for complex requests, **`cm-brainstorm-idea`** evaluates your product using multi-dimensional analysis (Tech, Product, Design, Business). It generates 2-3 qualified options using the 9 Windows (TRIZ) framework and provides a visual UI Preview via **Pencil.dev** or **Google Stitch** to validate the direction before detailed planning. 
 
+📖 [Read more about the UI Preview Phase →](docs/Brainstorm-UI-Preview.md)
+
+
 ### 🏭 AI Content Factory v2.0 & Visual Dashboard
 
 Need to scale content? **`cm-content-factory`** is a self-learning, multi-agent content engine. It automatically researches, writes, audits (SEO & Persuasion), and deploys high-converting articles with the Content Mastery framework (StoryBrand + Cialdini) to guarantee conversion.
