@@ -199,10 +199,13 @@ Wire these tests into `package.json` to make them easily executable by CI or oth
   "scripts": {
     "test": "vitest",
     "test:gate": "vitest run --reporter=verbose",
+    "test:security": "snyk test && aikido-api-client scan-release $npm_package_name $(git rev-parse HEAD) --minimum-severity-level=HIGH",
     "test:watch": "vitest watch"
   }
 }
 ```
+
+> **Security Gate Check:** The `test:security` script runs the Snyk dependency check and the Aikido release scan in parallel. See `cm-security-gate` for advanced SAST/IaC flags.
 
 ### Phase 4: Secret Hygiene and Ignore Configuration
 

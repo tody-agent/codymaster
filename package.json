@@ -1,6 +1,6 @@
 {
   "name": "codymaster",
-  "version": "4.4.4",
+  "version": "4.4.5",
   "description": "68+ Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
   "main": "dist/index.js",
   "repository": {
@@ -73,5 +73,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"
+  },
+  "overrides": {
+    "path-to-regexp": "^8.4.0"
   }
 }

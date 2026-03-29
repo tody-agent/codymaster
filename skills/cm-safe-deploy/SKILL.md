@@ -31,12 +31,13 @@ SYNTAX CHECK IS GATE 1. IF IT FAILS, NOTHING ELSE RUNS.
 - After a production incident caused by untested code
 - Adding CI/CD to an existing project
 
-## The 7-Gate Pipeline
+## The 8-Gate Pipeline
 
 ```dot
 digraph pipeline {
     rankdir=LR;
     gate0 [label="Gate 0\nSecret\nHygiene", shape=box, style=filled, fillcolor="#ffc0cb"];
+    gate05 [label="Gate 0.5\nSecurity\nScan", shape=box, style=filled, fillcolor="#f0b3ff"];
     gate1 [label="Gate 1\nSyntax", shape=box, style=filled, fillcolor="#ffcccc"];
     gate2 [label="Gate 2\nTest\nSuite", shape=box, style=filled, fillcolor="#ffe0cc"];
     gate3 [label="Gate 3\ni18n\nParity", shape=box, style=filled, fillcolor="#e0ccff"];
@@ -45,8 +46,10 @@ digraph pipeline {
     gate6 [label="Gate 6\nDeploy +\nSmoke", shape=box, style=filled, fillcolor="#cce5ff"];
     fail [label="STOP\nFix first", shape=box, style=filled, fillcolor="#ff9999"];
 
-    gate0 -> gate1 [label="pass"];
+    gate0 -> gate05 [label="pass"];
     gate0 -> fail [label="fail"];
+    gate05 -> gate1 [label="pass"];
+    gate05 -> fail [label="fail"];
     gate1 -> gate2 [label="pass"];
     gate1 -> fail [label="fail"];
     gate2 -> gate3 [label="pass"];
@@ -162,6 +165,39 @@ git filter-repo --path wrangler.jsonc --invert-paths  # Nuclear option
 wrangler secret put SUPABASE_SERVICE_KEY
 # Then rotate the key immediately in Supabase dashboard
 ```
+
+---
+
+### Gate 0.5: Security Scan (Snyk + Aikido — Parallel)
+
+> [!IMPORTANT]
+> **CodyMaster internal:** This gate is MANDATORY. Both Snyk and Aikido must pass.
+> **User projects:** This gate is SUGGESTED by default. Becomes MANDATORY if CVEs or risk flags were detected during development.
+
+**Run both scanners in parallel:**
+
+```bash
+# Snyk — dependency vulnerabilities
+snyk test
+
+# Aikido — SAST + dependencies + secrets + IaC
+aikido-api-client scan-release <repo> $(git rev-parse HEAD) \
+  --minimum-severity-level="HIGH"
+```
+
+**For CodyMaster (maximum strictness):**
+```bash
+aikido-api-client scan-release <repo> $(git rev-parse HEAD) \
+  --minimum-severity-level="HIGH" \
+  --fail-on-sast-scan \
+  --fail-on-secrets-scan
+```
+
+**Gate decision:**
+- Both pass → proceed to Gate 1
+- Either fails → **STOP. Fix before continuing.** Invoke `cm-security-gate` for remediation.
+
+> See `cm-security-gate` for full setup, flag reference, and remediation workflow.
 
 ---
 

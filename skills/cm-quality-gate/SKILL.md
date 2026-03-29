@@ -186,7 +186,17 @@ After ANY gate fails, **FIRST run Memory Integrity Check:**
 | `cm-identity-guard` | Verify identity before using quality gate to ship |
 | `cm-tdd` | TDD creates the logic for Layer 3 |
 | `cm-safe-i18n` | Leverages Layer 4 for parity checks |
+| `cm-security-gate` | **PRE-REQUISITE for production:** Security scan (Snyk + Aikido) PASS must be in deployment evidence. No production deploy without security clearance. |
+
+## Evidence Requirements for Production Deploy
+
+| Evidence | Command | Required |
+|----------|---------|----------|
+| Test suite passes | `npm run test:gate` | ✅ Always |
+| Build succeeds | `npm run build` | ✅ Always |
+| Security scan passes | `snyk test && aikido-api-client scan-release ...` | ✅ For production / public releases |
+| i18n parity | Included in test:gate | ✅ If multilingual |
 
 ## The Bottom Line
 
-**Test before deploy. Evidence before claims. Safety before shipping. Non-negotiable.**
+**Test before deploy. Scan before release. Evidence before claims. Safety before shipping. Non-negotiable.**
