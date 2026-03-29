@@ -7,7 +7,7 @@ description: Open visual Dashboard to track work status (Simulated Kanban board)
 
 When this command is called, the AI Assistant should:
 
-1. **Check status:** Find and read the `task.md` (or `cm-tasks.json`) file in the current project directory (or artifacts directory).
+1. **Check status:** Find and read the OpenSpec `openspec/changes/[init]/tasks.md` (and synced `cm-tasks.json`) file in the current project directory (or artifacts directory).
 2. **Visual display:** Aggregate tasks and render them as a Kanban board (Markdown table) with 3 columns:
    - **🔴 TO DO** (Not started)
    - **🟡 IN PROGRESS** (In progress)

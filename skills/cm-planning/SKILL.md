@@ -33,6 +33,7 @@ description: "You MUST use this before any creative work or multi-step task. Exp
    - Must-haves vs nice-to-haves
    - Edge cases to handle
    - Edge cases to explicitly NOT handle
+   - **Output to:** `openspec/changes/[initiative-name]/specs/`
 
 4. **Design** — How should it work?
    - Data flow
@@ -47,7 +48,10 @@ description: "You MUST use this before any creative work or multi-step task. Exp
 - Skipping scope definition
 - "It's simple, no need to plan"
 
-## Phase B: Write Implementation Plan
+## Phase B: Write Implementation Plan (OpenSpec Format)
+
+> **Standard:** Fission-AI OpenSpec (`https://github.com/Fission-AI/OpenSpec/`)
+> Output artifacts exactly to `openspec/changes/[initiative-name]/` to ensure human/AI alignment.
 
 ### When to Write a Plan
 
@@ -56,22 +60,31 @@ description: "You MUST use this before any creative work or multi-step task. Exp
 - Changes affect other components
 - User explicitly asks for a plan
 
-### Plan Structure
+### OpenSpec Artifacts to Generate
 
+**1. `openspec/changes/[initiative-name]/design.md`**
 ```markdown
-# [Goal]
+# Design: [Goal]
 
-## Context
-What and why.
+## Context & Technical Approach
+Why this approach and how it works.
 
 ## Proposed Changes
-
 ### [Component/File]
 - What changes
 - Why this approach
 
 ## Verification
 How to verify it works.
+```
+
+**2. `openspec/changes/[initiative-name]/tasks.md`**
+```markdown
+# Implementation Checklist
+- [ ] 1.1 First component setup
+- [ ] 1.2 First component logic
+- [ ] 2.1 Next component integration
+- [ ] Verification testing
 ```
 
 ### Plan Rules

@@ -50,20 +50,23 @@ When this workflow is called, the AI Assistant should execute the following acti
     - Apply `cm-tdd` + `cm-execution` → `cm-quality-gate`
 
     **L2 (Medium):** Full analysis flow
+    - Init OpenSpec (create `openspec/changes/[initiative-name]/` folder and artifacts manually)
     - Apply `cm-brainstorm-idea` if problem is ambiguous
-    - Apply `cm-planning` (full implementation plan with task breakdown)
-    - Create `cm-tasks.json` → launch RARV autonomous execution
+    - Apply `cm-planning` (full implementation plan with OpenSpec `tasks.md`)
+    - Create `cm-tasks.json` from `tasks.md` → launch RARV autonomous execution
     - Apply `cm-quality-gate` → `cm-safe-deploy`
 
     **L3 (Large):** Full + PRD + Architecture + Sprint
+    - Init OpenSpec (create `openspec/changes/[initiative-name]/` folder and artifacts manually)
     - Apply `cm-brainstorm-idea` (mandatory)
     - Apply `cm-planning` with FR/NFR requirement tracing
-    - Sprint planning → `cm-tasks.json` with sprints
+    - Sprint planning → `openspec/changes/[objective]/tasks.md` sync with `cm-tasks.json`
     - Apply `cm-execution` (Mode E: TRIZ-Parallel for speed)
     - Apply `cm-quality-gate` → `cm-safe-deploy`
 
 3. **Track Progress:**
-    - Create or update `cm-tasks.json` by breaking the objective into specific tasks
+    - Create `openspec/changes/[objective]/tasks.md` (for standardized spec tracking)
+    - Create or update `cm-tasks.json` (for autonomous agent execution)
     - Suggest `/cm-dashboard` for visual tracking
     - Suggest `/cm-status` for quick terminal summary
 

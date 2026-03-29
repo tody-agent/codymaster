@@ -61,12 +61,13 @@ Have a plan with independent tasks?
 ## Mode A: Batch Execution
 
 ### Process
-1. **Load plan** → review critically → raise concerns
+1. **Load plan** from Fission-AI OpenSpec (`openspec/changes/[initiative-name]/tasks.md` and `design.md`) → review critically → raise concerns
 2. **Execute batch** (default: 3 tasks)
    - Mark in_progress → follow steps → verify → mark complete
 3. **Report** → show what was done + verification output
 4. **Continue** → apply feedback → next batch
 5. **Complete** → use `cm-code-review` to finish
+6. **Archive** → After all tasks complete, manually move the OpenSpec folder to `openspec/changes/archive/[date]-[name]/`
 
 ### Rules
 - Follow plan steps exactly
@@ -79,7 +80,7 @@ Have a plan with independent tasks?
 ## Mode B: Subagent-Driven Development
 
 ### Process
-1. **Read plan** → extract ALL tasks with full text
+1. **Read plan** from `openspec/changes/[initiative-name]/tasks.md` → extract ALL tasks with full text
 2. **Per task:**
    - Dispatch implementer subagent with full task text
    - Answer subagent questions if any
@@ -179,6 +180,7 @@ LOOP until backlog empty or user interrupts:
 
 After EVERY phase, you MUST:
 1. Read current `cm-tasks.json`
+2. Sync state from `openspec/changes/[initiative-name]/tasks.md` (Keep both human-readable MD and AI-executable JSON in parallel sync)
 2. Find the active task by `id`
 3. Update `status`, `logs[]`, timestamps
 4. Recalculate `stats` object:

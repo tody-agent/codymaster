@@ -196,7 +196,7 @@ For each migration step:
   5. If tests fail → STOP, diagnose, fix before next step
   
 Progress tracking:
-  → Update cm-tasks.json with each completed migration step
+  → Update OpenSpec `tasks.md` and `cm-tasks.json` with each completed migration step
   → Update CONTINUITY.md with migration status
 ```
 

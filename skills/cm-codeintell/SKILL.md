@@ -318,7 +318,7 @@ RE-GENERATE when:
 
 STORE at:
   → .cm/architecture.mmd (Mermaid source)
-  → Include in brainstorm-output.md when relevant
+  → Include in proposal.md when relevant
 ```
 
 ### Integration with Pencil MCP
@@ -436,7 +436,7 @@ NEW addition to Phase A:
     2. If total impact > 20 files:
        → Flag as HIGH RISK in plan
        → Recommend cm-tdd coverage for all impacted callers
-    3. Include impact summary in implementation_plan.md
+    3. Include impact summary in OpenSpec `design.md`
 ```
 
 ### cm-debugging (Trace Analysis — enhanced)

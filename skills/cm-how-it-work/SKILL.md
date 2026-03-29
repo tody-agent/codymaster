@@ -49,7 +49,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
     1. Scan codebase with **code intelligence** (AST graph + architecture diagram via `cm-codeintell`).
     2. Interview user and analyze with 9 Windows (TRIZ).
     3. Propose 2-3 options, evaluate multi-dimensionally, recommend the best option.
-- **Output:** `brainstorm-output.md` — qualified problem + recommended option → passes to `cm-planning`.
+- **Output:** OpenSpec `openspec/changes/[initiative]/proposal.md` — qualified problem + recommended option → passes to `cm-planning`.
 
 ---
 
@@ -60,8 +60,8 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 - **Action:**
     1. Brainstorm requirements and analyze i18n.
     2. Propose architecture and tech stack.
-    3. Write detailed `implementation_plan.md`.
-- **Output:** Design documentation and execution plan approved by user.
+    3. Write detailed OpenSpec docs (`openspec/changes/[init]/design.md` and `tasks.md`).
+- **Output:** Design docs and execution plan (OpenSpec tasks) approved by user.
 
 ---
 
@@ -161,7 +161,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 The kit supports autonomous mode by applying the **Reason → Act → Reflect → Verify (RARV)** loop.
 
 ### How to Use the Workflow:
-1. **`/cm-start [objective]`**: Start work. The system will automatically create `cm-tasks.json`, break down tasks, launch the tracking interface, and autonomously use CM skills to complete them.
+1. **`/cm-start [objective]`**: Start work. The system will automatically initialize the OpenSpec structure (`openspec/changes/[objective]/`), break down tasks into `tasks.md` and sync with `cm-tasks.json`, launch the tracking interface, and autonomously use CM skills to complete them.
 2. **`/cm-dashboard`**: Open the visual tracking Dashboard in browser (shows Kanban board, reasoning log, and progress).
 3. **`/cm-status`**: View quick progress summary in Terminal.
 

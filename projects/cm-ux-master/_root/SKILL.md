@@ -135,7 +135,7 @@ The memory systems complement each other:
 1. CONTINUITY.md     = Working memory (current session state)
 2. learnings.json    = Extracted error patterns (persists across sessions)
 3. decisions.json    = Architecture decisions (persists across projects)
-4. cm-tasks.json     = Task queue + RARV logs (Mode D integration)
+4. tasks.md/cm-tasks.json     = Task queue + RARV logs (Mode D integration)
 ```
 
 **CONTINUITY.md is the PRIMARY source of truth for "what am I doing right now?"**

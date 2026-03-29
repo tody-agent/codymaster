@@ -109,7 +109,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | Skill | Triggers | Summary |
 |-------|----------|---------|
 | `cm-start` | /cm-start, start workflow, begin objective, new task | Orchestrate full cm-* workflow from objective to production code |
-| `cm-dashboard` | /cm-dashboard, kanban, task board, show tasks, status board | Render Kanban board from cm-tasks.json — visual task overview |
+| `cm-dashboard` | /cm-dashboard, kanban, task board, show tasks, status board | Render Kanban board from OpenSpec `tasks.md` and `cm-tasks.json` — visual task overview |
 | `cm-status` | /cm-status, quick status, progress, what's next, blocked | Ultra-concise progress summary: done / next / blocked |
 
 ### Planned (not yet implemented) 🧪
