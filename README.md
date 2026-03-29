@@ -6,11 +6,11 @@
 
 ### Your AI Agent is smart. CodyMaster makes it *wise*.
 
-**60+ Skills · 11 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
+**68+ Skills · 11 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.3.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-60+-success.svg" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.4.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
@@ -58,29 +58,30 @@ But then reality hits:
 
 ## 🟢 The Solution: An Entire Senior Team in One Kit
 
-CodyMaster isn't just "another AI skills pack." It's **10+ years of product management experience + 6 months of battle-tested vibe coding**, distilled into 60+ interconnected skills that work as a **single integrated system**.
+CodyMaster isn't just "another AI skills pack." It's **10+ years of product management experience + 6 months of battle-tested vibe coding**, distilled into 68+ interconnected skills that work as a **single integrated system**.
 
 When you install CodyMaster, you're not adding skills.
 **You're hiring an entire senior team:**
 
 ```mermaid
 graph TD
-    A["🧠 CodyMaster Kit"] --> B["👨‍💻 Senior Developer<br/><i>cm-tdd · cm-debugging · cm-code-review</i>"]
+    A["🧠 CodyMaster Kit"] --> B["👨‍💻 Senior Developer<br/><i>cm-tdd · cm-debugging · cm-code-review · cm-clean-code</i>"]
     A --> C["🎨 UX Lead<br/><i>cm-design-system · cm-ux-master · cm-ui-preview</i>"]
     A --> D["📋 Product Manager<br/><i>cm-planning · cm-brainstorm-idea · cm-jtbd</i>"]
     A --> E["🔒 DevOps Engineer<br/><i>cm-safe-deploy · cm-secret-shield · cm-security-gate · cm-identity-guard</i>"]
-    A --> F["📝 Technical Writer<br/><i>cm-dockit · cm-content-factory</i>"]
-    A --> G["📈 Growth Marketer<br/><i>cm-ads-tracker · cro-methodology</i>"]
+    A --> F["📝 Technical Writer<br/><i>cm-dockit · cm-content-factory · cm-auto-publisher</i>"]
+    A --> G["📈 Growth Marketer<br/><i>cm-ads-tracker · cm-cro-methodology · cm-growth-hacking</i>"]
+    A --> H["🏭 Enterprise Dev<br/><i>cm-frappe-agent · cm-booking-calendar · cm-google-form</i>"]
     style A fill:#fbc531,stroke:#e1b12c,color:#2f3640,stroke-width:3px
     classDef team fill:#2f3640,stroke:#dcdde1,stroke-width:1px,color:#fff;
-    class B,C,D,E,F,G team;
+    class B,C,D,E,F,G,H team;
 ```
 
 ---
 
 ## ⚡ What Makes CodyMaster Different
 
-Other skill packs give you loose tools. CodyMaster gives you an **interconnected operating system** for your AI. CodyMaster provides 60+ skills that chain, share memory, and communicate.
+Other skill packs give you loose tools. CodyMaster gives you an **interconnected operating system** for your AI — 68+ skills that chain, share memory, and communicate like a real team.
 
 ### 🔄 Full Lifecycle Coverage (Idea → Production)
 
@@ -174,20 +175,39 @@ Need to scale content? **`cm-content-factory`** is a self-learning, multi-agent 
 
 Track it all on the **Visual Dashboard** (`cm-dashboard`): No more guessing. Track every task, every agent, every deployment on a real-time Kanban board. Pipeline progress, token tracker, event log — all on one screen.
 
+### 🧬 Self-Healing AI (Skills That Fix Themselves)
+
+CodyMaster doesn't just run skills — it **watches them, scores them, and heals them automatically.**
+
+- **`cm-skill-health`** monitors every invocation: success rate, token usage, error patterns.
+- **`cm-skill-evolution`** auto-patches degraded skills (Mode: FIX) when health scores drop below threshold.
+- **`cm-skill-search`** uses BM25 ranking to find the right skill for any task.
+- **`cm-skill-share`** exports & imports skills across teams and machines.
+
+> **Think of it like an immune system for your AI toolkit.** Skills that break get healed. Skills that work well get reinforced. Dead skills get archived.
+
+### 🏢 Enterprise-Ready: Frappe/ERPNext Full-Stack
+
+Building on Frappe Framework? **`cm-frappe-agent`** is a 7-layer architecture agent covering the entire Frappe lifecycle — from `bench new-app` to production deploys. Custom doctypes, workflows, REST APIs, permissions, fixtures, and performance optimization — all battle-tested.
+
+### 🚀 Growth Hacking Engine
+
+Need popups, booking flows, or lead capture? **`cm-growth-hacking`** generates complete conversion systems: Bottom Sheet + Calendar CTA + Tracking. Auto-detects industry, selects the right pattern, wires up **`cm-booking-calendar`** for appointments and **`cm-ads-tracker`** for pixel tracking. Zero dependencies.
+
 ---
 
 ## 🆚 Scattered Skills vs CodyMaster
 
 |                            | 😵 15 Random Skills                         | 🧠 CodyMaster                                                         |
 | -------------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
-| **Integration**      | Each skill is standalone, no shared context | 60+ skills that chain, share memory, and communicate                   |
+| **Integration**      | Each skill is standalone, no shared context | 68+ skills that chain, share memory, and communicate                   |
 | **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn      |
 | **Memory**           | Forgets everything between sessions         | 5-tier Unified Brain: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain  |
 | **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
 | **Design**           | Random UI every time                        | Extracts & enforces design system + visual preview                    |
 | **Documentation**    | "Maybe write a README later"                | Auto-generates complete docs, SOPs, API refs from code                |
-| **Self-improvement** | Static — what you install is what you get  | Learns from mistakes, auto-discovers new skills, gets smarter daily   |
-| **Maintenance**      | Update 15 repos separately                  | One `git pull` updates everything                                   |
+| **Self-improvement** | Static — what you install is what you get  | Self-healing: monitors health → auto-patches → reinforces winners   |
+| **Maintenance**      | Update 15 repos separately                  | One `npm i -g codymaster` updates everything                        |
 
 ---
 
@@ -218,7 +238,7 @@ If you prefer:
 
 ### 1. Install AI Skills (All Platforms)
 
-One command installs all 60+ skills to your environment. Supports Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, and more:
+One command installs all 68+ skills to your environment. Supports Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, and more:
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
@@ -256,16 +276,18 @@ The CLI will greet you and keep you organized on your long coding sessions!
 
 ---
 
-## 🧰 The 60+ Skill Arsenal
+## 🧰 The 68+ Skill Arsenal
 
 | Domain                    | Skills                                                                                                                                                          |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 🔧**Engineering**   | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review`                                                                             |
-| ⚙️**Operations**  | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                                             |
-| 🎨**Product & UX**  | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
-| 📈**Growth/CRO**    | `cm-content-factory` `cm-ads-tracker` `cro-methodology`                                                                                                   |
-| 🎯**Orchestration** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-how-it-work` `cm-notebooklm`             |
-| 🖥️**Workflow**    | `cm-start` `cm-dashboard` `cm-status`                                                                                                                     |
+| 🔧 **Engineering**   | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` `cm-clean-code`                                                                             |
+| ⚙️ **Operations**  | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                                             |
+| 🎨 **Product & UX**  | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
+| 📈 **Growth & CRO**    | `cm-content-factory` `cm-auto-publisher` `cm-ads-tracker` `cm-cro-methodology` `cm-growth-hacking` `cm-booking-calendar` `cm-google-form`                                                                                                   |
+| 🏢 **Enterprise**  | `cm-frappe-agent` `cm-reactor` `cm-notebooklm`                                                                                                  |
+| 🧬 **Self-Healing**   | `cm-skill-health` `cm-skill-evolution` `cm-skill-search` `cm-skill-share` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index`             |
+| 🎯 **Orchestration** | `cm-execution` `cm-continuity` `cm-deep-search` `cm-codeintell` `cm-how-it-work`             |
+| 🖥️ **Workflow**    | `cm-start` `cm-dashboard` `cm-status`                                                                                                                     |
 
 ---
 
@@ -277,7 +299,7 @@ cm task add "..." → Add a task
 cm task list      → View tasks
 cm status         → Project health
 cm dashboard      → Open Mission Control
-cm list           → Browse 60+ skills
+cm list           → Browse 68+ skills
 cm profile        → Your stats & achievements
 cm deploy <env>   → Record deployment
 ```
@@ -298,7 +320,7 @@ cm deploy <env>   → Record deployment
 
 **Tody Le** — Head of Product with 10+ years of experience. Can't write code. Used AI to build real products for 6 months straight. Every skill in this kit was born from a real failure that cost real time and real tears.
 
-> *"60+ skills. Each skill is a lesson. Each lesson is a sleepless night. And now, you don't have to go through those nights."*
+> *"68+ skills. Each skill is a lesson. Each lesson is a sleepless night. And now, you don't have to go through those nights."*
 
 📖 [Read the full story →](https://cody.todyle.com/story)
 
@@ -308,7 +330,7 @@ cm deploy <env>   → Record deployment
 
 - 🌍 [Website](https://cody.todyle.com) — Overview & demos
 - 📖 [Documentation](https://cody.todyle.com/docs) — Full deep-dive
-- 🛠️ [Skills Reference](skills/) — Browse all 60+ SKILL.md files
+- 🛠️ [Skills Reference](skills/) — Browse all 68+ SKILL.md files
 - 📖 [Our Story](https://cody.todyle.com/story) — Why this exists
 
 ---

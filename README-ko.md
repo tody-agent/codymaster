@@ -6,11 +6,11 @@
 
 ### 귀하의 AI 에이전트는 똑똑합니다. CodyMaster는 이를 *현명하게* 만듭니다.
 
-**60+가지 스킬 · 11가지 명령어 · 1가지 플러그인 · 7개 이상의 플랫폼 · 6개 국어**
+**68+가지 스킬 · 11가지 명령어 · 1가지 플러그인 · 7개 이상의 플랫폼 · 6개 국어**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.3.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-60+-success.svg" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.4.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
@@ -48,7 +48,7 @@
 
 ## 🟢 해결책: 하나의 키트에 담긴 시니어 팀 전체
 
-CodyMaster는 단순한 "또 다른 AI 스킬 팩"이 아닙니다. 10년 이상의 제품 관리 경험과 6개월간 실전에서 검증된 바이브 코딩(vibe coding)을 60+개의 상호 연결된 스킬로 응축하여 **하나의 통합된 시스템**으로 작동하게 만든 것입니다.
+CodyMaster는 단순한 "또 다른 AI 스킬 팩"이 아닙니다. 10년 이상의 제품 관리 경험과 6개월간 실전에서 검증된 바이브 코딩(vibe coding)을 68+개의 상호 연결된 스킬로 응축하여 **하나의 통합된 시스템**으로 작동하게 만든 것입니다.
 
 CodyMaster를 설치하는 것은 단순히 스킬을 추가하는 것이 아닙니다.
 **시니어 팀 전체를 고용하는 것입니다:**
@@ -168,7 +168,7 @@ flowchart LR
 
 | | 😵 15개의 무작위 스킬들 | 🧠 CodyMaster |
 |---|---|---|
-| **통합** | 각 스킬이 독립적이며 컨텍스트 공유 없음 | 체인으로 연결되고 메모리를 공유하며 소통하는 60+개의 스킬 |
+| **통합** | 각 스킬이 독립적이며 컨텍스트 공유 없음 | 체인으로 연결되고 메모리를 공유하며 소통하는 68+개의 스킬 |
 | **라이프사이클** | 코딩만 지원 | 아이디어 → 디자인 → 코드 → 테스트 → 배포 → 문서화 → 학습까지 지원 |
 | **메모리** | 세션 사이에 모든 것을 잊음 | 5계층 통합 두뇌 시스템: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
 | **안전성** | YOLO 배포 | 4레이어 보호: TDD → 보안 → 격리 → 다중 게이트 배포 |
@@ -204,7 +204,7 @@ flowchart LR
 
 ### 1. AI 스킬 설치 (모든 플랫폼)
 
-단일 명령어로 60+개의 스킬을 환경에 설치합니다. Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode 등을 지원합니다:
+단일 명령어로 68+개의 스킬을 환경에 설치합니다. Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode 등을 지원합니다:
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
@@ -240,7 +240,7 @@ cm
 
 ---
 
-## 🧰 60+가지 스킬 아스널
+## 🧰 68+가지 스킬 아스널
 
 | 도메인 | 스킬 |
 |--------|--------|
@@ -271,7 +271,7 @@ cm
 
 **Tody Le** — 10년 이상의 경력을 가진 Head of Product. 코드를 짤 줄 모릅니다. 6개월 동안 AI를 사용하여 실제 프로덕트를 만들었습니다. 이 키트의 모든 스킬은 실제 시간과 눈물을 쏟게 했던 실제 실패에서 탄생했습니다.
 
-> *"60+개의 스킬. 각 스킬은 하나의 교훈입니다. 각 교훈은 잠 못 이루는 밤이었습니다. 이제 여러분은 그 밤들을 겪지 않아도 됩니다."*
+> *"68+개의 스킬. 각 스킬은 하나의 교훈입니다. 각 교훈은 잠 못 이루는 밤이었습니다. 이제 여러분은 그 밤들을 겪지 않아도 됩니다."*
 
 📖 [전체 이야기 읽기 →](https://cody.todyle.com/story)
 
@@ -281,7 +281,7 @@ cm
 
 - 🌍 [웹사이트](https://cody.todyle.com) — 개요 및 데모
 - 📖 [문서](https://cody.todyle.com/docs) — 상세 가이드
-- 🛠️ [스킬 레퍼런스](skills/) — 60+개의 모든 SKILL.md 파일 찾아보기
+- 🛠️ [스킬 레퍼런스](skills/) — 68+개의 모든 SKILL.md 파일 찾아보기
 - 📖 [스토리](https://cody.todyle.com/story) — 이것이 존재하는 이유
 
 ---

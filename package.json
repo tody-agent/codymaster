@@ -1,7 +1,7 @@
 {
   "name": "codymaster",
   "version": "4.4.3",
-  "description": "65 Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
+  "description": "68+ Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",

@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+## [4.4.3] - 2026-03-29
+
+### 🚀 Improvements — The Self-Healing Update
+
+- **68+ Skill Milestone** — CodyMaster arsenal grows from 60+ to 68+ battle-tested skills with 8 new capabilities.
+- **🧬 Self-Healing AI Pipeline** — Skills now monitor, score, and auto-repair themselves:
+  - `cm-skill-health` — Real-time quality monitoring with SQLite-backed metrics dashboard (invocations, success rate, token usage, health scores).
+  - `cm-skill-evolution` — 3-mode evolution engine (FIX/DERIVED/CAPTURED) with version DAG and lineage tracking. Auto-patches degraded skills.
+  - `cm-skill-search` — BM25 + health-score ranking for intelligent skill discovery.
+  - `cm-skill-share` — Export/import skills across teams and machines with version integrity.
+- **🏢 cm-frappe-agent** — Full-stack Frappe/ERPNext development agent with 7-layer architecture: doctypes, workflows, REST APIs, permissions, fixtures, performance optimization, and production deploys.
+- **🚀 Growth Hacking Engine** — `cm-growth-hacking` generates complete conversion systems (Bottom Sheet + Calendar CTA + Tracking) with industry auto-detection.
+- **cm-auto-publisher** — Publishing automation bridge: AI agents → Content Factory Router → any Astro site.
+- **cm-clean-code** — TRIZ-powered code hygiene gate: dead code detection, duplicate elimination, naming analysis.
+- **cm-reactor** — Strategic codebase re-direction when requirements change or tech debt blocks progress.
+- **Documentation Overhaul** — README (all 6 languages), CHANGELOG, and new Self-Healing AI deep-dive doc updated.
+
 ## [4.4.2] - 2026-03-29
 
 ### 🚀 Improvements
