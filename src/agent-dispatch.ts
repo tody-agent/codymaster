@@ -149,10 +149,10 @@ export function dispatchTaskToAgent(task: Task, project: Project, force: boolean
     if (!fs.existsSync(taskDir)) {
       fs.mkdirSync(taskDir, { recursive: true });
     }
-  } catch (err: any) {
+  } catch (err) {
     return {
       success: false,
-      error: `Cannot create .agent-tasks directory at ${taskDir}: ${err.message}`,
+      error: `Cannot create .agent-tasks directory at ${taskDir}: ${err instanceof Error ? err.message : String(err)}`,
       errorCode: 'WRITE_ERROR',
     };
   }
@@ -165,10 +165,10 @@ export function dispatchTaskToAgent(task: Task, project: Project, force: boolean
 
   try {
     fs.writeFileSync(filePath, content, 'utf-8');
-  } catch (err: any) {
+  } catch (err) {
     return {
       success: false,
-      error: `Cannot write task file at ${filePath}: ${err.message}`,
+      error: `Cannot write task file at ${filePath}: ${err instanceof Error ? err.message : String(err)}`,
       errorCode: 'WRITE_ERROR',
     };
   }

@@ -279,7 +279,7 @@ function stopDashboard() {
     const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8').trim());
     process.kill(pid, 'SIGTERM'); try { fs.unlinkSync(PID_FILE); } catch { }
     console.log(chalk.green(`✅ Dashboard stopped (PID ${pid}).`));
-  } catch (err: any) { console.log(chalk.red(`Failed to stop: ${err.message}`)); try { fs.unlinkSync(PID_FILE); } catch { } }
+  } catch (err) { console.log(chalk.red(`Failed to stop: ${err instanceof Error ? err.message : String(err)}`)); try { fs.unlinkSync(PID_FILE); } catch { } }
 }
 
 function dashboardStatus(port: number) {
@@ -1877,8 +1877,8 @@ program
       const parsed = JSON.parse(content);
       tasks = Array.isArray(parsed) ? parsed : parsed.tasks;
       if (!Array.isArray(tasks)) throw new Error('Invalid format');
-    } catch (err: any) {
-      console.log(chalk.red(`❌ Invalid JSON file: ${err.message}`));
+    } catch (err) {
+      console.log(chalk.red(`❌ Invalid JSON file: ${err instanceof Error ? err.message : String(err)}`));
       console.log(chalk.gray('   Expected format: [{"title": "...", "priority": "...", "column": "..."}]'));
       return;
     }
