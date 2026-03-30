@@ -6,6 +6,18 @@
 (function () {
   'use strict';
 
+  // ─── Utility Functions ──────────────────────────
+  function escapeHTML(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, m => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[m]);
+  }
+
   // ─── i18n Engine ────────────────────────────────
   const I18n = {
     currentLang: 'en',
@@ -573,5 +585,6 @@
 
   // Expose I18n globally for page-specific scripts
   window.I18n = I18n;
+  window.escapeHTML = escapeHTML;
 
 })();

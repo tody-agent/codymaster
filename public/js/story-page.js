@@ -12,7 +12,10 @@ function renderChapterContent() {
     const key = el.getAttribute('data-i18n-html');
     const text = getI18nValue(key);
     if (text) {
-      el.innerHTML = text.replace(/\\n/g, '\n').split('\n').map(p => p.trim() ? `<p>${p}</p>` : '').join('');
+      el.innerHTML = text.replace(/\\n/g, '\n').split('\n').map(p => {
+        const trimmed = p.trim();
+        return trimmed ? `<p>${escapeHTML(trimmed)}</p>` : '';
+      }).join('');
     }
   });
 }
@@ -40,7 +43,7 @@ function renderChapterSkills() {
     const skills = getI18nValue(key);
     if (skills && Array.isArray(skills) && skills.length > 0) {
       el.innerHTML = skills.map(s =>
-        `<a href="skills.html" class="chapter__skill-tag">${s}</a>`
+        `<a href="skills.html" class="chapter__skill-tag">${escapeHTML(s)}</a>`
       ).join('');
     }
   });
