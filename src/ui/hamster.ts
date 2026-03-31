@@ -201,7 +201,7 @@ export function getErrorGuidance(): string {
 /**
  * Render the full hamster banner with greeting
  */
-export function renderHamsterBanner(userName?: string, version?: string, cwd?: string): string {
+export function renderHamsterBanner(userName?: string, version?: string, cwd?: string, skillCount: number = 34): string {
   const art = getHamsterArt(getTimeOfDay() === 'night' ? 'sleeping' : 'greeting');
   const greeting = getGreeting(userName);
   const lines = [
@@ -210,7 +210,7 @@ export function renderHamsterBanner(userName?: string, version?: string, cwd?: s
     '',
     `    ${brandBold(greeting)}`,
     '',
-    `    ${dim('CodyMaster')} ${brand(`v${version || '?'}`)} ${dim('•')} ${dim('34 Skills')} ${dim('•')} ${dim(cwd || '~')}`,
+    `    ${dim('CodyMaster')} ${brand(`v${version || '?'}`)} ${dim('•')} ${dim(`${skillCount} Skills`)} ${dim('•')} ${dim(cwd || '~')}`,
     dim('  ' + '─'.repeat(50)),
   ];
   return lines.join('\n');

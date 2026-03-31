@@ -9,13 +9,29 @@ const BOLD = '\x1b[1m';
 const DIM = '\x1b[2m';
 const NC = '\x1b[0m';
 
+const fs = require('fs');
+const path = require('path');
+let skillCount = 60;
+try {
+  const skillsDir = path.join(__dirname, '..', 'skills');
+  if (fs.existsSync(skillsDir)) {
+    skillCount = fs.readdirSync(skillsDir)
+      .filter(f => {
+        const fullPath = path.join(skillsDir, f);
+        return fs.statSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'SKILL.md'));
+      })
+      .length;
+  }
+} catch (e) {}
+
+
 // Simple check for Vietnamese environment for the CORE UI
 const isVi = Intl.DateTimeFormat().resolvedOptions().locale.startsWith('vi');
 
 const sentiments = {
   start: [
     "🐹: Whiskers twitching... CodyMaster incoming!",
-    "🐹: Let's fill these cheeks with 65 skills! ✨",
+    `🐹: Let's fill these cheeks with ${skillCount} skills! ✨`,
     "🐹: Waking up from a power nap! Let's build! 🐭"
   ],
   progress: [
@@ -25,9 +41,9 @@ const sentiments = {
   ],
   finish: [
     "🐹: Mission accomplished! Can I have a walnut now? 🥜",
-    "🐹: My cheeks are stuffed with 65 skills for you! ✨",
+    `🐹: My cheeks are stuffed with ${skillCount} skills for you! ✨`,
     "🐹: Terminal is Hamster-approved! Better than a wheel! 🎡",
-    "🐹: 65 skills stored. I'm ready for vibe coding! ⚡"
+    `🐹: ${skillCount} skills stored. I'm ready for vibe coding! ⚡`
   ]
 };
 
@@ -209,9 +225,9 @@ const printMenu = () => {
   console.log('');
   
   if (isVi) {
-    console.log(`    ${W}${BOLD}🎉 Thành công! Bạn đã mở khóa 65 kỹ năng AI toàn năng:${NC}`);
+    console.log(`    ${W}${BOLD}🎉 Thành công! Bạn đã mở khóa ${skillCount} kỹ năng AI toàn năng:${NC}`);
   } else {
-    console.log(`    ${W}${BOLD}🎉 Success! You just unlocked 65 omnipotent AI skills:${NC}`);
+    console.log(`    ${W}${BOLD}🎉 Success! You just unlocked ${skillCount} omnipotent AI skills:${NC}`);
   }
   
   console.log('');

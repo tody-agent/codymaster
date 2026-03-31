@@ -14,6 +14,19 @@ import { getHamsterArt, renderHamsterBanner, getCelebration } from './hamster';
 import { loadProfile, saveProfile, isFirstRun, recordCommand, checkAchievements, formatAchievement } from './hooks';
 import type { UserProfile } from './hooks';
 
+let SKILL_COUNT = 33;
+try {
+  const fs = require('fs');
+  const path = require('path');
+  const distSkillsDir = path.join(__dirname, '..', '..', 'skills');
+  if (fs.existsSync(distSkillsDir)) {
+    SKILL_COUNT = fs.readdirSync(distSkillsDir).filter((f: string) => {
+      const fullPath = path.join(distSkillsDir, f);
+      return fs.statSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'SKILL.md'));
+    }).length;
+  }
+} catch (e) {}
+
 // ─── Onboarding Steps ──────────────────────────────────────────────────────
 
 const TOTAL_STEPS = 5;
@@ -22,7 +35,7 @@ const STEP_INFO: Record<number, { title: string; desc: string }> = {
   1: { title: 'Meet your assistant', desc: 'What should I call you?' },
   2: { title: 'Pick your platform', desc: 'Where do you code?' },
   3: { title: 'Your first task', desc: 'Add something to build' },
-  4: { title: 'See the magic', desc: 'Discover your 65 skills' },
+  4: { title: 'See the magic', desc: `Discover your ${SKILL_COUNT} skills` },
   5: { title: 'You\'re ready!', desc: 'Welcome to the team' },
 };
 
@@ -193,7 +206,7 @@ export async function runOnboarding(version: string): Promise<UserProfile> {
   if (startStep < 4) {
     console.log(renderStepProgress(4, TOTAL_STEPS));
     console.log('');
-    console.log(`    ${brandBold('You have 65 superpowers!')} ${ICONS.skill}`);
+    console.log(`    ${brandBold(`You have ${SKILL_COUNT} superpowers!`)} ${ICONS.skill}`);
     console.log(`    ${dim('Grouped by what they help you do:')}`);
     console.log('');
 
@@ -243,11 +256,11 @@ export async function runOnboarding(version: string): Promise<UserProfile> {
       }
       console.log('');
     }
-    console.log(`    ${dim(`Total: 65 skills across 6 domains`)}`);
+    console.log(`    ${dim(`Total: ${SKILL_COUNT} skills across 6 domains`)}`);
     console.log('');
 
     const viewAll = await p.confirm({
-      message: 'Want to browse all 65 skills in detail?',
+      message: `Want to browse all ${SKILL_COUNT} skills in detail?`,
       initialValue: false,
     });
 
@@ -301,5 +314,5 @@ export async function runOnboarding(version: string): Promise<UserProfile> {
  * Displays hamster + trigger + quick action
  */
 export function showReturningWelcome(profile: UserProfile, version: string, cwd: string): void {
-  console.log(renderHamsterBanner(profile.userName, version, cwd));
+  console.log(renderHamsterBanner(profile.userName, version, cwd, SKILL_COUNT));
 }

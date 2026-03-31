@@ -27,6 +27,15 @@ RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
 VERSION="4.4.0"
 SCOPE="user"   # default scope for Claude Code
 
+if [ -d "skills" ]; then
+  TOTAL_SKILLS=$(ls -1d skills/*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
+elif [ -d "$HOME/.cody-master/skills" ]; then
+  TOTAL_SKILLS=$(ls -1d "$HOME/.cody-master/skills"/*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
+else
+  TOTAL_SKILLS="60+"
+fi
+
+
 # ── i18n ────────────────────────────────────────────────────────
 detect_lang() {
   local lang="${LANG:-en}"
@@ -115,7 +124,7 @@ print_header() {
   echo ""
   echo -e "    ${O}${BOLD}$(msg welcome)${NC} 🐹"
   echo ""
-  echo -e "    ${DIM}CodyMaster${NC} ${O}v${VERSION}${NC} ${DIM}• 65 Skills • ~${NC}"
+  echo -e "    ${DIM}CodyMaster${NC} ${O}v${VERSION}${NC} ${DIM}• ${TOTAL_SKILLS} Skills • ~${NC}"
   echo -e "${DIM}  ──────────────────────────────────────────────────${NC}"
   echo ""
 }
@@ -206,7 +215,7 @@ hamster_sentiment() {
     "start")
       case $idx in
         0) echo -e "    ${C}🐹: Whiskers twitching... CodyMaster incoming!${NC}" ;;
-        1) echo -e "    ${C}🐹: Let's fill these cheeks with 65 skills! ✨${NC}" ;;
+        1) echo -e "    ${C}🐹: Let's fill these cheeks with ${TOTAL_SKILLS} skills! ✨${NC}" ;;
         2) echo -e "    ${C}🐹: Waking up from a power nap! Let's build! 🐭${NC}" ;;
       esac
       ;;
@@ -220,7 +229,7 @@ hamster_sentiment() {
     "finish")
       case $idx in
         0) echo -e "    ${C}🐹: Mission accomplished! Can I have a walnut now? 🥜${NC}" ;;
-        1) echo -e "    ${C}🐹: My cheeks are stuffed with 65 skills for you! ✨${NC}" ;;
+        1) echo -e "    ${C}🐹: My cheeks are stuffed with ${TOTAL_SKILLS} skills for you! ✨${NC}" ;;
         2) echo -e "    ${C}🐹: Terminal is Hamster-approved! Better than a wheel! 🎡${NC}" ;;
       esac
       ;;
@@ -403,7 +412,7 @@ print_onboarding() {
     print_header
     
     if [ "$LANG_CODE" = "vi" ]; then
-      echo -e "    ${W}${BOLD}🎉 Thành công! Bạn đã mở khóa 65 kỹ năng AI toàn năng:${NC}"
+      echo -e "    ${W}${BOLD}🎉 Thành công! Bạn đã mở khóa ${TOTAL_SKILLS} kỹ năng AI toàn năng:${NC}"
       echo ""
       hamster_sentiment "finish"
       echo ""
@@ -429,7 +438,7 @@ print_onboarding() {
       echo -e "  11. ${Y}Xem Demo tự động            ${NC} → /cm:demo"
       echo -e "  12. ${Y}Trợ giúp & Cú pháp lệnh      ${NC} → cm help"
     else
-      echo -e "    ${W}${BOLD}🎉 Success! You just unlocked 65 omnipotent AI skills:${NC}"
+      echo -e "    ${W}${BOLD}🎉 Success! You just unlocked ${TOTAL_SKILLS} omnipotent AI skills:${NC}"
       echo ""
       hamster_sentiment "finish"
       echo ""
@@ -611,6 +620,7 @@ install_skills_to() {
   echo ""
   mkdir -p "$target"
   local count=0
+  local installed=()
   for skill_dir in "${CLONE_DIR}"/skills/*/; do
     skill_name=$(basename "$skill_dir")
     if [ -f "${skill_dir}SKILL.md" ]; then
@@ -621,19 +631,32 @@ install_skills_to() {
         echo "globs: *" >> "${target}/${skill_name}.mdc"
         echo "---" >> "${target}/${skill_name}.mdc"
         cat "${skill_dir}SKILL.md" >> "${target}/${skill_name}.mdc"
-        echo -e "  ${G}✅${NC} ${skill_name}.mdc"
+        installed+=("${skill_name}.mdc")
       elif [[ "$format" == "md" ]]; then
         cp "${skill_dir}SKILL.md" "${target}/${skill_name}.md"
-        echo -e "  ${G}✅${NC} ${skill_name}.md"
+        installed+=("${skill_name}.md")
       else
         cp -r "$skill_dir" "${target}/${skill_name}"
-        echo -e "  ${G}✅${NC} $skill_name"
+        installed+=("$skill_name")
       fi
       count=$((count + 1))
     fi
   done
+  
+  local line="  ${DIM}"
+  for s in "${installed[@]}"; do
+    if [ ${#line} -gt 70 ]; then
+      echo -e "${line}${NC}"
+      line="  ${DIM}"
+    fi
+    line="${line}${s}, "
+  done
+  if [ "${line}" != "  ${DIM}" ]; then
+    echo -e "${line%, }${NC}"
+  fi
+
   echo ""
-  echo -e "${G}${count} skills installed to ${target}${NC}"
+  echo -e "${G}✅ ${count} skills installed to ${target}${NC}"
 }
 
 # ── Legacy alias ─────────────────────────────────────────────────

@@ -193,7 +193,7 @@ function getErrorGuidance() {
 /**
  * Render the full hamster banner with greeting
  */
-function renderHamsterBanner(userName, version, cwd) {
+function renderHamsterBanner(userName, version, cwd, skillCount = 34) {
     const art = getHamsterArt(getTimeOfDay() === 'night' ? 'sleeping' : 'greeting');
     const greeting = getGreeting(userName);
     const lines = [
@@ -202,7 +202,7 @@ function renderHamsterBanner(userName, version, cwd) {
         '',
         `    ${(0, theme_1.brandBold)(greeting)}`,
         '',
-        `    ${(0, theme_1.dim)('CodyMaster')} ${(0, theme_1.brand)(`v${version || '?'}`)} ${(0, theme_1.dim)('•')} ${(0, theme_1.dim)('34 Skills')} ${(0, theme_1.dim)('•')} ${(0, theme_1.dim)(cwd || '~')}`,
+        `    ${(0, theme_1.dim)('CodyMaster')} ${(0, theme_1.brand)(`v${version || '?'}`)} ${(0, theme_1.dim)('•')} ${(0, theme_1.dim)(`${skillCount} Skills`)} ${(0, theme_1.dim)('•')} ${(0, theme_1.dim)(cwd || '~')}`,
         (0, theme_1.dim)('  ' + '─'.repeat(50)),
     ];
     return lines.join('\n');

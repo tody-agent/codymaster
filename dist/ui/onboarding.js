@@ -56,13 +56,26 @@ const theme_2 = require("./theme");
 const box_1 = require("./box");
 const hamster_1 = require("./hamster");
 const hooks_1 = require("./hooks");
+let SKILL_COUNT = 33;
+try {
+    const fs = require('fs');
+    const path = require('path');
+    const distSkillsDir = path.join(__dirname, '..', '..', 'skills');
+    if (fs.existsSync(distSkillsDir)) {
+        SKILL_COUNT = fs.readdirSync(distSkillsDir).filter((f) => {
+            const fullPath = path.join(distSkillsDir, f);
+            return fs.statSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'SKILL.md'));
+        }).length;
+    }
+}
+catch (e) { }
 // ─── Onboarding Steps ──────────────────────────────────────────────────────
 const TOTAL_STEPS = 5;
 const STEP_INFO = {
     1: { title: 'Meet your assistant', desc: 'What should I call you?' },
     2: { title: 'Pick your platform', desc: 'Where do you code?' },
     3: { title: 'Your first task', desc: 'Add something to build' },
-    4: { title: 'See the magic', desc: 'Discover your 65 skills' },
+    4: { title: 'See the magic', desc: `Discover your ${SKILL_COUNT} skills` },
     5: { title: 'You\'re ready!', desc: 'Welcome to the team' },
 };
 /**
@@ -219,7 +232,7 @@ function runOnboarding(version) {
         if (startStep < 4) {
             console.log((0, box_1.renderStepProgress)(4, TOTAL_STEPS));
             console.log('');
-            console.log(`    ${(0, theme_1.brandBold)('You have 65 superpowers!')} ${theme_2.ICONS.skill}`);
+            console.log(`    ${(0, theme_1.brandBold)(`You have ${SKILL_COUNT} superpowers!`)} ${theme_2.ICONS.skill}`);
             console.log(`    ${(0, theme_1.dim)('Grouped by what they help you do:')}`);
             console.log('');
             const SKILL_DOMAINS = [
@@ -267,10 +280,10 @@ function runOnboarding(version) {
                 }
                 console.log('');
             }
-            console.log(`    ${(0, theme_1.dim)(`Total: 65 skills across 6 domains`)}`);
+            console.log(`    ${(0, theme_1.dim)(`Total: ${SKILL_COUNT} skills across 6 domains`)}`);
             console.log('');
             const viewAll = yield p.confirm({
-                message: 'Want to browse all 65 skills in detail?',
+                message: `Want to browse all ${SKILL_COUNT} skills in detail?`,
                 initialValue: false,
             });
             profile.onboardingStep = 4;
@@ -317,5 +330,5 @@ function runOnboarding(version) {
  * Displays hamster + trigger + quick action
  */
 function showReturningWelcome(profile, version, cwd) {
-    console.log((0, hamster_1.renderHamsterBanner)(profile.userName, version, cwd));
+    console.log((0, hamster_1.renderHamsterBanner)(profile.userName, version, cwd, SKILL_COUNT));
 }

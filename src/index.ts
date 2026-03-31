@@ -33,6 +33,30 @@ import { runOnboarding, showReturningWelcome } from './ui/onboarding';
 
 const VERSION = require('../package.json').version;
 
+let ALL_SKILLS: string[] = [];
+try {
+  const distSkillsDir = path.join(__dirname, '..', 'skills');
+  if (fs.existsSync(distSkillsDir)) {
+    ALL_SKILLS = fs.readdirSync(distSkillsDir).filter(f => {
+      const fullPath = path.join(distSkillsDir, f);
+      return fs.statSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'SKILL.md'));
+    });
+  }
+} catch (e) {
+  // Silent fallback
+}
+if (ALL_SKILLS.length === 0) {
+  ALL_SKILLS = [
+    'cm-tdd', 'cm-debugging', 'cm-quality-gate', 'cm-test-gate', 'cm-code-review',
+    'cm-safe-deploy', 'cm-identity-guard', 'cm-git-worktrees', 'cm-terminal', 'cm-secret-shield', 'cm-security-gate', 'cm-safe-i18n',
+    'cm-planning', 'cm-ux-master', 'cm-ui-preview', 'cm-brainstorm-idea', 'cm-jtbd', 'cm-dockit', 'cm-project-bootstrap', 'cm-readit',
+    'cm-content-factory', 'cm-ads-tracker', 'cro-methodology', 'cm-deep-search',
+    'cm-execution', 'cm-continuity', 'cm-skill-index', 'cm-skill-mastery', 'cm-skill-chain',
+    'cm-start', 'cm-dashboard', 'cm-status', 'cm-how-it-work', 'cm-example',
+  ];
+}
+const SKILL_COUNT = ALL_SKILLS.length;
+
 // ─── Update Check ───────────────────────────────────────────────────────────
 
 let _updateMessage = '';
@@ -96,7 +120,7 @@ function printUpdateNotice() {
 function showBanner() {
   const cPath = process.cwd().replace(os.homedir(), '~');
   const profile = loadProfile();
-  console.log(renderHamsterBanner(profile.userName || undefined, VERSION, cPath));
+  console.log(renderHamsterBanner(profile.userName || undefined, VERSION, cPath, SKILL_COUNT));
   printUpdateNotice();
 }
 
@@ -145,7 +169,7 @@ async function postInstallOnboarding(platform: string) {
       message: 'What would you like to do?',
       options: [
         { label: `${ICONS.dashboard}  Launch Dashboard`, value: 'dashboard', hint: `localhost:${DEFAULT_PORT}` },
-        { label: `${ICONS.skill}  Browse all 65 skills`, value: 'skills' },
+        { label: `${ICONS.skill}  Browse all ${SKILL_COUNT} skills`, value: 'skills' },
         { label: `${ICONS.deploy}  Start with your AI`, value: 'invoke', hint: profile.platform || 'any agent' },
         { label: `${success('✓')}  Done`, value: 'done' },
       ],
@@ -234,7 +258,7 @@ async function showInteractiveMenu() {
       { label: `${ICONS.dashboard}  Dashboard`, value: 'dashboard', hint: isDashboardRunning() ? 'Open' : 'Start & open' },
       { label: `${ICONS.task}  My Tasks`, value: 'tasks', hint: `${taskCounts.totalTasks} total` },
       { label: `📈 Status`, value: 'status', hint: 'Health snapshot' },
-      { label: `${ICONS.skill}  Browse Skills`, value: 'skills', hint: '65 skills' },
+      { label: `${ICONS.skill}  Browse Skills`, value: 'skills', hint: `${SKILL_COUNT} skills` },
       { label: `➕ Add a Task`, value: 'addtask', hint: 'Quick add' },
       { label: `⚡ Install Skills`, value: 'install', hint: 'Update all' },
       { label: `${ICONS.hamster}  My Profile`, value: 'profile', hint: `${profile.level}` },
@@ -295,7 +319,7 @@ async function showInteractiveMenu() {
         `${brand('cm task list')}          ${dim('View tasks')}`,
         `${brand('cm status')}             ${dim('Project health')}`,
         `${brand('cm dashboard')}          ${dim('Mission Control')}`,
-        `${brand('cm list')}               ${dim('Browse 65 skills')}`,
+        `${brand('cm list')}               ${dim(`Browse ${SKILL_COUNT} skills`)}`,
         `${brand('cm deploy')} ${dim('<env>')}       ${dim('Record deploy')}`,
         `${brand('cm profile')}            ${dim('Your stats')}`,
       ];
@@ -311,7 +335,7 @@ const program = new Command();
 
 program
   .name('cm')
-  .description('Cody — 65 Skills. Ship 10x faster.')
+  .description(`Cody — ${SKILL_COUNT} Skills. Ship 10x faster.`)
   .version(VERSION, '-v, --version', 'Show version')
   .argument('[cmd]', 'Command to run', '')
   .action(async (cmd) => {
@@ -930,21 +954,6 @@ program
 
 // ─── Add Command (npx codymaster add --skill cm-debugging) ───────────────────
 
-const ALL_SKILLS = [
-  // Engineering
-  'cm-tdd', 'cm-debugging', 'cm-quality-gate', 'cm-test-gate', 'cm-code-review',
-  // Operations
-  'cm-safe-deploy', 'cm-identity-guard', 'cm-git-worktrees', 'cm-terminal', 'cm-secret-shield', 'cm-security-gate', 'cm-safe-i18n',
-  // Product
-  'cm-planning', 'cm-ux-master', 'cm-ui-preview', 'cm-brainstorm-idea', 'cm-jtbd', 'cm-dockit', 'cm-project-bootstrap', 'cm-readit',
-  // Growth
-  'cm-content-factory', 'cm-ads-tracker', 'cro-methodology', 'cm-deep-search',
-  // Orchestration
-  'cm-execution', 'cm-continuity', 'cm-skill-index', 'cm-skill-mastery', 'cm-skill-chain',
-  // Workflow
-  'cm-start', 'cm-dashboard', 'cm-status', 'cm-how-it-work', 'cm-example',
-];
-
 const PLATFORM_TARGETS: Record<string, { dir: string; invoke: string; note: string }> = {
   gemini: { dir: '.gemini/skills', invoke: '@[/<skill>]', note: 'or ~/.gemini/antigravity/skills/ for global' },
   cursor: { dir: '.cursor/rules', invoke: '@<skill>', note: 'Cursor rules directory' },
@@ -990,7 +999,7 @@ async function doAddSkills(skills: string[], platform: string) {
 
   if (platform === 'claude') {
     console.log(brand('🟣 Claude Code — Installing via plugin system'));
-    console.log(dim('   (Claude installs all 65 skills as one bundle)\n'));
+    console.log(dim('   (Claude installs all ${SKILL_COUNT} skills as one bundle)\n'));
 
     // Step 1: Register marketplace
     console.log(dim('   $ claude plugin marketplace add tody-agent/codymaster'));
@@ -1015,7 +1024,7 @@ async function doAddSkills(skills: string[], platform: string) {
     console.log(dim('   $ claude plugin install codymaster@codymaster'));
     try {
       execFileSync('claude', ['plugin', 'install', 'codymaster@codymaster'], { stdio: 'inherit' });
-      console.log(renderResult('success', 'All 65 skills installed!'));
+      console.log(renderResult('success', `All ${SKILL_COUNT} skills installed!`));
       await postInstallOnboarding('claude');
     } catch {
       console.log(renderResult('warning', 'Plugin install failed. Run manually:'));
@@ -1050,7 +1059,7 @@ async function doAddSkills(skills: string[], platform: string) {
 
   const icons: Record<string, string> = { cursor: '🔵', windsurf: '🟠', cline: '⚫', opencode: '📦', kiro: '🔶' };
   const icon = icons[platform] || '📦';
-  const label = skills.length === ALL_SKILLS.length ? 'all 65 skills' : skills.join(', ');
+  const label = skills.length === ALL_SKILLS.length ? `all ${SKILL_COUNT} skills` : skills.join(', ');
   console.log(`${icon} ${brand(`${platform} — Installing ${label}`)}`);
   console.log(dim(`   Target: ./${target.dir}/\n`));
 
@@ -1103,7 +1112,7 @@ program
   .command('add')
   .description('Add skills to your AI agent  (npx codymaster add --skill cm-debugging)')
   .option('--skill <name>', 'Specific skill to add (e.g. cm-debugging)')
-  .option('--all', 'Add all 65 skills')
+  .option('--all', `Add all ${SKILL_COUNT} skills`)
   .option('--platform <platform>', 'Target: claude|gemini|cursor|windsurf|cline|opencode|kiro|copilot')
   .option('--list', 'Show available skills and exit')
   .action(async (opts) => {
@@ -1158,7 +1167,7 @@ program
         const mode = await p.select({
           message: 'What to install?',
           options: [
-            { label: 'All 65 skills (full kit)', value: 'all' },
+            { label: `All ${SKILL_COUNT} skills (full kit)`, value: 'all' },
             { label: 'Search & pick one skill', value: 'pick' },
           ],
         });
@@ -1184,7 +1193,7 @@ program
 program
   .command('list')
   .alias('ls')
-  .description('List all 65 available skills')
+  .description(`List all ${SKILL_COUNT} available skills`)
   .option('-d, --domain <domain>', 'Filter by domain')
   .action((opts) => {
     skillList(opts.domain);
@@ -1819,7 +1828,7 @@ const SKILL_CATALOG: Record<string, { icon: string; skills: { name: string; desc
       { name: 'cm-start', desc: 'Onboarding & session kick-off wizard' },
       { name: 'cm-dashboard', desc: 'Project status & task Kanban board' },
       { name: 'cm-status', desc: 'Quick project health snapshot' },
-      { name: 'cm-how-it-work', desc: 'Interactive explainer for all 65 skills' },
+      { name: 'cm-how-it-work', desc: `Interactive explainer for all ${SKILL_COUNT} skills` },
       { name: 'cm-example', desc: 'Minimal template for new skills' },
     ],
   },
@@ -1861,7 +1870,7 @@ function skillList(filterDomain?: string) {
     return;
   }
 
-  console.log(renderCommandHeader('Cody Master — 65 Skills', '🧩'));
+  console.log(renderCommandHeader(`Cody Master — ${SKILL_COUNT} Skills`, '🧩'));
   let total = 0;
   for (const [domain, data] of entries) {
     console.log(brand(`  ${data.icon} ${domain.charAt(0).toUpperCase() + domain.slice(1)}`));
