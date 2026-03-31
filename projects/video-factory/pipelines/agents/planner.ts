@@ -23,7 +23,7 @@ export const plannerAgent = {
       return {
         idea: "CM AutoPilot CLI",
         hook: "Mệt mỏi vì phải cấu hình kỹ thuật? CM AutoPilot đã có mặt!",
-        hookFormula: 'negative_to_positive',
+        hookFormula: 'contrarian',
         coreMessage: "Trải nghiệm VibeCoding không giới hạn với CM AutoPilot.",
         cta: "Lưu ngay video này nhé!",
       };

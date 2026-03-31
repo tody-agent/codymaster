@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { AbsoluteFill, Audio, Sequence, useVideoConfig, getInputProps, staticFile } from "remotion";
 import { VideoScript, VideoScene } from "../lib/types";
-import { theme, fontStyles } from "../lib/theme";
+import { theme } from "../lib/theme";
 import { DarkTerminal } from "../components/DarkTerminal";
 import { VsCodeGlow } from "../components/VsCodeGlow";
 import { TitleCard } from "../components/TitleCard";
@@ -60,7 +60,6 @@ export const TikTokVideo: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: theme.colors.bgVoid, fontFamily: theme.fonts.ui }}>
-      <style>{fontStyles}</style>
 
       {script.scenes.map((scene, i) => {
         const fromFrame = Math.floor(scene.time_start * fps);

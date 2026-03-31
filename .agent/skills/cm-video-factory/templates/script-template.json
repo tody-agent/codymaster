@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cm-video-factory-script-v2",
+  "title": "CM Video Factory Script Schema v2.0",
+  "description": "JSON schema for video scripts consumed by the Remotion pipeline",
+  "type": "object",
+  "required": ["id", "title", "hook", "language", "duration_target", "format", "scenes", "cta"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique video identifier (e.g., video_042)",
+      "pattern": "^video_[0-9]{3}$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Video title for SEO/display",
+      "maxLength": 100
+    },
+    "hook": {
+      "type": "string",
+      "description": "Opening hook text (first 3 seconds)",
+      "maxLength": 200
+    },
+    "hook_formula": {
+      "type": "string",
+      "description": "Which of the 12 hook formulas to apply",
+      "enum": [
+        "data_shock", "contrarian", "future_pacing", "story_open",
+        "authority", "curiosity_gap", "fear", "social_proof",
+        "challenge", "comparison", "reveal", "empathy"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary language for TTS routing",
+      "enum": ["vi", "en"]
+    },
+    "duration_target": {
+      "type": "number",
+      "description": "Target duration in seconds",
+      "minimum": 15,
+      "maximum": 900
+    },
+    "format": {
+      "type": "string",
+      "description": "Video format/orientation",
+      "enum": ["tiktok", "youtube", "both"]
+    },
+    "scenes": {
+      "type": "array",
+      "description": "Ordered array of scenes",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["time_start", "duration", "text", "visual"],
+        "properties": {
+          "time_start": {
+            "type": "number",
+            "description": "Scene start time in seconds"
+          },
+          "duration": {
+            "type": "number",
+            "description": "Scene duration in seconds"
+          },
+          "text": {
+            "type": "string",
+            "description": "Spoken text for this scene (sent to TTS)"
+          },
+          "visual": {
+            "type": "string",
+            "description": "React component name to render",
+            "enum": [
+              "DarkTerminal", "VsCodeGlow", "BouncingSubtitle",
+              "StatCounter", "SplitScreen", "CodeDiff",
+              "FloatingCard", "ProgressRing", "TerminalCrashView",
+              "CodeGlowView", "TitleCard", "EndCard"
+            ]
+          },
+          "props": {
+            "type": "object",
+            "description": "Props passed to the visual component"
+          },
+          "transition": {
+            "type": "string",
+            "description": "Transition effect entering this scene",
+            "enum": ["cut", "fade", "slide_up", "slide_left", "zoom_in", "glitch"]
+          }
+        }
+      }
+    },
+    "cta": {
+      "type": "string",
+      "description": "Call-to-action text at video end"
+    },
+    "hashtags": {
+      "type": "array",
+      "description": "Platform hashtags (3-7 recommended)",
+      "items": { "type": "string" },
+      "minItems": 3,
+      "maxItems": 7
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "ai_generated": {
+          "type": "boolean",
+          "description": "Must be true for all factory-produced videos"
+        },
+        "ai_disclosure": {
+          "type": "string",
+          "description": "AI disclosure statement for platform compliance"
+        },
+        "thumbnail_prompt": {
+          "type": "string",
+          "description": "Prompt for generating video thumbnail"
+        },
+        "seo_description": {
+          "type": "string",
+          "description": "SEO description for video metadata"
+        }
+      }
+    },
+    "tts_config": {
+      "type": "object",
+      "description": "Override TTS engine settings",
+      "properties": {
+        "engine": {
+          "type": "string",
+          "enum": ["vieneu", "elevenlabs", "openai", "auto"]
+        },
+        "voice": {
+          "type": "string",
+          "description": "Voice ID (engine-specific)"
+        },
+        "speed": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 2.0,
+          "default": 1.0
+        },
+        "ref_audio": {
+          "type": "string",
+          "description": "Path to reference audio for VieNeu-TTS voice cloning"
+        }
+      }
+    }
+  }
+}

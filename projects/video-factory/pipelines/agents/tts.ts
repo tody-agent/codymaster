@@ -1,6 +1,6 @@
 import { VideoScript } from '../../src/lib/types';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import fs from 'fs';
 
 export const ttsEngine = {
@@ -23,11 +23,28 @@ export const ttsEngine = {
 
     try {
         console.log(`[TTS] Using edge-tts with voice 'vi-VN-HoaiMyNeural'`);
-        execSync(`edge-tts --voice vi-VN-HoaiMyNeural -f "${tempTextPath}" --write-media "${outputPath}"`);
+        execFileSync('edge-tts', [
+          '--voice', 'vi-VN-HoaiMyNeural',
+          '-f', tempTextPath,
+          '--write-media', outputPath
+        ]);
     } catch (e) {
         console.log(`[TTS] edge-tts not found or failed, falling back to macOS say...`);
-        const safeText = fullText.replace(/"/g, '\\"').replace(/\$/g, '\\$');
-        execSync(`say -v Linh -o "${outputPath}.wav" --data-format=LEF32@44100 "${safeText}" || say -o "${outputPath}.wav" --data-format=LEF32@44100 "${safeText}"`);
+        try {
+          execFileSync('say', [
+            '-v', 'Linh',
+            '-o', `${outputPath}.wav`,
+            '--data-format=LEF32@44100',
+            fullText
+          ]);
+        } catch (fallbackErr) {
+          // If 'Linh' voice is not installed, fallback to default voice
+          execFileSync('say', [
+            '-o', `${outputPath}.wav`,
+            '--data-format=LEF32@44100',
+            fullText
+          ]);
+        }
         fs.unlinkSync(tempTextPath);
         return `audio/${script.id}.mp3.wav`; 
     }

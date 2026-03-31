@@ -1,0 +1,68 @@
+{
+  "$schema": "cm-video-factory-render-config",
+  "format": "youtube",
+  "description": "Horizontal 16:9 for YouTube long-form, Facebook Video",
+  "composition": {
+    "id": "YouTubeVideo",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "codec": "h264",
+    "imageFormat": "jpeg",
+    "pixelFormat": "yuv420p",
+    "crf": 18,
+    "audioBitrate": "192k",
+    "audioCodec": "aac"
+  },
+  "rendering": {
+    "concurrency": null,
+    "logLevel": "info",
+    "timeoutInMilliseconds": 300000,
+    "chromiumOptions": {
+      "disableWebSecurity": false,
+      "headless": true
+    }
+  },
+  "styling": {
+    "background": "#050B14",
+    "primary_color": "#00F0FF",
+    "secondary_color": "#FF007F",
+    "accent_color": "#8B5CF6",
+    "text_color": "#FFFFFF",
+    "subtitle_font": "Be Vietnam Pro",
+    "code_font": "Fira Code",
+    "ui_font": "Inter"
+  },
+  "layout": {
+    "type": "split_panel",
+    "description": "Left 60% for visuals, right 40% for code/text overlay",
+    "left_panel_width_percent": 60,
+    "right_panel_width_percent": 40,
+    "padding": 32,
+    "gap": 16
+  },
+  "subtitle": {
+    "enabled": true,
+    "style": "standard_bottom",
+    "position": "bottom",
+    "margin_bottom": 60,
+    "font_size": 28,
+    "font_weight": 600,
+    "stroke_width": 2,
+    "stroke_color": "#000000",
+    "background_opacity": 0.6,
+    "background_color": "#000000",
+    "combine_tokens_ms": 1200
+  },
+  "platform_rules": {
+    "max_duration_seconds": 900,
+    "recommended_duration": [180, 600],
+    "max_daily_uploads": 2,
+    "cooldown_hours": 6,
+    "ai_disclosure_required": true,
+    "monetization_check": true,
+    "require_human_value": true,
+    "srt_export": true,
+    "thumbnail_required": true
+  }
+}

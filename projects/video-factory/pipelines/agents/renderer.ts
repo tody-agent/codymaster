@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 
@@ -20,12 +20,21 @@ export const renderer = {
     const scriptObj = JSON.parse(scriptContent);
     const durationFrames = Math.max(30, Math.ceil(scriptObj.duration_target * 30));
     
-    // Escape single quotes for the bash command
-    const safeProps = JSON.stringify({ script: scriptObj }).replace(/'/g, "'\\''");
+    // Props are passed as an argument directly, no need for bash escaping
+    const props = JSON.stringify({ script: scriptObj });
     
     // Run remotion render limiting the frame range so we don't end up with a black trailing screen
     console.log(`[Renderer] Executing remotion render command for ${durationFrames} frames...`);
-    execSync(`npx remotion render src/index.ts TikTokVideo --frames=0-${durationFrames - 1} --props='${safeProps}' "${outputPath}"`, { stdio: 'inherit' });
+    execFileSync('npx', [
+      'remotion', 
+      'render', 
+      'src/index.ts', 
+      'TikTokVideo', 
+      `--frames=0-${durationFrames - 1}`, 
+      '--props', 
+      props, 
+      outputPath
+    ], { stdio: 'inherit' });
     
     console.log(`[Renderer] Render complete. Output path: ${outputPath}`);
     

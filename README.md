@@ -6,10 +6,10 @@
 
 ### Your AI Agent is smart. CodyMaster makes it *wise*.
 
-**68+ Skills · 11 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
+**68+ Skills · 18 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.4.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.5.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
@@ -105,9 +105,9 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
-### 🧠 The Unified Brain: 5-Tier Memory Architecture
+### 🧠 The Unified Brain: 5-Tier Memory + Smart Spine
 
-Your AI doesn't just execute — it **understands and remembers** using a multi-scale, 5-Tier Unified Brain system that persists across sessions and machines:
+Your AI doesn't just execute — it **understands and remembers** using a multi-scale, 5-Tier + Smart Spine architecture that persists across sessions and machines:
 
 1. **Sensory Memory (Session)** — Immediate context of active files and terminals.
 2. **Working Memory (`cm-continuity`)** — Cross-session scratchpad. AI never repeats the same mistake.
@@ -115,10 +115,18 @@ Your AI doesn't just execute — it **understands and remembers** using a multi-
 4. **Semantic Memory (`cm-deep-search`)** — Local vector search across docs using `qmd`.
 5. **Structural Memory (`cm-codeintell`)** — AST-based CodeGraph. Up to 95% token compression for full codebase context.
 
+🦴 **Smart Spine (v4.5+)** — The nervous system connecting all 5 tiers:
+- **SQLite + FTS5** — BM25-ranked keyword search replaces flat JSON scans.
+- **Progressive Loading (L0/L1/L2)** — Context loaded at cheapest sufficient depth. 78% token savings.
+- **cm:// URI Scheme** — Skills request context by URI, not file paths.
+- **Token Budget** — 200k window pre-allocated by category. No more silent overflow.
+- **Context Bus** — Skills share outputs in real-time within a chain.
+- **MCP Server** — 7 tools exposed to Claude Desktop and any MCP client.
+
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 High-value knowledge and design patterns are synced to NotebookLM, providing a universal, cross-machine "Soul" for your project. Auto-generate podcasts and flashcards to onboard human developers alongside the AI.
 
-📖 [Read the full Knowledge Architecture →](docs/knowledge-architecture.md)
+📖 [Read the full Knowledge Architecture →](docs/architecture/knowledge-architecture.md)
 
 ### 🛡️ Multi-Layer Protection (Your Codebase Won't Get Destroyed)
 
@@ -166,7 +174,7 @@ Don't know what the old code does? **`cm-dockit`** reads your entire codebase an
 
 Before diving into code for complex requests, **`cm-brainstorm-idea`** evaluates your product using multi-dimensional analysis (Tech, Product, Design, Business). It generates 2-3 qualified options using the 9 Windows (TRIZ) framework and provides a visual UI Preview via **Pencil.dev** or **Google Stitch** to validate the direction before detailed planning. 
 
-📖 [Read more about the UI Preview Phase →](docs/Brainstorm-UI-Preview.md)
+📖 [Read more about the UI Preview Phase →](docs/workflows/brainstorm-ui-preview.md)
 
 
 ### 🏭 AI Content Factory v2.0 & Visual Dashboard
@@ -294,14 +302,21 @@ The CLI will greet you and keep you organized on your long coding sessions!
 ## 🎮 Commands
 
 ```
-cm                → Quick menu with Cody 🐹
-cm task add "..." → Add a task
-cm task list      → View tasks
-cm status         → Project health
-cm dashboard      → Open Mission Control
-cm list           → Browse 68+ skills
-cm profile        → Your stats & achievements
-cm deploy <env>   → Record deployment
+cm                          → Quick menu with Cody 🐹
+cm task add "..."           → Add a task
+cm task list                → View tasks
+cm status                   → Project health
+cm dashboard                → Open Mission Control
+cm list                     → Browse 68+ skills
+cm profile                  → Your stats & achievements
+cm deploy <env>             → Record deployment
+cm continuity index         → Regenerate L0 memory indexes
+cm continuity budget        → Show token budget allocation
+cm continuity bus           → View context bus state
+cm continuity mcp           → Print MCP server config
+cm continuity migrate       → Migrate JSON → SQLite
+cm continuity export        → Export SQLite → JSON
+cm resolve <uri>            → Resolve any cm:// URI
 ```
 
 **Slash Commands (inside AI agents):**

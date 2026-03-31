@@ -6,10 +6,10 @@
 
 ### 您的 AI 智能体很聪明。CodyMaster 让它变得*睿智*。
 
-**68+ 项技能 · 11 条命令 · 1 个插件 · 7+ 个平台 · 6 种语言**
+**68+ 项技能 · 18 条命令 · 1 个插件 · 7+ 个平台 · 6 种语言**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.4.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.5.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
@@ -94,9 +94,9 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
-### 🧠 统一大脑：5层记忆架构
+### 🧠 统一大脑：5层记忆架构 + Smart Spine
 
-您的 AI 不仅仅是执行 —— 它还会通过跨会话和跨机器持久化的5层统一大脑系统来**理解并记忆**：
+您的 AI 不仅仅是执行 —— 它还会通过跨会话和跨机器持久化的5层 + Smart Spine 架构来**理解并记忆**：
 
 1. **Sensory Memory (会话上下文)** — 当前活动文件和终端的即时上下文。
 2. **Working Memory (`cm-continuity`)** — 跨会话的草稿本。AI 绝不会重复同样的错误。
@@ -104,10 +104,18 @@ graph LR
 4. **Semantic Memory (`cm-deep-search`)** — 使用 `qmd` 对文档进行本地向量搜索。
 5. **Structural Memory (`cm-codeintell`)** — 基于 AST 的代码图。压缩高达95%的 token 以获取完整的代码库上下文。
 
+🦴 **Smart Spine (v4.5+)** — 连接所有 5 层的神经系统：
+- **SQLite + FTS5** — BM25 排名的关键词搜索，替代平坦 JSON 扫描。
+- **Progressive Loading (L0/L1/L2)** — 上下文以最低成本加载。节省 78% token。
+- **cm:// URI Scheme** — 技能通过 URI 请求上下文，而非文件路径。
+- **Token Budget** — 200k token 窗口按类别预分配。不再静默溢出。
+- **Context Bus** — 技能在链中实时共享输出。
+- **MCP Server** — 7 个工具支持 Claude Desktop 和所有 MCP 客户端。
+
 ☁️ **Cloud Brain (`cm-notebooklm`)**
 高价值的知识和设计模式将同步到 NotebookLM，为您的项目提供通用且跨机器的"灵魂"。自动生成播客和抽认卡，以便在 AI 旁边培训人类开发者。
 
-📖 [阅读完整的知识架构文档 (EN) →](docs/knowledge-architecture.md)
+📖 [阅读完整的知识架构文档 (EN) →](docs/architecture/knowledge-architecture.md)
 
 ### 🛡️ 多层保护（你的代码库不会被毁掉）
 
@@ -154,7 +162,7 @@ flowchart LR
 
 在为复杂请求编写代码之前，**`cm-brainstorm-idea`** 会通过多维度分析（技术、产品、设计、业务）来评估您的产品。它使用 9 窗口 (TRIZ) 框架生成 2-3 个合格的选项，并通过 **Pencil.dev** 或 **Google Stitch** 提供可视化的 UI 预览，以便在详细规划之前验证方向。
 
-📖 [阅读更多关于 UI 预览阶段的信息 →](docs/Brainstorm-UI-Preview.md)
+📖 [阅读更多关于 UI 预览阶段的信息 →](docs/workflows/brainstorm-ui-preview.md)
 
 ### 🏭 AI 内容工厂 v2.0 与可视化仪表盘
 
@@ -255,6 +263,23 @@ CLI 会在漫长的编码会话中与您打招呼并帮助您保持条理！
 
 ## 🎮 命令
 
+**CLI 命令：**
+```
+cm                          → 快速菜单 with Cody 🐹
+cm task add "..."           → 添加任务
+cm task list                → 查看任务
+cm status                   → 项目健康状态
+cm dashboard                → 打开控制台
+cm continuity index         → 重新生成 L0 内存索引
+cm continuity budget        → 查看 token 预算分配
+cm continuity bus           → 查看 context bus 状态
+cm continuity mcp           → 打印 MCP 服务器配置
+cm continuity migrate       → 迁移 JSON → SQLite
+cm continuity export        → 导出 SQLite → JSON
+cm resolve <uri>            → 解析任何 cm:// URI
+```
+
+**Slash 命令（在 AI 智能体中）：**
 ```
 /cm:demo         → 交互式入职导览
 /cm:bootstrap    → 从零开始构建新项目脚手架

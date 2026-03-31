@@ -1,5 +1,4 @@
-// pipelines/agents/nlm.ts
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { VideoScript } from '../../src/lib/types';
@@ -58,7 +57,7 @@ export const nlmAgent = {
       console.log(`[NLM] Creating new NotebookLM: "${notebookName}"...`);
       
       try {
-        const result = execSync(`nlm notebook create "${notebookName}"`, { encoding: 'utf-8' });
+        const result = execFileSync('nlm', ['notebook', 'create', notebookName], { encoding: 'utf-8' });
         // Assuming output format: "Created notebook 'name' with ID: uuid"
         // This is a rough parse, adjust based on actual nlm CLI output
         const idMatch = result.match(/ID:\s*([a-zA-Z0-9-]+)/);
@@ -102,7 +101,7 @@ export const nlmAgent = {
       
       console.log(`[NLM] Adding source to Notebook ${notebookId}...`);
       // `nlm source add <notebook_id> file <path>`
-      execSync(`nlm source add ${notebookId} file "${tmpFilePath}"`, { stdio: 'pipe' });
+      execFileSync('nlm', ['source', 'add', notebookId, 'file', tmpFilePath], { stdio: 'pipe' });
       fs.unlinkSync(tmpFilePath); // cleanup
 
       state.currentSourceCount++;
@@ -115,7 +114,7 @@ export const nlmAgent = {
       if (state.currentSourceCount === MAX_SOURCES) {
          console.log(`[NLM] Notebook ${notebookId} is full. Triggering Audio Overview generation...`);
          // nlm audio generate <notebook_id>
-         // execSync(`nlm audio generate ${notebookId}`, { stdio: 'inherit' });
+         // execFileSync('nlm', ['audio', 'generate', notebookId], { stdio: 'inherit' });
       }
 
     } catch (e: any) {

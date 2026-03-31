@@ -6,10 +6,10 @@
 
 ### आपका AI एजेंट स्मार्ट है। CodyMaster इसे *बुद्धिमान* बनाता है।
 
-**68+ स्किल्स · 11 कमांड्स · 1 प्लगइन · 7+ प्लेटफॉर्म्स · 6 भाषाएं**
+**68+ स्किल्स · 18 कमांड्स · 1 प्लगइन · 7+ प्लेटफॉर्म्स · 6 भाषाएं**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.4.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.5.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
@@ -94,9 +94,9 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
-### 🧠 एकीकृत मस्तिष्क: 5-स्तरीय मेमोरी आर्किटेक्चर
+### 🧠 एकीकृत मस्तिष्क: 5-स्तरीय मेमोरी आर्किटेक्चर + Smart Spine
 
-आपका AI सिर्फ निष्पादन (execute) नहीं करता — यह एक 5-स्तरीय एकीकृत मस्तिष्क (Unified Brain) प्रणाली का उपयोग करके **समझता है और याद रखता है** जो सत्रों (sessions) और मशीनों के बीच सुरक्षित रहता है:
+आपका AI सिर्फ निष्पादन (execute) नहीं करता — यह एक 5-स्तरीय + Smart Spine प्रणाली का उपयोग करके **समझता है और याद रखता है** जो सत्रों (sessions) और मशीनों के बीच सुरक्षित रहता है:
 
 1. **Sensory Memory (सत्र)** — सक्रिय फाइलों और टर्मिनलों का तात्कालिक संदर्भ।
 2. **Working Memory (`cm-continuity`)** — क्रॉस-सेशन स्क्रैचपैड। AI कभी भी वही गलती नहीं दोहराता।
@@ -104,10 +104,18 @@ graph LR
 4. **Semantic Memory (`cm-deep-search`)** — `qmd` का उपयोग करके डॉक्स में स्थानीय वेक्टर खोज।
 5. **Structural Memory (`cm-codeintell`)** — AST-आधारित CodeGraph। पूर्ण कोडबेस संदर्भ के लिए 95% तक टोकन संपीड़न (compression)।
 
+🦴 **Smart Spine (v4.5+)** — सभी 5 स्तरों को जोड़ने वाली तंत्रिका प्रणाली:
+- **SQLite + FTS5** — BM25 रैंक्ड कीवर्ड सर्च, फ्लैट JSON स्कैन की जगह।
+- **Progressive Loading (L0/L1/L2)** — कंटेक्स्ट न्यूनतम लागत पर लोड होता है। 78% टोकन बचत।
+- **cm:// URI Scheme** — स्किल्स फाइल पाथ की बजाय URI से कंटेक्स्ट का अनुरोध करते हैं।
+- **Token Budget** — 200k टोकन विंडो श्रेणी अनुसार पूर्व-आवंटित। कोई चुप ओवरफ्लो नहीं।
+- **Context Bus** — स्किल्स चेन में रियल-टाइम आउटपुट साझा करते हैं।
+- **MCP Server** — Claude Desktop और सभी MCP क्लाइंट्स के लिए 7 टूल्स।
+
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 उच्च-मूल्य वाले ज्ञान और डिज़ाइन पैटर्न को NotebookLM के साथ सिंक किया जाता है, जो आपके प्रोजेक्ट के लिए एक सार्वभौमिक, क्रॉस-मशीन "आत्मा (Soul)" प्रदान करता है। AI के साथ मानव डेवलपर्स को प्रशिक्षित करने के लिए पॉडकास्ट और फ्लैशकार्ड को स्वचालित रूप से उत्पन्न करें।
 
-📖 [संपूर्ण ज्ञान आर्किटेक्चर पढ़ें (EN) →](docs/knowledge-architecture.md)
+📖 [संपूर्ण ज्ञान आर्किटेक्चर पढ़ें (EN) →](docs/architecture/knowledge-architecture.md)
 
 ### 🛡️ मल्टी-लेयर सुरक्षा (आपका कोडबेस नष्ट नहीं होगा)
 
@@ -154,7 +162,7 @@ flowchart LR
 
 जटिल कार्यों के लिए कोड लिखने से पहले, **`cm-brainstorm-idea`** बहुआयामी विश्लेषण (तकनीक, उत्पाद, डिज़ाइन, व्यवसाय) का उपयोग करके आपके उत्पाद का मूल्यांकन करता है। यह 9 Windows (TRIZ) फ्रेमवर्क का उपयोग करके 2-3 योग्य विकल्प उत्पन्न करता है और विस्तृत योजना बनाने से पहले दिशा मान्य करने के लिए **Pencil.dev** या **Google Stitch** के माध्यम से UI प्रीव्यू प्रदान करता है।
 
-📖 [यूआई पूर्वावलोकन चरण के बारे में और पढ़ें →](docs/Brainstorm-UI-Preview.md)
+📖 [यूआई पूर्वावलोकन चरण के बारे में और पढ़ें →](docs/workflows/brainstorm-ui-preview.md)
 
 ### 🏭 AI Content Factory v2.0 & विजुअल डैशबोर्ड
 
@@ -255,6 +263,23 @@ cm
 
 ## 🎮 कमांड्स
 
+**CLI कमांड्स:**
+```
+cm                          → Cody 🐹 के साथ त्वरित मेनू
+cm task add "..."           → कार्य जोड़ें
+cm task list                → कार्य देखें
+cm status                   → प्रोजेक्ट स्वास्थ्य
+cm dashboard                → मिशन कंट्रोल खोलें
+cm continuity index         → L0 मेमोरी इंडेक्स पुनर्निर्माण
+cm continuity budget        → टोकन बजट आवंटन देखें
+cm continuity bus           → context bus स्थिति देखें
+cm continuity mcp           → MCP सर्वर कॉन्फिग प्रिंट करें
+cm continuity migrate       → JSON → SQLite माइग्रेशन
+cm continuity export        → SQLite → JSON एक्सपोर्ट
+cm resolve <uri>            → कोई भी cm:// URI रिज़ॉल्व करें
+```
+
+**Slash कमांड्स (AI एजेंट के अंदर):**
 ```
 /cm:demo         → इंटरएक्टिव ऑनबोर्डिंग टूर
 /cm:bootstrap    → शुरुआत से एक नया प्रोजेक्ट तैयार करें
