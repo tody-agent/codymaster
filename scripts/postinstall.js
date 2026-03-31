@@ -283,35 +283,10 @@ const printMenu = () => {
   console.log('');
   console.log(`    ${W}${BOLD}${isVi ? '📚 Tài liệu:' : '📚 Documentation:'}${NC} ${C}https://cody.todyle.com/docs${NC}`);
   console.log('');
-  console.log(`    ${DIM}Press 'q' to exit.${NC}`);
 };
 
-const main = async () => {
-  if (!process.stdout.isTTY) {
-    printMenu();
-    return;
-  }
-
-  const readline = require('readline');
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  const question = (query) => new Promise(resolve => rl.question(query, resolve));
-
-  while (true) {
-    printMenu();
-    const answer = await question('    > ');
-    if (answer.toLowerCase() === 'q') break;
-    if (parseInt(answer) >= 1 && parseInt(answer) <= 12) {
-      showSkillGuide(answer);
-      await question('');
-    } else if (answer === '') {
-      break;
-    }
-  }
-  rl.close();
+const main = () => {
+  printMenu();
 };
 
 main();
