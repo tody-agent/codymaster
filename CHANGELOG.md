@@ -4,6 +4,39 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+## [4.5.0] - 2026-03-31
+
+### 🚀 Improvements — Context Backbone v5 (Smart Spine)
+
+- **SQLite + FTS5 Storage Layer** — Learnings and decisions migrated from flat JSON to a WAL-mode SQLite database (`.cm/context.db`) with full-text search via FTS5 virtual tables. BM25-ranked `cm_query` replaces linear JSON scans. FTS5 indexes are kept in sync automatically via `AFTER INSERT`/`AFTER DELETE` triggers.
+- **L0 / L1 / L2 Progressive Loading** — Every memory resource is now available at three granularities. L0 compact indexes (`learnings-index.md`, `skeleton-index.md`) reduce context cost by up to 96% for the common "just give me a summary" case. L0 is pre-generated on every `addLearning()` write and refreshable on demand.
+- **cm:// URI Scheme** — Unified content addressing for all CodyMaster resources. Skills reference context by URI (`cm://memory/learnings`, `cm://skills/cm-tdd/L0`, `cm://pipeline/current`) and the resolver handles depth selection, caching, and fallbacks transparently.
+- **MCP Context Server** — Standalone stdio MCP server (`src/mcp-context-server.ts`) exposing 7 tools to Claude Desktop and any MCP-compatible client:
+  - `cm_query` — FTS5 search across learnings + decisions with scope filter
+  - `cm_resolve` — resolve any `cm://` URI at L0/L1/L2
+  - `cm_bus_read` / `cm_bus_write` — read/publish to the context bus
+  - `cm_budget_check` — pre-flight token budget check by category
+  - `cm_memory_decay` — TTL-based archival with `dry_run` option
+  - `cm_index_refresh` — regenerate L0 indexes on demand
+- **Token Budget Enforcement** — 200k-token window pre-allocated by category in `.cm/token-budget.json`. Budget checked at load time; overages return a remediation suggestion. Configurable per-project.
+- **Context Bus** — `.cm/context-bus.json` tracks skill chain state across steps. Each skill publishes its output; downstream skills read what upstream steps produced via `cm://pipeline/current`. Integrated into `createChainExecution()` and `advanceChain()`.
+- **File Watcher** — `src/file-watcher.ts` (chokidar) watches `.cm/memory/*.json` and auto-regenerates the L0 learnings index on change with 300ms debounce.
+- **JSON → SQLite Migration** — One-time migration utility (`src/migrate-json-to-sqlite.ts`) reads existing `learnings.json` / `decisions.json`, inserts into SQLite, and creates `.backup` files. Handles both camelCase and snake_case legacy field names.
+- **New CLI commands** — `cm continuity index` (regenerate L0 indexes), `cm continuity budget` (show token allocation table), `cm continuity bus` (pretty-print context bus), `cm continuity mcp` (print Claude Desktop config snippet).
+- **Test suite expanded** — 4 new test files covering SQLite CRUD + FTS5 relevance, context bus roundtrip, token budget enforcement, and L0 index generation. Test count: 78 → 92 (all passing).
+
+## [4.4.5] - 2026-03-30
+
+### 🔒 Security
+
+- **Security Checkpoints Upgraded** — Deployed unified security updates across `cm-security-gate`, `cm-quality-gate`, `cm-safe-deploy`, and `cm-test-gate`.
+
+## [4.4.4] - 2026-03-29
+
+### 🐛 Bug Fixes
+
+- **Version Bump** — Minor bug fixes and dependency updates.
+
 ## [4.4.3] - 2026-03-29
 
 ### 🚀 Improvements — The Self-Healing Update

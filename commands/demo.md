@@ -24,7 +24,7 @@ Remember the chosen language and respond in it for all following steps.
 
 Show a warm, concise welcome. Include:
 - What CodyMaster is (1 sentence)
-- That it gives AI agents 34+ specialized skills
+- That it gives AI agents 60+ specialized skills
 - That this demo will take ~2 minutes
 
 ## Step 3 — Show the Workflow

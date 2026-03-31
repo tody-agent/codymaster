@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { getBuiltinChains, getChainById } from './chains/builtin';
+import { initBus, updateBusStep } from './context-bus';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -105,7 +106,8 @@ export function createChainExecution(
   chain: ChainDefinition,
   projectId: string,
   taskTitle: string,
-  agent: string
+  agent: string,
+  projectPath?: string
 ): ChainExecution {
   const now = new Date().toISOString();
 
@@ -124,7 +126,7 @@ export function createChainExecution(
     steps[0].startedAt = now;
   }
 
-  return {
+  const execution: ChainExecution = {
     id: crypto.randomUUID(),
     chainId: chain.id,
     chainName: chain.name,
@@ -137,6 +139,15 @@ export function createChainExecution(
     startedAt: now,
     updatedAt: now,
   };
+
+  // Init context bus for this chain execution
+  if (projectPath) {
+    try {
+      initBus(projectPath, chain.id, execution.id);
+    } catch { /* non-fatal: context bus is optional enhancement */ }
+  }
+
+  return execution;
 }
 
 /**
@@ -145,7 +156,8 @@ export function createChainExecution(
  */
 export function advanceChain(
   execution: ChainExecution,
-  output?: string
+  output?: string,
+  projectPath?: string
 ): { nextSkill: string | null; completed: boolean } {
   const now = new Date().toISOString();
   const currentStep = execution.steps[execution.currentStepIndex];
@@ -159,6 +171,13 @@ export function advanceChain(
   currentStep.completedAt = now;
   if (output) currentStep.output = output;
   execution.updatedAt = now;
+
+  // Update context bus with completed step's output
+  if (projectPath) {
+    try {
+      updateBusStep(projectPath, currentStep.skill, { summary: output });
+    } catch { /* non-fatal */ }
+  }
 
   // Find next non-skipped step
   let nextIndex = execution.currentStepIndex + 1;

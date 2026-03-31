@@ -53,6 +53,23 @@ Because it resides in NotebookLM, your project's knowledge base can be converted
 
 ---
 
+---
+
+## 🦴 Context Backbone v5 — Smart Spine (v4.5+)
+
+In v4.5.0 the memory layer was upgraded with a unified storage and context engine built on top of the 5 tiers above:
+
+- **SQLite + FTS5** — learnings and decisions are now stored in `.cm/context.db` with BM25-ranked keyword search. JSON files are kept for backward compatibility.
+- **L0 / L1 / L2 progressive loading** — every resource is available at three granularities. L0 (index-only, ~100–500 tokens) is pre-generated and cached; L2 is full content. Context is loaded at the cheapest sufficient depth.
+- **cm:// URI scheme** — skills request memory content by URI (`cm://memory/learnings`, `cm://skills/cm-tdd`, `cm://pipeline/current`) instead of reading files directly. The URI resolver handles depth selection and fallbacks.
+- **Token budget enforcement** — a 200k-token window is pre-allocated by category. Budget is checked at load time; overages return a remediation suggestion rather than silently bloating context.
+- **Context bus** — `.cm/context-bus.json` tracks every skill's output within a chain. Downstream skills can read what upstream skills produced via `cm://pipeline/current`.
+- **MCP context server** — 7 tools (`cm_query`, `cm_resolve`, `cm_bus_read/write`, `cm_budget_check`, `cm_memory_decay`, `cm_index_refresh`) exposed over stdio to Claude Desktop and any MCP-compatible client.
+
+See [Context Backbone v5 — Smart Spine](./context-backbone-v5.md) for full architecture details.
+
+---
+
 ## ⚙️ The Integration Pipeline
 
 The true power of this architecture is how the skills combine in an automated pipeline:

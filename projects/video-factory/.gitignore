@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+
+# Render outputs
+output/
+audio/
+
+# Browser sessions (sensitive)
+sessions/
+
+# Queue state (regeneratable)
+queue/progress.json
+
+# OS
+.DS_Store
+Thumbs.db

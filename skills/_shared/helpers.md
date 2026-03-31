@@ -7,20 +7,56 @@
 
 ## #Load-Working-Memory
 
-Before executing any significant action, ALWAYS:
+Before executing any significant action, ALWAYS load context in this order (cheapest → richest):
 
-1. **Read** `.cm/CONTINUITY.md` → understand current state, Active Goal, Next Actions
-2. **Run Memory Audit** — decay check + conflict detection + integrity scan (see `cm-continuity`)
-3. **Scope-filter learnings** — if working on module X:
-   - Load from `.cm/learnings.json` ONLY where `scope == "global"` or `scope == "module:X"`
-   - **NEVER** load `status = "invalidated"` (proven wrong — skip entirely)
-   - **CAUTION** with `status = "corrected"` (was wrong, verify before applying)
-   - **TRUST** high `reinforceCount` + recent `lastRelevant`
-   - **VERIFY** `reinforceCount = 0` + old `lastRelevant` (low confidence)
-   - SKIP learnings for other modules (reduces noise + saves tokens)
-4. **Check** "Next Actions" — pick up where you left off
+### Step 1 — Check context bus (free, ~50 tokens)
+```
+Read .cm/context-bus.json (or: cm continuity bus)
+→ If active pipeline found:
+    - Note current_step and pipeline name
+    - Read shared_context to see what upstream skills already produced
+    - SKIP re-doing any work already recorded in shared_context
+→ If no bus: fresh session, proceed normally
+```
 
-> **Token savings:** Scope-filtered reading loads ~250 tokens instead of ~2,500.
+### Step 2 — Load L0 indexes first (~600 tokens total)
+```
+Read .cm/learnings-index.md   (~100 tokens) — IDs + 1-line summaries
+Read .cm/skeleton-index.md    (~500 tokens) — modules, entry points, config files
+
+→ If a specific learning ID looks relevant → resolve cm://memory/learnings/{id} for full detail
+→ If a specific module looks relevant   → resolve cm://resources/skeleton at L2 for full detail
+→ Otherwise: L0 is sufficient — DO NOT load full files
+```
+
+### Step 3 — Scope-filter learnings (only if L0 flags relevant entries)
+```
+Query: cm_query(scope="learnings", query="{current module or error type}", limit=5)
+   OR read .cm/memory/learnings.json filtered to scope == "global" | "module:X"
+
+Rules:
+  NEVER  load status = "invalidated"   (proven wrong)
+  CAUTION status = "corrected"         (verify before applying)
+  TRUST  high reinforceCount + recent lastRelevant
+  SKIP   learnings for other modules (noise + wasted tokens)
+```
+
+### Step 4 — Check working memory
+```
+Read .cm/CONTINUITY.md → Active Goal, Next Actions, current phase
+Run Memory Audit (decay + conflict detection) — see cm-continuity
+```
+
+### Step 5 — Token budget check (before injecting large context)
+```
+cm continuity budget  (or: loadBudget + checkBudget in code)
+→ If category is over soft limit → use L0/L1 depth instead of L2
+→ Never inject full skeleton (20KB) when skeleton-index.md (~2KB) suffices
+```
+
+> **Token savings v5:** Full cold load ~3,200 tokens → Smart Spine load ~700 tokens (78% reduction).
+> L0 indexes + context bus + scope filter make this possible.
+> Only escalate to L2 when L0/L1 explicitly flag the need.
 
 ---
 

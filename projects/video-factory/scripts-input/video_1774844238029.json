@@ -1,0 +1,42 @@
+{
+  "id": "video_1774844238029",
+  "title": "CM AutoPilot Demo",
+  "hook": "Mệt mỏi vì phải cấu hình kỹ thuật? CM AutoPilot đã có mặt!",
+  "hook_formula": "negative_to_positive",
+  "language": "vi",
+  "duration_target": 12,
+  "format": "tiktok",
+  "cta": "Lưu ngay video này nhé!",
+  "hashtags": [
+    "#vibecoding",
+    "#cody",
+    "#autopilot"
+  ],
+  "scenes": [
+    {
+      "time_start": 0,
+      "duration": 4,
+      "text": "Mệt mỏi vì phải cấu hình kỹ thuật? CM AutoPilot đã có mặt!",
+      "visual": "TitleCard"
+    },
+    {
+      "time_start": 4,
+      "duration": 4,
+      "text": "Chỉ cần ra lệnh bằng tiếng Việt.",
+      "visual": "DarkTerminal",
+      "props": {
+        "command": "> Giới thiệu tôi CM AutoPilot"
+      }
+    },
+    {
+      "time_start": 8,
+      "duration": 4,
+      "text": "Lưu ngay video này nhé!",
+      "visual": "EndCard"
+    }
+  ],
+  "metadata": {
+    "ai_generated": true,
+    "ai_disclosure": "This is a fallback CM AutoPilot Local Demo."
+  }
+}

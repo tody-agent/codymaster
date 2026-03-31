@@ -65,6 +65,47 @@ Full skill names: `cm-brainstorm-idea`, `cm-planning`, `cm-tdd`, `cm-execution`,
 - **cm-continuity**: Chain progress persists across sessions via CONTINUITY.md working memory
 - **cm-execution**: Each chain step delegates to cm-execution for actual implementation
 - **cm-quality-gate**: Automatically runs at end of each development chain
+- **Context Bus (v5)**: Every chain automatically maintains `.cm/context-bus.json` — shared state across all steps
+
+## Context Bus — Inter-Skill Coordination (v5)
+
+When `chain start` runs, the context bus is initialized automatically:
+
+```
+chain start feature-development "add payment flow"
+→ Creates .cm/context-bus.json with:
+    pipeline: "feature-development"
+    session_id: "<uuid>"
+    current_step: "brainstorm-idea"
+    shared_context: {}
+    resource_state: { skeleton_generated: null, learnings_indexed: null, ... }
+```
+
+When `chain advance` runs after each skill completes:
+
+```
+chain advance <exec-id> "summary of what was done"
+→ Updates context-bus.json:
+    current_step: "planning"   ← moved forward
+    shared_context.brainstorm-idea: { summary, affected_files, output_path }
+```
+
+**What downstream skills gain:**
+- `cm-planning` can read brainstorm output path → no re-read of full filesystem
+- `cm-tdd` can see which files planning created → targeted test generation
+- `cm-quality-gate` knows exactly which files changed → focused review
+
+**Reading the bus:**
+```bash
+cm continuity bus          # terminal pretty-print
+cm_bus_read                # MCP tool (Claude Desktop)
+cm://pipeline/current      # URI resolver (in skill prompts)
+```
+
+**Publishing to the bus (inside a skill):**
+```bash
+cm_bus_write skill=cm-planning summary="tasks.md created" output_path=openspec/...
+```
 
 ## For AI Agents
 
@@ -74,5 +115,10 @@ When dispatching tasks that match a chain pattern:
 1. Check if task matches a chain: suggestChain(taskTitle)
 2. If match found, suggest to user: "This task matches the X chain pipeline"
 3. If user agrees, start the chain and invoke skills in order
-4. After completing each skill, advance the chain
+4. At the START of each skill step:
+   → Read cm://pipeline/current to see upstream skill outputs
+   → Check shared_context to avoid re-doing work
+5. After completing each skill, advance the chain:
+   → chain advance <id> "summary"
+   → This updates context bus + CONTINUITY.md simultaneously
 ```

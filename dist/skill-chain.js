@@ -16,6 +16,7 @@ exports.formatChainProgressBar = formatChainProgressBar;
 exports.getCurrentSkill = getCurrentSkill;
 const crypto_1 = __importDefault(require("crypto"));
 const builtin_1 = require("./chains/builtin");
+const context_bus_1 = require("./context-bus");
 // ─── Chain Matching ─────────────────────────────────────────────────────────
 // TRIZ #10: Preliminary Action — analyze task BEFORE dispatching
 /**
@@ -59,7 +60,7 @@ function findChain(chainId) {
 /**
  * Create a new chain execution from a chain definition.
  */
-function createChainExecution(chain, projectId, taskTitle, agent) {
+function createChainExecution(chain, projectId, taskTitle, agent, projectPath) {
     const now = new Date().toISOString();
     const steps = chain.steps.map((step, index) => ({
         index,
@@ -74,7 +75,7 @@ function createChainExecution(chain, projectId, taskTitle, agent) {
         steps[0].status = 'running';
         steps[0].startedAt = now;
     }
-    return {
+    const execution = {
         id: crypto_1.default.randomUUID(),
         chainId: chain.id,
         chainName: chain.name,
@@ -87,12 +88,20 @@ function createChainExecution(chain, projectId, taskTitle, agent) {
         startedAt: now,
         updatedAt: now,
     };
+    // Init context bus for this chain execution
+    if (projectPath) {
+        try {
+            (0, context_bus_1.initBus)(projectPath, chain.id, execution.id);
+        }
+        catch ( /* non-fatal: context bus is optional enhancement */_a) { /* non-fatal: context bus is optional enhancement */ }
+    }
+    return execution;
 }
 /**
  * Advance the chain to the next step. Marks current step as completed.
  * Returns the next step's skill name, or null if chain is complete.
  */
-function advanceChain(execution, output) {
+function advanceChain(execution, output, projectPath) {
     const now = new Date().toISOString();
     const currentStep = execution.steps[execution.currentStepIndex];
     if (!currentStep) {
@@ -104,6 +113,13 @@ function advanceChain(execution, output) {
     if (output)
         currentStep.output = output;
     execution.updatedAt = now;
+    // Update context bus with completed step's output
+    if (projectPath) {
+        try {
+            (0, context_bus_1.updateBusStep)(projectPath, currentStep.skill, { summary: output });
+        }
+        catch ( /* non-fatal */_a) { /* non-fatal */ }
+    }
     // Find next non-skipped step
     let nextIndex = execution.currentStepIndex + 1;
     while (nextIndex < execution.steps.length) {

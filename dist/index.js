@@ -54,6 +54,11 @@ const data_1 = require("./data");
 const dashboard_1 = require("./dashboard");
 const agent_dispatch_1 = require("./agent-dispatch");
 const continuity_1 = require("./continuity");
+const l0_indexer_1 = require("./l0-indexer");
+const context_bus_1 = require("./context-bus");
+const token_budget_1 = require("./token-budget");
+const migrate_json_to_sqlite_1 = require("./migrate-json-to-sqlite");
+const uri_resolver_1 = require("./uri-resolver");
 const judge_1 = require("./judge");
 const skill_chain_1 = require("./skill-chain");
 const path_1 = __importDefault(require("path"));
@@ -1410,9 +1415,27 @@ program
         case 'dec':
             continuityDecisions(projectPath);
             break;
+        case 'index':
+            continuityIndex(projectPath);
+            break;
+        case 'budget':
+            continuityBudget(projectPath);
+            break;
+        case 'bus':
+            continuityBus(projectPath);
+            break;
+        case 'mcp':
+            continuityMcp(projectPath);
+            break;
+        case 'migrate':
+            continuityMigrate(projectPath);
+            break;
+        case 'export':
+            continuityExport(projectPath);
+            break;
         default:
             console.log(chalk_1.default.red(`Unknown: ${cmd}`));
-            console.log(chalk_1.default.gray('Available: init, status, reset, learnings, decisions'));
+            console.log(chalk_1.default.gray('Available: init, status, reset, learnings, decisions, index, budget, bus, mcp, migrate, export'));
     }
 });
 function continuityInit(projectPath) {
@@ -1502,6 +1525,134 @@ function continuityDecisions(projectPath) {
         console.log((0, theme_1.dim)(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
     }
 }
+function continuityIndex(projectPath) {
+    if (!(0, continuity_1.hasCmDir)(projectPath)) {
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found. Run: cm continuity init'));
+        return;
+    }
+    console.log((0, box_1.renderCommandHeader)('Refreshing L0 Indexes', '🗂️'));
+    const result = (0, l0_indexer_1.refreshAllIndexes)(projectPath);
+    const learningsLines = result.learnings.split('\n').length;
+    const skeletonLines = result.skeleton.split('\n').length;
+    console.log((0, theme_1.success)(`  ✅ learnings-index.md (${learningsLines} lines)`));
+    console.log((0, theme_1.success)(`  ✅ skeleton-index.md (${skeletonLines} lines)`));
+    console.log((0, theme_1.success)('  ✅ Continuity abstract generated'));
+    console.log((0, theme_1.dim)(`\n  Files written to .cm/`));
+}
+function continuityBudget(projectPath) {
+    const budget = (0, token_budget_1.loadBudget)(projectPath);
+    console.log((0, box_1.renderCommandHeader)('Token Budget', '💰'));
+    console.log('\n' + (0, token_budget_1.generateBudgetReport)(budget) + '\n');
+}
+function continuityBus(projectPath) {
+    const bus = (0, context_bus_1.readBus)(projectPath);
+    if (!bus) {
+        console.log((0, box_1.renderResult)('info', 'No active context bus. Start a chain to initialize.'));
+        return;
+    }
+    console.log((0, box_1.renderCommandHeader)(`Context Bus — ${bus.pipeline}`, '🚌'));
+    console.log((0, theme_1.dim)(`  Session:  ${bus.session_id}`));
+    console.log((0, theme_1.dim)(`  Step:     ${bus.current_step || '(none)'}`));
+    console.log((0, theme_1.dim)(`  Started:  ${bus.started_at}`));
+    console.log((0, theme_1.dim)(`  Updated:  ${bus.updated_at}`));
+    const steps = Object.keys(bus.shared_context);
+    if (steps.length > 0) {
+        console.log((0, theme_1.brand)('\n  Completed Steps:'));
+        for (const skill of steps) {
+            const out = bus.shared_context[skill];
+            console.log((0, theme_1.success)(`    ✅ ${skill}`) + ((out === null || out === void 0 ? void 0 : out.summary) ? (0, theme_1.dim)(` — ${out.summary}`) : ''));
+        }
+    }
+    console.log((0, theme_1.dim)('\n  Resource State:'));
+    for (const [k, v] of Object.entries(bus.resource_state)) {
+        console.log((0, theme_1.dim)(`    ${k}: ${v || 'not indexed'}`));
+    }
+}
+function continuityMigrate(projectPath) {
+    if (!(0, continuity_1.hasCmDir)(projectPath)) {
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found. Run: cm continuity init'));
+        return;
+    }
+    console.log((0, box_1.renderCommandHeader)('Migrate JSON → SQLite', '🗃️'));
+    console.log((0, theme_1.dim)('  Reading learnings.json + decisions.json → .cm/context.db\n'));
+    try {
+        const result = (0, migrate_json_to_sqlite_1.migrateJsonToSqlite)(projectPath);
+        console.log((0, theme_1.success)(`  ✅ Learnings migrated: ${result.learnings.migrated} (skipped: ${result.learnings.skipped})`));
+        console.log((0, theme_1.success)(`  ✅ Decisions migrated: ${result.decisions.migrated} (skipped: ${result.decisions.skipped})`));
+        if (result.backupCreated)
+            console.log((0, theme_1.dim)('  📦 Backups created: learnings.json.backup, decisions.json.backup'));
+        console.log((0, theme_1.dim)(`\n  DB: ${result.dbPath}`));
+    }
+    catch (err) {
+        console.log((0, theme_1.error)(`  ❌ Migration failed: ${err.message}`));
+    }
+}
+function continuityExport(projectPath) {
+    if (!(0, continuity_1.hasCmDir)(projectPath)) {
+        console.log((0, box_1.renderResult)('warning', 'No .cm/ directory found. Run: cm continuity init'));
+        return;
+    }
+    console.log((0, box_1.renderCommandHeader)('Export SQLite → JSON', '📤'));
+    try {
+        const result = (0, migrate_json_to_sqlite_1.exportSqliteToJson)(projectPath);
+        console.log((0, theme_1.success)(`  ✅ Learnings exported: ${result.learnings} → ${result.learningsPath}`));
+        console.log((0, theme_1.success)(`  ✅ Decisions exported: ${result.decisions} → ${result.decisionsPath}`));
+    }
+    catch (err) {
+        console.log((0, theme_1.error)(`  ❌ Export failed: ${err.message}`));
+    }
+}
+function continuityMcp(projectPath) {
+    const mcpPath = path_1.default.join(__dirname, 'mcp-context-server.js');
+    console.log((0, box_1.renderCommandHeader)('MCP Context Server', '🔌'));
+    console.log((0, theme_1.dim)('  Runs as a stdio MCP server exposing 7 context tools.\n'));
+    console.log((0, box_1.renderKeyValue)([
+        ['Binary', mcpPath],
+        ['Project', projectPath],
+        ['Tools', 'cm_query, cm_resolve, cm_bus_read, cm_bus_write, cm_budget_check, cm_memory_decay, cm_index_refresh'],
+    ]));
+    console.log((0, theme_1.brand)('\n  Claude Desktop config snippet:'));
+    console.log((0, theme_1.dim)(`  {
+    "mcpServers": {
+      "cm-context": {
+        "command": "node",
+        "args": ["${mcpPath}", "--project", "${projectPath}"]
+      }
+    }
+  }`));
+    console.log((0, theme_1.info)('\n  💡 Add the above to ~/Library/Application Support/Claude/claude_desktop_config.json'));
+}
+// ─── Resolve Command ──────────────────────────────────────────────────────────
+program
+    .command('resolve <uri>')
+    .description('Resolve a cm:// URI and print content (e.g. cm://memory/learnings)')
+    .option('-d, --depth <depth>', 'Loading depth: L0 | L1 | L2', 'L1')
+    .option('-p, --project <path>', 'Project path (default: cwd)')
+    .action((uri, opts) => {
+    var _a;
+    const projectPath = path_1.default.resolve(opts.project || process.cwd());
+    const depth = (['L0', 'L1', 'L2'].includes((_a = opts.depth) !== null && _a !== void 0 ? _a : '') ? opts.depth : 'L1');
+    try {
+        const resolved = (0, uri_resolver_1.resolve)(uri, projectPath, depth);
+        console.log((0, box_1.renderCommandHeader)(`cm:// Resolver — ${depth}`, '🔗'));
+        console.log((0, box_1.renderKeyValue)([
+            ['URI', resolved.uri],
+            ['Depth', resolved.depth],
+            ['Found', String(resolved.found)],
+            ['Tokens', String(resolved.tokenEstimate)],
+        ]));
+        if (resolved.found) {
+            console.log((0, theme_1.brand)('\n  Content:\n'));
+            console.log(resolved.content);
+        }
+        else {
+            console.log((0, theme_1.warning)('\n  Not found — no content available at this URI.'));
+        }
+    }
+    catch (err) {
+        console.log((0, theme_1.error)(`  ❌ ${err.message}`));
+    }
+});
 // ─── Brain Command (Enhanced Memory Explorer) ────────────────────────────────
 program
     .command('brain [cmd]')

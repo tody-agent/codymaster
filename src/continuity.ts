@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { generateLearningsIndex, refreshAllIndexes } from './l0-indexer';
+import { getDefaultBudget } from './token-budget';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -89,6 +91,12 @@ export function ensureCmDir(projectPath: string): void {
   const configPath = path.join(cmDir, CONFIG_FILE);
   if (!fs.existsSync(configPath)) {
     fs.writeFileSync(configPath, generateDefaultConfig());
+  }
+
+  // Initialize token budget if not present
+  const budgetPath = path.join(cmDir, 'token-budget.json');
+  if (!fs.existsSync(budgetPath)) {
+    fs.writeFileSync(budgetPath, JSON.stringify(getDefaultBudget(), null, 2));
   }
 
   // Add .cm to .gitignore if not already there
@@ -307,6 +315,9 @@ export function addLearning(projectPath: string, learning: Omit<Learning, 'id'>)
   } catch { /* empty */ }
   learnings.push(fullLearning);
   fs.writeFileSync(learningsPath, JSON.stringify(learnings, null, 2));
+
+  // Refresh L0 index after adding a learning
+  try { generateLearningsIndex(projectPath); } catch { /* non-fatal */ }
 
   return fullLearning;
 }

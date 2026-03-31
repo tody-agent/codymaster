@@ -19,6 +19,8 @@ exports.hasCmDir = hasCmDir;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const crypto_1 = __importDefault(require("crypto"));
+const l0_indexer_1 = require("./l0-indexer");
+const token_budget_1 = require("./token-budget");
 // ─── Constants ──────────────────────────────────────────────────────────────
 const CM_DIR = '.cm';
 const CONTINUITY_FILE = 'CONTINUITY.md';
@@ -54,6 +56,11 @@ function ensureCmDir(projectPath) {
     const configPath = path_1.default.join(cmDir, CONFIG_FILE);
     if (!fs_1.default.existsSync(configPath)) {
         fs_1.default.writeFileSync(configPath, generateDefaultConfig());
+    }
+    // Initialize token budget if not present
+    const budgetPath = path_1.default.join(cmDir, 'token-budget.json');
+    if (!fs_1.default.existsSync(budgetPath)) {
+        fs_1.default.writeFileSync(budgetPath, JSON.stringify((0, token_budget_1.getDefaultBudget)(), null, 2));
     }
     // Add .cm to .gitignore if not already there
     const gitignorePath = path_1.default.join(projectPath, '.gitignore');
@@ -252,6 +259,11 @@ function addLearning(projectPath, learning) {
     catch ( /* empty */_a) { /* empty */ }
     learnings.push(fullLearning);
     fs_1.default.writeFileSync(learningsPath, JSON.stringify(learnings, null, 2));
+    // Refresh L0 index after adding a learning
+    try {
+        (0, l0_indexer_1.generateLearningsIndex)(projectPath);
+    }
+    catch ( /* non-fatal */_b) { /* non-fatal */ }
     return fullLearning;
 }
 function archiveLearnings(projectPath, learnings) {

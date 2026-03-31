@@ -29,8 +29,25 @@ cm continuity init
 # Check current state
 cm continuity status
 
-# View captured learnings
+# View captured learnings / decisions
 cm continuity learnings
+cm continuity decisions
+
+# ── Smart Spine v5 commands ──────────────────────────────
+# Regenerate L0 compact indexes (learnings-index.md, skeleton-index.md)
+cm continuity index
+
+# Show token budget allocation + usage per category
+cm continuity budget
+
+# Pretty-print current context bus state (active skill chain)
+cm continuity bus
+
+# Print Claude Desktop MCP config snippet for cm-context server
+cm continuity mcp
+
+# Migrate learnings.json + decisions.json → SQLite (one-time)
+cm continuity migrate
 ```
 
 ## The Protocol
@@ -130,44 +147,83 @@ Project: [project name]
 - [file path]: [what we're changing]
 ```
 
-## 4-Tier Memory System (Brain-Inspired)
+## Memory Architecture (v5 — Smart Spine)
 
 ```
 Tier 1: SENSORY MEMORY (seconds — within current tool call)
   → Internal variables, intermediate results
   → NEVER written to file — discarded when action completes
-  → Example: "File X has 200 lines" — no need to remember next session
 
 Tier 2: WORKING MEMORY (current session → 7 days)
-  → CONTINUITY.md — the active scratchpad
+  → CONTINUITY.md — the active scratchpad (max 500 words / ~400 tokens)
   → Auto-rotates: entries > 7 days promote to Tier 3 or decay
-  → Max 500 words (~400 tokens)
-  
+  → Context bus (.cm/context-bus.json) — live skill chain state
+    · initBus() on chain start, updateBusStep() on each advance
+    · cm://pipeline/current resolves to bus JSON
+    · Read via: cm continuity bus | cm_bus_read MCP tool
+
 Tier 3: LONG-TERM MEMORY (30+ days, only if reinforced)
-  → .cm/learnings.json — error patterns with TTL + scope
-  → .cm/decisions.json — architecture decisions with supersedence
-  → Entries MUST be reinforced (same pattern ≥ 2x) to survive
-  → Decay: auto-archive if not relevant after TTL expires
+  → Primary:  .cm/context.db (SQLite + FTS5) ← v5 default
+      · learnings table + learnings_fts (BM25 keyword search)
+      · decisions table + decisions_fts
+      · skill_outputs per session/chain
+      · indexes table (cached L0/L1 content + staleness hash)
+  → Fallback: .cm/memory/learnings.json + decisions.json (kept for compat)
+  → L0 indexes: .cm/learnings-index.md (~100 tok), .cm/skeleton-index.md (~500 tok)
+      · Auto-regenerated on addLearning() + on demand via cm continuity index
+      · File watcher auto-refreshes learnings L0 on JSON change (300ms debounce)
+  → Token budget: .cm/token-budget.json — 200k window, per-category soft limits
+      · Enforced at load time: checkBudget() → allowed/remaining/suggestion
+      · View: cm continuity budget
 
-Tier 4: EXTERNAL SEMANTIC MEMORY (optional — for large projects)
+Tier 4: EXTERNAL SEMANTIC MEMORY (optional — large projects)
   → tobi/qmd — BM25 + Vector + LLM re-ranking, 100% local
-  → Indexes entire docs/, src/, meeting notes folders
-  → AI queries via MCP: qmd query "keyword" → relevant snippets
-  → See cm-deep-search skill for setup & detection thresholds
-  → ONLY suggested when project >50 docs or >200 source files
+  → See cm-deep-search skill — ONLY when >50 docs or >200 source files
 
-Tier 5: STRUCTURAL CODE MEMORY (optional — for code-heavy projects)
+Tier 5: STRUCTURAL CODE MEMORY (optional — code-heavy projects)
   → CodeGraph — tree-sitter AST → SQLite graph → MCP server
-  → Indexes symbols, call graphs, imports, class hierarchies
-  → AI queries: codegraph_context, codegraph_impact, codegraph_callers
-  → See cm-codeintell skill for setup & integration
-  → ONLY suggested when project >50 source files
+  → See cm-codeintell skill — ONLY when >50 source files
 ```
 
-**CONTINUITY.md = "what am I doing NOW?"**
-**learnings.json = "what mistakes should I avoid?"**  
-**decisions.json = "what architecture rules apply?"**
+**CONTINUITY.md  = "what am I doing NOW?"**
+**context bus    = "what did upstream skills produce in this chain?"**
+**L0 indexes     = "cheapest possible memory load (~600 tokens)"**
+**context.db     = "keyword search across all learnings + decisions"**
 **qmd (optional) = "find what was written across hundreds of docs"**
+
+### MCP Context Server (Claude Desktop integration)
+
+Seven tools exposed over stdio to Claude Desktop and MCP-compatible clients:
+
+| Tool | Purpose |
+|---|---|
+| `cm_query` | FTS5 keyword search — learnings, decisions, or both |
+| `cm_resolve` | Load any `cm://` URI at L0/L1/L2 depth |
+| `cm_bus_read` | Read live context bus state |
+| `cm_bus_write` | Publish skill output to the bus |
+| `cm_budget_check` | Pre-flight token check by category |
+| `cm_memory_decay` | Archive expired learnings (supports dry_run) |
+| `cm_index_refresh` | Regenerate L0 indexes on demand |
+
+```bash
+# Get install snippet for Claude Desktop config
+cm continuity mcp
+```
+
+### cm:// URI Scheme
+
+Reference any memory resource by URI — resolver handles depth + caching:
+
+```
+cm://memory/working              → CONTINUITY.md
+cm://memory/learnings            → learnings-index.md (L0) or SQLite (L1/L2)
+cm://memory/learnings/{id}       → specific learning by ID
+cm://memory/decisions            → decisions index
+cm://skills/{name}               → SKILL.md at depth
+cm://skills/{name}/L0            → front matter + description only (~50 tokens)
+cm://resources/skeleton          → skeleton-index.md (L0) or full
+cm://pipeline/current            → live context bus state
+```
 
 ---
 
@@ -383,22 +439,28 @@ WHY: Smaller scope = less noise = AI only reads what's relevant.
 
 ```
 ✅ DO:
-- Read CONTINUITY.md at session start (ALWAYS)
+- Check context bus FIRST at session start (free, ~50 tokens)
+- Load L0 indexes BEFORE full files (learnings-index + skeleton-index)
+- Use cm_query for keyword search — don't scan JSON manually
+- Read CONTINUITY.md after L0 indexes (not before)
 - Run Memory Audit at session start (decay + conflicts + scope filter)
 - Update CONTINUITY.md at session end (ALWAYS)
 - Tag EVERY learning/decision with scope (global/module/file)
 - Reinforce existing learnings instead of creating duplicates
 - Keep CONTINUITY.md under 500 words (rotate to Tier 3)
 - Be specific: "Fixed auth bug in login.ts:42" not "Fixed stuff"
+- Run cm continuity index after bulk learning additions
 
 ❌ DON'T:
+- Load full learnings.json or skeleton.md as first action (use L0 first)
+- Skip context bus check when inside a skill chain
 - Skip Memory Audit ("I'll read everything, it's fine")
 - Write learnings without scope ("it applies everywhere" = almost never true)
 - Create duplicate learnings (reinforce existing ones instead)
-- Let learnings.json grow unbounded (TTL + decay handles this)
-- Read ALL learnings regardless of current module (use scope filter)
+- Let learnings.json grow unbounded (TTL + decay + cm_memory_decay handles this)
+- Read ALL learnings regardless of current module (use scope filter / cm_query)
 - Ignore superseded decisions (they cause conflicting code)
-- Keep stale context that no longer applies to current architecture
+- Inject skeleton.md (20KB) when skeleton-index.md (~2KB) is sufficient
 ```
 
 ## The Bottom Line

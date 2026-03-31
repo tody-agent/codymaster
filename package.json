@@ -1,6 +1,6 @@
 {
   "name": "codymaster",
-  "version": "4.4.5",
+  "version": "4.5.0",
   "description": "68+ Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
   "main": "dist/index.js",
   "repository": {
@@ -59,12 +59,15 @@
   },
   "dependencies": {
     "@clack/prompts": "^1.1.0",
+    "better-sqlite3": "^12.8.0",
     "chalk": "^5.6.2",
+    "chokidar": "^5.0.0",
     "commander": "^14.0.3",
     "express": "^5.2.1",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
     "@types/prompts": "^2.4.9",

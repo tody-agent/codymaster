@@ -10,6 +10,11 @@ import type { Project, Task, Deployment, ChangelogEntry } from './data';
 import { launchDashboard } from './dashboard';
 import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
 import { ensureCmDir, getContinuityStatus, getLearnings, getDecisions, resetContinuity, hasCmDir, readContinuityState, deleteLearning, deleteDecision } from './continuity';
+import { refreshAllIndexes } from './l0-indexer';
+import { readBus } from './context-bus';
+import { loadBudget, generateBudgetReport } from './token-budget';
+import { migrateJsonToSqlite, exportSqliteToJson } from './migrate-json-to-sqlite';
+import { resolve as resolveUri } from './uri-resolver';
 import { evaluateAllTasks, evaluateTaskState, suggestAgentsForSkill, suggestAgentsForTask, getSkillDomain, suggestChain } from './judge';
 import type { Learning } from './continuity';
 import { listChains, findChain, matchChain, createChainExecution, advanceChain as advanceChainStep, skipChainStep, abortChain, formatChainProgress, formatChainProgressBar, getCurrentSkill } from './skill-chain';
@@ -1230,9 +1235,27 @@ program
       case 'decisions': case 'dec':
         continuityDecisions(projectPath);
         break;
+      case 'index':
+        continuityIndex(projectPath);
+        break;
+      case 'budget':
+        continuityBudget(projectPath);
+        break;
+      case 'bus':
+        continuityBus(projectPath);
+        break;
+      case 'mcp':
+        continuityMcp(projectPath);
+        break;
+      case 'migrate':
+        continuityMigrate(projectPath);
+        break;
+      case 'export':
+        continuityExport(projectPath);
+        break;
       default:
         console.log(chalk.red(`Unknown: ${cmd}`));
-        console.log(chalk.gray('Available: init, status, reset, learnings, decisions'));
+        console.log(chalk.gray('Available: init, status, reset, learnings, decisions, index, budget, bus, mcp, migrate, export'));
     }
   });
 
@@ -1330,6 +1353,136 @@ function continuityDecisions(projectPath: string) {
     console.log(dim(`     ${formatTimeAgoCli(d.timestamp)} | ${d.agent || 'unknown'}\n`));
   }
 }
+
+function continuityIndex(projectPath: string) {
+  if (!hasCmDir(projectPath)) {
+    console.log(renderResult('warning', 'No .cm/ directory found. Run: cm continuity init'));
+    return;
+  }
+  console.log(renderCommandHeader('Refreshing L0 Indexes', '🗂️'));
+  const result = refreshAllIndexes(projectPath);
+  const learningsLines = result.learnings.split('\n').length;
+  const skeletonLines = result.skeleton.split('\n').length;
+  console.log(success(`  ✅ learnings-index.md (${learningsLines} lines)`));
+  console.log(success(`  ✅ skeleton-index.md (${skeletonLines} lines)`));
+  console.log(success('  ✅ Continuity abstract generated'));
+  console.log(dim(`\n  Files written to .cm/`));
+}
+
+function continuityBudget(projectPath: string) {
+  const budget = loadBudget(projectPath);
+  console.log(renderCommandHeader('Token Budget', '💰'));
+  console.log('\n' + generateBudgetReport(budget) + '\n');
+}
+
+function continuityBus(projectPath: string) {
+  const bus = readBus(projectPath);
+  if (!bus) {
+    console.log(renderResult('info', 'No active context bus. Start a chain to initialize.'));
+    return;
+  }
+  console.log(renderCommandHeader(`Context Bus — ${bus.pipeline}`, '🚌'));
+  console.log(dim(`  Session:  ${bus.session_id}`));
+  console.log(dim(`  Step:     ${bus.current_step || '(none)'}`));
+  console.log(dim(`  Started:  ${bus.started_at}`));
+  console.log(dim(`  Updated:  ${bus.updated_at}`));
+  const steps = Object.keys(bus.shared_context);
+  if (steps.length > 0) {
+    console.log(brand('\n  Completed Steps:'));
+    for (const skill of steps) {
+      const out = bus.shared_context[skill];
+      console.log(success(`    ✅ ${skill}`) + (out?.summary ? dim(` — ${out.summary}`) : ''));
+    }
+  }
+  console.log(dim('\n  Resource State:'));
+  for (const [k, v] of Object.entries(bus.resource_state)) {
+    console.log(dim(`    ${k}: ${v || 'not indexed'}`));
+  }
+}
+
+function continuityMigrate(projectPath: string) {
+  if (!hasCmDir(projectPath)) {
+    console.log(renderResult('warning', 'No .cm/ directory found. Run: cm continuity init'));
+    return;
+  }
+  console.log(renderCommandHeader('Migrate JSON → SQLite', '🗃️'));
+  console.log(dim('  Reading learnings.json + decisions.json → .cm/context.db\n'));
+  try {
+    const result = migrateJsonToSqlite(projectPath);
+    console.log(success(`  ✅ Learnings migrated: ${result.learnings.migrated} (skipped: ${result.learnings.skipped})`));
+    console.log(success(`  ✅ Decisions migrated: ${result.decisions.migrated} (skipped: ${result.decisions.skipped})`));
+    if (result.backupCreated) console.log(dim('  📦 Backups created: learnings.json.backup, decisions.json.backup'));
+    console.log(dim(`\n  DB: ${result.dbPath}`));
+  } catch (err) {
+    console.log(error(`  ❌ Migration failed: ${(err as Error).message}`));
+  }
+}
+
+function continuityExport(projectPath: string) {
+  if (!hasCmDir(projectPath)) {
+    console.log(renderResult('warning', 'No .cm/ directory found. Run: cm continuity init'));
+    return;
+  }
+  console.log(renderCommandHeader('Export SQLite → JSON', '📤'));
+  try {
+    const result = exportSqliteToJson(projectPath);
+    console.log(success(`  ✅ Learnings exported: ${result.learnings} → ${result.learningsPath}`));
+    console.log(success(`  ✅ Decisions exported: ${result.decisions} → ${result.decisionsPath}`));
+  } catch (err) {
+    console.log(error(`  ❌ Export failed: ${(err as Error).message}`));
+  }
+}
+
+function continuityMcp(projectPath: string) {
+  const mcpPath = path.join(__dirname, 'mcp-context-server.js');
+  console.log(renderCommandHeader('MCP Context Server', '🔌'));
+  console.log(dim('  Runs as a stdio MCP server exposing 7 context tools.\n'));
+  console.log(renderKeyValue([
+    ['Binary',   mcpPath],
+    ['Project',  projectPath],
+    ['Tools',    'cm_query, cm_resolve, cm_bus_read, cm_bus_write, cm_budget_check, cm_memory_decay, cm_index_refresh'],
+  ]));
+  console.log(brand('\n  Claude Desktop config snippet:'));
+  console.log(dim(`  {
+    "mcpServers": {
+      "cm-context": {
+        "command": "node",
+        "args": ["${mcpPath}", "--project", "${projectPath}"]
+      }
+    }
+  }`));
+  console.log(info('\n  💡 Add the above to ~/Library/Application Support/Claude/claude_desktop_config.json'));
+}
+
+// ─── Resolve Command ──────────────────────────────────────────────────────────
+
+program
+  .command('resolve <uri>')
+  .description('Resolve a cm:// URI and print content (e.g. cm://memory/learnings)')
+  .option('-d, --depth <depth>', 'Loading depth: L0 | L1 | L2', 'L1')
+  .option('-p, --project <path>', 'Project path (default: cwd)')
+  .action((uri: string, opts: { depth?: string; project?: string }) => {
+    const projectPath = path.resolve(opts.project || process.cwd());
+    const depth = (['L0', 'L1', 'L2'].includes(opts.depth ?? '') ? opts.depth : 'L1') as 'L0' | 'L1' | 'L2';
+    try {
+      const resolved = resolveUri(uri, projectPath, depth);
+      console.log(renderCommandHeader(`cm:// Resolver — ${depth}`, '🔗'));
+      console.log(renderKeyValue([
+        ['URI',    resolved.uri],
+        ['Depth',  resolved.depth],
+        ['Found',  String(resolved.found)],
+        ['Tokens', String(resolved.tokenEstimate)],
+      ]));
+      if (resolved.found) {
+        console.log(brand('\n  Content:\n'));
+        console.log(resolved.content);
+      } else {
+        console.log(warning('\n  Not found — no content available at this URI.'));
+      }
+    } catch (err) {
+      console.log(error(`  ❌ ${(err as Error).message}`));
+    }
+  });
 
 // ─── Brain Command (Enhanced Memory Explorer) ────────────────────────────────
 
