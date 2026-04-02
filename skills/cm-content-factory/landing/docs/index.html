@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation | CodyMaster v5 Neural Spine</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <!-- Markdown & Highlighting -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0a0a0a;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e0e0e0;
+            --text-muted: #999;
+            --accent: #3b82f6;
+            --nav-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        /* Layout */
+        .docs-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--nav-width);
+            background: var(--surface);
+            border-right: 1px border var(--border);
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.6rem 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            margin-bottom: 0.2rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: var(--nav-width);
+            flex: 1;
+            padding: 4rem 6rem;
+            max-width: 1000px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Markdown Styles */
+        .markdown-body h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .markdown-body h2 { font-size: 1.75rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        .markdown-body p { margin-bottom: 1.25rem; font-size: 1.05rem; }
+        .markdown-body ul, .markdown-body ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .markdown-body li { margin-bottom: 0.5rem; }
+        .markdown-body code { background: rgba(255,255,255,0.05); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+        .markdown-body pre { margin-bottom: 1.5rem; padding: 1rem; border-radius: 12px; background: #111 !important; border: 1px solid var(--border); }
+        .markdown-body blockquote { border-left: 4px solid var(--accent); padding-left: 1.5rem; font-style: italic; color: var(--text-muted); margin: 2rem 0; }
+        
+        /* Mobile */
+        @media (max-width: 900px) {
+            .sidebar { transform: translateX(-100%); }
+            .content { margin-left: 0; padding: 2rem; }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="docs-layout">
+        <aside class="sidebar">
+            <a href="../" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                CodyMaster v5
+            </a>
+
+            <div class="nav-group">
+                <p class="nav-label">Core Architecture</p>
+                <a href="#v5-intro" class="nav-link active" onclick="loadDoc('v5-intro')">The Neural Spine</a>
+                <a href="#openviking" class="nav-link" onclick="loadDoc('openviking')">OpenViking Memory</a>
+                <a href="#openspace" class="nav-link" onclick="loadDoc('openspace')">OpenSpace Workspace</a>
+            </div>
+
+            <div class="nav-group">
+                <p class="nav-label">Engineering Hub</p>
+                <a href="#use-cases" class="nav-link" onclick="loadDoc('use-cases')">Use Cases</a>
+                <a href="#deployment" class="nav-link" onclick="loadDoc('deployment')">Deployment Guide</a>
+            </div>
+            
+            <div style="margin-top:auto; padding-top: 2rem;">
+               <a href="../" class="nav-link"><i data-lucide="arrow-left" style="width:14px;height:14px;vertical-align:middle;margin-right:8px;"></i> Back to Home</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div id="doc-container" class="markdown-body">
+                Loading documentation...
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function loadDoc(docId) {
+            const container = document.getElementById('doc-container');
+            const links = document.querySelectorAll('.nav-link');
+            
+            links.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${docId}`);
+            });
+
+            try {
+                const response = await fetch(`content/${docId}.md`);
+                if (!response.ok) throw new Error('Document not found');
+                const text = await response.text();
+                container.innerHTML = marked.parse(text);
+                
+                // Trigger Lucide
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+                
+                // Trigger Prism
+                Prism.highlightAll();
+                
+            } catch (err) {
+                container.innerHTML = `<h1>404</h1><p>The document "${docId}" could not be found.</p>`;
+            }
+        }
+
+        // Initial load
+        window.onload = () => {
+             const hash = window.location.hash.substring(1) || 'v5-intro';
+             loadDoc(hash);
+        }
+    </script>
+</body>
+
+</html>

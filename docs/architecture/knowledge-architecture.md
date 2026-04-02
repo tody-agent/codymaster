@@ -80,7 +80,9 @@ Tier 3 now has a **swappable backend** via the `StorageBackend` interface (`src/
 | **Memory relations** | None | **Graph links** between entries |
 | **Setup** | Zero (built-in) | `pip install openviking && openviking start` |
 
-OpenViking is an open-source context database from ByteDance ([github.com/volcengine/OpenViking](https://github.com/volcengine/OpenViking)). It uses vector embeddings so `cm_query("async timeout")` also matches learnings about `"network latency spike"` — no exact keyword required. Long-running projects (>100 learnings) and multi-language codebases benefit most.
+OpenViking is an open-source context database from ByteDance ([github.com/volcengine/OpenViking](https://github.com/volcengine/OpenViking)). It uses vector embeddings so `cm_query("async timeout")` also matches learnings about `"network latency spike"` — no exact keyword required. Long-running projects (>100 learnings) and multi-language codebases benefit most. 
+
+> 📖 **Deep Dive:** See [OpenViking vs SQLite Use Cases](./viking-vs-sqlite.md) for concrete examples of how semantic search outperforms FTS5 keyword matching in real-world debugging scenarios.
 
 **Activate with one config change:**
 ```yaml
