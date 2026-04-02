@@ -20,6 +20,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+    
+    <!-- Mermaid diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad: false, theme: 'dark'});</script>
+
     <style>
         :root {
             --bg: #050505;
@@ -162,6 +167,8 @@
             <div class="nav-group">
                 <p class="nav-label">Core Architecture</p>
                 <a href="#v5-intro" class="nav-link active" onclick="loadDoc('v5-intro')">The Neural Spine</a>
+                <a href="#changelog" class="nav-link" onclick="loadDoc('changelog')">What's New in v5</a>
+                <a href="#execution-flow" class="nav-link" onclick="loadDoc('execution-flow')">Execution Flow</a>
                 <a href="#openviking" class="nav-link" onclick="loadDoc('openviking')">OpenViking Memory</a>
                 <a href="#openspace" class="nav-link" onclick="loadDoc('openspace')">OpenSpace Workspace</a>
             </div>
@@ -206,6 +213,16 @@
                 
                 // Trigger Prism
                 Prism.highlightAll();
+                
+                // Trigger Mermaid
+                document.querySelectorAll('code.language-mermaid').forEach((block) => {
+                    const parent = block.parentElement;
+                    const containerDiv = document.createElement('div');
+                    containerDiv.className = 'mermaid';
+                    containerDiv.textContent = block.textContent;
+                    parent.parentElement.replaceChild(containerDiv, parent);
+                });
+                mermaid.init(undefined, document.querySelectorAll('.mermaid'));
                 
             } catch (err) {
                 container.innerHTML = `<h1>404</h1><p>The document "${docId}" could not be found.</p>`;
