@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+## [4.7.0] - 2026-04-02
+
+### 🚀 Improvements — Zero-Touch Installation & Advanced Pipeline
+
+- **Zero-Touch CLI Installation** — `install.sh` and `scripts/postinstall.js` overhauled to automatically activate the `cm` CLI. The script supports `--auto` for non-interactive `npm install -g codymaster`, while NPM seamlessly executes `npm link` or global install.
+- **OpenViking Core Feature** — Integrated OpenViking installation via `pip/pip3` natively into the installation process. Both `bash install.sh --all` and `npm i codymaster` will now automatically set up the OpenViking daemon, unlocking true semantic vector graph memory out-of-the-box.
+- **Skill Chain Auto-Dispatch** — Inspired by OpenSpace orchestrations, `cm-skill-chain` received a massive upgrade. Re-introduced the missing `auto` command enabling intelligent task detection, auto-selection of tools, and 100% automated handoffs between multi-agent sequences without human intervention.
+- **Systematic Auto-healing** — Enhancements to `postinstall.js` for automatic fallbacks across different OS privileges and execution environments.
+
 ## [4.6.0] - 2026-04-02
 
 ### 🚀 Improvements — OpenViking Backend (Real Implementation)

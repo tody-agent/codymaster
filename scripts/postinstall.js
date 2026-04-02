@@ -11,6 +11,8 @@ const NC = '\x1b[0m';
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
+
 let skillCount = 60;
 try {
   const skillsDir = path.join(__dirname, '..', 'skills');
@@ -285,7 +287,59 @@ const printMenu = () => {
   console.log('');
 };
 
+const installOpenViking = () => {
+  console.log('');
+  console.log(`${G}${BOLD}OpenViking — Installing Core Feature${NC}`);
+  try {
+    console.log(`  ${W}Running: pip install openviking${NC}`);
+    execSync('pip install openviking', { stdio: 'inherit' });
+    console.log(`  ${G}✅ OpenViking installed.${NC}`);
+  } catch (e) {
+    try {
+      console.log(`  ${W}Running: pip3 install openviking${NC}`);
+      execSync('pip3 install openviking', { stdio: 'inherit' });
+      console.log(`  ${G}✅ OpenViking installed.${NC}`);
+    } catch (err) {
+      console.log(`  ${O}⚠️  Could not install OpenViking automatically. Please run 'pip install openviking' manually.${NC}`);
+    }
+  }
+  console.log('');
+};
+
+const activateCli = () => {
+  // If we are developing locally, run npm link to auto-activate cm
+  if (fs.existsSync(path.join(__dirname, '..', 'package.json'))) {
+    try {
+      const pkg = require('../package.json');
+      if (pkg.name === 'codymaster') {
+        console.log(`  ${W}Auto-activating 'cm' CLI...${NC}`);
+        execSync('npm link', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+      }
+    } catch (e) {
+      // Ignore errors if npm link fails or not running inside the repo
+    }
+  }
+  
+  // Attempt a global install if cm is not found globally
+  try {
+    const isGlobal = process.env.npm_config_global === 'true' || process.env.npm_config_global === '1';
+    if (!isGlobal) {
+      // Check if cm command exists
+      try {
+        execSync('cm --version', { stdio: 'ignore' });
+      } catch (err) {
+        console.log(`  ${W}Auto-activating global 'cm' CLI from registry...${NC}`);
+        execSync('npm install -g codymaster', { stdio: 'inherit' });
+      }
+    }
+  } catch (e) {
+    // Silently ignore if this fails
+  }
+};
+
 const main = () => {
+  installOpenViking();
+  activateCli();
   printMenu();
 };
 

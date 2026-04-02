@@ -1,2 +1,3 @@
 - [Context Backbone v5 (Smart Spine)](architecture/context-backbone-v5.md)
 - [OpenViking vs SQLite Use Cases](architecture/viking-vs-sqlite.md)
+- [Viking + OpenSpace: Practical Integration Guide](architecture/viking-practical-guide.md)

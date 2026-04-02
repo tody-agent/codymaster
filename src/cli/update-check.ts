@@ -3,7 +3,7 @@ import path from 'path';
 import os from 'os';
 import https from 'https';
 
-const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf-8'));
+const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', '..', 'package.json'), 'utf-8'));
 const VERSION = pkg.version;
 
 export let _updateMessage = '';

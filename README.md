@@ -9,7 +9,7 @@
 **68+ Skills · 18 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.6.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.7.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
@@ -122,7 +122,7 @@ Your AI doesn't just execute — it **understands and remembers** using a multi-
 - **Token Budget** — 200k window pre-allocated by category. No more silent overflow.
 - **Context Bus** — Skills share outputs in real-time within a chain.
 - **MCP Server** — 7 tools exposed to Claude Desktop and any MCP client.
-- **OpenViking Backend (optional)** — Swap SQLite for [OpenViking](https://github.com/volcengine/OpenViking): true vector semantic search, auto L0/L1/L2 generation, session compression. One config line: `storage.backend: viking`.
+- **OpenViking Backend natively integrated** — Inspired by OpenViking's architecture, CodyMaster defaults to `openviking` auto-installation. It delivers true semantic vector graph memory, automatic session compression, and temporal context layering. (One config line change: `storage.backend: viking`).
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 High-value knowledge and design patterns are synced to NotebookLM, providing a universal, cross-machine "Soul" for your project. Auto-generate podcasts and flashcards to onboard human developers alongside the AI.
@@ -190,6 +190,7 @@ CodyMaster doesn't just run skills — it **watches them, scores them, and heals
 
 - **`cm-skill-health`** monitors every invocation: success rate, token usage, error patterns.
 - **`cm-skill-evolution`** auto-patches degraded skills (Mode: FIX) when health scores drop below threshold.
+- **`cm-skill-chain` Auto-Dispatch** — Inspired by OpenSpace automation orchestrators, sequence dispatching is now 100% automated with intelligent task detection, zero-touch handoffs, and multi-agent coordination.
 - **`cm-skill-search`** uses BM25 ranking to find the right skill for any task.
 - **`cm-skill-share`** exports & imports skills across teams and machines.
 

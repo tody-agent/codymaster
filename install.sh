@@ -24,7 +24,7 @@ C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'; DI
 
 REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
-VERSION="4.4.0"
+VERSION="4.7.0"
 SCOPE="user"   # default scope for Claude Code
 
 if [ -d "skills" ]; then
@@ -567,20 +567,47 @@ install_amp() {
   echo -e "  ${C}ℹ  Reference skills in Amp via your AGENTS.md or system prompt${NC}"
 }
 
-# ── CLI installer ────────────────────────────────────────────────
 install_cli() {
+  local auto="$1"
   if command -v npm &>/dev/null; then
     echo ""
     echo -e "${G}${BOLD}CLI Dashboard — Installing Cody Master CLI${NC}"
     echo ""
-    echo -e "  To get the full experience with the ${C}cm${NC} command and visual dashboard,"
-    echo -e "  it is recommended to install the global npm package."
-    echo ""
-    read -p "  Install codymaster globally? (y/N): " install_npm
-    if [[ "$install_npm" =~ ^[Yy]$ ]]; then
-      echo -e "  ${W}Running: npm install -g codymaster${NC}"
+    if [[ "$auto" == "--auto" ]]; then
+      echo -e "  ${W}Auto-installing: npm install -g codymaster${NC}"
       npm install -g codymaster || echo -e "  ${O}Note: You might need sudo for global install: sudo npm install -g codymaster${NC}"
+      
+      # Try npm link too if in dir
+      if [ -f "package.json" ]; then
+        if grep -q '"name": "codymaster"' package.json; then
+          npm link &>/dev/null || true
+        fi
+      fi
+    else
+      echo -e "  To get the full experience with the ${C}cm${NC} command and visual dashboard,"
+      echo -e "  it is recommended to install the global npm package."
+      echo ""
+      read -p "  Install codymaster globally? (y/N): " install_npm
+      if [[ "$install_npm" =~ ^[Yy]$ ]]; then
+        echo -e "  ${W}Running: npm install -g codymaster${NC}"
+        npm install -g codymaster || echo -e "  ${O}Note: You might need sudo for global install: sudo npm install -g codymaster${NC}"
+      fi
     fi
+  fi
+}
+
+install_openviking() {
+  echo ""
+  echo -e "${G}${BOLD}OpenViking — Installing Core Feature${NC}"
+  echo ""
+  if command -v pip3 &>/dev/null; then
+    echo -e "  ${W}Running: pip3 install openviking${NC}"
+    pip3 install openviking || echo -e "  ${O}⚠️ Could not install OpenViking automatically.${NC}"
+  elif command -v pip &>/dev/null; then
+    echo -e "  ${W}Running: pip install openviking${NC}"
+    pip install openviking || echo -e "  ${O}⚠️ Could not install OpenViking automatically.${NC}"
+  else
+    echo -e "  ${R}Python pip not found. Please install pip to get OpenViking.${NC}"
   fi
 }
 
@@ -602,6 +629,7 @@ ensure_clone() {
   # Clone the repo
   echo -e "  ${W}Cloning CodyMaster to ~/.cody-master...${NC}"
   git clone --depth 1 "${REPO_URL}.git" "$HOME/.cody-master" 2>/dev/null || {
+
     echo -e "  ${R}Error: Failed to clone ${REPO_URL}${NC}"
     echo -e "  ${R}Check your internet connection and try again.${NC}"
     exit 1
@@ -800,8 +828,12 @@ if [[ "$1" == "--all" ]]; then
   [ -d "$HOME/.cursor" ] || [ -d "/Applications/Cursor.app" ] && {
     install_skills_to ".cursor/rules" "mdc"
   }
-  install_cli
-  print_onboarding
+  install_openviking
+  install_cli "--auto"
+  echo ""
+  echo -e "${G}${BOLD}✅ All installations completed!${NC}"
+  echo -e "${C}$(msg docs) https://cody.todyle.com/docs${NC}"
+  echo ""
   exit 0
 fi
 
@@ -893,6 +925,7 @@ for platform in "${platforms[@]}"; do
   esac
 done
 
+install_openviking
 install_cli
 print_onboarding
 
