@@ -1,30 +1,27 @@
-# OpenSpace: Autonomous Workspace
+# OpenSpace Autonomous Workspace
 
-**OpenSpace** provides your AI agents with a **sandbox workspace** to execute commands, run tests, and manage files safely.
+**OpenSpace** is the execution engine of the Neural Spine architecture. It elevates your AI from being merely a static text-generator to an active, real-time engineering participant.
 
----
+## The Execution Gap
 
-## 🏗️ The Sandbox Model
+Most AI setups lack operational agency. Once an LLM outputs code, a human developer has to copy, paste, save, format, compile, and run tests. This process introduces massive friction and manual error into what should be an automated loop.
 
-Autonomous agents often need to do more than just "write code." They need to:
-- Run `npm test` or `go test` to verify their changes.
-- Build Docker images or binaries.
-- Scrape websites for documentation.
-- Manage Git worktrees for isolated feature development.
+## Enter OpenSpace
 
-**OpenSpace** creates an isolated environment (either local or containerized) where these actions can occur without risk to your main production files.
+OpenSpace surrounds the agent with a secure execution container (sandbox) tightly coupled with your source control and operational tools. 
 
-## 🚌 Context Integration
+### Key Capabilities
 
-Every action taken inside an **OpenSpace** workspace is automatically logged to the **Neural Spine**. If a test fails, the agent doesn't just see the error—it understands the *semantic context* of why it failed by searching through its memory.
+- **Command Line Autonomy**: The agent can run raw terminal commands (`npm i`, `pytest`, `cargo run`) to verify that the code it generates compiles and passes logic tests.
+- **Visual Self-Correction**: Using Playwright/Puppeteer bindings, OpenSpace can take screenshots of running frontends, parse the UI using Vision models, and autonomously adjust CSS alignments or missing padding without human intervention.
+- **The Secret Shield**: OpenSpace filters shell execution to prevent agents from inadvertently deleting local databases, exposing secrets (via `.env` blockades), or committing raw tokens to GitHub.
 
-## 🛠️ Key Commands
+## Anatomy of a Session
 
-Agents use special skills to interact with OpenSpace:
-- `cm-terminal`: Run commands and capture structured output.
-- `cm-git-worktrees`: Manage isolated feature branches.
-- `cm-status`: Track process progress across multi-agent pipelines.
+When an agent is initialized in OpenSpace, it acts as a headless developer:
+1. It pulls semantic context from **[OpenViking](#openviking)**.
+2. It drafts a solution to isolated branch files.
+3. It spawns an OpenSpace terminal subprocess to run Linters and Unit Tests.
+4. If a test fails, it captures the `stderr` output within OpenSpace and self-heals the code until all checks pass.
 
----
-
-[docs/](./index.html#v5-intro) ← Back to Intro
+This loop ensures that the code pushed to you is robust, tested, and fully autonomous.

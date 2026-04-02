@@ -1,25 +1,26 @@
-# CodyMaster v5: Practical Use Cases
+# Neural Spine Use Cases
 
-CodyMaster v5 is built for high-stakes engineering where context is everything. Here are some real-world scenarios:
+The true power of **CodyMaster v5** is fully realized when integrating semantic memory and autonomous execution together. 
 
----
+Here are the optimal scenarios where the Founders Edition architecture outperforms standard tools.
 
-## 🏗️ 1. Large-Scale Project Onboarding
-**Problem**: You just joined a legacy project with 100k+ lines of code and zero documentation.
-**Solution**: Deploy **Neural Spine** to index the codebase. **OpenViking** will extract L1 summaries of all modules, allowing you to ask "Where is the auth logic?" and get a precise, context-aware answer instantly.
+## 1. Full-Stack Monolithic Refactoring
+*The Challenge*: Changing an authentication provider or modifying deeply nested CSS logic across a massive 500,000-line React/Node.js monolith usually incites dozens of cascading regressions.
+*The Spine Solution*:
+- **OpenViking** maps exactly where the legacy authentication logic touches every API router.
+- **OpenSpace** attempts the refactor in an isolated branch and continuously runs the test suite.
+- The outcome is a tightly controlled refactoring PR that didn't miss a single edge case.
 
-## 🛠️ 2. Autonomous Refactoring
-**Problem**: You need to move from a monolithic architecture to microservices, but the dependencies are a mess.
-**Solution**: Use an **OpenSpace** sandbox to run static analysis tools. Your agent can use **Semantic Memory** to understand existing patterns and then perform the refactoring in an isolated Git worktree, running tests automatically to verify correctness.
+## 2. Zero-Drop Multilingual Deployments
+*The Challenge*: Localizing an application across EN, VI, ZH, and RU requires massive JSON string coordination, structural UI checks (text length variances), and routing configuration.
+*The Spine Solution*:
+- A translation skill is dispatched across multiple parallel agents.
+- Instead of manual checks, OpenSpace spins up a staging server and runs Visual Regression Tests using Vision models to verify that the Russian text doesn't break button layouts.
+- It automatically shifts paddings based on the visual output before committing.
 
-## 🤖 3. Multi-Agent Pipeline Orchestration
-**Problem**: You have three agents working on different features (Frontend, Backend, Tests).
-**Solution**: The **Context Bus** ensures all agents share the same state. If the Backend agent changes an API endpoint, the Frontend and Test agents are notified via the shared Neural Spine, and they update their respective codebases accordingly.
-
-## 📰 4. Intelligent Content Pipelines (Classic)
-**Problem**: You need to produce high-quality technical content that is always up-to-date with your latest code.
-**Solution**: The original **Content Factory** is now a specialized skill on the Neural Spine. It reads your latest commits in OpenSpace and uses its **Episodic Memory** to write articles that accurately reflect actual code changes.
-
----
-
-[docs/](./index.html#v5-intro) ← Back to Intro
+## 3. Immediate Tech-Debt Cleanup
+*The Challenge*: Teams accrue dead code, unused imports, and unoptimized queries over years of product pivots.
+*The Spine Solution*:
+- An agent equipped with the `cm-clean-code` skill natively runs over the codebase at midnight via cron job.
+- OpenSpace runs AST (Abstract Syntax Tree) evaluations against OpenViking indexing to guarantee no unused code is actually being referenced dynamically.
+- The agent creates a PR each morning with a detailed breakdown of the removed complexity and the token savings achieved.

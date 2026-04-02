@@ -1,40 +1,33 @@
-# OpenViking: Vector-Accurate Memory
+# OpenViking Semantic Memory
 
-**OpenViking** is the storage engine for CodyMaster's long-term semantic memory. It solves the "context window" problem by intelligently retrieving only the most relevant pieces of information for any given task.
+**OpenViking** is CodyMaster's high-performance memory backend. It replaces chaotic keyword-based grep searches and blind RAG chunking with a highly structured Semantic Vector Engine.
 
----
+## The Problem with Standard AI Search
 
-## 🔍 How it Works
+Typical AI coding agents use raw text searches or simple AST parsing limits to find context. This causes **Code Amnesia**:
+- The agent forgets standard component library practices.
+- The agent invents (hallucinates) missing variables.
+- Scaling to million-line codebases overflows the token limit, crashing the session.
 
-OpenViking indexes your workspace on three levels:
+## The OpenViking Solution
 
-1.  **L0 (Structural)**: File names, function signatures, and directory maps.
-2.  **L1 (Summarized)**: AI-generated summaries of modules and features.
-3.  **L2 (Granular)**: Full-text vector embeddings of every line of code.
+OpenViking introduces **L0/L1/L2 Progressive Summarization** coupled with SQLite FTS5 and Vector Embeddings.
 
-When an agent needs information, it queries the **Neural Spine**, which uses OpenViking to search across all three levels in parallel.
+### How it works:
 
-## ⚙️ Configuration
+1. **L0 (Skeleton Index)**: A fast map of the entire directory structure, capturing file names, exports, and imports. 
+2. **L1 (Symbol Index)**: Extracts function signatures, class interfaces, and variable definitions without the bulky implementation details.
+3. **L2 (Full Context)**: The heavy vector embeddings (using local or API-driven embedding models) that store actual logic and edge cases.
 
-You can configure your memory depth in `codymaster.json`:
+When the agent attempts to refactor a component, OpenViking performs a semantic lookup on L1 and L2 databases, pulling *only* the exact functions and files impacted by the change.
 
-```json
-{
-  "memory": {
-    "engine": "openviking",
-    "storage": "sqlite-fts5",
-    "embeddingModel": "text-embedding-3-small",
-    "autoIndex": true
-  }
-}
+## Native Integration
+
+OpenViking works autonomously in the background. When CodyMaster initializes in a project, it creates a `.viking` directory (ignored via `.gitignore`) mapped entirely to a rapid local SQLite store.
+
+```bash
+# Force an on-demand re-index of the OpenViking graph
+cody-master viking index --force
 ```
 
-## 🚀 Performance
-
-- **Zero-Latency Search**: Sub-10ms retrieval for 1M+ vectors (Local SQLite/FTS5).
-- **Infinite Context**: Seamlessly bridge data from past sessions into new ones.
-- **Smart Pruning**: Automatically archive old or irrelevant context to stay under token limits.
-
----
-
-[docs/](./index.html#v5-intro) ← Back to Intro
+By ensuring agents have a complete layout of the system at all times, OpenViking single-handedly eliminates structural regressions in mature projects.
