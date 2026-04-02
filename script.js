@@ -98,4 +98,46 @@
       }
     });
   });
+
+  /* --- Translation Logic --- */
+  const langSelect = document.getElementById('lang-select');
+
+  function applyTranslations(lang) {
+    const langData = window.translations[lang] || window.translations['en'];
+    if (!langData) return;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const keys = key.split('.');
+      let text = langData;
+
+      keys.forEach(k => {
+        if (text) text = text[k];
+      });
+
+      if (text) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = text;
+        } else {
+          el.innerHTML = text;
+        }
+      }
+    });
+
+    document.documentElement.lang = lang;
+    localStorage.setItem('preferred-lang', lang);
+    if (langSelect) langSelect.value = lang;
+  }
+
+  if (langSelect) {
+    langSelect.addEventListener('change', (e) => {
+      applyTranslations(e.target.value);
+    });
+  }
+
+  // Initialize language
+  const savedLang = localStorage.getItem('preferred-lang') || 
+                    (navigator.language.startsWith('vi') ? 'vi' : 'en');
+  applyTranslations(savedLang);
+
 })();
