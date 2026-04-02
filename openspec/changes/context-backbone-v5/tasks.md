@@ -106,11 +106,58 @@
 - [x] 3.2.3 Update `cm-skill-chain` SKILL.md — context bus lifecycle, bus read/write in agent protocol
 - [x] 3.2.4 Update `_shared/helpers.md` — 5-step Load-Working-Memory with bus check first, L0 before L2, token budget gate
 
-### 3.3 OpenViking Backend (Future)
-- [ ] 3.3.1 Define `StorageBackend` interface in `src/context-db.ts`
-- [ ] 3.3.2 Create `src/backends/sqlite-backend.ts` (extract current implementation)
-- [ ] 3.3.3 Create `src/backends/viking-backend.ts` (OpenViking embedded client)
-- [ ] 3.3.4 Config switch in `.cm/config.yaml`: `storage.backend: sqlite | viking`
+### 3.3 StorageBackend Interface (OpenViking Swap Path)
+
+> **Strategy:** Parallel interface — no breaking changes to `context-db.ts` or existing callers.
+> `src/storage-backend.ts` is a new module; SqliteBackend wraps existing functions.
+
+#### 3.3.1 — StorageBackend interface + SqliteBackend + VikingBackend + factory
+- [x] 3.3.1.1 Create `src/storage-backend.ts` with `StorageBackend` interface (11 methods: lifecycle + learnings + decisions + indexes + skill_outputs)
+- [x] 3.3.1.2 Implement `SqliteBackend` class — thin wrapper around `context-db.ts` functions, no logic duplication
+- [x] 3.3.1.3 Implement `VikingBackend` stub class — all methods throw descriptive error with `@openviking/client` install instructions
+- [x] 3.3.1.4 Export `getBackend(projectPath): StorageBackend` factory — minimal YAML regex parser reads `.cm/config.yaml → storage.backend`, defaults to `sqlite`
+
+#### 3.3.2 — Config template update
+- [x] 3.3.2.1 Update `generateDefaultConfig()` in `src/continuity.ts` — add `storage:` section with `backend: sqlite` + commented viking options
+- [x] 3.3.2.2 Update `.cm/config.yaml` in project root to include `storage:` section
+
+#### 3.3.3 — Tests
+- [x] 3.3.3.1 Write `test/storage-backend.test.ts` — 23 tests covering factory + SqliteBackend roundtrip + VikingBackend error messages
+- [x] 3.3.3.2 Run full test gate — 178 passed | 16 skipped | 0 failed (16 test files)
+
+#### 3.3.4 — Ship
+- [x] 3.3.4.1 TypeScript strict compile clean (`npx tsc --noEmit`)
+- [x] 3.3.4.2 Update CHANGELOG.md — bump to v4.5.1, document StorageBackend interface
+- [x] 3.3.4.3 `npm publish` — ship v4.5.1
+
+### 3.4 OpenViking Backend (Real Implementation)
+
+> **Goal:** Replace `VikingBackend` stub with a real HTTP-based implementation calling OpenViking REST API.
+> Ships as v4.6.0.
+
+#### 3.4.1 — HTTP client + real backend
+- [x] 3.4.1.1 Create `src/backends/viking-http-client.ts` — fetch-based wrapper for OpenViking REST API (health, write, read, ls, search, abstract, overview, mkdir). Zero new npm deps.
+- [x] 3.4.1.2 Create `src/backends/viking-backend.ts` — real `StorageBackend` implementation. All 11 methods mapped to OpenViking URIs. Write methods fire-and-forget; read methods use sync-wrapper with graceful `null`/`[]` fallback.
+- [x] 3.4.1.3 Add OpenViking-native extras: `searchAll()`, `getL0Abstract()`, `getL1Overview()` for callers that cast to `VikingBackend`.
+
+#### 3.4.2 — Config + factory wiring
+- [x] 3.4.2.1 Update `src/storage-backend.ts` — remove stub, import real VikingBackend, extend config parser to read `storage.viking.{host,port,workspace,timeout}`.
+- [x] 3.4.2.2 Update `src/continuity.ts` config template — viking block with correct defaults (port 1933, workspace codymaster) and inline comments.
+
+#### 3.4.3 — Tests
+- [x] 3.4.3.1 Create `test/viking-backend.test.ts` — 10 offline unit tests + 5 live integration tests guarded by `OPENVIKING_URL` env var.
+- [x] 3.4.3.2 Update `test/storage-backend.test.ts` — replace old stub "expect throw" tests with real behavior tests (no-throw on lifecycle + fire-and-forget writes).
+- [x] 3.4.3.3 Full test gate: **192 passed · 26 skipped · 0 failed** (17 test files).
+
+#### 3.4.4 — Docs + ship
+- [x] 3.4.4.1 Update `docs/architecture/context-backbone-v5.md` — add System 7: OpenViking section (setup, URI layout, comparison table, architecture diagram).
+- [x] 3.4.4.2 Update `docs/architecture/knowledge-architecture.md` — rewrite Smart Spine section with StorageBackend comparison table + v4.6 architecture diagram.
+- [x] 3.4.4.3 Update `skills/_shared/helpers.md` — Viking vector search note in Step 3.
+- [x] 3.4.4.4 Update `skills/cm-continuity/SKILL.md` — Viking setup commands, Tier 3 description.
+- [x] 3.4.4.5 Update `skills/cm-start/SKILL.md` — Viking-aware notes in Steps 0 and 4.
+- [x] 3.4.4.6 Update `README.md` — version badge 4.6.0, Smart Spine + Viking bullet, comparison table, commands.
+- [x] 3.4.4.7 Bump version to 4.6.0, update CHANGELOG.md.
+- [ ] 3.4.4.8 `npm publish` — ship v4.6.0 (blocked: needs 2FA OTP from user).
 
 ---
 

@@ -369,6 +369,130 @@ Integrated into MCP server process. Uses `chokidar` (add as dependency).
 
 ---
 
+## Phase 3.3 — StorageBackend Interface (OpenViking Swap Path)
+
+### Context
+
+`context-db.ts` currently exposes raw SQLite functions called directly by `mcp-context-server.ts`, `uri-resolver.ts`, and `migrate-json-to-sqlite.ts`. Swapping to OpenViking (or any other storage engine) would require editing every callsite. This phase introduces a backend abstraction layer that makes the swap a config change.
+
+### Strategy: Parallel Interface (no breaking changes)
+
+Keep `context-db.ts` unchanged. Add a new `src/storage-backend.ts` that:
+1. Defines the `StorageBackend` interface
+2. Implements `SqliteBackend` as a thin wrapper around existing `context-db.ts` functions
+3. Provides a `VikingBackend` stub (throws `NotImplementedError` with helpful messages)
+4. Exports a `getBackend(projectPath)` factory that reads `.cm/config.yaml → storage.backend`
+
+Existing callers continue to work. New callers (e.g. future skills, tests) use `getBackend()` for polymorphism.
+
+### Interface Design
+
+```typescript
+// src/storage-backend.ts
+
+export interface StorageBackend {
+  // Lifecycle
+  initialize(): void           // creates tables / connects / validates schema
+  close(): void
+
+  // Learnings
+  insertLearning(learning: DbLearning): void
+  getLearningById(id: string): DbLearning | null
+  queryLearnings(query: string, scope?: string, limit?: number): DbLearning[]
+
+  // Decisions
+  insertDecision(decision: DbDecision): void
+  queryDecisions(query: string, limit?: number): DbDecision[]
+
+  // Index cache
+  upsertIndex(resource: string, level: string, content: string, sourceHash?: string): void
+  getIndex(resource: string, level: string): DbIndex | null
+
+  // Skill outputs
+  writeSkillOutput(output: DbSkillOutput): void
+  getSkillOutputs(sessionId: string): DbSkillOutput[]
+}
+
+// Factory — reads .cm/config.yaml → storage.backend
+export function getBackend(projectPath: string): StorageBackend
+```
+
+### SqliteBackend (thin wrapper)
+
+Delegates every method to the existing `context-db.ts` functions. No logic duplication — just a class wrapper.
+
+```typescript
+class SqliteBackend implements StorageBackend {
+  constructor(private projectPath: string) {}
+  initialize() { openDb(getDbPath(this.projectPath)); }
+  close()       { closeDb(getDbPath(this.projectPath)); }
+
+  insertLearning(l)            { insertLearning(getDbPath(this.projectPath), l); }
+  getLearningById(id)          { return getLearningById(getDbPath(this.projectPath), id); }
+  queryLearnings(q, scope?, n) { return queryLearnings(getDbPath(this.projectPath), q, scope, n); }
+  // ... same pattern for all methods
+}
+```
+
+### VikingBackend (stub)
+
+```typescript
+class VikingBackend implements StorageBackend {
+  initialize() {
+    throw new Error(
+      'VikingBackend: not implemented. Install @openviking/client and implement src/backends/viking-backend.ts.\n' +
+      'See: https://github.com/openviking/openviking'
+    );
+  }
+  // All methods throw same error
+}
+```
+
+### Config Switch
+
+**`.cm/config.yaml`** (add `storage` section to default template):
+
+```yaml
+storage:
+  backend: sqlite              # sqlite | viking
+  # viking:
+  #   host: localhost
+  #   port: 7474
+  #   db: codymaster
+```
+
+**Factory logic:**
+
+```typescript
+export function getBackend(projectPath: string): StorageBackend {
+  const config = loadConfig(projectPath);   // reads .cm/config.yaml
+  const backend = config?.storage?.backend ?? 'sqlite';
+
+  if (backend === 'viking') return new VikingBackend(projectPath);
+  return new SqliteBackend(projectPath);    // default
+}
+```
+
+### Files
+
+| File | Action | Purpose |
+|---|---|---|
+| `src/storage-backend.ts` | CREATE | Interface + factory + SqliteBackend + VikingBackend |
+| `src/continuity.ts` | MODIFY | Add `storage:` section to `generateDefaultConfig()` |
+| `test/storage-backend.test.ts` | CREATE | Interface contract tests (SqliteBackend), factory config tests |
+
+`context-db.ts` — **NOT modified.** Callers — **NOT changed.** Zero blast radius.
+
+### Verification
+
+- `getBackend(projectPath)` returns `SqliteBackend` by default
+- `getBackend` returns `VikingBackend` when config says `storage.backend: viking`
+- `VikingBackend.initialize()` throws descriptive error
+- `SqliteBackend` passes same round-trip tests as context-db.ts
+- Adding new backend in future = implement interface, register in factory
+
+---
+
 ## Verification Plan
 
 ### Phase 1

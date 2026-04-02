@@ -79,8 +79,8 @@ ROTATION is not optional after a leak.
 // ❌ NEVER write code like this:
 const API_KEY = "sk-proj-abc123def456ghi789";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...";
-const DB_PASSWORD = "MyP@ssw0rd123!";
-fetch('https://api.example.com', { headers: { Authorization: 'Bearer sk-...' } });
+const DB_PASSWORD = "<YOUR_SECURE_PASSWORD>";
+fetch('https://api.example.com', { headers: { Authorization: 'Bearer <YOUR_TOKEN>' } });
 
 // ✅ ALWAYS write code like this:
 const API_KEY = process.env.API_KEY;

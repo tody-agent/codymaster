@@ -28,11 +28,11 @@ VERSION="4.4.0"
 SCOPE="user"   # default scope for Claude Code
 
 if [ -d "skills" ]; then
-  TOTAL_SKILLS=$(ls -1d skills/*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
+  TOTAL_SKILLS=$(ls -1d skills/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
 elif [ -d "$HOME/.cody-master/skills" ]; then
-  TOTAL_SKILLS=$(ls -1d "$HOME/.cody-master/skills"/*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
+  TOTAL_SKILLS=$(ls -1d "$HOME/.cody-master/skills"/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
 else
-  TOTAL_SKILLS="60+"
+  TOTAL_SKILLS="45"
 fi
 
 
@@ -55,7 +55,7 @@ msg() {
   local key="$1"
   case "$LANG_CODE:$key" in
     vi:welcome)   echo "Chào mừng bạn đến với CodyMaster v${VERSION}" ;;
-    vi:tagline)   echo "60+ kỹ năng AI cho Claude Code và các AI agents khác" ;;
+    vi:tagline)   echo "${TOTAL_SKILLS} kỹ năng AI cho Claude Code và các AI agents khác" ;;
     vi:detecting) echo "🔍 Đang phát hiện các AI agent đã cài..." ;;
     vi:found)     echo "✅ Đã tìm thấy" ;;
     vi:not_found) echo "❌ Không tìm thấy" ;;
@@ -68,7 +68,7 @@ msg() {
     vi:docs)      echo "📚 Tài liệu:" ;;
 
     zh:welcome)   echo "欢迎使用 CodyMaster v${VERSION}" ;;
-    zh:tagline)   echo "Claude Code 的 60+ AI 技能" ;;
+    zh:tagline)   echo "Claude Code 的 ${TOTAL_SKILLS} AI 技能" ;;
     zh:detecting) echo "🔍 检测已安装的 AI Agent..." ;;
     zh:found)     echo "✅ 已找到" ;;
     zh:not_found) echo "❌ 未找到" ;;
@@ -81,7 +81,7 @@ msg() {
     zh:docs)      echo "📚 文档:" ;;
 
     ko:welcome)   echo "CodyMaster v${VERSION}에 오신 것을 환영합니다" ;;
-    ko:tagline)   echo "Claude Code용 60+ AI 스킬" ;;
+    ko:tagline)   echo "Claude Code용 ${TOTAL_SKILLS} AI 스킬" ;;
     ko:detecting) echo "🔍 설치된 AI Agent 감지 중..." ;;
     ko:found)     echo "✅ 발견됨" ;;
     ko:not_found) echo "❌ 없음" ;;
@@ -96,7 +96,7 @@ msg() {
     *)
       case "$key" in
         welcome)   echo "Welcome to CodyMaster v${VERSION}" ;;
-        tagline)   echo "60+ AI skills for Claude Code and other AI agents" ;;
+        tagline)   echo "${TOTAL_SKILLS} AI skills for Claude Code and other AI agents" ;;
         detecting) echo "🔍 Detecting installed AI agents..." ;;
         found)     echo "✅ Found" ;;
         not_found) echo "❌ Not found" ;;
@@ -608,6 +608,10 @@ ensure_clone() {
   }
   CLONE_DIR="$HOME/.cody-master"
   echo -e "  ${G}✅ Cloned to ~/.cody-master${NC}"
+  # Update total skills after pulling down new repo
+  if [ -d "$CLONE_DIR/skills" ]; then
+    TOTAL_SKILLS=$(ls -1d "$CLONE_DIR/skills"/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
+  fi
 }
 
 # ── Copy skills to target directory ──────────────────────────────
@@ -621,7 +625,7 @@ install_skills_to() {
   mkdir -p "$target"
   local count=0
   local installed=()
-  for skill_dir in "${CLONE_DIR}"/skills/*/; do
+  for skill_dir in "${CLONE_DIR}"/skills/cm-*/; do
     skill_name=$(basename "$skill_dir")
     if [ -f "${skill_dir}SKILL.md" ]; then
       if [[ "$format" == "mdc" ]]; then

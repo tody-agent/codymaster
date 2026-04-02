@@ -13,12 +13,15 @@ When this workflow is called, the AI Assistant should execute the following acti
     Per `_shared/helpers.md#Load-Working-Memory` — **use Smart Spine order:**
     1. Check `.cm/context-bus.json` → any active pipeline? any prior skill output to reuse?
     2. Load L0 indexes: `learnings-index.md` (~100 tok) + `skeleton-index.md` (~500 tok)
+       > **If OpenViking backend active:** Skip step 2 — engine auto-serves L0/L1 via `cm_resolve`.
     3. Scope-filter learnings via `cm_query` — only load what matches current objective
+       > **If OpenViking:** `cm_query` uses vector semantic search — broader recall, fewer missed learnings.
     4. Read `CONTINUITY.md` → set Active Goal to the new objective
     5. Run token budget check: `cm continuity budget` → confirm no category is over soft limit
 
     > ⚡ Total context load: ~700 tokens. Full load used to be ~3,200.
     > Only escalate to L2 (full files) if L0 index explicitly flags a match.
+    > With OpenViking: L0 is auto-maintained — no stale index risk.
 
 0.5. **Skill Coverage Check (Adaptive Discovery):**
     - Scan the objective for technologies, frameworks, or patterns mentioned
@@ -82,5 +85,11 @@ When this workflow is called, the AI Assistant should execute the following acti
     - Record any new learnings or decisions made during this workflow
     - If inside a skill chain: `cm continuity bus` → verify context bus reflects completed step
     - Refresh L0 indexes: `cm continuity index` (auto-runs on `addLearning`, manual refresh here)
+      > **If OpenViking:** Skip manual index refresh — engine maintains L0/L1 automatically.
 
-> **Note for AI:** If this is a brand new project, suggest running `cm-project-bootstrap` first. If the working environment has a risk of accidentally switching accounts/projects, remind about `cm-identity-guard` (Per `_shared/helpers.md#Identity-Check`).
+> **Note for AI:** If this is a brand new project, suggest running `cm-project-bootstrap` first.
+> If the working environment has a risk of accidentally switching accounts/projects, remind about `cm-identity-guard` (Per `_shared/helpers.md#Identity-Check`).
+>
+> **OpenViking tip:** If the project uses many learnings/decisions (>100 entries) or needs semantic
+> search beyond keyword matching, suggest switching to the Viking backend:
+> `storage.backend: viking` in `.cm/config.yaml` + `pip install openviking && openviking start`

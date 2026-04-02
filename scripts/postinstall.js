@@ -18,7 +18,7 @@ try {
     skillCount = fs.readdirSync(skillsDir)
       .filter(f => {
         const fullPath = path.join(skillsDir, f);
-        return fs.statSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'SKILL.md'));
+        return f.startsWith('cm-') && fs.statSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'SKILL.md'));
       })
       .length;
   }

@@ -9,7 +9,7 @@
 **68+ Skills · 18 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.5.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.6.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
   <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
@@ -115,13 +115,14 @@ Your AI doesn't just execute — it **understands and remembers** using a multi-
 4. **Semantic Memory (`cm-deep-search`)** — Local vector search across docs using `qmd`.
 5. **Structural Memory (`cm-codeintell`)** — AST-based CodeGraph. Up to 95% token compression for full codebase context.
 
-🦴 **Smart Spine (v4.5+)** — The nervous system connecting all 5 tiers:
+🦴 **Smart Spine (v4.6+)** — The nervous system connecting all 5 tiers:
 - **SQLite + FTS5** — BM25-ranked keyword search replaces flat JSON scans.
 - **Progressive Loading (L0/L1/L2)** — Context loaded at cheapest sufficient depth. 78% token savings.
 - **cm:// URI Scheme** — Skills request context by URI, not file paths.
 - **Token Budget** — 200k window pre-allocated by category. No more silent overflow.
 - **Context Bus** — Skills share outputs in real-time within a chain.
 - **MCP Server** — 7 tools exposed to Claude Desktop and any MCP client.
+- **OpenViking Backend (optional)** — Swap SQLite for [OpenViking](https://github.com/volcengine/OpenViking): true vector semantic search, auto L0/L1/L2 generation, session compression. One config line: `storage.backend: viking`.
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 High-value knowledge and design patterns are synced to NotebookLM, providing a universal, cross-machine "Soul" for your project. Auto-generate podcasts and flashcards to onboard human developers alongside the AI.
@@ -210,7 +211,7 @@ Need popups, booking flows, or lead capture? **`cm-growth-hacking`** generates c
 | -------------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
 | **Integration**      | Each skill is standalone, no shared context | 68+ skills that chain, share memory, and communicate                   |
 | **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn      |
-| **Memory**           | Forgets everything between sessions         | 5-tier Unified Brain: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain  |
+| **Memory**           | Forgets everything between sessions         | 5-tier Unified Brain: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain. Optional **OpenViking** backend for vector search + auto memory compression. |
 | **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
 | **Design**           | Random UI every time                        | Extracts & enforces design system + visual preview                    |
 | **Documentation**    | "Maybe write a README later"                | Auto-generates complete docs, SOPs, API refs from code                |
@@ -317,6 +318,10 @@ cm continuity mcp           → Print MCP server config
 cm continuity migrate       → Migrate JSON → SQLite
 cm continuity export        → Export SQLite → JSON
 cm resolve <uri>            → Resolve any cm:// URI
+
+# OpenViking backend (optional — semantic vector search)
+pip install openviking && openviking start
+# Then set storage.backend: viking in .cm/config.yaml
 ```
 
 **Slash Commands (inside AI agents):**

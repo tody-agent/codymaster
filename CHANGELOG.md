@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+## [4.6.0] - 2026-04-02
+
+### 🚀 Improvements — OpenViking Backend (Real Implementation)
+
+- **`VikingBackend` — real implementation** — `src/backends/viking-backend.ts` implements all 11 `StorageBackend` methods by calling the [OpenViking REST API](https://github.com/volcengine/OpenViking) (default: `http://localhost:1933`). Replaces the placeholder stub from v4.5.5.
+- **`VikingHttpClient`** — New `src/backends/viking-http-client.ts`: thin fetch-based HTTP client wrapping OpenViking's `/write`, `/read`, `/ls`, `/search`, `/abstract`, `/overview`, `/health`, `/mkdir` endpoints. Zero new npm dependencies (uses Node.js built-in `fetch`).
+- **URI layout in OpenViking workspace:** `learnings/<id>.json`, `decisions/<id>.json`, `indexes/<resource>/<level>.md`, `skill-outputs/<sessionId>/<id>.json`.
+- **Semantic vector search** — `queryLearnings()` and `queryDecisions()` now call OpenViking's `/search` endpoint, which uses embedding-based vector similarity. Finds related memories even when query terms don't match exactly (e.g. "async timeout" matches "network latency spike").
+- **Auto L0/L1 via engine** — `getL0Abstract()` and `getL1Overview()` call OpenViking's `/abstract` and `/overview` endpoints. No manual `cm continuity index` needed with Viking backend.
+- **Viking-native extras** on `VikingBackend`: `searchAll(query)`, `getL0Abstract(resource)`, `getL1Overview(resource)` — accessible by casting `getBackend()` result.
+- **Config extended** — `storage.viking` block now fully parsed: `host`, `port`, `workspace`, `timeout`. Config template updated in `cm continuity init`.
+- **Graceful degradation** — Write methods are fire-and-forget (no throw when server unreachable). Read methods return `null`/`[]` on error.
+- **Docs updated** — `context-backbone-v5.md` (System 7 section), `skills/_shared/helpers.md` (Vector search note in Step 3), `skills/cm-continuity/SKILL.md` (Setup + Tier 3), `skills/cm-start/SKILL.md` (Load Working Memory + Complete steps).
+- **Test suite** — `test/viking-backend.test.ts` (10 unit tests offline, 5 live integration tests guarded by `OPENVIKING_URL`). **192 passed · 26 skipped · 0 failed** (17 test files).
+
+## [4.5.5] - 2026-04-02
+
+### 🚀 Improvements — StorageBackend Interface (OpenViking Swap Path)
+
+- **`StorageBackend` interface** — New `src/storage-backend.ts` defines an 11-method abstraction over CodyMaster's persistent memory store. Swapping storage engines is now a config change, not a code rewrite.
+- **`SqliteBackend`** — Thin wrapper around `context-db.ts`. Zero logic duplication; all existing callers untouched. New callers use `getBackend(projectPath)` for polymorphism.
+- **`VikingBackend` stub** — All methods throw a descriptive `NotImplementedError` with step-by-step install instructions for `@openviking/client`. Explicit swap path documented.
+- **`getBackend(projectPath)` factory** — Reads `.cm/config.yaml → storage.backend` (`sqlite` | `viking`). Defaults to `sqlite` when config is absent or malformed.
+- **Config template updated** — `cm continuity init` now writes a `storage:` section to `.cm/config.yaml` with the backend switch commented out.
+- **Zero breaking changes** — `context-db.ts` and all existing callers unchanged. StorageBackend is additive.
+- **Test suite expanded** — `test/storage-backend.test.ts` (23 tests): factory defaults, config-driven dispatch, SqliteBackend full roundtrip, VikingBackend error messages. Total: **178 passed · 16 skipped · 0 failed**.
+
 ## [4.5.0] - 2026-03-31
 
 ### 🚀 Improvements — Context Backbone v5 (Smart Spine)

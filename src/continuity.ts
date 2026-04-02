@@ -147,6 +147,14 @@ quality:
   velocity_quality_tracking: true  # Track warnings/complexity over time
   blind_review: false              # Enable blind code review (Phase 2)
   anti_sycophancy: false           # Enable anti-sycophancy check (Phase 2)
+
+storage:
+  backend: sqlite              # sqlite | viking
+  # viking:                    # Uncomment to use OpenViking (pip install openviking)
+  #   host: localhost          # OpenViking server host
+  #   port: 1933               # OpenViking server port (default: 1933)
+  #   workspace: codymaster    # Workspace name inside OpenViking
+  #   timeout: 60000           # Request timeout in ms
 `;
 }
 

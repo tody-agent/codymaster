@@ -1,0 +1,34 @@
+# .gitleaks.toml — CM Secret Shield Config
+title = "CM Secret Shield — Gitleaks Config"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "supabase-service-key"
+description = "Supabase Service Role Key"
+regex = '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+'''
+tags = ["supabase", "jwt"]
+
+[[rules]]
+id = "cloudflare-api-token"
+description = "Cloudflare API Token"
+regex = '''[A-Za-z0-9_-]{40}'''
+entropy = 4.5
+secretGroup = 0
+tags = ["cloudflare"]
+
+[[rules]]
+id = "generic-high-entropy"
+description = "High entropy string that may be a secret"
+regex = '''(?i)(api[_-]?key|secret[_-]?key|access[_-]?token|private[_-]?key|auth[_-]?token)\s*[=:]\s*['"][a-zA-Z0-9/+=]{20,}['"]'''
+tags = ["generic"]
+
+[allowlist]
+paths = [
+  '''\.gitleaks\.toml$''',
+  '''\.dev\.vars\.example$''',
+  '''node_modules/''',
+  '''dist/''',
+  '''\.git/'''
+]
