@@ -1,40 +1,28 @@
-# CodyMaster v5: The Neural Spine
+# The Neural Spine Architecture
 
-Welcome to the future of **AI-Native Engineering**. 
+Welcome to **CodyMaster v5**, the first Senior AI-Native Engineering Workspace designed for complete autonomous development.
 
-CodyMaster v5 is no longer just a "Content Factory." It is a high-performance **Neural Spine** designed to provide autonomous AI agents with the three things they lack most:
+While standard AI coding assistants excel at generating functions and isolated scripts, they lack the systemic awareness required to build, test, and ship complete applications securely. **CodyMaster v5** introduces the "Neural Spine" architecture to solve this.
 
-1.  **Persistent Semantic Memory**: A long-term brain that doesn't forget.
-2.  **Autonomous Resource Management**: A safe space to execute code and manage files.
-3.  **Unified Context Orchestration**: A central bus for agents to talk to each other.
+## Why a "Spine"?
 
----
+A spine connects the brain to the nervous system, passing critical signals instantly and maintaining the structure of the body. In CodyMaster v5, the **Neural Spine** represents the underlying infrastructure that connects your AI agents to the real world:
 
-## Why a "Neural Spine"?
+- **Memory (OpenViking)**: Deep semantic retrieval and code comprehension spanning thousands of files.
+- **Execution (OpenSpace)**: A sandboxed, secure environment for agents to run bash commands, databases, and testing suites.
+- **State (Context Bus)**: A fluid mechanism to exchange parameters between specialized subagents without overflowing token limits.
 
-Most AI interactions today are "stateless." You give a prompt, you get an answer, and then the context is lost. Scaling this to complex engineering tasks is impossible without a structured backbone.
+## Core Capabilities
 
-The **Neural Spine** acts as the central nervous system for your agents, managing data flow between your local environment, your vector database, and the LLM.
-
-## Key Components
-
-### 🧠 OpenViking (Semantic Memory)
-Our high-accuracy vector embedding backend. It allows agents to perform "needle-in-a-haystack" retrieval across millions of lines of code and documentation.
-
-### 🏗️ OpenSpace (Autonomous Workspace)
-A containerized execution environment. Agents can run tests, build binaries, and browse the web without interfering with your host machine.
-
-### 🚌 Context Bus
-The communication layer. It handles multi-step skill chains and ensures that if Agent A discovers something, Agent B knows it instantly.
-
----
+1. **Eliminating Context Drift**: Your agents no longer guess your architecture. They retrieve the exact semantic structure directly from OpenViking.
+2. **Zero-Regression Shipping**: OpenSpace guarantees that AI-generated code is thoroughly tested (TDD-first) via automated gates before reaching production.
+3. **Multi-Agent Orchestration**: Outsource frontend, backend, and security audits to specialized subagents running in parallel.
 
 ## Getting Started
 
-To deploy your first Neural Spine, simply run:
+Explore the backbone technologies driving this paradigm shift:
 
-```bash
-npx codymaster@latest bootstrap
-```
-
-This will initialize your workspace with the v5 core and set up your local memory index.
+- [Explore OpenViking Memory](#openviking)
+- [Understand OpenSpace Containers](#openspace)
+- [Real-world Use Cases](#use-cases)
+- [Deploy the Framework](#deployment)
