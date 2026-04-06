@@ -71,7 +71,7 @@ graph TD
     A --> E["🔒 DevOps Engineer<br/><i>cm-safe-deploy · cm-secret-shield · cm-security-gate · cm-identity-guard</i>"]
     A --> F["📝 Technical Writer<br/><i>cm-dockit · cm-content-factory · cm-auto-publisher</i>"]
     A --> G["📈 Growth Marketer<br/><i>cm-ads-tracker · cm-cro-methodology · cm-growth-hacking</i>"]
-    A --> H["🏭 Enterprise Dev<br/><i>cm-frappe-agent · cm-booking-calendar · cm-google-form</i>"]
+    A --> H["🏭 Enterprise Dev<br/><i>cm-booking-calendar · cm-google-form</i>"]
     style A fill:#fbc531,stroke:#e1b12c,color:#2f3640,stroke-width:3px
     classDef team fill:#2f3640,stroke:#dcdde1,stroke-width:1px,color:#fff;
     class B,C,D,E,F,G,H team;
@@ -196,10 +196,6 @@ CodyMaster doesn't just run skills — it **watches them, scores them, and heals
 
 > **Think of it like an immune system for your AI toolkit.** Skills that break get healed. Skills that work well get reinforced. Dead skills get archived.
 
-### 🏢 Enterprise-Ready: Frappe/ERPNext Full-Stack
-
-Building on Frappe Framework? **`cm-frappe-agent`** is a 7-layer architecture agent covering the entire Frappe lifecycle — from `bench new-app` to production deploys. Custom doctypes, workflows, REST APIs, permissions, fixtures, and performance optimization — all battle-tested.
-
 ### 🚀 Growth Hacking Engine
 
 Need popups, booking flows, or lead capture? **`cm-growth-hacking`** generates complete conversion systems: Bottom Sheet + Calendar CTA + Tracking. Auto-detects industry, selects the right pattern, wires up **`cm-booking-calendar`** for appointments and **`cm-ads-tracker`** for pixel tracking. Zero dependencies.
@@ -294,7 +290,7 @@ The CLI will greet you and keep you organized on your long coding sessions!
 | ⚙️ **Operations**  | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                                             |
 | 🎨 **Product & UX**  | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **Growth & CRO**    | `cm-content-factory` `cm-auto-publisher` `cm-ads-tracker` `cm-cro-methodology` `cm-growth-hacking` `cm-booking-calendar` `cm-google-form`                                                                                                   |
-| 🏢 **Enterprise**  | `cm-frappe-agent` `cm-reactor` `cm-notebooklm`                                                                                                  |
+| 🏢 **Enterprise**  | `cm-reactor` `cm-notebooklm`                                                                                                  |
 | 🧬 **Self-Healing**   | `cm-skill-health` `cm-skill-evolution` `cm-skill-search` `cm-skill-share` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index`             |
 | 🎯 **Orchestration** | `cm-execution` `cm-continuity` `cm-deep-search` `cm-codeintell` `cm-how-it-work`             |
 | 🖥️ **Workflow**    | `cm-start` `cm-dashboard` `cm-status`                                                                                                                     |

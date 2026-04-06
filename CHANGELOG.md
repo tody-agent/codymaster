@@ -83,7 +83,6 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
   - `cm-skill-evolution` — 3-mode evolution engine (FIX/DERIVED/CAPTURED) with version DAG and lineage tracking. Auto-patches degraded skills.
   - `cm-skill-search` — BM25 + health-score ranking for intelligent skill discovery.
   - `cm-skill-share` — Export/import skills across teams and machines with version integrity.
-- **🏢 cm-frappe-agent** — Full-stack Frappe/ERPNext development agent with 7-layer architecture: doctypes, workflows, REST APIs, permissions, fixtures, performance optimization, and production deploys.
 - **🚀 Growth Hacking Engine** — `cm-growth-hacking` generates complete conversion systems (Bottom Sheet + Calendar CTA + Tracking) with industry auto-detection.
 - **cm-auto-publisher** — Publishing automation bridge: AI agents → Content Factory Router → any Astro site.
 - **cm-clean-code** — TRIZ-powered code hygiene gate: dead code detection, duplicate elimination, naming analysis.
