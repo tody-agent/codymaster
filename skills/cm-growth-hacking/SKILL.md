@@ -1,17 +1,6 @@
 ---
 name: cm-growth-hacking
-description: |
-  Growth Hacking Engine — Bottom Sheet + Calendar + Trigger + CRO Tracking.
-  Modular system for booking popups, lead capture, flash sales, surveys, re-engagement.
-  Auto-detect industry → select pattern → generate bottom sheet + calendar CTA + tracking.
-  Zero dependencies, works on any static or dynamic site.
-  
-  Kế thừa và liên kết với: cm-booking-calendar, cm-ads-tracker, cm-google-form, cm-readit, cm-ux-master.
-  
-  ALWAYS trigger for: bottom sheet, popup, đặt lịch, booking popup, lead capture, exit intent,
-  engagement, "tạo popup", "thêm bottom sheet", "popup đặt lịch", "nhắc lịch hẹn",
-  "add to calendar", "google calendar", "apple calendar", flash sale popup, survey popup,
-  "tăng conversion", "giảm bounce", re-engagement, "popup CTA"
+description: "Bottom-sheet and popup growth system: booking CTAs, calendars, lead capture, surveys, re-engagement, with CRO tracking hooks. Zero-deps; works static or dynamic sites. Works with cm-booking-calendar, cm-ads-tracker, cm-google-form, cm-readit, cm-ux-master."
 allowed-tools: Read, Write, Edit, Glob, Grep, Browser
 version: 1.0
 priority: HIGH

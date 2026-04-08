@@ -8,7 +8,9 @@
 #    bash install.sh --claude           Claude Code (non-interactive)
 #    bash install.sh --claude --global  Claude Code, user scope
 #    bash install.sh --claude --project Claude Code, project scope
-#    bash install.sh --gemini           Gemini CLI
+#    bash install.sh --gemini           Gemini CLI / Antigravity (all skills)
+#    bash install.sh --gemini --profile core   Antigravity: core profile only (token budget)
+#    bash install.sh --windsurf --profile core  Same for project .windsurf/rules
 #    bash install.sh --aider            Aider
 #    bash install.sh --continue         Continue.dev
 #    bash install.sh --amazon-q         Amazon Q CLI (q)
@@ -18,6 +20,13 @@
 
 set -e
 
+# Directory containing this script (for skills/profiles when ~/.cody-master is stale)
+CM_SCRIPT_DIR=""
+_cm_src="${BASH_SOURCE[0]:-$0}"
+if [[ "$_cm_src" != /dev/fd/* ]] && [[ "$_cm_src" != /proc/self/fd/* ]]; then
+  CM_SCRIPT_DIR="$(cd "$(dirname "$_cm_src")" && pwd)"
+fi
+
 # ── Colors ──────────────────────────────────────────────────────
 G='\033[0;32m'; B='\033[0;34m'; P='\033[0;35m'; O='\033[0;33m'
 C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'; DIM='\033[2m'
@@ -26,6 +35,8 @@ REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
 VERSION="4.7.0"
 SCOPE="user"   # default scope for Claude Code
+SKILL_PROFILE="full"   # core|growth|design|knowledge|full — see skills/profiles/
+INSTALL_CMD=""         # set by parse_install_args
 
 if [ -d "skills" ]; then
   TOTAL_SKILLS=$(ls -1d skills/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
@@ -114,7 +125,7 @@ msg() {
 
 # ── Header ───────────────────────────────────────────────────────
 print_header() {
-  clear
+  clear 2>/dev/null || true
   hamster_sentiment "start"
   echo -e "    ${O}( . \ --- / . )${NC}"
   echo -e "     ${O}/${NC}   ${O}${BOLD}^   ^${NC}   ${O}\\\\${NC}"
@@ -649,12 +660,50 @@ install_skills_to() {
   ensure_clone
   echo ""
   echo -e "${G}${BOLD}Installing skills to: ${target}${NC}"
+  if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
+    echo -e "  ${C}Profile: ${SKILL_PROFILE}${NC}"
+  fi
   echo ""
   mkdir -p "$target"
   local count=0
   local installed=()
+  local -a allow=()
+  local use_profile=0
+  if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
+    local pf="${CLONE_DIR}/skills/profiles/${SKILL_PROFILE}.txt"
+    if [[ ! -f "$pf" && -n "${CM_SCRIPT_DIR}" && -f "${CM_SCRIPT_DIR}/skills/profiles/${SKILL_PROFILE}.txt" ]]; then
+      pf="${CM_SCRIPT_DIR}/skills/profiles/${SKILL_PROFILE}.txt"
+    fi
+    if [[ ! -f "$pf" ]]; then
+      echo -e "  ${R}Unknown profile '${SKILL_PROFILE}'. Valid: core, growth, design, knowledge, full${NC}"
+      echo -e "  ${R}Expected: \${CLONE_DIR}/skills/profiles/${SKILL_PROFILE}.txt (git pull ~/.cody-master or run install.sh from repo)${NC}"
+      exit 1
+    fi
+    use_profile=1
+    while IFS= read -r line || [[ -n "$line" ]]; do
+      [[ "$line" =~ ^[[:space:]]*# ]] && continue
+      line="${line%%#*}"
+      line="${line#"${line%%[![:space:]]*}"}"
+      line="${line%"${line##*[![:space:]]}"}"
+      [[ -z "$line" ]] && continue
+      allow+=("$line")
+    done < "$pf"
+  fi
   for skill_dir in "${CLONE_DIR}"/skills/cm-*/; do
     skill_name=$(basename "$skill_dir")
+    if [[ "$use_profile" -eq 1 ]]; then
+      local found=0
+      local a
+      for a in "${allow[@]}"; do
+        if [[ "$a" == "$skill_name" ]]; then
+          found=1
+          break
+        fi
+      done
+      if [[ "$found" -eq 0 ]]; then
+        continue
+      fi
+    fi
     if [ -f "${skill_dir}SKILL.md" ]; then
       if [[ "$format" == "mdc" ]]; then
         # Create Cursor glob native format
@@ -711,6 +760,41 @@ select_scope() {
   esac
 }
 
+# ── Parse argv: --profile NAME + first platform flag ────────────
+parse_install_args() {
+  INSTALL_CMD=""
+  local args=("$@")
+  local i=0
+  while [[ $i -lt ${#args[@]} ]]; do
+    local a="${args[i]}"
+    case "$a" in
+      --profile)
+        SKILL_PROFILE="${args[i+1]:-full}"
+        ((i+=2))
+        continue
+        ;;
+    esac
+    if [[ -z "$INSTALL_CMD" ]]; then
+      case "$a" in
+        --claude)       INSTALL_CMD="claude" ;;
+        --gemini|--antigravity) INSTALL_CMD="gemini" ;;
+        --cursor)       INSTALL_CMD="cursor" ;;
+        --aider)        INSTALL_CMD="aider" ;;
+        --continue)     INSTALL_CMD="continue" ;;
+        --amazon-q)     INSTALL_CMD="amazon-q" ;;
+        --amp)          INSTALL_CMD="amp" ;;
+        --kiro)         INSTALL_CMD="kiro" ;;
+        --windsurf)     INSTALL_CMD="windsurf" ;;
+        --cline)        INSTALL_CMD="cline" ;;
+        --opencode)     INSTALL_CMD="opencode" ;;
+        --copilot)      INSTALL_CMD="copilot" ;;
+        --all)          INSTALL_CMD="all" ;;
+      esac
+    fi
+    ((i++)) || true
+  done
+}
+
 # ════════════════════════════════════════════════════════════════
 #  MAIN
 # ════════════════════════════════════════════════════════════════
@@ -725,18 +809,24 @@ for arg in "$@"; do
   esac
 done
 
-if [[ "$1" == "--claude" ]]; then
+parse_install_args "$@"
+
+if [[ "$INSTALL_CMD" == "claude" ]]; then
   install_claude "$SCOPE"
   exit 0
 fi
 
-if [[ "$1" == "--gemini" ]] || [[ "$1" == "--antigravity" ]]; then
+if [[ "$INSTALL_CMD" == "gemini" ]]; then
   install_gemini
+  if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
+    echo -e "  ${C}ℹ  Add more skills: bash install.sh --gemini --profile growth (same target merges new folders)${NC}"
+    echo -e "  ${C}ℹ  Point GEMINI.md at: @~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
+  fi
   print_onboarding
   exit 0
 fi
 
-if [[ "$1" == "--cursor" ]]; then
+if [[ "$INSTALL_CMD" == "cursor" ]]; then
   echo ""
   echo -e "${B}${BOLD}Cursor — Installing Cody Master${NC}"
   echo ""
@@ -747,31 +837,31 @@ if [[ "$1" == "--cursor" ]]; then
   exit 0
 fi
 
-if [[ "$1" == "--aider" ]]; then
+if [[ "$INSTALL_CMD" == "aider" ]]; then
   install_aider
   print_onboarding
   exit 0
 fi
 
-if [[ "$1" == "--continue" ]]; then
+if [[ "$INSTALL_CMD" == "continue" ]]; then
   install_continue
   print_onboarding
   exit 0
 fi
 
-if [[ "$1" == "--amazon-q" ]]; then
+if [[ "$INSTALL_CMD" == "amazon-q" ]]; then
   install_amazon_q
   print_onboarding
   exit 0
 fi
 
-if [[ "$1" == "--amp" ]]; then
+if [[ "$INSTALL_CMD" == "amp" ]]; then
   install_amp
   print_onboarding
   exit 0
 fi
 
-if [[ "$1" == "--kiro" ]]; then
+if [[ "$INSTALL_CMD" == "kiro" ]]; then
   echo ""
   echo -e "${O}${BOLD}Kiro — Installing Cody Master${NC}"
   echo ""
@@ -780,16 +870,21 @@ if [[ "$1" == "--kiro" ]]; then
   exit 0
 fi
 
-if [[ "$1" == "--windsurf" ]]; then
+if [[ "$INSTALL_CMD" == "windsurf" ]]; then
   echo ""
   echo -e "${O}${BOLD}Windsurf — Installing Cody Master${NC}"
   echo ""
+  echo -e "  ${C}ℹ  This writes to project ${BOLD}.windsurf/rules${NC}${C} (run from repo root).${NC}"
+  echo -e "  ${C}ℹ  Some Windsurf builds also use global skills under Codeium paths — use the same profile flags if you copy there.${NC}"
   install_skills_to ".windsurf/rules" "raw"
+  if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
+    echo -e "  ${C}ℹ  Add more: bash install.sh --windsurf --profile growth${NC}"
+  fi
   print_onboarding
   exit 0
 fi
 
-if [[ "$1" == "--cline" ]]; then
+if [[ "$INSTALL_CMD" == "cline" ]]; then
   echo ""
   echo -e "${O}${BOLD}Cline/RooCode — Installing Cody Master${NC}"
   echo ""
@@ -798,7 +893,7 @@ if [[ "$1" == "--cline" ]]; then
   exit 0
 fi
 
-if [[ "$1" == "--opencode" ]]; then
+if [[ "$INSTALL_CMD" == "opencode" ]]; then
   echo ""
   echo -e "${G}${BOLD}OpenCode — Installing Cody Master${NC}"
   echo ""
@@ -807,7 +902,7 @@ if [[ "$1" == "--opencode" ]]; then
   exit 0
 fi
 
-if [[ "$1" == "--copilot" ]]; then
+if [[ "$INSTALL_CMD" == "copilot" ]]; then
   echo ""
   echo -e "${G}${BOLD}GitHub Copilot — Installing Cody Master${NC}"
   echo ""
@@ -816,7 +911,7 @@ if [[ "$1" == "--copilot" ]]; then
   exit 0
 fi
 
-if [[ "$1" == "--all" ]]; then
+if [[ "$INSTALL_CMD" == "all" ]]; then
   echo -e "${W}${BOLD}Installing to all detected platforms...${NC}"
   echo ""
   command -v claude &>/dev/null && install_claude "$SCOPE"

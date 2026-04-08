@@ -1,0 +1,23 @@
+# CodyMaster profile: core — Antigravity/Windsurf token budget (orchestration + quality + safety)
+# Install: bash install.sh --gemini --profile core
+cm-skill-index
+cm-how-it-work
+cm-start
+cm-planning
+cm-execution
+cm-continuity
+cm-status
+cm-tdd
+cm-debugging
+cm-code-review
+cm-clean-code
+cm-quality-gate
+cm-test-gate
+cm-safe-deploy
+cm-secret-shield
+cm-identity-guard
+cm-security-gate
+cm-safe-i18n
+cm-skill-chain
+cm-git-worktrees
+cm-terminal

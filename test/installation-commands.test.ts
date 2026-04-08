@@ -241,6 +241,68 @@ describe.skipIf(!fs.existsSync(path.join(root, 'install.sh')))('install.sh', () 
   test('install.sh is executable (has shebang)', () => {
     expect(script.startsWith('#!/')).toBe(true);
   });
+
+  test('documents --profile for Antigravity/Windsurf token budget', () => {
+    expect(script).toContain('--profile');
+    expect(script).toContain('parse_install_args');
+    expect(script).toContain('SKILL_PROFILE');
+  });
+});
+
+// ─── 6b. Skill install profiles (full.txt vs filesystem) ────────
+describe('skills/profiles manifests', () => {
+  const skillsRoot = path.join(root, 'skills');
+  const profilesDir = path.join(skillsRoot, 'profiles');
+
+  function listCmSkillDirs(): string[] {
+    if (!fs.existsSync(skillsRoot)) return [];
+    return fs
+      .readdirSync(skillsRoot, { withFileTypes: true })
+      .filter(d => d.isDirectory() && d.name.startsWith('cm-'))
+      .map(d => d.name)
+      .filter(name => fs.existsSync(path.join(skillsRoot, name, 'SKILL.md')))
+      .sort();
+  }
+
+  function parseProfileLines(file: string): string[] {
+    const text = fs.readFileSync(path.join(profilesDir, file), 'utf-8');
+    return text
+      .split('\n')
+      .map(l => l.replace(/#.*/, '').trim())
+      .filter(Boolean);
+  }
+
+  test('full.txt lists every cm-* skill with SKILL.md', () => {
+    if (!fs.existsSync(path.join(profilesDir, 'full.txt'))) return;
+    const onDisk = new Set(listCmSkillDirs());
+    const listed = parseProfileLines('full.txt');
+    const listedSet = new Set(listed);
+    for (const name of onDisk) {
+      expect(listedSet.has(name), `full.txt missing ${name}`).toBe(true);
+    }
+    for (const name of listed) {
+      expect(onDisk.has(name), `full.txt has unknown ${name}`).toBe(true);
+    }
+    expect(listed.length).toBe(onDisk.size);
+  });
+
+  test('core profile is non-empty and smaller than full', () => {
+    if (!fs.existsSync(path.join(profilesDir, 'core.txt'))) return;
+    const core = parseProfileLines('core.txt');
+    const full = parseProfileLines('full.txt');
+    expect(core.length).toBeGreaterThan(5);
+    expect(core.length).toBeLessThan(full.length);
+  });
+
+  test('profile files have no duplicate skill names', () => {
+    for (const f of ['core.txt', 'growth.txt', 'design.txt', 'knowledge.txt', 'full.txt']) {
+      const p = path.join(profilesDir, f);
+      if (!fs.existsSync(p)) continue;
+      const lines = parseProfileLines(f);
+      const uniq = new Set(lines);
+      expect(uniq.size, `duplicates in ${f}`).toBe(lines.length);
+    }
+  });
 });
 
 // ─── 7. No Stale "cody-master" in Any Install Code ─

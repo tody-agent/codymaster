@@ -1,6 +1,6 @@
 ---
 name: cm-content-factory
-description: "AI Content Factory v2.0 — Self-learning content engine with real-time dashboard, multi-agent support, token management, and Content Mastery framework (StoryBrand, Cialdini, SUCCESs, STEPPS, Hook Model, JTBD, CRO, Grand Slam Offers). Interactive onboarding → auto-research → generate → audit → deploy. Config-driven, niche-agnostic, self-improving."
+description: "Self-learning SEO content pipeline: dashboard, multi-agent queue, token budgets, research → write → audit → publish. StoryBrand/Cialdini/JTBD-style frameworks; config-driven. Use for content factory, batch articles, or scaled publishing."
 ---
 
 # CM Content Factory v2.0 — AI Content Machine Platform
