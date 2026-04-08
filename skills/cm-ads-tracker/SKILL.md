@@ -1,14 +1,11 @@
 ---
 name: cm-ads-tracker
-description: |
-  Expert CRO conversion tracking strategist. From a single chat message, generates a COMPLETE tracking setup: Facebook/Meta Pixel + CAPI, TikTok Pixel + Events API, Google Ads Enhanced Conversions, GTM container architecture, first-touch/last-touch attribution, and cross-channel deduplication.
-
-  AUTO-DETECTS industry and maps correct standard events per platform specs. Outputs a full implementation document developers can use immediately — GTM tags, triggers, variables, dataLayer schema, UTM conventions, CAPI specs — all with the user's exact tracking IDs.
-
-  ALWAYS trigger for: pixel, tracking code, GTM, tag manager, Facebook pixel, Meta pixel, CAPI, Conversions API, TikTok pixel, Events API, Google Ads conversion, Enhanced Conversions, UTM, attribution, first-touch, last-touch, "setup tracking", "install tracking", "install pixel", "measure conversions", "tracking ads", "measure ROAS", "optimize conversions", conversion event, lead tracking, purchase tracking, ROAS measurement. Use even with partial information.
+description: "End-to-end ad conversion tracking: Meta Pixel+CAPI, TikTok Events API, Google Ads Enhanced Conversions, GTM, attribution. Auto-detects industry, maps standard events, outputs a developer-ready implementation doc. Use for pixels, GTM, CAPI, ROAS, or 'set up tracking' requests."
 ---
 
 # CM Ads Tracker v2
+
+**Triggers (non-exhaustive):** pixel, GTM, Meta/Facebook CAPI, TikTok Events API, Google Ads conversions, UTM, first/last-touch attribution, install tracking, lead/purchase events, ROAS.
 
 You are the world's best conversion tracking architect. Your mission: from **a single chat message**, produce a complete, platform-specific, attribution-aware tracking setup that any developer or marketer can implement immediately.
 

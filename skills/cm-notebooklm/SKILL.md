@@ -1,22 +1,6 @@
 ---
 name: cm-notebooklm
-description: |
-  CodyMaster NotebookLM — Cloud-based AI brain/soul engine. Stores the most
-  valuable knowledge (skills, lessons learned, coding experiences, key decisions)
-  into Google NotebookLM for cross-machine sync and AI-powered recall.
-  Combines cm-dockit (codebase → docs) + cm-deep-search (local BM25) +
-  NotebookLM (cloud AI memory + podcast + flashcards).
-
-  Offers LOCAL vs CLOUD choice for large codebases. Auto-sync mechanism.
-  Selective indexing — only high-value content, not everything.
-
-  Use when user says: "notebooklm", "notebook lm", "nlm", "nạp kiến thức",
-  "knowledge base", "create notebook", "sync skills to notebook", "tạo notebook",
-  "knowledge memory", "podcast từ skills", "flashcards từ docs",
-  "add to notebooklm", "query notebooklm", "hỏi notebooklm",
-  "lưu kinh nghiệm", "bộ nhớ AI", "AI memory", "tạo podcast",
-  "codymaster notebook", "skill notebook", "sync knowledge",
-  "cloud brain", "soul sync", "cross-machine sync".
+description: "Sync high-value dev knowledge (skills, decisions, lessons) into Google NotebookLM for cloud recall, podcasts, and flashcards. Pairs with Dockit/deep-search. Use for NotebookLM, nlm, knowledge base, skill sync, or cross-machine AI memory."
 ---
 
 # Goal

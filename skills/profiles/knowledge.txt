@@ -1,0 +1,7 @@
+# Docs, codebase intelligence, research (often larger skills / MCP-adjacent)
+cm-notebooklm
+cm-deep-search
+cm-codeintell
+cm-dockit
+cm-project-bootstrap
+cm-reactor

@@ -250,6 +250,28 @@ One command installs all 68+ skills to your environment. Supports Claude Code, G
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
 ```
 
+#### Google Antigravity / Gemini CLI / Windsurf (token budget)
+
+Antigravity and some Windsurf builds count **skills + MCP** against a customization token budget. Installing every skill globally can trigger truncation or unstable agent runs (especially if an MCP server errors and retries).
+
+- **Recommended:** install a **small global profile**, add the rest per project.
+
+```bash
+# Core only → ~/.gemini/antigravity/skills (merge more profiles later with the same command)
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --gemini --profile core
+
+# Optional packs (re-run to add folders alongside core)
+bash install.sh --gemini --profile growth
+bash install.sh --gemini --profile design
+bash install.sh --gemini --profile knowledge
+```
+
+- **Paths:** Antigravity / Gemini CLI skills → `~/.gemini/antigravity/skills`. This repo’s installer for **Windsurf** writes to **project** `.windsurf/rules` when you run `install.sh --windsurf` from a repo root. Some Windsurf/Codeium setups also use a **global** skills directory (e.g. under Codeium); if you copy skills there manually, use the same `--profile` flags to avoid duplicating hundreds of rules.
+- **MCP:** Disable MCP servers you are not using in the IDE settings. Flaky or rate-limited MCPs can cause “MCP Error” loops until the agent terminates.
+- **Progressive disclosure:** Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to `GEMINI.md` so the model loads the index before pulling full skills.
+
+Profiles are defined under [`skills/profiles/`](skills/profiles/README.md).
+
 *For Cursor IDE users, you can also just type `/add-plugin cody-master` in your agent chat.*
 
 ### 2. Install Mission Control Dashboard (Optional but Recommended)

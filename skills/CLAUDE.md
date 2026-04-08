@@ -91,14 +91,14 @@ See: [references/file.md](references/file.md)
 
 ### Required Fields
 - `name`: Unique identifier (lowercase, hyphens for spaces, max 64 chars)
-- `description`: What the skill does and when to use it (max 1024 chars). Use numbered use cases: `(1) ..., (2) ..., (3) ...`
+- `description`: What the skill does and when to use it (max 1024 chars). Prefer **one or two sentences (~80–120 words / under ~800 chars)** so Google Antigravity, Windsurf, and other hosts do not burn customization token budget on discovery. Put long trigger lists in the markdown body (e.g. a short "Triggers" line under the title), not in YAML. Use numbered use cases when helpful: `(1) ..., (2) ..., (3) ...`
 
 ### Recommended Fields (for marketplace)
 - `license`: License name (we use MIT)
 - `metadata.author`: Author/organization name (we use `wondelai`)
 - `metadata.version`: Semantic version
 
-The YAML frontmatter `description` field is critical for skill discovery - it should include keywords and trigger phrases that help match user requests to the skill. Single quotes in YAML values must be escaped by doubling them (`''`).
+The YAML frontmatter `description` field is critical for skill discovery: include the **minimum** keywords needed to route tasks; avoid duplicating every synonym in YAML. For **low token budget** installs, use `bash install.sh --gemini --profile core` and see `skills/profiles/README.md`. Single quotes in YAML values must be escaped by doubling them (`''`).
 
 ## Adding New Skills
 
