@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ════════════════════════════════════════════════════════════════
-#  CodyMaster Skills Kit v4.3.0 — Universal Installer
+#  CodyMaster Skills Kit — Universal Installer (see VERSION below)
 #  Inspired by: npx skills add (vercel-labs/skills)
 #
 #  Usage:
@@ -15,7 +15,9 @@
 #    bash install.sh --continue         Continue.dev
 #    bash install.sh --amazon-q         Amazon Q CLI (q)
 #    bash install.sh --amp              Amp
-#    bash install.sh --all              All detected platforms
+#    bash install.sh --all              All detected platforms (no interactive menu)
+#    bash install.sh --yes              Skip onboarding menu (with --gemini, etc.)
+#    bash install.sh --cursor --cursor-project   Force ./.cursor/rules (run from repo root)
 # ════════════════════════════════════════════════════════════════
 
 set -e
@@ -37,6 +39,10 @@ VERSION="4.7.0"
 SCOPE="user"   # default scope for Claude Code
 SKILL_PROFILE="full"   # core|growth|design|knowledge|full — see skills/profiles/
 INSTALL_CMD=""         # set by parse_install_args
+# Skip hamster onboarding menu (non-interactive / one-liner installs)
+SKIP_INSTALL_ONBOARDING=0
+# Force Cursor rules into ./.cursor/rules (run from repo root)
+CURSOR_RULES_PROJECT=0
 
 if [ -d "skills" ]; then
   TOTAL_SKILLS=$(ls -1d skills/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
@@ -77,6 +83,7 @@ msg() {
     vi:done)      echo "✅ Hoàn tất!" ;;
     vi:onboard)   echo "🎯 Bắt đầu ngay với AI Agent của bạn:" ;;
     vi:docs)      echo "📚 Tài liệu:" ;;
+    vi:press_enter) echo "Nhấn ENTER để tiếp tục" ;;
 
     zh:welcome)   echo "欢迎使用 CodyMaster v${VERSION}" ;;
     zh:tagline)   echo "Claude Code 的 ${TOTAL_SKILLS} AI 技能" ;;
@@ -90,6 +97,7 @@ msg() {
     zh:done)      echo "✅ 完成！" ;;
     zh:onboard)   echo "🎯 立即开始与您的 AI Agent 合作:" ;;
     zh:docs)      echo "📚 文档:" ;;
+    zh:press_enter) echo "按 Enter 继续" ;;
 
     ko:welcome)   echo "CodyMaster v${VERSION}에 오신 것을 환영합니다" ;;
     ko:tagline)   echo "Claude Code용 ${TOTAL_SKILLS} AI 스킬" ;;
@@ -103,6 +111,7 @@ msg() {
     ko:done)      echo "✅ 완료!" ;;
     ko:onboard)   echo "🎯 AI Agent와 즉시 시작하세요:" ;;
     ko:docs)      echo "📚 문서:" ;;
+    ko:press_enter) echo "Enter를 눌러 계속" ;;
 
     *)
       case "$key" in
@@ -118,6 +127,7 @@ msg() {
         done)      echo "✅ Done!" ;;
         onboard)   echo "🎯 Get started immediately with your AI Agent:" ;;
         docs)      echo "📚 Documentation:" ;;
+        press_enter) echo "Press ENTER to continue" ;;
       esac
       ;;
   esac
@@ -502,12 +512,17 @@ install_claude() {
     # Cleanup old marketplace if exists
     claude plugin marketplace remove cody-master 2>/dev/null || true
     echo -e "  ${W}Adding marketplace...${NC}"
-    claude plugin marketplace add tody-agent/codymaster 2>/dev/null || true
+    if ! claude plugin marketplace add tody-agent/codymaster; then
+      echo -e "  ${R}⚠️  Marketplace add failed. Run:${NC} ${C}claude plugin marketplace add tody-agent/codymaster${NC}"
+    fi
     echo -e "  ${W}Installing plugin (scope: ${scope})...${NC}"
-    claude plugin install cm@codymaster --scope "$scope"
-    echo ""
-    echo -e "  ${G}✅ cm installed — scope: ${scope}${NC}"
-    print_onboarding "$scope"
+    if ! claude plugin install cm@codymaster --scope "$scope"; then
+      echo -e "  ${R}⚠️  Plugin install failed. Run:${NC} ${C}claude plugin install cm@codymaster --scope ${scope}${NC}"
+    else
+      echo ""
+      echo -e "  ${G}✅ Claude plugin installed — scope: ${scope}${NC}"
+    fi
+    maybe_print_onboarding
   else
     echo -e "  ${R}Claude Code CLI not found. Install from: https://claude.ai/code${NC}"
     echo ""
@@ -527,10 +542,11 @@ install_gemini() {
   echo ""
   target="$HOME/.gemini/antigravity/skills"
   install_skills_to "$target"
+  ensure_gemini_md_hint
   echo ""
   echo -e "  ${G}✅ Skills installed to ${target}${NC}"
-  echo -e "  ${C}ℹ  Add to your GEMINI.md: @~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
-  echo -e "  ${C}ℹ  Skills will auto-activate in Antigravity and Gemini CLI${NC}"
+  echo -e "  ${C}ℹ  GEMINI.md should reference: @~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
+  echo -e "  ${C}ℹ  Restart Gemini / Antigravity if it was open during install${NC}"
 }
 
 # ── Aider installer ──────────────────────────────────────────────
@@ -582,26 +598,25 @@ install_cli() {
   local auto="$1"
   if command -v npm &>/dev/null; then
     echo ""
-    echo -e "${G}${BOLD}CLI Dashboard — Installing Cody Master CLI${NC}"
+    echo -e "${G}${BOLD}CLI Dashboard — Cody Master CLI${NC}"
+    echo ""
+    echo -e "  ${C}Official paths:${NC}"
+    echo -e "    ${W}Per-project:${NC} ${C}npm install codymaster${NC}  →  ${C}npx cm${NC}"
+    echo -e "    ${W}Global:${NC}      ${C}npm install -g codymaster${NC}  →  ${C}cm${NC}"
     echo ""
     if [[ "$auto" == "--auto" ]]; then
-      echo -e "  ${W}Auto-installing: npm install -g codymaster${NC}"
-      npm install -g codymaster || echo -e "  ${O}Note: You might need sudo for global install: sudo npm install -g codymaster${NC}"
-      
-      # Try npm link too if in dir
+      echo -e "  ${W}Auto: trying global install (optional — use per-project + npx if you prefer).${NC}"
+      npm install -g codymaster || echo -e "  ${O}Global install failed (try: npm install codymaster in your repo, then npx cm).${NC}"
       if [ -f "package.json" ]; then
         if grep -q '"name": "codymaster"' package.json; then
           npm link &>/dev/null || true
         fi
       fi
     else
-      echo -e "  To get the full experience with the ${C}cm${NC} command and visual dashboard,"
-      echo -e "  it is recommended to install the global npm package."
-      echo ""
-      read -p "  Install codymaster globally? (y/N): " install_npm
+      read -p "  Install codymaster globally now? (y/N): " install_npm
       if [[ "$install_npm" =~ ^[Yy]$ ]]; then
         echo -e "  ${W}Running: npm install -g codymaster${NC}"
-        npm install -g codymaster || echo -e "  ${O}Note: You might need sudo for global install: sudo npm install -g codymaster${NC}"
+        npm install -g codymaster || echo -e "  ${O}Note: sudo may be needed, or use: npm install codymaster && npx cm${NC}"
       fi
     fi
   fi
@@ -760,6 +775,74 @@ select_scope() {
   esac
 }
 
+# ── Cursor rules path: avoid writing to a random cwd (e.g. /tmp) ──
+resolve_cursor_rules_dir() {
+  local mode="${1:-cursor}"
+  if [[ "$mode" == "all" ]]; then
+    printf '%s' "${HOME}/.cursor/rules"
+    return
+  fi
+  if [[ "$CURSOR_RULES_PROJECT" == "1" ]]; then
+    printf '%s' ".cursor/rules"
+    return
+  fi
+  if [[ -d .git ]] || [[ -f package.json ]]; then
+    printf '%s' ".cursor/rules"
+  else
+    printf '%s' "${HOME}/.cursor/rules"
+  fi
+}
+
+# ── Gemini: ensure GEMINI.md points at skill index ───────────────
+ensure_gemini_md_hint() {
+  mkdir -p "${HOME}/.gemini" 2>/dev/null || true
+  local f="${HOME}/.gemini/GEMINI.md"
+  local hint="@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md"
+  if [[ ! -f "$f" ]]; then
+    {
+      echo "# Gemini CLI / Antigravity"
+      echo "# CodyMaster: load the progressive skill index first (then pull full skills as needed)"
+      echo "$hint"
+    } > "$f"
+    echo -e "  ${G}✅ Created ${f} with skill index line${NC}"
+    return
+  fi
+  if ! grep -q "cm-skill-index" "$f" 2>/dev/null; then
+    {
+      echo ""
+      echo "# CodyMaster — skill index"
+      echo "$hint"
+    } >> "$f"
+    echo -e "  ${G}✅ Appended CodyMaster skill index to ${f}${NC}"
+  fi
+}
+
+maybe_print_onboarding() {
+  [[ "$SKIP_INSTALL_ONBOARDING" == "1" ]] && return 0
+  print_onboarding
+}
+
+print_all_done_summary() {
+  echo ""
+  echo -e "${W}${BOLD}═══ Next steps — verify each tool you use ═══${NC}"
+  echo ""
+  echo -e "  ${BOLD}Claude Code:${NC} Open Claude Code → ${C}/cm:demo${NC} or ${C}/help${NC}. If the plugin is missing:"
+  echo -e "    ${C}claude plugin marketplace add tody-agent/codymaster${NC}"
+  echo -e "    ${C}claude plugin install cm@codymaster --scope user${NC}"
+  echo ""
+  echo -e "  ${BOLD}Gemini / Antigravity:${NC} Skills → ${C}~/.gemini/antigravity/skills/${NC}"
+  echo -e "    ${C}~/.gemini/GEMINI.md${NC} should include ${C}@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
+  echo ""
+  echo -e "  ${BOLD}Cursor IDE:${NC} Rules → ${C}${HOME}/.cursor/rules${NC} ${DIM}(from one-liner --all)${NC}"
+  echo -e "    Agent chat: ${C}/add-plugin cody-master${NC}"
+  echo -e "    Project-only rules: ${C}cd your-repo && bash install.sh --cursor --cursor-project${NC}"
+  echo ""
+  echo -e "  ${BOLD}Terminal CLI:${NC} ${C}npm install -g codymaster${NC} → ${C}cm${NC}   |   ${C}npm install codymaster${NC} → ${C}npx cm${NC}"
+  echo ""
+  echo -e "  ${BOLD}Skill sources:${NC} ${C}~/.cody-master/skills/${NC}"
+  echo ""
+}
+
 # ── Parse argv: --profile NAME + first platform flag ────────────
 parse_install_args() {
   INSTALL_CMD=""
@@ -806,10 +889,17 @@ for arg in "$@"; do
   case "$arg" in
     --global|--user)   SCOPE="user" ;;
     --project|--local) SCOPE="project" ;;
+    --yes|-y)           SKIP_INSTALL_ONBOARDING=1 ;;
+    --cursor-project)   CURSOR_RULES_PROJECT=1 ;;
   esac
 done
 
 parse_install_args "$@"
+
+# One-liner full install should finish without the interactive onboarding menu
+if [[ "$INSTALL_CMD" == "all" ]]; then
+  SKIP_INSTALL_ONBOARDING=1
+fi
 
 if [[ "$INSTALL_CMD" == "claude" ]]; then
   install_claude "$SCOPE"
@@ -822,7 +912,7 @@ if [[ "$INSTALL_CMD" == "gemini" ]]; then
     echo -e "  ${C}ℹ  Add more skills: bash install.sh --gemini --profile growth (same target merges new folders)${NC}"
     echo -e "  ${C}ℹ  Point GEMINI.md at: @~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
   fi
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
@@ -830,34 +920,35 @@ if [[ "$INSTALL_CMD" == "cursor" ]]; then
   echo ""
   echo -e "${B}${BOLD}Cursor — Installing Cody Master${NC}"
   echo ""
-  target=".cursor/rules"
+  target="$(resolve_cursor_rules_dir cursor)"
   install_skills_to "$target" "mdc"
-  echo -e "  ${C}ℹ  Cursor will automatically load .mdc rules from this project${NC}"
-  print_onboarding
+  echo -e "  ${C}ℹ  Cursor rules installed to: ${BOLD}${target}${NC}"
+  echo -e "  ${C}ℹ  Reopen Cursor or open a workspace folder. Also try Agent: ${BOLD}/add-plugin cody-master${NC}"
+  maybe_print_onboarding
   exit 0
 fi
 
 if [[ "$INSTALL_CMD" == "aider" ]]; then
   install_aider
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
 if [[ "$INSTALL_CMD" == "continue" ]]; then
   install_continue
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
 if [[ "$INSTALL_CMD" == "amazon-q" ]]; then
   install_amazon_q
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
 if [[ "$INSTALL_CMD" == "amp" ]]; then
   install_amp
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
@@ -866,7 +957,7 @@ if [[ "$INSTALL_CMD" == "kiro" ]]; then
   echo -e "${O}${BOLD}Kiro — Installing Cody Master${NC}"
   echo ""
   install_skills_to ".kiro/steering" "raw"
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
@@ -880,7 +971,7 @@ if [[ "$INSTALL_CMD" == "windsurf" ]]; then
   if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
     echo -e "  ${C}ℹ  Add more: bash install.sh --windsurf --profile growth${NC}"
   fi
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
@@ -889,7 +980,7 @@ if [[ "$INSTALL_CMD" == "cline" ]]; then
   echo -e "${O}${BOLD}Cline/RooCode — Installing Cody Master${NC}"
   echo ""
   install_skills_to ".cline/skills" "raw"
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
@@ -898,7 +989,7 @@ if [[ "$INSTALL_CMD" == "opencode" ]]; then
   echo -e "${G}${BOLD}OpenCode — Installing Cody Master${NC}"
   echo ""
   install_skills_to ".opencode/skills" "raw"
-  print_onboarding
+  maybe_print_onboarding
   exit 0
 fi
 
@@ -921,14 +1012,16 @@ if [[ "$INSTALL_CMD" == "all" ]]; then
   command -v q      &>/dev/null && install_amazon_q
   command -v amp    &>/dev/null && install_amp
   [ -d "$HOME/.cursor" ] || [ -d "/Applications/Cursor.app" ] && {
-    install_skills_to ".cursor/rules" "mdc"
+    _cm_cursor_rules="$(resolve_cursor_rules_dir all)"
+    echo -e "  ${W}Cursor → ${_cm_cursor_rules} ${DIM}(not your current shell cwd)${NC}"
+    install_skills_to "${_cm_cursor_rules}" "mdc"
   }
   install_openviking
   install_cli "--auto"
   echo ""
   echo -e "${G}${BOLD}✅ All installations completed!${NC}"
   echo -e "${C}$(msg docs) https://cody.todyle.com/docs${NC}"
-  echo ""
+  print_all_done_summary
   exit 0
 fi
 
@@ -975,8 +1068,11 @@ for platform in "${platforms[@]}"; do
       ;;
     cursor)
       echo ""
-      echo -e "${B}${BOLD}Cursor — Plugin Install${NC}"
-      echo -e "  In Cursor Agent chat, run: ${C}/add-plugin cm${NC}"
+      echo -e "${B}${BOLD}Cursor — Rules + plugin${NC}"
+      _cm_cursor_rules="$(resolve_cursor_rules_dir cursor)"
+      install_skills_to "${_cm_cursor_rules}" "mdc"
+      echo -e "  ${C}ℹ  Rules → ${_cm_cursor_rules}${NC}"
+      echo -e "  In Cursor Agent chat: ${C}/add-plugin cody-master${NC}"
       ;;
     codex)
       echo ""

@@ -6,7 +6,7 @@ const DANGEROUS_PATTERNS = [
   { name: 'Anon Key Variable', regex: /ANON_KEY\s*[=:]\s*['\"][a-zA-Z0-9._\/-]{20,}/g },
   { name: 'Private Key Block', regex: /-----BEGIN\s+(RSA|EC|DSA|OPENSSH)?\s*PRIVATE KEY-----/g },
   { name: 'JWT Token', regex: /eyJ[a-zA-Z0-9_-]{10,}\.[a-zA-Z0-9_-]{10,}\.[a-zA-Z0-9_-]{10,}/g },
-  { name: 'Generic API Key', regex: /(?:api[_-]?key|api[_-]?secret|access[_-]?token)\s*[=:]\s*['\"][a-zA-Z0-9\/+=]{20,}['\"/]/gi },
+  { name: 'Generic API Key', regex: /(?:api[_-]?key|api[_-]?secret|access[_-]?token)\s*[=:]\s*['\"][a-zA-Z0-9\/+=]{20,}['\"]/gi },
   { name: 'AWS Key', regex: /AKIA[0-9A-Z]{16}/g },
   { name: 'Slack Token', regex: /xox[baprs]-[0-9a-zA-Z-]{10,}/g },
   { name: 'GitHub Token', regex: /gh[ps]_[a-zA-Z0-9]{36,}/g },

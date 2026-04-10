@@ -9,10 +9,10 @@
 **68+ навыков · 18 команд · 1 плагин · 7+ платформ · 6 языков**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.5.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
-  <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
+  <img alt="Open Source" src="https://img.shields.io/badge/license-ISC-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -104,18 +104,18 @@ graph LR
 4. **Semantic Memory (`cm-deep-search`)** — Локальный векторный поиск по документам с использованием `qmd`.
 5. **Structural Memory (`cm-codeintell`)** — CodeGraph на основе AST. Сжатие до 95% токенов для получения контекста всей кодовой базы.
 
-🦴 **Smart Spine (v4.5+)** — Нервная система, соединяющая все 5 уровней:
+🦴 **Smart Spine (v4.6+)** — Нервная система, соединяющая все 5 уровней:
 - **SQLite + FTS5** — Поиск по ключевым словам с ранжированием BM25 вместо сканирования JSON.
 - **Progressive Loading (L0/L1/L2)** — Контекст загружается с минимальной стоимостью. Экономия 78% токенов.
 - **cm:// URI Scheme** — Навыки запрашивают контекст по URI, а не по путям файлов.
 - **Token Budget** — Окно 200k токенов пред-распределено по категориям. Больше никакого тихого переполнения.
 - **Context Bus** — Навыки обмениваются результатами в реальном времени в цепочке.
-- **MCP Server** — 7 инструментов для Claude Desktop и любого MCP-клиента.
+- **MCP Server** — **13** инструментов для Claude Desktop и любого MCP-клиента (`src/mcp-context-server.ts`).
 
 ☁️ **Cloud Brain (`cm-notebooklm`)**
 Ценные знания и паттерны проектирования синхронизируются с NotebookLM, предоставляя универсальную "Душу" для вашего проекта, доступную на разных устройствах. Автоматически генерируйте подкасты и флэш-карточки для адаптации разработчиков-людей, работающих вместе с AI.
 
-📖 [Прочитать полную Архитектуру Знаний (EN) →](docs/architecture/knowledge-architecture.md)
+📖 [CodyMaster Brain и модель памяти →](docs/architecture/codymaster-brain.md)
 
 ### 🛡️ Многоуровневая защита (Ваша кодовая база не будет уничтожена)
 
@@ -127,7 +127,7 @@ flowchart LR
         A["cm-tdd<br/>Tests First"] --> B["cm-code-review"]
     end
     subgraph "Layer 2: Secure"
-        B --> C["cm-secret-shield<br/>Leak Scan"] --> D["cm-identity-guard<br/>Right Account"]
+        B --> C["cm-secret-shield<br/>Leak Scan"] --> S["cm-security-gate<br/>Vuln Scan"] --> D["cm-identity-guard<br/>Right Account"]
     end
     subgraph "Layer 3: Isolate"
         D --> E["cm-git-worktrees<br/>Isolated Branch"]
@@ -162,7 +162,7 @@ flowchart LR
 
 Прежде чем писать код для сложных запросов, **`cm-brainstorm-idea`** оценивает ваш продукт с помощью многомерного анализа (Технологии, Продукт, Дизайн, Бизнес). Он предлагает 2-3 квалифицированных варианта с использованием фреймворка 9 окон (TRIZ) и предоставляет визуальный предпросмотр UI через **Pencil.dev** или **Google Stitch**, чтобы подтвердить направление до детального планирования.
 
-📖 [Узнать больше о этапе предварительного просмотра UI →](docs/workflows/brainstorm-ui-preview.md)
+📖 [Параллельный TRIZ-процесс и передача UI-превью →](docs/architecture/triz-parallel-engine.md)
 
 ### 🏭 AI Content Factory v2.0 & Визуальный дашборд
 
@@ -256,27 +256,24 @@ CLI поприветствует вас и поможет организоват
 | ⚙️ **Операции** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
 | 🎨 **Продукт и UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **Рост/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
-| 🎯 **Оркестрация** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-notebooklm` `cm-how-it-work` |
+| 🎯 **Оркестрация** | `cm-execution` `cm-continuity` `cm-deep-search` `cm-codeintell` `cm-how-it-work` |
 | 🖥️ **Рабочий процесс** | `cm-start` `cm-dashboard` `cm-status` |
 
 ---
 
 ## 🎮 Команды
 
+Запустите `cm --help` для полного списка (**как в коде**: `src/cli/command-registry.ts`).
+
 **CLI-команды:**
 ```
-cm                          → Быстрое меню с Cody 🐹
-cm task add "..."           → Добавить задачу
-cm task list                → Посмотреть задачи
-cm status                   → Здоровье проекта
-cm dashboard                → Открыть панель управления
-cm continuity index         → Перегенерировать L0 индексы памяти
-cm continuity budget        → Показать распределение бюджета токенов
-cm continuity bus           → Посмотреть состояние context bus
-cm continuity mcp           → Печать конфигурации MCP-сервера
-cm continuity migrate       → Миграция JSON → SQLite
-cm continuity export        → Экспорт SQLite → JSON
-cm resolve <uri>            → Разрешить любой cm:// URI
+cm, codymaster              → точка входа CLI
+cm status / task / project / deploy / dashboard
+cm agent / brain            → рабочая память / Continuity
+cm chain                    → цепочки навыков
+cm browse / guardian / sprint / design-studio / distro validate
+# MCP, cm://, шина: docs/api/api-reference.md
+# инженерия: docs/workflows/engineering-pipeline.md
 ```
 
 **Slash-команды (в AI-агенте):**
@@ -305,8 +302,9 @@ cm resolve <uri>            → Разрешить любой cm:// URI
 ## 📚 Ресурсы
 
 - 🌍 [Веб-сайт](https://cody.todyle.com) — Обзор и демо
-- 📖 [Документация](https://cody.todyle.com/docs) — Полное погружение
-- 🛠️ [Справочник навыков](skills/) — Просмотреть все 68+ файлов SKILL.md
+- 📖 [Документация (сайт)](https://cody.todyle.com/docs) — Полное погружение
+- 📘 [Документация (репозиторий)](docs/index.md) — Исходный Markdown; VitePress: `npm run docs:dev`
+- 🛠️ [Справочник навыков](skills/) — **56** встроенных пакетов `cm-*` (профили установщика могут добавить ещё)
 - 📖 [Наша история](https://cody.todyle.com/story) — Почему это существует
 
 ---
@@ -317,11 +315,13 @@ cm resolve <uri>            → Разрешить любой cm:// URI
 2. Fork → Создайте `skills/cm-your-skill/SKILL.md`
 3. Отправьте Pull Request
 
+CI запускает `npm ci` и `npm run test:gate:kit` при push и pull request (см. `.github/workflows/ci.yml`).
+
 ---
 
 <div align="center">
 
-*Лицензия MIT — можно свободно использовать, изменять и распространять.* <br/>
+*Лицензия ISC — можно свободно использовать, изменять и распространять.* <br/>
 **Создано с ❤️ для сообщества вайб-кодинга.**
 
 *"CodyMaster" = "Code Đi" (вьетнамский: «Иди кодь!») — просто начни создавать.*

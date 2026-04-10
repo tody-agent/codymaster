@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+## [4.8.0] - 2026-04-10
+
+### 🚀 Improvements — Documentation site & README accuracy
+
+- **VitePress documentation** — Rebuilt `docs/` as a browsable site with sidebar IA (Getting Started, Architecture, Operations, Skills Library, API, Resources). Config: `docs/.vitepress/config.mts`. Local preview: `npm run docs:dev`; production build: `npm run docs:build`.
+- **Skills index** — Documented all **56** bundled `skills/cm-*/SKILL.md` packs with category pages under `docs/skills/`.
+- **API hub** — Added `docs/api/api-reference.md` (CLI + dashboard + browse daemon + MCP tools) aligned to `src/mcp-context-server.ts` (**13** MCP tools).
+- **README refresh (all languages)** — Version badges bumped to **4.8.0**; broken `docs/` links replaced; CLI examples updated to match `src/cli/command-registry.ts` (no fictional `cm continuity` / `cm list` commands). License callouts aligned to **ISC** (`package.json`).
+- **npm scripts** — `docs:dev`, `docs:build`, `docs:preview` for maintainers.
+
 ## [4.7.0] - 2026-04-02
 
 ### 🚀 Improvements — Zero-Touch Installation & Advanced Pipeline

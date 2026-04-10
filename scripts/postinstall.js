@@ -11,7 +11,7 @@ const NC = '\x1b[0m';
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execSync, execFileSync } = require('child_process');
 
 let skillCount = 60;
 try {
@@ -306,34 +306,35 @@ const installOpenViking = () => {
   console.log('');
 };
 
+const isInstalledAsNpmDependency = () => {
+  const root = path.resolve(__dirname, '..').replace(/\\/g, '/');
+  return /[/\\]node_modules[/\\]codymaster$/i.test(root);
+};
+
+const npmCmd = () => (process.platform === 'win32' ? 'npm.cmd' : 'npm');
+
 const activateCli = () => {
-  // If we are developing locally, run npm link to auto-activate cm
-  if (fs.existsSync(path.join(__dirname, '..', 'package.json'))) {
+  const pkgRoot = path.join(__dirname, '..');
+
+  if (isInstalledAsNpmDependency()) {
+    console.log(`  ${C}CodyMaster CLI (per-project install — official path):${NC}`);
+    console.log(`    ${W}npx cm${NC}   or   ${W}npx codymaster${NC}`);
+    console.log(
+      `  ${DIM}Optional — bare ${W}cm${DIM} in any terminal: ${W}npm install -g codymaster${NC}`,
+    );
+    return;
+  }
+
+  if (fs.existsSync(path.join(pkgRoot, 'package.json'))) {
     try {
-      const pkg = require('../package.json');
+      const pkg = require(path.join(pkgRoot, 'package.json'));
       if (pkg.name === 'codymaster') {
-        console.log(`  ${W}Auto-activating 'cm' CLI...${NC}`);
-        execSync('npm link', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+        console.log(`  ${W}Linking ${C}cm${W} for local repo development (npm link)...${NC}`);
+        execFileSync(npmCmd(), ['link'], { stdio: 'inherit', cwd: pkgRoot });
       }
     } catch (e) {
-      // Ignore errors if npm link fails or not running inside the repo
+      // Ignore if npm link fails
     }
-  }
-  
-  // Attempt a global install if cm is not found globally
-  try {
-    const isGlobal = process.env.npm_config_global === 'true' || process.env.npm_config_global === '1';
-    if (!isGlobal) {
-      // Check if cm command exists
-      try {
-        execSync('cm --version', { stdio: 'ignore' });
-      } catch (err) {
-        console.log(`  ${W}Auto-activating global 'cm' CLI from registry...${NC}`);
-        execSync('npm install -g codymaster', { stdio: 'inherit' });
-      }
-    }
-  } catch (e) {
-    // Silently ignore if this fails
   }
 };
 

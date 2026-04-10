@@ -9,10 +9,10 @@
 **68+가지 스킬 · 18가지 명령어 · 1가지 플러그인 · 7개 이상의 플랫폼 · 6개 국어**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.5.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
-  <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
+  <img alt="Open Source" src="https://img.shields.io/badge/license-ISC-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -104,18 +104,18 @@ graph LR
 4. **Semantic Memory (`cm-deep-search`)** — `qmd`를 사용한 문서 간 로컬 벡터 검색.
 5. **Structural Memory (`cm-codeintell`)** — AST 기반 코드 그래프(CodeGraph). 전체 코드베이스 컨텍스트에 대해 최대 95%의 토큰 압축률.
 
-🦴 **Smart Spine (v4.5+)** — 모든 5계층을 연결하는 신경 시스템:
+🦴 **Smart Spine (v4.6+)** — 모든 5계층을 연결하는 신경 시스템:
 - **SQLite + FTS5** — BM25 랭킹 키워드 검색으로 플랫 JSON 스캨 대체.
 - **Progressive Loading (L0/L1/L2)** — 컨텍스트가 최소 비용으로 로드됨. 78% 토큰 절감.
 - **cm:// URI Scheme** — 스킬이 파일 경로 대신 URI로 컨텍스트 요청.
 - **Token Budget** — 200k 토큰 창이 카테고리별로 사전 할당. 더 이상 조용한 오버플로우 없음.
 - **Context Bus** — 스킬이 체인에서 실시간으로 출력 공유.
-- **MCP Server** — Claude Desktop 및 모든 MCP 클라이언트를 지원하는 7개 도구.
+- **MCP Server** — Claude Desktop 및 모든 MCP 클라이언트용 **13**개 도구 (`src/mcp-context-server.ts`).
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 가치가 높은 지식과 디자인 패턴은 NotebookLM에 동기화되어 프로젝트에 기기 간에 공유되는 보편적인 "영혼"을 제공합니다. 팟캠스트와 플래시카드를 자동 생성하여 AI와 함께 일하는 인간 개발자의 온보딩을 돕습니다.
 
-📖 [전체 지식 아키텍처 읽기 (EN) →](docs/architecture/knowledge-architecture.md)
+📖 [CodyMaster Brain & 메모리 모델 →](docs/architecture/codymaster-brain.md)
 
 ### 🛡️ 다중 레이어 보호 (코드베이스가 파괴되지 않도록 보호합니다)
 
@@ -127,7 +127,7 @@ flowchart LR
         A["cm-tdd<br/>Tests First"] --> B["cm-code-review"]
     end
     subgraph "Layer 2: Secure"
-        B --> C["cm-secret-shield<br/>Leak Scan"] --> D["cm-identity-guard<br/>Right Account"]
+        B --> C["cm-secret-shield<br/>Leak Scan"] --> S["cm-security-gate<br/>Vuln Scan"] --> D["cm-identity-guard<br/>Right Account"]
     end
     subgraph "Layer 3: Isolate"
         D --> E["cm-git-worktrees<br/>Isolated Branch"]
@@ -162,7 +162,7 @@ flowchart LR
 
 복잡한 요청에 대한 코딩을 시작하기 전에 **`cm-brainstorm-idea`**가 다차원 분석(기술, 제품, 디자인, 비즈니스)을 통해 제품을 평가합니다. 9 Windows (TRIZ) 프레임워크를 사용하여 2-3개의 검증된 옵션을 생성하고, 세부 계획 전에 방향을 확인하기 위해 **Pencil.dev** 또는 **Google Stitch**를 통한 시각적 UI 미리보기를 제공합니다.
 
-📖 [UI 미리보기 단계에 대해 더 알아보기 →](docs/workflows/brainstorm-ui-preview.md)
+📖 [TRIZ 병렬 워크플로 & UI 프리뷰 →](docs/architecture/triz-parallel-engine.md)
 
 ### 🏭 AI Content Factory v2.0 & 비주얼 대시보드
 
@@ -256,27 +256,24 @@ cm
 | ⚙️ **오퍼레이션** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
 | 🎨 **프로덕트 & UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **그로스/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
-| 🎯 **오케스트레이션** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-notebooklm` `cm-how-it-work` |
+| 🎯 **오케스트레이션** | `cm-execution` `cm-continuity` `cm-deep-search` `cm-codeintell` `cm-how-it-work` |
 | 🖥️ **워크플로우** | `cm-start` `cm-dashboard` `cm-status` |
 
 ---
 
 ## 🎮 명령어
 
+전체 CLI 목록은 **`cm --help`**로 확인하세요 (`src/cli/command-registry.ts`와 동일).
+
 **CLI 명령어:**
 ```
-cm                          → Cody 🐹와 함께하는 빠른 메뉴
-cm task add "..."           → 작업 추가
-cm task list                → 작업 보기
-cm status                   → 프로젝트 건강 상태
-cm dashboard                → 미션 컨트롤 열기
-cm continuity index         → L0 메모리 인덱스 재생성
-cm continuity budget        → 토큰 예산 할당 보기
-cm continuity bus           → context bus 상태 보기
-cm continuity mcp           → MCP 서버 구성 출력
-cm continuity migrate       → JSON → SQLite 마이그레이션
-cm continuity export        → SQLite → JSON 내보내기
-cm resolve <uri>            → 모든 cm:// URI 해석
+cm, codymaster              → CLI 진입점
+cm status / task / project / deploy / dashboard
+cm agent / brain            → 작업 메모리·Continuity
+cm chain                    → Skill chain
+cm browse / guardian / sprint / design-studio / distro validate
+# MCP·cm://·bus: docs/api/api-reference.md
+# 엔지니어링: docs/workflows/engineering-pipeline.md
 ```
 
 **Slash 명령어 (AI 에이전트 내에서):**
@@ -305,8 +302,9 @@ cm resolve <uri>            → 모든 cm:// URI 해석
 ## 📚 리소스
 
 - 🌍 [웹사이트](https://cody.todyle.com) — 개요 및 데모
-- 📖 [문서](https://cody.todyle.com/docs) — 상세 가이드
-- 🛠️ [스킬 레퍼런스](skills/) — 68+개의 모든 SKILL.md 파일 찾아보기
+- 📖 [문서 (사이트)](https://cody.todyle.com/docs)
+- 📘 [문서 (저장소)](docs/index.md) — Markdown 원본; `npm run docs:dev` (VitePress)
+- 🛠️ [스킬 레퍼런스](skills/) — 이 저장소의 **56**개 `cm-*` SKILL.md (설치 프로필로 추가 가능)
 - 📖 [스토리](https://cody.todyle.com/story) — 이것이 존재하는 이유
 
 ---
@@ -317,11 +315,13 @@ cm resolve <uri>            → 모든 cm:// URI 해석
 2. Fork → `skills/cm-your-skill/SKILL.md` 생성
 3. Pull Request 제출
 
+푸시와 PR마다 CI에서 `npm ci`와 `npm run test:gate:kit`을 실행합니다 (`.github/workflows/ci.yml`).
+
 ---
 
 <div align="center">
 
-*MIT 라이선스 — 자유롭게 사용, 수정 및 배포 가능합니다.* <br/>
+*ISC 라이선스 — 자유롭게 사용, 수정 및 배포 가능합니다.* <br/>
 **바이브 코딩 커뮤니티를 위해 ❤️로 제작되었습니다.**
 
 *"CodyMaster" = "Code Đi" (베트남어: "코딩해!") — 일단 빌딩을 시작하세요.*

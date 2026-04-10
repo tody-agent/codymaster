@@ -9,10 +9,10 @@
 **68+ Skills · 18 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.7.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
-  <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
+  <img alt="Open Source" src="https://img.shields.io/badge/license-ISC-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -121,13 +121,13 @@ Your AI doesn't just execute — it **understands and remembers** using a multi-
 - **cm:// URI Scheme** — Skills request context by URI, not file paths.
 - **Token Budget** — 200k window pre-allocated by category. No more silent overflow.
 - **Context Bus** — Skills share outputs in real-time within a chain.
-- **MCP Server** — 7 tools exposed to Claude Desktop and any MCP client.
+- **MCP Server** — 13 tools exposed to Claude Desktop and any MCP client (`src/mcp-context-server.ts`).
 - **OpenViking Backend natively integrated** — Inspired by OpenViking's architecture, CodyMaster defaults to `openviking` auto-installation. It delivers true semantic vector graph memory, automatic session compression, and temporal context layering. (One config line change: `storage.backend: viking`).
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 High-value knowledge and design patterns are synced to NotebookLM, providing a universal, cross-machine "Soul" for your project. Auto-generate podcasts and flashcards to onboard human developers alongside the AI.
 
-📖 [Read the full Knowledge Architecture →](docs/architecture/knowledge-architecture.md)
+📖 [CodyMaster Brain & memory model →](docs/architecture/codymaster-brain.md)
 
 ### 🛡️ Multi-Layer Protection (Your Codebase Won't Get Destroyed)
 
@@ -175,7 +175,7 @@ Don't know what the old code does? **`cm-dockit`** reads your entire codebase an
 
 Before diving into code for complex requests, **`cm-brainstorm-idea`** evaluates your product using multi-dimensional analysis (Tech, Product, Design, Business). It generates 2-3 qualified options using the 9 Windows (TRIZ) framework and provides a visual UI Preview via **Pencil.dev** or **Google Stitch** to validate the direction before detailed planning. 
 
-📖 [Read more about the UI Preview Phase →](docs/workflows/brainstorm-ui-preview.md)
+📖 [TRIZ-parallel workflow & UI preview handoff →](docs/architecture/triz-parallel-engine.md)
 
 
 ### 🏭 AI Content Factory v2.0 & Visual Dashboard
@@ -250,6 +250,14 @@ One command installs all 68+ skills to your environment. Supports Claude Code, G
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
 ```
 
+#### After `install.sh --all` (verify)
+
+- **Restart** Claude Code, Cursor, or Gemini / Antigravity so they reload config and rules from disk.
+- **Cursor:** rules go to **`~/.cursor/rules`** (always under your home folder, not wherever you ran the script). In Agent chat, run **`/add-plugin cody-master`**. To install rules **only inside one git repo**, run from that repo: `bash install.sh --cursor --cursor-project`.
+- **Gemini / Antigravity:** skills live in `~/.gemini/antigravity/skills`. The installer **creates or appends** `~/.gemini/GEMINI.md` with `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` when that hint is missing.
+- **Claude Code:** if commands like `/cm:demo` do not appear, run `claude plugin marketplace add tody-agent/codymaster` then `claude plugin install cm@codymaster --scope user` (or `--scope project`).
+- **Non-interactive:** `--all` skips the onboarding menu. For a single platform, add **`--yes`** (e.g. `bash install.sh --gemini --yes`).
+
 #### Google Antigravity / Gemini CLI / Windsurf (token budget)
 
 Antigravity and some Windsurf builds count **skills + MCP** against a customization token budget. Installing every skill globally can trigger truncation or unstable agent runs (especially if an MCP server errors and retries).
@@ -277,6 +285,17 @@ Profiles are defined under [`skills/profiles/`](skills/profiles/README.md).
 ### 2. Install Mission Control Dashboard (Optional but Recommended)
 
 Visualize your progress, manage tasks, and track your 10x coding streak with Cody the Hamster 🐹.
+
+**Both are official:** install **per project** (no `-g`) or **globally**.
+
+Per project — keeps the CLI version with the repo (use `npx` so you do not need `cm` on your PATH):
+
+```bash
+npm install codymaster
+npx cm
+```
+
+Global — type `cm` from any directory:
 
 ```bash
 npm install -g codymaster
@@ -321,23 +340,32 @@ The CLI will greet you and keep you organized on your long coding sessions!
 
 ## 🎮 Commands
 
-```
-cm                          → Quick menu with Cody 🐹
-cm task add "..."           → Add a task
-cm task list                → View tasks
-cm status                   → Project health
-cm dashboard                → Open Mission Control
-cm list                     → Browse 68+ skills
-cm profile                  → Your stats & achievements
-cm deploy <env>             → Record deployment
-cm continuity index         → Regenerate L0 memory indexes
-cm continuity budget        → Show token budget allocation
-cm continuity bus           → View context bus state
-cm continuity mcp           → Print MCP server config
-cm continuity migrate       → Migrate JSON → SQLite
-cm continuity export        → Export SQLite → JSON
-cm resolve <uri>            → Resolve any cm:// URI
+Run `cm --help` (or `node dist/index.js --help` from a clone) for the **authoritative** list. Highlights from `src/cli/command-registry.ts`:
 
+```
+cm, codymaster              → CLI entry
+cm status                   → Task & project summary
+cm task <cmd> [args...]     → Task management
+cm project <cmd> [args...]  → Project management
+cm deploy <cmd> [args...]   → Deploy / rollback / history / changelog
+cm dashboard [start|stop|status|open|url] → Mission Control (default :6969)
+cm agent [status|memory|brain|learn]      → Working memory / learnings
+cm brain                    → Continuity + next actions
+cm chain <cmd> [args...]    → Skill chain execution
+cm config [key] [value]   → Config helper
+cm open                     → Open dashboard in browser
+cm browse …                 → Local Playwright browse daemon (QA)
+cm guardian …               → Destructive-command / path checks
+cm sprint …                 → Sprint pipeline + .cm/sprint
+cm design-studio [init|status]
+cm distro validate …        → Validate skill pack layout
+```
+
+**Memory, bus, budgets, `cm://` resolution:** use the **MCP context server** — see [docs/api/api-reference.md](docs/api/api-reference.md).
+
+**Engineering (browse, guardian, sprint):** [docs/workflows/engineering-pipeline.md](docs/workflows/engineering-pipeline.md) · [docs/architecture/servers-and-mcp.md](docs/architecture/servers-and-mcp.md)
+
+```bash
 # OpenViking backend (optional — semantic vector search)
 pip install openviking && openviking start
 # Then set storage.backend: viking in .cm/config.yaml
@@ -368,8 +396,9 @@ pip install openviking && openviking start
 ## 📚 Resources
 
 - 🌍 [Website](https://cody.todyle.com) — Overview & demos
-- 📖 [Documentation](https://cody.todyle.com/docs) — Full deep-dive
-- 🛠️ [Skills Reference](skills/) — Browse all 68+ SKILL.md files
+- 📖 [Documentation (site)](https://cody.todyle.com/docs) — Hosted deep-dive
+- 📘 [Documentation (repo)](docs/index.md) — Markdown source; run `npm run docs:dev` for VitePress
+- 🛠️ [Skills Reference](skills/) — Browse **56** bundled `cm-*` SKILL.md packs (profiles/installer can add more)
 - 📖 [Our Story](https://cody.todyle.com/story) — Why this exists
 
 ---
@@ -380,11 +409,13 @@ pip install openviking && openviking start
 2. Fork → Create `skills/cm-your-skill/SKILL.md`
 3. Submit a Pull Request
 
+CI runs `npm ci` and `npm run test:gate:kit` on pushes and pull requests (see `.github/workflows/ci.yml`).
+
 ---
 
 <div align="center">
 
-*MIT License — Free to use, modify, and distribute.* `<br/>`
+*ISC License — Free to use, modify, and distribute.* <br/>
 **Built with ❤️ for the vibe coding community.**
 
 *"CodyMaster" = "Code Đi" (Vietnamese: "Go code!") — just start building.*

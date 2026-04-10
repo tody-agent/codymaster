@@ -9,10 +9,10 @@
 **68+ Kỹ năng · 18 Lệnh · 1 Plugin · 7+ Nền tảng · 6 Ngôn ngữ**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.7.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
-  <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
+  <img alt="Open Source" src="https://img.shields.io/badge/license-ISC-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -110,13 +110,13 @@ AI của bạn không chỉ thực thi — nó còn **thấu hiểu và ghi nh�
 - **cm:// URI Scheme** — Skill yêu cầu context bằng URI, không phải đường dẫn file.
 - **Token Budget** — Cửa sổ 200k token được phân bổ sẵn theo danh mục. Không bao giờ tràn ngầm.
 - **Context Bus** — Các skill chia sẻ output theo thời gian thực trong một chuỗi.
-- **MCP Server** — 7 công cụ hỗ trợ Claude Desktop và mọi MCP client.
+- **MCP Server** — 13 công cụ cho Claude Desktop và mọi MCP client (`src/mcp-context-server.ts`).
 - **Tích hợp OpenViking Backend** — Lấy cảm hứng từ kiến trúc của OpenViking, CodyMaster mặc định cài đặt và tích hợp trực tiếp cơ sở dữ liệu `openviking`. Mang đến khả năng tìm kiếm vector ngữ nghĩa thực sự, nén phiên tự động và phân tầng ngữ cảnh (tùy chọn thay đổi cấu hình: `storage.backend: viking`).
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 Những kiến thức giá trị cao và pattern thiết kế được đồng bộ hóa với NotebookLM, cung cấp một "Linh hồn" đa thiết bị toàn diện cho dự án của bạn. Tự động tạo podcast và flashcard để đào tạo các lập trình viên con người làm việc bên cạnh AI.
 
-📖 [Đọc toàn bộ Kiến trúc Tri thức (EN) →](docs/architecture/knowledge-architecture.md)
+📖 [CodyMaster Brain & mô hình bộ nhớ →](docs/architecture/codymaster-brain.md)
 
 ### 🛡️ Bảo vệ đa lớp (Codebase của bạn sẽ không bị phá hủy)
 
@@ -163,7 +163,7 @@ Không biết mã nguồn cũ thực hiện những gì? **`cm-dockit`** đọc 
 
 Trước khi bắt tay vào code cho các yêu cầu phức tạp, **`cm-brainstorm-idea`** sẽ nhận định sản phẩm của bạn bằng phân tích đa chiều (Công nghệ, Sản phẩm, Thiết kế, Kinh doanh). Kỹ năng này đưa ra 2-3 tùy chọn khả thi bằng khung giải quyết vấn đề 9 Windows (TRIZ) và cung cấp cho bạn một bản xem trước UI thông qua **Pencil.dev** hoặc **Google Stitch** để xác nhận hướng đi trước khi lập kế hoạch chi tiết.
 
-📖 [Đọc thêm về Giai đoạn Xem trước Giao diện (UI Preview) →](docs/workflows/brainstorm-ui-preview.md)
+📖 [Quy trình TRIZ-song song & UI preview →](docs/architecture/triz-parallel-engine.md)
 
 ### 🏭 AI Content Factory v2.0 & Bảng điều khiển trực quan
 
@@ -276,21 +276,29 @@ CLI sẽ tương tác và giúp bạn tổ chức công việc trong những phi
 
 ## 🎮 Lệnh
 
+Chạy `cm --help` để xem danh sách **theo mã nguồn** (`src/cli/command-registry.ts`). Tóm tắt:
+
 **Lệnh CLI:**
 ```
-cm                          → Menu nhanh cùng Cody 🐹
-cm task add "..."           → Thêm công việc
-cm task list                → Xem danh sách công việc
-cm status                   → Sức khỏe dự án
-cm dashboard                → Mở Mission Control
-cm continuity index         → Tạo lại L0 memory indexes
-cm continuity budget        → Xem phân bổ token budget
-cm continuity bus           → Xem trạng thái context bus
-cm continuity mcp           → In cấu hình MCP server
-cm continuity migrate       → Chuyển đổi JSON → SQLite
-cm continuity export        → Xuất SQLite → JSON
-cm resolve <uri>            → Giải quyết bất kỳ cm:// URI nào
+cm, codymaster              → CLI
+cm status                   → Tóm tắt task & dự án
+cm task <cmd> [args...]     → Quản lý task
+cm project <cmd> [args...]  → Quản lý dự án
+cm deploy <cmd> [args...]   → Deploy / rollback / history / changelog
+cm dashboard [start|stop|status|open|url] → Mission Control (mặc định :6969)
+cm agent [status|memory|brain|learn]      → Bộ nhớ làm việc / learnings
+cm brain                    → Continuity + bước tiếp theo
+cm chain <cmd> [args...]    → Skill chain
+cm config [key] [value]     → Cấu hình
+cm open                     → Mở dashboard trong trình duyệt
+cm browse …                 → Browse daemon (Playwright, QA)
+cm guardian …               → Kiểm tra lệnh nguy hiểm / đường dẫn
+cm sprint …                 → Pipeline sprint + .cm/sprint
+cm design-studio [init|status]
+cm distro validate …        → Kiểm tra gói skill
 ```
+
+**Bus, budget, `cm://`, tìm memory:** dùng MCP server — [docs/api/api-reference.md](docs/api/api-reference.md). Kỹ thuật: [engineering-pipeline](docs/workflows/engineering-pipeline.md) · [servers-and-mcp](docs/architecture/servers-and-mcp.md).
 
 **Lệnh Slash (trong AI agent):**
 ```
@@ -318,8 +326,9 @@ cm resolve <uri>            → Giải quyết bất kỳ cm:// URI nào
 ## 📚 Tài nguyên
 
 - 🌍 [Website](https://cody.todyle.com) — Tổng quan & bản demo
-- 📖 [Tài liệu](https://cody.todyle.com/docs) — Phân tích chuyên sâu toàn diện
-- 🛠️ [Tham khảo kỹ năng](skills/) — Xem toàn bộ 68+ tệp SKILL.md
+- 📖 [Tài liệu (site)](https://cody.todyle.com/docs) — Bản host
+- 📘 [Tài liệu (repo)](docs/index.md) — Nguồn Markdown; chạy `npm run docs:dev` (VitePress)
+- 🛠️ [Tham khảo kỹ năng](skills/) — **56** gói `cm-*` SKILL.md trong repo (profile/cài đặt có thể thêm)
 - 📖 [Câu chuyện của chúng tôi](https://cody.todyle.com/story) — Tại sao công cụ này tồn tại
 
 ---
@@ -334,7 +343,7 @@ cm resolve <uri>            → Giải quyết bất kỳ cm:// URI nào
 
 <div align="center">
 
-*Giấy phép MIT — Miễn phí sử dụng, sửa đổi và phân phối.* <br/>
+*Giấy phép ISC — Miễn phí sử dụng, sửa đổi và phân phối.* <br/>
 **Được xây dựng với ❤️ dành cho cộng đồng vibe coding.**
 
 *"CodyMaster" = "Code Đi" — hãy bắt đầu xây dựng ngay thôi.*

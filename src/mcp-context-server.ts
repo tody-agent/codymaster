@@ -2,7 +2,7 @@
 /**
  * CodyMaster MCP Context Server
  *
- * Exposes 7 tools over JSON-RPC 2.0 / stdio (Content-Length framing):
+ * Exposes 13 tools over JSON-RPC 2.0 / stdio (Content-Length framing):
  *   cm_query         — FTS5 search across learnings + decisions
  *   cm_resolve       — resolve a cm:// URI at L0/L1/L2
  *   cm_bus_read      — read context bus state
@@ -10,6 +10,7 @@
  *   cm_budget_check  — check token budget for a category
  *   cm_memory_decay  — TTL cleanup for learnings
  *   cm_index_refresh — regenerate L0 indexes
+ *   cm_plan / cm_review / cm_qa / cm_deploy / cm_search / cm_memory_query — engineering kit bridge
  *
  * Usage (stdio MCP):
  *   node dist/mcp-context-server.js --project /path/to/project
@@ -31,6 +32,14 @@ import { resolve as resolveUri } from './uri-resolver';
 import { readBus, updateBusStep } from './context-bus';
 import { loadBudget, checkBudget, estimateTokens } from './token-budget';
 import { refreshAllIndexes } from './l0-indexer';
+import {
+  cmPlanTool,
+  cmReviewTool,
+  cmQaTool,
+  cmDeployTool,
+  cmSearchTool,
+  cmMemoryQueryTool,
+} from './mcp-skills-tools';
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
@@ -345,6 +354,51 @@ const TOOLS = [
       },
     },
   },
+  {
+    name: 'cm_plan',
+    description: 'Sprint + context bus snapshot: pipeline state, next skill hint, artifact paths.',
+    inputSchema: { type: 'object', properties: {} },
+  },
+  {
+    name: 'cm_review',
+    description: 'Read sprint review artifact preview if present; points to cm-code-review workflow.',
+    inputSchema: { type: 'object', properties: {} },
+  },
+  {
+    name: 'cm_qa',
+    description: 'QA hints: browse daemon, visual QA CLI, quality gates.',
+    inputSchema: { type: 'object', properties: {} },
+  },
+  {
+    name: 'cm_deploy',
+    description: 'Deploy workflow hints (cm-safe-deploy, canary).',
+    inputSchema: { type: 'object', properties: {} },
+  },
+  {
+    name: 'cm_search',
+    description: 'Search learnings + decisions (same backing store as cm_query).',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        query: { type: 'string' },
+        scope: { type: 'string', enum: ['learnings', 'decisions', 'all'] },
+        limit: { type: 'number' },
+      },
+      required: ['query'],
+    },
+  },
+  {
+    name: 'cm_memory_query',
+    description: 'Alias-style memory search across learnings and decisions.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        query: { type: 'string' },
+        limit: { type: 'number' },
+      },
+      required: ['query'],
+    },
+  },
 ];
 
 // ─── MCP stdio protocol (JSON-RPC 2.0, Content-Length framing) ───────────────
@@ -395,6 +449,14 @@ async function handleRequest(msg: { id?: unknown; method: string; params?: Recor
       else if (name === 'cm_budget_check') result = cmBudgetCheck(a as unknown as BudgetCheckArgs);
       else if (name === 'cm_memory_decay') result = cmMemoryDecay(a as unknown as DecayArgs);
       else if (name === 'cm_index_refresh') result = cmIndexRefresh(a as unknown as IndexRefreshArgs);
+      else if (name === 'cm_plan') result = cmPlanTool(PROJECT_PATH);
+      else if (name === 'cm_review') result = cmReviewTool(PROJECT_PATH);
+      else if (name === 'cm_qa') result = cmQaTool(PROJECT_PATH);
+      else if (name === 'cm_deploy') result = cmDeployTool(PROJECT_PATH);
+      else if (name === 'cm_search')
+        result = cmSearchTool(PROJECT_PATH, a as { query: string; scope?: 'learnings' | 'decisions' | 'all'; limit?: number });
+      else if (name === 'cm_memory_query')
+        result = cmMemoryQueryTool(PROJECT_PATH, a as { query: string; limit?: number });
       else throw new Error(`Unknown tool: ${name}`);
 
       respond(id, {
