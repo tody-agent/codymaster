@@ -9,10 +9,10 @@
 **68+ स्किल्स · 18 कमांड्स · 1 प्लगइन · 7+ प्लेटफॉर्म्स · 6 भाषाएं**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.5.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
-  <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
+  <img alt="Open Source" src="https://img.shields.io/badge/license-ISC-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -104,18 +104,18 @@ graph LR
 4. **Semantic Memory (`cm-deep-search`)** — `qmd` का उपयोग करके डॉक्स में स्थानीय वेक्टर खोज।
 5. **Structural Memory (`cm-codeintell`)** — AST-आधारित CodeGraph। पूर्ण कोडबेस संदर्भ के लिए 95% तक टोकन संपीड़न (compression)।
 
-🦴 **Smart Spine (v4.5+)** — सभी 5 स्तरों को जोड़ने वाली तंत्रिका प्रणाली:
+🦴 **Smart Spine (v4.6+)** — सभी 5 स्तरों को जोड़ने वाली तंत्रिका प्रणाली:
 - **SQLite + FTS5** — BM25 रैंक्ड कीवर्ड सर्च, फ्लैट JSON स्कैन की जगह।
 - **Progressive Loading (L0/L1/L2)** — कंटेक्स्ट न्यूनतम लागत पर लोड होता है। 78% टोकन बचत।
 - **cm:// URI Scheme** — स्किल्स फाइल पाथ की बजाय URI से कंटेक्स्ट का अनुरोध करते हैं।
 - **Token Budget** — 200k टोकन विंडो श्रेणी अनुसार पूर्व-आवंटित। कोई चुप ओवरफ्लो नहीं।
 - **Context Bus** — स्किल्स चेन में रियल-टाइम आउटपुट साझा करते हैं।
-- **MCP Server** — Claude Desktop और सभी MCP क्लाइंट्स के लिए 7 टूल्स।
+- **MCP Server** — Claude Desktop और सभी MCP क्लाइंट्स के लिए **13** टूल्स (`src/mcp-context-server.ts`)।
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 उच्च-मूल्य वाले ज्ञान और डिज़ाइन पैटर्न को NotebookLM के साथ सिंक किया जाता है, जो आपके प्रोजेक्ट के लिए एक सार्वभौमिक, क्रॉस-मशीन "आत्मा (Soul)" प्रदान करता है। AI के साथ मानव डेवलपर्स को प्रशिक्षित करने के लिए पॉडकास्ट और फ्लैशकार्ड को स्वचालित रूप से उत्पन्न करें।
 
-📖 [संपूर्ण ज्ञान आर्किटेक्चर पढ़ें (EN) →](docs/architecture/knowledge-architecture.md)
+📖 [CodyMaster Brain और मेमोरी मॉडल →](docs/architecture/codymaster-brain.md)
 
 ### 🛡️ मल्टी-लेयर सुरक्षा (आपका कोडबेस नष्ट नहीं होगा)
 
@@ -127,7 +127,7 @@ flowchart LR
         A["cm-tdd<br/>टेस्ट सबसे पहले"] --> B["cm-code-review"]
     end
     subgraph "लेयर 2: सुरक्षित"
-        B --> C["cm-secret-shield<br/>लीक स्कैन"] --> D["cm-identity-guard<br/>सही अकाउंट"]
+        B --> C["cm-secret-shield<br/>लीक स्कैन"] --> S["cm-security-gate<br/>कमज़ोरी स्कैन"] --> D["cm-identity-guard<br/>सही अकाउंट"]
     end
     subgraph "लेयर 3: अलग करें"
         D --> E["cm-git-worktrees<br/>आइसोलेटेड ब्रांच"]
@@ -162,7 +162,7 @@ flowchart LR
 
 जटिल कार्यों के लिए कोड लिखने से पहले, **`cm-brainstorm-idea`** बहुआयामी विश्लेषण (तकनीक, उत्पाद, डिज़ाइन, व्यवसाय) का उपयोग करके आपके उत्पाद का मूल्यांकन करता है। यह 9 Windows (TRIZ) फ्रेमवर्क का उपयोग करके 2-3 योग्य विकल्प उत्पन्न करता है और विस्तृत योजना बनाने से पहले दिशा मान्य करने के लिए **Pencil.dev** या **Google Stitch** के माध्यम से UI प्रीव्यू प्रदान करता है।
 
-📖 [यूआई पूर्वावलोकन चरण के बारे में और पढ़ें →](docs/workflows/brainstorm-ui-preview.md)
+📖 [TRIZ समानांतर वर्कफ़्लो और UI प्रीव्यू हैंडऑफ़ →](docs/architecture/triz-parallel-engine.md)
 
 ### 🏭 AI Content Factory v2.0 & विजुअल डैशबोर्ड
 
@@ -256,27 +256,24 @@ cm
 | ⚙️ **ऑपरेशंस** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
 | 🎨 **प्रोडक्ट और UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
 | 📈 **ग्रोथ/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
-| 🎯 **ऑर्केस्ट्रेशन** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-notebooklm` `cm-how-it-work` |
+| 🎯 **ऑर्केस्ट्रेशन** | `cm-execution` `cm-continuity` `cm-deep-search` `cm-codeintell` `cm-how-it-work` |
 | 🖥️ **वर्कफ़्लो** | `cm-start` `cm-dashboard` `cm-status` |
 
 ---
 
 ## 🎮 कमांड्स
 
+पूरा सूची **सोर्स के अनुसार** देखने के लिए `cm --help` चलाएँ (`src/cli/command-registry.ts`)।
+
 **CLI कमांड्स:**
 ```
-cm                          → Cody 🐹 के साथ त्वरित मेनू
-cm task add "..."           → कार्य जोड़ें
-cm task list                → कार्य देखें
-cm status                   → प्रोजेक्ट स्वास्थ्य
-cm dashboard                → मिशन कंट्रोल खोलें
-cm continuity index         → L0 मेमोरी इंडेक्स पुनर्निर्माण
-cm continuity budget        → टोकन बजट आवंटन देखें
-cm continuity bus           → context bus स्थिति देखें
-cm continuity mcp           → MCP सर्वर कॉन्फिग प्रिंट करें
-cm continuity migrate       → JSON → SQLite माइग्रेशन
-cm continuity export        → SQLite → JSON एक्सपोर्ट
-cm resolve <uri>            → कोई भी cm:// URI रिज़ॉल्व करें
+cm, codymaster              → CLI प्रवेश बिंदु
+cm status / task / project / deploy / dashboard
+cm agent / brain            → कार्य स्मृति / Continuity
+cm chain                    → Skill chain
+cm browse / guardian / sprint / design-studio / distro validate
+# MCP, cm://, bus: docs/api/api-reference.md
+# इंजीनियरिंग: docs/workflows/engineering-pipeline.md
 ```
 
 **Slash कमांड्स (AI एजेंट के अंदर):**
@@ -305,8 +302,9 @@ cm resolve <uri>            → कोई भी cm:// URI रिज़ॉल्
 ## 📚 संसाधन
 
 - 🌍 [वेबसाइट](https://cody.todyle.com) — ओवरव्यू और डेमो
-- 📖 [डॉक्यूमेंटेशन](https://cody.todyle.com/docs) — पूर्ण डीप-डाइव
-- 🛠️ [स्किल्स संदर्भ](skills/) — सभी 68+ SKILL.md फाइलें ब्राउज़ करें
+- 📖 [डॉक्यूमेंटेशन (साइट)](https://cody.todyle.com/docs) — पूर्ण डीप-डाइव
+- 📘 [डॉक्यूमेंटेशन (रेपो)](docs/index.md) — Markdown स्रोत; VitePress: `npm run docs:dev`
+- 🛠️ [स्किल्स संदर्भ](skills/) — **56** बंडल किए गए `cm-*` पैक (प्रोफ़ाइल/इंस्टॉलर और जोड़ सकते हैं)
 - 📖 [हमारी कहानी](https://cody.todyle.com/story) — यह क्यों मौजूद है
 
 ---
@@ -317,11 +315,13 @@ cm resolve <uri>            → कोई भी cm:// URI रिज़ॉल्
 2. Fork → `skills/cm-your-skill/SKILL.md` बनाएं
 3. एक Pull Request सबमिट करें
 
+पुश और PR पर CI `npm ci` और `npm run test:gate:kit` चलाता है (`.github/workflows/ci.yml`)।
+
 ---
 
 <div align="center">
 
-*MIT लाइसेंस — उपयोग, संशोधन और वितरण के लिए निःशुल्क।* <br/>
+*ISC लाइसेंस — उपयोग, संशोधन और वितरण के लिए निःशुल्क।* <br/>
 **वाइब कोडिंग कम्युनिटी के लिए ❤️ के साथ बनाया गया।**
 
 *"CodyMaster" = "Code Đi" (वियतनामी: "कोड करो!") — बस निर्माण शुरू करें।*

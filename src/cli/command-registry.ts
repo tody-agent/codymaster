@@ -5,6 +5,9 @@ import { registerProjectCommands } from './commands/project';
 import { registerSkillChainCommands } from './commands/skill-chain';
 import { registerSystemCommands } from './commands/system';
 import { registerTaskCommands } from './commands/task';
+import { registerEngineeringCommands } from './commands/engineering';
+import { registerDesignStudioCommands } from './commands/design-studio';
+import { registerDistroCommands } from './commands/distro';
 
 /**
  * Registers all CLI commands with the provided program instance.
@@ -16,4 +19,7 @@ export function registerAllCommands(program: Command) {
   registerSkillChainCommands(program);
   registerSystemCommands(program);
   registerTaskCommands(program);
+  registerEngineeringCommands(program);
+  registerDesignStudioCommands(program);
+  registerDistroCommands(program);
 }

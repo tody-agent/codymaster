@@ -9,10 +9,10 @@
 **68+ 项技能 · 18 条命令 · 1 个插件 · 7+ 个平台 · 6 种语言**
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.5.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
-  <img alt="Open Source" src="https://img.shields.io/badge/license-MIT-purple.svg" />
+  <img alt="Open Source" src="https://img.shields.io/badge/license-ISC-purple.svg" />
   <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -110,12 +110,12 @@ graph LR
 - **cm:// URI Scheme** — 技能通过 URI 请求上下文，而非文件路径。
 - **Token Budget** — 200k token 窗口按类别预分配。不再静默溢出。
 - **Context Bus** — 技能在链中实时共享输出。
-- **MCP Server** — 7 个工具支持 Claude Desktop 和所有 MCP 客户端。
+- **MCP Server** — 13 个工具支持 Claude Desktop 和所有 MCP 客户端（`src/mcp-context-server.ts`）。
 
 ☁️ **Cloud Brain (`cm-notebooklm`)**
 高价值的知识和设计模式将同步到 NotebookLM，为您的项目提供通用且跨机器的"灵魂"。自动生成播客和抽认卡，以便在 AI 旁边培训人类开发者。
 
-📖 [阅读完整的知识架构文档 (EN) →](docs/architecture/knowledge-architecture.md)
+📖 [CodyMaster Brain 与记忆模型 →](docs/architecture/codymaster-brain.md)
 
 ### 🛡️ 多层保护（你的代码库不会被毁掉）
 
@@ -162,7 +162,7 @@ flowchart LR
 
 在为复杂请求编写代码之前，**`cm-brainstorm-idea`** 会通过多维度分析（技术、产品、设计、业务）来评估您的产品。它使用 9 窗口 (TRIZ) 框架生成 2-3 个合格的选项，并通过 **Pencil.dev** 或 **Google Stitch** 提供可视化的 UI 预览，以便在详细规划之前验证方向。
 
-📖 [阅读更多关于 UI 预览阶段的信息 →](docs/workflows/brainstorm-ui-preview.md)
+📖 [TRIZ 并行工作流与 UI 预览衔接 →](docs/architecture/triz-parallel-engine.md)
 
 ### 🏭 AI 内容工厂 v2.0 与可视化仪表盘
 
@@ -263,21 +263,29 @@ CLI 会在漫长的编码会话中与您打招呼并帮助您保持条理！
 
 ## 🎮 命令
 
+运行 `cm --help` 查看**与源码一致**的完整列表（`src/cli/command-registry.ts`）。摘要：
+
 **CLI 命令：**
 ```
-cm                          → 快速菜单 with Cody 🐹
-cm task add "..."           → 添加任务
-cm task list                → 查看任务
-cm status                   → 项目健康状态
-cm dashboard                → 打开控制台
-cm continuity index         → 重新生成 L0 内存索引
-cm continuity budget        → 查看 token 预算分配
-cm continuity bus           → 查看 context bus 状态
-cm continuity mcp           → 打印 MCP 服务器配置
-cm continuity migrate       → 迁移 JSON → SQLite
-cm continuity export        → 导出 SQLite → JSON
-cm resolve <uri>            → 解析任何 cm:// URI
+cm, codymaster              → CLI 入口
+cm status                   → 任务与项目摘要
+cm task <cmd> [args...]     → 任务管理
+cm project <cmd> [args...]  → 项目管理
+cm deploy <cmd> [args...]   → 部署 / 回滚 / 历史 / 变更日志
+cm dashboard [start|stop|status|open|url] → Mission Control（默认 :6969）
+cm agent [status|memory|brain|learn]      → 工作记忆 / learnings
+cm brain                    → Continuity 与下一步
+cm chain <cmd> [args...]    → Skill chain
+cm config [key] [value]     → 配置
+cm open                     → 在浏览器打开仪表盘
+cm browse …                 → 本地 Playwright 浏览守护（QA）
+cm guardian …               → 危险命令 / 路径检查
+cm sprint …                 → Sprint 流水线 + .cm/sprint
+cm design-studio [init|status]
+cm distro validate …        → 校验技能包
 ```
+
+**总线、budget、`cm://`、记忆：**MCP 服务器 — [docs/api/api-reference.md](docs/api/api-reference.md)。工程说明：[engineering-pipeline](docs/workflows/engineering-pipeline.md) · [servers-and-mcp](docs/architecture/servers-and-mcp.md)。
 
 **Slash 命令（在 AI 智能体中）：**
 ```
@@ -305,8 +313,9 @@ cm resolve <uri>            → 解析任何 cm:// URI
 ## 📚 资源
 
 - 🌍 [网站](https://cody.todyle.com) — 概览与演示
-- 📖 [文档](https://cody.todyle.com/docs) — 完整深度探索
-- 🛠️ [技能参考](skills/) — 浏览所有 68+ 个 SKILL.md 文件
+- 📖 [文档（线上）](https://cody.todyle.com/docs)
+- 📘 [文档（仓库）](docs/index.md) — Markdown 源；`npm run docs:dev`（VitePress）
+- 🛠️ [技能参考](skills/) — 本仓库 **56** 个 `cm-*` SKILL.md（安装配置可再增）
 - 📖 [我们的故事](https://cody.todyle.com/story) — 为什么存在这个项目
 
 ---
@@ -321,7 +330,7 @@ cm resolve <uri>            → 解析任何 cm:// URI
 
 <div align="center">
 
-*MIT 许可证 — 免费使用、修改和分发。* <br/>
+*ISC 许可证 — 免费使用、修改和分发。* <br/>
 **为 vibe coding 社区用心 ❤️ 构建。**
 
 *“Cody” = “Code Đi”（越南语：“去代码吧！”）—— 立即开始构建。*

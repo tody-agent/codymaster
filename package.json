@@ -1,6 +1,6 @@
 {
   "name": "codymaster",
-  "version": "4.7.0",
+  "version": "4.8.0",
   "description": "68+ Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
   "main": "dist/index.js",
   "repository": {
@@ -19,15 +19,23 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "test:gate": "vitest run --reporter=verbose",
+    "test:gate:kit": "npm run build && npm run validate:skills && npm run check:skills && vitest run --reporter=verbose",
     "gate:secrets": "node scripts/gate-0-secrets.js",
+    "gate:hygiene": "node scripts/gate-0-repo-hygiene.js",
     "gate:fix": "node scripts/security-fixer.js --fix",
     "gate:check": "node scripts/security-fixer.js",
     "gate:syntax": "node scripts/gate-1-syntax.js",
     "gate:dist": "node scripts/gate-5-dist-verify.js",
     "gate:smoke": "node scripts/gate-6-smoke-test.js",
-    "deploy": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:dist && npm run gate:smoke",
-    "deploy:dry": "npm run gate:secrets && npm run gate:syntax && npm run test:gate && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'",
-    "postinstall": "node scripts/postinstall.js"
+    "deploy": "npm run gate:secrets && npm run gate:hygiene && npm run gate:syntax && npm run test:gate:kit && npm run gate:dist && npm run gate:smoke",
+    "deploy:dry": "npm run gate:secrets && npm run gate:hygiene && npm run gate:syntax && npm run test:gate:kit && npm run gate:dist && echo '✅ All gates passed. Ready to deploy.'",
+    "postinstall": "node scripts/postinstall.js",
+    "validate:skills": "node scripts/validate-skills.mjs",
+    "build:skills": "node scripts/build-skills.mjs",
+    "check:skills": "node scripts/build-skills.mjs --check",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "keywords": [
     "ai",
@@ -65,7 +73,8 @@
     "chokidar": "^5.0.0",
     "commander": "^14.0.3",
     "express": "^5.2.1",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "yaml": "^2.8.3"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
@@ -74,8 +83,10 @@
     "@types/prompts": "^2.4.9",
     "acorn": "^8.16.0",
     "jsdom": "^29.0.1",
+    "playwright": "^1.50.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
+    "vitepress": "^1.6.4",
     "vitest": "^4.1.0"
   },
   "overrides": {
