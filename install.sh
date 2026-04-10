@@ -35,7 +35,7 @@ C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'; DI
 
 REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
-VERSION="4.7.0"
+VERSION="4.7.1"
 SCOPE="user"   # default scope for Claude Code
 SKILL_PROFILE="full"   # core|growth|design|knowledge|full — see skills/profiles/
 INSTALL_CMD=""         # set by parse_install_args
@@ -49,7 +49,7 @@ if [ -d "skills" ]; then
 elif [ -d "$HOME/.cody-master/skills" ]; then
   TOTAL_SKILLS=$(ls -1d "$HOME/.cody-master/skills"/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
 else
-  TOTAL_SKILLS="45"
+  TOTAL_SKILLS="60+"
 fi
 
 
@@ -646,9 +646,22 @@ ensure_clone() {
     return
   fi
 
-  # If ~/.cody-master already exists and has skills, use it
+  # If ~/.cody-master already exists and has skills, refresh it first
   if [ -d "$HOME/.cody-master/skills" ]; then
     CLONE_DIR="$HOME/.cody-master"
+    if command -v git &>/dev/null && [ -d "$CLONE_DIR/.git" ]; then
+      echo -e "  ${W}Refreshing ~/.cody-master from origin/main...${NC}"
+      if git -C "$CLONE_DIR" fetch --quiet origin main 2>/dev/null && \
+         git -C "$CLONE_DIR" pull --ff-only --quiet origin main 2>/dev/null; then
+        echo -e "  ${G}✅ ~/.cody-master is up to date${NC}"
+      else
+        echo -e "  ${O}⚠️  Could not fast-forward ~/.cody-master. Keeping local copy.${NC}"
+        echo -e "  ${O}   If skills seem outdated, run: rm -rf ~/.cody-master && rerun installer${NC}"
+      fi
+    fi
+    if [ -d "$CLONE_DIR/skills" ]; then
+      TOTAL_SKILLS=$(ls -1d "$CLONE_DIR/skills"/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
+    fi
     return
   fi
 
