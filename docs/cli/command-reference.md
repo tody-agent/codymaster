@@ -1,9 +1,9 @@
 ---
-
-## title: CLI Command Reference
+title: CLI Command Reference
 description: Current CodyMaster command groups and where they are registered and implemented in source code.
 keywords: codymaster commands, cm cli, command registry
 robots: index, follow
+---
 
 # CLI Command Reference
 

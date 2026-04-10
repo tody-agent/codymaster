@@ -36,6 +36,9 @@ Sprint-related runtime state is managed in `.cm/sprint` and linked by utilities 
 
 See also:
 
+- [Browse daemon runbook](../browse-daemon.md) — Playwright install, `CM_BROWSE_TOKEN`, `cm qa-visual`
+- [Guardian hooks](./guardian-hooks.md) — `cm guardian check` and IDE pre-exec patterns
 - [Servers and MCP Runtime](../architecture/servers-and-mcp.md)
 - [CLI Command Reference](../cli/command-reference.md)
 - [Testing and Release Gates](../quality/testing-and-release.md)
+- [ADR 001 — Browse daemon](../adr/001-playwright-browse-daemon.md) · [ADR 002 — Sprint bus](../adr/002-sprint-context-bus-files.md) · [ADR 003 — Skill distro](../adr/003-skill-distro-and-meta.md)

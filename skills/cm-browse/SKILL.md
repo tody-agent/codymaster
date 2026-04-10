@@ -1,5 +1,7 @@
 # cm-browse — local Playwright daemon
 
+> **Full runbook:** [docs/browse-daemon.md](../../docs/browse-daemon.md) (install Chromium, token, troubleshooting).
+
 ## When to use
 
 - Visual QA, screenshots, post-deploy smoke through a **real browser** (not only Stitch/Pencil).

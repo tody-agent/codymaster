@@ -21,6 +21,8 @@ The dashboard server (`src/dashboard.ts`) exposes project/task/deploy/changelog 
 
 The browse daemon (`src/browse-server.ts`) exposes HTTP endpoints for session lifecycle, navigation, DOM interactions, screenshots, console logs, and network capture.
 
+**Runbook:** [Browse daemon](../browse-daemon.md) (Chromium, token, troubleshooting).
+
 ## MCP Tool API (stdio)
 
 The MCP server (`src/mcp-context-server.ts`) supports `initialize`, `tools/list`, and `tools/call` with JSON-RPC framing.
@@ -38,6 +40,7 @@ Use HTTP routes for web-facing interactions and MCP tools for agent-driven conte
 
 See also:
 
+- [Browse daemon runbook](../browse-daemon.md)
 - [Servers and MCP Runtime](../architecture/servers-and-mcp.md)
 - [Storage and Memory Model](../architecture/data-and-memory.md)
 - [Engineering Pipeline](../workflows/engineering-pipeline.md)

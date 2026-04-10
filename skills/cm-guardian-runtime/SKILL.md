@@ -19,4 +19,4 @@ When using **cm-debugging** or root-cause work, treat **freeze roots** as mandat
 
 ## Config
 
-See `.cm/config.example.yaml` → `guardian:`.
+See `.cm/config.example.yaml` → `guardian:`. Hook patterns (Cursor / Codex): [docs/workflows/guardian-hooks.md](../../docs/workflows/guardian-hooks.md) (repo root).

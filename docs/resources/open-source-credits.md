@@ -1,9 +1,9 @@
 ---
-
-## title: Open Source Credits
+title: Open Source Credits
 description: Major open-source components used by CodyMaster and how to inspect full license metadata.
 keywords: open source credits, licenses, dependencies
 robots: index, follow
+---
 
 # Open Source Credits
 

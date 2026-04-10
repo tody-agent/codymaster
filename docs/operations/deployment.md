@@ -1,10 +1,9 @@
 ---
-
 title: Deployment
-
-## description: CodyMaster release gates, deploy scripts, CI workflow, and safe deploy skills for production-bound changes.
+description: CodyMaster release gates, deploy scripts, CI workflow, and safe deploy skills for production-bound changes.
 keywords: codymaster deployment, ci, test gate, safe deploy
 robots: index, follow
+---
 
 # Deployment
 

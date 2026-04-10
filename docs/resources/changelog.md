@@ -1,9 +1,9 @@
 ---
-
-## title: Changelog
+title: Changelog
 description: CodyMaster release history and where to read the authoritative CHANGELOG in the repository.
 keywords: codymaster changelog, releases, version history
 robots: index, follow
+---
 
 # Changelog
 

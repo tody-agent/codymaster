@@ -30,6 +30,8 @@ robots: index, follow
 - `/fill`
 - `/screenshot`
 
+Operator guide (token, Chromium, troubleshooting): [Browse daemon runbook](../browse-daemon.md). Architecture: [ADR 001](../adr/001-playwright-browse-daemon.md).
+
 ## MCP Context Server
 
 `src/mcp-context-server.ts` runs JSON-RPC over stdio and exposes tools including:

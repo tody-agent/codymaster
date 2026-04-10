@@ -363,7 +363,7 @@ cm distro validate …        → Validate skill pack layout
 
 **Memory, bus, budgets, `cm://` resolution:** use the **MCP context server** — see [docs/api/api-reference.md](docs/api/api-reference.md).
 
-**Engineering (browse, guardian, sprint):** [docs/workflows/engineering-pipeline.md](docs/workflows/engineering-pipeline.md) · [docs/architecture/servers-and-mcp.md](docs/architecture/servers-and-mcp.md)
+**Engineering (browse, guardian, sprint):** [docs/workflows/engineering-pipeline.md](docs/workflows/engineering-pipeline.md) · [docs/browse-daemon.md](docs/browse-daemon.md) · [docs/workflows/guardian-hooks.md](docs/workflows/guardian-hooks.md) · [docs/architecture/servers-and-mcp.md](docs/architecture/servers-and-mcp.md)
 
 ```bash
 # OpenViking backend (optional — semantic vector search)

@@ -1,9 +1,9 @@
 ---
-
-## title: Vibe Coding Guide
+title: Vibe Coding Guide
 description: A practical loop for shipping with CodyMaster, skills, and agents without losing context or quality.
 keywords: vibe coding, ai workflow, codymaster daily loop
 robots: index, follow
+---
 
 # Vibe Coding Guide
 

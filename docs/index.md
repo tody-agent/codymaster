@@ -30,8 +30,11 @@ robots: index, follow
 
 - [System architecture](./architecture/system-architecture.md)  
 - [CodyMaster Brain](./architecture/codymaster-brain.md) — memory, bus, budgets  
+- [Browse daemon](./browse-daemon.md) — Playwright QA daemon (quick start)  
+- [Guardian hooks](./workflows/guardian-hooks.md) — safe shell commands + IDE hooks  
 - [Skills library](./skills/index.md) — every bundled skill, categorized  
 - [API reference](./api/api-reference.md) — REST surfaces + MCP tools  
+- [Architecture decision records](./adr/001-playwright-browse-daemon.md) (ADR 001–003)  
 
 ## Source of truth in code
 

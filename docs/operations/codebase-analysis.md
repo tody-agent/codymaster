@@ -1,11 +1,9 @@
 ---
-
 title: Codebase Analysis
-
-## description: Documentation generation, semantic search suggestions, and skills for understanding large repositories with CodyMaster.
-
+description: Documentation generation, semantic search suggestions, and skills for understanding large repositories with CodyMaster.
 keywords: codebase analysis, cm-dockit, cm-deep-search, documentation
 robots: index, follow
+---
 
 # Codebase Analysis
 

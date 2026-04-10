@@ -1,6 +1,7 @@
 ---
 
 ## title: Installation and Local Run
+
 description: Install dependencies, build CodyMaster, run tests, and verify the CLI command surface locally.
 keywords: codymaster install, cli setup, npm build, vitest
 robots: index, follow
@@ -15,7 +16,7 @@ robots: index, follow
 - **Node.js** 20+ recommended
 - **npm**
 - **Git** (for cloning and typical workflows)
-- Optional: **Playwright** browsers if you use browse/visual QA features (see engineering commands)
+- Optional: **Playwright** browsers if you use browse/visual QA — [Browse daemon](../browse-daemon.md)
 
 ## Install from the repository
 

@@ -1,9 +1,9 @@
 ---
-
-## title: Use Cases
+title: Use Cases
 description: Practical CodyMaster use cases — from solo vibe coding to team agent ops with memory and gates.
 keywords: codymaster use cases, ai workflow, team agents
 robots: index, follow
+---
 
 # Use Cases
 

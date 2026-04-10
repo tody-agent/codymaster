@@ -1,9 +1,9 @@
 ---
-
-## title: Showcase
+title: Showcase
 description: What CodyMaster helps you ship faster — memory, MCP, dashboard, engineering kit, and skills library highlights.
 keywords: codymaster showcase, features, value proposition
 robots: index, follow
+---
 
 # Showcase
 

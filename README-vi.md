@@ -1,5 +1,3 @@
-<div align="center">
-
 [English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)
 
 # 🧠 CodyMaster
@@ -8,21 +6,9 @@
 
 **68+ Kỹ năng · 18 Lệnh · 1 Plugin · 7+ Nền tảng · 6 Ngôn ngữ**
 
-<p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
-  <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
-  <img alt="Open Source" src="https://img.shields.io/badge/license-ISC-purple.svg" />
-  <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-</p>
-
-![CodyMaster Kanban Dashboard](assets/images/dashboard.png)
+CodyMaster Kanban Dashboard
 
 ### 🌟 Nếu CodyMaster giúp bạn tiết kiệm thời gian, hãy tặng một [Star](https://github.com/tody-agent/codymaster)! 🌟
-
-</div>
 
 ---
 
@@ -32,14 +18,16 @@ Bạn đã cài đặt một AI coding agent. Nó thật *tuyệt vời*. Nó vi
 
 Nhưng rồi thực tế ập đến:
 
-| 😤 Điều thực sự xảy ra | 💀 Cái giá thực sự |
-|--------------------------|-----------------|
-| AI thiết kế **khác nhau sau mỗi lần** — cùng một thương hiệu, 3 phong cách khác nhau | Khách hàng nghĩ bạn là 3 công ty khác nhau |
-| AI sửa một lỗi, **âm thầm làm hỏng 5 thứ khác** | Bạn phải làm lại cùng một công việc 3-4 lần |
-| AI **quên mọi thứ** giữa các phiên làm việc | Bạn phải giải thích lại cùng một codebase vào mỗi sáng |
-| AI viết không dòng test, không tài liệu | Codebase của bạn trở nên mong manh như một ngôi nhà bằng bài |
-| Bạn cài đặt 15 kỹ năng khác nhau — **không cái nào giao tiếp với cái nào** | Bộ công cụ Frankenstein với con số không về sự hiệp lực |
-| Deploy lên production = **deploy và cầu nguyện** 🙏 | Deploy lỗi lúc 2 giờ sáng, không có rollback |
+
+| 😤 Điều thực sự xảy ra                                                               | 💀 Cái giá thực sự                                           |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| AI thiết kế **khác nhau sau mỗi lần** — cùng một thương hiệu, 3 phong cách khác nhau | Khách hàng nghĩ bạn là 3 công ty khác nhau                   |
+| AI sửa một lỗi, **âm thầm làm hỏng 5 thứ khác**                                      | Bạn phải làm lại cùng một công việc 3-4 lần                  |
+| AI **quên mọi thứ** giữa các phiên làm việc                                          | Bạn phải giải thích lại cùng một codebase vào mỗi sáng       |
+| AI viết không dòng test, không tài liệu                                              | Codebase của bạn trở nên mong manh như một ngôi nhà bằng bài |
+| Bạn cài đặt 15 kỹ năng khác nhau — **không cái nào giao tiếp với cái nào**           | Bộ công cụ Frankenstein với con số không về sự hiệp lực      |
+| Deploy lên production = **deploy và cầu nguyện** 🙏                                  | Deploy lỗi lúc 2 giờ sáng, không có rollback                 |
+
 
 > *"AI cho tôi 100 cánh tay. Nhưng nếu thiếu kỷ luật, những cánh tay đó chỉ tạo ra sự hỗn loạn."*
 > — **Tody Le**, Head of Product · 10+ năm kinh nghiệm · Người sáng tạo ra CodyMaster
@@ -65,6 +53,8 @@ graph TD
     classDef team fill:#2f3640,stroke:#dcdde1,stroke-width:1px,color:#fff;
     class B,C,D,E,F,G team;
 ```
+
+
 
 ---
 
@@ -94,6 +84,8 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
+
+
 ### 🧠 Bộ Não Hợp Nhất: Kiến trúc bộ nhớ 5 tầng + Smart Spine
 
 AI của bạn không chỉ thực thi — nó còn **thấu hiểu và ghi nhớ** thông qua hệ thống Bộ Não Hợp Nhất 5 tầng + Smart Spine, lưu trữ bền vững qua các phiên làm việc và trên nhiều thiết bị khác nhau:
@@ -105,6 +97,7 @@ AI của bạn không chỉ thực thi — nó còn **thấu hiểu và ghi nh�
 5. **Structural Memory (`cm-codeintell`)** — CodeGraph dựa trên AST. Xử lý đến 95% context codebase giúp tiết kiệm token.
 
 🦴 **Smart Spine (v4.5+)** — Hệ thần kinh kết nối toàn bộ 5 tầng:
+
 - **SQLite + FTS5** — Tìm kiếm từ khóa xếp hạng BM25, thay thế quét JSON phẳng.
 - **Progressive Loading (L0/L1/L2)** — Context được tải ở mức rẻ nhất đủ dùng. Tiết kiệm 78% token.
 - **cm:// URI Scheme** — Skill yêu cầu context bằng URI, không phải đường dẫn file.
@@ -142,6 +135,8 @@ flowchart LR
     style G fill:#4cd137,stroke:#44bd32,color:#fff
 ```
 
+
+
 > **Kết quả:** Không rò rỉ bí mật. Không triển khai nhầm tài khoản. Không còn những lỗi kiểu "chạy tốt trên máy tôi".
 
 ### 🎨 Trích xuất hệ thống thiết kế — Ngay cả từ các sản phẩm cũ
@@ -150,7 +145,8 @@ Bạn có một sản phẩm cũ không có hệ thống thiết kế? **cm-desi
 
 ### 📝 Không có tài liệu? Không vấn đề gì.
 
-Không biết mã nguồn cũ thực hiện những gì? **`cm-dockit`** đọc toàn bộ codebase của bạn và tạo ra:
+Không biết mã nguồn cũ thực hiện những gì? `**cm-dockit`** đọc toàn bộ codebase của bạn và tạo ra:
+
 - 📚 Tài liệu kiến trúc kỹ thuật
 - 📖 Hướng dẫn sử dụng & SOP
 - 🔌 Tham chiếu API
@@ -161,13 +157,13 @@ Không biết mã nguồn cũ thực hiện những gì? **`cm-dockit`** đọc 
 
 ### 💡 Chiến lược Brainstorming (Design Thinking + 9 Windows)
 
-Trước khi bắt tay vào code cho các yêu cầu phức tạp, **`cm-brainstorm-idea`** sẽ nhận định sản phẩm của bạn bằng phân tích đa chiều (Công nghệ, Sản phẩm, Thiết kế, Kinh doanh). Kỹ năng này đưa ra 2-3 tùy chọn khả thi bằng khung giải quyết vấn đề 9 Windows (TRIZ) và cung cấp cho bạn một bản xem trước UI thông qua **Pencil.dev** hoặc **Google Stitch** để xác nhận hướng đi trước khi lập kế hoạch chi tiết.
+Trước khi bắt tay vào code cho các yêu cầu phức tạp, `**cm-brainstorm-idea`** sẽ nhận định sản phẩm của bạn bằng phân tích đa chiều (Công nghệ, Sản phẩm, Thiết kế, Kinh doanh). Kỹ năng này đưa ra 2-3 tùy chọn khả thi bằng khung giải quyết vấn đề 9 Windows (TRIZ) và cung cấp cho bạn một bản xem trước UI thông qua **Pencil.dev** hoặc **Google Stitch** để xác nhận hướng đi trước khi lập kế hoạch chi tiết.
 
 📖 [Quy trình TRIZ-song song & UI preview →](docs/architecture/triz-parallel-engine.md)
 
 ### 🏭 AI Content Factory v2.0 & Bảng điều khiển trực quan
 
-Cần mở rộng nội dung? **`cm-content-factory`** là một cỗ máy tạo nội dung đa tác nhân (multi-agent) có khả năng tự học hỏi. Nó tự động nghiên cứu, viết, kiểm duyệt (Tối ưu SEO & Thuyết phục) và tự động triển khai các bài viết có tỷ lệ chuyển đổi cao cùng bộ khung Content Mastery (StoryBrand + Cialdini).
+Cần mở rộng nội dung? `**cm-content-factory`** là một cỗ máy tạo nội dung đa tác nhân (multi-agent) có khả năng tự học hỏi. Nó tự động nghiên cứu, viết, kiểm duyệt (Tối ưu SEO & Thuyết phục) và tự động triển khai các bài viết có tỷ lệ chuyển đổi cao cùng bộ khung Content Mastery (StoryBrand + Cialdini).
 
 Theo dõi mọi thứ trên **Bảng điều khiển trực quan** (`cm-dashboard`): Không còn phải đoán mò. Theo dõi mọi tác vụ, mọi agent, mọi lần triển khai trên bảng Kanban thời gian thực. Tiến độ pipeline, trình theo dõi token, nhật ký sự kiện — tất cả trên một màn hình.
 
@@ -175,11 +171,11 @@ Theo dõi mọi thứ trên **Bảng điều khiển trực quan** (`cm-dashboar
 
 CodyMaster không chỉ chạy các kỹ năng — nó **theo dõi, chấm điểm và tự động chữa lành chúng.**
 
-- **`cm-skill-health`** theo dõi từng lần gọi: tỷ lệ thành công, mức sử dụng token, các mô hình lỗi.
-- **`cm-skill-evolution`** tự động vá các kỹ năng bị suy giảm (Chế độ: FIX) khi điểm số sức khỏe giảm xuống dưới ngưỡng.
-- **`cm-skill-chain` Auto-Dispatch** — Lấy cảm hứng từ OpenSpace, quy trình điều phối chuỗi tự động hoàn toàn được ra mắt với khả năng theo dõi quá trình thông minh và bàn giao liên kết các Agent không cần con người.
-- **`cm-skill-search`** sử dụng xếp hạng BM25 để tìm đúng kỹ năng cho bất kỳ tác vụ nào.
-- **`cm-skill-share`** xuất & nhập kỹ năng giữa các nhóm và máy tính.
+- `**cm-skill-health`** theo dõi từng lần gọi: tỷ lệ thành công, mức sử dụng token, các mô hình lỗi.
+- `**cm-skill-evolution`** tự động vá các kỹ năng bị suy giảm (Chế độ: FIX) khi điểm số sức khỏe giảm xuống dưới ngưỡng.
+- `**cm-skill-chain` Auto-Dispatch** — Lấy cảm hứng từ OpenSpace, quy trình điều phối chuỗi tự động hoàn toàn được ra mắt với khả năng theo dõi quá trình thông minh và bàn giao liên kết các Agent không cần con người.
+- `**cm-skill-search`** sử dụng xếp hạng BM25 để tìm đúng kỹ năng cho bất kỳ tác vụ nào.
+- `**cm-skill-share`** xuất & nhập kỹ năng giữa các nhóm và máy tính.
 
 > **Hãy coi đây như hệ miễn dịch cho bộ công cụ AI của bạn.** Các kỹ năng bị hỏng sẽ được chữa lành. Các kỹ năng hoạt động tốt được tăng cường. Những kỹ năng chết sẽ được lưu trữ.
 
@@ -187,16 +183,18 @@ CodyMaster không chỉ chạy các kỹ năng — nó **theo dõi, chấm đi�
 
 ## 🆚 Kỹ năng rời rạc so với CodyMaster
 
-| | 😵 15 kỹ năng ngẫu nhiên | 🧠 CodyMaster |
-|---|---|---|
-| **Tích hợp** | Mỗi kỹ năng là độc lập, không có ngữ cảnh chung | 68+ kỹ năng liên kết thành chuỗi, chia sẻ bộ nhớ và giao tiếp với nhau |
-| **Vòng đời** | Chỉ bao gồm phần lập trình (coding) | Bao gồm Ý tưởng → Thiết kế → Code → Kiểm thử → Triển khai → Tài liệu → Học tập |
-| **Bộ nhớ** | Quên mọi thứ giữa các phiên làm việc | Hệ thống Bộ Não Hợp Nhất 5 tầng: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
-| **An toàn** | Triển khai kiểu phó mặc (YOLO) | Bảo vệ 4 lớp: TDD → Security → Isolation → Triển khai đa cổng |
-| **Thiết kế** | UI ngẫu nhiên mỗi lần thực hiện | Trích xuất & thực thi hệ thống thiết kế + xem trước trực quan |
-| **Tài liệu** | "Có lẽ sẽ viết README sau" | Tự động tạo tài liệu đầy đủ, SOP, tham chiếu API từ mã nguồn |
-| **Tự cải thiện** | Tĩnh — những gì bạn cài đặt là những gì bạn nhận được | Học hỏi từ sai lầm, tự động khám phá kỹ năng mới, thông minh hơn mỗi ngày |
-| **Bảo trì** | Cập nhật 15 repo riêng biệt | Một lệnh `git pull` cập nhật tất cả mọi thứ |
+
+|                  | 😵 15 kỹ năng ngẫu nhiên                              | 🧠 CodyMaster                                                                                        |
+| ---------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Tích hợp**     | Mỗi kỹ năng là độc lập, không có ngữ cảnh chung       | 68+ kỹ năng liên kết thành chuỗi, chia sẻ bộ nhớ và giao tiếp với nhau                               |
+| **Vòng đời**     | Chỉ bao gồm phần lập trình (coding)                   | Bao gồm Ý tưởng → Thiết kế → Code → Kiểm thử → Triển khai → Tài liệu → Học tập                       |
+| **Bộ nhớ**       | Quên mọi thứ giữa các phiên làm việc                  | Hệ thống Bộ Não Hợp Nhất 5 tầng: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
+| **An toàn**      | Triển khai kiểu phó mặc (YOLO)                        | Bảo vệ 4 lớp: TDD → Security → Isolation → Triển khai đa cổng                                        |
+| **Thiết kế**     | UI ngẫu nhiên mỗi lần thực hiện                       | Trích xuất & thực thi hệ thống thiết kế + xem trước trực quan                                        |
+| **Tài liệu**     | "Có lẽ sẽ viết README sau"                            | Tự động tạo tài liệu đầy đủ, SOP, tham chiếu API từ mã nguồn                                         |
+| **Tự cải thiện** | Tĩnh — những gì bạn cài đặt là những gì bạn nhận được | Học hỏi từ sai lầm, tự động khám phá kỹ năng mới, thông minh hơn mỗi ngày                            |
+| **Bảo trì**      | Cập nhật 15 repo riêng biệt                           | Một lệnh `git pull` cập nhật tất cả mọi thứ                                                          |
+
 
 ---
 
@@ -205,6 +203,7 @@ CodyMaster không chỉ chạy các kỹ năng — nó **theo dõi, chấm đi�
 Chúng tôi sẽ thành thực: **CodyMaster được xây dựng dành cho những người lười.**
 
 Nếu bạn muốn:
+
 - ✅ Nhập một tin nhắn chat và nhận lại một **sản phẩm hoạt động được**
 - ✅ Để AI của bạn **học hỏi từ những sai lầm** và tiến bộ hơn mỗi ngày
 - ✅ Không bao giờ phải thiết lập cùng một boilerplate hai lần
@@ -213,6 +212,7 @@ Nếu bạn muốn:
 **→ CodyMaster dành cho bạn.**
 
 Nếu bạn thích:
+
 - ❌ Tự tay xem xét từng dòng kết quả từ AI
 - ❌ Thực hiện cùng một nghi thức thiết lập cho mọi dự án
 - ❌ Triển khai thủ công, chậm chạp mà không có lưới bảo vệ
@@ -263,14 +263,16 @@ CLI sẽ tương tác và giúp bạn tổ chức công việc trong những phi
 
 ## 🧰 Kho vũ khí 68+ kỹ năng
 
-| Lĩnh vực | Kỹ năng |
-|--------|--------|
-| 🔧 **Kỹ thuật** | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` |
-| ⚙️ **Vận hành** | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n` |
-| 🎨 **Sản phẩm & UX** | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
-| 📈 **Tăng trưởng/CRO** | `cm-content-factory` `cm-ads-tracker` `cro-methodology` |
-| 🎯 **Điều phối** | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-notebooklm` `cm-how-it-work` |
-| 🖥️ **Quy trình làm việc** | `cm-start` `cm-dashboard` `cm-status` |
+
+| Lĩnh vực                   | Kỹ năng                                                                                                                                       |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🔧 **Kỹ thuật**            | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review`                                                                     |
+| ⚙️ **Vận hành**            | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                    |
+| 🎨 **Sản phẩm & UX**       | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
+| 📈 **Tăng trưởng/CRO**     | `cm-content-factory` `cm-ads-tracker` `cro-methodology`                                                                                       |
+| 🎯 **Điều phối**           | `cm-execution` `cm-continuity` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index` `cm-deep-search` `cm-notebooklm` `cm-how-it-work`         |
+| 🖥️ **Quy trình làm việc** | `cm-start` `cm-dashboard` `cm-status`                                                                                                         |
+
 
 ---
 
@@ -279,6 +281,7 @@ CLI sẽ tương tác và giúp bạn tổ chức công việc trong những phi
 Chạy `cm --help` để xem danh sách **theo mã nguồn** (`src/cli/command-registry.ts`). Tóm tắt:
 
 **Lệnh CLI:**
+
 ```
 cm, codymaster              → CLI
 cm status                   → Tóm tắt task & dự án
@@ -301,6 +304,7 @@ cm distro validate …        → Kiểm tra gói skill
 **Bus, budget, `cm://`, tìm memory:** dùng MCP server — [docs/api/api-reference.md](docs/api/api-reference.md). Kỹ thuật: [engineering-pipeline](docs/workflows/engineering-pipeline.md) · [servers-and-mcp](docs/architecture/servers-and-mcp.md).
 
 **Lệnh Slash (trong AI agent):**
+
 ```
 /cm:demo         → Tour làm quen tương tác
 /cm:bootstrap    → Khởi tạo dự án mới từ đầu
@@ -328,7 +332,7 @@ cm distro validate …        → Kiểm tra gói skill
 - 🌍 [Website](https://cody.todyle.com) — Tổng quan & bản demo
 - 📖 [Tài liệu (site)](https://cody.todyle.com/docs) — Bản host
 - 📘 [Tài liệu (repo)](docs/index.md) — Nguồn Markdown; chạy `npm run docs:dev` (VitePress)
-- 🛠️ [Tham khảo kỹ năng](skills/) — **56** gói `cm-*` SKILL.md trong repo (profile/cài đặt có thể thêm)
+- 🛠️ [Tham khảo kỹ năng](skills/) — **56** gói `cm-`* SKILL.md trong repo (profile/cài đặt có thể thêm)
 - 📖 [Câu chuyện của chúng tôi](https://cody.todyle.com/story) — Tại sao công cụ này tồn tại
 
 ---
@@ -341,11 +345,8 @@ cm distro validate …        → Kiểm tra gói skill
 
 ---
 
-<div align="center">
+*Giấy phép ISC — Miễn phí sử dụng, sửa đổi và phân phối.*   
 
-*Giấy phép ISC — Miễn phí sử dụng, sửa đổi và phân phối.* <br/>
 **Được xây dựng với ❤️ dành cho cộng đồng vibe coding.**
 
 *"CodyMaster" = "Code Đi" — hãy bắt đầu xây dựng ngay thôi.*
-
-</div>

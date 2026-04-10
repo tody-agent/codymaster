@@ -1,10 +1,9 @@
 ---
-
-## title: Security Overview
-
+title: Security Overview
 description: Security-related commands, gates, and skills in CodyMaster — secrets, SAST, and safe automation patterns.
 keywords: codymaster security, secret scanning, quality gate, safe deploy
 robots: index, follow
+---
 
 # Security Overview
 

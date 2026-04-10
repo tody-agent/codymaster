@@ -1,11 +1,9 @@
 ---
-
 title: Working Memory
-
-## description: Continuity files, learnings, decisions, SQLite context database, and MCP access patterns for CodyMaster project memory.
-
+description: Continuity files, learnings, decisions, SQLite context database, and MCP access patterns for CodyMaster project memory.
 keywords: working memory, continuity, learnings, decisions, context db
 robots: index, follow
+---
 
 # Working Memory
 

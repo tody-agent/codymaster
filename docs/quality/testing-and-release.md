@@ -1,9 +1,9 @@
 ---
-
-## title: Testing and Release Gates
+title: Testing and Release Gates
 description: Build, test, and release quality gates for CodyMaster, aligned to package scripts and CI workflow.
 keywords: codymaster test gate, vitest, ci workflow, release checklist
 robots: index, follow
+---
 
 # Testing and Release Gates
 

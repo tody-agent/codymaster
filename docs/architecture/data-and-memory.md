@@ -1,10 +1,9 @@
 ---
-
-## title: Storage and Memory Model
-
+title: Storage and Memory Model
 description: Detailed storage architecture for CodyMaster, including global JSON state, project .cm memory files, and SQLite-backed FTS search.
 keywords: codymaster storage, sqlite fts, context db, .cm memory
 robots: index, follow
+---
 
 # Storage and Memory Model
 

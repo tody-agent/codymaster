@@ -27,8 +27,8 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ### 🚀 Improvements — OpenViking Backend (Real Implementation)
 
-- **`VikingBackend` — real implementation** — `src/backends/viking-backend.ts` implements all 11 `StorageBackend` methods by calling the [OpenViking REST API](https://github.com/volcengine/OpenViking) (default: `http://localhost:1933`). Replaces the placeholder stub from v4.5.5.
-- **`VikingHttpClient`** — New `src/backends/viking-http-client.ts`: thin fetch-based HTTP client wrapping OpenViking's `/write`, `/read`, `/ls`, `/search`, `/abstract`, `/overview`, `/health`, `/mkdir` endpoints. Zero new npm dependencies (uses Node.js built-in `fetch`).
+- `**VikingBackend` — real implementation** — `src/backends/viking-backend.ts` implements all 11 `StorageBackend` methods by calling the [OpenViking REST API](https://github.com/volcengine/OpenViking) (default: `http://localhost:1933`). Replaces the placeholder stub from v4.5.5.
+- `**VikingHttpClient`** — New `src/backends/viking-http-client.ts`: thin fetch-based HTTP client wrapping OpenViking's `/write`, `/read`, `/ls`, `/search`, `/abstract`, `/overview`, `/health`, `/mkdir` endpoints. Zero new npm dependencies (uses Node.js built-in `fetch`).
 - **URI layout in OpenViking workspace:** `learnings/<id>.json`, `decisions/<id>.json`, `indexes/<resource>/<level>.md`, `skill-outputs/<sessionId>/<id>.json`.
 - **Semantic vector search** — `queryLearnings()` and `queryDecisions()` now call OpenViking's `/search` endpoint, which uses embedding-based vector similarity. Finds related memories even when query terms don't match exactly (e.g. "async timeout" matches "network latency spike").
 - **Auto L0/L1 via engine** — `getL0Abstract()` and `getL1Overview()` call OpenViking's `/abstract` and `/overview` endpoints. No manual `cm continuity index` needed with Viking backend.
@@ -42,10 +42,10 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ### 🚀 Improvements — StorageBackend Interface (OpenViking Swap Path)
 
-- **`StorageBackend` interface** — New `src/storage-backend.ts` defines an 11-method abstraction over CodyMaster's persistent memory store. Swapping storage engines is now a config change, not a code rewrite.
-- **`SqliteBackend`** — Thin wrapper around `context-db.ts`. Zero logic duplication; all existing callers untouched. New callers use `getBackend(projectPath)` for polymorphism.
-- **`VikingBackend` stub** — All methods throw a descriptive `NotImplementedError` with step-by-step install instructions for `@openviking/client`. Explicit swap path documented.
-- **`getBackend(projectPath)` factory** — Reads `.cm/config.yaml → storage.backend` (`sqlite` | `viking`). Defaults to `sqlite` when config is absent or malformed.
+- `**StorageBackend` interface** — New `src/storage-backend.ts` defines an 11-method abstraction over CodyMaster's persistent memory store. Swapping storage engines is now a config change, not a code rewrite.
+- `**SqliteBackend`** — Thin wrapper around `context-db.ts`. Zero logic duplication; all existing callers untouched. New callers use `getBackend(projectPath)` for polymorphism.
+- `**VikingBackend` stub** — All methods throw a descriptive `NotImplementedError` with step-by-step install instructions for `@openviking/client`. Explicit swap path documented.
+- `**getBackend(projectPath)` factory** — Reads `.cm/config.yaml → storage.backend` (`sqlite` | `viking`). Defaults to `sqlite` when config is absent or malformed.
 - **Config template updated** — `cm continuity init` now writes a `storage:` section to `.cm/config.yaml` with the backend switch commented out.
 - **Zero breaking changes** — `context-db.ts` and all existing callers unchanged. StorageBackend is additive.
 - **Test suite expanded** — `test/storage-backend.test.ts` (23 tests): factory defaults, config-driven dispatch, SqliteBackend full roundtrip, VikingBackend error messages. Total: **178 passed · 16 skipped · 0 failed**.
@@ -106,7 +106,6 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 - **cm-brainstorm-idea Phase 4.5 (UI Preview)** — Now integrates with `cm-ui-preview` to automatically generate visual mockups (via Google Stitch or Pencil MCP) *after* recommending an approach but *before* detailed planning begins. Provides instant visual validation of ideas.
 - **OpenSpec Protocol Upgrade** — Enhanced integration with Fission-AI OpenSpec format (`openspec/changes/[initiative]/proposal.md`) for seamless context handoffs to downstream skills (`cm-planning` & `cm-execution`).
 - **Skill Evolution Engine** — Successfully executed automated self-healing mechanisms (Mode: FIX) for `cm-tdd` and `cm-debugging` after health monitor alerts.
-
 
 ## [4.3.0] - 2026-03-27
 

@@ -1,11 +1,9 @@
 ---
-
 title: Using Skills
-
-## description: How to invoke CodyMaster skills in Claude, Cursor, or other agents — discovery, triggers, and handoffs.
-
+description: How to invoke CodyMaster skills in Claude, Cursor, or other agents — discovery, triggers, and handoffs.
 keywords: codymaster skills, SKILL.md, agent instructions
 robots: index, follow
+---
 
 # Using Skills
 

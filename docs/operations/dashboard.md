@@ -1,11 +1,9 @@
 ---
-
 title: Dashboard (Mission Control)
-
-## description: Start, stop, and use the CodyMaster dashboard server — default port, PID file, and how it relates to kanban data.
-
+description: Start, stop, and use the CodyMaster dashboard server — default port, PID file, and how it relates to kanban data.
 keywords: codymaster dashboard, mission control, express dashboard
 robots: index, follow
+---
 
 # Dashboard (Mission Control)
 

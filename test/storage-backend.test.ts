@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -15,6 +15,13 @@ function makeTmpProject(): string {
 
 function rmrf(p: string) {
   fs.rmSync(p, { recursive: true, force: true });
+}
+
+/** Let VikingBackend fire-and-forget promises settle without Vitest console RPC races. */
+async function drainEventLoop(): Promise<void> {
+  for (let i = 0; i < 6; i += 1) {
+    await new Promise<void>((resolve) => setImmediate(resolve));
+  }
 }
 
 function writeConfig(projectPath: string, content: string) {
@@ -191,13 +198,28 @@ describe('SqliteBackend', () => {
 // Offline tests cover: construction, lifecycle, fire-and-forget writes.
 
 describe('VikingBackend', () => {
+  let warnSpy: ReturnType<typeof vi.spyOn>;
+  let errorSpy: ReturnType<typeof vi.spyOn>;
+
+  beforeEach(() => {
+    warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    errorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+  });
+
+  afterEach(async () => {
+    await drainEventLoop();
+    warnSpy.mockRestore();
+    errorSpy.mockRestore();
+  });
+
   it('constructs without throwing', () => {
     expect(() => new VikingBackend()).not.toThrow();
   });
 
-  it('initialize() does not throw (async health ping is fire-and-forget)', () => {
+  it('initialize() does not throw (async health ping is fire-and-forget)', async () => {
     const backend = new VikingBackend({ port: 19999 });
     expect(() => backend.initialize()).not.toThrow();
+    await drainEventLoop();
   });
 
   it('close() does not throw', () => {
@@ -205,33 +227,37 @@ describe('VikingBackend', () => {
     expect(() => backend.close()).not.toThrow();
   });
 
-  it('insertLearning() does not throw when server unreachable (fire-and-forget)', () => {
+  it('insertLearning() does not throw when server unreachable (fire-and-forget)', async () => {
     const backend = new VikingBackend({ port: 19999 });
     expect(() => backend.insertLearning({
       id: 'test-001', what_failed: 'x', why_failed: 'y', how_to_prevent: 'z',
       created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
     })).not.toThrow();
+    await drainEventLoop();
   });
 
-  it('insertDecision() does not throw when server unreachable (fire-and-forget)', () => {
+  it('insertDecision() does not throw when server unreachable (fire-and-forget)', async () => {
     const backend = new VikingBackend({ port: 19999 });
     expect(() => backend.insertDecision({
       id: 'dec-001', decision: 'use viking', rationale: 'vector search',
       created_at: new Date().toISOString(),
     })).not.toThrow();
+    await drainEventLoop();
   });
 
-  it('upsertIndex() does not throw when server unreachable (fire-and-forget)', () => {
+  it('upsertIndex() does not throw when server unreachable (fire-and-forget)', async () => {
     const backend = new VikingBackend({ port: 19999 });
     expect(() => backend.upsertIndex('learnings', 'L0', '## L0', 'hash-abc')).not.toThrow();
+    await drainEventLoop();
   });
 
-  it('writeSkillOutput() does not throw when server unreachable (fire-and-forget)', () => {
+  it('writeSkillOutput() does not throw when server unreachable (fire-and-forget)', async () => {
     const backend = new VikingBackend({ port: 19999 });
     expect(() => backend.writeSkillOutput({
       session_id: 'sess-001', skill: 'cm-planning',
       created_at: new Date().toISOString(),
     })).not.toThrow();
+    await drainEventLoop();
   });
 
   it('factory + viking config → returns VikingBackend instance', () => {
