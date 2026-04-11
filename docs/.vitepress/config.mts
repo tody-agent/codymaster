@@ -88,6 +88,20 @@ export default defineConfig({
         ],
       },
       {
+        text: '🔌 Integrations',
+        collapsed: false,
+        items: [
+          { text: 'Goose', link: '/integrations/goose' },
+        ],
+      },
+      {
+        text: '📊 Benchmark',
+        collapsed: false,
+        items: [
+          { text: 'CodyBench', link: '/benchmark/README' },
+        ],
+      },
+      {
         text: '📖 More',
         collapsed: false,
         items: [
