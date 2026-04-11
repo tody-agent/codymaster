@@ -1,14 +1,10 @@
-
-
 [English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)
 
 # 🧠 CodyMaster
 
 ### Your AI Agent is smart. CodyMaster makes it *wise*.
 
-**68+ Skills · 18 Commands · 1 Plugin · 8+ Platforms · 6 Languages · v5.0.0**
-
-
+**68+ Skills · 20 Commands · 1 Plugin · 8+ Platforms · 6 Languages · v5.1.0**
 
 ```
     ( . \ --- / . )
@@ -22,9 +18,9 @@
 
 CodyMaster Kanban Dashboard
 
+[![Discord](https://img.shields.io/badge/Discord-Join-7289da?logo=discord&logoColor=white)](https://discord.gg/codymaster)
+
 ### 🌟 If CodyMaster saves you time, give it a [Star](https://github.com/tody-agent/codymaster)! 🌟
-
-
 
 ---
 
@@ -71,6 +67,8 @@ graph TD
     class B,C,D,E,F,G,H team;
 ```
 
+
+
 ---
 
 ## ⚡ What Makes CodyMaster Different
@@ -99,6 +97,8 @@ graph LR
     class A,B,C,D,E,F,G,H,I,J,K,L phase;
 ```
 
+
+
 ### 🧠 The Unified Brain: 5-Tier Memory + Smart Spine
 
 Your AI doesn't just execute — it **understands and remembers** using a multi-scale, 5-Tier + Smart Spine architecture that persists across sessions and machines:
@@ -116,7 +116,8 @@ Your AI doesn't just execute — it **understands and remembers** using a multi-
 - **cm:// URI Scheme** — Skills request context by URI, not file paths.
 - **Token Budget** — 200k window pre-allocated by category. No more silent overflow.
 - **Context Bus** — Skills share outputs in real-time within a chain.
-- **MCP Server** — 13 tools exposed to Claude Desktop and any MCP client (`src/mcp-context-server.ts`).
+- **MCP Server** — 15 tools exposed to Claude Desktop, Goose, and any MCP client (`src/mcp-context-server.ts`). Includes `cm_memory_write` and `cm_natural` (NLI: "remember that…", "what did we learn about…").
+- **Intelligent Skill Selection** — `selectTopSkills()` dynamically picks the 2-3 most task-relevant skills per chain execution. Backed by SkillsBench research: 2-3 focused skills = **+18.6pp** vs 4+ loaded statically.
 - **OpenViking Backend natively integrated** — Inspired by OpenViking's architecture, CodyMaster defaults to `openviking` auto-installation. It delivers true semantic vector graph memory, automatic session compression, and temporal context layering. (One config line change: `storage.backend: viking`).
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
@@ -147,6 +148,8 @@ flowchart LR
     style F fill:#0097e6,stroke:#00a8ff,color:#fff
     style G fill:#4cd137,stroke:#44bd32,color:#fff
 ```
+
+
 
 > **Result:** Zero leaked secrets. Zero wrong-account deploys. Zero "worked on my machine" failures.
 
@@ -183,16 +186,16 @@ Track it all on the **Visual Dashboard** (`cm-dashboard`): No more guessing. Tra
 CodyMaster doesn't just run skills — it **watches them, scores them, and heals them automatically.**
 
 - `**cm-skill-health`** monitors every invocation: success rate, token usage, error patterns.
-- `**cm-skill-evolution**` auto-patches degraded skills (Mode: FIX) when health scores drop below threshold.
+- `**cm-skill-evolution`** auto-patches degraded skills (Mode: FIX) when health scores drop below threshold.
 - `**cm-skill-chain` Auto-Dispatch** — Inspired by OpenSpace automation orchestrators, sequence dispatching is now 100% automated with intelligent task detection, zero-touch handoffs, and multi-agent coordination.
 - `**cm-skill-search`** uses BM25 ranking to find the right skill for any task.
-- `**cm-skill-share**` exports & imports skills across teams and machines.
+- `**cm-skill-share`** exports & imports skills across teams and machines.
 
 > **Think of it like an immune system for your AI toolkit.** Skills that break get healed. Skills that work well get reinforced. Dead skills get archived.
 
 ### 🚀 Growth Hacking Engine
 
-Need popups, booking flows, or lead capture? `**cm-growth-hacking`** generates complete conversion systems: Bottom Sheet + Calendar CTA + Tracking. Auto-detects industry, selects the right pattern, wires up `**cm-booking-calendar**` for appointments and `**cm-ads-tracker**` for pixel tracking. Zero dependencies.
+Need popups, booking flows, or lead capture? `**cm-growth-hacking`** generates complete conversion systems: Bottom Sheet + Calendar CTA + Tracking. Auto-detects industry, selects the right pattern, wires up `**cm-booking-calendar`** for appointments and `**cm-ads-tracker**` for pixel tracking. Zero dependencies.
 
 ---
 
@@ -266,7 +269,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 #### After `install.sh --all` (verify)
 
 - **Restart** Claude Code, Cursor, or Gemini / Antigravity so they reload config and rules from disk.
-- **Cursor:** rules go to `**~/.cursor/rules`** (always under your home folder, not wherever you ran the script). In Agent chat, run `**/add-plugin cody-master**`. To install rules **only inside one git repo**, run from that repo: `bash install.sh --cursor --cursor-project`.
+- **Cursor:** rules go to `**~/.cursor/rules`** (always under your home folder, not wherever you ran the script). In Agent chat, run `**/add-plugin cody-master`**. To install rules **only inside one git repo**, run from that repo: `bash install.sh --cursor --cursor-project`.
 - **Gemini / Antigravity:** skills live in `~/.gemini/antigravity/skills`. The installer **creates or appends** `~/.gemini/GEMINI.md` with `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` when that hint is missing.
 - **Claude Code:** if commands like `/cm:demo` do not appear, run `claude plugin marketplace add tody-agent/codymaster` then `claude plugin install cm@codymaster --scope user` (or `--scope project`).
 - **Non-interactive:** `--all` skips the onboarding menu. For a single platform, add `**--yes`** (e.g. `bash install.sh --gemini --yes`).
@@ -332,7 +335,25 @@ The CLI will greet you and keep you organized on your long coding sessions!
 │  ○ 🧩  Browse Skills
 ```
 
+---
 
+## Use with Goose
+
+CodyMaster works as a [Goose](https://block.github.io/goose/) MCP extension, giving Goose persistent memory, skill orchestration, and token management.
+
+**3-step setup:**
+
+```bash
+# 1. Install CodyMaster
+npm install -g codymaster
+
+# 2. Get your Goose config snippet
+cm mcp-serve --print-config
+
+# 3. Paste the output into your Goose config (~/.config/goose/config.yaml)
+```
+
+See [full Goose integration guide](docs/integrations/goose.md) for details.
 
 ---
 
@@ -340,18 +361,20 @@ The CLI will greet you and keep you organized on your long coding sessions!
 
 > **Tip:** Start any session with `/cm:start <your goal>` and CodyMaster will pick the right skills automatically.
 
-| Scenario | Skills Used | What You Say |
-|----------|-------------|--------------|
-| 🐛 **Fix a bug without breaking anything** | `cm-debugging` → `cm-tdd` → `cm-quality-gate` | *"Debug this crash"* |
-| 🚀 **Ship a feature safely** | `cm-planning` → `cm-tdd` → `cm-code-review` → `cm-safe-deploy` | *"Build the login flow"* |
-| 🎨 **Build a new UI from scratch** | `cm-ux-master` → `cm-design-system` → `cm-ui-preview` | *"Design the dashboard page"* |
-| 🔒 **Deploy to production** | `cm-secret-shield` → `cm-security-gate` → `cm-identity-guard` → `cm-safe-deploy` | *"Deploy to prod"* |
-| 📝 **Understand a legacy codebase** | `cm-codeintell` → `cm-dockit` | *"What does this code do?"* |
-| 📈 **Launch a landing page** | `cm-brainstorm-idea` → `cm-cro-methodology` → `cm-content-factory` | *"Build a landing page for my SaaS"* |
-| 🌍 **Add multi-language support** | `cm-safe-i18n` | *"Add Vietnamese and Japanese"* |
-| 🔄 **Start a new project** | `cm-project-bootstrap` → `cm-planning` | *"Bootstrap a Next.js SaaS"* |
-| 🧠 **Resume after a break** | `cm-continuity` → `cm-status` | *"What was I working on?"* |
-| 🏭 **Scale SEO content** | `cm-content-factory` → `cm-auto-publisher` → `cm-ads-tracker` | *"Create 20 articles for my blog"* |
+
+| Scenario                                   | Skills Used                                                                      | What You Say                         |
+| ------------------------------------------ | -------------------------------------------------------------------------------- | ------------------------------------ |
+| 🐛 **Fix a bug without breaking anything** | `cm-debugging` → `cm-tdd` → `cm-quality-gate`                                    | *"Debug this crash"*                 |
+| 🚀 **Ship a feature safely**               | `cm-planning` → `cm-tdd` → `cm-code-review` → `cm-safe-deploy`                   | *"Build the login flow"*             |
+| 🎨 **Build a new UI from scratch**         | `cm-ux-master` → `cm-design-system` → `cm-ui-preview`                            | *"Design the dashboard page"*        |
+| 🔒 **Deploy to production**                | `cm-secret-shield` → `cm-security-gate` → `cm-identity-guard` → `cm-safe-deploy` | *"Deploy to prod"*                   |
+| 📝 **Understand a legacy codebase**        | `cm-codeintell` → `cm-dockit`                                                    | *"What does this code do?"*          |
+| 📈 **Launch a landing page**               | `cm-brainstorm-idea` → `cm-cro-methodology` → `cm-content-factory`               | *"Build a landing page for my SaaS"* |
+| 🌍 **Add multi-language support**          | `cm-safe-i18n`                                                                   | *"Add Vietnamese and Japanese"*      |
+| 🔄 **Start a new project**                 | `cm-project-bootstrap` → `cm-planning`                                           | *"Bootstrap a Next.js SaaS"*         |
+| 🧠 **Resume after a break**                | `cm-continuity` → `cm-status`                                                    | *"What was I working on?"*           |
+| 🏭 **Scale SEO content**                   | `cm-content-factory` → `cm-auto-publisher` → `cm-ads-tracker`                    | *"Create 20 articles for my blog"*   |
+
 
 ---
 
@@ -447,11 +470,8 @@ CI runs `npm ci` and `npm run test:gate:kit` on pushes and pull requests (see `.
 
 ---
 
-
-
 *ISC License — Free to use, modify, and distribute.*   
 
 **Built with ❤️ for the vibe coding community.**
 
 *"CodyMaster" = "Code Đi" (Vietnamese: "Go code!") — just start building.*
-

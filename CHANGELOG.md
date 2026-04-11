@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+## [5.1.0] - 2026-04-11
+
+### 🚀 Improvements — SkillsBench Intelligence + Ecosystem Reach
+
+- **Intelligent Skill Selection (`selectTopSkills`)** — `src/skill-chain.ts` now applies SkillsBench research findings at runtime. Each chain execution dynamically selects the top-3 most relevant skills for the current task (scored by BM25 token overlap + mandatory-step priority bonus). Result: 2-3 focused skills → **+18.6pp** improvement vs 4+ loaded statically (+5.9pp). Chains with >3 mandatory steps still execute fully with a performance advisory logged to stderr. New exported functions: `scoreStepRelevance()`, `selectTopSkills()`.
+
+- **`cm mcp-serve` command** — New `src/cli/commands/mcp-serve.ts` registers `cm mcp-serve [--project <path>] [--print-config]`. Spawns `dist/mcp-context-server.js` over stdio with SIGINT/SIGTERM forwarding. `--print-config` prints ready-to-paste JSON config for **Goose** and **Claude Desktop**, enabling one-command ecosystem integration. Goose extension config: `{ "type": "stdio", "cmd": "npx", "args": ["codymaster", "mcp-serve"] }`.
+
+- **CodyBench v0.1** — New `cm bench` command backed by `src/codybench/` scaffolding. Three eval suites with A/B comparison (with vs without CodyMaster): `tdd-regression` (bug catch rate), `token-efficiency` (savings vs documented 78% claim), `memory-retention` (SQLite recall hit rate). Runner: `claude-code`. Judge: automated (mean/min/max/stddev). Results written to `codybench/reports/`. Methodology mirrors Goose's transparent benchmark publication strategy.
+
+- **NLI Memory Interface (`cm_memory_write` + `cm_natural`)** — MCP server now exposes **15 tools** (up from 13). `cm_memory_write` persists a learning to SQLite with auto-detected category (arch_decision / bug_fix / user_pref / code_pattern / context), configurable scope (session/project/global), TTL, and importance. `cm_natural` is a natural language router: "remember that…" → write, "forget about…" → decay, "what did we learn about…" → FTS5 query. Zero new npm dependencies; pattern matching via regex.
+
+- **Goose integration guide** — `docs/integrations/goose.md` — step-by-step tutorial: install CodyMaster → `cm mcp-serve --print-config` → paste YAML config into Goose → test with `cm_natural`. Tool reference table included.
+
+- **GitHub community templates** — `.github/ISSUE_TEMPLATE/` now includes `good-first-skill.md` (with SkillsBench 12-point quality checklist), `benchmark-needed.md` (CodyBench eval request), `skill-improvement.md` (rubric-based improvement proposal).
+
+- **Version bump** — `package.json` version: `5.0.0` → `5.1.0`. CLI command count: 18 → 20 (`mcp-serve`, `bench`). MCP tool count: 13 → 15.
+
 ## [4.8.0] - 2026-04-10
 
 ### 🚀 Improvements — Documentation site & README accuracy

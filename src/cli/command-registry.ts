@@ -8,6 +8,8 @@ import { registerTaskCommands } from './commands/task';
 import { registerEngineeringCommands } from './commands/engineering';
 import { registerDesignStudioCommands } from './commands/design-studio';
 import { registerDistroCommands } from './commands/distro';
+import { registerMcpServeCommands } from './commands/mcp-serve';
+import { registerBenchCommands } from './commands/bench';
 
 /**
  * Registers all CLI commands with the provided program instance.
@@ -22,4 +24,6 @@ export function registerAllCommands(program: Command) {
   registerEngineeringCommands(program);
   registerDesignStudioCommands(program);
   registerDistroCommands(program);
+  registerMcpServeCommands(program);
+  registerBenchCommands(program);
 }

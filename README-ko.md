@@ -6,7 +6,7 @@
 
 ### 귀하의 AI 에이전트는 똑똑합니다. CodyMaster는 이를 *현명하게* 만듭니다.
 
-**68+가지 스킬 · 18가지 명령어 · 1가지 플러그인 · 8개 이상의 플랫폼 · 6개 국어 · v5.0.0**
+**68+가지 스킬 · 20가지 명령어 · 1가지 플러그인 · 8개 이상의 플랫폼 · 6개 국어 · v5.1.0**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />

@@ -218,24 +218,35 @@ Tier 5: STRUCTURAL CODE MEMORY (optional — code-heavy projects)
 **OpenViking (opt.)  = "semantic vector search + auto L0/L1 + session compression"**
 **qmd (optional)     = "find what was written across hundreds of docs"**
 
-### MCP Context Server (Claude Desktop integration)
+### MCP Context Server (Claude Desktop, Goose, and any MCP client)
 
-Seven tools exposed over stdio to Claude Desktop and MCP-compatible clients:
-
-| Tool | Purpose |
-|---|---|
-| `cm_query` | FTS5 keyword search — learnings, decisions, or both |
-| `cm_resolve` | Load any `cm://` URI at L0/L1/L2 depth |
-| `cm_bus_read` | Read live context bus state |
-| `cm_bus_write` | Publish skill output to the bus |
-| `cm_budget_check` | Pre-flight token check by category |
-| `cm_memory_decay` | Archive expired learnings (supports dry_run) |
-| `cm_index_refresh` | Regenerate L0 indexes on demand |
+Fifteen tools exposed over stdio — start with `cm mcp-serve`:
 
 ```bash
-# Get install snippet for Claude Desktop config
-cm continuity mcp
+# Start MCP server (stdio)
+cm mcp-serve --project /path/to/project
+
+# Print config snippet for Claude Desktop or Goose
+cm mcp-serve --print-config
 ```
+
+| Tool | Purpose | Since |
+|---|---|---|
+| `cm_query` | FTS5 keyword search — learnings, decisions, or both | v4.5 |
+| `cm_resolve` | Load any `cm://` URI at L0/L1/L2 depth | v4.5 |
+| `cm_bus_read` | Read live context bus state | v4.5 |
+| `cm_bus_write` | Publish skill output to the bus | v4.5 |
+| `cm_budget_check` | Pre-flight token check by category | v4.5 |
+| `cm_memory_decay` | Archive expired learnings (supports dry_run) | v4.5 |
+| `cm_index_refresh` | Regenerate L0 indexes on demand | v4.5 |
+| `cm_plan` | Sprint + pipeline snapshot bridge | v4.8 |
+| `cm_review` | Review artifact hints | v4.8 |
+| `cm_qa` | QA workflow hints | v4.8 |
+| `cm_deploy` | Deploy workflow hints | v4.8 |
+| `cm_search` | Search learnings/decisions (alias) | v4.8 |
+| `cm_memory_query` | Memory search (alias) | v4.8 |
+| `cm_memory_write` | Persist a learning with auto-detected category, scope, TTL | v5.1 |
+| `cm_natural` | NLI router: "remember that…" / "forget…" / "what did we learn…" | v5.1 |
 
 ### cm:// URI Scheme
 

@@ -4,6 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.matchChain = matchChain;
+exports.scoreStepRelevance = scoreStepRelevance;
+exports.selectTopSkills = selectTopSkills;
 exports.listChains = listChains;
 exports.findChain = findChain;
 exports.createChainExecution = createChainExecution;
@@ -43,6 +45,47 @@ function matchChain(taskTitle) {
     }
     return bestMatch;
 }
+// ─── Intelligent Skill Selection (SkillsBench: 2-3 skills = +18.6pp) ────────
+// TRIZ #1: Segmentation — select only relevant sub-components
+/**
+ * Score a single chain step's relevance to the given task title.
+ * Mandatory steps (optional=false, condition='always') receive a +100 base bonus
+ * to ensure they are always prioritised over optional ones.
+ */
+function scoreStepRelevance(taskTitle, step) {
+    const taskTokens = new Set(taskTitle.toLowerCase().split(/\W+/).filter(t => t.length > 2));
+    const descTokens = step.description.toLowerCase().split(/\W+/).filter(t => t.length > 2);
+    const overlap = descTokens.filter(t => taskTokens.has(t)).length;
+    const mandatoryBonus = (!step.optional && step.condition === 'always') ? 100 : 0;
+    return overlap + mandatoryBonus;
+}
+/**
+ * Select the most relevant skills for a task, capped at maxSkills.
+ *
+ * Rules:
+ * - Mandatory steps (optional=false AND condition='always') are ALWAYS included,
+ *   even if their count exceeds maxSkills (safety > optimisation).
+ * - Remaining slots are filled with the highest-scoring optional steps.
+ * - If mandatory count > maxSkills, a performance warning is emitted.
+ */
+function selectTopSkills(taskTitle, chain, maxSkills = 3) {
+    const mandatory = chain.steps.filter(s => !s.optional && s.condition === 'always');
+    const optional = chain.steps.filter(s => s.optional || s.condition !== 'always');
+    if (mandatory.length > maxSkills) {
+        process.stderr.write(`[CodyMaster] Chain "${chain.name}" has ${mandatory.length} mandatory steps (>${maxSkills}). ` +
+            `Consider splitting this chain. (SkillsBench: 2-3 skills = +18.6pp)\n`);
+        return mandatory; // include all mandatory — cannot safely drop them
+    }
+    const remaining = maxSkills - mandatory.length;
+    const scoredOptional = optional
+        .map(step => ({ step, score: scoreStepRelevance(taskTitle, step) }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, remaining)
+        .map(({ step }) => step);
+    // Preserve original chain order
+    const selected = new Set([...mandatory, ...scoredOptional]);
+    return chain.steps.filter(s => selected.has(s));
+}
 /**
  * List all available chains (built-in + user-defined in the future).
  */
@@ -62,7 +105,8 @@ function findChain(chainId) {
  */
 function createChainExecution(chain, projectId, taskTitle, agent, projectPath) {
     const now = new Date().toISOString();
-    const steps = chain.steps.map((step, index) => ({
+    const selectedSteps = selectTopSkills(taskTitle, chain);
+    const steps = selectedSteps.map((step, index) => ({
         index,
         skill: step.skill,
         description: step.description,

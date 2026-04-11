@@ -37,8 +37,9 @@ Full skill names: `cm-brainstorm-idea`, `cm-planning`, `cm-tdd`, `cm-execution`,
 
 ## Built-in Chains
 
-### 🚀 feature-development (6 steps)
-`brainstorm-idea → planning → tdd → execution → quality-gate → safe-deploy`
+### 🚀 feature-development (up to 3 active steps)
+`brainstorm-idea* → planning → tdd → execution → quality-gate → safe-deploy*`
+*optional steps — only activated when task context scores them relevant
 
 ### 🐛 bug-fix (3 steps)
 `debugging → tdd → quality-gate`
@@ -46,11 +47,31 @@ Full skill names: `cm-brainstorm-idea`, `cm-planning`, `cm-tdd`, `cm-execution`,
 ### 📝 content-launch (3 steps)
 `content-factory → ads-tracker → cm-cro-methodology`
 
-### 🏗️ new-project (6 steps)
-`project-bootstrap → planning → tdd → execution → quality-gate → safe-deploy`
+### 🏗️ new-project (up to 3 active steps)
+`project-bootstrap → planning → tdd → execution → quality-gate → safe-deploy*`
+*optional steps selected by task relevance
 
 ### 🔍 cm-code-review (3 steps)
 `cm-code-review → quality-gate → safe-deploy`
+
+## Intelligent Skill Selection (v5.1)
+
+Chains no longer execute every step blindly. `selectTopSkills()` dynamically selects the **top 3 most relevant steps** for each task:
+
+```
+Task: "fix login timeout bug"
+  → Scores each step by keyword overlap with task description
+  → Mandatory steps (condition='always', optional=false) always included first
+  → Optional steps ranked by relevance score, capped at 3 total
+  → Result: debugging (score 105) → tdd (score 101) → quality-gate (score 100)
+```
+
+**Why it matters (SkillsBench research):**
+- 2-3 focused skills → **+18.6pp** task performance
+- 4+ skills → **+5.9pp**
+- Monolithic loading → **-2.9pp**
+
+If a chain has more than 3 mandatory steps, all mandatory steps run and a performance advisory is logged.
 
 ## Workflow
 

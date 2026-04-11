@@ -27,7 +27,7 @@
  */
 
 import path from 'path';
-import { openDb, getDbPath, queryLearnings, queryDecisions, closeDb } from './context-db';
+import { openDb, getDbPath, queryLearnings, queryDecisions, closeDb, insertLearning } from './context-db';
 import { resolve as resolveUri } from './uri-resolver';
 import { readBus, updateBusStep } from './context-bus';
 import { loadBudget, checkBudget, estimateTokens } from './token-budget';
@@ -171,6 +171,101 @@ function cmBudgetCheck(args: BudgetCheckArgs) {
 
 interface DecayArgs {
   dry_run?: boolean;
+}
+
+// ─── NLI Memory Tools ────────────────────────────────────────────────────────
+
+interface MemoryWriteArgs {
+  content: string;
+  scope?: string;
+  category?: string;
+  ttl_days?: number;
+  importance?: 'low' | 'medium' | 'high';
+}
+
+function autoDetectCategory(content: string): string {
+  const c = content.toLowerCase();
+  if (/\b(decided|architecture|we chose|design decision|chose to)\b/.test(c)) return 'arch_decision';
+  if (/\b(bug|fixed|caused by|root cause|crash)\b/.test(c)) return 'bug_fix';
+  if (/\b(prefer|always use|never use|avoid|convention|standard)\b/.test(c)) return 'user_pref';
+  if (/\b(function|pattern|approach|method|implementation)\b/.test(c)) return 'code_pattern';
+  return 'context';
+}
+
+function cmMemoryWrite(args: MemoryWriteArgs) {
+  const { content, scope = 'project', category, ttl_days, importance = 'medium' } = args;
+  if (!content?.trim()) throw new Error('content is required');
+
+  const detectedCategory = category || autoDetectCategory(content);
+  const defaultTtl: Record<string, number> = { session: 30, project: 90, global: 365 };
+  const ttl = ttl_days ?? defaultTtl[scope] ?? 90;
+
+  const now = new Date().toISOString();
+  const id = `nli-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+
+  const dbPath = getDbPath(PROJECT_PATH);
+  insertLearning(dbPath, {
+    id,
+    what_failed: content,
+    why_failed: detectedCategory,
+    how_to_prevent: `importance:${importance}`,
+    scope,
+    ttl,
+    reinforce_count: 0,
+    status: 'active',
+    created_at: now,
+    updated_at: now,
+    agent: 'cm_natural',
+  });
+
+  return { ok: true, id, content, category: detectedCategory, scope, ttl_days: ttl, importance };
+}
+
+const NLI_PATTERNS: Array<{
+  pattern: RegExp;
+  action: 'write' | 'decay' | 'query';
+  scope?: string;
+  importance?: 'low' | 'medium' | 'high';
+}> = [
+  { pattern: /\b(remember|save|note)\s+that\s+/i,       action: 'write', scope: 'project' },
+  { pattern: /\b(remember|save)\s+this[:\s]/i,           action: 'write', scope: 'project' },
+  { pattern: /\bimportant[:\s]+/i,                       action: 'write', scope: 'project', importance: 'high' },
+  { pattern: /\b(forget|remove|ignore)\s+(about\s+)?/i,  action: 'decay' },
+  { pattern: /\bwhat\s+did\s+we\s+(learn|know)\b/i,      action: 'query' },
+  { pattern: /\bwhat\s+do\s+we\s+know\b/i,               action: 'query' },
+  { pattern: /\blessons?\s+learned\b/i,                  action: 'query' },
+  { pattern: /\b(search|find|look\s+up)\b/i,             action: 'query' },
+];
+
+function cmNatural(args: { text: string }) {
+  const { text } = args;
+  if (!text?.trim()) throw new Error('text is required');
+
+  for (const rule of NLI_PATTERNS) {
+    const match = text.match(rule.pattern);
+    if (!match) continue;
+    const extracted = text.slice((match.index ?? 0) + match[0].length).trim();
+
+    if (rule.action === 'write') {
+      const result = cmMemoryWrite({
+        content: extracted || text,
+        scope: rule.scope ?? 'project',
+        importance: rule.importance ?? 'medium',
+      });
+      return { ...result, matched_pattern: rule.pattern.source, routed_to: 'cm_memory_write' };
+    }
+    if (rule.action === 'decay') {
+      const result = cmMemoryDecay({ dry_run: false });
+      return { ...result, matched_pattern: rule.pattern.source, routed_to: 'cm_memory_decay' };
+    }
+    // query / search
+    const result = cmQuery({ query: extracted || text, scope: 'all', limit: 10 });
+    return { ...result, matched_pattern: rule.pattern.source, routed_to: 'cm_query' };
+  }
+
+  // No pattern matched — default to search
+  const result = cmQuery({ query: text, scope: 'all', limit: 10 });
+  return { ...result, matched_pattern: null, routed_to: 'cm_query (default)' };
 }
 
 function cmMemoryDecay(args: DecayArgs) {
@@ -399,6 +494,44 @@ const TOOLS = [
       required: ['query'],
     },
   },
+  {
+    name: 'cm_memory_write',
+    description: 'Write a new memory/learning to persistent storage. Use to save knowledge, decisions, preferences, or patterns for future sessions.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        content: { type: 'string', description: 'What to remember (the memory content)' },
+        scope: {
+          type: 'string',
+          enum: ['session', 'project', 'global'],
+          description: 'Memory scope: session=30d, project=90d, global=365d (default: project)',
+        },
+        category: {
+          type: 'string',
+          enum: ['code_pattern', 'arch_decision', 'bug_fix', 'user_pref', 'context'],
+          description: 'Category (auto-detected from content if omitted)',
+        },
+        ttl_days: { type: 'number', description: 'Override TTL in days' },
+        importance: {
+          type: 'string',
+          enum: ['low', 'medium', 'high'],
+          description: 'Importance level (default: medium)',
+        },
+      },
+      required: ['content'],
+    },
+  },
+  {
+    name: 'cm_natural',
+    description: 'Natural language memory interface. Understands "remember that...", "forget about...", "what did we learn about...", "find...". Routes to appropriate memory operation automatically.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        text: { type: 'string', description: 'Freeform natural language instruction or question' },
+      },
+      required: ['text'],
+    },
+  },
 ];
 
 // ─── MCP stdio protocol (JSON-RPC 2.0, Content-Length framing) ───────────────
@@ -457,6 +590,8 @@ async function handleRequest(msg: { id?: unknown; method: string; params?: Recor
         result = cmSearchTool(PROJECT_PATH, a as { query: string; scope?: 'learnings' | 'decisions' | 'all'; limit?: number });
       else if (name === 'cm_memory_query')
         result = cmMemoryQueryTool(PROJECT_PATH, a as { query: string; limit?: number });
+      else if (name === 'cm_memory_write') result = cmMemoryWrite(a as unknown as MemoryWriteArgs);
+      else if (name === 'cm_natural')       result = cmNatural(a as { text: string });
       else throw new Error(`Unknown tool: ${name}`);
 
       respond(id, {

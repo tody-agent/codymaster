@@ -4,7 +4,7 @@
 
 ### AI Agent của bạn thông minh. CodyMaster làm nó trở nên *thông thái*.
 
-**68+ Kỹ năng · 18 Lệnh · 1 Plugin · 8+ Nền tảng · 6 Ngôn ngữ · v5.0.0**
+**68+ Kỹ năng · 20 Lệnh · 1 Plugin · 8+ Nền tảng · 6 Ngôn ngữ · v5.1.0**
 
 CodyMaster Kanban Dashboard
 

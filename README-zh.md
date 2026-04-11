@@ -6,7 +6,7 @@
 
 ### 您的 AI 智能体很聪明。CodyMaster 让它变得*睿智*。
 
-**68+ 项技能 · 18 条命令 · 1 个插件 · 8+ 个平台 · 6 种语言 · v5.0.0**
+**68+ 项技能 · 20 条命令 · 1 个插件 · 8+ 个平台 · 6 种语言 · v5.1.0**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />

@@ -6,7 +6,7 @@
 
 ### Ваш AI-агент умен. CodyMaster делает его *мудрым*.
 
-**68+ навыков · 18 команд · 1 плагин · 8+ платформ · 6 языков · v5.0.0**
+**68+ навыков · 20 команд · 1 плагин · 8+ платформ · 6 языков · v5.1.0**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />

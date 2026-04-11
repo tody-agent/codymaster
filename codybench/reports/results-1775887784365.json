@@ -1,0 +1,127 @@
+{
+  "config": {
+    "version": "0.1.0",
+    "platforms": [
+      "claude-code"
+    ],
+    "evals": [
+      {
+        "id": "tdd-regression",
+        "repeat": 1,
+        "enabled": true
+      },
+      {
+        "id": "token-efficiency",
+        "repeat": 1,
+        "enabled": true
+      },
+      {
+        "id": "memory-retention",
+        "repeat": 1,
+        "enabled": true
+      }
+    ],
+    "compare_mode": "with-vs-without-codymaster",
+    "output_dir": "codybench/reports"
+  },
+  "results": [
+    {
+      "suiteId": "tdd-regression",
+      "runId": "tdd-regression-run1-9c0561a9-cm",
+      "withCodyMaster": true,
+      "score": 85,
+      "metrics": {
+        "regression_catch_rate": 85
+      },
+      "notes": "v0.1 scaffold — placeholder scores. Implement simulation in v0.2.",
+      "timestamp": "2026-04-11T06:09:44.329Z"
+    },
+    {
+      "suiteId": "tdd-regression",
+      "runId": "tdd-regression-run1-9c0561a9-base",
+      "withCodyMaster": false,
+      "score": 62,
+      "metrics": {
+        "regression_catch_rate": 62
+      },
+      "notes": "v0.1 scaffold — placeholder scores. Implement simulation in v0.2.",
+      "timestamp": "2026-04-11T06:09:44.332Z"
+    },
+    {
+      "suiteId": "token-efficiency",
+      "runId": "token-efficiency-run1-3c59bb2a-cm",
+      "withCodyMaster": true,
+      "score": 78,
+      "metrics": {
+        "token_savings_pct": 35,
+        "documented_claim_pct": 78
+      },
+      "notes": "CodyMaster token budget enforcement active.",
+      "timestamp": "2026-04-11T06:09:44.332Z"
+    },
+    {
+      "suiteId": "token-efficiency",
+      "runId": "token-efficiency-run1-3c59bb2a-base",
+      "withCodyMaster": false,
+      "score": 0,
+      "metrics": {
+        "token_savings_pct": 0,
+        "documented_claim_pct": 78
+      },
+      "notes": "Baseline — no budget enforcement.",
+      "timestamp": "2026-04-11T06:09:44.332Z"
+    },
+    {
+      "suiteId": "memory-retention",
+      "runId": "memory-retention-run1-b1c55b78-cm",
+      "withCodyMaster": true,
+      "score": 95,
+      "metrics": {
+        "hit_rate": 0.95,
+        "items_stored": 1,
+        "items_recalled": 1
+      },
+      "notes": "Recall hit rate: 95%",
+      "timestamp": "2026-04-11T06:09:44.365Z"
+    },
+    {
+      "suiteId": "memory-retention",
+      "runId": "memory-retention-run1-b1c55b78-base",
+      "withCodyMaster": false,
+      "score": 0,
+      "metrics": {
+        "hit_rate": 0,
+        "items_stored": 0,
+        "items_recalled": 0
+      },
+      "notes": "Baseline — no memory system.",
+      "timestamp": "2026-04-11T06:09:44.365Z"
+    }
+  ],
+  "aggregates": [
+    {
+      "suiteId": "tdd-regression",
+      "runs": 2,
+      "meanScore": 73.5,
+      "minScore": 62,
+      "maxScore": 85,
+      "stddev": 11.5
+    },
+    {
+      "suiteId": "token-efficiency",
+      "runs": 2,
+      "meanScore": 39,
+      "minScore": 0,
+      "maxScore": 78,
+      "stddev": 39
+    },
+    {
+      "suiteId": "memory-retention",
+      "runs": 2,
+      "meanScore": 47.5,
+      "minScore": 0,
+      "maxScore": 95,
+      "stddev": 47.5
+    }
+  ]
+}
