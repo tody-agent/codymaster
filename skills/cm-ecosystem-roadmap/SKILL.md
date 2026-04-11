@@ -1,3 +1,7 @@
+---
+name: cm-ecosystem-roadmap
+description: "Use when exploring the CodyMaster skill ecosystem roadmap, marketplace, or distro validation."
+---
 # cm-ecosystem-roadmap — marketplace & distros
 
 **In CLI today:** `cm distro validate <dir>` checks skill folder layout; see **ADR 003** (`docs/adr/003-skill-distro-and-meta.md`) for `meta.json` + tmpl rules.

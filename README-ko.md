@@ -6,7 +6,7 @@
 
 ### 귀하의 AI 에이전트는 똑똑합니다. CodyMaster는 이를 *현명하게* 만듭니다.
 
-**68+가지 스킬 · 18가지 명령어 · 1가지 플러그인 · 7개 이상의 플랫폼 · 6개 국어**
+**68+가지 스킬 · 18가지 명령어 · 1가지 플러그인 · 8개 이상의 플랫폼 · 6개 국어 · v5.0.0**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
@@ -210,7 +210,24 @@ flowchart LR
 
 ## 🚀 1분 설치
 
-### 1. AI 스킬 설치 (모든 플랫폼)
+### ✨ 신규: Claude Desktop 플러그인 (터미널 불필요)
+
+CodyMaster를 가장 쉽게 설치하는 방법 — npm 없이, 터미널 없이, 설정 없이.
+
+**Claude Desktop / Claude Cowork:**
+
+1. Claude Desktop에서 **Settings → Plugins** 열기
+2. **"Add marketplace"** 클릭
+3. 입력: `tody-agent/codymaster`
+4. **"Sync"** 클릭 → 완료 ✅
+
+68+ 스킬과 18개 슬래시 명령어가 즉시 로드됩니다. **Claude Desktop**, **Claude Cowork** 및 플러그인 마켓플레이스를 지원하는 모든 Claude 클라이언트에서 작동합니다.
+
+> [최신 릴리즈](https://github.com/tody-agent/codymaster/releases)에서 `cm.plugin` 파일을 Claude Desktop으로 드래그&드롭할 수도 있습니다.
+
+---
+
+### 2. AI 스킬 설치 (모든 플랫폼)
 
 단일 명령어로 68+개의 스킬을 환경에 설치합니다. Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode 등을 지원합니다:
 
@@ -220,7 +237,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 *Cursor IDE 사용자의 경우 에이전트 채팅에서 `/add-plugin cody-master`를 입력해도 됩니다.*
 
-### 2. 미션 컨트롤 대시보 설치 (선택 사항이지만 권장됨)
+### 3. 미션 컨트롤 대시보드 설치 (선택 사항이지만 권장됨)
 
 햄스터 Cody 🐹와 함께 진행 상황을 시각화하고 작업을 관리하며 10배 코딩 기록을 추적하세요.
 
@@ -245,6 +262,25 @@ cm
 │  ○ 📈 Status
 │  ○ 🧩  Browse Skills
 ```
+
+---
+
+## 🎯 실제 사용 사례
+
+> **팁:** `/cm:start <목표>`로 세션을 시작하면 CodyMaster가 자동으로 적합한 스킬을 선택합니다.
+
+| 시나리오 | 사용된 스킬 | 무슨 말을 하면 되나요 |
+|---------|------------|-------------------|
+| 🐛 **다른 것을 깨지 않고 버그 수정** | `cm-debugging` → `cm-tdd` → `cm-quality-gate` | *"이 크래시 디버그해줘"* |
+| 🚀 **기능 안전하게 배포** | `cm-planning` → `cm-tdd` → `cm-code-review` → `cm-safe-deploy` | *"로그인 흐름 만들어줘"* |
+| 🎨 **처음부터 UI 구축** | `cm-ux-master` → `cm-design-system` → `cm-ui-preview` | *"대시보드 페이지 디자인해줘"* |
+| 🔒 **프로덕션 배포** | `cm-secret-shield` → `cm-security-gate` → `cm-identity-guard` → `cm-safe-deploy` | *"프로덕션에 배포해줘"* |
+| 📝 **레거시 코드베이스 이해** | `cm-codeintell` → `cm-dockit` | *"이 코드가 뭐 하는 거야?"* |
+| 📈 **랜딩 페이지 론칭** | `cm-brainstorm-idea` → `cm-cro-methodology` → `cm-content-factory` | *"SaaS 랜딩 페이지 만들어줘"* |
+| 🌍 **다국어 지원 추가** | `cm-safe-i18n` | *"한국어와 일본어 추가해줘"* |
+| 🔄 **새 프로젝트 시작** | `cm-project-bootstrap` → `cm-planning` | *"Next.js SaaS 부트스트랩해줘"* |
+| 🧠 **휴식 후 재개** | `cm-continuity` → `cm-status` | *"내가 뭘 하고 있었지?"* |
+| 🏭 **SEO 콘텐츠 확장** | `cm-content-factory` → `cm-auto-publisher` → `cm-ads-tracker` | *"블로그 글 20개 만들어줘"* |
 
 ---
 

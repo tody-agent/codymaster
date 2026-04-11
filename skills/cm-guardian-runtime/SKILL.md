@@ -1,3 +1,7 @@
+---
+name: cm-guardian-runtime
+description: "Use when you need to check if a destructive command is blocked or run guardian freeze checks."
+---
 # cm-guardian-runtime — destructive command & freeze checks
 
 ## Commands

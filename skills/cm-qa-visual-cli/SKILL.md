@@ -1,3 +1,7 @@
+---
+name: cm-qa-visual-cli
+description: "Use when you need to take screenshots or run visual QA via the browse daemon CLI."
+---
 # cm-qa-visual-cli — screenshot via browse daemon
 
 ## Prerequisites

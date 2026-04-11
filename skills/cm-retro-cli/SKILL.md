@@ -1,3 +1,7 @@
+---
+name: cm-retro-cli
+description: "Use at end of sprint to append operational learnings as structured JSONL to the project retro log."
+---
 # cm-retro-cli — operational learnings JSONL
 
 ## Append

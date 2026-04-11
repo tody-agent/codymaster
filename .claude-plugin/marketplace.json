@@ -5,18 +5,30 @@
     "email": "hello@cody-master-a5q.pages.dev"
   },
   "metadata": {
-    "description": "Universal AI agent skills framework — 60+ skills for Claude Code"
+    "description": "CodyMaster — 68+ AI agent skills for the full development lifecycle"
   },
   "plugins": [
     {
       "name": "cm",
-      "description": "60+ AI agent skills: TDD, debugging, quality gates, deployment, UX design, content factory, secret scanning, CRO, brainstorming, and skill orchestration.",
-      "version": "3.5.0",
+      "description": "68+ AI agent skills for the full development lifecycle: TDD, debugging, quality gates, safe deploy, design system, UX, content factory, secret scanning, CRO, brainstorming, and skill orchestration.",
+      "version": "5.0.0",
       "source": "./",
       "author": {
         "name": "Tody Agent"
       },
-      "category": "software-development"
+      "category": "software-development",
+      "keywords": [
+        "tdd",
+        "debugging",
+        "quality-gates",
+        "deployment",
+        "design-system",
+        "ux",
+        "security",
+        "cro",
+        "ai-agent",
+        "devops"
+      ]
     }
   ]
 }

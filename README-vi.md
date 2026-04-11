@@ -4,7 +4,7 @@
 
 ### AI Agent của bạn thông minh. CodyMaster làm nó trở nên *thông thái*.
 
-**68+ Kỹ năng · 18 Lệnh · 1 Plugin · 7+ Nền tảng · 6 Ngôn ngữ**
+**68+ Kỹ năng · 18 Lệnh · 1 Plugin · 8+ Nền tảng · 6 Ngôn ngữ · v5.0.0**
 
 CodyMaster Kanban Dashboard
 
@@ -223,7 +223,24 @@ Nếu bạn thích:
 
 ## 🚀 Cài đặt trong 1 phút
 
-### 1. Cài đặt các Kỹ năng AI (Mọi Nền tảng)
+### ✨ MỚI: Plugin Claude Desktop (Không cần Terminal)
+
+Cách cài đặt CodyMaster dễ nhất — không npm, không terminal, không setup.
+
+**Claude Desktop / Claude Cowork:**
+
+1. Mở **Settings → Plugins** trong Claude Desktop
+2. Nhấn **"Add marketplace"**
+3. Nhập: `tody-agent/codymaster`
+4. Nhấn **"Sync"** → xong ✅
+
+Tất cả 68+ kỹ năng và 18 lệnh slash tải ngay lập tức. Hoạt động với **Claude Desktop**, **Claude Cowork** và mọi client Claude hỗ trợ plugin marketplace.
+
+> Bạn cũng có thể kéo thả file `cm.plugin` từ [latest release](https://github.com/tody-agent/codymaster/releases) vào Claude Desktop.
+
+---
+
+### 2. Cài đặt các Kỹ năng AI (Mọi Nền tảng)
 
 Một câu lệnh để cài đặt toàn bộ 68+ kỹ năng vào môi trường của bạn. Hỗ trợ Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, và nhiều nền tảng bổ sung:
 
@@ -233,7 +250,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 *Dành cho người dùng Cursor IDE, bạn cũng có thể gõ `/add-plugin cody-master` trong agent chat.*
 
-### 2. Cài đặt Bảng điều khiển (Tùy chọn nhưng Khuyến nghị)
+### 3. Cài đặt Bảng điều khiển (Tùy chọn nhưng Khuyến nghị)
 
 Theo dõi tiến độ, quản lý công việc và xem những thành tựu vibe coding của bạn cùng Cody the Hamster 🐹.
 
@@ -258,6 +275,25 @@ CLI sẽ tương tác và giúp bạn tổ chức công việc trong những phi
 │  ○ 📈 Status
 │  ○ 🧩  Browse Skills
 ```
+
+---
+
+## 🎯 Ví dụ thực tế
+
+> **Mẹo:** Bắt đầu phiên làm việc với `/cm:start <mục tiêu>` và CodyMaster sẽ tự chọn kỹ năng phù hợp.
+
+| Tình huống | Kỹ năng sử dụng | Bạn nói gì |
+|------------|-----------------|------------|
+| 🐛 **Sửa bug không làm hỏng thứ khác** | `cm-debugging` → `cm-tdd` → `cm-quality-gate` | *"Debug crash này"* |
+| 🚀 **Ship tính năng an toàn** | `cm-planning` → `cm-tdd` → `cm-code-review` → `cm-safe-deploy` | *"Build luồng đăng nhập"* |
+| 🎨 **Xây dựng UI từ đầu** | `cm-ux-master` → `cm-design-system` → `cm-ui-preview` | *"Thiết kế trang dashboard"* |
+| 🔒 **Deploy lên production** | `cm-secret-shield` → `cm-security-gate` → `cm-identity-guard` → `cm-safe-deploy` | *"Deploy lên prod"* |
+| 📝 **Hiểu codebase cũ** | `cm-codeintell` → `cm-dockit` | *"Code này làm gì?"* |
+| 📈 **Làm landing page** | `cm-brainstorm-idea` → `cm-cro-methodology` → `cm-content-factory` | *"Build landing page SaaS"* |
+| 🌍 **Thêm đa ngôn ngữ** | `cm-safe-i18n` | *"Thêm tiếng Nhật và tiếng Anh"* |
+| 🔄 **Khởi tạo dự án mới** | `cm-project-bootstrap` → `cm-planning` | *"Bootstrap Next.js SaaS"* |
+| 🧠 **Tiếp tục sau khi nghỉ** | `cm-continuity` → `cm-status` | *"Tôi đang làm gì trước đó?"* |
+| 🏭 **Scale content SEO** | `cm-content-factory` → `cm-auto-publisher` → `cm-ads-tracker` | *"Tạo 20 bài viết cho blog"* |
 
 ---
 

@@ -1,3 +1,7 @@
+---
+name: cm-engineering-meta
+description: "Use when looking up quick wins, access patterns, or voice map for the engineering meta layer."
+---
 # cm-engineering-meta — quick wins + access + voice map
 
 ## Search before building

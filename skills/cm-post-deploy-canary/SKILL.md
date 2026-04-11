@@ -1,3 +1,7 @@
+---
+name: cm-post-deploy-canary
+description: "Use after deployment to run smoke tests and post-deploy canary checks via the browse daemon."
+---
 # cm-post-deploy-canary — smoke + browse tail
 
 ## CLI

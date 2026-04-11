@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "cm-context": {
+      "command": "node",
+      "args": ["./dist/mcp-context-server.js"],
+      "env": {
+        "CM_PROJECT_PATH": "${workspaceFolder}"
+      }
+    }
+  }
+}

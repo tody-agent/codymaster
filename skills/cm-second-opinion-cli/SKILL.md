@@ -1,3 +1,7 @@
+---
+name: cm-second-opinion-cli
+description: "Use when you need a cross-model review or second opinion on a diff or code change."
+---
 # cm-second-opinion-cli — cross-model review stub
 
 ## CLI

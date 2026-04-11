@@ -1,3 +1,7 @@
+---
+name: cm-mcp-engineering
+description: "Use when you need to interact with the MCP engineering bridge tools (cm_plan, cm_review, cm_qa, cm_deploy, cm_search)."
+---
 # cm-mcp-engineering — MCP tools on context server
 
 The same binary as memory MCP (`dist/mcp-context-server.js`) now exposes **engineering bridge** tools:

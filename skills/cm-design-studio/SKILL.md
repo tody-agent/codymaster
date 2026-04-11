@@ -1,3 +1,7 @@
+---
+name: cm-design-studio
+description: "Use when you need to create 2-3 UI/UX design variants and document a repeatable handoff before coding."
+---
 # cm-design-studio
 
 > Local design-variant workspace: checklist, named variants, and a handoff stub—no external MCP required.

@@ -1,3 +1,7 @@
+---
+name: cm-conductor-worktrees
+description: "Use when you need to manage parallel git worktrees for isolated feature development."
+---
 # cm-conductor-worktrees — parallel worktrees
 
 ## CLI

@@ -1,4 +1,4 @@
-<div align="center">
+
 
 [English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)
 
@@ -6,17 +6,9 @@
 
 ### Your AI Agent is smart. CodyMaster makes it *wise*.
 
-**68+ Skills · 18 Commands · 1 Plugin · 7+ Platforms · 6 Languages**
+**68+ Skills · 18 Commands · 1 Plugin · 8+ Platforms · 6 Languages · v5.0.0**
 
-<p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="Skills" src="https://img.shields.io/badge/skills-68+-success.svg" />
-  <img alt="Platforms" src="https://img.shields.io/badge/platforms-7+-orange.svg" />
-  <img alt="Open Source" src="https://img.shields.io/badge/license-ISC-purple.svg" />
-  <a href="https://github.com/tody-agent/codymaster#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-</p>
+
 
 ```
     ( . \ --- / . )
@@ -28,11 +20,11 @@
   Your smart coding companion.
 ```
 
-![CodyMaster Kanban Dashboard](assets/images/dashboard.png)
+CodyMaster Kanban Dashboard
 
 ### 🌟 If CodyMaster saves you time, give it a [Star](https://github.com/tody-agent/codymaster)! 🌟
 
-</div>
+
 
 ---
 
@@ -42,14 +34,16 @@ You installed an AI coding agent. It's *brilliant*. It writes code faster than a
 
 But then reality hits:
 
-| 😤 What Actually Happens                                                            | 💀 The Real Cost                               |
-| ----------------------------------------------------------------------------------- | ---------------------------------------------- |
+
+| 😤 What Actually Happens                                                     | 💀 The Real Cost                               |
+| ---------------------------------------------------------------------------- | ---------------------------------------------- |
 | AI designs**differently every single time** — same brand, 3 different styles | Clients think you're 3 different companies     |
-| AI fixes one bug,**silently breaks 5 other things**                           | You redo the same work 3-4 times               |
-| AI**forgets everything** between sessions                                     | You re-explain the same codebase every morning |
-| AI writes zero tests, zero docs                                                     | Your codebase becomes a house of cards         |
+| AI fixes one bug,**silently breaks 5 other things**                          | You redo the same work 3-4 times               |
+| AI**forgets everything** between sessions                                    | You re-explain the same codebase every morning |
+| AI writes zero tests, zero docs                                              | Your codebase becomes a house of cards         |
 | You install 15 different skills —**none of them talk to each other**         | Frankenstein toolkit with zero synergy         |
-| Deploy to production =**deploy and pray** 🙏                                  | Broken deploys at 2 AM, no rollback            |
+| Deploy to production =**deploy and pray** 🙏                                 | Broken deploys at 2 AM, no rollback            |
+
 
 > *"AI gave me 100 hands. But without discipline, those hands created chaos."*
 > — **Tody Le**, Head of Product · 10+ years · Creator of CodyMaster
@@ -116,6 +110,7 @@ Your AI doesn't just execute — it **understands and remembers** using a multi-
 5. **Structural Memory (`cm-codeintell`)** — AST-based CodeGraph. Up to 95% token compression for full codebase context.
 
 🦴 **Smart Spine (v4.6+)** — The nervous system connecting all 5 tiers:
+
 - **SQLite + FTS5** — BM25-ranked keyword search replaces flat JSON scans.
 - **Progressive Loading (L0/L1/L2)** — Context loaded at cheapest sufficient depth. 78% token savings.
 - **cm:// URI Scheme** — Skills request context by URI, not file paths.
@@ -161,7 +156,7 @@ Got a legacy product with no design system? **cm-design-system** scans your webs
 
 ### 📝 Zero Documentation? No Problem.
 
-Don't know what the old code does? **`cm-dockit`** reads your entire codebase and generates:
+Don't know what the old code does? `**cm-dockit`** reads your entire codebase and generates:
 
 - 📚 Technical architecture docs
 - 📖 User guides & SOPs
@@ -173,14 +168,13 @@ Don't know what the old code does? **`cm-dockit`** reads your entire codebase an
 
 ### 💡 Strategic Brainstorming (Design Thinking + 9 Windows)
 
-Before diving into code for complex requests, **`cm-brainstorm-idea`** evaluates your product using multi-dimensional analysis (Tech, Product, Design, Business). It generates 2-3 qualified options using the 9 Windows (TRIZ) framework and provides a visual UI Preview via **Pencil.dev** or **Google Stitch** to validate the direction before detailed planning. 
+Before diving into code for complex requests, `**cm-brainstorm-idea`** evaluates your product using multi-dimensional analysis (Tech, Product, Design, Business). It generates 2-3 qualified options using the 9 Windows (TRIZ) framework and provides a visual UI Preview via **Pencil.dev** or **Google Stitch** to validate the direction before detailed planning. 
 
 📖 [TRIZ-parallel workflow & UI preview handoff →](docs/architecture/triz-parallel-engine.md)
 
-
 ### 🏭 AI Content Factory v2.0 & Visual Dashboard
 
-Need to scale content? **`cm-content-factory`** is a self-learning, multi-agent content engine. It automatically researches, writes, audits (SEO & Persuasion), and deploys high-converting articles with the Content Mastery framework (StoryBrand + Cialdini) to guarantee conversion.
+Need to scale content? `**cm-content-factory`** is a self-learning, multi-agent content engine. It automatically researches, writes, audits (SEO & Persuasion), and deploys high-converting articles with the Content Mastery framework (StoryBrand + Cialdini) to guarantee conversion.
 
 Track it all on the **Visual Dashboard** (`cm-dashboard`): No more guessing. Track every task, every agent, every deployment on a real-time Kanban board. Pipeline progress, token tracker, event log — all on one screen.
 
@@ -188,32 +182,34 @@ Track it all on the **Visual Dashboard** (`cm-dashboard`): No more guessing. Tra
 
 CodyMaster doesn't just run skills — it **watches them, scores them, and heals them automatically.**
 
-- **`cm-skill-health`** monitors every invocation: success rate, token usage, error patterns.
-- **`cm-skill-evolution`** auto-patches degraded skills (Mode: FIX) when health scores drop below threshold.
-- **`cm-skill-chain` Auto-Dispatch** — Inspired by OpenSpace automation orchestrators, sequence dispatching is now 100% automated with intelligent task detection, zero-touch handoffs, and multi-agent coordination.
-- **`cm-skill-search`** uses BM25 ranking to find the right skill for any task.
-- **`cm-skill-share`** exports & imports skills across teams and machines.
+- `**cm-skill-health`** monitors every invocation: success rate, token usage, error patterns.
+- `**cm-skill-evolution**` auto-patches degraded skills (Mode: FIX) when health scores drop below threshold.
+- `**cm-skill-chain` Auto-Dispatch** — Inspired by OpenSpace automation orchestrators, sequence dispatching is now 100% automated with intelligent task detection, zero-touch handoffs, and multi-agent coordination.
+- `**cm-skill-search`** uses BM25 ranking to find the right skill for any task.
+- `**cm-skill-share**` exports & imports skills across teams and machines.
 
 > **Think of it like an immune system for your AI toolkit.** Skills that break get healed. Skills that work well get reinforced. Dead skills get archived.
 
 ### 🚀 Growth Hacking Engine
 
-Need popups, booking flows, or lead capture? **`cm-growth-hacking`** generates complete conversion systems: Bottom Sheet + Calendar CTA + Tracking. Auto-detects industry, selects the right pattern, wires up **`cm-booking-calendar`** for appointments and **`cm-ads-tracker`** for pixel tracking. Zero dependencies.
+Need popups, booking flows, or lead capture? `**cm-growth-hacking`** generates complete conversion systems: Bottom Sheet + Calendar CTA + Tracking. Auto-detects industry, selects the right pattern, wires up `**cm-booking-calendar**` for appointments and `**cm-ads-tracker**` for pixel tracking. Zero dependencies.
 
 ---
 
 ## 🆚 Scattered Skills vs CodyMaster
 
-|                            | 😵 15 Random Skills                         | 🧠 CodyMaster                                                         |
-| -------------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
-| **Integration**      | Each skill is standalone, no shared context | 68+ skills that chain, share memory, and communicate                   |
-| **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn      |
+
+|                      | 😵 15 Random Skills                         | 🧠 CodyMaster                                                                                                                                                           |
+| -------------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Integration**      | Each skill is standalone, no shared context | 68+ skills that chain, share memory, and communicate                                                                                                                    |
+| **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn                                                                                                              |
 | **Memory**           | Forgets everything between sessions         | 5-tier Unified Brain: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain. Optional **OpenViking** backend for vector search + auto memory compression. |
-| **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy |
-| **Design**           | Random UI every time                        | Extracts & enforces design system + visual preview                    |
-| **Documentation**    | "Maybe write a README later"                | Auto-generates complete docs, SOPs, API refs from code                |
-| **Self-improvement** | Static — what you install is what you get  | Self-healing: monitors health → auto-patches → reinforces winners   |
-| **Maintenance**      | Update 15 repos separately                  | One `npm i -g codymaster` updates everything                        |
+| **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy                                                                                                      |
+| **Design**           | Random UI every time                        | Extracts & enforces design system + visual preview                                                                                                                      |
+| **Documentation**    | "Maybe write a README later"                | Auto-generates complete docs, SOPs, API refs from code                                                                                                                  |
+| **Self-improvement** | Static — what you install is what you get   | Self-healing: monitors health → auto-patches → reinforces winners                                                                                                       |
+| **Maintenance**      | Update 15 repos separately                  | One `npm i -g codymaster` updates everything                                                                                                                            |
+
 
 ---
 
@@ -242,7 +238,24 @@ If you prefer:
 
 ## 🚀 1-Minute Install
 
-### 1. Install AI Skills (All Platforms)
+### ✨ NEW: Claude Desktop Plugin (Zero Terminal Required)
+
+The easiest way to install CodyMaster — no npm, no terminal, no setup.
+
+**Claude Desktop / Claude Cowork:**
+
+1. Open **Settings → Plugins** in Claude Desktop
+2. Click **"Add marketplace"**
+3. Enter: `tody-agent/codymaster`
+4. Click **"Sync"** → done ✅
+
+All 68+ skills and 18 slash commands load instantly. Works with **Claude Desktop**, **Claude Cowork**, and any Claude client that supports the plugin marketplace.
+
+> You can also drag-and-drop the `cm.plugin` file from the [latest release](https://github.com/tody-agent/codymaster/releases) directly into Claude Desktop.
+
+---
+
+### 2. Install AI Skills (All Other Platforms)
 
 One command installs all 68+ skills to your environment. Supports Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, and more:
 
@@ -253,10 +266,10 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 #### After `install.sh --all` (verify)
 
 - **Restart** Claude Code, Cursor, or Gemini / Antigravity so they reload config and rules from disk.
-- **Cursor:** rules go to **`~/.cursor/rules`** (always under your home folder, not wherever you ran the script). In Agent chat, run **`/add-plugin cody-master`**. To install rules **only inside one git repo**, run from that repo: `bash install.sh --cursor --cursor-project`.
+- **Cursor:** rules go to `**~/.cursor/rules`** (always under your home folder, not wherever you ran the script). In Agent chat, run `**/add-plugin cody-master**`. To install rules **only inside one git repo**, run from that repo: `bash install.sh --cursor --cursor-project`.
 - **Gemini / Antigravity:** skills live in `~/.gemini/antigravity/skills`. The installer **creates or appends** `~/.gemini/GEMINI.md` with `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` when that hint is missing.
 - **Claude Code:** if commands like `/cm:demo` do not appear, run `claude plugin marketplace add tody-agent/codymaster` then `claude plugin install cm@codymaster --scope user` (or `--scope project`).
-- **Non-interactive:** `--all` skips the onboarding menu. For a single platform, add **`--yes`** (e.g. `bash install.sh --gemini --yes`).
+- **Non-interactive:** `--all` skips the onboarding menu. For a single platform, add `**--yes`** (e.g. `bash install.sh --gemini --yes`).
 
 #### Google Antigravity / Gemini CLI / Windsurf (token budget)
 
@@ -278,11 +291,11 @@ bash install.sh --gemini --profile knowledge
 - **MCP:** Disable MCP servers you are not using in the IDE settings. Flaky or rate-limited MCPs can cause “MCP Error” loops until the agent terminates.
 - **Progressive disclosure:** Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to `GEMINI.md` so the model loads the index before pulling full skills.
 
-Profiles are defined under [`skills/profiles/`](skills/profiles/README.md).
+Profiles are defined under `[skills/profiles/](skills/profiles/README.md)`.
 
 *For Cursor IDE users, you can also just type `/add-plugin cody-master` in your agent chat.*
 
-### 2. Install Mission Control Dashboard (Optional but Recommended)
+### 3. Install Mission Control Dashboard (Optional but Recommended)
 
 Visualize your progress, manage tasks, and track your 10x coding streak with Cody the Hamster 🐹.
 
@@ -319,22 +332,43 @@ The CLI will greet you and keep you organized on your long coding sessions!
 │  ○ 🧩  Browse Skills
 ```
 
-</details>
+
+
+---
+
+## 🎯 Real-World Use Cases
+
+> **Tip:** Start any session with `/cm:start <your goal>` and CodyMaster will pick the right skills automatically.
+
+| Scenario | Skills Used | What You Say |
+|----------|-------------|--------------|
+| 🐛 **Fix a bug without breaking anything** | `cm-debugging` → `cm-tdd` → `cm-quality-gate` | *"Debug this crash"* |
+| 🚀 **Ship a feature safely** | `cm-planning` → `cm-tdd` → `cm-code-review` → `cm-safe-deploy` | *"Build the login flow"* |
+| 🎨 **Build a new UI from scratch** | `cm-ux-master` → `cm-design-system` → `cm-ui-preview` | *"Design the dashboard page"* |
+| 🔒 **Deploy to production** | `cm-secret-shield` → `cm-security-gate` → `cm-identity-guard` → `cm-safe-deploy` | *"Deploy to prod"* |
+| 📝 **Understand a legacy codebase** | `cm-codeintell` → `cm-dockit` | *"What does this code do?"* |
+| 📈 **Launch a landing page** | `cm-brainstorm-idea` → `cm-cro-methodology` → `cm-content-factory` | *"Build a landing page for my SaaS"* |
+| 🌍 **Add multi-language support** | `cm-safe-i18n` | *"Add Vietnamese and Japanese"* |
+| 🔄 **Start a new project** | `cm-project-bootstrap` → `cm-planning` | *"Bootstrap a Next.js SaaS"* |
+| 🧠 **Resume after a break** | `cm-continuity` → `cm-status` | *"What was I working on?"* |
+| 🏭 **Scale SEO content** | `cm-content-factory` → `cm-auto-publisher` → `cm-ads-tracker` | *"Create 20 articles for my blog"* |
 
 ---
 
 ## 🧰 The 68+ Skill Arsenal
 
-| Domain                    | Skills                                                                                                                                                          |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 🔧 **Engineering**   | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` `cm-clean-code`                                                                             |
-| ⚙️ **Operations**  | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                                             |
+
+| Domain               | Skills                                                                                                                                        |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🔧 **Engineering**   | `cm-tdd` `cm-debugging` `cm-quality-gate` `cm-test-gate` `cm-code-review` `cm-clean-code`                                                     |
+| ⚙️ **Operations**    | `cm-safe-deploy` `cm-identity-guard` `cm-secret-shield` `cm-security-gate` `cm-git-worktrees` `cm-terminal` `cm-safe-i18n`                    |
 | 🎨 **Product & UX**  | `cm-planning` `cm-design-system` `cm-ux-master` `cm-ui-preview` `cm-project-bootstrap` `cm-jtbd` `cm-brainstorm-idea` `cm-dockit` `cm-readit` |
-| 📈 **Growth & CRO**    | `cm-content-factory` `cm-auto-publisher` `cm-ads-tracker` `cm-cro-methodology` `cm-growth-hacking` `cm-booking-calendar` `cm-google-form`                                                                                                   |
-| 🏢 **Enterprise**  | `cm-reactor` `cm-notebooklm`                                                                                                  |
-| 🧬 **Self-Healing**   | `cm-skill-health` `cm-skill-evolution` `cm-skill-search` `cm-skill-share` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index`             |
-| 🎯 **Orchestration** | `cm-execution` `cm-continuity` `cm-deep-search` `cm-codeintell` `cm-how-it-work`             |
-| 🖥️ **Workflow**    | `cm-start` `cm-dashboard` `cm-status`                                                                                                                     |
+| 📈 **Growth & CRO**  | `cm-content-factory` `cm-auto-publisher` `cm-ads-tracker` `cm-cro-methodology` `cm-growth-hacking` `cm-booking-calendar` `cm-google-form`     |
+| 🏢 **Enterprise**    | `cm-reactor` `cm-notebooklm`                                                                                                                  |
+| 🧬 **Self-Healing**  | `cm-skill-health` `cm-skill-evolution` `cm-skill-search` `cm-skill-share` `cm-skill-chain` `cm-skill-mastery` `cm-skill-index`                |
+| 🎯 **Orchestration** | `cm-execution` `cm-continuity` `cm-deep-search` `cm-codeintell` `cm-how-it-work`                                                              |
+| 🖥️ **Workflow**     | `cm-start` `cm-dashboard` `cm-status`                                                                                                         |
+
 
 ---
 
@@ -398,7 +432,7 @@ pip install openviking && openviking start
 - 🌍 [Website](https://cody.todyle.com) — Overview & demos
 - 📖 [Documentation (site)](https://cody.todyle.com/docs) — Hosted deep-dive
 - 📘 [Documentation (repo)](docs/index.md) — Markdown source; run `npm run docs:dev` for VitePress
-- 🛠️ [Skills Reference](skills/) — Browse **56** bundled `cm-*` SKILL.md packs (profiles/installer can add more)
+- 🛠️ [Skills Reference](skills/) — Browse **56** bundled `cm-`* SKILL.md packs (profiles/installer can add more)
 - 📖 [Our Story](https://cody.todyle.com/story) — Why this exists
 
 ---
@@ -413,11 +447,11 @@ CI runs `npm ci` and `npm run test:gate:kit` on pushes and pull requests (see `.
 
 ---
 
-<div align="center">
 
-*ISC License — Free to use, modify, and distribute.* <br/>
+
+*ISC License — Free to use, modify, and distribute.*   
+
 **Built with ❤️ for the vibe coding community.**
 
 *"CodyMaster" = "Code Đi" (Vietnamese: "Go code!") — just start building.*
 
-</div>

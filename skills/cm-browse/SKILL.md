@@ -1,3 +1,7 @@
+---
+name: cm-browse
+description: "Use when you need visual QA, screenshots, or post-deploy smoke testing through a real browser with Playwright."
+---
 # cm-browse — local Playwright daemon
 
 > **Full runbook:** [docs/browse-daemon.md](../../docs/browse-daemon.md) (install Chromium, token, troubleshooting).

@@ -6,7 +6,7 @@
 
 ### आपका AI एजेंट स्मार्ट है। CodyMaster इसे *बुद्धिमान* बनाता है।
 
-**68+ स्किल्स · 18 कमांड्स · 1 प्लगइन · 7+ प्लेटफॉर्म्स · 6 भाषाएं**
+**68+ स्किल्स · 18 कमांड्स · 1 प्लगइन · 8+ प्लेटफॉर्म्स · 6 भाषाएं · v5.0.0**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
@@ -210,7 +210,24 @@ flowchart LR
 
 ## 🚀 1-मिनट इंस्टालेशन
 
-### 1. एआई कौशल इंस्टॉल करें (सभी प्लेटफॉर्म)
+### ✨ नया: Claude Desktop प्लगइन (टर्मिनल की ज़रूरत नहीं)
+
+CodyMaster इंस्टॉल करने का सबसे आसान तरीका — npm नहीं, टर्मिनल नहीं, कोई सेटअप नहीं।
+
+**Claude Desktop / Claude Cowork:**
+
+1. Claude Desktop में **Settings → Plugins** खोलें
+2. **"Add marketplace"** पर क्लिक करें
+3. दर्ज करें: `tody-agent/codymaster`
+4. **"Sync"** पर क्लिक करें → हो गया ✅
+
+68+ स्किल्स और 18 स्लैश कमांड्स तुरंत लोड होते हैं। **Claude Desktop**, **Claude Cowork** और किसी भी Claude क्लाइंट के साथ काम करता है जो प्लगइन मार्केटप्लेस सपोर्ट करता है।
+
+> आप [latest release](https://github.com/tody-agent/codymaster/releases) से `cm.plugin` फ़ाइल को सीधे Claude Desktop में drag-and-drop भी कर सकते हैं।
+
+---
+
+### 2. एआई कौशल इंस्टॉल करें (सभी प्लेटफॉर्म)
 
 एक कमांड आपके वातावरण में सभी 68+ कौशल स्थापित करता है। यह Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode आदि का समर्थन करता है:
 
@@ -220,7 +237,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 *Cursor IDE उपयोगकर्ताओं के लिए, आप सीधे अपने चैट में `/add-plugin cody-master` टाइप कर सकते हैं।*
 
-### 2. डैशबोर्ड इंस्टॉल करें (वैकल्पिक लेकिन अनुशंसित)
+### 3. डैशबोर्ड इंस्टॉल करें (वैकल्पिक लेकिन अनुशंसित)
 
 अपने हैम्स्टर Cody 🐹 के साथ प्रगति को ट्रैक करें, कार्यों को प्रबंधित करें।
 
@@ -245,6 +262,25 @@ cm
 │  ○ 📈 Status
 │  ○ 🧩  Browse Skills
 ```
+
+---
+
+## 🎯 वास्तविक उपयोग के मामले
+
+> **टिप:** किसी भी सत्र को `/cm:start <आपका लक्ष्य>` से शुरू करें और CodyMaster स्वचालित रूप से सही स्किल्स चुन लेगा।
+
+| परिदृश्य | उपयोग की गई स्किल्स | आप क्या कहते हैं |
+|---------|-------------------|-----------------|
+| 🐛 **बाकी को तोड़े बिना बग ठीक करें** | `cm-debugging` → `cm-tdd` → `cm-quality-gate` | *"इस क्रैश को डीबग करो"* |
+| 🚀 **फीचर सुरक्षित रूप से ship करें** | `cm-planning` → `cm-tdd` → `cm-code-review` → `cm-safe-deploy` | *"लॉगिन फ्लो बनाओ"* |
+| 🎨 **नया UI बनाएं** | `cm-ux-master` → `cm-design-system` → `cm-ui-preview` | *"डैशबोर्ड पेज डिज़ाइन करो"* |
+| 🔒 **प्रोडक्शन पर deploy करें** | `cm-secret-shield` → `cm-security-gate` → `cm-identity-guard` → `cm-safe-deploy` | *"प्रोड पर deploy करो"* |
+| 📝 **पुराने codebase को समझें** | `cm-codeintell` → `cm-dockit` | *"यह कोड क्या करता है?"* |
+| 📈 **Landing page लॉन्च करें** | `cm-brainstorm-idea` → `cm-cro-methodology` → `cm-content-factory` | *"मेरे SaaS के लिए landing page बनाओ"* |
+| 🌍 **बहुभाषी समर्थन जोड़ें** | `cm-safe-i18n` | *"हिंदी और जापानी जोड़ो"* |
+| 🔄 **नया प्रोजेक्ट शुरू करें** | `cm-project-bootstrap` → `cm-planning` | *"Next.js SaaS bootstrap करो"* |
+| 🧠 **ब्रेक के बाद जारी रखें** | `cm-continuity` → `cm-status` | *"मैं पहले क्या कर रहा था?"* |
+| 🏭 **SEO content scale करें** | `cm-content-factory` → `cm-auto-publisher` → `cm-ads-tracker` | *"मेरे blog के लिए 20 articles बनाओ"* |
 
 ---
 

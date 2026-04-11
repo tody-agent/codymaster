@@ -1,3 +1,7 @@
+---
+name: cm-sprint-bus
+description: "Use to run the full sprint pipeline: brainstorm → plan → design → tdd → build → review → qa → security → ship → monitor → retro."
+---
 # cm-sprint-bus — opinionated pipeline + artifacts
 
 ## Pipeline

@@ -6,7 +6,7 @@
 
 ### 您的 AI 智能体很聪明。CodyMaster 让它变得*睿智*。
 
-**68+ 项技能 · 18 条命令 · 1 个插件 · 7+ 个平台 · 6 种语言**
+**68+ 项技能 · 18 条命令 · 1 个插件 · 8+ 个平台 · 6 种语言 · v5.0.0**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
@@ -210,7 +210,24 @@ flowchart LR
 
 ## 🚀 1 分钟安装
 
-### 1. 安装 AI 技能 (所有平台)
+### ✨ 新功能：Claude Desktop 插件（无需终端）
+
+安装 CodyMaster 最简单的方法 — 无需 npm、无需终端、无需配置。
+
+**Claude Desktop / Claude Cowork：**
+
+1. 打开 Claude Desktop 中的 **Settings → Plugins**
+2. 点击 **"Add marketplace"**
+3. 输入：`tody-agent/codymaster`
+4. 点击 **"Sync"** → 完成 ✅
+
+68+ 项技能和 18 个斜杠命令立即加载。支持 **Claude Desktop**、**Claude Cowork** 以及所有支持插件市场的 Claude 客户端。
+
+> 您也可以从[最新版本](https://github.com/tody-agent/codymaster/releases)将 `cm.plugin` 文件直接拖放到 Claude Desktop 中。
+
+---
+
+### 2. 安装 AI 技能 (所有平台)
 
 一条命令即可将所有 68+ 项技能安装到您的环境中。支持 Claude Code、Gemini CLI、Cursor、Aider、Windsurf、Cline、OpenCode 等更多平台：
 
@@ -220,7 +237,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 *对于 Cursor IDE 用户，您也可以直接在智能体聊天中输入 `/add-plugin cody-master`。*
 
-### 2. 安装控制台仪表盘 (可选但推荐)
+### 3. 安装控制台仪表盘 (可选但推荐)
 
 使用仓鼠 Cody 🐹 可视化您的进度、管理任务并追踪您的 10 倍编码连续记录。
 
@@ -245,6 +262,25 @@ CLI 会在漫长的编码会话中与您打招呼并帮助您保持条理！
 │  ○ 📈 Status
 │  ○ 🧩  Browse Skills
 ```
+
+---
+
+## 🎯 真实使用场景
+
+> **提示：** 用 `/cm:start <你的目标>` 开始任何会话，CodyMaster 会自动选择合适的技能。
+
+| 场景 | 使用的技能 | 你说的话 |
+|------|-----------|---------|
+| 🐛 **修复 bug 而不破坏其他功能** | `cm-debugging` → `cm-tdd` → `cm-quality-gate` | *"调试这个崩溃"* |
+| 🚀 **安全发布功能** | `cm-planning` → `cm-tdd` → `cm-code-review` → `cm-safe-deploy` | *"构建登录流程"* |
+| 🎨 **从头构建 UI** | `cm-ux-master` → `cm-design-system` → `cm-ui-preview` | *"设计仪表板页面"* |
+| 🔒 **部署到生产环境** | `cm-secret-shield` → `cm-security-gate` → `cm-identity-guard` → `cm-safe-deploy` | *"部署到生产"* |
+| 📝 **理解遗留代码库** | `cm-codeintell` → `cm-dockit` | *"这段代码是做什么的？"* |
+| 📈 **发布落地页** | `cm-brainstorm-idea` → `cm-cro-methodology` → `cm-content-factory` | *"为我的 SaaS 构建落地页"* |
+| 🌍 **添加多语言支持** | `cm-safe-i18n` | *"添加中文和日文"* |
+| 🔄 **启动新项目** | `cm-project-bootstrap` → `cm-planning` | *"Bootstrap Next.js SaaS"* |
+| 🧠 **休息后继续工作** | `cm-continuity` → `cm-status` | *"我之前在做什么？"* |
+| 🏭 **扩展 SEO 内容** | `cm-content-factory` → `cm-auto-publisher` → `cm-ads-tracker` | *"为我的博客创建 20 篇文章"* |
 
 ---
 

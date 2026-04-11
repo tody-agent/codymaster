@@ -6,7 +6,7 @@
 
 ### Ваш AI-агент умен. CodyMaster делает его *мудрым*.
 
-**68+ навыков · 18 команд · 1 плагин · 7+ платформ · 6 языков**
+**68+ навыков · 18 команд · 1 плагин · 8+ платформ · 6 языков · v5.0.0**
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-4.8.0-blue.svg?cacheSeconds=2592000" />
@@ -210,7 +210,24 @@ flowchart LR
 
 ## 🚀 Установка за 1 минуту
 
-### 1. Установка AI-навыков (Все платформы)
+### ✨ НОВОЕ: Плагин Claude Desktop (без терминала)
+
+Самый простой способ установить CodyMaster — без npm, без терминала, без настройки.
+
+**Claude Desktop / Claude Cowork:**
+
+1. Откройте **Settings → Plugins** в Claude Desktop
+2. Нажмите **"Add marketplace"**
+3. Введите: `tody-agent/codymaster`
+4. Нажмите **"Sync"** → готово ✅
+
+68+ навыков и 18 slash-команд загружаются мгновенно. Работает с **Claude Desktop**, **Claude Cowork** и любым клиентом Claude, поддерживающим маркетплейс плагинов.
+
+> Вы также можете перетащить файл `cm.plugin` из [последнего релиза](https://github.com/tody-agent/codymaster/releases) прямо в Claude Desktop.
+
+---
+
+### 2. Установка AI-навыков (Все платформы)
 
 Одна команда устанавливает все 68+ навыков в вашу среду. Поддерживает Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode и многие другие платформы:
 
@@ -220,7 +237,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/i
 
 *Пользователи Cursor IDE также могут просто ввести `/add-plugin cody-master` в чате агента.*
 
-### 2. Установка панели управления (Опционально, но рекомендуется)
+### 3. Установка панели управления (Опционально, но рекомендуется)
 
 Визуализируйте свой прогресс, управляйте задачами и отслеживайте свои достижения в кодинге с хомяком Cody 🐹.
 
@@ -245,6 +262,25 @@ CLI поприветствует вас и поможет организоват
 │  ○ 📈 Status
 │  ○ 🧩  Browse Skills
 ```
+
+---
+
+## 🎯 Реальные сценарии использования
+
+> **Совет:** Начните любую сессию с `/cm:start <ваша цель>`, и CodyMaster автоматически выберет нужные навыки.
+
+| Сценарий | Используемые навыки | Что вы говорите |
+|----------|--------------------|-----------------|
+| 🐛 **Починить баг, не сломав остальное** | `cm-debugging` → `cm-tdd` → `cm-quality-gate` | *«Отладь этот краш»* |
+| 🚀 **Безопасно выкатить фичу** | `cm-planning` → `cm-tdd` → `cm-code-review` → `cm-safe-deploy` | *«Сделай поток авторизации»* |
+| 🎨 **Создать UI с нуля** | `cm-ux-master` → `cm-design-system` → `cm-ui-preview` | *«Спроектируй страницу дашборда»* |
+| 🔒 **Деплой в продакшн** | `cm-secret-shield` → `cm-security-gate` → `cm-identity-guard` → `cm-safe-deploy` | *«Задеплой на прод»* |
+| 📝 **Разобраться в легаси-коде** | `cm-codeintell` → `cm-dockit` | *«Что делает этот код?»* |
+| 📈 **Запустить лендинг** | `cm-brainstorm-idea` → `cm-cro-methodology` → `cm-content-factory` | *«Сделай лендинг для SaaS»* |
+| 🌍 **Добавить мультиязычность** | `cm-safe-i18n` | *«Добавь русский и китайский»* |
+| 🔄 **Стартовать новый проект** | `cm-project-bootstrap` → `cm-planning` | *«Создай Next.js SaaS»* |
+| 🧠 **Продолжить после перерыва** | `cm-continuity` → `cm-status` | *«Что я делал в прошлый раз?»* |
+| 🏭 **Масштабировать SEO-контент** | `cm-content-factory` → `cm-auto-publisher` → `cm-ads-tracker` | *«Создай 20 статей для блога»* |
 
 ---
 
