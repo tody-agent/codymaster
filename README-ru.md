@@ -254,6 +254,12 @@ Tell your agent:
 Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
 ```
 
+**Codex:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
+
 ### 3. Установка панели управления (Опционально, но рекомендуется)
 
 Визуализируйте свой прогресс, управляйте задачами и отслеживайте свои достижения в кодинге с хомяком Cody 🐹.

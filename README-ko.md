@@ -254,6 +254,12 @@ Tell your agent:
 Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
 ```
 
+**Codex:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
+
 ### 3. 미션 컨트롤 대시보드 설치 (선택 사항이지만 권장됨)
 
 햄스터 Cody 🐹와 함께 진행 상황을 시각화하고 작업을 관리하며 10배 코딩 기록을 추적하세요.

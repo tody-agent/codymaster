@@ -11,14 +11,42 @@ robots: index, follow
 > [!TIP]
 > **Quick path:** `npm ci` → `npm run build` → `npm run test:gate` → `node dist/index.js --help`. For pre-merge parity with CI, run `npm run test:gate:kit`.
 
-## Prerequisites
+## Install in AI Agents (Recommended)
 
-- **Node.js** 20+ recommended
-- **npm**
-- **Git** (for cloning and typical workflows)
-- Optional: **Playwright** browsers if you use browse/visual QA — [Browse daemon](../browse-daemon.md)
+CodyMaster uses **Native Plugin Extensions** for zero-friction installation directly into your AI working environment.
 
-## Install from the repository
+### Claude Desktop / Claude Cowork
+1. Open **Settings → Plugins**
+2. Click **"Add marketplace"** and enter: `tody-agent/codymaster`
+3. Click **"Sync"**
+
+### Claude Code CLI
+```bash
+claude plugin marketplace add tody-agent/codymaster
+claude plugin install cm@codymaster --scope user
+```
+
+### Cursor
+In the Agent Chat, type:
+```text
+/add-plugin cody-master
+```
+
+### Gemini CLI / Google Antigravity
+```bash
+gemini extensions install https://github.com/tody-agent/codymaster
+```
+> **Tip:** Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to your `GEMINI.md` to save tokens.
+
+### OpenCode / OpenClaw / Codex
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
+
+---
+
+## Install from the repository (For Developers)
 
 ```bash
 git clone https://github.com/tody-agent/codymaster.git

@@ -24,7 +24,7 @@ cp -r ~/.cody-master/skills/* .codex/skills/
 
 ## Available Skills
 
-CodyMaster provides 27+ skills across 5 domains:
+CodyMaster provides 68+ skills across 5 domains:
 
 - **Engineering**: TDD, debugging, quality gates, test infrastructure, code review
 - **Operations**: safe deploy, identity guard, git worktrees, terminal, secrets, i18n

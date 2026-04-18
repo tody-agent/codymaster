@@ -230,14 +230,13 @@ Cách cài đặt CodyMaster dễ nhất — không npm, không terminal, không
 
 **Claude Desktop / Claude Cowork:**
 
-1. Mở **Settings → Plugins** trong Claude Desktop
-2. Nhấn **"Add marketplace"**
-3. Nhập: `tody-agent/codymaster`
-4. Nhấn **"Sync"** → xong ✅
+Chạy lệnh cài đặt MCP Servers vào cấu hình của Claude Desktop tự động:
 
-Tất cả 68+ kỹ năng và 18 lệnh slash tải ngay lập tức. Hoạt động với **Claude Desktop**, **Claude Cowork** và mọi client Claude hỗ trợ plugin marketplace.
+```bash
+npx codymaster mcp-serve --install-claude
+```
 
-> Bạn cũng có thể kéo thả file `cm.plugin` từ [latest release](https://github.com/tody-agent/codymaster/releases) vào Claude Desktop.
+Tất cả 68+ kỹ năng sẽ được liên kết ngay lập tức qua MCP stdio. Hãy khởi động lại (restart) Claude Desktop để nạp cấu hình mới.
 
 ---
 
@@ -266,6 +265,12 @@ gemini extensions install https://github.com/tody-agent/codymaster
 Tell your agent:
 ```text
 Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
+
+**Codex:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
 ```
 
 ### 3. Cài đặt Bảng điều khiển (Tùy chọn nhưng Khuyến nghị)

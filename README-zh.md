@@ -254,6 +254,12 @@ Tell your agent:
 Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
 ```
 
+**Codex:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
+
 ### 3. 安装控制台仪表盘 (可选但推荐)
 
 使用仓鼠 Cody 🐹 可视化您的进度、管理任务并追踪您的 10 倍编码连续记录。

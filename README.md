@@ -251,14 +251,13 @@ The easiest way to install CodyMaster — no npm, no terminal, no setup.
 
 **Claude Desktop / Claude Cowork:**
 
-1. Open **Settings → Plugins** in Claude Desktop
-2. Click **"Add marketplace"**
-3. Enter: `tody-agent/codymaster`
-4. Click **"Sync"** → done ✅
+Run the auto-installer to inject the MCP Servers into your Claude Desktop config automatically:
 
-All 68+ skills and 18 slash commands load instantly. Works with **Claude Desktop**, **Claude Cowork**, and any Claude client that supports the plugin marketplace.
+```bash
+npx codymaster mcp-serve --install-claude
+```
 
-> You can also drag-and-drop the `cm.plugin` file from the [latest release](https://github.com/tody-agent/codymaster/releases) directly into Claude Desktop.
+All 68+ skills will be wired up instantly via MCP stdio. Remember to restart Claude Desktop to load the new config.
 
 ---
 
@@ -287,6 +286,12 @@ gemini extensions install https://github.com/tody-agent/codymaster
 Tell your agent:
 ```text
 Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
+
+**Codex:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
 ```
 
 ### 3. Install Mission Control Dashboard (Optional but Recommended)

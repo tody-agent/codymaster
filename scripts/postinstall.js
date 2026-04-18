@@ -13,7 +13,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync, execFileSync } = require('child_process');
 
-let skillCount = 60;
+let skillCount = 68;
 try {
   const skillsDir = path.join(__dirname, '..', 'skills');
   if (fs.existsSync(skillsDir)) {
@@ -214,7 +214,6 @@ const showSkillGuide = (choice) => {
   }
 
   console.log('');
-  console.log(`${W}${BOLD}${isVi ? 'Nhấn ENTER để quay lại...' : 'Press ENTER to go back...'}${NC}`);
 };
 
 const printMenu = () => {
@@ -244,20 +243,11 @@ const printMenu = () => {
     console.log(`  ${C}⚙️ Operations${NC}    : Triển khai an toàn & Quản lý CI/CD`);
     console.log(`  ${C}📈 Growth${NC}        : Tối ưu chuyển đổi (CRO) & Tracking`);
     console.log('');
-    console.log(`    ${W}${BOLD}💡 Nhập số (1-12) để xem hướng dẫn & ví dụ:${NC}`);
+    console.log(`    ${W}${BOLD}🌟 Lệnh phổ biến:${NC}`);
     console.log('');
-    console.log(`   1. ${Y}Cách CodyMaster vận hành    ${NC} → cm-how-it-work`);
-    console.log(`   2. ${Y}Vibe coding (Zero code)     ${NC} → cm-start`);
-    console.log(`   3. ${Y}Tham gia dự án có sẵn       ${NC} → cm-brainstorm-idea`);
-    console.log(`   4. ${Y}Code giao diện từ URL/Ảnh   ${NC} → cm-ux-master`);
-    console.log(`   5. ${Y}Lập trình TDD & Pair code   ${NC} → cm-tdd`);
-    console.log(`   6. ${Y}Dọn dẹp & Tái cấu trúc      ${NC} → cm-clean-code`);
-    console.log(`   7. ${Y}Quét & Sửa lỗi bảo mật      ${NC} → cm-security-gate`);
-    console.log(`   8. ${Y}Viết tài liệu Docs & API    ${NC} → cm-dockit`);
-    console.log(`   9. ${Y}Tạo Landing Page "WOW"      ${NC} → cm-cro-methodology`);
-    console.log(`  10. ${Y}Bảng theo dõi tiến độ       ${NC} → cm dashboard`);
-    console.log(`  11. ${Y}Xem Demo tự động            ${NC} → /cm:demo`);
-    console.log(`  12. ${Y}Trợ giúp & Cú pháp lệnh      ${NC} → cm help`);
+    console.log(`   🔸 ${Y}Bảng tiến độ (Dashboard)    ${NC} → cm dashboard`);
+    console.log(`   🔸 ${Y}Cần trợ giúp / Tìm kỹ năng    ${NC} → cm help`);
+    console.log(`   🔸 ${Y}Cách CodyMaster hoạt động  ${NC} → cm-how-it-work`);
   } else {
     console.log(`  ${C}🎯 Orchestration${NC} : Task Planning & Agent Synergy`);
     console.log(`  ${C}🎨 Product${NC}       : UX/UI Mastery & User Psychology`);
@@ -266,20 +256,11 @@ const printMenu = () => {
     console.log(`  ${C}⚙️ Operations${NC}    : Safe Deployments & CI/CD Excellence`);
     console.log(`  ${C}📈 Growth${NC}        : Conversion Tracking & Hacks`);
     console.log('');
-    console.log(`    ${W}${BOLD}💡 Type a number (1-12) for guide & examples:${NC}`);
+    console.log(`    ${W}${BOLD}🌟 Popular Commands:${NC}`);
     console.log('');
-    console.log(`   1. ${Y}The ultimate guide          ${NC} → cm-how-it-work`);
-    console.log(`   2. ${Y}Vibe coding (Zero code)     ${NC} → cm-start`);
-    console.log(`   3. ${Y}Code an existing project    ${NC} → cm-brainstorm-idea`);
-    console.log(`   4. ${Y}Generate UX/UI designs      ${NC} → cm-ux-master`);
-    console.log(`   5. ${Y}Code TDD & Pair coding      ${NC} → cm-tdd`);
-    console.log(`   6. ${Y}Clean & Refactor codebase   ${NC} → cm-clean-code`);
-    console.log(`   7. ${Y}Scan for vulnerabilities    ${NC} → cm-security-gate`);
-    console.log(`   8. ${Y}Write docs & generate APIs  ${NC} → cm-dockit`);
-    console.log(`   9. ${Y}Release WOW landing page    ${NC} → cm-cro-methodology`);
-    console.log(`  10. ${Y}Open progress dashboard     ${NC} → cm dashboard`);
-    console.log(`  11. ${Y}See an interactive demo     ${NC} → /cm:demo`);
-    console.log(`  12. ${Y}Help & Command list         ${NC} → cm help`);
+    console.log(`   🔸 ${Y}Open progress dashboard    ${NC} → cm dashboard`);
+    console.log(`   🔸 ${Y}Help & Command list        ${NC} → cm help`);
+    console.log(`   🔸 ${Y}The ultimate guide         ${NC} → cm-how-it-work`);
   }
   
   console.log('');
@@ -306,17 +287,7 @@ const activateCli = () => {
     return;
   }
 
-  if (fs.existsSync(path.join(pkgRoot, 'package.json'))) {
-    try {
-      const pkg = require(path.join(pkgRoot, 'package.json'));
-      if (pkg.name === 'codymaster') {
-        console.log(`  ${W}Linking ${C}cm${W} for local repo development (npm link)...${NC}`);
-        execFileSync(npmCmd(), ['link'], { stdio: 'inherit', cwd: pkgRoot });
-      }
-    } catch (e) {
-      // Ignore if npm link fails
-    }
-  }
+
 };
 
 const main = () => {

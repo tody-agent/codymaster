@@ -254,6 +254,12 @@ Tell your agent:
 Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
 ```
 
+**Codex:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
+
 ### 3. डैशबोर्ड इंस्टॉल करें (वैकल्पिक लेकिन अनुशंसित)
 
 अपने हैम्स्टर Cody 🐹 के साथ प्रगति को ट्रैक करें, कार्यों को प्रबंधित करें।
