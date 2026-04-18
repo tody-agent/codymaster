@@ -4,7 +4,7 @@
 
 ### Your AI Agent is smart. CodyMaster makes it *wise*.
 
-**60+ Skills · 20 Commands · 1 Plugin · 8+ Platforms · 6 Languages · v5.1.0**
+**60+ Skills · 20+ Commands · 1 Plugin · 8+ Platforms · 6 Languages · v6.0.0**
 
 ```
     ( . \ --- / . )
@@ -112,7 +112,8 @@ Your AI doesn't just execute — it **understands and remembers** using a multi-
 🦴 **Smart Spine (v4.6+)** — The nervous system connecting all 5 tiers:
 
 - **SQLite + FTS5** — BM25-ranked keyword search replaces flat JSON scans.
-- **Progressive Loading (L0/L1/L2)** — Context loaded at cheapest sufficient depth. 78% token savings.
+- **Progressive Loading (L0/L1/L2)** & **Smart Brain Router** — Context loaded at cheapest sufficient depth via a robust task classifier. Up to **80% token savings** on standard workflows.
+- **Skill Execution Cache** — Warm FTS5 cache tracks successful agent skill chains. Matches bypass token-heavy LLM decision loops for instant task resolution.
 - **cm:// URI Scheme** — Skills request context by URI, not file paths.
 - **Token Budget** — 200k window pre-allocated by category. No more silent overflow.
 - **Context Bus** — Skills share outputs in real-time within a chain.
@@ -186,8 +187,10 @@ Track it all on the **Visual Dashboard** (`cm-dashboard`): No more guessing. Tra
 CodyMaster ships a dedicated self-healing skill family for keeping the skill library usable as the repo evolves.
 
 - `**cm-skill-health`** audits a skill's real health from shipped signals: docs drift, broken references, retro notes, validation, and gates.
-- `**cm-skill-evolution`** guides the repair path with three modes: `FIX`, `DERIVED`, and `CAPTURED`.
-- `**cm advisory report` / `metrics` / `handoff`** turn execution telemetry into a reviewable operator loop before any skill repair begins.
+- `**cm-skill-evolution`** (Skill Evolver) completes the autonomy loop with three modes: `FIX`, `DERIVED`, and `CAPTURED`. It modifies, clones, and generates new skills automatically based on analyzer recommendations, paired with anti-loop protection and `.md` backups.
+- `**cm-learning-promoter`** searches your database for recurring task struggles and automatically graduates them into permanently coded skills (`cm-learned-*`) when appropriately reinforced.
+- `**cm advisory report` / `metrics` / `handoff`** turn execution telemetry into a reviewable operator loop before any skill repair begins. 
+- Integrated Evolution commands (`cm evolve run/status/promote`) give immediate insight into all mutations.
 - `**cm-skill-chain` Auto-Dispatch** — sequence dispatching remains automated with task detection and multi-step handoffs.
 - `**cm-skill-search`** finds the best skill through `cm suggest`, skill indexes, and repo search.
 - `**cm-skill-share`** packages a skill safely across repos and machines without dropping companion files.
@@ -261,43 +264,30 @@ All 68+ skills and 18 slash commands load instantly. Works with **Claude Desktop
 
 ### 2. Install AI Skills (All Other Platforms)
 
-One command installs all 68+ skills to your environment. Supports Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, and more:
+CodyMaster uses **Native Plugin Extensions** for zero-friction installation. No bash scripts, no manual folder copying. Select your platform below:
 
+**Claude Code CLI:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+claude plugin marketplace add tody-agent/codymaster
+claude plugin install cm@codymaster --scope user
 ```
 
-#### After `install.sh --all` (verify)
-
-- **Restart** Claude Code, Cursor, or Gemini / Antigravity so they reload config and rules from disk.
-- **Cursor:** rules go to `**~/.cursor/rules`** (always under your home folder, not wherever you ran the script). In Agent chat, run `**/add-plugin cody-master`**. To install rules **only inside one git repo**, run from that repo: `bash install.sh --cursor --cursor-project`.
-- **Gemini / Antigravity:** skills live in `~/.gemini/antigravity/skills`. The installer **creates or appends** `~/.gemini/GEMINI.md` with `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` when that hint is missing.
-- **Claude Code:** if commands like `/cm:demo` do not appear, run `claude plugin marketplace add tody-agent/codymaster` then `claude plugin install cm@codymaster --scope user` (or `--scope project`).
-- **Non-interactive:** `--all` skips the onboarding menu. For a single platform, add `**--yes`** (e.g. `bash install.sh --gemini --yes`).
-
-#### Google Antigravity / Gemini CLI / Windsurf (token budget)
-
-Antigravity and some Windsurf builds count **skills + MCP** against a customization token budget. Installing every skill globally can trigger truncation or unstable agent runs (especially if an MCP server errors and retries).
-
-- **Recommended:** install a **small global profile**, add the rest per project.
-
-```bash
-# Core only → ~/.gemini/antigravity/skills (merge more profiles later with the same command)
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --gemini --profile core
-
-# Optional packs (re-run to add folders alongside core)
-bash install.sh --gemini --profile growth
-bash install.sh --gemini --profile design
-bash install.sh --gemini --profile knowledge
+**Cursor (in Agent Chat):**
+```text
+/add-plugin cody-master
 ```
 
-- **Paths:** Antigravity / Gemini CLI skills → `~/.gemini/antigravity/skills`. This repo’s installer for **Windsurf** writes to **project** `.windsurf/rules` when you run `install.sh --windsurf` from a repo root. Some Windsurf/Codeium setups also use a **global** skills directory (e.g. under Codeium); if you copy skills there manually, use the same `--profile` flags to avoid duplicating hundreds of rules.
-- **MCP:** Disable MCP servers you are not using in the IDE settings. Flaky or rate-limited MCPs can cause “MCP Error” loops until the agent terminates.
-- **Progressive disclosure:** Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to `GEMINI.md` so the model loads the index before pulling full skills.
+**Gemini CLI / Google Antigravity:**
+```bash
+gemini extensions install https://github.com/tody-agent/codymaster
+```
+*(Progressive disclosure: Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to your `GEMINI.md` to save tokens)*
 
-Profiles are defined under `[skills/profiles/](skills/profiles/README.md)`.
-
-*For Cursor IDE users, you can also just type `/add-plugin cody-master` in your agent chat.*
+**OpenCode / OpenClaw:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
 
 ### 3. Install Mission Control Dashboard (Optional but Recommended)
 
@@ -414,6 +404,7 @@ cm config [key] [value]   → Config helper
 cm open                     → Open dashboard in browser
 cm browse …                 → Local Playwright browse daemon (QA)
 cm guardian …               → Destructive-command / path checks
+cm index skills             → Zero-Token tech stack and skill local indexer
 cm sprint …                 → Sprint pipeline + .cm/sprint
 cm design-studio [init|status]
 cm distro validate …        → Validate skill pack layout

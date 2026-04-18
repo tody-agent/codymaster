@@ -131,8 +131,12 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 
 ### Community Skills Registry 🌐
 
-> **59 pre-indexed community skills** from skills.sh. Install on-demand: `npx skills add {source} --skill {name} -a antigravity`
-> If tech not listed here → fall back to `npx skills find "{keyword}"`
+> **STOP! Zero-Token Discovery Priority:**
+> BEFORE using this registry, check if `.cm/project-skills.md` exists in the local project.
+> It contains the pre-compiled, exact community skills needed for the project's tech stack.
+> If it doesn't exist, run `npx cm index skills` first to build it.
+> 
+> **Only use the registry below if tech is not listed** or if you need to search manually: `npx skills find "{keyword}"`
 
 #### 🖥️ Frontend Frameworks (10)
 

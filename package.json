@@ -60,8 +60,7 @@
     "commands/",
     "public/",
     "README.md",
-    "CHANGELOG.md",
-    "install.sh"
+    "CHANGELOG.md"
   ],
   "publishConfig": {
     "access": "public"

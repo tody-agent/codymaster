@@ -229,13 +229,30 @@ flowchart LR
 
 ### 2. Установка AI-навыков (Все платформы)
 
-Одна команда устанавливает все 68+ навыков в вашу среду. Поддерживает Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode и многие другие платформы:
+CodyMaster uses **Native Plugin Extensions** for zero-friction installation. No bash scripts, no manual folder copying. Select your platform below:
 
+**Claude Code CLI:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+claude plugin marketplace add tody-agent/codymaster
+claude plugin install cm@codymaster --scope user
 ```
 
-*Пользователи Cursor IDE также могут просто ввести `/add-plugin cody-master` в чате агента.*
+**Cursor (in Agent Chat):**
+```text
+/add-plugin cody-master
+```
+
+**Gemini CLI / Google Antigravity:**
+```bash
+gemini extensions install https://github.com/tody-agent/codymaster
+```
+*(Progressive disclosure: Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to your `GEMINI.md` to save tokens)*
+
+**OpenCode / OpenClaw:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
 
 ### 3. Установка панели управления (Опционально, но рекомендуется)
 

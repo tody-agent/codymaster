@@ -208,3 +208,117 @@ describe('generateBudgetReport', () => {
     expect(report).toMatch(/\d+\.?\d*%/);
   });
 });
+
+// ─── Per-Tier Budgets ───────────────────────────────────────────────────────
+
+import {
+  getDefaultTierBudgets,
+  checkTierBudget,
+  generateTierReport,
+  formatSavingsReport,
+} from '../src/token-budget';
+import type { TierBudget, TokenSavings } from '../src/token-budget';
+
+describe('getDefaultTierBudgets', () => {
+  test('returns 5 tiers', () => {
+    const tiers = getDefaultTierBudgets();
+    expect(tiers).toHaveLength(5);
+    expect(tiers.map(t => t.tier)).toEqual([1, 2, 3, 4, 5]);
+  });
+
+  test('Tier 1 has zero cost', () => {
+    const tiers = getDefaultTierBudgets();
+    expect(tiers[0].soft).toBe(0);
+    expect(tiers[0].hard).toBe(0);
+  });
+
+  test('all tiers have labels', () => {
+    const tiers = getDefaultTierBudgets();
+    for (const tier of tiers) {
+      expect(tier.label).toBeTruthy();
+    }
+  });
+});
+
+describe('checkTierBudget', () => {
+  const tiers = getDefaultTierBudgets();
+
+  test('allows within soft limit', () => {
+    const result = checkTierBudget(tiers, 2, 300);
+    expect(result.allowed).toBe(true);
+    expect(result.remaining).toBe(200); // 500 - 300
+  });
+
+  test('allows over soft limit in soft mode', () => {
+    const result = checkTierBudget(tiers, 2, 600, 'soft');
+    expect(result.allowed).toBe(true);
+    expect(result.remaining).toBeLessThan(0);
+    expect(result.suggestion).toBeTruthy();
+  });
+
+  test('denies over hard limit in hard mode', () => {
+    const result = checkTierBudget(tiers, 2, 1500, 'hard');
+    expect(result.allowed).toBe(false);
+  });
+
+  test('allows off-by-default tiers up to hard limit', () => {
+    // Tier 4 has soft=0, hard=2000
+    const result = checkTierBudget(tiers, 4, 1500);
+    expect(result.allowed).toBe(true);
+  });
+
+  test('denies off-by-default tiers over hard limit', () => {
+    const result = checkTierBudget(tiers, 4, 3000);
+    expect(result.allowed).toBe(false);
+    expect(result.suggestion).toContain('hard limit');
+  });
+
+  test('handles unknown tier', () => {
+    const result = checkTierBudget(tiers, 99, 100);
+    expect(result.allowed).toBe(false);
+    expect(result.suggestion).toContain('Unknown tier');
+  });
+});
+
+describe('generateTierReport', () => {
+  test('produces readable output', () => {
+    const tiers = getDefaultTierBudgets();
+    const report = generateTierReport(tiers);
+    expect(report).toContain('Sensory');
+    expect(report).toContain('Working');
+    expect(report).toContain('Long-term');
+    expect(report).toContain('Semantic');
+    expect(report).toContain('Structural');
+    expect(report).toContain('TOTAL');
+  });
+});
+
+describe('formatSavingsReport', () => {
+  test('formats savings with totals', () => {
+    const savings: TokenSavings = {
+      brainRoutingSaved: 3000,
+      cacheHitsSaved: 5000,
+      progressiveLoadSaved: 1000,
+      totalSaved: 9000,
+      sessionTasks: 5,
+    };
+    const report = formatSavingsReport(savings);
+    expect(report).toContain('Token Savings Report');
+    expect(report).toContain('3,000');
+    expect(report).toContain('5,000');
+    expect(report).toContain('9,000');
+    expect(report).toContain('Avg saved per task');
+  });
+
+  test('skips avg when zero tasks', () => {
+    const savings: TokenSavings = {
+      brainRoutingSaved: 0,
+      cacheHitsSaved: 0,
+      progressiveLoadSaved: 0,
+      totalSaved: 0,
+      sessionTasks: 0,
+    };
+    const report = formatSavingsReport(savings);
+    expect(report).not.toContain('Avg saved per task');
+  });
+});

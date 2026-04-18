@@ -243,13 +243,30 @@ Tất cả 68+ kỹ năng và 18 lệnh slash tải ngay lập tức. Hoạt đ�
 
 ### 2. Cài đặt các Kỹ năng AI (Mọi Nền tảng)
 
-Một câu lệnh để cài đặt toàn bộ 68+ kỹ năng vào môi trường của bạn. Hỗ trợ Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, và nhiều nền tảng bổ sung:
+CodyMaster uses **Native Plugin Extensions** for zero-friction installation. No bash scripts, no manual folder copying. Select your platform below:
 
+**Claude Code CLI:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+claude plugin marketplace add tody-agent/codymaster
+claude plugin install cm@codymaster --scope user
 ```
 
-*Dành cho người dùng Cursor IDE, bạn cũng có thể gõ `/add-plugin cody-master` trong agent chat.*
+**Cursor (in Agent Chat):**
+```text
+/add-plugin cody-master
+```
+
+**Gemini CLI / Google Antigravity:**
+```bash
+gemini extensions install https://github.com/tody-agent/codymaster
+```
+*(Progressive disclosure: Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to your `GEMINI.md` to save tokens)*
+
+**OpenCode / OpenClaw:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
 
 ### 3. Cài đặt Bảng điều khiển (Tùy chọn nhưng Khuyến nghị)
 

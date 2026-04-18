@@ -35,7 +35,7 @@ After build, you can invoke the CLI locally:
 node dist/index.js --help
 ```
 
-For a global install, use the published package or your preferred linking workflow (see project `README.md` and `install.sh` on the repo).
+For a global install, use the published package or your preferred linking workflow (see project `README.md` on the repo).
 
 ## Verify the toolchain
 

@@ -1318,6 +1318,16 @@ Add this line to the AGENTS.md "Important Rules" section:
 
 ```markdown
 - Read `.cm/CONTINUITY.md` at the start of every session for context
+- Rely on `.cm/project-skills.md` for skill discovery rather than external indexes
+```
+
+### Step 5: Build Local Project Skills Index
+
+Run the CodyMaster CLI indexer to detect the tech stack deterministically and pre-compile the needed community skills without wasting LLM tokens.
+
+```bash
+# This scans package.json/go.mod/etc and outputs to .cm/project-skills.md
+npx cm index skills
 ```
 
 ### Why This Saves Tokens
@@ -1373,4 +1383,5 @@ After bootstrap, the project MUST have:
 ✅ production branch          — Production deploys
 ✅ First commit               — "chore: bootstrap with cm-project-bootstrap v2.0"
 ✅ .cm/CONTINUITY.md           — Working memory for AI context persistence
+✅ .cm/project-skills.md       — Localized token-efficient skill discovery index
 ```

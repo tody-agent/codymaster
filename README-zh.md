@@ -229,13 +229,30 @@ flowchart LR
 
 ### 2. 安装 AI 技能 (所有平台)
 
-一条命令即可将所有 68+ 项技能安装到您的环境中。支持 Claude Code、Gemini CLI、Cursor、Aider、Windsurf、Cline、OpenCode 等更多平台：
+CodyMaster uses **Native Plugin Extensions** for zero-friction installation. No bash scripts, no manual folder copying. Select your platform below:
 
+**Claude Code CLI:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+claude plugin marketplace add tody-agent/codymaster
+claude plugin install cm@codymaster --scope user
 ```
 
-*对于 Cursor IDE 用户，您也可以直接在智能体聊天中输入 `/add-plugin cody-master`。*
+**Cursor (in Agent Chat):**
+```text
+/add-plugin cody-master
+```
+
+**Gemini CLI / Google Antigravity:**
+```bash
+gemini extensions install https://github.com/tody-agent/codymaster
+```
+*(Progressive disclosure: Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to your `GEMINI.md` to save tokens)*
+
+**OpenCode / OpenClaw:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
 
 ### 3. 安装控制台仪表盘 (可选但推荐)
 

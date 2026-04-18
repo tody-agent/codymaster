@@ -10,6 +10,8 @@ import { registerDesignStudioCommands } from './commands/design-studio';
 import { registerDistroCommands } from './commands/distro';
 import { registerMcpServeCommands } from './commands/mcp-serve';
 import { registerBenchCommands } from './commands/bench';
+import { registerBrainCommands } from './commands/brain';
+import { registerEvolveCommands } from './commands/evolve';
 
 /**
  * Registers all CLI commands with the provided program instance.
@@ -26,4 +28,6 @@ export function registerAllCommands(program: Command) {
   registerDistroCommands(program);
   registerMcpServeCommands(program);
   registerBenchCommands(program);
+  registerBrainCommands(program);
+  registerEvolveCommands(program);
 }

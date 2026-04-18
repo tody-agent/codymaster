@@ -223,31 +223,7 @@ describe.skipIf(!HAS_DOCS_SOP)('docs/sop/installation.md', () => {
   });
 });
 
-// ─── 6. install.sh Consistency ────────────────────
-describe.skipIf(!fs.existsSync(path.join(root, 'install.sh')))('install.sh', () => {
-  const script = readText('install.sh');
 
-  test('marketplace name uses "codymaster" (no hyphen)', () => {
-    // The script should reference the marketplace as "codymaster"
-    expect(script).toContain('codymaster');
-  });
-
-  test('does not install "cody-master@cody-master" (stale name)', () => {
-    expect(script).not.toContain('install.*cody-master@cody-master');
-    // More precise: no line that does `plugin install cody-master`
-    expect(script).not.toMatch(/plugin install\s+cody-master@cody-master/);
-  });
-
-  test('install.sh is executable (has shebang)', () => {
-    expect(script.startsWith('#!/')).toBe(true);
-  });
-
-  test('documents --profile for Antigravity/Windsurf token budget', () => {
-    expect(script).toContain('--profile');
-    expect(script).toContain('parse_install_args');
-    expect(script).toContain('SKILL_PROFILE');
-  });
-});
 
 // ─── 6b. Skill install profiles (full.txt vs filesystem) ────────
 describe('skills/profiles manifests', () => {
