@@ -7,7 +7,7 @@ Setting up CodyMaster v5 for your engineering team is straightforward. Follow th
 Ensure your environment meets the following requirements:
 - Node.js v18.0.0 or higher
 - Git
-- SQLite (for local OpenViking memory limits, pre-packaged)
+- SQLite-compatible local environment for CodyMaster's default memory stack
 
 ## 2. Installation
 
@@ -28,7 +28,7 @@ cm init
 
 This will automatically:
 1. Generate the `.agent/` folder structure to house specialized skills.
-2. Spin up the **OpenViking** indexer, which will immediately begin mapping your project's Abstract Syntax Trees (AST) and caching semantic vectors.
+2. Prepare CodyMaster's local memory and index surfaces so Smart Spine can retrieve project context efficiently.
 
 ## 4. Bootstrapping Agents
 
@@ -38,7 +38,7 @@ You can dispatch your first agent task utilizing the full memory and execution l
 cm do "Refactor the user dashboard to utilize Tailwind CSS dark mode variants, ensuring all current unit tests still pass."
 ```
 
-- Watch the terminal to see OpenViking extract relevant context without filling the token window with unnecessary `.json` configs.
+- Watch the terminal to see Smart Spine pull relevant context without filling the token window with unnecessary `.json` configs.
 - Watch OpenSpace dynamically spin up `npm run test` immediately after the code generation completes, self-correcting any errors before offering a Git commit.
 
 ## Continuous CI/CD (Founders Edition)

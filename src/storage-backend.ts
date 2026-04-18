@@ -4,15 +4,19 @@ import {
   insertDecision, queryDecisions,
   upsertIndex, getIndex,
   writeSkillOutput, getSkillOutputs,
+  recordExecutionAnalysis, getExecutionAnalyses, getSkillMetric, listSkillMetrics,
 } from './context-db';
-import type { DbLearning, DbDecision, DbIndex, DbSkillOutput } from './context-db';
-import { VikingBackend as RealVikingBackend } from './backends/viking-backend';
-import type { VikingConfig } from './backends/viking-http-client';
-import { DEFAULT_VIKING_CONFIG } from './backends/viking-http-client';
+import type {
+  DbLearning, DbDecision, DbIndex, DbSkillOutput, DbExecutionAnalysis, DbSkillMetric,
+  DbEvolutionRecommendation, DbSkillJudgment,
+} from './context-db';
 import { loadCmConfig } from './cm-config';
 
 // Re-export types so callers only need one import
-export type { DbLearning, DbDecision, DbIndex, DbSkillOutput };
+export type {
+  DbLearning, DbDecision, DbIndex, DbSkillOutput, DbExecutionAnalysis, DbSkillMetric,
+  DbEvolutionRecommendation, DbSkillJudgment,
+};
 
 // ─── Interface ────────────────────────────────────────────────────────────────
 
@@ -20,9 +24,9 @@ export type { DbLearning, DbDecision, DbIndex, DbSkillOutput };
  * StorageBackend — abstraction layer over CodyMaster's persistent memory store.
  *
  * Implement this interface to swap the storage engine without touching callers.
- * Current implementations: SqliteBackend (default), VikingBackend (stub).
+ * Current implementation: SqliteBackend (default).
  *
- * Config: .cm/config.yaml → storage.backend: sqlite | viking
+ * Config: .cm/config.yaml → storage.backend: sqlite
  */
 export interface StorageBackend {
   // Lifecycle
@@ -45,6 +49,12 @@ export interface StorageBackend {
   // Skill chain outputs
   writeSkillOutput(output: DbSkillOutput): void;
   getSkillOutputs(sessionId: string): DbSkillOutput[];
+
+  // Execution telemetry
+  recordExecutionAnalysis(analysis: DbExecutionAnalysis): void;
+  getExecutionAnalyses(limit?: number): DbExecutionAnalysis[];
+  getSkillMetric(skill: string): DbSkillMetric | null;
+  listSkillMetrics(limit?: number): DbSkillMetric[];
 }
 
 // ─── SqliteBackend ────────────────────────────────────────────────────────────
@@ -81,6 +91,11 @@ export class SqliteBackend implements StorageBackend {
 
   writeSkillOutput(o: DbSkillOutput): void               { writeSkillOutput(this.dbPath, o); }
   getSkillOutputs(sessionId: string): DbSkillOutput[]    { return getSkillOutputs(this.dbPath, sessionId); }
+
+  recordExecutionAnalysis(a: DbExecutionAnalysis): void  { recordExecutionAnalysis(this.dbPath, a); }
+  getExecutionAnalyses(limit = 20): DbExecutionAnalysis[] { return getExecutionAnalyses(this.dbPath, limit); }
+  getSkillMetric(skill: string): DbSkillMetric | null    { return getSkillMetric(this.dbPath, skill); }
+  listSkillMetrics(limit = 50): DbSkillMetric[]          { return listSkillMetrics(this.dbPath, limit); }
 }
 
 
@@ -90,7 +105,7 @@ export class SqliteBackend implements StorageBackend {
  * Returns the configured StorageBackend for the given project.
  *
  * Reads `.cm/config.yaml → storage.backend` via `loadCmConfig` (default: `sqlite`).
- * For `viking` backend, reads `storage.viking.*` for connection config.
+ * Legacy `storage.backend: viking` configs are warned and routed back to sqlite.
  *
  * Usage:
  *   const backend = getBackend('/path/to/project');
@@ -103,14 +118,14 @@ export function getBackend(projectPath: string): StorageBackend {
 
   switch (engine) {
     case 'viking': {
-      const vikingConfig = { ...DEFAULT_VIKING_CONFIG, ...cfg.storage?.viking };
-      return new RealVikingBackend(vikingConfig);
+      console.warn(
+        '[CodyMaster] storage.backend: viking has been removed. ' +
+        'Falling back to sqlite for the supported default path.'
+      );
+      return new SqliteBackend(projectPath);
     }
     case 'sqlite':
     default:
       return new SqliteBackend(projectPath);
   }
 }
-
-// Re-export VikingBackend so callers can use it directly if needed
-export { RealVikingBackend as VikingBackend };

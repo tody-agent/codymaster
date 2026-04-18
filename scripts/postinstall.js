@@ -287,25 +287,6 @@ const printMenu = () => {
   console.log('');
 };
 
-const installOpenViking = () => {
-  console.log('');
-  console.log(`${G}${BOLD}OpenViking — Installing Core Feature${NC}`);
-  try {
-    console.log(`  ${W}Running: pip install openviking${NC}`);
-    execSync('pip install openviking', { stdio: 'inherit' });
-    console.log(`  ${G}✅ OpenViking installed.${NC}`);
-  } catch (e) {
-    try {
-      console.log(`  ${W}Running: pip3 install openviking${NC}`);
-      execSync('pip3 install openviking', { stdio: 'inherit' });
-      console.log(`  ${G}✅ OpenViking installed.${NC}`);
-    } catch (err) {
-      console.log(`  ${O}⚠️  Could not install OpenViking automatically. Please run 'pip install openviking' manually.${NC}`);
-    }
-  }
-  console.log('');
-};
-
 const isInstalledAsNpmDependency = () => {
   const root = path.resolve(__dirname, '..').replace(/\\/g, '/');
   return /[/\\]node_modules[/\\]codymaster$/i.test(root);
@@ -339,7 +320,6 @@ const activateCli = () => {
 };
 
 const main = () => {
-  installOpenViking();
   activateCli();
   printMenu();
 };

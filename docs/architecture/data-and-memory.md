@@ -88,15 +88,12 @@ flowchart LR
     style D fill:#353b48,stroke:#fbc531,color:#fff
 ```
 
-### Viking backend (experimental — not production-ready)
+### Removed OpenViking backend
 
-`src/backends/viking-backend.ts` implements the same interface against a local HTTP server.
+Older CodyMaster revisions experimented with an OpenViking-backed implementation. That runtime path has been removed after proving too costly to install and too unreliable for the supported product path.
 
 > [!WARNING]
-> **Status: Not usable in v5.0.0.**
-> The `openviking` pip package (v0.1.12) ships an `agfs-server` binary that exposes only `/api/v1/health`. The write/read/search endpoints CodyMaster requires (`/write`, `/read`, `/search`, `/abstract`, `/overview`) are not implemented in the current release.
->
-> Until a compatible server is available, keep `storage.backend: sqlite`. SQLite FTS5 with BM25 ranking is the correct backend for all current use cases.
+> Keep `storage.backend: sqlite`. If an older project config still says `viking`, CodyMaster warns and falls back to SQLite automatically.
 
 ---
 
@@ -195,7 +192,7 @@ Full `.cm/config.yaml` with all options:
 
 ```yaml
 storage:
-  backend: sqlite        # "sqlite" (default) | "viking" (experimental, not ready)
+  backend: sqlite        # supported default; legacy "viking" values fall back to sqlite
 
 memory:
   max_learnings: 50      # Trigger Ebbinghaus TTL cleanup above this count

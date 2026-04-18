@@ -32,6 +32,7 @@ The MCP server (`src/mcp-context-server.ts`) supports `initialize`, `tools/list`
 - Query and resolve: `cm_query`, `cm_resolve`
 - Bus and budget: `cm_bus_read`, `cm_bus_write`, `cm_budget_check`
 - Memory maintenance: `cm_memory_decay`, `cm_index_refresh`
+- Advisory loop: `cm_advisory_report`, `cm_advisory_metrics`, `cm_advisory_handoff`
 - Engineering bridge: `cm_plan`, `cm_review`, `cm_qa`, `cm_deploy`, `cm_search`, `cm_memory_query`
 
 ## Integration Guidance

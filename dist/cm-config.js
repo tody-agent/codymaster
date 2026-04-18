@@ -61,24 +61,6 @@ function loadCmConfig(projectPath) {
         const storageRaw = asRecord(o.storage);
         if (storageRaw) {
             out.storage = { backend: scalarStr(storageRaw.backend) };
-            const vikingRaw = asRecord(storageRaw.viking);
-            if (vikingRaw) {
-                const viking = {};
-                const h = str(vikingRaw.host);
-                const ws = str(vikingRaw.workspace);
-                const p = num(vikingRaw.port);
-                const t = num(vikingRaw.timeout);
-                if (h !== undefined)
-                    viking.host = h;
-                if (ws !== undefined)
-                    viking.workspace = ws;
-                if (p !== undefined)
-                    viking.port = p;
-                if (t !== undefined)
-                    viking.timeout = t;
-                if (Object.keys(viking).length)
-                    out.storage.viking = viking;
-            }
         }
         const browseRaw = asRecord(o.browse);
         if (browseRaw) {

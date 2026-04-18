@@ -622,21 +622,6 @@ install_cli() {
   fi
 }
 
-install_openviking() {
-  echo ""
-  echo -e "${G}${BOLD}OpenViking — Installing Core Feature${NC}"
-  echo ""
-  if command -v pip3 &>/dev/null; then
-    echo -e "  ${W}Running: pip3 install openviking${NC}"
-    pip3 install openviking || echo -e "  ${O}⚠️ Could not install OpenViking automatically.${NC}"
-  elif command -v pip &>/dev/null; then
-    echo -e "  ${W}Running: pip install openviking${NC}"
-    pip install openviking || echo -e "  ${O}⚠️ Could not install OpenViking automatically.${NC}"
-  else
-    echo -e "  ${R}Python pip not found. Please install pip to get OpenViking.${NC}"
-  fi
-}
-
 # ── Ensure clone exists ──────────────────────────────────────────
 CLONE_DIR=""
 ensure_clone() {
@@ -1029,7 +1014,6 @@ if [[ "$INSTALL_CMD" == "all" ]]; then
     echo -e "  ${W}Cursor → ${_cm_cursor_rules} ${DIM}(not your current shell cwd)${NC}"
     install_skills_to "${_cm_cursor_rules}" "mdc"
   }
-  install_openviking
   install_cli "--auto"
   echo ""
   echo -e "${G}${BOLD}✅ All installations completed!${NC}"
@@ -1129,7 +1113,6 @@ for platform in "${platforms[@]}"; do
   esac
 done
 
-install_openviking
 install_cli
 print_onboarding
 

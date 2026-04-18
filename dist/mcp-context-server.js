@@ -3,7 +3,7 @@
 /**
  * CodyMaster MCP Context Server
  *
- * Exposes 13 tools over JSON-RPC 2.0 / stdio (Content-Length framing):
+ * Exposes 18 tools over JSON-RPC 2.0 / stdio (Content-Length framing):
  *   cm_query         — FTS5 search across learnings + decisions
  *   cm_resolve       — resolve a cm:// URI at L0/L1/L2
  *   cm_bus_read      — read context bus state
@@ -11,6 +11,7 @@
  *   cm_budget_check  — check token budget for a category
  *   cm_memory_decay  — TTL cleanup for learnings
  *   cm_index_refresh — regenerate L0 indexes
+ *   cm_advisory_report / cm_advisory_metrics / cm_advisory_handoff — advisory loop JSON surfaces
  *   cm_plan / cm_review / cm_qa / cm_deploy / cm_search / cm_memory_query — engineering kit bridge
  *
  * Usage (stdio MCP):
@@ -39,6 +40,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.cmAdvisoryReport = cmAdvisoryReport;
+exports.cmAdvisoryMetrics = cmAdvisoryMetrics;
+exports.cmAdvisoryHandoff = cmAdvisoryHandoff;
 const path_1 = __importDefault(require("path"));
 const context_db_1 = require("./context-db");
 const uri_resolver_1 = require("./uri-resolver");
@@ -46,6 +50,9 @@ const context_bus_1 = require("./context-bus");
 const token_budget_1 = require("./token-budget");
 const l0_indexer_1 = require("./l0-indexer");
 const mcp_skills_tools_1 = require("./mcp-skills-tools");
+const storage_backend_1 = require("./storage-backend");
+const advisory_report_1 = require("./advisory-report");
+const advisory_handoff_1 = require("./advisory-handoff");
 // ─── Config ──────────────────────────────────────────────────────────────────
 const SERVER_NAME = 'cm-context';
 const SERVER_VERSION = '1.0.0';
@@ -266,6 +273,55 @@ function cmIndexRefresh(args) {
     }
     throw new Error(`Unknown target: ${target}. Valid: learnings, skeleton, all`);
 }
+function cmAdvisoryReport(args) {
+    var _a;
+    const backend = (0, storage_backend_1.getBackend)(PROJECT_PATH);
+    backend.initialize();
+    try {
+        const limit = Math.max(1, (_a = args.limit) !== null && _a !== void 0 ? _a : 10);
+        const analyses = (0, advisory_report_1.buildAdvisoryReportData)(backend, { limit });
+        return {
+            count: analyses.length,
+            analyses,
+            generated_at: new Date().toISOString(),
+        };
+    }
+    finally {
+        backend.close();
+    }
+}
+function cmAdvisoryMetrics(args) {
+    var _a;
+    const backend = (0, storage_backend_1.getBackend)(PROJECT_PATH);
+    backend.initialize();
+    try {
+        const limit = Math.max(1, (_a = args.limit) !== null && _a !== void 0 ? _a : 10);
+        const metrics = (0, advisory_report_1.buildAdvisoryMetricsData)(backend, { limit });
+        return {
+            count: metrics.length,
+            metrics,
+            generated_at: new Date().toISOString(),
+        };
+    }
+    finally {
+        backend.close();
+    }
+}
+function cmAdvisoryHandoff(args) {
+    const backend = (0, storage_backend_1.getBackend)(PROJECT_PATH);
+    backend.initialize();
+    try {
+        return (0, advisory_handoff_1.buildAdvisoryHandoff)(backend, {
+            consumer: args.consumer,
+            analysisId: args.analysis_id,
+            skill: args.skill,
+            searchLimit: args.limit,
+        });
+    }
+    finally {
+        backend.close();
+    }
+}
 // ─── Tool Registry ─────────────────────────────────────────────────────────────
 const TOOLS = [
     {
@@ -373,6 +429,53 @@ const TOOLS = [
                     description: 'Which index to refresh (default: all)',
                 },
             },
+        },
+    },
+    {
+        name: 'cm_advisory_report',
+        description: 'Return recent advisory analyses as structured JSON for agent consumption.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                limit: { type: 'number', description: 'Max analyses to return (default: 10)' },
+            },
+        },
+    },
+    {
+        name: 'cm_advisory_metrics',
+        description: 'Return aggregated skill metrics and quality weights as structured JSON.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                limit: { type: 'number', description: 'Max skills to return (default: 10)' },
+            },
+        },
+    },
+    {
+        name: 'cm_advisory_handoff',
+        description: 'Build a structured advisory handoff for cm-skill-health or cm-skill-evolution.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                consumer: {
+                    type: 'string',
+                    enum: ['cm-skill-health', 'cm-skill-evolution'],
+                    description: 'Which self-healing skill should consume the handoff',
+                },
+                analysis_id: {
+                    type: 'string',
+                    description: 'Optional analysis id prefix (defaults to latest advisory analysis)',
+                },
+                skill: {
+                    type: 'string',
+                    description: 'Optional skill override when the target skill should be forced',
+                },
+                limit: {
+                    type: 'number',
+                    description: 'How many recent analyses to search while resolving analysis_id (default: 50)',
+                },
+            },
+            required: ['consumer'],
         },
     },
     {
@@ -507,6 +610,12 @@ function handleRequest(msg) {
                     result = cmMemoryDecay(a);
                 else if (name === 'cm_index_refresh')
                     result = cmIndexRefresh(a);
+                else if (name === 'cm_advisory_report')
+                    result = cmAdvisoryReport(a);
+                else if (name === 'cm_advisory_metrics')
+                    result = cmAdvisoryMetrics(a);
+                else if (name === 'cm_advisory_handoff')
+                    result = cmAdvisoryHandoff(a);
                 else if (name === 'cm_plan')
                     result = (0, mcp_skills_tools_1.cmPlanTool)(PROJECT_PATH);
                 else if (name === 'cm_review')

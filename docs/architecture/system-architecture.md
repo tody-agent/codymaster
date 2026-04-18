@@ -52,7 +52,7 @@ Text fallback: CLI commands read/write global kanban and per-project `.cm` data;
 | Entry       | Parse argv, register commands       | `src/index.ts`                                                          |
 | Commands    | User-facing operations              | `src/cli/commands/*.ts`                                                 |
 | Domain      | Data rules, continuity, bus, sprint | `src/continuity.ts`, `src/context-bus.ts`, `src/sprint-pipeline.ts`     |
-| Storage     | SQLite FTS + optional Viking HTTP   | `src/context-db.ts`, `src/storage-backend.ts`, `src/backends/*`         |
+| Storage     | SQLite FTS + legacy-config fallback | `src/context-db.ts`, `src/storage-backend.ts`         |
 | Integration | Dashboard, browse, MCP              | `src/dashboard.ts`, `src/browse-server.ts`, `src/mcp-context-server.ts` |
 
 
@@ -60,7 +60,7 @@ Text fallback: CLI commands read/write global kanban and per-project `.cm` data;
 
 - **New CLI command** — add module under `src/cli/commands/`, register in `src/cli/command-registry.ts`.
 - **New skill** — add `skills/<id>/SKILL.md` (validated by `npm run validate:skills`).
-- **Storage engine** — implement or configure `StorageBackend` (`src/storage-backend.ts`); `viking` uses `src/backends/viking-backend.ts`.
+- **Storage engine** — implement or configure `StorageBackend` (`src/storage-backend.ts`); `sqlite` is the supported default and legacy `viking` configs are normalized back to it.
 
 ## Related docs
 
@@ -68,4 +68,3 @@ Text fallback: CLI commands read/write global kanban and per-project `.cm` data;
 - [Data flow](./data-flow.md)  
 - [Storage and memory](./data-and-memory.md)  
 - [Servers and MCP](./servers-and-mcp.md)
-

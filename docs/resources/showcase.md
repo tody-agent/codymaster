@@ -13,10 +13,10 @@ robots: index, follow
 | Capability             | What you get                                                                        |
 | ---------------------- | ----------------------------------------------------------------------------------- |
 | **Mission Control**    | Local dashboard for projects/tasks/deployments (`cm dashboard`, `src/dashboard.ts`) |
-| **Durable memory**     | `.cm/` + SQLite FTS or OpenViking backend (`src/storage-backend.ts`)                |
+| **Durable memory**     | `.cm/` + SQLite FTS with optional semantic/search layers built around the supported local stack |
 | **Agent-native tools** | MCP server with search, resolve, bus, budget tools (`src/mcp-context-server.ts`)    |
 | **Engineering kit**    | Browse, guardian, sprint, QA helpers (`src/cli/commands/engineering.ts`)            |
-| **56 bundled skills**  | Opinionated workflows in `skills/*/SKILL.md` ([index](../skills/index.md))          |
+| **60 bundled skills**  | Opinionated workflows in `skills/*/SKILL.md` ([index](../skills/index.md))          |
 
 
 ## “Aha” moments

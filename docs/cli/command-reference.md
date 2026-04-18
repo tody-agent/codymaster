@@ -21,7 +21,7 @@ robots: index, follow
 - `chain`
 - `status`, `config`, `open`
 - `task`
-- `browse`, `guardian`, `sprint`, `second-opinion`, `qa-visual`, `canary`, `conductor`, `retro`, `suggest`
+- `browse`, `guardian`, `advisory`, `sprint`, `second-opinion`, `qa-visual`, `canary`, `conductor`, `retro`, `suggest`
 - `design-studio`
 - `distro`
 
@@ -51,4 +51,3 @@ See also:
 - [Installation and Local Run](../getting-started/installation.md)
 - [Engineering Pipeline](../workflows/engineering-pipeline.md)
 - [Testing and Release Gates](../quality/testing-and-release.md)
-

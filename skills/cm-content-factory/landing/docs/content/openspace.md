@@ -19,7 +19,7 @@ OpenSpace surrounds the agent with a secure execution container (sandbox) tightl
 ## Anatomy of a Session
 
 When an agent is initialized in OpenSpace, it acts as a headless developer:
-1. It pulls semantic context from **[OpenViking](#openviking)**.
+1. It pulls focused context from the **[Layered Memory System](#memory-system)**.
 2. It drafts a solution to isolated branch files.
 3. It spawns an OpenSpace terminal subprocess to run Linters and Unit Tests.
 4. If a test fails, it captures the `stderr` output within OpenSpace and self-heals the code until all checks pass.

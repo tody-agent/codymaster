@@ -1,6 +1,8 @@
 import crypto from 'crypto';
 import { getBuiltinChains, getChainById } from './chains/builtin';
 import { initBus, updateBusStep } from './context-bus';
+import { qualityWeight } from './execution-analyzer';
+import { getBackend, type DbSkillMetric } from './storage-backend';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -18,6 +20,10 @@ export interface ChainDefinition {
   icon: string;
   steps: ChainStep[];
   triggers: string[];
+}
+
+export interface SkillSelectionOptions {
+  getSkillMetric?: (skill: string) => DbSkillMetric | null;
 }
 
 export type ChainStatus = 'pending' | 'running' | 'paused' | 'completed' | 'failed' | 'aborted';
@@ -112,7 +118,8 @@ export function scoreStepRelevance(taskTitle: string, step: ChainStep): number {
 export function selectTopSkills(
   taskTitle: string,
   chain: ChainDefinition,
-  maxSkills = 3
+  maxSkills = 3,
+  options: SkillSelectionOptions = {}
 ): ChainStep[] {
   const mandatory = chain.steps.filter(s => !s.optional && s.condition === 'always');
   const optional  = chain.steps.filter(s => s.optional  || s.condition !== 'always');
@@ -127,7 +134,12 @@ export function selectTopSkills(
 
   const remaining = maxSkills - mandatory.length;
   const scoredOptional = optional
-    .map(step => ({ step, score: scoreStepRelevance(taskTitle, step) }))
+    .map(step => {
+      const relevance = scoreStepRelevance(taskTitle, step);
+      const metric = options.getSkillMetric?.(step.skill) ?? null;
+      const quality = qualityWeight(metric);
+      return { step, score: relevance + quality, relevance, quality };
+    })
     .sort((a, b) => b.score - a.score)
     .slice(0, remaining)
     .map(({ step }) => step);
@@ -165,8 +177,16 @@ export function createChainExecution(
   projectPath?: string
 ): ChainExecution {
   const now = new Date().toISOString();
-
-  const selectedSteps = selectTopSkills(taskTitle, chain);
+  const backend = projectPath ? getBackend(projectPath) : undefined;
+  let selectedSteps: ChainStep[];
+  backend?.initialize();
+  try {
+    selectedSteps = selectTopSkills(taskTitle, chain, 3, {
+      getSkillMetric: backend ? (skill) => backend.getSkillMetric(skill) : undefined,
+    });
+  } finally {
+    backend?.close();
+  }
   const steps: ChainStepExecution[] = selectedSteps.map((step, index) => ({
     index,
     skill: step.skill,

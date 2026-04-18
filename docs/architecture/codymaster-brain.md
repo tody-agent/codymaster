@@ -44,9 +44,9 @@ Unified addressing for memory, skills, and pipeline snapshots (`src/uri-resolver
 | L2    | Full content when justified            |
 
 
-## Optional vector graph backend (OpenViking)
+## Removed OpenViking backend
 
-When `storage.backend: viking` is set in `.cm/config.yaml`, `getBackend()` returns `VikingBackend` (`src/storage-backend.ts`) for semantic search and abstracts (see `CHANGELOG.md` and `src/backends/viking-backend.ts`).
+Older CodyMaster versions experimented with an OpenViking-backed path. That runtime backend has been removed; legacy configs that still mention `storage.backend: viking` now fall back to SQLite with a warning.
 
 ## See also
 

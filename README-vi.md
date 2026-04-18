@@ -103,8 +103,8 @@ AI của bạn không chỉ thực thi — nó còn **thấu hiểu và ghi nh�
 - **cm:// URI Scheme** — Skill yêu cầu context bằng URI, không phải đường dẫn file.
 - **Token Budget** — Cửa sổ 200k token được phân bổ sẵn theo danh mục. Không bao giờ tràn ngầm.
 - **Context Bus** — Các skill chia sẻ output theo thời gian thực trong một chuỗi.
-- **MCP Server** — 13 công cụ cho Claude Desktop và mọi MCP client (`src/mcp-context-server.ts`).
-- **Tích hợp OpenViking Backend** — Lấy cảm hứng từ kiến trúc của OpenViking, CodyMaster mặc định cài đặt và tích hợp trực tiếp cơ sở dữ liệu `openviking`. Mang đến khả năng tìm kiếm vector ngữ nghĩa thực sự, nén phiên tự động và phân tầng ngữ cảnh (tùy chọn thay đổi cấu hình: `storage.backend: viking`).
+- **MCP Server** — 18 công cụ cho Claude Desktop và mọi MCP client (`src/mcp-context-server.ts`). Bao gồm memory tools (`cm_memory_write`, `cm_natural`) và advisory JSON surfaces (`cm_advisory_report`, `cm_advisory_metrics`, `cm_advisory_handoff`).
+- **Ngăn xếp bộ nhớ ưu tiên SQLite** — CodyMaster đi theo luồng mặc định đã được hỗ trợ tốt với SQLite + FTS5, nạp ngữ cảnh theo mức độ cần thiết và các lớp mở rộng như `qmd` / code intelligence. Đường tích hợp OpenViking cũ đã được gỡ khỏi runtime.
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 Những kiến thức giá trị cao và pattern thiết kế được đồng bộ hóa với NotebookLM, cung cấp một "Linh hồn" đa thiết bị toàn diện cho dự án của bạn. Tự động tạo podcast và flashcard để đào tạo các lập trình viên con người làm việc bên cạnh AI.
@@ -167,17 +167,18 @@ Cần mở rộng nội dung? `**cm-content-factory`** là một cỗ máy tạo
 
 Theo dõi mọi thứ trên **Bảng điều khiển trực quan** (`cm-dashboard`): Không còn phải đoán mò. Theo dõi mọi tác vụ, mọi agent, mọi lần triển khai trên bảng Kanban thời gian thực. Tiến độ pipeline, trình theo dõi token, nhật ký sự kiện — tất cả trên một màn hình.
 
-### 🧬 AI Tự chữa lành (Khả năng tự sửa lỗi)
+### 🧬 Bộ kỹ năng tự phục hồi
 
-CodyMaster không chỉ chạy các kỹ năng — nó **theo dõi, chấm điểm và tự động chữa lành chúng.**
+CodyMaster có một nhóm skill chuyên dùng để giữ thư viện kỹ năng luôn dùng được khi repo thay đổi.
 
-- `**cm-skill-health`** theo dõi từng lần gọi: tỷ lệ thành công, mức sử dụng token, các mô hình lỗi.
-- `**cm-skill-evolution`** tự động vá các kỹ năng bị suy giảm (Chế độ: FIX) khi điểm số sức khỏe giảm xuống dưới ngưỡng.
-- `**cm-skill-chain` Auto-Dispatch** — Lấy cảm hứng từ OpenSpace, quy trình điều phối chuỗi tự động hoàn toàn được ra mắt với khả năng theo dõi quá trình thông minh và bàn giao liên kết các Agent không cần con người.
-- `**cm-skill-search`** sử dụng xếp hạng BM25 để tìm đúng kỹ năng cho bất kỳ tác vụ nào.
-- `**cm-skill-share`** xuất & nhập kỹ năng giữa các nhóm và máy tính.
+- `**cm-skill-health`** kiểm tra sức khỏe thực tế của một skill từ tín hiệu đang có: lệch docs, tham chiếu hỏng, retro notes, validate và test gate.
+- `**cm-skill-evolution`** hướng dẫn đường sửa với 3 chế độ: `FIX`, `DERIVED`, và `CAPTURED`.
+- `**cm advisory report` / `metrics` / `handoff`** biến execution telemetry thành một vòng lặp có thể review được trước khi sửa skill.
+- `**cm-skill-chain` Auto-Dispatch** — quy trình điều phối chuỗi vẫn tự động với phát hiện tác vụ và bàn giao nhiều bước.
+- `**cm-skill-search`** tìm skill phù hợp qua `cm suggest`, skill index và repo search.
+- `**cm-skill-share`** đóng gói và chia sẻ skill an toàn giữa các repo và máy khác nhau.
 
-> **Hãy coi đây như hệ miễn dịch cho bộ công cụ AI của bạn.** Các kỹ năng bị hỏng sẽ được chữa lành. Các kỹ năng hoạt động tốt được tăng cường. Những kỹ năng chết sẽ được lưu trữ.
+> **Hãy coi đây như hệ miễn dịch cho bộ công cụ AI của bạn.** Trước hết xem telemetry, sau đó chẩn đoán skill, sửa có chủ đích, rồi lưu lại bài học để không lặp lại lỗi cũ.
 
 ---
 
@@ -186,13 +187,13 @@ CodyMaster không chỉ chạy các kỹ năng — nó **theo dõi, chấm đi�
 
 |                  | 😵 15 kỹ năng ngẫu nhiên                              | 🧠 CodyMaster                                                                                        |
 | ---------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Tích hợp**     | Mỗi kỹ năng là độc lập, không có ngữ cảnh chung       | 68+ kỹ năng liên kết thành chuỗi, chia sẻ bộ nhớ và giao tiếp với nhau                               |
+| **Tích hợp**     | Mỗi kỹ năng là độc lập, không có ngữ cảnh chung       | 60+ kỹ năng liên kết thành chuỗi, chia sẻ bộ nhớ và giao tiếp với nhau                               |
 | **Vòng đời**     | Chỉ bao gồm phần lập trình (coding)                   | Bao gồm Ý tưởng → Thiết kế → Code → Kiểm thử → Triển khai → Tài liệu → Học tập                       |
 | **Bộ nhớ**       | Quên mọi thứ giữa các phiên làm việc                  | Hệ thống Bộ Não Hợp Nhất 5 tầng: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain |
 | **An toàn**      | Triển khai kiểu phó mặc (YOLO)                        | Bảo vệ 4 lớp: TDD → Security → Isolation → Triển khai đa cổng                                        |
 | **Thiết kế**     | UI ngẫu nhiên mỗi lần thực hiện                       | Trích xuất & thực thi hệ thống thiết kế + xem trước trực quan                                        |
 | **Tài liệu**     | "Có lẽ sẽ viết README sau"                            | Tự động tạo tài liệu đầy đủ, SOP, tham chiếu API từ mã nguồn                                         |
-| **Tự cải thiện** | Tĩnh — những gì bạn cài đặt là những gì bạn nhận được | Học hỏi từ sai lầm, tự động khám phá kỹ năng mới, thông minh hơn mỗi ngày                            |
+| **Tự cải thiện** | Tĩnh — những gì bạn cài đặt là những gì bạn nhận được | Tự phục hồi theo advisory loop: xem tín hiệu → chẩn đoán → sửa với FIX / DERIVED / CAPTURED         |
 | **Bảo trì**      | Cập nhật 15 repo riêng biệt                           | Một lệnh `git pull` cập nhật tất cả mọi thứ                                                          |
 
 
@@ -297,7 +298,7 @@ CLI sẽ tương tác và giúp bạn tổ chức công việc trong những phi
 
 ---
 
-## 🧰 Kho vũ khí 68+ kỹ năng
+## 🧰 Kho vũ khí 60+ kỹ năng
 
 
 | Lĩnh vực                   | Kỹ năng                                                                                                                                       |

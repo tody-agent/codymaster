@@ -27,6 +27,9 @@ import {
   formatRetroJson,
 } from '../../retro-summary';
 import { suggestFromContext } from '../../cm-suggest';
+import { getBackend } from '../../storage-backend';
+import { formatAdvisoryMetrics, formatAdvisoryReport } from '../../advisory-report';
+import { buildAdvisoryHandoff, formatAdvisoryHandoffMarkdown, type AdvisoryConsumer } from '../../advisory-handoff';
 
 function projectPath(opt: string | undefined): string {
   return path.resolve(opt || process.cwd());
@@ -107,6 +110,85 @@ export function registerEngineeringCommands(program: Command): void {
         process.exit(1);
       }
       console.log(chalk.green('OK'), opts.file);
+    });
+
+  const advisory = program
+    .command('advisory')
+    .description('Operator-facing execution analysis and skill quality reports');
+
+  advisory
+    .command('report')
+    .description('Show recent execution analyses with recommended actions')
+    .option('--project <dir>')
+    .option('--limit <n>', 'number of analyses to show', '10')
+    .action((opts: { project?: string; limit?: string }) => {
+      const root = projectPath(opts.project);
+      const backend = getBackend(root);
+      backend.initialize();
+      try {
+        const limit = Math.max(1, parseInt(String(opts.limit ?? '10'), 10) || 10);
+        console.log(formatAdvisoryReport(backend, { limit }));
+      } finally {
+        backend.close();
+      }
+    });
+
+  advisory
+    .command('metrics')
+    .description('Show aggregated skill metrics with quality weights')
+    .option('--project <dir>')
+    .option('--limit <n>', 'number of skills to show', '10')
+    .action((opts: { project?: string; limit?: string }) => {
+      const root = projectPath(opts.project);
+      const backend = getBackend(root);
+      backend.initialize();
+      try {
+        const limit = Math.max(1, parseInt(String(opts.limit ?? '10'), 10) || 10);
+        console.log(formatAdvisoryMetrics(backend, { limit }));
+      } finally {
+        backend.close();
+      }
+    });
+
+  advisory
+    .command('handoff')
+    .description('Build a structured advisory handoff for cm-skill-health or cm-skill-evolution')
+    .requiredOption('--for <consumer>', 'cm-skill-health | cm-skill-evolution')
+    .option('--analysis <id>', 'analysis id prefix (default: latest)')
+    .option('--skill <name>', 'override target skill')
+    .option('--format <f>', 'md | json', 'md')
+    .option('--project <dir>')
+    .action((opts: {
+      for: string;
+      analysis?: string;
+      skill?: string;
+      format?: string;
+      project?: string;
+    }) => {
+      const consumer = String(opts.for) as AdvisoryConsumer;
+      if (consumer !== 'cm-skill-health' && consumer !== 'cm-skill-evolution') {
+        console.error(chalk.red('Invalid --for value. Use cm-skill-health or cm-skill-evolution.'));
+        process.exit(1);
+      }
+
+      const root = projectPath(opts.project);
+      const backend = getBackend(root);
+      backend.initialize();
+      try {
+        const handoff = buildAdvisoryHandoff(backend, {
+          consumer,
+          analysisId: opts.analysis,
+          skill: opts.skill,
+        });
+        const format = String(opts.format ?? 'md').toLowerCase();
+        if (format === 'json') console.log(JSON.stringify(handoff, null, 2));
+        else console.log(formatAdvisoryHandoffMarkdown(handoff));
+      } catch (error) {
+        console.error(chalk.red((error as Error).message));
+        process.exit(1);
+      } finally {
+        backend.close();
+      }
     });
 
   const sprint = program.command('sprint').description('Opinionated pipeline + .cm/sprint Context Bus');

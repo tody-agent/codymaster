@@ -6,17 +6,17 @@ When you dispatch a command to the system, it doesn't just blindly pass your tex
 
 ## The High-Level Flow
 
-Here is a visual breakdown of how the OpenViking and OpenSpace integrations handle an incoming task:
+Here is a visual breakdown of how Smart Spine memory and OpenSpace handle an incoming task:
 
 ```mermaid
 graph TD
     User([User Prompt: "Refactor Authentication"]) ==> Router
     
     subgraph "Phase 1: Knowledge Gathering"
-        Router[Task Router] --> OViking{OpenViking Engine}
-        OViking --> L0[L0: Skeleton Directory Map]
-        OViking --> L1[L1: Symbol Headers]
-        OViking --> L2[L2: Semantic Vectors]
+        Router[Task Router] --> Memory{Smart Spine Memory}
+        Memory --> L0[L0: Skeleton Directory Map]
+        Memory --> L1[L1: Symbol Headers]
+        Memory --> L2[L2: Indexed Project Context]
         L0 --> Compiler[Context Builder]
         L1 --> Compiler
         L2 --> Compiler
@@ -37,7 +37,7 @@ graph TD
     
     style User fill:#3b82f6,stroke:#fff,stroke-width:2px,color:#fff
     style Ship fill:#10b981,stroke:#fff,stroke-width:2px,color:#fff
-    style OViking fill:#8b5cf6,stroke:#fff,stroke-width:2px,color:#fff
+    style Memory fill:#8b5cf6,stroke:#fff,stroke-width:2px,color:#fff
     style Sandbox fill:#f59e0b,stroke:#fff,stroke-width:2px,color:#111
 ```
 
@@ -46,8 +46,8 @@ graph TD
 ## Step-by-Step Walkthrough
 
 ### 1. Task Routing & Context Building
-The moment you hit enter, your command is sent to the **Task Router**. Before connecting to an external AI model (like Claude 3.5 or GPT-4o), the router queries **OpenViking**. 
-- OpenViking executes a rapid vector search over the local SQLite cache to find all functionally related files. 
+The moment you hit enter, your command is sent to the **Task Router**. Before connecting to an external AI model (like Claude 3.5 or GPT-4o), the router queries **Smart Spine memory**. 
+- Smart Spine uses project indexes and local memory search to find all functionally related files. 
 - It bundles the `L0` (Project Structure), `L1` (Function Interfaces), and `L2` (Implementation Logic) to create a highly compressed, precisely targeted knowledge package.
 
 ### 2. Autonomous Execution

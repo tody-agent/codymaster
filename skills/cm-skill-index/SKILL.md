@@ -98,6 +98,10 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `cm-execution` | execute, implement, plan, RARV, batch | Execute plans: batch mode, subagent-driven, parallel, or RARV |
 | `cm-continuity` | memory, context, CONTINUITY, learnings | Working memory protocol: read at start, update at end |
 | `cm-skill-mastery` | which skill, skill list, discover, help | Meta-skill: when to invoke skills, how to create new ones |
+| `cm-skill-health` | skill broken, skill drift, missing skill, stale skill, health | Audit a skill using docs drift, retro notes, validation, and gates |
+| `cm-skill-evolution` | repair skill, evolve skill, fix skill, derive skill | Recover a degraded skill with FIX, DERIVED, or CAPTURED mode |
+| `cm-skill-search` | find skill, lookup skill, which skill, search skill | Find the right skill through indexes, suggestions, and repo search |
+| `cm-skill-share` | export skill, import skill, share skill, move skill | Package and transfer skill folders safely across repos and machines |
 | `cm-safe-i18n` | translate, i18n, language, localize | Safe translation with multi-pass batching and audit gates |
 | `cm-skill-chain` | chain, pipeline, workflow, multi-step, full process | Compose skills into automated multi-step pipelines |
 | `cm-deep-search` | semantic search, find docs, large codebase, qmd | Optional power-up for semantic search across large projects |
@@ -311,7 +315,7 @@ operations: [cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, c
 security: [cm-secret-shield]
 product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-ui-preview, cm-dockit, cm-project-bootstrap, cm-jtbd]
 growth: [cm-content-factory, cm-ads-tracker, cm-cro-methodology]
-orchestration: [cm-execution, cm-continuity, cm-skill-mastery, cm-skill-chain, cm-deep-search, cm-readit, cm-how-it-work]
+orchestration: [cm-execution, cm-continuity, cm-skill-mastery, cm-skill-health, cm-skill-evolution, cm-skill-search, cm-skill-share, cm-skill-chain, cm-deep-search, cm-readit, cm-how-it-work]
 commands: [cm-start, cm-dashboard, cm-status]
 # planned (no SKILL.md yet): mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, cm-google-form
 ```

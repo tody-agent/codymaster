@@ -7,14 +7,14 @@ robots: index, follow
 
 # CodyMaster Documentation
 
-**CodyMaster** is a TypeScript CLI and skill kit for AI-assisted software work: local project memory, optional vector backend, Mission Control dashboard, browse/QA helpers, and an MCP context server so agents can query learnings and pipeline state safely.
+**CodyMaster** is a TypeScript CLI and skill kit for AI-assisted software work: local project memory, Mission Control dashboard, browse/QA helpers, and an MCP context server so agents can query learnings and pipeline state safely.
 
 ## Why this exists (value in one minute)
 
 | You want… | CodyMaster gives you… |
 |-----------|------------------------|
 | Repeatable agent workflows | Named **skills** in `skills/` + chains (`cm chain`) |
-| Context that survives sessions | `.cm/` working memory + SQLite FTS (or OpenViking) |
+| Context that survives sessions | `.cm/` working memory + SQLite FTS |
 | Safer automation | Guardian checks, security gates, deploy dry-runs |
 | Visibility | **Dashboard** at `http://localhost:6969` (default) |
 | Tool integration | **MCP server** (`src/mcp-context-server.ts`) for Claude / compatible hosts |
@@ -44,4 +44,4 @@ When docs and marketing disagree, trust these files:
 - `src/cli/command-registry.ts` — registered commands  
 - `src/data.ts` — global `~/.codymaster/kanban.json`  
 - `src/mcp-context-server.ts` — MCP tool surface  
-- `src/storage-backend.ts` — `sqlite` vs `viking` backends  
+- `src/storage-backend.ts` — storage backend dispatch (`sqlite` default, legacy `viking` configs fall back safely)  

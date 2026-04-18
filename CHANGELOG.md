@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+## [Unreleased]
+
+### 🚀 Improvements — OpenViking De-scope
+
+- Removed OpenViking auto-installation from `install.sh` and `scripts/postinstall.js`; CodyMaster now keeps the normal install path focused on the supported Node-first stack.
+- Updated runtime/config/docs guidance so `storage.backend: viking` is treated as a deprecated experimental path instead of a default-facing feature.
+- Removed the remaining OpenViking runtime backend, demo script, and dedicated tests; legacy `storage.backend: viking` configs now warn and fall back to SQLite.
+
+### 🚀 Improvements — Advisory Loop Productization
+
+- Added `cm advisory report`, `cm advisory metrics`, and `cm advisory handoff` so operators can inspect execution analyses, review per-skill quality, and generate structured recovery notes for `cm-skill-health` / `cm-skill-evolution`.
+- `selectTopSkills()` now uses recorded `skill_metrics` as a quality-weighted boost for optional step ranking, while mandatory `always` steps remain unchanged.
+- Added `src/advisory-handoff.ts` as the shared contract between analyzer output and self-healing workflows; the handoff can be emitted as Markdown or JSON.
+- Exposed the advisory loop to MCP clients via `cm_advisory_report`, `cm_advisory_metrics`, and `cm_advisory_handoff` in `src/mcp-context-server.ts`.
+- Added workflow and API docs for the advisory loop under `docs/workflows/advisory-loop.md` and `docs/api/api-reference.md`.
+
 ## [5.1.0] - 2026-04-11
 
 ### 🚀 Improvements — SkillsBench Intelligence + Ecosystem Reach

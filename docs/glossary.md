@@ -18,7 +18,7 @@ robots: index, follow
 - **MCP Context Server**: JSON-RPC stdio server exposing CodyMaster memory and pipeline tools.
 - **Skill Output**: Persisted output artifact from a step in a chained workflow.
 - **Sprint Artifact**: File/state emitted by sprint pipeline lifecycle operations.
-- **Storage Backend**: Pluggable persistence implementation (`sqlite` or `viking`).
+- **Storage Backend**: CodyMaster's persistence implementation, currently supported as SQLite with compatibility fallback for legacy configs.
 
 See also:
 

@@ -14,6 +14,10 @@ exports.upsertIndex = upsertIndex;
 exports.getIndex = getIndex;
 exports.writeSkillOutput = writeSkillOutput;
 exports.getSkillOutputs = getSkillOutputs;
+exports.recordExecutionAnalysis = recordExecutionAnalysis;
+exports.getExecutionAnalyses = getExecutionAnalyses;
+exports.getSkillMetric = getSkillMetric;
+exports.listSkillMetrics = listSkillMetrics;
 exports.getDbPath = getDbPath;
 const better_sqlite3_1 = __importDefault(require("better-sqlite3"));
 const path_1 = __importDefault(require("path"));
@@ -115,6 +119,38 @@ CREATE TABLE IF NOT EXISTS token_usage (
   category TEXT NOT NULL,
   tokens_used INTEGER NOT NULL,
   timestamp TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS execution_analyses (
+  id TEXT PRIMARY KEY,
+  task_title TEXT NOT NULL,
+  status TEXT NOT NULL,
+  summary TEXT NOT NULL DEFAULT '',
+  source_task_type TEXT,
+  session_id TEXT,
+  chain_id TEXT,
+  selected_skills_json TEXT NOT NULL DEFAULT '[]',
+  token_estimate INTEGER DEFAULT 0,
+  latency_bucket TEXT,
+  bus_snapshot TEXT,
+  retro_summary TEXT,
+  recommended_action TEXT,
+  confidence REAL,
+  skill_judgments_json TEXT NOT NULL DEFAULT '[]',
+  created_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS skill_metrics (
+  skill TEXT PRIMARY KEY,
+  selections INTEGER NOT NULL DEFAULT 0,
+  applications INTEGER NOT NULL DEFAULT 0,
+  task_completions INTEGER NOT NULL DEFAULT 0,
+  fallbacks INTEGER NOT NULL DEFAULT 0,
+  total_token_estimate INTEGER NOT NULL DEFAULT 0,
+  last_task_type TEXT,
+  last_recommended_action TEXT,
+  last_used_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
 );
 `;
 // ─── Open / Close ────────────────────────────────────────────────────────────
@@ -258,6 +294,127 @@ function writeSkillOutput(dbPath, output) {
 function getSkillOutputs(dbPath, sessionId) {
     const db = openDb(dbPath);
     return db.prepare('SELECT * FROM skill_outputs WHERE session_id = ? ORDER BY id ASC').all(sessionId);
+}
+// ─── Execution Analyses ─────────────────────────────────────────────────────
+function safeParseJsonArray(raw) {
+    if (!raw)
+        return [];
+    try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+    }
+    catch (_a) {
+        return [];
+    }
+}
+function rowToExecutionAnalysis(row) {
+    var _a;
+    return {
+        id: String(row.id),
+        task_title: String(row.task_title),
+        status: row.status,
+        summary: String((_a = row.summary) !== null && _a !== void 0 ? _a : ''),
+        source_task_type: typeof row.source_task_type === 'string' ? row.source_task_type : undefined,
+        session_id: typeof row.session_id === 'string' ? row.session_id : undefined,
+        chain_id: typeof row.chain_id === 'string' ? row.chain_id : undefined,
+        selected_skills: safeParseJsonArray(row.selected_skills_json),
+        token_estimate: typeof row.token_estimate === 'number' ? row.token_estimate : undefined,
+        latency_bucket: typeof row.latency_bucket === 'string' ? row.latency_bucket : undefined,
+        bus_snapshot: typeof row.bus_snapshot === 'string' ? row.bus_snapshot : undefined,
+        retro_summary: typeof row.retro_summary === 'string' ? row.retro_summary : undefined,
+        recommended_action: row.recommended_action,
+        confidence: typeof row.confidence === 'number' ? row.confidence : undefined,
+        skill_judgments: safeParseJsonArray(row.skill_judgments_json),
+        created_at: String(row.created_at),
+    };
+}
+function recordExecutionAnalysis(dbPath, analysis) {
+    var _a, _b;
+    const db = openDb(dbPath);
+    const now = analysis.created_at || new Date().toISOString();
+    const selectedSkills = JSON.stringify((_a = analysis.selected_skills) !== null && _a !== void 0 ? _a : []);
+    const skillJudgments = JSON.stringify((_b = analysis.skill_judgments) !== null && _b !== void 0 ? _b : []);
+    const insertAnalysis = db.prepare(`
+    INSERT OR REPLACE INTO execution_analyses
+      (id, task_title, status, summary, source_task_type, session_id, chain_id,
+       selected_skills_json, token_estimate, latency_bucket, bus_snapshot,
+       retro_summary, recommended_action, confidence, skill_judgments_json, created_at)
+    VALUES
+      (@id, @task_title, @status, @summary, @source_task_type, @session_id, @chain_id,
+       @selected_skills_json, @token_estimate, @latency_bucket, @bus_snapshot,
+       @retro_summary, @recommended_action, @confidence, @skill_judgments_json, @created_at)
+  `);
+    const upsertMetric = db.prepare(`
+    INSERT INTO skill_metrics
+      (skill, selections, applications, task_completions, fallbacks, total_token_estimate,
+       last_task_type, last_recommended_action, last_used_at, updated_at)
+    VALUES
+      (@skill, @selections, @applications, @task_completions, @fallbacks, @total_token_estimate,
+       @last_task_type, @last_recommended_action, @last_used_at, @updated_at)
+    ON CONFLICT(skill) DO UPDATE SET
+      selections = skill_metrics.selections + excluded.selections,
+      applications = skill_metrics.applications + excluded.applications,
+      task_completions = skill_metrics.task_completions + excluded.task_completions,
+      fallbacks = skill_metrics.fallbacks + excluded.fallbacks,
+      total_token_estimate = skill_metrics.total_token_estimate + excluded.total_token_estimate,
+      last_task_type = COALESCE(excluded.last_task_type, skill_metrics.last_task_type),
+      last_recommended_action = COALESCE(excluded.last_recommended_action, skill_metrics.last_recommended_action),
+      last_used_at = excluded.last_used_at,
+      updated_at = excluded.updated_at
+  `);
+    const txn = db.transaction(() => {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
+        insertAnalysis.run({
+            id: analysis.id,
+            task_title: analysis.task_title,
+            status: analysis.status,
+            summary: analysis.summary,
+            source_task_type: (_a = analysis.source_task_type) !== null && _a !== void 0 ? _a : null,
+            session_id: (_b = analysis.session_id) !== null && _b !== void 0 ? _b : null,
+            chain_id: (_c = analysis.chain_id) !== null && _c !== void 0 ? _c : null,
+            selected_skills_json: selectedSkills,
+            token_estimate: (_d = analysis.token_estimate) !== null && _d !== void 0 ? _d : 0,
+            latency_bucket: (_e = analysis.latency_bucket) !== null && _e !== void 0 ? _e : null,
+            bus_snapshot: (_f = analysis.bus_snapshot) !== null && _f !== void 0 ? _f : null,
+            retro_summary: (_g = analysis.retro_summary) !== null && _g !== void 0 ? _g : null,
+            recommended_action: (_h = analysis.recommended_action) !== null && _h !== void 0 ? _h : null,
+            confidence: (_j = analysis.confidence) !== null && _j !== void 0 ? _j : null,
+            skill_judgments_json: skillJudgments,
+            created_at: now,
+        });
+        for (const judgment of (_k = analysis.skill_judgments) !== null && _k !== void 0 ? _k : []) {
+            const skill = (_l = judgment.skill) === null || _l === void 0 ? void 0 : _l.trim();
+            if (!skill)
+                continue;
+            upsertMetric.run({
+                skill,
+                selections: judgment.selected ? 1 : 0,
+                applications: judgment.applied ? 1 : 0,
+                task_completions: judgment.task_completed ? 1 : 0,
+                fallbacks: judgment.fallback_used ? 1 : 0,
+                total_token_estimate: (_m = judgment.token_estimate) !== null && _m !== void 0 ? _m : 0,
+                last_task_type: (_o = analysis.source_task_type) !== null && _o !== void 0 ? _o : null,
+                last_recommended_action: (_p = analysis.recommended_action) !== null && _p !== void 0 ? _p : null,
+                last_used_at: now,
+                updated_at: now,
+            });
+        }
+    });
+    txn();
+}
+function getExecutionAnalyses(dbPath, limit = 20) {
+    const db = openDb(dbPath);
+    const rows = db.prepare('SELECT * FROM execution_analyses ORDER BY created_at DESC LIMIT ?').all(limit);
+    return rows.map(rowToExecutionAnalysis);
+}
+function getSkillMetric(dbPath, skill) {
+    var _a;
+    const db = openDb(dbPath);
+    return (_a = db.prepare('SELECT * FROM skill_metrics WHERE skill = ?').get(skill)) !== null && _a !== void 0 ? _a : null;
+}
+function listSkillMetrics(dbPath, limit = 50) {
+    const db = openDb(dbPath);
+    return db.prepare('SELECT * FROM skill_metrics ORDER BY updated_at DESC LIMIT ?').all(limit);
 }
 // ─── DB Path Helper ──────────────────────────────────────────────────────────
 function getDbPath(projectPath) {

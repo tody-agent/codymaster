@@ -4,7 +4,7 @@
 
 ### Your AI Agent is smart. CodyMaster makes it *wise*.
 
-**68+ Skills · 20 Commands · 1 Plugin · 8+ Platforms · 6 Languages · v5.1.0**
+**60+ Skills · 20 Commands · 1 Plugin · 8+ Platforms · 6 Languages · v5.1.0**
 
 ```
     ( . \ --- / . )
@@ -116,9 +116,9 @@ Your AI doesn't just execute — it **understands and remembers** using a multi-
 - **cm:// URI Scheme** — Skills request context by URI, not file paths.
 - **Token Budget** — 200k window pre-allocated by category. No more silent overflow.
 - **Context Bus** — Skills share outputs in real-time within a chain.
-- **MCP Server** — 15 tools exposed to Claude Desktop, Goose, and any MCP client (`src/mcp-context-server.ts`). Includes `cm_memory_write` and `cm_natural` (NLI: "remember that…", "what did we learn about…").
+- **MCP Server** — 18 tools exposed to Claude Desktop, Goose, and any MCP client (`src/mcp-context-server.ts`). Includes memory tools (`cm_memory_write`, `cm_natural`) plus advisory JSON surfaces (`cm_advisory_report`, `cm_advisory_metrics`, `cm_advisory_handoff`).
 - **Intelligent Skill Selection** — `selectTopSkills()` dynamically picks the 2-3 most task-relevant skills per chain execution. Backed by SkillsBench research: 2-3 focused skills = **+18.6pp** vs 4+ loaded statically.
-- **OpenViking Backend natively integrated** — Inspired by OpenViking's architecture, CodyMaster defaults to `openviking` auto-installation. It delivers true semantic vector graph memory, automatic session compression, and temporal context layering. (One config line change: `storage.backend: viking`).
+- **SQLite-first memory stack** — CodyMaster ships a supported default path built on SQLite + FTS5, token-budgeted context loading, and optional `qmd` / code intelligence layers. The older OpenViking path has been removed from the runtime.
 
 ☁️ **The Cloud Brain (`cm-notebooklm`)**
 High-value knowledge and design patterns are synced to NotebookLM, providing a universal, cross-machine "Soul" for your project. Auto-generate podcasts and flashcards to onboard human developers alongside the AI.
@@ -181,17 +181,18 @@ Need to scale content? `**cm-content-factory`** is a self-learning, multi-agent 
 
 Track it all on the **Visual Dashboard** (`cm-dashboard`): No more guessing. Track every task, every agent, every deployment on a real-time Kanban board. Pipeline progress, token tracker, event log — all on one screen.
 
-### 🧬 Self-Healing AI (Skills That Fix Themselves)
+### 🧬 Self-Healing Skills (Recovery, Search, and Evolution)
 
-CodyMaster doesn't just run skills — it **watches them, scores them, and heals them automatically.**
+CodyMaster ships a dedicated self-healing skill family for keeping the skill library usable as the repo evolves.
 
-- `**cm-skill-health`** monitors every invocation: success rate, token usage, error patterns.
-- `**cm-skill-evolution`** auto-patches degraded skills (Mode: FIX) when health scores drop below threshold.
-- `**cm-skill-chain` Auto-Dispatch** — Inspired by OpenSpace automation orchestrators, sequence dispatching is now 100% automated with intelligent task detection, zero-touch handoffs, and multi-agent coordination.
-- `**cm-skill-search`** uses BM25 ranking to find the right skill for any task.
-- `**cm-skill-share`** exports & imports skills across teams and machines.
+- `**cm-skill-health`** audits a skill's real health from shipped signals: docs drift, broken references, retro notes, validation, and gates.
+- `**cm-skill-evolution`** guides the repair path with three modes: `FIX`, `DERIVED`, and `CAPTURED`.
+- `**cm advisory report` / `metrics` / `handoff`** turn execution telemetry into a reviewable operator loop before any skill repair begins.
+- `**cm-skill-chain` Auto-Dispatch** — sequence dispatching remains automated with task detection and multi-step handoffs.
+- `**cm-skill-search`** finds the best skill through `cm suggest`, skill indexes, and repo search.
+- `**cm-skill-share`** packages a skill safely across repos and machines without dropping companion files.
 
-> **Think of it like an immune system for your AI toolkit.** Skills that break get healed. Skills that work well get reinforced. Dead skills get archived.
+> **Think of it like an immune system for your AI toolkit.** First inspect the telemetry, then diagnose the skill, then repair it deliberately, then capture the learning.
 
 ### 🚀 Growth Hacking Engine
 
@@ -206,11 +207,11 @@ Need popups, booking flows, or lead capture? `**cm-growth-hacking`** generates c
 | -------------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Integration**      | Each skill is standalone, no shared context | 68+ skills that chain, share memory, and communicate                                                                                                                    |
 | **Lifecycle**        | Covers coding only                          | Covers Idea → Design → Code → Test → Deploy → Docs → Learn                                                                                                              |
-| **Memory**           | Forgets everything between sessions         | 5-tier Unified Brain: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain. Optional **OpenViking** backend for vector search + auto memory compression. |
+| **Memory**           | Forgets everything between sessions         | 5-tier Unified Brain: Sensory → Working → Long-term → Semantic → Structural + Cloud Brain, powered by SQLite + FTS5 by default with optional local semantic layers like `qmd`. |
 | **Safety**           | YOLO deploys                                | 4-layer protection: TDD → Security → Isolation → Multi-gate deploy                                                                                                      |
 | **Design**           | Random UI every time                        | Extracts & enforces design system + visual preview                                                                                                                      |
 | **Documentation**    | "Maybe write a README later"                | Auto-generates complete docs, SOPs, API refs from code                                                                                                                  |
-| **Self-improvement** | Static — what you install is what you get   | Self-healing: monitors health → auto-patches → reinforces winners                                                                                                       |
+| **Self-improvement** | Static — what you install is what you get   | Advisory-driven self-healing: inspect telemetry → diagnose → repair with FIX / DERIVED / CAPTURED                                                                     |
 | **Maintenance**      | Update 15 repos separately                  | One `npm i -g codymaster` updates everything                                                                                                                            |
 
 
@@ -378,7 +379,7 @@ See [full Goose integration guide](docs/integrations/goose.md) for details.
 
 ---
 
-## 🧰 The 68+ Skill Arsenal
+## 🧰 The 60+ Skill Arsenal
 
 
 | Domain               | Skills                                                                                                                                        |
@@ -422,11 +423,7 @@ cm distro validate …        → Validate skill pack layout
 
 **Engineering (browse, guardian, sprint):** [docs/workflows/engineering-pipeline.md](docs/workflows/engineering-pipeline.md) · [docs/browse-daemon.md](docs/browse-daemon.md) · [docs/workflows/guardian-hooks.md](docs/workflows/guardian-hooks.md) · [docs/architecture/servers-and-mcp.md](docs/architecture/servers-and-mcp.md)
 
-```bash
-# OpenViking backend (optional — semantic vector search)
-pip install openviking && openviking start
-# Then set storage.backend: viking in .cm/config.yaml
-```
+Legacy configs that still say `storage.backend: viking` are automatically routed back to SQLite.
 
 **Slash Commands (inside AI agents):**
 

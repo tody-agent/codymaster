@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import {
-  getBackend, SqliteBackend, VikingBackend,
+  getBackend, SqliteBackend,
 } from '../src/storage-backend';
 import type { DbLearning, DbDecision } from '../src/storage-backend';
 
@@ -15,13 +15,6 @@ function makeTmpProject(): string {
 
 function rmrf(p: string) {
   fs.rmSync(p, { recursive: true, force: true });
-}
-
-/** Let VikingBackend fire-and-forget promises settle without Vitest console RPC races. */
-async function drainEventLoop(): Promise<void> {
-  for (let i = 0; i < 6; i += 1) {
-    await new Promise<void>((resolve) => setImmediate(resolve));
-  }
 }
 
 function writeConfig(projectPath: string, content: string) {
@@ -54,9 +47,17 @@ const sampleDecision = (): DbDecision => ({
 
 describe('getBackend (factory)', () => {
   let tmpDir: string;
+  let warnSpy: ReturnType<typeof vi.spyOn>;
 
-  beforeEach(() => { tmpDir = makeTmpProject(); });
-  afterEach(() => { rmrf(tmpDir); });
+  beforeEach(() => {
+    tmpDir = makeTmpProject();
+    warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => {
+    warnSpy.mockRestore();
+    rmrf(tmpDir);
+  });
 
   it('returns SqliteBackend by default (no config.yaml)', () => {
     const backend = getBackend(tmpDir);
@@ -69,10 +70,18 @@ describe('getBackend (factory)', () => {
     expect(backend).toBeInstanceOf(SqliteBackend);
   });
 
-  it('returns VikingBackend when config.yaml has storage.backend: viking', () => {
+  it('falls back to SqliteBackend when config.yaml has legacy storage.backend: viking', () => {
     writeConfig(tmpDir, 'storage:\n  backend: viking\n');
     const backend = getBackend(tmpDir);
-    expect(backend).toBeInstanceOf(VikingBackend);
+    expect(backend).toBeInstanceOf(SqliteBackend);
+  });
+
+  it('warns that the legacy viking backend has been removed', () => {
+    writeConfig(tmpDir, 'storage:\n  backend: viking\n');
+    getBackend(tmpDir);
+    expect(warnSpy).toHaveBeenCalledWith(
+      expect.stringContaining('has been removed')
+    );
   });
 
   it('defaults to sqlite when config.yaml exists but has no storage section', () => {
@@ -189,84 +198,35 @@ describe('SqliteBackend', () => {
   it('getSkillOutputs returns empty array for unknown session', () => {
     expect(backend.getSkillOutputs('sess-unknown-xyz')).toHaveLength(0);
   });
-});
 
-// ─── VikingBackend ────────────────────────────────────────────────────────────
-// VikingBackend is now a real implementation (not a stub).
-// Read methods use a sync-blocking wrapper around async HTTP —
-// they require a live OpenViking server for full testing.
-// Offline tests cover: construction, lifecycle, fire-and-forget writes.
-
-describe('VikingBackend', () => {
-  let warnSpy: ReturnType<typeof vi.spyOn>;
-  let errorSpy: ReturnType<typeof vi.spyOn>;
-
-  beforeEach(() => {
-    warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-    errorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
-  });
-
-  afterEach(async () => {
-    await drainEventLoop();
-    warnSpy.mockRestore();
-    errorSpy.mockRestore();
-  });
-
-  it('constructs without throwing', () => {
-    expect(() => new VikingBackend()).not.toThrow();
-  });
-
-  it('initialize() does not throw (async health ping is fire-and-forget)', async () => {
-    const backend = new VikingBackend({ port: 19999 });
-    expect(() => backend.initialize()).not.toThrow();
-    await drainEventLoop();
-  });
-
-  it('close() does not throw', () => {
-    const backend = new VikingBackend();
-    expect(() => backend.close()).not.toThrow();
-  });
-
-  it('insertLearning() does not throw when server unreachable (fire-and-forget)', async () => {
-    const backend = new VikingBackend({ port: 19999 });
-    expect(() => backend.insertLearning({
-      id: 'test-001', what_failed: 'x', why_failed: 'y', how_to_prevent: 'z',
-      created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
-    })).not.toThrow();
-    await drainEventLoop();
-  });
-
-  it('insertDecision() does not throw when server unreachable (fire-and-forget)', async () => {
-    const backend = new VikingBackend({ port: 19999 });
-    expect(() => backend.insertDecision({
-      id: 'dec-001', decision: 'use viking', rationale: 'vector search',
+  it('recordExecutionAnalysis updates telemetry and exposes metrics', () => {
+    backend.recordExecutionAnalysis({
+      id: 'EA-backend-1',
+      task_title: 'Stabilize deploy smoke test',
+      status: 'failed',
+      summary: 'Smoke test still failing',
+      source_task_type: 'qa',
+      recommended_action: 'FIX',
+      confidence: 0.77,
+      skill_judgments: [
+        {
+          skill: 'cm-debugging',
+          selected: true,
+          applied: true,
+          task_completed: false,
+          fallback_used: true,
+          token_estimate: 90,
+        },
+      ],
       created_at: new Date().toISOString(),
-    })).not.toThrow();
-    await drainEventLoop();
-  });
+    });
 
-  it('upsertIndex() does not throw when server unreachable (fire-and-forget)', async () => {
-    const backend = new VikingBackend({ port: 19999 });
-    expect(() => backend.upsertIndex('learnings', 'L0', '## L0', 'hash-abc')).not.toThrow();
-    await drainEventLoop();
-  });
+    const analyses = backend.getExecutionAnalyses(10);
+    const metric = backend.getSkillMetric('cm-debugging');
 
-  it('writeSkillOutput() does not throw when server unreachable (fire-and-forget)', async () => {
-    const backend = new VikingBackend({ port: 19999 });
-    expect(() => backend.writeSkillOutput({
-      session_id: 'sess-001', skill: 'cm-planning',
-      created_at: new Date().toISOString(),
-    })).not.toThrow();
-    await drainEventLoop();
+    expect(analyses.length).toBeGreaterThanOrEqual(1);
+    expect(analyses[0].task_title).toBe('Stabilize deploy smoke test');
+    expect(metric).not.toBeNull();
+    expect(metric!.fallbacks).toBe(1);
   });
-
-  it('factory + viking config → returns VikingBackend instance', () => {
-    const backend = new VikingBackend({ host: 'localhost', port: 1933 });
-    expect(backend.constructor.name).toBe('VikingBackend');
-  });
-
-  // Read methods (queryLearnings, queryDecisions, getLearningById, getIndex,
-  // getSkillOutputs) use a sync wrapper around async HTTP. They require a live
-  // OpenViking server for timeout-based fallback testing.
-  // Run with: OPENVIKING_URL=http://localhost:1933 npm test
 });
