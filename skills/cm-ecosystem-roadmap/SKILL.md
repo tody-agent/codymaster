@@ -1,6 +1,7 @@
 ---
 name: cm-ecosystem-roadmap
-description: "Use when exploring the CodyMaster skill ecosystem roadmap, marketplace, or distro validation."
+description: "CodyMaster ecosystem roadmap, marketplace, and distro validation reference."
+disable-model-invocation: true
 ---
 # cm-ecosystem-roadmap — marketplace & distros
 

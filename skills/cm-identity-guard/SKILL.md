@@ -1,6 +1,6 @@
 ---
 name: cm-identity-guard
-description: Verify and lock project identity before ANY git push, Cloudflare deploy, or Supabase operation. Essential when working with multiple GitHub accounts (personal + work), multiple Cloudflare accounts, or multiple Supabase/Neon projects. Prevents wrong-account deploys, cross-project secret leaks, and git history contamination.
+description: "Verify and lock project identity before git push, Cloudflare deploy, or Supabase ops. Prevents wrong-account deploys and cross-project secret leaks."
 ---
 
 # Identity Guard — Multi-Account Safety Protocol

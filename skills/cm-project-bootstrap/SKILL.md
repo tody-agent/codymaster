@@ -1,6 +1,6 @@
 ---
 name: cm-project-bootstrap
-description: Use when starting any new project from scratch. Asks for project identity (name, GitHub org, Cloudflare account), detects project type, sets up design system, staging+production, i18n from day 1, SEO foundation, AGENTS.md manifest, test infrastructure, 8-gate deploy pipeline, and disciplined development workflows. Prevents wrong deploys, redundant repos, and technical debt from day 0.
+description: "Bootstrap any new project: identity, design system, staging+production, i18n, SEO, test infrastructure, 8-gate deploy pipeline. Prevents tech debt from day 0."
 ---
 
 # 🏗️ Cody Master Project Bootstrap v2.0

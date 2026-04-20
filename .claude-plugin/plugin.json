@@ -1,25 +1,35 @@
 {
   "name": "cm",
-  "version": "5.1.0",
-  "description": "CodyMaster — 68+ AI agent skills for the full development lifecycle: TDD, debugging, quality gates, safe deploy, design system, UX, content factory, secret scanning, CRO, brainstorming, and skill orchestration.",
+  "version": "6.0.0",
+  "description": "CodyMaster — Full-stack AI skill kit for vibe coding. 60+ skills for non-tech to ship 10x faster.",
   "author": {
-    "name": "Tody Agent"
+    "name": "Tody Agent",
+    "email": "aitodyle@gmail.com",
+    "url": "https://github.com/tody-agent"
   },
-  "homepage": "https://cody-master-a5q.pages.dev",
+  "homepage": "https://cody.todyle.com",
   "repository": "https://github.com/tody-agent/codymaster",
+  "license": "MIT",
   "keywords": [
+    "vibe-coding",
+    "fullstack",
+    "non-tech",
+    "ai-agent",
     "tdd",
-    "debugging",
-    "quality-gates",
-    "deployment",
-    "design-system",
     "ux",
     "content",
-    "security",
-    "cro",
-    "brainstorming",
-    "skill-orchestration",
-    "ai-agent",
-    "devops"
-  ]
+    "design-system",
+    "safe-deploy",
+    "quality-gates",
+    "skill-orchestration"
+  ],
+  "agents": "./agents/",
+  "hooks": "./hooks/hooks.json",
+  "monitors": "./monitors/monitors.json",
+  "userConfig": {
+    "project_type": {
+      "description": "Project type: webapp, api, mobile, content, landing",
+      "sensitive": false
+    }
+  }
 }

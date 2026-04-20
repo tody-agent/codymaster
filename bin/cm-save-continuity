@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# cm-save-continuity — Stop hook: append session timestamp to .cm/CONTINUITY.md
+
+set -euo pipefail
+
+CONTINUITY=".cm/CONTINUITY.md"
+
+if [ ! -f "$CONTINUITY" ]; then
+  exit 0
+fi
+
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+if grep -q "## Session Log" "$CONTINUITY" 2>/dev/null; then
+  echo "- Session ended: $TIMESTAMP" >> "$CONTINUITY"
+else
+  {
+    echo ""
+    echo "## Session Log"
+    echo "- Session ended: $TIMESTAMP"
+  } >> "$CONTINUITY"
+fi
+
+echo "[cm] Continuity saved at $TIMESTAMP"

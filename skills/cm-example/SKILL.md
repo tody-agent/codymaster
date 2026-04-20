@@ -1,6 +1,7 @@
 ---
 name: cm-example
 description: A template demonstrating the universal format compatible with Antigravity, Claude, Cursor, and OpenClaw.
+disable-model-invocation: true
 version: 1.0.0
 platforms: 
   - all

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# cm-quality-monitor — Background monitor: watches for test output and lint errors
+# Tails common test/lint output files if they exist.
+
+set -euo pipefail
+
+WATCH_FILES=(
+  ".cm/test-results.log"
+  ".cm/lint-output.log"
+  "test-results.xml"
+  "coverage/lcov.info"
+)
+
+echo "[cm-quality-monitor] Started. Watching for test/lint output..."
+
+while true; do
+  for f in "${WATCH_FILES[@]}"; do
+    if [ -f "$f" ]; then
+      MTIME_NEW=$(stat -f "%m" "$f" 2>/dev/null || stat -c "%Y" "$f" 2>/dev/null || echo "0")
+      MTIME_VAR="MTIME_$(echo "$f" | tr '/.-' '___')"
+      MTIME_OLD="${!MTIME_VAR:-0}" 2>/dev/null || MTIME_OLD="0"
+      if [ "$MTIME_NEW" != "$MTIME_OLD" ]; then
+        eval "$MTIME_VAR=$MTIME_NEW"
+        LAST_LINES=$(tail -5 "$f" 2>/dev/null || true)
+        if echo "$LAST_LINES" | grep -qiE "(FAIL|ERROR|error)" 2>/dev/null; then
+          echo "[cm-quality-monitor] Issues detected in $f:"
+          echo "$LAST_LINES"
+        fi
+      fi
+    fi
+  done
+  sleep 5
+done

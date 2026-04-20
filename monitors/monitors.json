@@ -1,0 +1,8 @@
+[
+  {
+    "name": "quality-watch",
+    "command": "${CLAUDE_PLUGIN_ROOT}/bin/cm-quality-monitor",
+    "description": "Watches for test failures and lint errors after TDD skill is invoked",
+    "when": "on-skill-invoke:cm-tdd"
+  }
+]

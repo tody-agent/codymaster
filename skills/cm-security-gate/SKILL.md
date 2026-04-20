@@ -1,6 +1,6 @@
 ---
 name: cm-security-gate
-description: Pre-production security audit and vulnerability scanning. Run Snyk + Aikido dependency scans, OWASP analysis, and set up automated GitHub security checks with Jules. Use when asked to 'run security check', 'security audit', 'kiểm tra bảo mật', 'vulnerability scan', 'Snyk', 'OWASP', or before open-sourcing / commercializing a project.
+description: "Pre-production security audit: Snyk + Aikido dependency scans, OWASP analysis, automated GitHub security checks. Use before deploy or open-sourcing."
 ---
 # cm-security-gate — Mandatory Security Audit & Vulnerability Gate
 

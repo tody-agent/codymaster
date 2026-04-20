@@ -1,6 +1,6 @@
 ---
 name: cm-skill-index
-description: "Progressive Disclosure skill index — efficient skill loading in 3 layers. Layer 1 (index, ~100 tokens) always loaded. Layer 2 (summary, ~300 tokens) loaded on context need. Layer 3 (full SKILL.md) loaded on execution only."
+description: "Progressive Disclosure skill index — 3-layer loading saves 90%+ tokens. Scan index first, load full skills only on execution."
 ---
 
 # Skill Index — Progressive Disclosure Engine

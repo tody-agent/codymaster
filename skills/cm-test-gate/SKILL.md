@@ -1,6 +1,6 @@
 ---
 name: cm-test-gate
-description: Complete guide to setting up a reliable test gate for any project — covers stack detection, 4 core test files, script wiring, secret hygiene, and Cloudflare Workers/Pages patterns. Use when starting a new project, adding CI to an existing one, or when "tests pass but production breaks." Companion to cm-safe-deploy and cm-project-bootstrap.
+description: "Set up a reliable test gate: stack detection, 4 core test files, CI wiring, secret hygiene. Use when tests pass but production breaks."
 ---
 
 # cm-test-gate: Multi-Layer Test Gate Setup

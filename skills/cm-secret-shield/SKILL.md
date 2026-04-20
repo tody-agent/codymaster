@@ -1,6 +1,6 @@
 ---
 name: cm-secret-shield
-description: "Defense-in-depth security for AI-assisted development. Pre-commit secret scanning (Gitleaks + native fallback), repo-wide pattern detection, token lifecycle management, and AI agent safety rules. Prevents secret leaks at every stage: write → commit → push → deploy. Use BEFORE any git push or deploy, or when setting up new projects."
+description: "Defense-in-depth secret scanning: Gitleaks + native fallback, pattern detection, token lifecycle. Prevents secret leaks at write → commit → push → deploy."
 ---
 
 # 🛡️ Secret Shield — Defense-in-Depth Security
