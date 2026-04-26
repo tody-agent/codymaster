@@ -40,6 +40,13 @@ export class BrowseDaemon {
   private refMap: Record<string, string> = {};
 
   constructor(private opts: BrowseServerOptions) {
+    this.app.disable('x-powered-by');
+    this.app.use((_req, res, next) => {
+      res.setHeader('X-Content-Type-Options', 'nosniff');
+      res.setHeader('X-Frame-Options', 'DENY');
+      res.setHeader('X-XSS-Protection', '1; mode=block');
+      next();
+    });
     this.app.use(express.json({ limit: '2mb' }));
     this.app.use(this.authMiddleware.bind(this));
     this.routes();
