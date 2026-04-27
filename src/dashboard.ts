@@ -17,6 +17,12 @@ import type { ChainExecution } from './skill-chain';
 export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = false) {
   const app = express();
   app.disable('x-powered-by');
+  app.use((_req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    next();
+  });
   app.use(express.json({ limit: '1mb' }));
 
   const publicDir = path.join(__dirname, '..', 'public', 'dashboard');

@@ -18,6 +18,12 @@ const skill_chain_1 = require("./skill-chain");
 function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     const app = (0, express_1.default)();
     app.disable('x-powered-by');
+    app.use((_req, res, next) => {
+        res.setHeader('X-Content-Type-Options', 'nosniff');
+        res.setHeader('X-Frame-Options', 'DENY');
+        res.setHeader('X-XSS-Protection', '1; mode=block');
+        next();
+    });
     app.use(express_1.default.json({ limit: '1mb' }));
     const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
     app.use(express_1.default.static(publicDir));
