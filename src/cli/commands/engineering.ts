@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import http from 'http';
 import chalk from 'chalk';
 import { BrowseDaemon } from '../../browse-server';
@@ -449,14 +449,14 @@ export function registerEngineeringCommands(program: Command): void {
     .requiredOption('--branch <b>', 'branch name')
     .option('--base <b>', 'start from branch', 'main')
     .action((opts) => {
-      execSync(`git worktree add -b ${opts.branch} ${opts.at} ${opts.base}`, {
+      execFileSync('git', ['worktree', 'add', '-b', opts.branch, opts.at, opts.base], {
         stdio: 'inherit',
         cwd: process.cwd(),
       });
       console.log(chalk.green('Worktree created'));
     });
   conductor.command('list').action(() => {
-    execSync('git worktree list', { stdio: 'inherit', cwd: process.cwd() });
+    execFileSync('git', ['worktree', 'list'], { stdio: 'inherit', cwd: process.cwd() });
   });
 
   const retro = program

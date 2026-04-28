@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import chalk from 'chalk';
 
 /**
@@ -17,8 +17,12 @@ export function padRight(str: string, len: number): string {
  */
 export function openUrl(url: string) {
   const plat = os.platform();
-  const command = plat === 'darwin' ? 'open' : plat === 'win32' ? 'start' : 'xdg-open';
-  exec(`${command} "${url}"`);
+  if (plat === 'win32') {
+    execFile('cmd.exe', ['/c', 'start', '""', url]);
+  } else {
+    const command = plat === 'darwin' ? 'open' : 'xdg-open';
+    execFile(command, [url]);
+  }
 }
 
 /**
