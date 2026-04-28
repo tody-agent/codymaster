@@ -847,7 +847,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
   // ─── Start Server ─────────────────────────────────────────────────────
 
-  const server = app.listen(port, () => {
+  const server = app.listen(port, '127.0.0.1', () => {
     try { fs.writeFileSync(PID_FILE, String(process.pid)); } catch {}
     if (!silent) {
       console.log(chalk.cyan(`\n🚀 Mission Control at http://codymaster.localhost:${port}`));
