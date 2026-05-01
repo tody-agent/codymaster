@@ -21,6 +21,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';");
     next();
   });
   app.use(express.json({ limit: '1mb' }));
