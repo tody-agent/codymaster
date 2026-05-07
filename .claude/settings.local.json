@@ -104,7 +104,9 @@
       "Bash(pip show:*)",
       "Bash(pip3 show:*)",
       "Bash(/Users/todyle/Library/Python/3.9/bin/pip show:*)",
-      "Bash(git tag:*)"
+      "Bash(git tag:*)",
+      "Bash(node scripts/validate-skills.mjs)",
+      "Bash(gh pr *)"
     ]
   },
   "enabledPlugins": {},
