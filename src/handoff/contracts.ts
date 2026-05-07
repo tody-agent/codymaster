@@ -108,14 +108,35 @@ export interface RetroHandoff {
   };
 }
 
+export type PartyPersona = 'engineer' | 'reviewer' | 'architect' | 'security' | 'pm';
+
+export interface PartyRound {
+  persona: PartyPersona;
+  output: string;
+  verdict?: 'pass' | 'revise' | 'block';
+  ts: string;
+}
+
 export interface PartyHandoff {
   schema: 'party@1';
   emitted_at: string;
   emitted_by: string;
   data: {
     topic: string;
-    personas: Array<{
-      name: 'engineer' | 'reviewer' | 'architect' | 'security' | 'pm';
+    /**
+     * Sequential persona rotation. Each round captures one persona's
+     * output for the same task; reviewer verdicts gate further rounds.
+     * cm-execution Mode F (party) writes this in order.
+     */
+    rounds: PartyRound[];
+    /** Final synthesized output after all rounds settle. */
+    final?: string;
+    /**
+     * @deprecated kept for back-compat with earlier party@1 emitters.
+     * New code should populate `rounds` instead.
+     */
+    personas?: Array<{
+      name: PartyPersona;
       verdict: string;
       key_points: string[];
     }>;

@@ -413,14 +413,14 @@ function registerEngineeringCommands(program) {
         .requiredOption('--branch <b>', 'branch name')
         .option('--base <b>', 'start from branch', 'main')
         .action((opts) => {
-        (0, child_process_1.execSync)(`git worktree add -b ${opts.branch} ${opts.at} ${opts.base}`, {
+        (0, child_process_1.execFileSync)('git', ['worktree', 'add', '-b', opts.branch, opts.at, opts.base], {
             stdio: 'inherit',
             cwd: process.cwd(),
         });
         console.log(chalk_1.default.green('Worktree created'));
     });
     conductor.command('list').action(() => {
-        (0, child_process_1.execSync)('git worktree list', { stdio: 'inherit', cwd: process.cwd() });
+        (0, child_process_1.execFileSync)('git', ['worktree', 'list'], { stdio: 'inherit', cwd: process.cwd() });
     });
     const retro = program
         .command('retro')
