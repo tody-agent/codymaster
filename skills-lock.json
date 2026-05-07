@@ -1,10 +1,209 @@
 {
-  "version": 1,
+  "version": 2,
+  "generated_at": "2026-05-07T15:52:09.455Z",
   "skills": {
-    "xss-html-injection": {
-      "source": "sickn33/antigravity-awesome-skills",
-      "sourceType": "github",
-      "computedHash": "95464f8733e4e096597e0a13c7dfb5a2d92b7ff84433e5f3b90a8d1a88444206"
+    "cm-ads-tracker": {
+      "sha256": "496ef976c984b9477aea8644c07555872ce10303512a7a9e07d918afdf8dfdbf"
+    },
+    "cm-auto-publisher": {
+      "sha256": "f6e07bdf8f3fc3132e81a62d316a4ade113d0be0bfbef0389f0c03404cf47e6d",
+      "deprecated": true
+    },
+    "cm-autopilot": {
+      "sha256": "858d5654d196cafd60ee647159ee936743f61d69ca2ecb1a2cc913044724bead"
+    },
+    "cm-booking-calendar": {
+      "sha256": "dee1951196d37f6298d580df7210a0f8f37ba8905c47adc7aaffac9008f1670f",
+      "deprecated": true
+    },
+    "cm-brainstorm-idea": {
+      "sha256": "1aa24381cbeca5ec7ba186e06374cb0347ed6748ca5ce6a45ea30701fcac3042"
+    },
+    "cm-browse": {
+      "sha256": "7aec1a140cde82f42b4e2c37df6331fdc7fe1c6eb706669b9265ae7b9890a892"
+    },
+    "cm-clean-code": {
+      "sha256": "3bb733d73e297717ca9fb3b1d5824e62eec7e0bd62d37253fcb278a42e53153e"
+    },
+    "cm-code-review": {
+      "sha256": "67a59f864a509769922984f8f249060186e260ef7406c78235c4682d1714c512"
+    },
+    "cm-codeintell": {
+      "sha256": "6f175be45d5916ca9937742c09d7f6282efbe9ef4d979597ce507842d13c9ef1"
+    },
+    "cm-conductor-worktrees": {
+      "sha256": "aa80e59a23e79c84a3d6dd46dbc2a9eda6d66451f295dd27c8e28821138f0107",
+      "deprecated": true
+    },
+    "cm-content-factory": {
+      "sha256": "45c1f88c8fc986563acaa55060f20495d0f4f644c3bbe38d76e310c8747d5ffb"
+    },
+    "cm-continuity": {
+      "sha256": "967f901f640a5f7a71b0a79c4a49b3d3574b400b9e75898c701a29c9330d1e8a"
+    },
+    "cm-cro-methodology": {
+      "sha256": "9bf91a5dbb8944c5e878b53a6f42cede219e2d44bc9cf0abedf8747f80894ce3",
+      "deprecated": true
+    },
+    "cm-dashboard": {
+      "sha256": "bf1f6f85eadeb821b012d004244f92dca845c25b07dd13b96ec5134dde4805db",
+      "deprecated": true
+    },
+    "cm-debugging": {
+      "sha256": "1af687c4a84d4f78ef8edfd202aa3249b2bc7bcab8eb32004e2a366b2ea26546"
+    },
+    "cm-deep-search": {
+      "sha256": "fe26394d3582d51473708d1e9f6b734023a02d69ab41802373cd98610fefa8e2"
+    },
+    "cm-design-studio": {
+      "sha256": "ee55efa392924a5c47cb192feca7b4d6d701bd399db601fa13314a8267f22c81",
+      "deprecated": true
+    },
+    "cm-design-system": {
+      "sha256": "118cd24c373e506be2f67409fbd8f11ef2202efa495ba3dccba5ec73c3e59fef"
+    },
+    "cm-dockit": {
+      "sha256": "fdbd82bf6bb9aef7b7831a35003426b814d63fa1ccec8026856eff23386cc781"
+    },
+    "cm-ecosystem-roadmap": {
+      "sha256": "98c34e85c2ad3cdf6a2a35460c8d7a309007261632a4fd15be9f3d90c9b2deef"
+    },
+    "cm-engineering-meta": {
+      "sha256": "f21e8837f29ee54e8fa6d41b2c6c5f1d7df3659c8b8c39c2d0a226991f6d40c5",
+      "deprecated": true
+    },
+    "cm-example": {
+      "sha256": "2e05fcdf85adca1bd7ec7a08b589938536b6803944c13bc45e436280ce4f95fc",
+      "version": "1.0.0"
+    },
+    "cm-execution": {
+      "sha256": "04b06e405a45775c089dfe56c54f82403cdf27e37d788572fed41ac293ecd1dd"
+    },
+    "cm-git-worktrees": {
+      "sha256": "7a3c39db9ed85b54cf93c1600f014cce627f7ea27ca3ca216503a55eb6b6591c",
+      "deprecated": true
+    },
+    "cm-google-form": {
+      "sha256": "d11493b49325aa3296eef675f7ed10487b8b08ba8dc699966bc9c9eeef1714ff",
+      "deprecated": true
+    },
+    "cm-growth-hacking": {
+      "sha256": "8fa1642bb7fbceb5b3d5ac0da2f1c89f12ba0d4ec53c4fcc9a44e0527518083c",
+      "version": "1.0"
+    },
+    "cm-guardian-runtime": {
+      "sha256": "100a70be3727dd5f3e0430ae6bd0f234dcd640610f340a6ef460ab85d2b418b1"
+    },
+    "cm-how-it-work": {
+      "sha256": "52b234c23b9114cdf7b7e575d085bb051cc52bfc52402dd9f7aca20d86faa6d3"
+    },
+    "cm-identity-guard": {
+      "sha256": "28849733943c8319d336dc10b89d11735103d8bfd499230b8d960b730561a276"
+    },
+    "cm-jtbd": {
+      "sha256": "8ebe0be393a0b6e89f8a8f3e8af461e35f5f8e305a047065f9e510505cb8cfcd"
+    },
+    "cm-mcp-engineering": {
+      "sha256": "da1f8309e136731c8e07918656c3815d1b52420efaad87738b74da99fe12b80c"
+    },
+    "cm-notebooklm": {
+      "sha256": "4f5038821f992948d85ee88df14793dd689e2cf24c582f8b09b953e086fe6f38"
+    },
+    "cm-planning": {
+      "sha256": "4f0b20ada3d2e347ba841eb6665f8ebc9e8d4d806ad29e4fc694520220a60b4d"
+    },
+    "cm-post-deploy-canary": {
+      "sha256": "7231fa9e579bab8f115a005de589f78b6adde73c82167f3dec661253d1345549",
+      "deprecated": true
+    },
+    "cm-project-bootstrap": {
+      "sha256": "2d2ed169982295ba1ea3b61f16db6f4735d2d58c22cdc4546700f025201a89bf"
+    },
+    "cm-qa-visual-cli": {
+      "sha256": "6d61d5d482eea270f6a74c0337e20ccd165fc31e8c66995aad2c856377d21960",
+      "deprecated": true
+    },
+    "cm-quality-gate": {
+      "sha256": "f885d961d2944e6e7284595be81b44c089645c26371e31ed4fb8c9a680eb9ad5"
+    },
+    "cm-reactor": {
+      "sha256": "c64ca2f9123bedab3bf1a9090df1805caab6c5e37c2555aeeab3116f1ea03901"
+    },
+    "cm-readit": {
+      "sha256": "6585a1fb41fbcddf15de2a29117cf22c88f8ba0d549d7124c90795d0d0ce95f5",
+      "deprecated": true
+    },
+    "cm-retro-cli": {
+      "sha256": "2e432848e667b4e529e159fd8d05cdf47a03b65019bf6019a5bc656cf4ed8832"
+    },
+    "cm-safe-deploy": {
+      "sha256": "41ad74186fa9e968d318f2c78f5982e66b91a2c16f609294388b09025c93b3d5"
+    },
+    "cm-safe-i18n": {
+      "sha256": "dbed04bcf349961e17e5e694c870af1ae5eca76a86cab2a0c5bf83e71b541db5"
+    },
+    "cm-second-opinion-cli": {
+      "sha256": "11cf6c43959dbc4231b0a93750b056925e87a8d4a8d7cc1140a55d6c37e6ad51",
+      "deprecated": true
+    },
+    "cm-secret-shield": {
+      "sha256": "0aa66fa66e5176b3cb0bb2349148e7cd304be0ec3c270f4a5a7b2a1690c19ec2",
+      "deprecated": true
+    },
+    "cm-security-gate": {
+      "sha256": "3ca69f15408549fccf861e6e2e4000a704eaaa31734434c8b10e47f6510df91c",
+      "deprecated": true
+    },
+    "cm-skill-chain": {
+      "sha256": "f1f185046e48ff50da18d9af6ac8b5985c5defd9c1822416707c5894cf641b0e"
+    },
+    "cm-skill-evolution": {
+      "sha256": "d97547a86d341559e7e8b7fe0c8d7a20ae08ecdef7302bd67539ee608b83e9ab"
+    },
+    "cm-skill-health": {
+      "sha256": "3e382b90aaed117c3bc585bc3e9b10884294a610d4d4531556690956a6fa7cc1",
+      "deprecated": true
+    },
+    "cm-skill-index": {
+      "sha256": "a1fa7f1f634af834def14705ec5763b9457ede321fa5dbda0472aa417377e34f"
+    },
+    "cm-skill-mastery": {
+      "sha256": "15a5bca189e60a0a208eaea591b8b96b873586b69f3de5b8ca4f9151b99e4d26",
+      "deprecated": true
+    },
+    "cm-skill-search": {
+      "sha256": "5a98913e4b340b1d58e72a3e61b8686e4a962c2ea3608a9e2304198a633ca31a",
+      "deprecated": true
+    },
+    "cm-skill-share": {
+      "sha256": "7f5ba0f373759226999499881f3c5c7a45a08cc6469c4a6247e2c8ea95962b2c",
+      "deprecated": true
+    },
+    "cm-sprint-bus": {
+      "sha256": "156551a249e6bcd5f9dc527dbe71b6ded5427bbdd71bcea515618defe70356b5"
+    },
+    "cm-start": {
+      "sha256": "9d99acf6aa0520cd6b983b71c4ffca11d2e4dc56bd9181c865fff5b4a3e532f1"
+    },
+    "cm-status": {
+      "sha256": "8cd71187f18d5ef3a774acc601439a3212858e36d2b8ff589664e08460975508"
+    },
+    "cm-tdd": {
+      "sha256": "6ed8c36c064310276af2907520f28689e8db3f5c1100a7a1c669ed05c9482823"
+    },
+    "cm-terminal": {
+      "sha256": "199be2e6074fc5647b3f1e08de280d87632814a123b162dd8bd0924f753fd512"
+    },
+    "cm-test-gate": {
+      "sha256": "a5e7b0a0fa4f5515ce54b7ad06252e1c066cf30fa1dcd8d4d0333ce5e6d594e3",
+      "deprecated": true
+    },
+    "cm-ui-preview": {
+      "sha256": "81811b7a06331b9662bd8e116145ad276da94f5b54ff3e7f66b7a1221abf401b",
+      "deprecated": true
+    },
+    "cm-ux-master": {
+      "sha256": "996a0b5afd9169804a76f07c56fe0718dda6ac75bea21a6dae4ed97d0c46765c"
     }
   }
 }

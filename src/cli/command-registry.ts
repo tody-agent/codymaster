@@ -13,6 +13,8 @@ import { registerBenchCommands } from './commands/bench';
 import { registerBrainCommands } from './commands/brain';
 import { registerEvolveCommands } from './commands/evolve';
 import { registerLearnCommands } from './commands/learn';
+import { registerQualityCommands } from './commands/quality';
+import { registerStackCommands } from './commands/stack';
 
 /**
  * Registers all CLI commands with the provided program instance.
@@ -32,4 +34,6 @@ export function registerAllCommands(program: Command) {
   registerBrainCommands(program);
   registerEvolveCommands(program);
   registerLearnCommands(program);
+  registerQualityCommands(program);
+  registerStackCommands(program);
 }

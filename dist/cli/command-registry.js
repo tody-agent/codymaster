@@ -14,6 +14,9 @@ const mcp_serve_1 = require("./commands/mcp-serve");
 const bench_1 = require("./commands/bench");
 const brain_1 = require("./commands/brain");
 const evolve_1 = require("./commands/evolve");
+const learn_1 = require("./commands/learn");
+const quality_1 = require("./commands/quality");
+const stack_1 = require("./commands/stack");
 /**
  * Registers all CLI commands with the provided program instance.
  */
@@ -31,4 +34,7 @@ function registerAllCommands(program) {
     (0, bench_1.registerBenchCommands)(program);
     (0, brain_1.registerBrainCommands)(program);
     (0, evolve_1.registerEvolveCommands)(program);
+    (0, learn_1.registerLearnCommands)(program);
+    (0, quality_1.registerQualityCommands)(program);
+    (0, stack_1.registerStackCommands)(program);
 }

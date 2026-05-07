@@ -290,7 +290,32 @@ const activateCli = () => {
 
 };
 
+const verifySkillsLock = () => {
+  try {
+    const crypto = require('crypto');
+    const lockPath = path.join(__dirname, '..', 'skills-lock.json');
+    const skillsDir = path.join(__dirname, '..', 'skills');
+    if (!fs.existsSync(lockPath) || !fs.existsSync(skillsDir)) return;
+    const lock = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
+    if (!lock.skills || lock.version !== 2) return;
+    const drift = [];
+    for (const [name, entry] of Object.entries(lock.skills)) {
+      const f = path.join(skillsDir, name, 'SKILL.md');
+      if (!fs.existsSync(f)) {
+        drift.push(`missing: ${name}`);
+        continue;
+      }
+      const sha = crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+      if (sha !== entry.sha256) drift.push(`drift: ${name}`);
+    }
+    if (drift.length) {
+      console.log(`  ${O}⚠  skills-lock drift detected (${drift.length}) — run \`node scripts/build-skills-lock.mjs\`${NC}`);
+    }
+  } catch (_e) { /* non-fatal */ }
+};
+
 const main = () => {
+  verifySkillsLock();
   activateCli();
   printMenu();
 };

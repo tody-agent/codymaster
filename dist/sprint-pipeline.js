@@ -2,6 +2,10 @@
 /**
  * Opinionated sprint pipeline + Context Bus files under `.cm/sprint/`.
  * Complements root `context-bus.json` with step artifacts (ADR 002).
+ *
+ * v2.0: optional structured handoff JSON via `src/handoff/`. Sprint skills
+ * may call `completeSprintStepWithHandoff()` to emit a typed handoff file
+ * alongside the Markdown artifact.
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -12,6 +16,7 @@ exports.readSprintState = readSprintState;
 exports.writeSprintState = writeSprintState;
 exports.initSprint = initSprint;
 exports.completeSprintStep = completeSprintStep;
+exports.completeSprintStepWithHandoff = completeSprintStepWithHandoff;
 exports.skipSprintStep = skipSprintStep;
 exports.resetSprint = resetSprint;
 exports.sprintDryRun = sprintDryRun;
@@ -19,6 +24,7 @@ exports.sprintArtifactPreviewFromDisk = sprintArtifactPreviewFromDisk;
 exports.skillMappingForStep = skillMappingForStep;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const handoff_1 = require("./handoff");
 exports.SPRINT_STEPS = [
     'brainstorm',
     'plan',
@@ -108,6 +114,26 @@ function completeSprintStep(projectPath, step, artifactBody) {
     writeSprintState(projectPath, state);
     appendEvent(projectPath, { type: 'complete', step, at: state.updated_at });
     return state;
+}
+/**
+ * Complete a sprint step AND emit a typed handoff JSON under `.cm/handoff/`.
+ *
+ * Use this from sprint skills (cm-planning, cm-execution, cm-code-review,
+ * cm-quality-gate, cm-brainstorm-idea, cm-retro-cli) to make their output
+ * machine-readable for the next phase.
+ *
+ * The Markdown artifact is still written; handoff is additive.
+ */
+function completeSprintStepWithHandoff(projectPath, step, artifactBody, handoff) {
+    const state = completeSprintStep(projectPath, step, artifactBody);
+    const handoffFile = (0, handoff_1.writeHandoff)(projectPath, handoff);
+    appendEvent(projectPath, {
+        type: 'handoff',
+        step,
+        schema: handoff.schema,
+        at: state.updated_at,
+    });
+    return { state, handoffFile };
 }
 const SKIP_STUB = (step, at) => `# ${step}\n\n_Skipped via \`cm sprint skip\` at ${at}._\n`;
 function skipSprintStep(projectPath, step) {

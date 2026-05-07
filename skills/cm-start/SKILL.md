@@ -34,6 +34,15 @@ When this workflow is called, the AI Assistant should execute the following acti
       `npx skills find "{keyword}"` → review → ask user → install if approved
     - Log any discovered skills to `.cm-skills-log.json`
 
+0.6. **Stack & Tier Detection (Phase 2):**
+    - `cm stack detect --write` → writes `.cm/project-skills.md` (frameworks + suggested skills)
+    - `cm tier classify --write` → writes `.cm/project-tier.md` (LITE/STANDARD/PROFESSIONAL/ENTERPRISE)
+    - The tier sets the default Vibecoding mode and **adaptive depth**:
+      - LITE/STANDARD → render skill TL;DR only
+      - PROFESSIONAL/ENTERPRISE → render full protocol
+    - Inject the suggested-skills list into the skill chain shortlist
+    - These reports are token-light (~300 tok combined) and skipped if files exist and are <24h old
+
 0.7. **Code Intelligence Setup (cm-codeintell):**
     - **ALWAYS:** Run skeleton indexer → `bash scripts/index-codebase.sh` → `.cm/skeleton.md`
     - Read `.cm/skeleton.md` (~5K tokens) → instant codebase understanding
