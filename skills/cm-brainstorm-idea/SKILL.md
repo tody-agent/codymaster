@@ -1,9 +1,18 @@
 ---
 name: cm-brainstorm-idea
 description: "Strategic analysis gate for existing products — multi-dimensional evaluation (tech, product, design, business) using Design Thinking + 9 Windows (TRIZ) + Double Diamond. Outputs 2-3 qualified options with recommendations. Use BEFORE cm-planning for complex initiatives and enhancements on existing codebases."
+token_budget: 1500
+compressed: true
+deprecated: false
 ---
 
 # Brainstorm Idea — Strategic Analysis Gate
+
+## TL;DR
+- **Use before** cm-planning for complex/ambiguous initiatives
+- **Frameworks**: Design Thinking + 9 Windows (TRIZ) + Double Diamond
+- **Output**: 2-3 qualified options + recommendation
+- **Writes**: handoff/intent.json
 
 > **Understand deeply. Evaluate multi-dimensionally. Propose qualified options. Then — and only then — plan.**
 > This skill is the BRIDGE between an existing product and its next evolution.

@@ -1,22 +1,26 @@
 ---
 name: cm-qa-visual-cli
-description: "Use when you need to take screenshots or run visual QA via the browse daemon CLI."
+description: "[Deprecated] browser daemon overlap. Use `cm-browse` instead."
+deprecated: true
+merged_into: cm-browse
 ---
-# cm-qa-visual-cli — screenshot via browse daemon
 
-## Prerequisites
+# cm-qa-visual-cli — Deprecated
 
-`cm browse start` running with the same `CM_BROWSE_TOKEN`.
+> ⚠️ This skill is deprecated as of CodyMaster v6.0.0 and will be removed in v6.1.0.
+>
+> **Use `cm-browse` instead.** browser daemon overlap.
+>
+> See [docs/migration-v2.md](../../docs/migration-v2.md) for the full mapping.
 
-## CLI
+The original content is preserved at [SKILL.archive.md](SKILL.archive.md) for reference.
+
+## Migration
 
 ```bash
-cm qa-visual --url http://localhost:5173 --port 17395
+# Old:           cm <use this skill>
+# New (v6.0+):   cm browse <equivalent action>
 ```
 
-Writes `cm-qa-visual.png` in the current working directory.
-
-## Next
-
-- Diff against golden images for visual regression.
-- Map `git diff` → affected routes (project-specific heuristics).
+If you depend on a capability that didn't carry over, please file an issue:
+https://github.com/tody-agent/codymaster/issues

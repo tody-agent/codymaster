@@ -1,9 +1,18 @@
 ---
 name: cm-tdd
 description: Use when implementing any feature or bugfix, before writing implementation code
+token_budget: 1500
+compressed: true
+deprecated: false
 ---
 
 # Test-Driven Development (TDD)
+
+## TL;DR
+- **Use when** writing or fixing any feature/bugfix
+- **Cycle**: red (failing test) → green (minimal code) → refactor
+- **No prod code** without a failing test first
+- **Next**: cm-execution or cm-code-review
 
 ## Overview
 

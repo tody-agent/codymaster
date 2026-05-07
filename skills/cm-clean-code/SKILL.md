@@ -1,9 +1,18 @@
 ---
 name: cm-clean-code
 description: "Code hygiene gate — detect and eliminate dead code, duplicates, naming mess, and code smells. TRIZ-powered. Run after features, before PRs, during debt sprints."
+token_budget: 1200
+compressed: true
+deprecated: false
 ---
 
 # Clean Code — Code Hygiene Gate
+
+## TL;DR
+- **Use after** a feature lands, before PR review
+- **Detects**: dead code, duplicates, naming smells, dependency drift
+- **Powered by** TRIZ contradictions and Boy Scout rule
+- **Next**: cm-code-review
 
 > **Code that works is not enough. Code must be CLEAN.**
 > Inspired by Clean Code (Robert C. Martin) + Refactoring (Martin Fowler) + TRIZ.

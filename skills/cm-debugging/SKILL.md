@@ -1,9 +1,18 @@
 ---
 name: cm-debugging
 description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
+token_budget: 1500
+compressed: true
+deprecated: false
 ---
 
 # Systematic Debugging
+
+## TL;DR
+- **Use when** any bug, test failure, or unexpected behavior surfaces
+- **Process**: reproduce → isolate → diagnose root cause → fix
+- **Defense in depth**: also add a test that locks the bug
+- **Next**: cm-tdd → cm-quality-gate
 
 ## Overview
 

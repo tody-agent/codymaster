@@ -1,9 +1,17 @@
 ---
 name: cm-start
 description: Start the CM Workflow to execute your objective from idea to production code.
+token_budget: 1000
+compressed: true
+deprecated: false
 ---
 
 # Command: `/cm-start [your objective]`
+
+## TL;DR
+- **Use to** kick off a CM session — entry point
+- **Detects**: stack (Phase 2), suggests skills, reads continuity + learnings
+- **Next**: cm-brainstorm-idea or cm-planning
 
 > **Role: Workflow Orchestrator** — You assess complexity, select the right workflow depth, and drive execution from objective to production code.
 

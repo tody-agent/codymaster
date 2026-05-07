@@ -1,9 +1,19 @@
 ---
 name: cm-execution
 description: "Use when executing implementation plans — choose mode: batch execution with checkpoints, subagent-per-task, or parallel dispatch for independent problems."
+token_budget: 1800
+compressed: true
+deprecated: false
 ---
 
 # Execution — Execute Plans at Scale
+
+## TL;DR
+- **Use when** running an approved plan from cm-planning
+- **Modes**: A=batch, B=subagent-per-task, C=parallel, D=RARV, E=TRIZ-parallel
+- **Reads**: handoff/plan.json — **Writes**: handoff/exec.json
+- **Always**: tests pass before reporting done
+- **Next**: cm-code-review
 
 > **Role: Lead Developer** — You execute implementation plans systematically with quality gates at every checkpoint.
 

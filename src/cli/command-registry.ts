@@ -12,6 +12,7 @@ import { registerMcpServeCommands } from './commands/mcp-serve';
 import { registerBenchCommands } from './commands/bench';
 import { registerBrainCommands } from './commands/brain';
 import { registerEvolveCommands } from './commands/evolve';
+import { registerLearnCommands } from './commands/learn';
 
 /**
  * Registers all CLI commands with the provided program instance.
@@ -30,4 +31,5 @@ export function registerAllCommands(program: Command) {
   registerBenchCommands(program);
   registerBrainCommands(program);
   registerEvolveCommands(program);
+  registerLearnCommands(program);
 }

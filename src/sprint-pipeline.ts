@@ -1,10 +1,15 @@
 /**
  * Opinionated sprint pipeline + Context Bus files under `.cm/sprint/`.
  * Complements root `context-bus.json` with step artifacts (ADR 002).
+ *
+ * v2.0: optional structured handoff JSON via `src/handoff/`. Sprint skills
+ * may call `completeSprintStepWithHandoff()` to emit a typed handoff file
+ * alongside the Markdown artifact.
  */
 
 import fs from 'fs';
 import path from 'path';
+import { writeHandoff, type AnyHandoff } from './handoff';
 
 export const SPRINT_STEPS = [
   'brainstorm',
@@ -136,6 +141,32 @@ export function completeSprintStep(
   writeSprintState(projectPath, state);
   appendEvent(projectPath, { type: 'complete', step, at: state.updated_at });
   return state;
+}
+
+/**
+ * Complete a sprint step AND emit a typed handoff JSON under `.cm/handoff/`.
+ *
+ * Use this from sprint skills (cm-planning, cm-execution, cm-code-review,
+ * cm-quality-gate, cm-brainstorm-idea, cm-retro-cli) to make their output
+ * machine-readable for the next phase.
+ *
+ * The Markdown artifact is still written; handoff is additive.
+ */
+export function completeSprintStepWithHandoff(
+  projectPath: string,
+  step: SprintStep,
+  artifactBody: string,
+  handoff: AnyHandoff
+): { state: SprintState; handoffFile: string } {
+  const state = completeSprintStep(projectPath, step, artifactBody);
+  const handoffFile = writeHandoff(projectPath, handoff);
+  appendEvent(projectPath, {
+    type: 'handoff',
+    step,
+    schema: handoff.schema,
+    at: state.updated_at,
+  } as any);
+  return { state, handoffFile };
 }
 
 const SKIP_STUB = (step: SprintStep, at: string): string =>

@@ -1,9 +1,19 @@
 ---
 name: cm-code-review
 description: "Full review lifecycle — request reviews, handle feedback with technical rigor, and complete branch integration. Use when completing tasks, receiving feedback, or finishing feature branches."
+token_budget: 1500
+compressed: true
+deprecated: false
 ---
 
 # Code Review — Request + Receive + Complete
+
+## TL;DR
+- **Use when** task complete, before/during PR review
+- **Pre-review**: lint, tests, diff scan, blast radius
+- **Reads**: handoff/exec.json — **Writes**: handoff/review.json
+- **Severity**: info | warn | error | critical
+- **Next**: cm-quality-gate
 
 > **Full review lifecycle in one skill:** Request → Receive → Integrate.
 
