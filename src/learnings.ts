@@ -134,6 +134,79 @@ export function pruneLearnings(projectPath: string, maxAgeDays = 180): number {
 }
 
 /**
+ * Strip user-identifying / token-looking material from a learning before it
+ * leaves the project. Used by `cm learn sync` to push to a shared remote
+ * without leaking absolute paths, emails, or long credentials.
+ */
+export function anonymize(l: Learning): Learning {
+  const stripPath = (s: string) =>
+    s
+      .replace(/\/Users\/[^/\s"']+/g, '~')
+      .replace(/\/home\/[^/\s"']+/g, '~')
+      .replace(/[A-Za-z]:\\Users\\[^\\\s"']+/g, '~');
+  const stripEmail = (s: string) =>
+    s.replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, '<email>');
+  const stripToken = (s: string) =>
+    // Long opaque tokens — runs of 24+ url-safe chars without spaces.
+    s.replace(/[A-Za-z0-9_\-]{24,}/g, '<token>');
+  const clean = (s: string) => stripToken(stripEmail(stripPath(s)));
+  return {
+    ts: l.ts,
+    type: l.type,
+    scope: clean(l.scope),
+    note: clean(l.note),
+    ...(l.source ? { source: clean(l.source) } : {}),
+  };
+}
+
+/**
+ * Stable identity hash for dedup across machines. Excludes `ts` so the same
+ * note appearing on two days collapses to one entry.
+ */
+export function learningKey(l: Learning): string {
+  return `${l.type}|${l.scope}|${l.note}`;
+}
+
+/**
+ * Merge two learning lists, dropping duplicates by `learningKey`. The earliest
+ * timestamp wins (we treat the original observation as canonical).
+ */
+export function mergeLearnings(a: Learning[], b: Learning[]): Learning[] {
+  const map = new Map<string, Learning>();
+  for (const l of [...a, ...b]) {
+    const k = learningKey(l);
+    const prev = map.get(k);
+    if (!prev || l.ts < prev.ts) map.set(k, l);
+  }
+  return Array.from(map.values()).sort((x, y) => (x.ts < y.ts ? -1 : 1));
+}
+
+/**
+ * Read the JSONL file at an arbitrary path (used by sync to read the remote
+ * mirror copy). Returns [] if the file is missing.
+ */
+export function readLearningsFile(file: string): Learning[] {
+  if (!fs.existsSync(file)) return [];
+  const out: Learning[] = [];
+  for (const line of fs.readFileSync(file, 'utf8').split('\n')) {
+    if (!line.trim()) continue;
+    try {
+      out.push(JSON.parse(line) as Learning);
+    } catch {
+      // skip malformed
+    }
+  }
+  return out;
+}
+
+export function writeLearningsFile(file: string, list: Learning[]): void {
+  const dir = path.dirname(file);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  const body = list.map(l => JSON.stringify(l)).join('\n');
+  fs.writeFileSync(file, list.length ? body + '\n' : '', 'utf8');
+}
+
+/**
  * Render the most recent N learnings as a compact Markdown block, suitable
  * for injection into CONTINUITY.md by cm-continuity at session start.
  */

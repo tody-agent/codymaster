@@ -22,6 +22,11 @@ exports.learningsPath = learningsPath;
 exports.addLearning = addLearning;
 exports.listLearnings = listLearnings;
 exports.pruneLearnings = pruneLearnings;
+exports.anonymize = anonymize;
+exports.learningKey = learningKey;
+exports.mergeLearnings = mergeLearnings;
+exports.readLearningsFile = readLearningsFile;
+exports.writeLearningsFile = writeLearningsFile;
 exports.renderLearningsForContinuity = renderLearningsForContinuity;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
@@ -120,6 +125,71 @@ function pruneLearnings(projectPath, maxAgeDays = 180) {
     }
     fs_1.default.writeFileSync(file, kept.join('\n') + (kept.length ? '\n' : ''), 'utf8');
     return pruned;
+}
+/**
+ * Strip user-identifying / token-looking material from a learning before it
+ * leaves the project. Used by `cm learn sync` to push to a shared remote
+ * without leaking absolute paths, emails, or long credentials.
+ */
+function anonymize(l) {
+    const stripPath = (s) => s
+        .replace(/\/Users\/[^/\s"']+/g, '~')
+        .replace(/\/home\/[^/\s"']+/g, '~')
+        .replace(/[A-Za-z]:\\Users\\[^\\\s"']+/g, '~');
+    const stripEmail = (s) => s.replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, '<email>');
+    const stripToken = (s) => 
+    // Long opaque tokens — runs of 24+ url-safe chars without spaces.
+    s.replace(/[A-Za-z0-9_\-]{24,}/g, '<token>');
+    const clean = (s) => stripToken(stripEmail(stripPath(s)));
+    return Object.assign({ ts: l.ts, type: l.type, scope: clean(l.scope), note: clean(l.note) }, (l.source ? { source: clean(l.source) } : {}));
+}
+/**
+ * Stable identity hash for dedup across machines. Excludes `ts` so the same
+ * note appearing on two days collapses to one entry.
+ */
+function learningKey(l) {
+    return `${l.type}|${l.scope}|${l.note}`;
+}
+/**
+ * Merge two learning lists, dropping duplicates by `learningKey`. The earliest
+ * timestamp wins (we treat the original observation as canonical).
+ */
+function mergeLearnings(a, b) {
+    const map = new Map();
+    for (const l of [...a, ...b]) {
+        const k = learningKey(l);
+        const prev = map.get(k);
+        if (!prev || l.ts < prev.ts)
+            map.set(k, l);
+    }
+    return Array.from(map.values()).sort((x, y) => (x.ts < y.ts ? -1 : 1));
+}
+/**
+ * Read the JSONL file at an arbitrary path (used by sync to read the remote
+ * mirror copy). Returns [] if the file is missing.
+ */
+function readLearningsFile(file) {
+    if (!fs_1.default.existsSync(file))
+        return [];
+    const out = [];
+    for (const line of fs_1.default.readFileSync(file, 'utf8').split('\n')) {
+        if (!line.trim())
+            continue;
+        try {
+            out.push(JSON.parse(line));
+        }
+        catch (_a) {
+            // skip malformed
+        }
+    }
+    return out;
+}
+function writeLearningsFile(file, list) {
+    const dir = path_1.default.dirname(file);
+    if (!fs_1.default.existsSync(dir))
+        fs_1.default.mkdirSync(dir, { recursive: true });
+    const body = list.map(l => JSON.stringify(l)).join('\n');
+    fs_1.default.writeFileSync(file, list.length ? body + '\n' : '', 'utf8');
 }
 /**
  * Render the most recent N learnings as a compact Markdown block, suitable

@@ -105,20 +105,9 @@
       "Bash(pip3 show:*)",
       "Bash(/Users/todyle/Library/Python/3.9/bin/pip show:*)",
       "Bash(git tag:*)",
-      "Bash(node scripts/validate-skills.mjs)",
-      "Bash(gh pr *)",
-      "Bash(node scripts/compress-skill.mjs cm-tdd 1500 \"**Use when** writing or fixing any feature/bugfix\" \"**Cycle**: red \\(failing test\\) → green \\(minimal code\\) → refactor\" \"**No prod code** without a failing test first\" \"**Next**: cm-execution or cm-code-review\")",
-      "Bash(node scripts/compress-skill.mjs cm-debugging 1500 \"**Use when** any bug, test failure, or unexpected behavior surfaces\" \"**Process**: reproduce → isolate → diagnose root cause → fix\" \"**Defense in depth**: also add a test that locks the bug\" \"**Next**: cm-tdd → cm-quality-gate\")",
-      "Bash(node scripts/compress-skill.mjs cm-quality-gate 1800 \"**Use before** any deployment or completion claim\" \"**Gates**: tests pass, no secrets, frontend safety, evidence logged\" \"**Reads**: handoff/exec.json — **Writes**: handoff/quality.json\" \"**Modes**: OFF | WARNING \\(default\\) | SOFT | FULL\" \"**Vibecoding score**: 0..100 \\(Phase 2\\)\")",
-      "Bash(node scripts/compress-skill.mjs cm-code-review 1500 \"**Use when** task complete, before/during PR review\" \"**Pre-review**: lint, tests, diff scan, blast radius\" \"**Reads**: handoff/exec.json — **Writes**: handoff/review.json\" \"**Severity**: info | warn | error | critical\" \"**Next**: cm-quality-gate\")",
-      "Bash(node scripts/compress-skill.mjs cm-execution 1800 \"**Use when** running an approved plan from cm-planning\" \"**Modes**: A=batch, B=subagent-per-task, C=parallel, D=RARV, E=TRIZ-parallel\" \"**Reads**: handoff/plan.json — **Writes**: handoff/exec.json\" \"**Always**: tests pass before reporting done\" \"**Next**: cm-code-review\")",
-      "Bash(node scripts/build-skills.mjs --check)",
-      "Bash(unzip -l cm.plugin)",
-      "Bash(unzip -p cm.plugin .claude-plugin/plugin.json)",
-      "Bash(awk '{print $4}')",
-      "Bash(awk -F/ '{print $1}')",
-      "Bash(zip -rq cm.plugin .claude-plugin commands dist skills -x \"skills/_shared/*\" \"skills/scripts/*\" \"skills/profiles/*\" \"skills/extensions/*\" \"skills/CLAUDE.md\" \"skills/AGENTS.md\" \"skills/build.sh\" \"skills/cf*/*\" \"skills/cf 2/*\")",
-      "Bash(unzip -p cm.plugin skills/cm-qa-visual-cli/SKILL.md)"
+      "Bash(node scripts/build-skills.mjs --platforms cursor,codex,opencode)",
+      "Bash(node scripts/build-skills.mjs --platforms cursor,codex,opencode --check)",
+      "Bash(gh pr *)"
     ]
   },
   "enabledPlugins": {},

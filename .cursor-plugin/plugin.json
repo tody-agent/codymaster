@@ -1,7 +1,8 @@
 {
   "name": "cody-master",
   "description": "Universal AI agent skills framework: TDD, debugging, deployment, design, i18n, content — 60+ skills",
-  "version": "5.1.0",
+  "version": "6.1.0",
+  "skills": "skills/",
   "author": {
     "name": "Tody Agent",
     "url": "https://codymaster.pages.dev"
