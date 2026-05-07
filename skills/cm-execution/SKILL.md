@@ -19,6 +19,20 @@ deprecated: false
 
 > **Three modes, one skill.** Choose based on task structure.
 
+## Persona Dispatch (Phase 2)
+
+In Mode B (subagent-per-task) and Mode E (TRIZ-parallel), dispatch the right persona from `agents/` based on the task type:
+
+| Task signal | Persona | File |
+|-------------|---------|------|
+| "design", "architecture", "trade-off" | architect | `agents/architect.md` |
+| "implement", "fix", "refactor" | engineer | `agents/engineer.md` |
+| "review", "audit", "verify" | reviewer | `agents/reviewer.md` |
+| "secret", "auth", "input validation", "deploy" | security | `agents/security.md` |
+| "scope", "intent", "user story" | pm | `agents/pm.md` |
+
+When dispatching a subagent, pass `subagent_type: <persona>` (Claude Code agents) or load the persona file as the system prompt for the inner call.
+
 ## Step 0: Load Working Memory (MANDATORY)
 
 Per `_shared/helpers.md#Load-Working-Memory`

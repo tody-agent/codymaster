@@ -207,6 +207,25 @@ After ANY gate fails, **FIRST run Memory Integrity Check:**
 | Security scan passes | `snyk test && aikido-api-client scan-release ...` | ✅ For production / public releases |
 | i18n parity | Included in test:gate | ✅ If multilingual |
 
+## Vibecoding Index (Phase 2)
+
+After all gates pass, compute a 0–100 score for the change:
+
+```bash
+cm quality score --mode WARNING
+```
+
+Components (each weighted): **intent 30%, ownership 25%, context 20%, tests 15%, review 10%**.
+Inputs are derived automatically from `.cm/handoff/{plan,exec,review,quality}.json` when present, or can be overridden with `--intent <0..1>`, `--ownership <0..1>`, etc.
+
+Modes:
+- `OFF` — silent (LITE projects)
+- `WARNING` — print + advise (default; STANDARD projects)
+- `SOFT` — warn loudly under 60 (PROFESSIONAL projects)
+- `FULL` — exit 1 under 70 (ENTERPRISE projects, blocks deploy)
+
+The default mode follows the project tier from `cm tier classify`.
+
 ## The Bottom Line
 
 **Test before deploy. Scan before release. Evidence before claims. Safety before shipping. Non-negotiable.**
