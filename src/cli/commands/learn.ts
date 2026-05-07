@@ -51,6 +51,10 @@ export function syncLearnings(projectPath: string, opts: SyncOptions): SyncResul
       throw new Error(`${syncDir} exists but is not a git checkout`);
     }
     git(path.dirname(syncDir), ['clone', opts.remote, path.basename(syncDir)]);
+    // Ensure a local identity exists so commits succeed even when the host
+    // has no global git config (CI runners, fresh containers).
+    try { git(syncDir, ['config', 'user.email', 'cm-learn-sync@codymaster.local']); } catch {}
+    try { git(syncDir, ['config', 'user.name', 'cm-learn-sync']); } catch {}
   } else {
     // Make sure we point at the requested remote, then refresh.
     try {

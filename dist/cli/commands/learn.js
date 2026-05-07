@@ -30,19 +30,29 @@ function syncLearnings(projectPath, opts) {
             throw new Error(`${syncDir} exists but is not a git checkout`);
         }
         git(path_1.default.dirname(syncDir), ['clone', opts.remote, path_1.default.basename(syncDir)]);
+        // Ensure a local identity exists so commits succeed even when the host
+        // has no global git config (CI runners, fresh containers).
+        try {
+            git(syncDir, ['config', 'user.email', 'cm-learn-sync@codymaster.local']);
+        }
+        catch (_b) { }
+        try {
+            git(syncDir, ['config', 'user.name', 'cm-learn-sync']);
+        }
+        catch (_c) { }
     }
     else {
         // Make sure we point at the requested remote, then refresh.
         try {
             git(syncDir, ['remote', 'set-url', 'origin', opts.remote]);
         }
-        catch (_b) {
+        catch (_d) {
             git(syncDir, ['remote', 'add', 'origin', opts.remote]);
         }
         try {
             git(syncDir, ['pull', '--ff-only', 'origin', 'HEAD']);
         }
-        catch (_c) {
+        catch (_e) {
             // Empty repo / unborn HEAD — ignore; nothing to pull.
         }
     }
