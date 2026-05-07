@@ -1,9 +1,17 @@
 ---
 name: cm-skill-index
 description: "Progressive Disclosure skill index — efficient skill loading in 3 layers. Layer 1 (index, ~100 tokens) always loaded. Layer 2 (summary, ~300 tokens) loaded on context need. Layer 3 (full SKILL.md) loaded on execution only."
+token_budget: 800
+compressed: true
+deprecated: false
 ---
 
 # Skill Index — Progressive Disclosure Engine
+
+## TL;DR
+- **Use when** searching for a CodyMaster or community skill
+- **Layered**: L1 index (always loaded) → L2 summary → L3 full
+- **Includes**: discovery, search, mastery (consolidated in v6)
 
 > **Save 90%+ tokens.** Agents scan the index first, load full skills only when executing.
 > Inspired by Loki Mode's 3-Layer Progressive Disclosure memory architecture.

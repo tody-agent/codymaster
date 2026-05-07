@@ -1,9 +1,18 @@
 ---
 name: cm-safe-deploy
 description: Use when setting up deployment infrastructure for any project - establishes multi-gate deploy pipeline with test gates, build verification, frontend safety checks, and rollback strategy before code reaches production
+token_budget: 1500
+compressed: true
+deprecated: false
 ---
 
 # Safe Deploy Pipeline v2
+
+## TL;DR
+- **Use before/during** deploying to staging or production
+- **Multi-gate**: secrets, build, stage, smoke, prod, rollback plan
+- **Identity**: verifies correct GitHub/Cloudflare/Supabase account
+- **Next**: cm-quality-gate (post-deploy)
 
 ## Overview
 

@@ -1,9 +1,18 @@
 ---
 name: cm-continuity
 description: "Working memory protocol — maintains context across sessions via CONTINUITY.md. Inspired by Loki Mode. Read at turn start, update at turn end. Captures mistakes and learnings to prevent repeating errors."
+token_budget: 1200
+compressed: true
+deprecated: false
 ---
 
 # Continuity — Working Memory Protocol
+
+## TL;DR
+- **Use at** session start (read) and end (update)
+- **File**: .cm/CONTINUITY.md (working memory)
+- **Auto-loads**: recent learnings from .cm/learnings.jsonl
+- **Loki Mode**: prevents repeating past mistakes
 
 > **Context persistence across sessions. Mistakes captured. Learnings applied.**
 > Inspired by Loki Mode's CONTINUITY.md protocol (Autonomi).

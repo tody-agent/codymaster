@@ -1,9 +1,18 @@
 ---
 name: cm-codeintell
 description: "Unified code intelligence — Skeleton Index (zero-dep, <4s) + AST knowledge graph (CodeGraph) + architecture diagrams (Mermaid) + smart context builder. Pre-indexes code structure so AI agents understand any codebase instantly. 95% token compression for onboarding. 30% fewer tokens for deep analysis."
+token_budget: 1500
+compressed: true
+deprecated: false
 ---
 
 # Code Intelligence — Structural Understanding for AI Agents
+
+## TL;DR
+- **Use to** index codebase for fast structural understanding
+- **Outputs**: skeleton index, AST graph, Mermaid diagrams
+- **Token saving**: ~95% for onboarding, ~30% for deep analysis
+- **Next**: cm-planning or cm-debugging
 
 > **Stop scanning. Start querying.** Skeleton Index (<4s, zero deps) + AST graph + architecture diagrams = instant code understanding.
 > Inspired by [CodeGraph](https://github.com/colbymchenry/codegraph) + [GitDiagram](https://github.com/ahmedkhaleel2004/gitdiagram).

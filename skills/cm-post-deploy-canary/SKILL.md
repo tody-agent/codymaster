@@ -1,22 +1,26 @@
 ---
 name: cm-post-deploy-canary
-description: "Use after deployment to run smoke tests and post-deploy canary checks via the browse daemon."
+description: "[Deprecated] quality gate now covers tests + canary. Use `cm-quality-gate` instead."
+deprecated: true
+merged_into: cm-quality-gate
 ---
-# cm-post-deploy-canary — smoke + browse tail
 
-## CLI
+# cm-post-deploy-canary — Deprecated
+
+> ⚠️ This skill is deprecated as of CodyMaster v6.0.0 and will be removed in v6.1.0.
+>
+> **Use `cm-quality-gate` instead.** quality gate now covers tests + canary.
+>
+> See [docs/migration-v2.md](../../docs/migration-v2.md) for the full mapping.
+
+The original content is preserved at [SKILL.archive.md](SKILL.archive.md) for reference.
+
+## Migration
 
 ```bash
-cm canary --url https://app.example.com
-cm canary --url https://app.example.com --browse-port 17395 --token "$CM_BROWSE_TOKEN"
+# Old:           cm <use this skill>
+# New (v6.0+):   cm quality-gate <equivalent action>
 ```
 
-## Flow
-
-1. **HTTP GET** the URL (status < 400).
-2. Optionally pull **browse daemon** `/console` for recent browser errors after deploy.
-
-## Next
-
-- Wire into **cm-safe-deploy** as a final step.
-- Add programmatic CWV (Lighthouse) when you need baselines per PR.
+If you depend on a capability that didn't carry over, please file an issue:
+https://github.com/tody-agent/codymaster/issues

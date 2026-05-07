@@ -1,9 +1,19 @@
 ---
 name: cm-quality-gate
 description: "Use before any deployment or completion claim. Enforces test gates, evidence-based verification, and frontend safety checks. No deploy without passing. No claims without evidence."
+token_budget: 1800
+compressed: true
+deprecated: false
 ---
 
 # Quality Gate — Test + Verify + Ship Safe
+
+## TL;DR
+- **Use before** any deployment or completion claim
+- **Gates**: tests pass, no secrets, frontend safety, evidence logged
+- **Reads**: handoff/exec.json — **Writes**: handoff/quality.json
+- **Modes**: OFF | WARNING (default) | SOFT | FULL
+- **Vibecoding score**: 0..100 (Phase 2)
 
 > **Three checkpoints, one skill:** Pre-deploy testing, evidence verification, frontend safety.
 

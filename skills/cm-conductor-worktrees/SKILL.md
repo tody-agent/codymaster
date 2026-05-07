@@ -1,28 +1,26 @@
 ---
 name: cm-conductor-worktrees
-description: "Use when you need to manage parallel git worktrees for isolated feature development."
+description: "[Deprecated] parallel execution mode. Use `cm-execution` instead."
+deprecated: true
+merged_into: cm-execution
 ---
-# cm-conductor-worktrees — parallel worktrees
 
-## CLI
+# cm-conductor-worktrees — Deprecated
+
+> ⚠️ This skill is deprecated as of CodyMaster v6.0.0 and will be removed in v6.1.0.
+>
+> **Use `cm-execution` instead.** parallel execution mode.
+>
+> See [docs/migration-v2.md](../../docs/migration-v2.md) for the full mapping.
+
+The original content is preserved at [SKILL.archive.md](SKILL.archive.md) for reference.
+
+## Migration
 
 ```bash
-cm conductor add --at ../my-feature-wt --branch feat/my-feature --base main
-cm conductor list
+# Old:           cm <use this skill>
+# New (v6.0+):   cm execution <equivalent action>
 ```
 
-## Practice
-
-- One **branch + worktree** per parallel agent/session.
-- Reconcile with `git merge` / PR; avoid two agents editing the same files without coordination.
-
-## ELI16 (3+ sessions)
-
-When running **three or more** parallel sessions, re-ground each session with:
-
-- Current branch name + worktree path.
-- Last artifact from `cm sprint status` or `.cm/context-bus.json`.
-
-## Future
-
-Dashboard UI for active sprints is **not** in CLI yet — use `cm dashboard` / Hamster UI where available.
+If you depend on a capability that didn't carry over, please file an issue:
+https://github.com/tody-agent/codymaster/issues
