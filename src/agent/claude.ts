@@ -1,3 +1,4 @@
+import { execFileSync } from 'child_process';
 import { spawnProcess, type NDJSONMessage } from './spawn-helper';
 import type {
   AgentBackend,
