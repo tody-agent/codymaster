@@ -121,34 +121,70 @@ function runOnboarding(version) {
             profile.firstRunAt = new Date().toISOString();
             (0, hooks_1.saveProfile)(profile);
         }
-        // ─── STEP 2: Platform ──────────────────────────
+        // ─── STEP 2: Platform(s) + Install ─────────────
         if (startStep < 2) {
             console.log('');
             console.log(`    ${(0, theme_1.success)('✓')} ${(0, theme_1.dim)('Nice to meet you,')} ${(0, theme_1.brand)(profile.userName)}${(0, theme_1.dim)('!')}`);
             console.log('');
             console.log((0, box_1.renderStepProgress)(2, TOTAL_STEPS));
             console.log('');
-            const platformResult = yield p.select({
-                message: 'Where do you code?',
-                options: [
-                    { label: '✦  Google Antigravity (Gemini)', value: 'gemini', hint: 'recommended' },
-                    { label: '🟣 Claude Code', value: 'claude', hint: 'plugin system' },
-                    { label: '⬡  Cursor', value: 'cursor', hint: 'rules directory' },
-                    { label: '🌊 Windsurf', value: 'windsurf', hint: 'rules directory' },
-                    { label: '🔶 Cline / RooCode', value: 'cline', hint: 'skills directory' },
-                    { label: '📦 OpenCode', value: 'opencode', hint: 'skills directory' },
-                    { label: '🪁 Kiro', value: 'kiro', hint: 'steering docs' },
-                    { label: '🤖 GitHub Copilot', value: 'copilot', hint: 'auto-context' },
-                    { label: '🔧 Other / Not sure', value: 'other', hint: 'auto-detect' },
-                ],
+            const { detectPlatforms, installToMany } = yield Promise.resolve().then(() => __importStar(require('../install/engine')));
+            const detected = detectPlatforms();
+            const installedIds = detected.filter((d) => d.installed).map((d) => d.platform.id);
+            const platformsResult = yield p.multiselect({
+                message: 'Which AI coding platforms do you use? (space to toggle, enter to confirm)',
+                options: detected.map((d) => ({
+                    label: `${d.platform.emoji}  ${d.platform.name}`,
+                    value: d.platform.id,
+                    hint: d.installed ? 'detected' : undefined,
+                })),
+                initialValues: installedIds.length > 0 ? installedIds : undefined,
+                required: true,
             });
-            if (p.isCancel(platformResult)) {
+            if (p.isCancel(platformsResult)) {
                 profile.onboardingStep = 1;
                 (0, hooks_1.saveProfile)(profile);
                 console.log((0, theme_1.dim)('\n  No worries! Run cm again to continue. 👋\n'));
                 process.exit(0);
             }
-            profile.platform = platformResult;
+            const chosenPlatforms = platformsResult;
+            const profileResult = yield p.select({
+                message: 'Pick a skill profile (you can change later):',
+                options: [
+                    { label: 'Core', value: 'core', hint: 'planning + tdd + debugging + deploy (recommended)' },
+                    { label: 'Growth', value: 'growth', hint: 'content + ads + CRO + booking' },
+                    { label: 'Design', value: 'design', hint: 'UI preview + UX laws + design system' },
+                    { label: 'Knowledge', value: 'knowledge', hint: 'docs + memory + continuity' },
+                    { label: 'Full', value: 'full', hint: 'everything (~56 skills)' },
+                ],
+                initialValue: 'core',
+            });
+            if (p.isCancel(profileResult)) {
+                profile.onboardingStep = 1;
+                (0, hooks_1.saveProfile)(profile);
+                process.exit(0);
+            }
+            const skillProfile = profileResult;
+            const spinner = p.spinner();
+            spinner.start(`Installing skills to ${chosenPlatforms.length} platform(s)...`);
+            let results = [];
+            try {
+                results = yield installToMany(chosenPlatforms, {
+                    scope: 'user',
+                    profile: skillProfile,
+                });
+                spinner.stop(`Installed to ${chosenPlatforms.length} platform(s).`);
+            }
+            catch (err) {
+                spinner.stop(`Install failed: ${err.message}`);
+            }
+            for (const r of results) {
+                console.log(`    ${(0, theme_1.success)('✓')} ${(0, theme_1.brand)(r.platform)} ${(0, theme_1.dim)('→ ' + r.targetPath)} ${(0, theme_1.dim)(`(${r.installed.length} skills)`)}`);
+            }
+            console.log('');
+            profile.platform = chosenPlatforms[0] || '';
+            profile.platforms = chosenPlatforms;
+            profile.skillProfile = skillProfile;
             profile.onboardingStep = 2;
             (0, hooks_1.saveProfile)(profile);
         }

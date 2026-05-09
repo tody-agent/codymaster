@@ -85,7 +85,7 @@ export async function runOnboarding(version: string): Promise<UserProfile> {
     saveProfile(profile);
   }
 
-  // ─── STEP 2: Platform ──────────────────────────
+  // ─── STEP 2: Platform(s) + Install ─────────────
   if (startStep < 2) {
     console.log('');
     console.log(`    ${success('✓')} ${dim('Nice to meet you,')} ${brand(profile.userName)}${dim('!')}`);
@@ -93,29 +93,71 @@ export async function runOnboarding(version: string): Promise<UserProfile> {
     console.log(renderStepProgress(2, TOTAL_STEPS));
     console.log('');
 
-    const platformResult = await p.select({
-      message: 'Where do you code?',
-      options: [
-        { label: '✦  Google Antigravity (Gemini)', value: 'gemini', hint: 'recommended' },
-        { label: '🟣 Claude Code', value: 'claude', hint: 'plugin system' },
-        { label: '⬡  Cursor', value: 'cursor', hint: 'rules directory' },
-        { label: '🌊 Windsurf', value: 'windsurf', hint: 'rules directory' },
-        { label: '🔶 Cline / RooCode', value: 'cline', hint: 'skills directory' },
-        { label: '📦 OpenCode', value: 'opencode', hint: 'skills directory' },
-        { label: '🪁 Kiro', value: 'kiro', hint: 'steering docs' },
-        { label: '🤖 GitHub Copilot', value: 'copilot', hint: 'auto-context' },
-        { label: '🔧 Other / Not sure', value: 'other', hint: 'auto-detect' },
-      ],
+    const { detectPlatforms, installToMany } = await import('../install/engine');
+    const detected = detectPlatforms();
+    const installedIds = detected.filter((d) => d.installed).map((d) => d.platform.id);
+
+    const platformsResult = await p.multiselect({
+      message: 'Which AI coding platforms do you use? (space to toggle, enter to confirm)',
+      options: detected.map((d) => ({
+        label: `${d.platform.emoji}  ${d.platform.name}`,
+        value: d.platform.id,
+        hint: d.installed ? 'detected' : undefined,
+      })),
+      initialValues: installedIds.length > 0 ? installedIds : undefined,
+      required: true,
     });
 
-    if (p.isCancel(platformResult)) {
+    if (p.isCancel(platformsResult)) {
       profile.onboardingStep = 1;
       saveProfile(profile);
       console.log(dim('\n  No worries! Run cm again to continue. 👋\n'));
       process.exit(0);
     }
 
-    profile.platform = platformResult as string;
+    const chosenPlatforms = platformsResult as string[];
+
+    const profileResult = await p.select({
+      message: 'Pick a skill profile (you can change later):',
+      options: [
+        { label: 'Core', value: 'core', hint: 'planning + tdd + debugging + deploy (recommended)' },
+        { label: 'Growth', value: 'growth', hint: 'content + ads + CRO + booking' },
+        { label: 'Design', value: 'design', hint: 'UI preview + UX laws + design system' },
+        { label: 'Knowledge', value: 'knowledge', hint: 'docs + memory + continuity' },
+        { label: 'Full', value: 'full', hint: 'everything (~56 skills)' },
+      ],
+      initialValue: 'core',
+    });
+
+    if (p.isCancel(profileResult)) {
+      profile.onboardingStep = 1;
+      saveProfile(profile);
+      process.exit(0);
+    }
+
+    const skillProfile = profileResult as 'core' | 'growth' | 'design' | 'knowledge' | 'full';
+
+    const spinner = p.spinner();
+    spinner.start(`Installing skills to ${chosenPlatforms.length} platform(s)...`);
+    let results: Awaited<ReturnType<typeof installToMany>> = [];
+    try {
+      results = await installToMany(chosenPlatforms, {
+        scope: 'user',
+        profile: skillProfile,
+      });
+      spinner.stop(`Installed to ${chosenPlatforms.length} platform(s).`);
+    } catch (err: any) {
+      spinner.stop(`Install failed: ${err.message}`);
+    }
+
+    for (const r of results) {
+      console.log(`    ${success('✓')} ${brand(r.platform)} ${dim('→ ' + r.targetPath)} ${dim(`(${r.installed.length} skills)`)}`);
+    }
+    console.log('');
+
+    profile.platform = chosenPlatforms[0] || '';
+    (profile as any).platforms = chosenPlatforms;
+    (profile as any).skillProfile = skillProfile;
     profile.onboardingStep = 2;
     saveProfile(profile);
   }

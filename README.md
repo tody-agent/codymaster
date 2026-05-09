@@ -245,54 +245,57 @@ If you prefer:
 
 ## 🚀 1-Minute Install
 
-### ✨ NEW: Claude Desktop Plugin (Zero Terminal Required)
-
-The easiest way to install CodyMaster — no npm, no terminal, no setup.
-
-**Claude Desktop / Claude Cowork:**
-
-Run the auto-installer to inject the MCP Servers into your Claude Desktop config automatically:
+**One command. Friendly hamster wizard. 14 platforms.**
 
 ```bash
-npx codymaster mcp-serve --install-claude
+npm install -g codymaster && cm
 ```
 
-All 68+ skills will be wired up instantly via MCP stdio. Remember to restart Claude Desktop to load the new config.
+The `cm` command launches an onboarding wizard that:
 
----
+1. Detects every AI coding tool you have installed (Claude Code, Cursor, Antigravity, Codex, OpenCode, Windsurf, Cline, Aider, Continue, Kiro, Amazon Q, Amp, Copilot, Claude Desktop)
+2. Asks which ones you want skills for (multi-select; detected tools pre-checked)
+3. Lets you pick a skill profile — `core` (recommended), `growth`, `design`, `knowledge`, or `full`
+4. Installs to each platform's native location and prints next-step hints
 
-### 2. Install AI Skills (All Other Platforms)
+After the wizard you have:
 
-CodyMaster uses **Native Plugin Extensions** for zero-friction installation. No bash scripts, no manual folder copying. Select your platform below:
-
-**Claude Code CLI:**
 ```bash
-claude plugin marketplace add tody-agent/codymaster
-claude plugin install cm@codymaster --scope user
+cm install <platform>            # install or refresh a single platform
+cm install --all --profile core  # one-shot install to every detected platform
+cm doctor                        # which platforms are installed and where skills landed
+cm install --list                # list every supported platform id
 ```
 
-**Cursor (in Agent Chat):**
-```text
-/add-plugin cody-master
-```
+### Native plugin paths (still supported)
 
-**Gemini CLI / Google Antigravity:**
+If you prefer a platform-native install, all 14 paths still work:
+
+- **Claude Code:** `claude plugin marketplace add tody-agent/codymaster && claude plugin install cm@codymaster --scope user`
+- **Claude Desktop:** `npx codymaster mcp-serve --install-claude`
+- **Cursor (in Agent Chat):** `/add-plugin cody-master`
+- **Gemini CLI / Antigravity:** `gemini extensions install https://github.com/tody-agent/codymaster`
+
+`cm install <platform>` just wraps these and adds skill copy + post-install hints.
+
+### Don't have Node?
+
+The bash bootstrap is a thin fallback that delegates to the same engine when Node is available, and falls back to a minimal copy when it isn't:
+
 ```bash
-gemini extensions install https://github.com/tody-agent/codymaster
-```
-*(Progressive disclosure: Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to your `GEMINI.md` to save tokens)*
-
-**OpenCode / OpenClaw:**
-Tell your agent:
-```text
-Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all --profile core
 ```
 
-**Codex:**
-Tell your agent:
-```text
-Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+### Token budget tip (Antigravity / Gemini / Windsurf)
+
+These platforms count **skills + MCP** against a customization budget. Start with the small `core` profile, then add packs per-project as needed:
+
+```bash
+cm install antigravity --profile core
+cm install antigravity --profile growth   # re-run to merge another pack
 ```
+
+Profiles are defined under [`skills/profiles/`](skills/profiles/README.md).
 
 ### 3. Install Mission Control Dashboard (Optional but Recommended)
 

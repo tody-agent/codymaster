@@ -1,6 +1,6 @@
 {
   "name": "codymaster",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "CodyMaster v2.0 — 39 focused skills with token budgets, handoff JSON, per-project learnings. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
   "main": "dist/index.js",
   "repository": {
@@ -58,7 +58,6 @@
     "dist/",
     "scripts/",
     "skills/",
-    "adapters/",
     "commands/",
     "public/",
     "README.md",

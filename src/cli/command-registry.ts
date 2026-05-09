@@ -10,6 +10,7 @@ import { registerDesignStudioCommands } from './commands/design-studio';
 import { registerDistroCommands } from './commands/distro';
 import { registerMcpServeCommands } from './commands/mcp-serve';
 import { registerBenchCommands } from './commands/bench';
+import { registerInstallCommands } from './commands/install';
 import { registerBrainCommands } from './commands/brain';
 import { registerEvolveCommands } from './commands/evolve';
 import { registerLearnCommands } from './commands/learn';
@@ -31,6 +32,7 @@ export function registerAllCommands(program: Command) {
   registerDistroCommands(program);
   registerMcpServeCommands(program);
   registerBenchCommands(program);
+  registerInstallCommands(program);
   registerBrainCommands(program);
   registerEvolveCommands(program);
   registerLearnCommands(program);
