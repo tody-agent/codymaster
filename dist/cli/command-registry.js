@@ -12,6 +12,7 @@ const design_studio_1 = require("./commands/design-studio");
 const distro_1 = require("./commands/distro");
 const mcp_serve_1 = require("./commands/mcp-serve");
 const bench_1 = require("./commands/bench");
+const install_1 = require("./commands/install");
 /**
  * Registers all CLI commands with the provided program instance.
  */
@@ -27,4 +28,5 @@ function registerAllCommands(program) {
     (0, distro_1.registerDistroCommands)(program);
     (0, mcp_serve_1.registerMcpServeCommands)(program);
     (0, bench_1.registerBenchCommands)(program);
+    (0, install_1.registerInstallCommands)(program);
 }

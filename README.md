@@ -241,62 +241,58 @@ If you prefer:
 
 ## 🚀 1-Minute Install
 
-### ✨ NEW: Claude Desktop Plugin (Zero Terminal Required)
-
-The easiest way to install CodyMaster — no npm, no terminal, no setup.
-
-**Claude Desktop / Claude Cowork:**
-
-1. Open **Settings → Plugins** in Claude Desktop
-2. Click **"Add marketplace"**
-3. Enter: `tody-agent/codymaster`
-4. Click **"Sync"** → done ✅
-
-All 68+ skills and 18 slash commands load instantly. Works with **Claude Desktop**, **Claude Cowork**, and any Claude client that supports the plugin marketplace.
-
-> You can also drag-and-drop the `cm.plugin` file from the [latest release](https://github.com/tody-agent/codymaster/releases) directly into Claude Desktop.
-
----
-
-### 2. Install AI Skills (All Other Platforms)
-
-One command installs all 68+ skills to your environment. Supports Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode, and more:
+**One command. Friendly hamster wizard. 14 platforms.**
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+npm install -g codymaster && cm
 ```
 
-#### After `install.sh --all` (verify)
+That's it. The `cm` command launches an onboarding wizard that:
 
-- **Restart** Claude Code, Cursor, or Gemini / Antigravity so they reload config and rules from disk.
-- **Cursor:** rules go to `**~/.cursor/rules`** (always under your home folder, not wherever you ran the script). In Agent chat, run `**/add-plugin cody-master`**. To install rules **only inside one git repo**, run from that repo: `bash install.sh --cursor --cursor-project`.
-- **Gemini / Antigravity:** skills live in `~/.gemini/antigravity/skills`. The installer **creates or appends** `~/.gemini/GEMINI.md` with `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` when that hint is missing.
-- **Claude Code:** if commands like `/cm:demo` do not appear, run `claude plugin marketplace add tody-agent/codymaster` then `claude plugin install cm@codymaster --scope user` (or `--scope project`).
-- **Non-interactive:** `--all` skips the onboarding menu. For a single platform, add `**--yes`** (e.g. `bash install.sh --gemini --yes`).
+1. Detects every AI coding tool you have installed (Claude Code, Cursor, Antigravity, Codex, OpenCode, Windsurf, Cline, Aider, Continue, Kiro, Amazon Q, Amp, Copilot, Claude Desktop)
+2. Asks which ones you want skills for (multi-select, detected tools pre-checked)
+3. Lets you pick a skill profile — `core` (recommended), `growth`, `design`, `knowledge`, or `full`
+4. Installs to each platform's native location (`~/.claude/skills`, `~/.cursor/rules`, `~/.gemini/antigravity/skills`, …) and prints next-step hints
 
-#### Google Antigravity / Gemini CLI / Windsurf (token budget)
-
-Antigravity and some Windsurf builds count **skills + MCP** against a customization token budget. Installing every skill globally can trigger truncation or unstable agent runs (especially if an MCP server errors and retries).
-
-- **Recommended:** install a **small global profile**, add the rest per project.
+After the wizard you have these commands:
 
 ```bash
-# Core only → ~/.gemini/antigravity/skills (merge more profiles later with the same command)
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --gemini --profile core
-
-# Optional packs (re-run to add folders alongside core)
-bash install.sh --gemini --profile growth
-bash install.sh --gemini --profile design
-bash install.sh --gemini --profile knowledge
+cm install <platform>          # install/refresh a single platform
+cm install --all --profile core  # one-shot install to every detected platform
+cm doctor                      # see which platforms are detected and what's installed
+cm install --list              # list every supported platform id
 ```
 
-- **Paths:** Antigravity / Gemini CLI skills → `~/.gemini/antigravity/skills`. This repo’s installer for **Windsurf** writes to **project** `.windsurf/rules` when you run `install.sh --windsurf` from a repo root. Some Windsurf/Codeium setups also use a **global** skills directory (e.g. under Codeium); if you copy skills there manually, use the same `--profile` flags to avoid duplicating hundreds of rules.
-- **MCP:** Disable MCP servers you are not using in the IDE settings. Flaky or rate-limited MCPs can cause “MCP Error” loops until the agent terminates.
-- **Progressive disclosure:** Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to `GEMINI.md` so the model loads the index before pulling full skills.
+### Don't have Node?
 
-Profiles are defined under `[skills/profiles/](skills/profiles/README.md)`.
+The bash bootstrap is a thin fallback that delegates to the same engine when Node is available, and falls back to a minimal copy when it isn't:
 
-*For Cursor IDE users, you can also just type `/add-plugin cody-master` in your agent chat.*
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all --profile core
+```
+
+### Per-project install
+
+```bash
+npm install codymaster && npx cm install --scope project
+```
+
+### Token budget tip (Antigravity / Gemini / Windsurf)
+
+These platforms count **skills + MCP** against a customization budget. Start with the small `core` profile, then add packs per-project as needed:
+
+```bash
+cm install antigravity --profile core
+cm install antigravity --profile growth   # re-run to merge another pack
+```
+
+### Verify the install
+
+```bash
+cm doctor
+```
+
+Profiles are defined under [`skills/profiles/`](skills/profiles/README.md).
 
 ### 3. Install Mission Control Dashboard (Optional but Recommended)
 

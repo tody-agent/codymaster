@@ -1,1138 +1,170 @@
 #!/usr/bin/env bash
 # ════════════════════════════════════════════════════════════════
-#  CodyMaster Skills Kit — Universal Installer (see VERSION below)
-#  Inspired by: npx skills add (vercel-labs/skills)
+#  CodyMaster — Universal Installer Bootstrap (v5.2.0)
 #
-#  Usage:
-#    bash install.sh                    Interactive menu
-#    bash install.sh --claude           Claude Code (non-interactive)
-#    bash install.sh --claude --global  Claude Code, user scope
-#    bash install.sh --claude --project Claude Code, project scope
-#    bash install.sh --gemini           Gemini CLI / Antigravity (all skills)
-#    bash install.sh --gemini --profile core   Antigravity: core profile only (token budget)
-#    bash install.sh --windsurf --profile core  Same for project .windsurf/rules
-#    bash install.sh --aider            Aider
-#    bash install.sh --continue         Continue.dev
-#    bash install.sh --amazon-q         Amazon Q CLI (q)
-#    bash install.sh --amp              Amp
-#    bash install.sh --all              All detected platforms (no interactive menu)
-#    bash install.sh --yes              Skip onboarding menu (with --gemini, etc.)
-#    bash install.sh --cursor --cursor-project   Force ./.cursor/rules (run from repo root)
+#  Quick paths:
+#    npm install -g codymaster && cm        ← the canonical install
+#    bash install.sh                        ← this script (Node-aware fallback)
+#    bash install.sh --all --profile core   ← non-interactive multi-platform
+#
+#  This script is a thin bootstrap. The real install logic lives in the
+#  `cm install` TypeScript engine (src/install/). When Node is available
+#  we hand off to it. When it isn't, we fall back to a minimal rsync
+#  copy for power users.
 # ════════════════════════════════════════════════════════════════
 
 set -e
 
-# Directory containing this script (for skills/profiles when ~/.cody-master is stale)
-CM_SCRIPT_DIR=""
-_cm_src="${BASH_SOURCE[0]:-$0}"
-if [[ "$_cm_src" != /dev/fd/* ]] && [[ "$_cm_src" != /proc/self/fd/* ]]; then
-  CM_SCRIPT_DIR="$(cd "$(dirname "$_cm_src")" && pwd)"
-fi
-
-# ── Colors ──────────────────────────────────────────────────────
-G='\033[0;32m'; B='\033[0;34m'; P='\033[0;35m'; O='\033[0;33m'
-C='\033[0;36m'; R='\033[0;31m'; W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'; DIM='\033[2m'
-
+VERSION="5.2.0"
 REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
-VERSION="4.7.1"
-SCOPE="user"   # default scope for Claude Code
-SKILL_PROFILE="full"   # core|growth|design|knowledge|full — see skills/profiles/
-INSTALL_CMD=""         # set by parse_install_args
-# Skip hamster onboarding menu (non-interactive / one-liner installs)
-SKIP_INSTALL_ONBOARDING=0
-# Force Cursor rules into ./.cursor/rules (run from repo root)
-CURSOR_RULES_PROJECT=0
 
-if [ -d "skills" ]; then
-  TOTAL_SKILLS=$(ls -1d skills/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
-elif [ -d "$HOME/.cody-master/skills" ]; then
-  TOTAL_SKILLS=$(ls -1d "$HOME/.cody-master/skills"/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
-else
-  TOTAL_SKILLS="60+"
+G='\033[0;32m'; C='\033[0;36m'; O='\033[0;33m'; R='\033[0;31m'
+W='\033[1;37m'; NC='\033[0m'; BOLD='\033[1m'; DIM='\033[2m'
+
+SCRIPT_DIR=""
+_src="${BASH_SOURCE[0]:-$0}"
+if [[ "$_src" != /dev/fd/* ]] && [[ "$_src" != /proc/self/fd/* ]]; then
+  SCRIPT_DIR="$(cd "$(dirname "$_src")" && pwd)"
 fi
 
-
-# ── i18n ────────────────────────────────────────────────────────
-detect_lang() {
-  local lang="${LANG:-en}"
-  case "$lang" in
-    vi*|VI*) echo "vi" ;;
-    zh*|ZH*) echo "zh" ;;
-    ko*|KO*) echo "ko" ;;
-    ru*|RU*) echo "ru" ;;
-    hi*|HI*) echo "hi" ;;
-    *)       echo "en" ;;
-  esac
-}
-
-LANG_CODE=$(detect_lang)
-
-msg() {
-  local key="$1"
-  case "$LANG_CODE:$key" in
-    vi:welcome)   echo "Chào mừng bạn đến với CodyMaster v${VERSION}" ;;
-    vi:tagline)   echo "${TOTAL_SKILLS} kỹ năng AI cho Claude Code và các AI agents khác" ;;
-    vi:detecting) echo "🔍 Đang phát hiện các AI agent đã cài..." ;;
-    vi:found)     echo "✅ Đã tìm thấy" ;;
-    vi:not_found) echo "❌ Không tìm thấy" ;;
-    vi:select)    echo "Chọn platform để cài (nhập số, cách nhau dấu phẩy):" ;;
-    vi:scope)     echo "Phạm vi cài đặt cho Claude Code:" ;;
-    vi:scope_user)    echo "User (tất cả projects)" ;;
-    vi:scope_project) echo "Project (chỉ project này)" ;;
-    vi:done)      echo "✅ Hoàn tất!" ;;
-    vi:onboard)   echo "🎯 Bắt đầu ngay với AI Agent của bạn:" ;;
-    vi:docs)      echo "📚 Tài liệu:" ;;
-    vi:press_enter) echo "Nhấn ENTER để tiếp tục" ;;
-
-    zh:welcome)   echo "欢迎使用 CodyMaster v${VERSION}" ;;
-    zh:tagline)   echo "Claude Code 的 ${TOTAL_SKILLS} AI 技能" ;;
-    zh:detecting) echo "🔍 检测已安装的 AI Agent..." ;;
-    zh:found)     echo "✅ 已找到" ;;
-    zh:not_found) echo "❌ 未找到" ;;
-    zh:select)    echo "选择要安装的平台（输入数字，逗号分隔）:" ;;
-    zh:scope)     echo "Claude Code 安装范围:" ;;
-    zh:scope_user)    echo "用户级（所有项目）" ;;
-    zh:scope_project) echo "项目级（仅此项目）" ;;
-    zh:done)      echo "✅ 完成！" ;;
-    zh:onboard)   echo "🎯 立即开始与您的 AI Agent 合作:" ;;
-    zh:docs)      echo "📚 文档:" ;;
-    zh:press_enter) echo "按 Enter 继续" ;;
-
-    ko:welcome)   echo "CodyMaster v${VERSION}에 오신 것을 환영합니다" ;;
-    ko:tagline)   echo "Claude Code용 ${TOTAL_SKILLS} AI 스킬" ;;
-    ko:detecting) echo "🔍 설치된 AI Agent 감지 중..." ;;
-    ko:found)     echo "✅ 발견됨" ;;
-    ko:not_found) echo "❌ 없음" ;;
-    ko:select)    echo "설치할 플랫폼 선택 (숫자, 쉼표로 구분):" ;;
-    ko:scope)     echo "Claude Code 설치 범위:" ;;
-    ko:scope_user)    echo "사용자 (모든 프로젝트)" ;;
-    ko:scope_project) echo "프로젝트 (이 프로젝트만)" ;;
-    ko:done)      echo "✅ 완료!" ;;
-    ko:onboard)   echo "🎯 AI Agent와 즉시 시작하세요:" ;;
-    ko:docs)      echo "📚 문서:" ;;
-    ko:press_enter) echo "Enter를 눌러 계속" ;;
-
-    *)
-      case "$key" in
-        welcome)   echo "Welcome to CodyMaster v${VERSION}" ;;
-        tagline)   echo "${TOTAL_SKILLS} AI skills for Claude Code and other AI agents" ;;
-        detecting) echo "🔍 Detecting installed AI agents..." ;;
-        found)     echo "✅ Found" ;;
-        not_found) echo "❌ Not found" ;;
-        select)    echo "Select platforms to install (numbers, comma-separated):" ;;
-        scope)     echo "Installation scope for Claude Code:" ;;
-        scope_user)    echo "User — available across all projects (recommended)" ;;
-        scope_project) echo "Project — this project only (committed to .claude/)" ;;
-        done)      echo "✅ Done!" ;;
-        onboard)   echo "🎯 Get started immediately with your AI Agent:" ;;
-        docs)      echo "📚 Documentation:" ;;
-        press_enter) echo "Press ENTER to continue" ;;
-      esac
-      ;;
-  esac
-}
-
-# ── Header ───────────────────────────────────────────────────────
-print_header() {
-  clear 2>/dev/null || true
-  hamster_sentiment "start"
-  echo -e "    ${O}( . \ --- / . )${NC}"
-  echo -e "     ${O}/${NC}   ${O}${BOLD}^   ^${NC}   ${O}\\\\${NC}"
-  echo -e "    ${O}(${NC}      ${O}${BOLD}u${NC}      ${O})${NC}"
-  echo -e "     ${O}|  \\ ___ /  |${NC}"
-  echo -e "      ${O}'--w---w--'${NC}"
+# ── Hamster banner ───────────────────────────────────────────────
+banner() {
+  cat <<'EOF'
+     \ ( \_/ ) /
+    \ (  ^ u ^  ) /
+   --(  (___)  )--
+    | [     ] |
+     '--w-w--'
+EOF
+  echo -e "    ${W}${BOLD}CodyMaster v${VERSION}${NC} — ${C}AI skills for every coding agent${NC}"
   echo ""
-  echo -e "    ${O}${BOLD}$(msg welcome)${NC} 🐹"
-  echo ""
-  echo -e "    ${DIM}CodyMaster${NC} ${O}v${VERSION}${NC} ${DIM}• ${TOTAL_SKILLS} Skills • ~${NC}"
-  echo -e "${DIM}  ──────────────────────────────────────────────────${NC}"
+  echo -e "    ${C}🐹: Cheeks ready. Let's get you set up!${NC}"
   echo ""
 }
 
-# ── Agent Detection ──────────────────────────────────────────────
-detect_agents() {
-  hamster_sentiment "progress"
-  echo ""
-  echo -e "${W}$(msg detecting)${NC}"
-  echo ""
-
-  DETECTED=()
-
-  if command -v claude &>/dev/null; then
-    echo -e "  ${P}${BOLD}1) 🟣 Claude Code${NC}        $(msg found)"
-    DETECTED+=("claude")
-  else
-    echo -e "  ${P}1) 🟣 Claude Code${NC}        $(msg not_found)"
-  fi
-
-  if command -v gemini &>/dev/null; then
-    echo -e "  ${C}${BOLD}2) 💎 Gemini CLI${NC}         $(msg found)"
-    DETECTED+=("gemini")
-  else
-    echo -e "  ${C}2) 💎 Gemini CLI${NC}         $(msg not_found)"
-  fi
-
-  # Check for Cursor
-  if [ -d "$HOME/.cursor" ] || [ -d "/Applications/Cursor.app" ]; then
-    echo -e "  ${B}${BOLD}3) 🔵 Cursor${NC}             $(msg found)"
-    DETECTED+=("cursor")
-  else
-    echo -e "  ${B}3) 🔵 Cursor${NC}             $(msg not_found)"
-  fi
-
-  if command -v codex &>/dev/null; then
-    echo -e "  ${O}${BOLD}4) 🟠 Codex${NC}              $(msg found)"
-    DETECTED+=("codex")
-  else
-    echo -e "  ${O}4) 🟠 Codex${NC}              $(msg not_found)"
-  fi
-
-  if command -v opencode &>/dev/null; then
-    echo -e "  ${G}${BOLD}5) 📦 OpenCode${NC}           $(msg found)"
-    DETECTED+=("opencode")
-  else
-    echo -e "  ${G}5) 📦 OpenCode${NC}           $(msg not_found)"
-  fi
-
-  if command -v aider &>/dev/null; then
-    echo -e "  ${O}${BOLD}6) 🤖 Aider${NC}              $(msg found)"
-    DETECTED+=("aider")
-  else
-    echo -e "  ${O}6) 🤖 Aider${NC}              $(msg not_found)"
-  fi
-
-  if [ -d "$HOME/.continue" ]; then
-    echo -e "  ${B}${BOLD}7) 🔗 Continue.dev${NC}       $(msg found)"
-    DETECTED+=("continue")
-  else
-    echo -e "  ${B}7) 🔗 Continue.dev${NC}       $(msg not_found)"
-  fi
-
-  if command -v q &>/dev/null; then
-    echo -e "  ${W}${BOLD}8) ☁️  Amazon Q CLI${NC}      $(msg found)"
-    DETECTED+=("amazon-q")
-  else
-    echo -e "  ${W}8) ☁️  Amazon Q CLI${NC}      $(msg not_found)"
-  fi
-
-  if command -v amp &>/dev/null; then
-    echo -e "  ${G}${BOLD}9) ⚡ Amp${NC}                $(msg found)"
-    DETECTED+=("amp")
-  else
-    echo -e "  ${G}9) ⚡ Amp${NC}                $(msg not_found)"
-  fi
-
-  echo -e "  ${W}10) 📋 Manual copy${NC}        (any platform)"
-  echo ""
-}
-
-# ── Hamster Sentiment ─────────────────────────────────────────────
-hamster_sentiment() {
-  local state="${1:-finish}"
-  local idx=$(( RANDOM % 3 ))
-  
-  case $state in
-    "start")
-      case $idx in
-        0) echo -e "    ${C}🐹: Whiskers twitching... CodyMaster incoming!${NC}" ;;
-        1) echo -e "    ${C}🐹: Let's fill these cheeks with ${TOTAL_SKILLS} skills! ✨${NC}" ;;
-        2) echo -e "    ${C}🐹: Waking up from a power nap! Let's build! 🐭${NC}" ;;
-      esac
-      ;;
-    "progress")
-      case $idx in
-        0) echo -e "    ${C}🐹: Sniffing out your AI agents...${NC}" ;;
-        1) echo -e "    ${C}🐹: Running on the wheel to speed this up! 🏃‍♂️💨${NC}" ;;
-        2) echo -e "    ${C}🐹: Found a skill! Stashing it in my pocket... 💎${NC}" ;;
-      esac
-      ;;
-    "finish")
-      case $idx in
-        0) echo -e "    ${C}🐹: Mission accomplished! Can I have a walnut now? 🥜${NC}" ;;
-        1) echo -e "    ${C}🐹: My cheeks are stuffed with ${TOTAL_SKILLS} skills for you! ✨${NC}" ;;
-        2) echo -e "    ${C}🐹: Terminal is Hamster-approved! Better than a wheel! 🎡${NC}" ;;
-      esac
-      ;;
-  esac
-}
-
-# ── Onboarding block ─────────────────────────────────────────────
-# ── Skill Guides Hub ─────────────────────────────────────────────
-show_skill_guide() {
-  local choice="$1"
-  clear
-  hamster_sentiment "finish"
-  echo ""
-  
-  if [ "$LANG_CODE" = "vi" ]; then
-    case "$choice" in
-      1)
-        echo -e "${Y}${BOLD}1. Hướng dẫn toàn tập${NC} (${C}cm-how-it-work${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Bạn mới cài CodyMaster và chưa biết bắt đầu từ đâu."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-how-it-work\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Giải thích quy trình từ ý tưởng đến lúc deploy một ứng dụng web bằng bộ skill này.\""
-        ;;
-      2)
-        echo -e "${Y}${BOLD}2. Vibe Coding (Zero Code)${NC} (${C}cm-start${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Bạn có ý tưởng nhưng lười gõ từng dòng code."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-start\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Tôi muốn làm một trang web bán cà phê có giỏ hàng, dùng Tailwind CSS.\""
-        ;;
-      3)
-        echo -e "${Y}${BOLD}3. Tham gia dự án có sẵn${NC} (${C}cm-brainstorm-idea${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Bạn nhảy vào một dự án có sẵn và thấy code quá rắc rối."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-brainstorm-idea\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Đọc toàn bộ project này và chỉ cho tôi 3 điểm yếu lớn nhất cần cải thiện ngay.\""
-        ;;
-      4)
-        echo -e "${Y}${BOLD}4. Thiết kế giao diện (UX/UI)${NC} (${C}cm-ux-master / cm-ui-preview${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Bạn muốn web của mình đẹp như Apple hay Linear."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-ux-master\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Lấy style từ trang stripe.com và thiết kế cho tôi một trang thanh toán cực sang.\""
-        ;;
-      5)
-        echo -e "${Y}${BOLD}5. Lập trình TDD & Pair code${NC} (${C}cm-tdd${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Bạn muốn code chắc chắn, không có lỗi khi chạy production."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-tdd\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Viết test case trước, sau đó code chức năng đăng ký người dùng cho tôi.\""
-        ;;
-      6)
-        echo -e "${Y}${BOLD}6. Dọn dẹp & Tái cấu trúc${NC} (${C}cm-clean-code${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Code chạy được nhưng nhìn như \"bãi rác\"."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-clean-code\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Tối ưu lại file này: xóa code thừa, đặt lại tên biến cho chuẩn và dễ hiểu hơn.\""
-        ;;
-      7)
-        echo -e "${Y}${BOLD}7. Quét & Sửa lỗi bảo mật${NC} (${C}cm-security-gate${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Sợ lộ API key hoặc web bị hack XSS."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-security-gate\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Kiểm tra xem project có lỗ hổng bảo mật nào không trước khi tôi push lên GitHub.\""
-        ;;
-      8)
-        echo -e "${Y}${BOLD}8. Viết tài liệu Docs & API${NC} (${C}cm-dockit${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Lười viết tài liệu hướng dẫn cho đồng nghiệp hoặc khách hàng."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-dockit\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Tự động tạo file hướng dẫn sử dụng (README) cho toàn bộ project này.\""
-        ;;
-      9)
-        echo -e "${Y}${BOLD}9. Tạo WOW Landing Page${NC} (${C}cm-cro-methodology${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Web có người vào nhưng không ai mua hàng/đăng ký."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm @/cm-cro-methodology\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Phân tích trang web này và chỉ cách tăng gấp đôi tỷ lệ khách hàng đăng ký.\""
-        ;;
-      10)
-        echo -e "${Y}${BOLD}10. Bảng theo dõi tiến độ${NC} (${C}cm dashboard${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Muốn biết mình đã làm được bao nhiêu % công việc rồi."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm dashboard\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Hiện bảng dashboard để tôi xem tiến độ các task hiện tại.\""
-        ;;
-      11)
-        echo -e "${Y}${BOLD}11. Xem Demo (Claude Code)${NC} (${C}/cm:demo${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Muốn xem CodyMaster tự \"múa\" code như thế nào."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`/cm:demo\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Bắt đầu demo: tự tạo một ứng dụng TodoList từ A-Z trong 1 phút.\""
-        ;;
-      12)
-        echo -e "${Y}${BOLD}12. Trợ giúp & Cú pháp lệnh${NC} (${C}cm help${NC})"
-        echo -e "${W}🎯 Tình huống:${NC} Quên lệnh hoặc muốn tìm thêm skill xịn khác."
-        echo -e "${W}🚀 Câu lệnh:${NC} \`cm help\`"
-        echo -e "${W}💡 Thử copy prompt này:${NC} \"Liệt kê các skill liên quan đến Growth Hacking và Marketing.\""
-        ;;
-    esac
-  else
-    case "$choice" in
-      1)
-        echo -e "${Y}${BOLD}1. The Ultimate Guide${NC} (${C}cm-how-it-work${NC})"
-        echo -e "${W}🎯 Situation:${NC} You just installed CodyMaster and don't know where to start."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-how-it-work\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Explain the process from idea to deployment using this skill kit.\""
-        ;;
-      2)
-        echo -e "${Y}${BOLD}2. Vibe Coding (Zero Code)${NC} (${C}cm-start${NC})"
-        echo -e "${W}🎯 Situation:${NC} You have an idea but are too lazy to write code manually."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-start\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Build a coffee shop website with a cart using Tailwind CSS.\""
-        ;;
-      3)
-        echo -e "${Y}${BOLD}3. Code an Existing Project${NC} (${C}cm-brainstorm-idea${NC})"
-        echo -e "${W}🎯 Situation:${NC} You're joining an existing project and the code is a mess."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-brainstorm-idea\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Read this entire project and tell me the 3 biggest weaknesses.\""
-        ;;
-      4)
-        echo -e "${Y}${BOLD}4. Generate UX/UI Designs${NC} (${C}cm-ux-master / cm-ui-preview${NC})"
-        echo -e "${W}🎯 Situation:${NC} You want your web app to look as premium as Apple or Linear."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-ux-master\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Copy the style from stripe.com and design a high-end checkout page.\""
-        ;;
-      5)
-        echo -e "${Y}${BOLD}5. Code TDD & Pair Coding${NC} (${C}cm-tdd${NC})"
-        echo -e "${W}🎯 Situation:${NC} You want reliable code that doesn't break in production."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-tdd\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Write test cases first, then implement user registration for me.\""
-        ;;
-      6)
-        echo -e "${Y}${BOLD}6. Clean & Refactor Codebase${NC} (${C}cm-clean-code${NC})"
-        echo -e "${W}🎯 Situation:${NC} The code works but it looks like a \"garbage dump\"."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-clean-code\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Optimize this file: remove dead code and rename variables for clarity.\""
-        ;;
-      7)
-        echo -e "${Y}${BOLD}7. Scan for Vulnerabilities${NC} (${C}cm-security-gate${NC})"
-        echo -e "${W}🎯 Situation:${NC} Worried about leaking API keys or XSS hacks."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-security-gate\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Check if there are any security vulnerabilities before I push to GitHub.\""
-        ;;
-      8)
-        echo -e "${Y}${BOLD}8. Write Docs & Generate APIs${NC} (${C}cm-dockit${NC})"
-        echo -e "${W}🎯 Situation:${NC} Lazy to write documentation for teammates or clients."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-dockit\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Automatically generate a README guide for this entire project.\""
-        ;;
-      9)
-        echo -e "${Y}${BOLD}9. Release WOW Landing Page${NC} (${C}cm-cro-methodology${NC})"
-        echo -e "${W}🎯 Situation:${NC} Visitors come to your site but don't buy or sign up."
-        echo -e "${W}🚀 Command:${NC} \`cm @/cm-cro-methodology\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Analyze this website and show me how to double my sign-up rate.\""
-        ;;
-      10)
-        echo -e "${Y}${BOLD}10. Open Progress Dashboard${NC} (${C}cm dashboard${NC})"
-        echo -e "${W}🎯 Situation:${NC} Want to know how much work is actually completed."
-        echo -e "${W}🚀 Command:${NC} \`cm dashboard\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Show the dashboard so I can see the progress of current tasks.\""
-        ;;
-      11)
-        echo -e "${Y}${BOLD}11. See an Interactive Demo${NC} (${C}/cm:demo${NC})"
-        echo -e "${W}🎯 Situation:${NC} Want to see CodyMaster perform its magic automatically."
-        echo -e "${W}🚀 Command:${NC} \`/cm:demo\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"Start demo: build a TodoList app from scratch in 1 minute.\""
-        ;;
-      12)
-        echo -e "${Y}${BOLD}12. Help & Command List${NC} (${C}cm help${NC})"
-        echo -e "${W}🎯 Situation:${NC} Forgot a command or looking for more cool skills."
-        echo -e "${W}🚀 Command:${NC} \`cm help\`"
-        echo -e "${W}💡 Try this prompt:${NC} \"List all skills related to Growth Hacking and Marketing.\""
-        ;;
-    esac
-  fi
-
-  echo ""
-  echo -e "${DIM}──────────────────────────────────────────────────${NC}"
-  echo -e "${W}$(msg press_enter) ${DIM}or 'q' to exit${NC}"
-  read -r next_step
-  if [ "$next_step" = "q" ]; then
-    exit 0
-  fi
-}
-
-# ── Onboarding block ─────────────────────────────────────────────
-print_onboarding() {
-  while true; do
-    clear
-    print_header
-    
-    if [ "$LANG_CODE" = "vi" ]; then
-      echo -e "    ${W}${BOLD}🎉 Thành công! Bạn đã mở khóa ${TOTAL_SKILLS} kỹ năng AI toàn năng:${NC}"
-      echo ""
-      hamster_sentiment "finish"
-      echo ""
-      echo -e "  ${C}🎯 Orchestration${NC} : Lên kế hoạch & Điều phối Agent"
-      echo -e "  ${C}🎨 Product${NC}       : Thiết kế UX/UI & Tâm lý hành vi"
-      echo -e "  ${C}🔧 Engineering${NC}   : Code Full-stack & Tái cấu trúc"
-      echo -e "  ${C}🔒 Security${NC}      : Bảo mật tự động & Chống rò rỉ"
-      echo -e "  ${C}⚙️ Operations${NC}    : Triển khai an toàn & Quản lý CI/CD"
-      echo -e "  ${C}📈 Growth${NC}        : Tối ưu chuyển đổi (CRO) & Tracking"
-      echo ""
-      echo -e "    ${W}${BOLD}💡 Nhập số (1-12) để xem hướng dẫn & ví dụ:${NC}"
-      echo ""
-      echo -e "   1. ${Y}Cách CodyMaster vận hành    ${NC} → cm-how-it-work"
-      echo -e "   2. ${Y}Vibe coding (Zero code)     ${NC} → cm-start"
-      echo -e "   3. ${Y}Tham gia dự án có sẵn       ${NC} → cm-brainstorm-idea"
-      echo -e "   4. ${Y}Code giao diện từ URL/Ảnh   ${NC} → cm-ux-master"
-      echo -e "   5. ${Y}Lập trình TDD & Pair code   ${NC} → cm-tdd"
-      echo -e "   6. ${Y}Dọn dẹp & Tái cấu trúc      ${NC} → cm-clean-code"
-      echo -e "   7. ${Y}Quét & Sửa lỗi bảo mật      ${NC} → cm-security-gate"
-      echo -e "   8. ${Y}Viết tài liệu Docs & API    ${NC} → cm-dockit"
-      echo -e "   9. ${Y}Tạo Landing Page \"WOW\"      ${NC} → cm-cro-methodology"
-      echo -e "  10. ${Y}Bảng theo dõi tiến độ       ${NC} → cm dashboard"
-      echo -e "  11. ${Y}Xem Demo tự động            ${NC} → /cm:demo"
-      echo -e "  12. ${Y}Trợ giúp & Cú pháp lệnh      ${NC} → cm help"
-    else
-      echo -e "    ${W}${BOLD}🎉 Success! You just unlocked ${TOTAL_SKILLS} omnipotent AI skills:${NC}"
-      echo ""
-      hamster_sentiment "finish"
-      echo ""
-      echo -e "  ${C}🎯 Orchestration${NC} : Task Planning & Agent Synergy"
-      echo -e "  ${C}🎨 Product${NC}       : UX/UI Mastery & User Psychology"
-      echo -e "  ${C}🔧 Engineering${NC}   : Full-stack TDD & Refactoring"
-      echo -e "  ${C}🔒 Security${NC}      : Automated Gates & Secret Shields"
-      echo -e "  ${C}⚙️ Operations${NC}    : Safe Deployments & CI/CD Excellence"
-      echo -e "  ${C}📈 Growth${NC}        : Conversion Tracking & Hacks"
-      echo ""
-      echo -e "    ${W}${BOLD}💡 Type a number (1-12) for guide & examples:${NC}"
-      echo ""
-      echo -e "   1. ${Y}The ultimate guide          ${NC} → cm-how-it-work"
-      echo -e "   2. ${Y}Vibe coding (Zero code)     ${NC} → cm-start"
-      echo -e "   3. ${Y}Code an existing project    ${NC} → cm-brainstorm-idea"
-      echo -e "   4. ${Y}Generate UX/UI designs      ${NC} → cm-ux-master"
-      echo -e "   5. ${Y}Code TDD & Pair coding      ${NC} → cm-tdd"
-      echo -e "   6. ${Y}Clean & Refactor codebase   ${NC} → cm-clean-code"
-      echo -e "   7. ${Y}Scan for vulnerabilities    ${NC} → cm-security-gate"
-      echo -e "   8. ${Y}Write docs & generate APIs  ${NC} → cm-dockit"
-      echo -e "   9. ${Y}Release WOW landing page    ${NC} → cm-cro-methodology"
-      echo -e "  10. ${Y}Open progress dashboard     ${NC} → cm dashboard"
-      echo -e "  11. ${Y}See an interactive demo     ${NC} → /cm:demo"
-      echo -e "  12. ${Y}Help & Command list         ${NC} → cm help"
-    fi
-    
-    echo ""
-    echo -e "    ${W}${BOLD}$(msg docs)${NC} ${C}https://cody.todyle.com/docs${NC}"
-    echo ""
-    echo -e "    ${DIM}Press 'q' to exit.${NC}"
-    echo -n "    > "
-    read -r user_choice
-    
-    if [[ "$user_choice" =~ ^[0-9]+$ ]] && [ "$user_choice" -gt 0 ] && [ "$user_choice" -le 12 ]; then
-      show_skill_guide "$user_choice"
-    elif [ "$user_choice" = "q" ]; then
-      break
-    fi
-  done
-}
-
-# ── Claude Code installer ────────────────────────────────────────
-install_claude() {
-  local scope="${1:-user}"
-  echo ""
-  echo -e "${P}${BOLD}Claude Code — Installing Cody Master${NC}"
-  echo ""
-
-  if command -v claude &>/dev/null; then
-    # Cleanup old marketplace if exists
-    claude plugin marketplace remove cody-master 2>/dev/null || true
-    echo -e "  ${W}Adding marketplace...${NC}"
-    if ! claude plugin marketplace add tody-agent/codymaster; then
-      echo -e "  ${R}⚠️  Marketplace add failed. Run:${NC} ${C}claude plugin marketplace add tody-agent/codymaster${NC}"
-    fi
-    echo -e "  ${W}Installing plugin (scope: ${scope})...${NC}"
-    if ! claude plugin install cm@codymaster --scope "$scope"; then
-      echo -e "  ${R}⚠️  Plugin install failed. Run:${NC} ${C}claude plugin install cm@codymaster --scope ${scope}${NC}"
-    else
-      echo ""
-      echo -e "  ${G}✅ Claude plugin installed — scope: ${scope}${NC}"
-    fi
-    maybe_print_onboarding
-  else
-    echo -e "  ${R}Claude Code CLI not found. Install from: https://claude.ai/code${NC}"
-    echo ""
-    echo "  Then run these commands in Claude Code:"
-    echo ""
-    echo -e "  ${BOLD}1.${NC} ${C}claude plugin marketplace add tody-agent/codymaster${NC}"
-    echo -e "  ${BOLD}2.${NC} ${C}claude plugin install cm@codymaster --scope ${scope}${NC}"
-    echo ""
-    echo -e "  First thing after install: ${C}/cm:demo${NC}"
-  fi
-}
-
-# ── Gemini CLI / Antigravity installer ────────────────────────────
-install_gemini() {
-  echo ""
-  echo -e "${C}${BOLD}Gemini CLI / Antigravity — Installing Cody Master${NC}"
-  echo ""
-  target="$HOME/.gemini/antigravity/skills"
-  install_skills_to "$target"
-  ensure_gemini_md_hint
-  echo ""
-  echo -e "  ${G}✅ Skills installed to ${target}${NC}"
-  echo -e "  ${C}ℹ  GEMINI.md should reference: @~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
-  echo -e "  ${C}ℹ  Restart Gemini / Antigravity if it was open during install${NC}"
-}
-
-# ── Aider installer ──────────────────────────────────────────────
-install_aider() {
-  echo ""
-  echo -e "${O}${BOLD}Aider — Installing Cody Master${NC}"
-  echo ""
-  target="$HOME/.aider/skills"
-  install_skills_to "$target"
-  echo -e "  ${W}Tip: add skills context to .aider.conf.yml:${NC}"
-  echo -e "  ${C}read: - ~/.aider/skills/cm-planning/SKILL.md${NC}"
-  echo -e "  ${G}✅ Skills installed to ${target}${NC}"
-}
-
-# ── Continue.dev installer ───────────────────────────────────────
-install_continue() {
-  echo ""
-  echo -e "${B}${BOLD}Continue.dev — Installing Cody Master${NC}"
-  echo ""
-  target="$HOME/.continue/rules"
-  install_skills_to "$target" "md"
-  echo -e "  ${C}ℹ  Rules are auto-loaded by Continue.dev from ~/.continue/rules/${NC}"
-}
-
-# ── Amazon Q CLI installer ───────────────────────────────────────
-install_amazon_q() {
-  echo ""
-  echo -e "${W}${BOLD}Amazon Q CLI — Installing Cody Master${NC}"
-  echo ""
-  target="$HOME/.aws/amazonq/skills"
-  install_skills_to "$target"
-  echo -e "  ${G}✅ Skills installed to ${target}${NC}"
-  echo -e "  ${W}To use in Q chat, reference skills:${NC}"
-  echo -e "  ${C}q chat --context ~/.aws/amazonq/skills/cm-planning/SKILL.md${NC}"
-}
-
-# ── Amp installer ────────────────────────────────────────────────
-install_amp() {
-  echo ""
-  echo -e "${G}${BOLD}Amp — Installing Cody Master${NC}"
-  echo ""
-  target="$HOME/.amp/skills"
-  install_skills_to "$target"
-  echo -e "  ${G}✅ Skills installed to ${target}${NC}"
-  echo -e "  ${C}ℹ  Reference skills in Amp via your AGENTS.md or system prompt${NC}"
-}
-
-install_cli() {
-  local auto="$1"
-  if command -v npm &>/dev/null; then
-    echo ""
-    echo -e "${G}${BOLD}CLI Dashboard — Cody Master CLI${NC}"
-    echo ""
-    echo -e "  ${C}Official paths:${NC}"
-    echo -e "    ${W}Per-project:${NC} ${C}npm install codymaster${NC}  →  ${C}npx cm${NC}"
-    echo -e "    ${W}Global:${NC}      ${C}npm install -g codymaster${NC}  →  ${C}cm${NC}"
-    echo ""
-    if [[ "$auto" == "--auto" ]]; then
-      echo -e "  ${W}Auto: trying global install (optional — use per-project + npx if you prefer).${NC}"
-      npm install -g codymaster || echo -e "  ${O}Global install failed (try: npm install codymaster in your repo, then npx cm).${NC}"
-      if [ -f "package.json" ]; then
-        if grep -q '"name": "codymaster"' package.json; then
-          npm link &>/dev/null || true
-        fi
-      fi
-    else
-      read -p "  Install codymaster globally now? (y/N): " install_npm
-      if [[ "$install_npm" =~ ^[Yy]$ ]]; then
-        echo -e "  ${W}Running: npm install -g codymaster${NC}"
-        npm install -g codymaster || echo -e "  ${O}Note: sudo may be needed, or use: npm install codymaster && npx cm${NC}"
-      fi
-    fi
-  fi
-}
-
-install_openviking() {
-  echo ""
-  echo -e "${G}${BOLD}OpenViking — Installing Core Feature${NC}"
-  echo ""
-  if command -v pip3 &>/dev/null; then
-    echo -e "  ${W}Running: pip3 install openviking${NC}"
-    pip3 install openviking || echo -e "  ${O}⚠️ Could not install OpenViking automatically.${NC}"
-  elif command -v pip &>/dev/null; then
-    echo -e "  ${W}Running: pip install openviking${NC}"
-    pip install openviking || echo -e "  ${O}⚠️ Could not install OpenViking automatically.${NC}"
-  else
-    echo -e "  ${R}Python pip not found. Please install pip to get OpenViking.${NC}"
-  fi
-}
-
-# ── Ensure clone exists ──────────────────────────────────────────
-CLONE_DIR=""
-ensure_clone() {
-  # If we're in the repo root with skills/ dir, use it directly
-  if [ -d "skills" ]; then
-    CLONE_DIR="."
+# ── Locate or fetch the codymaster source tree ───────────────────
+ensure_source() {
+  if [[ -n "$SCRIPT_DIR" && -d "$SCRIPT_DIR/skills" && -d "$SCRIPT_DIR/dist" ]]; then
+    CM_HOME="$SCRIPT_DIR"
     return
   fi
-
-  # If ~/.cody-master already exists and has skills, refresh it first
-  if [ -d "$HOME/.cody-master/skills" ]; then
-    CLONE_DIR="$HOME/.cody-master"
-    if command -v git &>/dev/null && [ -d "$CLONE_DIR/.git" ]; then
-      echo -e "  ${W}Refreshing ~/.cody-master from origin/main...${NC}"
-      if git -C "$CLONE_DIR" fetch --quiet origin main 2>/dev/null && \
-         git -C "$CLONE_DIR" pull --ff-only --quiet origin main 2>/dev/null; then
-        echo -e "  ${G}✅ ~/.cody-master is up to date${NC}"
-      else
-        echo -e "  ${O}⚠️  Could not fast-forward ~/.cody-master. Keeping local copy.${NC}"
-        echo -e "  ${O}   If skills seem outdated, run: rm -rf ~/.cody-master && rerun installer${NC}"
-      fi
-    fi
-    if [ -d "$CLONE_DIR/skills" ]; then
-      TOTAL_SKILLS=$(ls -1d "$CLONE_DIR/skills"/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
-    fi
+  if [[ -d "skills" && -d "dist" ]]; then
+    CM_HOME="$PWD"
     return
   fi
-
-  # Clone the repo
-  echo -e "  ${W}Cloning CodyMaster to ~/.cody-master...${NC}"
-  git clone --depth 1 "${REPO_URL}.git" "$HOME/.cody-master" 2>/dev/null || {
-
-    echo -e "  ${R}Error: Failed to clone ${REPO_URL}${NC}"
-    echo -e "  ${R}Check your internet connection and try again.${NC}"
-    exit 1
-  }
-  CLONE_DIR="$HOME/.cody-master"
-  echo -e "  ${G}✅ Cloned to ~/.cody-master${NC}"
-  # Update total skills after pulling down new repo
-  if [ -d "$CLONE_DIR/skills" ]; then
-    TOTAL_SKILLS=$(ls -1d "$CLONE_DIR/skills"/cm-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
-  fi
-}
-
-# ── Copy skills to target directory ──────────────────────────────
-install_skills_to() {
-  local target="$1"
-  local format="${2:-raw}"
-  ensure_clone
-  echo ""
-  echo -e "${G}${BOLD}Installing skills to: ${target}${NC}"
-  if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
-    echo -e "  ${C}Profile: ${SKILL_PROFILE}${NC}"
-  fi
-  echo ""
-  mkdir -p "$target"
-  local count=0
-  local installed=()
-  local -a allow=()
-  local use_profile=0
-  if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
-    local pf="${CLONE_DIR}/skills/profiles/${SKILL_PROFILE}.txt"
-    if [[ ! -f "$pf" && -n "${CM_SCRIPT_DIR}" && -f "${CM_SCRIPT_DIR}/skills/profiles/${SKILL_PROFILE}.txt" ]]; then
-      pf="${CM_SCRIPT_DIR}/skills/profiles/${SKILL_PROFILE}.txt"
-    fi
-    if [[ ! -f "$pf" ]]; then
-      echo -e "  ${R}Unknown profile '${SKILL_PROFILE}'. Valid: core, growth, design, knowledge, full${NC}"
-      echo -e "  ${R}Expected: \${CLONE_DIR}/skills/profiles/${SKILL_PROFILE}.txt (git pull ~/.cody-master or run install.sh from repo)${NC}"
+  CM_HOME="$HOME/.cody-master"
+  if [[ ! -d "$CM_HOME/skills" ]]; then
+    if ! command -v git &>/dev/null; then
+      echo -e "${R}git not found. Install git or use:  npm install -g codymaster${NC}"
       exit 1
     fi
-    use_profile=1
-    while IFS= read -r line || [[ -n "$line" ]]; do
-      [[ "$line" =~ ^[[:space:]]*# ]] && continue
-      line="${line%%#*}"
-      line="${line#"${line%%[![:space:]]*}"}"
-      line="${line%"${line##*[![:space:]]}"}"
-      [[ -z "$line" ]] && continue
-      allow+=("$line")
-    done < "$pf"
-  fi
-  for skill_dir in "${CLONE_DIR}"/skills/cm-*/; do
-    skill_name=$(basename "$skill_dir")
-    if [[ "$use_profile" -eq 1 ]]; then
-      local found=0
-      local a
-      for a in "${allow[@]}"; do
-        if [[ "$a" == "$skill_name" ]]; then
-          found=1
-          break
-        fi
-      done
-      if [[ "$found" -eq 0 ]]; then
-        continue
-      fi
-    fi
-    if [ -f "${skill_dir}SKILL.md" ]; then
-      if [[ "$format" == "mdc" ]]; then
-        # Create Cursor glob native format
-        echo "---" > "${target}/${skill_name}.mdc"
-        echo "description: ${skill_name}" >> "${target}/${skill_name}.mdc"
-        echo "globs: *" >> "${target}/${skill_name}.mdc"
-        echo "---" >> "${target}/${skill_name}.mdc"
-        cat "${skill_dir}SKILL.md" >> "${target}/${skill_name}.mdc"
-        installed+=("${skill_name}.mdc")
-      elif [[ "$format" == "md" ]]; then
-        cp "${skill_dir}SKILL.md" "${target}/${skill_name}.md"
-        installed+=("${skill_name}.md")
-      else
-        cp -r "$skill_dir" "${target}/${skill_name}"
-        installed+=("$skill_name")
-      fi
-      count=$((count + 1))
-    fi
-  done
-  
-  local line="  ${DIM}"
-  for s in "${installed[@]}"; do
-    if [ ${#line} -gt 70 ]; then
-      echo -e "${line}${NC}"
-      line="  ${DIM}"
-    fi
-    line="${line}${s}, "
-  done
-  if [ "${line}" != "  ${DIM}" ]; then
-    echo -e "${line%, }${NC}"
-  fi
-
-  echo ""
-  echo -e "${G}✅ ${count} skills installed to ${target}${NC}"
-}
-
-# ── Legacy alias ─────────────────────────────────────────────────
-install_antigravity() {
-  install_skills_to "$1"
-}
-
-# ── Scope selector for Claude ────────────────────────────────────
-select_scope() {
-  echo ""
-  echo -e "${W}${BOLD}$(msg scope)${NC}"
-  echo ""
-  echo -e "  ${BOLD}1)${NC} 🌐 $(msg scope_user)"
-  echo -e "  ${BOLD}2)${NC} 📁 $(msg scope_project)"
-  echo ""
-  read -p "  Choose (1-2, default=1): " scope_choice
-  case "${scope_choice:-1}" in
-    2) SCOPE="project" ;;
-    *) SCOPE="user" ;;
-  esac
-}
-
-# ── Cursor rules path: avoid writing to a random cwd (e.g. /tmp) ──
-resolve_cursor_rules_dir() {
-  local mode="${1:-cursor}"
-  if [[ "$mode" == "all" ]]; then
-    printf '%s' "${HOME}/.cursor/rules"
-    return
-  fi
-  if [[ "$CURSOR_RULES_PROJECT" == "1" ]]; then
-    printf '%s' ".cursor/rules"
-    return
-  fi
-  if [[ -d .git ]] || [[ -f package.json ]]; then
-    printf '%s' ".cursor/rules"
+    echo -e "  ${W}Cloning into $CM_HOME...${NC}"
+    git clone --depth 1 "$REPO_URL" "$CM_HOME"
   else
-    printf '%s' "${HOME}/.cursor/rules"
+    git -C "$CM_HOME" pull --quiet --ff-only 2>/dev/null || true
+  fi
+  if [[ ! -d "$CM_HOME/dist" ]] && command -v npm &>/dev/null; then
+    echo -e "  ${W}Building TypeScript...${NC}"
+    (cd "$CM_HOME" && npm install --silent && npm run build --silent)
   fi
 }
 
-# ── Gemini: ensure GEMINI.md points at skill index ───────────────
-ensure_gemini_md_hint() {
-  mkdir -p "${HOME}/.gemini" 2>/dev/null || true
-  local f="${HOME}/.gemini/GEMINI.md"
-  local hint="@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md"
-  if [[ ! -f "$f" ]]; then
-    {
-      echo "# Gemini CLI / Antigravity"
-      echo "# CodyMaster: load the progressive skill index first (then pull full skills as needed)"
-      echo "$hint"
-    } > "$f"
-    echo -e "  ${G}✅ Created ${f} with skill index line${NC}"
-    return
-  fi
-  if ! grep -q "cm-skill-index" "$f" 2>/dev/null; then
-    {
-      echo ""
-      echo "# CodyMaster — skill index"
-      echo "$hint"
-    } >> "$f"
-    echo -e "  ${G}✅ Appended CodyMaster skill index to ${f}${NC}"
-  fi
-}
-
-maybe_print_onboarding() {
-  [[ "$SKIP_INSTALL_ONBOARDING" == "1" ]] && return 0
-  print_onboarding
-}
-
-print_all_done_summary() {
-  echo ""
-  echo -e "${W}${BOLD}═══ Next steps — verify each tool you use ═══${NC}"
-  echo ""
-  echo -e "  ${BOLD}Claude Code:${NC} Open Claude Code → ${C}/cm:demo${NC} or ${C}/help${NC}. If the plugin is missing:"
-  echo -e "    ${C}claude plugin marketplace add tody-agent/codymaster${NC}"
-  echo -e "    ${C}claude plugin install cm@codymaster --scope user${NC}"
-  echo ""
-  echo -e "  ${BOLD}Gemini / Antigravity:${NC} Skills → ${C}~/.gemini/antigravity/skills/${NC}"
-  echo -e "    ${C}~/.gemini/GEMINI.md${NC} should include ${C}@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
-  echo ""
-  echo -e "  ${BOLD}Cursor IDE:${NC} Rules → ${C}${HOME}/.cursor/rules${NC} ${DIM}(from one-liner --all)${NC}"
-  echo -e "    Agent chat: ${C}/add-plugin cody-master${NC}"
-  echo -e "    Project-only rules: ${C}cd your-repo && bash install.sh --cursor --cursor-project${NC}"
-  echo ""
-  echo -e "  ${BOLD}Terminal CLI:${NC} ${C}npm install -g codymaster${NC} → ${C}cm${NC}   |   ${C}npm install codymaster${NC} → ${C}npx cm${NC}"
-  echo ""
-  echo -e "  ${BOLD}Skill sources:${NC} ${C}~/.cody-master/skills/${NC}"
-  echo ""
-}
-
-# ── Parse argv: --profile NAME + first platform flag ────────────
-parse_install_args() {
-  INSTALL_CMD=""
+# ── Hand off to the Node-based engine ────────────────────────────
+delegate_to_cli() {
   local args=("$@")
-  local i=0
-  while [[ $i -lt ${#args[@]} ]]; do
-    local a="${args[i]}"
-    case "$a" in
-      --profile)
-        SKILL_PROFILE="${args[i+1]:-full}"
-        ((i+=2))
-        continue
-        ;;
-    esac
-    if [[ -z "$INSTALL_CMD" ]]; then
-      case "$a" in
-        --claude)       INSTALL_CMD="claude" ;;
-        --gemini|--antigravity) INSTALL_CMD="gemini" ;;
-        --cursor)       INSTALL_CMD="cursor" ;;
-        --aider)        INSTALL_CMD="aider" ;;
-        --continue)     INSTALL_CMD="continue" ;;
-        --amazon-q)     INSTALL_CMD="amazon-q" ;;
-        --amp)          INSTALL_CMD="amp" ;;
-        --kiro)         INSTALL_CMD="kiro" ;;
-        --windsurf)     INSTALL_CMD="windsurf" ;;
-        --cline)        INSTALL_CMD="cline" ;;
-        --opencode)     INSTALL_CMD="opencode" ;;
-        --copilot)      INSTALL_CMD="copilot" ;;
-        --all)          INSTALL_CMD="all" ;;
-      esac
-    fi
-    ((i++)) || true
-  done
+  if command -v node &>/dev/null && [[ -f "$CM_HOME/dist/index.js" ]]; then
+    CM_HOME="$CM_HOME" node "$CM_HOME/dist/index.js" install "${args[@]}"
+    return $?
+  fi
+  return 127
 }
 
-# ════════════════════════════════════════════════════════════════
-#  MAIN
-# ════════════════════════════════════════════════════════════════
-
-print_header
-
-# ── Non-interactive flags ────────────────────────────────────────
-for arg in "$@"; do
-  case "$arg" in
-    --global|--user)   SCOPE="user" ;;
-    --project|--local) SCOPE="project" ;;
-    --yes|-y)           SKIP_INSTALL_ONBOARDING=1 ;;
-    --cursor-project)   CURSOR_RULES_PROJECT=1 ;;
-  esac
-done
-
-parse_install_args "$@"
-
-# One-liner full install should finish without the interactive onboarding menu
-if [[ "$INSTALL_CMD" == "all" ]]; then
-  SKIP_INSTALL_ONBOARDING=1
-fi
-
-if [[ "$INSTALL_CMD" == "claude" ]]; then
-  install_claude "$SCOPE"
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "gemini" ]]; then
-  install_gemini
-  if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
-    echo -e "  ${C}ℹ  Add more skills: bash install.sh --gemini --profile growth (same target merges new folders)${NC}"
-    echo -e "  ${C}ℹ  Point GEMINI.md at: @~/.gemini/antigravity/skills/cm-skill-index/SKILL.md${NC}"
-  fi
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "cursor" ]]; then
-  echo ""
-  echo -e "${B}${BOLD}Cursor — Installing Cody Master${NC}"
-  echo ""
-  target="$(resolve_cursor_rules_dir cursor)"
-  install_skills_to "$target" "mdc"
-  echo -e "  ${C}ℹ  Cursor rules installed to: ${BOLD}${target}${NC}"
-  echo -e "  ${C}ℹ  Reopen Cursor or open a workspace folder. Also try Agent: ${BOLD}/add-plugin cody-master${NC}"
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "aider" ]]; then
-  install_aider
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "continue" ]]; then
-  install_continue
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "amazon-q" ]]; then
-  install_amazon_q
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "amp" ]]; then
-  install_amp
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "kiro" ]]; then
-  echo ""
-  echo -e "${O}${BOLD}Kiro — Installing Cody Master${NC}"
-  echo ""
-  install_skills_to ".kiro/steering" "raw"
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "windsurf" ]]; then
-  echo ""
-  echo -e "${O}${BOLD}Windsurf — Installing Cody Master${NC}"
-  echo ""
-  echo -e "  ${C}ℹ  This writes to project ${BOLD}.windsurf/rules${NC}${C} (run from repo root).${NC}"
-  echo -e "  ${C}ℹ  Some Windsurf builds also use global skills under Codeium paths — use the same profile flags if you copy there.${NC}"
-  install_skills_to ".windsurf/rules" "raw"
-  if [[ -n "${SKILL_PROFILE:-}" && "$SKILL_PROFILE" != "full" ]]; then
-    echo -e "  ${C}ℹ  Add more: bash install.sh --windsurf --profile growth${NC}"
-  fi
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "cline" ]]; then
-  echo ""
-  echo -e "${O}${BOLD}Cline/RooCode — Installing Cody Master${NC}"
-  echo ""
-  install_skills_to ".cline/skills" "raw"
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "opencode" ]]; then
-  echo ""
-  echo -e "${G}${BOLD}OpenCode — Installing Cody Master${NC}"
-  echo ""
-  install_skills_to ".opencode/skills" "raw"
-  maybe_print_onboarding
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "copilot" ]]; then
-  echo ""
-  echo -e "${G}${BOLD}GitHub Copilot — Installing Cody Master${NC}"
-  echo ""
-  echo -e "  Please manually add skills context to copilot-instructions.md:"
-  echo -e "  ${C}cat ~/.cody-master/skills/cm-planning/SKILL.md >> .github/copilot-instructions.md${NC}"
-  exit 0
-fi
-
-if [[ "$INSTALL_CMD" == "all" ]]; then
-  echo -e "${W}${BOLD}Installing to all detected platforms...${NC}"
-  echo ""
-  command -v claude &>/dev/null && install_claude "$SCOPE"
-  install_gemini
-  command -v aider  &>/dev/null && install_aider
-  [ -d "$HOME/.continue" ]    && install_continue
-  command -v q      &>/dev/null && install_amazon_q
-  command -v amp    &>/dev/null && install_amp
-  [ -d "$HOME/.cursor" ] || [ -d "/Applications/Cursor.app" ] && {
-    _cm_cursor_rules="$(resolve_cursor_rules_dir all)"
-    echo -e "  ${W}Cursor → ${_cm_cursor_rules} ${DIM}(not your current shell cwd)${NC}"
-    install_skills_to "${_cm_cursor_rules}" "mdc"
-  }
-  install_openviking
-  install_cli "--auto"
-  echo ""
-  echo -e "${G}${BOLD}✅ All installations completed!${NC}"
-  echo -e "${C}$(msg docs) https://cody.todyle.com/docs${NC}"
-  print_all_done_summary
-  exit 0
-fi
-
-# ── Interactive mode ─────────────────────────────────────────────
-detect_agents
-
-echo -e "${W}${BOLD}$(msg select)${NC}"
-echo -e "  ${W}(or press Enter to install for all detected: ${#DETECTED[@]} found)${NC}"
-echo ""
-read -p "  > " platform_input
-
-# Default: all detected
-if [ -z "$platform_input" ] && [ ${#DETECTED[@]} -gt 0 ]; then
-  platforms=("${DETECTED[@]}")
-else
-  IFS=',' read -ra nums <<< "$platform_input"
-  platforms=()
-  for n in "${nums[@]}"; do
-    n=$(echo "$n" | tr -d ' ')
-    case "$n" in
-      1)  platforms+=("claude") ;;
-      2)  platforms+=("gemini") ;;
-      3)  platforms+=("cursor") ;;
-      4)  platforms+=("codex") ;;
-      5)  platforms+=("opencode") ;;
-      6)  platforms+=("aider") ;;
-      7)  platforms+=("continue") ;;
-      8)  platforms+=("amazon-q") ;;
-      9)  platforms+=("amp") ;;
-      10) platforms+=("manual") ;;
-    esac
-  done
-fi
-
-# Install for each selected platform
-for platform in "${platforms[@]}"; do
+# ── Pure-bash fallback (no Node) ─────────────────────────────────
+fallback_copy() {
+  local platform="$1"
+  local profile="${2:-full}"
+  local target=""
   case "$platform" in
-    claude)
-      select_scope
-      install_claude "$SCOPE"
-      ;;
-    gemini)
-      install_gemini
-      ;;
-    cursor)
-      echo ""
-      echo -e "${B}${BOLD}Cursor — Rules + plugin${NC}"
-      _cm_cursor_rules="$(resolve_cursor_rules_dir cursor)"
-      install_skills_to "${_cm_cursor_rules}" "mdc"
-      echo -e "  ${C}ℹ  Rules → ${_cm_cursor_rules}${NC}"
-      echo -e "  In Cursor Agent chat: ${C}/add-plugin cody-master${NC}"
-      ;;
-    codex)
-      echo ""
-      echo -e "${O}${BOLD}Codex — Install${NC}"
-      echo -e "  Tell Codex: ${C}Fetch and follow ${RAW_URL}/.codex/INSTALL.md${NC}"
-      ;;
-    opencode)
-      echo ""
-      echo -e "${G}${BOLD}OpenCode — Install${NC}"
-      echo -e "  Tell OpenCode: ${C}Fetch and follow ${RAW_URL}/.opencode/INSTALL.md${NC}"
-      ;;
-    aider)
-      install_aider
-      ;;
-    continue)
-      install_continue
-      ;;
-    amazon-q)
-      install_amazon_q
-      ;;
-    amp)
-      install_amp
-      ;;
-    manual)
-      echo ""
-      echo -e "${W}${BOLD}Manual Copy — Any Platform${NC}"
-      echo ""
-      echo -e "  ${C}# Gemini CLI / Antigravity${NC}"
-      echo -e "  git clone --depth 1 ${REPO_URL}.git ~/.cody-master"
-      echo -e "  cp -r ~/.cody-master/skills/* ~/.gemini/antigravity/skills/"
-      echo ""
-      echo -e "  ${C}# Aider${NC}"
-      echo -e "  bash install.sh --aider"
-      echo ""
-      echo -e "  ${C}# Continue.dev${NC}"
-      echo -e "  bash install.sh --continue"
-      echo ""
-      echo -e "  ${C}# Any platform (copy)${NC}"
-      echo -e "  cp -r ~/.cody-master/skills/* <your-platform-skills-dir>/"
-      ;;
+    claude-code)    target="$HOME/.claude/skills" ;;
+    claude-desktop) target="$HOME/Library/Application Support/Claude/skills" ;;
+    cursor)         target="$HOME/.cursor/rules" ;;
+    windsurf)       target="$HOME/.windsurf/rules" ;;
+    antigravity)    target="$HOME/.gemini/antigravity/skills" ;;
+    codex)          target="$HOME/.codex/skills" ;;
+    opencode)       target="$HOME/.opencode/skills" ;;
+    cline)          target="$HOME/.cline/skills" ;;
+    kiro)           target="$HOME/.kiro/steering" ;;
+    aider)          target="$HOME/.aider/skills" ;;
+    continue)       target="$HOME/.continue/rules" ;;
+    amazon-q)       target="$HOME/.aws/amazonq/skills" ;;
+    amp)            target="$HOME/.amp/skills" ;;
+    *) echo -e "${R}Unknown platform: $platform${NC}"; return 1 ;;
   esac
+  mkdir -p "$target"
+  echo -e "  ${W}Copying skills → ${target}${NC}"
+  local allow=""
+  if [[ "$profile" != "full" && -f "$CM_HOME/skills/profiles/$profile.txt" ]]; then
+    allow=$(grep -v '^[[:space:]]*#' "$CM_HOME/skills/profiles/$profile.txt" | sed '/^$/d')
+  fi
+  local count=0
+  for d in "$CM_HOME"/skills/cm-*/; do
+    name=$(basename "$d")
+    if [[ -n "$allow" ]] && ! grep -qx "$name" <<<"$allow"; then continue; fi
+    [[ -f "${d}SKILL.md" ]] || continue
+    cp -r "$d" "$target/$name"
+    count=$((count + 1))
+  done
+  echo -e "  ${G}✅ ${count} skills installed to ${target}${NC}"
+}
+
+# ── Argument parsing ─────────────────────────────────────────────
+TARGETS=()
+PROFILE="core"
+SCOPE="user"
+DRY=""
+ALL=0
+LIST=0
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --all)           ALL=1 ;;
+    --list)          LIST=1 ;;
+    --profile)       PROFILE="$2"; shift ;;
+    --profile=*)     PROFILE="${1#*=}" ;;
+    --scope)         SCOPE="$2"; shift ;;
+    --scope=*)       SCOPE="${1#*=}" ;;
+    --dry-run)       DRY="--dry-run" ;;
+    -h|--help)
+      sed -n '2,15p' "$0"; exit 0 ;;
+    --*)             TARGETS+=("${1#--}") ;;
+    *)               TARGETS+=("$1") ;;
+  esac
+  shift
 done
 
-install_openviking
-install_cli
-print_onboarding
+# ── Main ─────────────────────────────────────────────────────────
+banner
+ensure_source
+
+cli_args=()
+[[ -n "$DRY" ]]    && cli_args+=("$DRY")
+[[ "$ALL" -eq 1 ]] && cli_args+=("--all")
+[[ "$LIST" -eq 1 ]] && cli_args+=("--list")
+cli_args+=("--profile" "$PROFILE" "--scope" "$SCOPE")
+
+if [[ "$ALL" -eq 1 || "$LIST" -eq 1 || ${#TARGETS[@]} -eq 0 ]]; then
+  if delegate_to_cli "${cli_args[@]}"; then exit 0; fi
+  echo -e "${O}Node not available — pass an explicit platform name to use the bash fallback, e.g.:${NC}"
+  echo "  bash install.sh claude-code --profile core"
+  exit 1
+fi
+
+for t in "${TARGETS[@]}"; do
+  if delegate_to_cli "$t" "${cli_args[@]}"; then continue; fi
+  echo -e "${O}⚠  Falling back to bash copy for ${t} (Node not detected)${NC}"
+  fallback_copy "$t" "$PROFILE"
+done
 
 echo ""
-echo -e "${C}$(msg docs) https://cody.todyle.com/docs${NC}"
+echo -e "    ${G}🐹: Mission accomplished — Run ${W}cm${NC}${G} to explore.${NC}"
 echo ""
