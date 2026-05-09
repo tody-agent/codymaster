@@ -77,7 +77,9 @@
     "prompts": "^2.4.2",
     "ws": "^8.20.0",
     "yaml": "^2.8.3",
-    "ajv": "^8.20.0"
+    "ajv": "^8.20.0",
+    "pino": "^10.0.0",
+    "pino-http": "^11.0.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",

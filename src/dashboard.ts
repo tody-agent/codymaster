@@ -1,4 +1,5 @@
-import express from 'express';
+/// <reference types="pino-http" />
+import express, { type Request } from 'express';
 import chalk from 'chalk';
 import path from 'path';
 import fs from 'fs';
