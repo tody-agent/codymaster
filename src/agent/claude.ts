@@ -41,22 +41,11 @@ interface ClaudeResultMessage {
 
 type ClaudeNDJSON = ClaudeAssistantMessage | ClaudeToolResultMessage | ClaudeResultMessage;
 
-function* transformMessages(
-  raw: AsyncIterable<NDJSONMessage>,
-): Generator<AgentMessage> {
-  const pending = raw as AsyncIterable<ClaudeNDJSON>;
-
-  // We can't use `yield*` on async iterables in a sync generator,
-  // so we collect via an async wrapper stored in a promise queue.
-  // Instead, we return an async generator below.
-  void pending; // suppress unused warning — actual logic is in asyncTransform
-}
-
 async function* asyncTransform(
   raw: AsyncIterable<NDJSONMessage>,
 ): AsyncGenerator<AgentMessage> {
   for await (const msg of raw) {
-    const nd = msg as ClaudeNDJSON;
+    const nd = msg as unknown as ClaudeNDJSON;
 
     if (nd.type === 'assistant') {
       const assistant = nd as ClaudeAssistantMessage;
@@ -82,16 +71,14 @@ async function* asyncTransform(
         output: tr.content ?? '',
         isError: tr.is_error ?? false,
       };
-    } else if (nd.type === 'result') {
-      // handled by collectResult — skip emitting as a message
     }
   }
 }
 
-function collectResult(
-  proc: { messages: AsyncIterable<NDJSONMessage>; cancel(): Promise<void> },
-  _messages: AsyncIterable<AgentMessage>,
-): Promise<AgentResult> {
+function collectResult(proc: {
+  messages: AsyncIterable<NDJSONMessage>;
+  cancel(): Promise<void>;
+}): Promise<AgentResult> {
   const start = Date.now();
 
   return new Promise<AgentResult>((resolve) => {
@@ -104,7 +91,7 @@ function collectResult(
     (async () => {
       try {
         for await (const msg of proc.messages) {
-          const nd = msg as ClaudeNDJSON;
+          const nd = msg as unknown as ClaudeNDJSON;
 
           if (nd.type === 'assistant') {
             const a = nd as ClaudeAssistantMessage;
@@ -146,28 +133,14 @@ export class ClaudeBackend implements AgentBackend {
   name = 'claude-code';
 
   async detectVersion(): Promise<string> {
-    const proc = spawnProcess({
-      command: 'claude',
-      args: ['--version'],
-      cwd: process.cwd(),
-    });
-
-    let version = '';
-    for await (const msg of proc.messages) {
-      // --version prints plain text to stdout; NDJSON parser will skip it.
-      // Fall back to collecting from child stdout directly.
+    try {
+      return execFileSync('claude', ['--version'], {
+        encoding: 'utf8',
+        timeout: 10_000,
+      }).trim();
+    } catch {
+      return 'unknown';
     }
-
-    // If NDJSON parsing yielded nothing, read raw stdout from the child.
-    if (!version && proc.child.stdout) {
-      const chunks: Buffer[] = [];
-      for await (const chunk of proc.child.stdout) {
-        chunks.push(chunk);
-      }
-      version = Buffer.concat(chunks).toString('utf8').trim();
-    }
-
-    return version || 'unknown';
   }
 
   async execute(prompt: string, opts: ExecOptions): Promise<AgentSession> {
@@ -191,7 +164,7 @@ export class ClaudeBackend implements AgentBackend {
     });
 
     const messages = asyncTransform(proc.messages);
-    const result = collectResult(proc, messages);
+    const result = collectResult(proc);
 
     return {
       messages,

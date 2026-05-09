@@ -8,6 +8,7 @@ export interface SpawnOpts {
   env?: Record<string, string>;
   timeoutMs?: number;
   semanticInactivityMs?: number;
+  outputFormat?: 'ndjson' | 'text';
 }
 
 export interface SpawnedProcess {
@@ -106,7 +107,8 @@ export function spawnProcess(opts: SpawnOpts): SpawnedProcess {
   let inactivityTimer: ReturnType<typeof setTimeout> | undefined;
   let timeoutTimer: ReturnType<typeof setTimeout> | undefined;
 
-  // NDJSON line parsing from stdout
+  // Line parsing from stdout
+  const isTextMode = opts.outputFormat === 'text';
   let stdoutBuffer = '';
   child.stdout!.on('data', (chunk: Buffer) => {
     stdoutBuffer += chunk.toString('utf8');
@@ -115,13 +117,20 @@ export function spawnProcess(opts: SpawnOpts): SpawnedProcess {
     for (const line of lines) {
       const trimmed = line.trim();
       if (!trimmed) continue;
-      try {
-        const msg = JSON.parse(trimmed) as NDJSONMessage;
+      if (isTextMode) {
+        const msg: NDJSONMessage = { type: 'text', content: trimmed };
         lastMessageTime = Date.now();
         emitter.emit('message', msg);
         messageIterable.emit(msg);
-      } catch {
-        // skip non-JSON lines
+      } else {
+        try {
+          const msg = JSON.parse(trimmed) as NDJSONMessage;
+          lastMessageTime = Date.now();
+          emitter.emit('message', msg);
+          messageIterable.emit(msg);
+        } catch {
+          // skip non-JSON lines
+        }
       }
     }
   });

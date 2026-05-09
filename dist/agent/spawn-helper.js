@@ -94,7 +94,8 @@ function spawnProcess(opts) {
     let lastMessageTime = Date.now();
     let inactivityTimer;
     let timeoutTimer;
-    // NDJSON line parsing from stdout
+    // Line parsing from stdout
+    const isTextMode = opts.outputFormat === 'text';
     let stdoutBuffer = '';
     child.stdout.on('data', (chunk) => {
         stdoutBuffer += chunk.toString('utf8');
@@ -104,14 +105,22 @@ function spawnProcess(opts) {
             const trimmed = line.trim();
             if (!trimmed)
                 continue;
-            try {
-                const msg = JSON.parse(trimmed);
+            if (isTextMode) {
+                const msg = { type: 'text', content: trimmed };
                 lastMessageTime = Date.now();
                 emitter.emit('message', msg);
                 messageIterable.emit(msg);
             }
-            catch (_a) {
-                // skip non-JSON lines
+            else {
+                try {
+                    const msg = JSON.parse(trimmed);
+                    lastMessageTime = Date.now();
+                    emitter.emit('message', msg);
+                    messageIterable.emit(msg);
+                }
+                catch (_a) {
+                    // skip non-JSON lines
+                }
             }
         }
     });
