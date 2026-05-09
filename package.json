@@ -76,14 +76,13 @@
     "express": "^5.2.1",
     "prompts": "^2.4.2",
     "ws": "^8.20.0",
-    "yaml": "^2.8.3"
+    "yaml": "^2.8.3",
+    "ajv": "^8.20.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
-    "@types/pino": "^7.0.4",
-    "@types/pino-http": "^5.8.4",
     "@types/prompts": "^2.4.9",
     "@types/ws": "^8.18.1",
     "acorn": "^8.16.0",

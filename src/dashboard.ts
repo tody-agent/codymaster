@@ -29,7 +29,8 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
   app.use(express.json({ limit: '1mb' }));
 
   const logger = pino({ level: 'info' });
-  app.use(pinoHttp({ logger }));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  app.use(pinoHttp({ logger: logger as any }));
 
   const publicDir = path.join(__dirname, '..', 'public', 'dashboard');
   app.use(express.static(publicDir));
