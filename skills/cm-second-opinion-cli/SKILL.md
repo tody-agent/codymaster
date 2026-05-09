@@ -1,23 +1,26 @@
 ---
 name: cm-second-opinion-cli
-description: "Use when you need a cross-model review or second opinion on a diff or code change."
+description: "[Deprecated] engineering bridge merged. Use `cm-mcp-engineering` instead."
+deprecated: true
+merged_into: cm-mcp-engineering
 ---
-# cm-second-opinion-cli — cross-model review stub
 
-## CLI
+# cm-second-opinion-cli — Deprecated
+
+> ⚠️ This skill is deprecated as of CodyMaster v6.0.0 and will be removed in v6.1.0.
+>
+> **Use `cm-mcp-engineering` instead.** engineering bridge merged.
+>
+> See [docs/migration-v2.md](../../docs/migration-v2.md) for the full mapping.
+
+The original content is preserved at [SKILL.archive.md](SKILL.archive.md) for reference.
+
+## Migration
 
 ```bash
-cm second-opinion --file /tmp/my.diff
+# Old:           cm <use this skill>
+# New (v6.0+):   cm mcp-engineering <equivalent action>
 ```
 
-- With `OPENAI_API_KEY`, calls **OpenAI chat completions** (`CM_SECOND_OPINION_MODEL` optional, default `gpt-4o-mini`).
-- Without key, prints a **stub** reminder (no network).
-
-## Safety
-
-- **Never** paste secrets or production credentials into the diff file.
-- Prefer unified diffs of **application code** only.
-
-## Roadmap
-
-Add Anthropic / Google / Ollama providers via shared provider interface (see **cm-engineering-meta**).
+If you depend on a capability that didn't carry over, please file an issue:
+https://github.com/tody-agent/codymaster/issues

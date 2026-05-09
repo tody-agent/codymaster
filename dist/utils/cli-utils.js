@@ -25,8 +25,13 @@ function padRight(str, len) {
  */
 function openUrl(url) {
     const plat = os_1.default.platform();
-    const command = plat === 'darwin' ? 'open' : plat === 'win32' ? 'start' : 'xdg-open';
-    (0, child_process_1.exec)(`${command} "${url}"`);
+    if (plat === 'win32') {
+        (0, child_process_1.execFile)('cmd.exe', ['/c', 'start', '""', url]);
+    }
+    else {
+        const command = plat === 'darwin' ? 'open' : 'xdg-open';
+        (0, child_process_1.execFile)(command, [url]);
+    }
 }
 /**
  * Formats a date string relative to now (e.g. "2m ago", "1h ago").

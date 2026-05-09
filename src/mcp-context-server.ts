@@ -2,7 +2,7 @@
 /**
  * CodyMaster MCP Context Server
  *
- * Exposes 13 tools over JSON-RPC 2.0 / stdio (Content-Length framing):
+ * Exposes 18 tools over JSON-RPC 2.0 / stdio (Content-Length framing):
  *   cm_query         — FTS5 search across learnings + decisions
  *   cm_resolve       — resolve a cm:// URI at L0/L1/L2
  *   cm_bus_read      — read context bus state
@@ -10,6 +10,7 @@
  *   cm_budget_check  — check token budget for a category
  *   cm_memory_decay  — TTL cleanup for learnings
  *   cm_index_refresh — regenerate L0 indexes
+ *   cm_advisory_report / cm_advisory_metrics / cm_advisory_handoff — advisory loop JSON surfaces
  *   cm_plan / cm_review / cm_qa / cm_deploy / cm_search / cm_memory_query — engineering kit bridge
  *
  * Usage (stdio MCP):
@@ -40,6 +41,9 @@ import {
   cmSearchTool,
   cmMemoryQueryTool,
 } from './mcp-skills-tools';
+import { getBackend } from './storage-backend';
+import { buildAdvisoryMetricsData, buildAdvisoryReportData } from './advisory-report';
+import { buildAdvisoryHandoff, type AdvisoryConsumer } from './advisory-handoff';
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
@@ -339,6 +343,64 @@ function cmIndexRefresh(args: IndexRefreshArgs) {
   throw new Error(`Unknown target: ${target}. Valid: learnings, skeleton, all`);
 }
 
+interface AdvisoryArgs {
+  limit?: number;
+}
+
+export function cmAdvisoryReport(args: AdvisoryArgs) {
+  const backend = getBackend(PROJECT_PATH);
+  backend.initialize();
+  try {
+    const limit = Math.max(1, args.limit ?? 10);
+    const analyses = buildAdvisoryReportData(backend, { limit });
+    return {
+      count: analyses.length,
+      analyses,
+      generated_at: new Date().toISOString(),
+    };
+  } finally {
+    backend.close();
+  }
+}
+
+export function cmAdvisoryMetrics(args: AdvisoryArgs) {
+  const backend = getBackend(PROJECT_PATH);
+  backend.initialize();
+  try {
+    const limit = Math.max(1, args.limit ?? 10);
+    const metrics = buildAdvisoryMetricsData(backend, { limit });
+    return {
+      count: metrics.length,
+      metrics,
+      generated_at: new Date().toISOString(),
+    };
+  } finally {
+    backend.close();
+  }
+}
+
+interface AdvisoryHandoffArgs {
+  consumer: AdvisoryConsumer;
+  analysis_id?: string;
+  skill?: string;
+  limit?: number;
+}
+
+export function cmAdvisoryHandoff(args: AdvisoryHandoffArgs) {
+  const backend = getBackend(PROJECT_PATH);
+  backend.initialize();
+  try {
+    return buildAdvisoryHandoff(backend, {
+      consumer: args.consumer,
+      analysisId: args.analysis_id,
+      skill: args.skill,
+      searchLimit: args.limit,
+    });
+  } finally {
+    backend.close();
+  }
+}
+
 // ─── Tool Registry ─────────────────────────────────────────────────────────────
 
 const TOOLS = [
@@ -447,6 +509,53 @@ const TOOLS = [
           description: 'Which index to refresh (default: all)',
         },
       },
+    },
+  },
+  {
+    name: 'cm_advisory_report',
+    description: 'Return recent advisory analyses as structured JSON for agent consumption.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        limit: { type: 'number', description: 'Max analyses to return (default: 10)' },
+      },
+    },
+  },
+  {
+    name: 'cm_advisory_metrics',
+    description: 'Return aggregated skill metrics and quality weights as structured JSON.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        limit: { type: 'number', description: 'Max skills to return (default: 10)' },
+      },
+    },
+  },
+  {
+    name: 'cm_advisory_handoff',
+    description: 'Build a structured advisory handoff for cm-skill-health or cm-skill-evolution.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        consumer: {
+          type: 'string',
+          enum: ['cm-skill-health', 'cm-skill-evolution'],
+          description: 'Which self-healing skill should consume the handoff',
+        },
+        analysis_id: {
+          type: 'string',
+          description: 'Optional analysis id prefix (defaults to latest advisory analysis)',
+        },
+        skill: {
+          type: 'string',
+          description: 'Optional skill override when the target skill should be forced',
+        },
+        limit: {
+          type: 'number',
+          description: 'How many recent analyses to search while resolving analysis_id (default: 50)',
+        },
+      },
+      required: ['consumer'],
     },
   },
   {
@@ -582,6 +691,9 @@ async function handleRequest(msg: { id?: unknown; method: string; params?: Recor
       else if (name === 'cm_budget_check') result = cmBudgetCheck(a as unknown as BudgetCheckArgs);
       else if (name === 'cm_memory_decay') result = cmMemoryDecay(a as unknown as DecayArgs);
       else if (name === 'cm_index_refresh') result = cmIndexRefresh(a as unknown as IndexRefreshArgs);
+      else if (name === 'cm_advisory_report') result = cmAdvisoryReport(a as AdvisoryArgs);
+      else if (name === 'cm_advisory_metrics') result = cmAdvisoryMetrics(a as AdvisoryArgs);
+      else if (name === 'cm_advisory_handoff') result = cmAdvisoryHandoff(a as unknown as AdvisoryHandoffArgs);
       else if (name === 'cm_plan') result = cmPlanTool(PROJECT_PATH);
       else if (name === 'cm_review') result = cmReviewTool(PROJECT_PATH);
       else if (name === 'cm_qa') result = cmQaTool(PROJECT_PATH);

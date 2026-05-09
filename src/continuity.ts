@@ -3,6 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { generateLearningsIndex, refreshAllIndexes } from './l0-indexer';
 import { getDefaultBudget } from './token-budget';
+import { renderLearningsForContinuity } from './learnings';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -149,12 +150,8 @@ quality:
   anti_sycophancy: false           # Enable anti-sycophancy check (Phase 2)
 
 storage:
-  backend: sqlite              # sqlite | viking
-  # viking:                    # Uncomment to use OpenViking (pip install openviking)
-  #   host: localhost          # OpenViking server host
-  #   port: 1933               # OpenViking server port (default: 1933)
-  #   workspace: codymaster    # Workspace name inside OpenViking
-  #   timeout: 60000           # Request timeout in ms
+  backend: sqlite              # supported default
+  # Legacy note: older configs may still say "viking"; CodyMaster now falls back to sqlite.
 `;
 }
 
@@ -290,7 +287,8 @@ ${state.workingContext || '[No additional context]'}
 ${state.filesModified.length > 0
     ? state.filesModified.map(f => `- ${f.path}: ${f.change}`).join('\n')
     : '- [No files being modified]'}
-`;
+
+${renderLearningsForContinuity(projectPath, 10)}`;
 
   fs.writeFileSync(filePath, content, 'utf-8');
 }

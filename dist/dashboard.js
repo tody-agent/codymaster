@@ -18,6 +18,13 @@ const skill_chain_1 = require("./skill-chain");
 function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     const app = (0, express_1.default)();
     app.disable('x-powered-by');
+    app.use((_req, res, next) => {
+        res.setHeader('X-Content-Type-Options', 'nosniff');
+        res.setHeader('X-Frame-Options', 'DENY');
+        res.setHeader('X-XSS-Protection', '1; mode=block');
+        res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';");
+        next();
+    });
     app.use(express_1.default.json({ limit: '1mb' }));
     const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
     app.use(express_1.default.static(publicDir));
@@ -902,7 +909,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         res.sendFile(path_1.default.join(publicDir, 'index.html'));
     });
     // ─── Start Server ─────────────────────────────────────────────────────
-    const server = app.listen(port, () => {
+    const server = app.listen(port, '127.0.0.1', () => {
         try {
             fs_1.default.writeFileSync(data_1.PID_FILE, String(process.pid));
         }

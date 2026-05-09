@@ -15,12 +15,12 @@ robots: index, follow
 - A **Node.js CLI** (`cm` / `codymaster`) that registers command groups for projects, tasks, dashboard, engineering helpers, and distro checks (`src/cli/command-registry.ts`).
 - A **project memory layer** under `.cm/` (continuity file, optional SQLite `context.db`, context bus, token budget).
 - A **Mission Control dashboard** (Express) for kanban-style visibility over data in `~/.codymaster/kanban.json` (`src/dashboard.ts`, `src/data.ts`).
-- An **MCP context server** exposing search, URI resolve, bus read/write, budget checks, and engineering-bridge tools (`src/mcp-context-server.ts`).
+- An **MCP context server** exposing search, URI resolve, bus read/write, budget checks, advisory JSON surfaces, and engineering-bridge tools (`src/mcp-context-server.ts`).
 - A **skills library** — Markdown instruction packs in `skills/*/SKILL.md` that agents (Claude, Cursor, etc.) can follow.
 
 ## What CodyMaster is not
 
-- Not a hosted SaaS product in this repo — it runs **on your machine** (and optionally talks to local services like OpenViking).
+- Not a hosted SaaS product in this repo — it runs **on your machine** with a local-first default stack.
 - Not a single “magic model” — it orchestrates **your** tools, files, and habits.
 
 ## Who it is for

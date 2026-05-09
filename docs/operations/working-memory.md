@@ -35,6 +35,8 @@ Exact files depend on which commands you have run and migration state.
 | “Do not repeat” lessons | learnings       | Searchable, TTL-capable  |
 | Architectural choices   | decisions       | Searchable, citeable     |
 | Step output for chains  | context bus     | Machine-readable handoff |
+| Execution outcomes      | `execution_analyses` | Advisory evidence    |
+| Skill quality signals   | `skill_metrics` | Routing + recovery input |
 
 
 ## Agent access (MCP)
@@ -48,12 +50,27 @@ The MCP server (`src/mcp-context-server.ts`) exposes:
 
 ## Backends
 
-- **sqlite** (default) — `SqliteBackend` in `src/storage-backend.ts`  
-- **viking** — OpenViking HTTP integration (`src/backends/viking-backend.ts`)
+- **sqlite** (default) — `SqliteBackend` in `src/storage-backend.ts`
+- **legacy configs** — if an old project still says `storage.backend: viking`, CodyMaster warns and falls back to SQLite
+
+## Advisory data
+
+The advisory loop also stores its evidence in `.cm/context.db`:
+
+- `execution_analyses` — recent task outcomes plus analyzer recommendations
+- `skill_metrics` — aggregated per-skill counters and the inputs used by `qualityWeight()`
+
+Use these commands instead of querying the DB manually in most cases:
+
+```bash
+cm advisory report --project .
+cm advisory metrics --project .
+cm advisory handoff --project . --for cm-skill-health
+```
 
 ## See also
 
 - [CodyMaster Brain](../architecture/codymaster-brain.md)  
 - [Storage and memory](../architecture/data-and-memory.md)  
+- [Advisory Loop](../workflows/advisory-loop.md)
 - [API reference](../api/api-reference.md)
-

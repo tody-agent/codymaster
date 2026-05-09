@@ -1,34 +1,26 @@
 ---
 name: cm-design-studio
-description: "Use when you need to create 2-3 UI/UX design variants and document a repeatable handoff before coding."
+description: "[Deprecated] design pipeline merged. Use `cm-design-system` instead."
+deprecated: true
+merged_into: cm-design-system
 ---
-# cm-design-studio
 
-> Local design-variant workspace: checklist, named variants, and a handoff stub—no external MCP required.
+# cm-design-studio — Deprecated
 
-## When to use
+> ⚠️ This skill is deprecated as of CodyMaster v6.0.0 and will be removed in v6.1.0.
+>
+> **Use `cm-design-system` instead.** design pipeline merged.
+>
+> See [docs/migration-v2.md](../../docs/migration-v2.md) for the full mapping.
 
-- You want **2–3 UI/UX variants** documented before coding.
-- You need a **repeatable handoff** from design choice to implementation agents.
-- You prefer **files under `.cm/`** over ad-hoc chat-only decisions.
+The original content is preserved at [SKILL.archive.md](SKILL.archive.md) for reference.
 
-## Steps
+## Migration
 
-1. From the repo root: `cm design-studio init`
-2. Edit `.cm/design-studio/CHECKLIST.md` and `VARIANTS.md` (name options A/B/C).
-3. Pick a variant; complete `.cm/design-studio/HANDOFF.md` (screens, tokens, prompt stub).
-4. Run implementation skills (e.g. `cm-execution`, `cm-tdd`) **using the HANDOFF prompt stub** as the single source of truth.
+```bash
+# Old:           cm <use this skill>
+# New (v6.0+):   cm design-system <equivalent action>
+```
 
-Optional: `cm design-studio status` — list artifact files.
-
-## Output
-
-- `.cm/design-studio/README.md` — happy path
-- `.cm/design-studio/CHECKLIST.md`
-- `.cm/design-studio/VARIANTS.md`
-- `.cm/design-studio/HANDOFF.md`
-
-## Related
-
-- ADR 003 (`docs/adr/003-skill-distro-and-meta.md`) for pack layout when publishing skills.
-- `cm suggest` may recommend other skills based on git + sprint state.
+If you depend on a capability that didn't carry over, please file an issue:
+https://github.com/tody-agent/codymaster/issues

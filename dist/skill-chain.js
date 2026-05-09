@@ -19,6 +19,8 @@ exports.getCurrentSkill = getCurrentSkill;
 const crypto_1 = __importDefault(require("crypto"));
 const builtin_1 = require("./chains/builtin");
 const context_bus_1 = require("./context-bus");
+const execution_analyzer_1 = require("./execution-analyzer");
+const storage_backend_1 = require("./storage-backend");
 // ─── Chain Matching ─────────────────────────────────────────────────────────
 // TRIZ #10: Preliminary Action — analyze task BEFORE dispatching
 /**
@@ -68,7 +70,7 @@ function scoreStepRelevance(taskTitle, step) {
  * - Remaining slots are filled with the highest-scoring optional steps.
  * - If mandatory count > maxSkills, a performance warning is emitted.
  */
-function selectTopSkills(taskTitle, chain, maxSkills = 3) {
+function selectTopSkills(taskTitle, chain, maxSkills = 3, options = {}) {
     const mandatory = chain.steps.filter(s => !s.optional && s.condition === 'always');
     const optional = chain.steps.filter(s => s.optional || s.condition !== 'always');
     if (mandatory.length > maxSkills) {
@@ -78,7 +80,13 @@ function selectTopSkills(taskTitle, chain, maxSkills = 3) {
     }
     const remaining = maxSkills - mandatory.length;
     const scoredOptional = optional
-        .map(step => ({ step, score: scoreStepRelevance(taskTitle, step) }))
+        .map(step => {
+        var _a, _b;
+        const relevance = scoreStepRelevance(taskTitle, step);
+        const metric = (_b = (_a = options.getSkillMetric) === null || _a === void 0 ? void 0 : _a.call(options, step.skill)) !== null && _b !== void 0 ? _b : null;
+        const quality = (0, execution_analyzer_1.qualityWeight)(metric);
+        return { step, score: relevance + quality, relevance, quality };
+    })
         .sort((a, b) => b.score - a.score)
         .slice(0, remaining)
         .map(({ step }) => step);
@@ -105,7 +113,17 @@ function findChain(chainId) {
  */
 function createChainExecution(chain, projectId, taskTitle, agent, projectPath) {
     const now = new Date().toISOString();
-    const selectedSteps = selectTopSkills(taskTitle, chain);
+    const backend = projectPath ? (0, storage_backend_1.getBackend)(projectPath) : undefined;
+    let selectedSteps;
+    backend === null || backend === void 0 ? void 0 : backend.initialize();
+    try {
+        selectedSteps = selectTopSkills(taskTitle, chain, 3, {
+            getSkillMetric: backend ? (skill) => backend.getSkillMetric(skill) : undefined,
+        });
+    }
+    finally {
+        backend === null || backend === void 0 ? void 0 : backend.close();
+    }
     const steps = selectedSteps.map((step, index) => ({
         index,
         skill: step.skill,

@@ -16,7 +16,7 @@ The **full, line-by-line changelog** lives at the repository root:
 
 This docs page stays short so it does not drift from the source file.
 
-## Recent highlights (5.1.0)
+## Recent highlights (5.1.0 + Unreleased)
 
 From `CHANGELOG.md` (April 2026):
 
@@ -26,7 +26,8 @@ From `CHANGELOG.md` (April 2026):
 - **`cm_memory_write` MCP tool** — persist learnings with auto-detected category, scope, and TTL.
 - **`cm_natural` MCP tool** — NLI router: "remember that…" / "forget…" / "what did we learn about…"
 - **Goose integration docs** — `docs/integrations/goose.md` with 3-step setup guide.
-- MCP tools count: 13 → **15 tools**.
+- Advisory loop productization — `cm advisory report`, `cm advisory metrics`, `cm advisory handoff`, plus matching MCP tools for JSON consumers.
+- MCP tools count: 13 → **15 tools** in v5.1.0, now **18 tools** on the current unreleased branch.
 - CLI commands count: 18 → **20 commands**.
 
 ## How we version

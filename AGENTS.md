@@ -12,6 +12,7 @@ Short orientation for AI coding agents and human maintainers working in **this**
 | MCP tools | `src/mcp-context-server.ts` |
 | Browse HTTP API | `src/browse-server.ts` |
 | Sprint state | `src/sprint-pipeline.ts`, `.cm/sprint/` |
+| Skill Indexing | `src/indexer/skills.ts` |
 
 ## Before you claim “done”
 

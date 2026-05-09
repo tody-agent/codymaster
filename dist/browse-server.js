@@ -73,6 +73,14 @@ class BrowseDaemon {
         this.consoleBuf = createRing(200);
         this.networkBuf = createRing(200);
         this.refMap = {};
+        this.app.disable('x-powered-by');
+        this.app.use((_req, res, next) => {
+            res.setHeader('X-Content-Type-Options', 'nosniff');
+            res.setHeader('X-Frame-Options', 'DENY');
+            res.setHeader('X-XSS-Protection', '1; mode=block');
+            res.setHeader('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none';");
+            next();
+        });
         this.app.use(express_1.default.json({ limit: '2mb' }));
         this.app.use(this.authMiddleware.bind(this));
         this.routes();

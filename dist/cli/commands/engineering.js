@@ -25,6 +25,9 @@ const second_opinion_providers_1 = require("../../second-opinion-providers");
 const sprint_pipeline_1 = require("../../sprint-pipeline");
 const retro_summary_1 = require("../../retro-summary");
 const cm_suggest_1 = require("../../cm-suggest");
+const storage_backend_1 = require("../../storage-backend");
+const advisory_report_1 = require("../../advisory-report");
+const advisory_handoff_1 = require("../../advisory-handoff");
 function projectPath(opt) {
     return path_1.default.resolve(opt || process.cwd());
 }
@@ -99,6 +102,83 @@ function registerEngineeringCommands(program) {
             process.exit(1);
         }
         console.log(chalk_1.default.green('OK'), opts.file);
+    });
+    const advisory = program
+        .command('advisory')
+        .description('Operator-facing execution analysis and skill quality reports');
+    advisory
+        .command('report')
+        .description('Show recent execution analyses with recommended actions')
+        .option('--project <dir>')
+        .option('--limit <n>', 'number of analyses to show', '10')
+        .action((opts) => {
+        var _a;
+        const root = projectPath(opts.project);
+        const backend = (0, storage_backend_1.getBackend)(root);
+        backend.initialize();
+        try {
+            const limit = Math.max(1, parseInt(String((_a = opts.limit) !== null && _a !== void 0 ? _a : '10'), 10) || 10);
+            console.log((0, advisory_report_1.formatAdvisoryReport)(backend, { limit }));
+        }
+        finally {
+            backend.close();
+        }
+    });
+    advisory
+        .command('metrics')
+        .description('Show aggregated skill metrics with quality weights')
+        .option('--project <dir>')
+        .option('--limit <n>', 'number of skills to show', '10')
+        .action((opts) => {
+        var _a;
+        const root = projectPath(opts.project);
+        const backend = (0, storage_backend_1.getBackend)(root);
+        backend.initialize();
+        try {
+            const limit = Math.max(1, parseInt(String((_a = opts.limit) !== null && _a !== void 0 ? _a : '10'), 10) || 10);
+            console.log((0, advisory_report_1.formatAdvisoryMetrics)(backend, { limit }));
+        }
+        finally {
+            backend.close();
+        }
+    });
+    advisory
+        .command('handoff')
+        .description('Build a structured advisory handoff for cm-skill-health or cm-skill-evolution')
+        .requiredOption('--for <consumer>', 'cm-skill-health | cm-skill-evolution')
+        .option('--analysis <id>', 'analysis id prefix (default: latest)')
+        .option('--skill <name>', 'override target skill')
+        .option('--format <f>', 'md | json', 'md')
+        .option('--project <dir>')
+        .action((opts) => {
+        var _a;
+        const consumer = String(opts.for);
+        if (consumer !== 'cm-skill-health' && consumer !== 'cm-skill-evolution') {
+            console.error(chalk_1.default.red('Invalid --for value. Use cm-skill-health or cm-skill-evolution.'));
+            process.exit(1);
+        }
+        const root = projectPath(opts.project);
+        const backend = (0, storage_backend_1.getBackend)(root);
+        backend.initialize();
+        try {
+            const handoff = (0, advisory_handoff_1.buildAdvisoryHandoff)(backend, {
+                consumer,
+                analysisId: opts.analysis,
+                skill: opts.skill,
+            });
+            const format = String((_a = opts.format) !== null && _a !== void 0 ? _a : 'md').toLowerCase();
+            if (format === 'json')
+                console.log(JSON.stringify(handoff, null, 2));
+            else
+                console.log((0, advisory_handoff_1.formatAdvisoryHandoffMarkdown)(handoff));
+        }
+        catch (error) {
+            console.error(chalk_1.default.red(error.message));
+            process.exit(1);
+        }
+        finally {
+            backend.close();
+        }
     });
     const sprint = program.command('sprint').description('Opinionated pipeline + .cm/sprint Context Bus');
     sprint
@@ -333,14 +413,14 @@ function registerEngineeringCommands(program) {
         .requiredOption('--branch <b>', 'branch name')
         .option('--base <b>', 'start from branch', 'main')
         .action((opts) => {
-        (0, child_process_1.execSync)(`git worktree add -b ${opts.branch} ${opts.at} ${opts.base}`, {
+        (0, child_process_1.execFileSync)('git', ['worktree', 'add', '-b', opts.branch, opts.at, opts.base], {
             stdio: 'inherit',
             cwd: process.cwd(),
         });
         console.log(chalk_1.default.green('Worktree created'));
     });
     conductor.command('list').action(() => {
-        (0, child_process_1.execSync)('git worktree list', { stdio: 'inherit', cwd: process.cwd() });
+        (0, child_process_1.execFileSync)('git', ['worktree', 'list'], { stdio: 'inherit', cwd: process.cwd() });
     });
     const retro = program
         .command('retro')
@@ -412,6 +492,34 @@ function registerEngineeringCommands(program) {
             console.log(chalk_1.default.cyan(s.skill));
             console.log(chalk_1.default.dim(`  ${s.reason}`));
         }
+    });
+    const indexer = program.command('index').description('Project intelligence indexing');
+    indexer
+        .command('skills')
+        .description('Detect tech stack and build .cm/project-skills.md')
+        .option('--project <dir>')
+        .action((opts) => {
+        const root = projectPath(opts.project);
+        // Lazy load to avoid module compilation issues at boot if not used
+        const { generateProjectSkillsIndex } = require('../../indexer/skills');
+        const idx = generateProjectSkillsIndex(root);
+        const dotCm = path_1.default.join(root, '.cm');
+        if (!fs_1.default.existsSync(dotCm)) {
+            fs_1.default.mkdirSync(dotCm, { recursive: true });
+        }
+        const out = path_1.default.join(dotCm, 'project-skills.md');
+        const md = [
+            '# Local Project Skills Index',
+            '',
+            `Detected Technologies: **${idx.detectedTechnologies.join(', ') || 'None'}**`,
+            '',
+            '## Recommended Community Skills',
+            ...idx.recommendedSkills.map((s) => `- \`${s}\``),
+            '',
+            '> Autogenerated by `cm index skills`. Agents should run `npx skills add <skill>` if needed.'
+        ].join('\n');
+        fs_1.default.writeFileSync(out, md, 'utf-8');
+        console.log(chalk_1.default.green(`Indexed ${idx.detectedTechnologies.length} technologies and ${idx.recommendedSkills.length} skills to ${out}`));
     });
 }
 function browseRequest(port, pathname, method, auth, body) {

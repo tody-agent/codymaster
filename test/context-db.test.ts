@@ -14,6 +14,10 @@ import {
   getIndex,
   writeSkillOutput,
   getSkillOutputs,
+  recordExecutionAnalysis,
+  getExecutionAnalyses,
+  getSkillMetric,
+  listSkillMetrics,
 } from '../src/context-db';
 import type { DbLearning, DbDecision } from '../src/context-db';
 
@@ -210,5 +214,95 @@ describe('skill_outputs', () => {
     openDb(dbPath);
     const outputs = getSkillOutputs(dbPath, 'unknown-session');
     expect(outputs).toEqual([]);
+  });
+});
+
+// ─── Execution Analyses + Skill Metrics ─────────────────────────────────────
+
+describe('execution_analyses + skill_metrics', () => {
+  test('records execution analysis and updates aggregated skill metrics', () => {
+    openDb(dbPath);
+    recordExecutionAnalysis(dbPath, {
+      id: 'EA001',
+      task_title: 'Stabilize auth chain',
+      status: 'failed',
+      summary: 'Auth chain failed after retries',
+      source_task_type: 'debug',
+      session_id: 'sess-telemetry',
+      selected_skills: ['cm-debugging'],
+      token_estimate: 1200,
+      latency_bucket: 'medium',
+      recommended_action: 'FIX',
+      confidence: 0.78,
+      skill_judgments: [
+        {
+          skill: 'cm-debugging',
+          selected: true,
+          applied: true,
+          task_completed: false,
+          fallback_used: true,
+          token_estimate: 1200,
+          note: 'Needed manual retry',
+        },
+      ],
+      created_at: '2026-04-17T00:00:00Z',
+    });
+
+    const analyses = getExecutionAnalyses(dbPath, 10);
+    const metric = getSkillMetric(dbPath, 'cm-debugging');
+
+    expect(analyses).toHaveLength(1);
+    expect(analyses[0].recommended_action).toBe('FIX');
+    expect(analyses[0].skill_judgments[0].skill).toBe('cm-debugging');
+    expect(metric).not.toBeNull();
+    expect(metric!.selections).toBe(1);
+    expect(metric!.applications).toBe(1);
+    expect(metric!.task_completions).toBe(0);
+    expect(metric!.fallbacks).toBe(1);
+    expect(metric!.total_token_estimate).toBe(1200);
+  });
+
+  test('lists skill metrics in most-recent-first order', () => {
+    openDb(dbPath);
+    recordExecutionAnalysis(dbPath, {
+      id: 'EA001',
+      task_title: 'Plan checkout UX',
+      status: 'completed',
+      summary: 'Planning completed',
+      source_task_type: 'plan',
+      recommended_action: 'DERIVED',
+      confidence: 0.7,
+      skill_judgments: [
+        {
+          skill: 'cm-planning',
+          selected: true,
+          applied: true,
+          task_completed: true,
+          token_estimate: 200,
+        },
+      ],
+      created_at: '2026-04-17T00:00:00Z',
+    });
+    recordExecutionAnalysis(dbPath, {
+      id: 'EA002',
+      task_title: 'Review checkout UI',
+      status: 'completed',
+      summary: 'Review completed',
+      source_task_type: 'review',
+      skill_judgments: [
+        {
+          skill: 'cm-code-review',
+          selected: true,
+          applied: true,
+          task_completed: true,
+          token_estimate: 150,
+        },
+      ],
+      created_at: '2026-04-17T00:01:00Z',
+    });
+
+    const metrics = listSkillMetrics(dbPath, 10);
+    expect(metrics[0].skill).toBe('cm-code-review');
+    expect(metrics[1].skill).toBe('cm-planning');
   });
 });

@@ -229,13 +229,36 @@ CodyMaster इंस्टॉल करने का सबसे आसान �
 
 ### 2. एआई कौशल इंस्टॉल करें (सभी प्लेटफॉर्म)
 
-एक कमांड आपके वातावरण में सभी 68+ कौशल स्थापित करता है। यह Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode आदि का समर्थन करता है:
+CodyMaster uses **Native Plugin Extensions** for zero-friction installation. No bash scripts, no manual folder copying. Select your platform below:
 
+**Claude Code CLI:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+claude plugin marketplace add tody-agent/codymaster
+claude plugin install cm@codymaster --scope user
 ```
 
-*Cursor IDE उपयोगकर्ताओं के लिए, आप सीधे अपने चैट में `/add-plugin cody-master` टाइप कर सकते हैं।*
+**Cursor (in Agent Chat):**
+```text
+/add-plugin cody-master
+```
+
+**Gemini CLI / Google Antigravity:**
+```bash
+gemini extensions install https://github.com/tody-agent/codymaster
+```
+*(Progressive disclosure: Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to your `GEMINI.md` to save tokens)*
+
+**OpenCode / OpenClaw:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
+
+**Codex:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
 
 ### 3. डैशबोर्ड इंस्टॉल करें (वैकल्पिक लेकिन अनुशंसित)
 

@@ -1,7 +1,7 @@
 {
   "name": "codymaster",
-  "version": "5.2.0",
-  "description": "68+ Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
+  "version": "6.1.0",
+  "description": "CodyMaster v2.0 — 39 focused skills with token budgets, handoff JSON, per-project learnings. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -33,6 +33,8 @@
     "validate:skills": "node scripts/validate-skills.mjs",
     "build:skills": "node scripts/build-skills.mjs",
     "check:skills": "node scripts/build-skills.mjs --check",
+    "build:platforms": "node scripts/build-skills.mjs --platforms cursor,codex,opencode",
+    "check:platforms": "node scripts/build-skills.mjs --platforms cursor,codex,opencode --check",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
@@ -59,8 +61,7 @@
     "commands/",
     "public/",
     "README.md",
-    "CHANGELOG.md",
-    "install.sh"
+    "CHANGELOG.md"
   ],
   "publishConfig": {
     "access": "public"

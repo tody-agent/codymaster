@@ -229,13 +229,36 @@ CodyMaster를 가장 쉽게 설치하는 방법 — npm 없이, 터미널 없이
 
 ### 2. AI 스킬 설치 (모든 플랫폼)
 
-단일 명령어로 68+개의 스킬을 환경에 설치합니다. Claude Code, Gemini CLI, Cursor, Aider, Windsurf, Cline, OpenCode 등을 지원합니다:
+CodyMaster uses **Native Plugin Extensions** for zero-friction installation. No bash scripts, no manual folder copying. Select your platform below:
 
+**Claude Code CLI:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all
+claude plugin marketplace add tody-agent/codymaster
+claude plugin install cm@codymaster --scope user
 ```
 
-*Cursor IDE 사용자의 경우 에이전트 채팅에서 `/add-plugin cody-master`를 입력해도 됩니다.*
+**Cursor (in Agent Chat):**
+```text
+/add-plugin cody-master
+```
+
+**Gemini CLI / Google Antigravity:**
+```bash
+gemini extensions install https://github.com/tody-agent/codymaster
+```
+*(Progressive disclosure: Add `@~/.gemini/antigravity/skills/cm-skill-index/SKILL.md` to your `GEMINI.md` to save tokens)*
+
+**OpenCode / OpenClaw:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.opencode/INSTALL.md
+```
+
+**Codex:**
+Tell your agent:
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
 
 ### 3. 미션 컨트롤 대시보드 설치 (선택 사항이지만 권장됨)
 

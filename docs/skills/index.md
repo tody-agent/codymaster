@@ -70,8 +70,12 @@ robots: index, follow
 | cm-secret-shield | Security | `skills/cm-secret-shield/SKILL.md` |
 | cm-security-gate | Security | `skills/cm-security-gate/SKILL.md` |
 | cm-skill-chain | Orchestration | `skills/cm-skill-chain/SKILL.md` |
+| cm-skill-evolution | Orchestration | `skills/cm-skill-evolution/SKILL.md` |
+| cm-skill-health | Orchestration | `skills/cm-skill-health/SKILL.md` |
 | cm-skill-index | Orchestration | `skills/cm-skill-index/SKILL.md` |
 | cm-skill-mastery | Orchestration | `skills/cm-skill-mastery/SKILL.md` |
+| cm-skill-search | Orchestration | `skills/cm-skill-search/SKILL.md` |
+| cm-skill-share | Orchestration | `skills/cm-skill-share/SKILL.md` |
 | cm-sprint-bus | Engineering | `skills/cm-sprint-bus/SKILL.md` |
 | cm-start | Orchestration | `skills/cm-start/SKILL.md` |
 | cm-status | Operations | `skills/cm-status/SKILL.md` |
@@ -81,7 +85,7 @@ robots: index, follow
 | cm-ui-preview | Product | `skills/cm-ui-preview/SKILL.md` |
 | cm-ux-master | Product | `skills/cm-ux-master/SKILL.md` |
 
-**Total:** 56 bundled skills under `skills/` (validated by `npm run validate:skills`).
+**Total:** 60 bundled skills under `skills/` (validated by `npm run validate:skills`).
 
 ## See also
 

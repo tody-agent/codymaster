@@ -50,7 +50,7 @@ node dist/mcp-context-server.js --project /absolute/path/to/repo
 - **Protocol:** JSON-RPC 2.0 with `Content-Length` framing on stdio.
 - **Tool catalog:** `tools/list` returns schemas defined in `TOOLS` array in `src/mcp-context-server.ts`.
 
-### MCP tools (15 total)
+### MCP tools (18 total)
 
 | Tool | Purpose | Added |
 |------|---------|-------|
@@ -61,6 +61,9 @@ node dist/mcp-context-server.js --project /absolute/path/to/repo
 | `cm_budget_check` | Token budget preflight by category | v4.5.0 |
 | `cm_memory_decay` | TTL-based archival of expired learnings | v4.5.0 |
 | `cm_index_refresh` | Regenerate L0 compact indexes | v4.5.0 |
+| `cm_advisory_report` | Advisory analyses as structured JSON | v5.1.0 |
+| `cm_advisory_metrics` | Skill metrics + quality weights as structured JSON | v5.1.0 |
+| `cm_advisory_handoff` | Structured recovery handoff for self-healing skills | v5.1.0 |
 | `cm_plan` | Sprint + pipeline snapshot bridge | v4.8.0 |
 | `cm_review` | Review artifact hints | v4.8.0 |
 | `cm_qa` | QA workflow hints | v4.8.0 |

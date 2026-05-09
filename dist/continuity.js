@@ -21,6 +21,7 @@ const path_1 = __importDefault(require("path"));
 const crypto_1 = __importDefault(require("crypto"));
 const l0_indexer_1 = require("./l0-indexer");
 const token_budget_1 = require("./token-budget");
+const learnings_1 = require("./learnings");
 // ─── Constants ──────────────────────────────────────────────────────────────
 const CM_DIR = '.cm';
 const CONTINUITY_FILE = 'CONTINUITY.md';
@@ -109,12 +110,8 @@ quality:
   anti_sycophancy: false           # Enable anti-sycophancy check (Phase 2)
 
 storage:
-  backend: sqlite              # sqlite | viking
-  # viking:                    # Uncomment to use OpenViking (pip install openviking)
-  #   host: localhost          # OpenViking server host
-  #   port: 1933               # OpenViking server port (default: 1933)
-  #   workspace: codymaster    # Workspace name inside OpenViking
-  #   timeout: 60000           # Request timeout in ms
+  backend: sqlite              # supported default
+  # Legacy note: older configs may still say "viking"; CodyMaster now falls back to sqlite.
 `;
 }
 // ─── CONTINUITY.md Read/Write ───────────────────────────────────────────────
@@ -241,7 +238,8 @@ ${state.workingContext || '[No additional context]'}
 ${state.filesModified.length > 0
         ? state.filesModified.map(f => `- ${f.path}: ${f.change}`).join('\n')
         : '- [No files being modified]'}
-`;
+
+${(0, learnings_1.renderLearningsForContinuity)(projectPath, 10)}`;
     fs_1.default.writeFileSync(filePath, content, 'utf-8');
 }
 // ─── Learnings Management ───────────────────────────────────────────────────

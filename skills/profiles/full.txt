@@ -46,8 +46,12 @@ cm-second-opinion-cli
 cm-secret-shield
 cm-security-gate
 cm-skill-chain
+cm-skill-evolution
+cm-skill-health
 cm-skill-index
 cm-skill-mastery
+cm-skill-search
+cm-skill-share
 cm-sprint-bus
 cm-start
 cm-status

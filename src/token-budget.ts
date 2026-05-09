@@ -28,6 +28,21 @@ export interface BudgetCheckResult {
   suggestion?: string;
 }
 
+export interface TierBudget {
+  tier: number;
+  label: string;
+  soft: number;
+  hard: number;
+}
+
+export interface TokenSavings {
+  brainRoutingSaved: number;
+  cacheHitsSaved: number;
+  progressiveLoadSaved: number;
+  totalSaved: number;
+  sessionTasks: number;
+}
+
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const CM_DIR = '.cm';
@@ -150,6 +165,112 @@ export function generateBudgetReport(budget: TokenBudget): string {
   lines.push(
     `${'TOTAL'.padEnd(25)} ${sum.toLocaleString().padStart(10)} ${(((sum / total) * 100).toFixed(2) + '%').padStart(10)}`
   );
+
+  return lines.join('\n');
+}
+
+// ─── Per-Tier Budgets (Smart Brain Router integration) ───────────────────────
+
+/**
+ * Default per-tier token budgets for the 5-Tier Brain architecture.
+ * Used by SmartBrainRouter to enforce tier-level spending limits.
+ */
+export function getDefaultTierBudgets(): TierBudget[] {
+  return [
+    { tier: 1, label: 'Sensory',    soft: 0,    hard: 0     }, // Always on, zero cost
+    { tier: 2, label: 'Working',    soft: 500,  hard: 1000  }, // CONTINUITY.md
+    { tier: 3, label: 'Long-term',  soft: 500,  hard: 3000  }, // Learnings/decisions
+    { tier: 4, label: 'Semantic',   soft: 0,    hard: 2000  }, // qmd vector search
+    { tier: 5, label: 'Structural', soft: 0,    hard: 4000  }, // CodeGraph AST
+  ];
+}
+
+/**
+ * Check if a tier's token usage is within budget.
+ */
+export function checkTierBudget(
+  tierBudgets: TierBudget[],
+  tier: number,
+  tokenCount: number,
+  enforcement: 'soft' | 'hard' = 'soft'
+): BudgetCheckResult {
+  const budget = tierBudgets.find(tb => tb.tier === tier);
+  if (!budget) {
+    return { allowed: false, remaining: 0, suggestion: `Unknown tier ${tier}` };
+  }
+
+  const limit = enforcement === 'hard' ? budget.hard : budget.soft;
+  if (limit === 0) {
+    // Tier is disabled by default (soft=0), but allowed up to hard limit
+    if (tokenCount <= budget.hard) {
+      return { allowed: true, remaining: budget.hard - tokenCount };
+    }
+    return {
+      allowed: false,
+      remaining: budget.hard - tokenCount,
+      suggestion: `Tier ${tier} (${budget.label}) exceeds hard limit of ${budget.hard} tokens.`,
+    };
+  }
+
+  const remaining = limit - tokenCount;
+  if (remaining >= 0) {
+    return { allowed: true, remaining };
+  }
+
+  return {
+    allowed: enforcement !== 'hard',
+    remaining,
+    suggestion: `Tier ${tier} (${budget.label}) over by ~${Math.abs(remaining)} tokens. Consider L0 loading.`,
+  };
+}
+
+/**
+ * Generate a tier-level budget report.
+ */
+export function generateTierReport(tierBudgets: TierBudget[]): string {
+  const lines: string[] = [
+    `Brain Tier Budget Report`,
+    '─'.repeat(60),
+    `${'Tier'.padEnd(6)} ${'Label'.padEnd(12)} ${'Soft'.padStart(8)} ${'Hard'.padStart(8)} ${'Status'.padStart(10)}`,
+    '─'.repeat(60),
+  ];
+
+  for (const tb of tierBudgets) {
+    const status = tb.soft === 0 ? 'off/demand' : 'active';
+    lines.push(
+      `${String(tb.tier).padEnd(6)} ${tb.label.padEnd(12)} ${tb.soft.toLocaleString().padStart(8)} ${tb.hard.toLocaleString().padStart(8)} ${status.padStart(10)}`
+    );
+  }
+
+  const totalSoft = tierBudgets.reduce((s, tb) => s + tb.soft, 0);
+  const totalHard = tierBudgets.reduce((s, tb) => s + tb.hard, 0);
+  lines.push('─'.repeat(60));
+  lines.push(
+    `${'TOTAL'.padEnd(18)} ${totalSoft.toLocaleString().padStart(8)} ${totalHard.toLocaleString().padStart(8)}`
+  );
+
+  return lines.join('\n');
+}
+
+/**
+ * Format token savings report for CLI display.
+ */
+export function formatSavingsReport(savings: TokenSavings): string {
+  const lines: string[] = [
+    `💰 Token Savings Report`,
+    '─'.repeat(50),
+    `Brain routing:       ~${savings.brainRoutingSaved.toLocaleString()} tokens saved`,
+    `Cache hits:          ~${savings.cacheHitsSaved.toLocaleString()} tokens saved`,
+    `Progressive loading: ~${savings.progressiveLoadSaved.toLocaleString()} tokens saved`,
+    '─'.repeat(50),
+    `Total saved:         ~${savings.totalSaved.toLocaleString()} tokens`,
+    `Tasks this session:  ${savings.sessionTasks}`,
+  ];
+
+  if (savings.sessionTasks > 0) {
+    const avgSaved = Math.round(savings.totalSaved / savings.sessionTasks);
+    lines.push(`Avg saved per task:  ~${avgSaved.toLocaleString()} tokens`);
+  }
 
   return lines.join('\n');
 }

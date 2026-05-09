@@ -1,73 +1,26 @@
 ---
 name: cm-engineering-meta
-description: "Use when looking up quick wins, access patterns, or voice map for the engineering meta layer."
+description: "[Deprecated] engineering bridge merged. Use `cm-mcp-engineering` instead."
+deprecated: true
+merged_into: cm-mcp-engineering
 ---
-# cm-engineering-meta — quick wins + access + voice map
 
-## Search before building
+# cm-engineering-meta — Deprecated
 
-Before adding infrastructure, search in three layers:
+> ⚠️ This skill is deprecated as of CodyMaster v6.0.0 and will be removed in v6.1.0.
+>
+> **Use `cm-mcp-engineering` instead.** engineering bridge merged.
+>
+> See [docs/migration-v2.md](../../docs/migration-v2.md) for the full mapping.
 
-1. **Tried-and-true** — patterns already in this repo / sibling services.
-2. **New-and-popular** — current docs for your stack version.
-3. **First-principles** — only when 1–2 don’t apply.
+The original content is preserved at [SKILL.archive.md](SKILL.archive.md) for reference.
 
-## AskUserQuestion format
+## Migration
 
-When asking the human to choose:
-
-- Short **context** (what you already know).
-- Clear **question**.
-- **RECOMMENDATION** (one option you’d pick and why).
-- Lettered options **A / B / C** (not vague yes/no).
-
-## Review readiness dashboard (ASCII)
-
-Before ship, print a table:
-
-```
-| Gate        | Status | Notes |
-|-------------|--------|-------|
-| Tests       | ?      |       |
-| Lint/Type   | ?      |       |
-| Secrets     | ?      |       |
-| Manual QA   | ?      |       |
+```bash
+# Old:           cm <use this skill>
+# New (v6.0+):   cm mcp-engineering <equivalent action>
 ```
 
-## Completeness gap (code review)
-
-Flag when an **80% solution** is chosen but the **100%** path costs **< 30 minutes** (tests, edge case, docs).
-
-## Investigate Iron Law
-
-- Do **not** patch without a **root cause** hypothesis.
-- After **three** failed fix attempts, stop and question architecture or gather more data.
-
-## Access controls (Goose-style)
-
-- Maintain lists: **autonomous_ok** vs **confirm_required** skill groups (see `.cm/config.example.yaml`).
-- Respect “stop suggesting skill X” in session notes.
-
-## Provider abstraction
-
-Prefer interfaces for LLM calls so **cm-second-opinion** can swap `OPENAI_API_KEY` / future providers without rewriting skills.
-
-## Proactive skill suggestion
-
-Infer stage from files touched and git state:
-
-- Many `test/` edits → suggest **cm-test-gate**.
-- `Dockerfile` / deploy scripts → **cm-safe-deploy** + **cm canary**.
-- `rm` / migration scripts → **cm-guardian** + **cm-secret-shield**.
-
-## Voice-friendly triggers (examples)
-
-| Phrase (approx.) | Skill / command |
-|------------------|-----------------|
-| “Run a security check” | cm-secret-shield / cm-security-gate |
-| “Test the website” | cm browse + cm qa-visual |
-| “Code review this” | cm-code-review |
-| “Deploy safely” | cm-safe-deploy |
-| “Log what went wrong” | `cm retro --note "…"` |
-
-Use Whisper / AquaVoice → paste transcript; map keywords to the table above.
+If you depend on a capability that didn't carry over, please file an issue:
+https://github.com/tody-agent/codymaster/issues

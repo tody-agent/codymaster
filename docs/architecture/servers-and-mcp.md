@@ -39,6 +39,7 @@ Operator guide (token, Chromium, troubleshooting): [Browse daemon runbook](../br
 - `cm_query`, `cm_resolve`
 - `cm_bus_read`, `cm_bus_write`
 - `cm_budget_check`, `cm_memory_decay`, `cm_index_refresh`
+- `cm_advisory_report`, `cm_advisory_metrics`, `cm_advisory_handoff`
 - `cm_plan`, `cm_review`, `cm_qa`, `cm_deploy`, `cm_search`, `cm_memory_query`
 
 ## Protocol Model
@@ -65,4 +66,3 @@ See also:
 - [REST and MCP API Surface](../api/rest-and-mcp.md)
 - [Engineering Pipeline](../workflows/engineering-pipeline.md)
 - [Storage and Memory Model](./data-and-memory.md)
-

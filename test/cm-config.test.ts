@@ -20,12 +20,12 @@ describe('cm-config', () => {
     expect(loadCmConfig(tmp)).toEqual({});
   });
 
-  it('parses browse, guardian, storage, canary', () => {
+  it('parses browse, guardian, storage, canary and ignores legacy viking config block', () => {
     fs.writeFileSync(
       path.join(tmp, '.cm', 'config.yaml'),
       [
         'storage:',
-        '  backend: viking',
+        '  backend: sqlite',
         '  viking:',
         '    host: 10.0.0.2',
         '    port: 1999',
@@ -44,9 +44,8 @@ describe('cm-config', () => {
       'utf8'
     );
     const c = loadCmConfig(tmp);
-    expect(c.storage?.backend).toBe('viking');
-    expect(c.storage?.viking?.host).toBe('10.0.0.2');
-    expect(c.storage?.viking?.port).toBe(1999);
+    expect(c.storage?.backend).toBe('sqlite');
+    expect(c.storage && 'viking' in c.storage).toBe(false);
     expect(c.browse?.port).toBe(18080);
     expect(c.browse?.host).toBe('0.0.0.0');
     expect(c.guardian?.whitelist_prefixes).toEqual(['pnpm run build']);

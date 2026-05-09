@@ -43,6 +43,7 @@ describe('engineering kit gate — CLI surface', () => {
       'browse',
       'sprint',
       'guardian',
+      'advisory',
       'canary',
       'second-opinion',
       'qa-visual',
@@ -59,6 +60,9 @@ describe('engineering kit gate — CLI surface', () => {
     assertCommandChain(program, ['browse', 'start']);
     assertCommandChain(program, ['sprint', 'init']);
     assertCommandChain(program, ['guardian', 'check']);
+    assertCommandChain(program, ['advisory', 'report']);
+    assertCommandChain(program, ['advisory', 'metrics']);
+    assertCommandChain(program, ['advisory', 'handoff']);
     assertCommandChain(program, ['retro', 'summary']);
     assertCommandChain(program, ['design-studio', 'init']);
     assertCommandChain(program, ['design-studio', 'status']);

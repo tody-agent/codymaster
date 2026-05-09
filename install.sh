@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ════════════════════════════════════════════════════════════════
-#  CodyMaster — Universal Installer Bootstrap (v5.2.0)
+#  CodyMaster — Universal Installer Bootstrap (v6.1.0)
 #
 #  Quick paths:
 #    npm install -g codymaster && cm        ← the canonical install
@@ -15,7 +15,7 @@
 
 set -e
 
-VERSION="5.2.0"
+VERSION="6.1.0"
 REPO_URL="https://github.com/tody-agent/codymaster"
 RAW_URL="https://raw.githubusercontent.com/tody-agent/codymaster/main"
 

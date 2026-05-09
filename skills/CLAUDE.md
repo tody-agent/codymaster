@@ -129,11 +129,6 @@ The YAML frontmatter `description` field is critical for skill discovery: includ
 /plugin install systems-architecture@wondelai-skills # DDIA, System Design, Clean Architecture, Release It!, High Performance Browser Networking
 ```
 
-### Via skills.sh
-```bash
-npx skills add wondelai/skills              # All skills
-npx skills add wondelai/skills/{skill-name} # Individual skill
-```
 
 ## Versioning Policy
 

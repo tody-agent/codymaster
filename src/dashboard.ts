@@ -17,6 +17,13 @@ import type { ChainExecution } from './skill-chain';
 export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = false) {
   const app = express();
   app.disable('x-powered-by');
+  app.use((_req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';");
+    next();
+  });
   app.use(express.json({ limit: '1mb' }));
 
   const publicDir = path.join(__dirname, '..', 'public', 'dashboard');
@@ -841,7 +848,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
   // ─── Start Server ─────────────────────────────────────────────────────
 
-  const server = app.listen(port, () => {
+  const server = app.listen(port, '127.0.0.1', () => {
     try { fs.writeFileSync(PID_FILE, String(process.pid)); } catch {}
     if (!silent) {
       console.log(chalk.cyan(`\n🚀 Mission Control at http://codymaster.localhost:${port}`));

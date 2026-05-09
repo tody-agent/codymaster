@@ -4,6 +4,37 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+## [Unreleased]
+
+### 🚀 Improvements — Zero-Token Skill Discovery
+- Removed LLM token waste on skill search by porting deterministic tech-stack parsing natively into `src/indexer/skills.ts`.
+- Introduced `cm index skills` CLI command to compile `.cm/project-skills.md` locally.
+- Updated Fission framework (`cm-project-bootstrap`, `cm-skill-index`, `AGENTS.md`) to prioritize zero-token local indexes over massive community directory sweeps.
+
+### 🚀 Improvements — CodyMaster v6.0 "Self-Evolving Brain"
+
+- **Smart Brain Router** — `src/smart-brain-router.ts` adds a zero-cost keyword-based classifier that dynamically selects the optimal memory tiers for incoming tasks, reducing token waste by up to 60-80% for simple tasks.
+- **Skill Execution Cache** — `src/skill-execution-cache.ts` introduces an FTS5-backed warm cache for successful execution chains (effectiveness >= 0.70), skipping BM25 and LLM selection entirely for recurring task patterns.
+- **Per-Tier Adaptive Token Budgeting** — Enhanced `src/token-budget.ts` controls budgets natively per memory tier and visually outputs budget and savings reports.
+- **Evolution Engine (Skill Evolver)** — `src/skill-evolver.ts` brings true autonomy. CodyMaster now auto-repairs and auto-generates `SKILL.md` files locally with three modes: `FIX` (adds warnings to broken skills), `DERIVED` (clones highly successful fallback paths), and `CAPTURED` (creates new skills completely autonomously when a task completes without predefined skills). Ships with anti-loop protection and automatic `.md` backups.
+- **Learning Promoter** — `src/learning-promoter.ts` scans working memory for recurring failures or patterns (reinforced >= 3 times) and automatically promotes them into permanent `cm-learned-*` skills.
+- **New CLI Tools** — `cm smart plan/tiers`, `cm token report/savings`, and a full `cm evolve` lifecycle toolkit (`status`, `run`, `history`, `rollback`, `candidates`, `promote`).
+- **Comprehensive Testing** — Extensively covered the new architectures with 62 new testing scenarios (system currently sits at 302 passed tests natively).
+
+### 🚀 Improvements — OpenViking De-scope
+
+- Removed OpenViking auto-installation from `install.sh` and `scripts/postinstall.js`; CodyMaster now keeps the normal install path focused on the supported Node-first stack.
+- Updated runtime/config/docs guidance so `storage.backend: viking` is treated as a deprecated experimental path instead of a default-facing feature.
+- Removed the remaining OpenViking runtime backend, demo script, and dedicated tests; legacy `storage.backend: viking` configs now warn and fall back to SQLite.
+
+### 🚀 Improvements — Advisory Loop Productization
+
+- Added `cm advisory report`, `cm advisory metrics`, and `cm advisory handoff` so operators can inspect execution analyses, review per-skill quality, and generate structured recovery notes for `cm-skill-health` / `cm-skill-evolution`.
+- `selectTopSkills()` now uses recorded `skill_metrics` as a quality-weighted boost for optional step ranking, while mandatory `always` steps remain unchanged.
+- Added `src/advisory-handoff.ts` as the shared contract between analyzer output and self-healing workflows; the handoff can be emitted as Markdown or JSON.
+- Exposed the advisory loop to MCP clients via `cm_advisory_report`, `cm_advisory_metrics`, and `cm_advisory_handoff` in `src/mcp-context-server.ts`.
+- Added workflow and API docs for the advisory loop under `docs/workflows/advisory-loop.md` and `docs/api/api-reference.md`.
+
 ## [5.1.0] - 2026-04-11
 
 ### 🚀 Improvements — SkillsBench Intelligence + Ecosystem Reach

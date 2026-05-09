@@ -1,7 +1,7 @@
 {
   "name": "cm",
-  "version": "5.0.0",
-  "description": "CodyMaster — 68+ AI agent skills for the full development lifecycle: TDD, debugging, quality gates, safe deploy, design system, UX, content factory, secret scanning, CRO, brainstorming, and skill orchestration.",
+  "version": "6.0.0",
+  "description": "CodyMaster v2.0 — 39 focused AI agent skills with TL;DR compression, structured handoff JSON, per-project learnings, and token budgets. Lean, smart, self-improving plugin for vibe coding.",
   "author": {
     "name": "Tody Agent"
   },
