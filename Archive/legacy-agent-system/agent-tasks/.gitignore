@@ -1,0 +1,3 @@
+# Agent task files are transient — not tracked in git
+*
+!.gitignore

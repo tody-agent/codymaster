@@ -1,4 +1,4 @@
-[English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)
+[English](README.md) | [Tiếng Việt](README-vi.md)
 
 # 🧠 CodyMaster
 
@@ -98,6 +98,21 @@ graph LR
 ```
 
 
+
+### 🧘 Built-in Behavioral Discipline (Karpathy Principles)
+
+Inspired by [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls, CodyMaster embeds four always-on behavioral rules directly into the skills that own each phase — so your AI stays disciplined without extra prompting:
+
+| Rule | What it prevents | Where enforced |
+|---|---|---|
+| **Think Before Coding** — state assumptions, surface ambiguity, push back | Silent wrong guesses that waste hours | `cm-planning` |
+| **Simplicity First** — minimum code, no speculative abstractions | Bloated 1000-line solutions when 100 would do | `cm-clean-code`, `cm-tdd` |
+| **Surgical Changes** — every changed line traces to the task | Side-effect edits that break unrelated things | `cm-execution`, `cm-code-review` |
+| **Goal-Driven Execution** — verifiable success criteria before writing code | "Make it work" ambiguity → infinite loops | `cm-tdd`, `cm-quality-gate` |
+
+> *"The models make wrong assumptions and just run along with them. They overcomplicate code, don't clean up dead code, change things they shouldn't."* — Andrej Karpathy
+>
+> CodyMaster's response: bake the fix into the workflow, not into a prompt you'll forget.
 
 ### 🧠 The Unified Brain: 5-Tier Memory + Smart Spine
 

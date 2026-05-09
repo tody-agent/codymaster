@@ -14,7 +14,7 @@ function registerDashboardCommands(program) {
     program
         .command('dashboard [cmd]')
         .alias('dash')
-        .description('Dashboard server (start|stop|status|open)')
+        .description('Dashboard server (start|stop|status|open|tail)')
         .option('-p, --port <port>', 'Port number', String(data_1.DEFAULT_PORT))
         .action((cmd, opts) => {
         const port = parseInt(opts.port) || data_1.DEFAULT_PORT;
@@ -40,8 +40,82 @@ function registerDashboardCommands(program) {
             case 'url':
                 console.log(`http://localhost:${port}`);
                 break;
-            default: console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: start, stop, status, open, url')]));
+            case 'tail':
+                tailDashboard(port);
+                break;
+            default: console.log((0, box_1.renderResult)('error', `Unknown: ${cmd}`, [(0, theme_1.dim)('Available: start, stop, status, open, url, tail')]));
         }
+    });
+}
+function tailDashboard(port) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const chalk = require('chalk');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const WebSocket = require('ws');
+    const url = `ws://127.0.0.1:${port}/ws`;
+    console.log((0, theme_1.dim)(`Connecting to ${url} ...`));
+    let ws;
+    try {
+        ws = new WebSocket(url);
+    }
+    catch (err) {
+        console.log((0, box_1.renderResult)('error', `Cannot connect: ${err.message}`, [(0, theme_1.dim)('Is the dashboard running? cm dashboard start')]));
+        process.exit(1);
+    }
+    ws.on('open', () => {
+        console.log((0, theme_1.brand)('✓ Connected — listening for all events. Ctrl+C to stop.\n'));
+        // Subscribe to all projects (no filter)
+        ws.send(JSON.stringify({ action: 'unsubscribe' }));
+    });
+    ws.on('message', (raw) => {
+        var _a, _b;
+        try {
+            const msg = JSON.parse(raw.toString());
+            if (msg.type === 'subscribed' || msg.type === 'unsubscribed')
+                return;
+            const ts = new Date().toLocaleTimeString();
+            const prefix = chalk.gray(`[${ts}]`);
+            if (msg.type && msg.type.startsWith('task.')) {
+                const typeColor = msg.type === 'task.created' ? chalk.green
+                    : msg.type === 'task.deleted' ? chalk.red
+                        : msg.type === 'task.transitioned' ? chalk.yellow
+                            : chalk.cyan;
+                console.log(`${prefix} ${typeColor(msg.type.padEnd(20))} task=${chalk.white(((_a = msg.taskId) === null || _a === void 0 ? void 0 : _a.substring(0, 8)) || '?')} project=${chalk.gray(((_b = msg.projectId) === null || _b === void 0 ? void 0 : _b.substring(0, 8)) || '?')}`);
+                if (msg.data) {
+                    if (msg.data.from && msg.data.to) {
+                        console.log(`${chalk.gray('  └─')} ${msg.data.from} → ${msg.data.to}`);
+                    }
+                    else if (msg.data.title) {
+                        console.log(`${chalk.gray('  └─')} ${msg.data.title}`);
+                    }
+                }
+            }
+            else if (msg.type === 'activity.added') {
+                const a = msg.activity || {};
+                console.log(`${prefix} ${chalk.magenta('activity.added'.padEnd(20))} ${a.type || '?'}: ${chalk.white(a.message || '')}`);
+            }
+            else if (msg.type === 'agent.heartbeat') {
+                console.log(`${prefix} ${chalk.blue('agent.heartbeat'.padEnd(20))} tasks=${(msg.runningTaskIds || []).length}`);
+            }
+            else {
+                console.log(`${prefix} ${chalk.gray(JSON.stringify(msg).substring(0, 120))}`);
+            }
+        }
+        catch (_c) {
+            // ignore parse errors
+        }
+    });
+    ws.on('error', (err) => {
+        console.log((0, box_1.renderResult)('error', `WebSocket error: ${err.message}`));
+    });
+    ws.on('close', () => {
+        console.log((0, box_1.renderResult)('warning', 'Connection closed.'));
+        process.exit(0);
+    });
+    process.on('SIGINT', () => {
+        console.log((0, theme_1.dim)('\nStopped.'));
+        ws.close();
+        process.exit(0);
     });
 }
 function isDashboardRunning() {

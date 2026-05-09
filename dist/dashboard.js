@@ -9,23 +9,26 @@ const chalk_1 = __importDefault(require("chalk"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const crypto_1 = __importDefault(require("crypto"));
+const pino_1 = __importDefault(require("pino"));
+const pino_http_1 = __importDefault(require("pino-http"));
 const data_1 = require("./data");
 const agent_dispatch_1 = require("./agent-dispatch");
+const event_bus_1 = require("./realtime/event-bus");
+const ws_hub_1 = require("./realtime/ws-hub");
 const continuity_1 = require("./continuity");
 const judge_1 = require("./judge");
 const skill_chain_1 = require("./skill-chain");
+const validate_1 = require("./schemas/validate");
+const task_schema_1 = require("./schemas/task-schema");
+const security_headers_1 = require("./middleware/security-headers");
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     const app = (0, express_1.default)();
     app.disable('x-powered-by');
-    app.use((_req, res, next) => {
-        res.setHeader('X-Content-Type-Options', 'nosniff');
-        res.setHeader('X-Frame-Options', 'DENY');
-        res.setHeader('X-XSS-Protection', '1; mode=block');
-        res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';");
-        next();
-    });
+    app.use((0, security_headers_1.securityHeaders)());
     app.use(express_1.default.json({ limit: '1mb' }));
+    const logger = (0, pino_1.default)({ level: 'info' });
+    app.use((0, pino_http_1.default)({ logger }));
     const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
     app.use(express_1.default.static(publicDir));
     // ─── Project API ────────────────────────────────────────────────────────
@@ -37,7 +40,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         });
         res.json(enriched);
     });
-    app.post('/api/projects', (req, res) => {
+    app.post('/api/projects', (0, validate_1.validateBody)(task_schema_1.createProjectSchema), (req, res) => {
         const data = (0, data_1.loadData)();
         const { name, path: pp, agents } = req.body;
         if (!name || typeof name !== 'string') {
@@ -89,7 +92,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             tasks = tasks.filter(t => t.projectId === req.query.projectId);
         res.json(tasks);
     });
-    app.post('/api/tasks', (req, res) => {
+    app.post('/api/tasks', (0, validate_1.validateBody)(task_schema_1.createTaskSchema), (req, res) => {
         const data = (0, data_1.loadData)();
         const { title, description, column, priority, projectId, agent, skill } = req.body;
         if (!title || typeof title !== 'string') {
@@ -120,6 +123,8 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         }
         (0, data_1.logActivity)(data, 'task_created', `Task "${task.title}" created`, rpid, agent || '', { taskId: task.id, column: tc });
         (0, data_1.saveData)(data);
+        event_bus_1.eventBus.emitTask({ type: 'task.created', taskId: task.id, projectId: task.projectId, data: task });
+        event_bus_1.eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto_1.default.randomUUID(), type: 'task_created', message: `Task "${task.title}" created`, projectId: rpid, taskId: task.id, actorId: agent || '', createdAt: new Date().toISOString() } });
         res.status(201).json(task);
     });
     app.post('/api/tasks/sync', (req, res) => {
@@ -148,12 +153,15 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         }
         (0, data_1.logActivity)(data, 'task_created', `Synced ${created.length} tasks`, project.id, agent || '', { count: created.length });
         (0, data_1.saveData)(data);
+        for (const t of created) {
+            event_bus_1.eventBus.emitTask({ type: 'task.created', taskId: t.id, projectId: t.projectId, data: t });
+        }
         res.status(201).json({ project, tasks: created });
     });
     // ─── Auto-Sync (Conversation Lifecycle) ─────────────────────────────
     // Agents and webhooks call this to report conversation status.
     // Upserts by conversationId — creates task if missing, transitions if status changes.
-    app.post('/api/tasks/auto-sync', (req, res) => {
+    app.post('/api/tasks/auto-sync', (0, validate_1.validateBody)(task_schema_1.autoSyncSchema), (req, res) => {
         const data = (0, data_1.loadData)();
         const { conversationId, title, status, agent, skill, projectId, projectName, priority } = req.body;
         if (!conversationId || !title) {
@@ -172,7 +180,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             'review': 'review',
             'completed': 'done',
             'done': 'done',
-            'cancelled': 'done',
+            'cancelled': 'cancelled',
         };
         const column = STATUS_TO_COLUMN[status || 'active'] || 'in-progress';
         // Find project — try by ID, then by name, then use first project
@@ -211,8 +219,10 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
                 data.tasks.filter(t => t.column === oldCol && t.projectId === task.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
                 const actType = column === 'done' ? 'task_done' : 'task_transitioned';
                 (0, data_1.logActivity)(data, actType, `Auto-sync: "${task.title}" ${oldCol} → ${column}`, task.projectId, agent || task.agent, { from: oldCol, to: column, conversationId });
+                event_bus_1.eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
             }
             (0, data_1.saveData)(data);
+            event_bus_1.eventBus.emitTask({ type: 'task.updated', taskId: task.id, projectId: task.projectId, data: data.tasks[taskIdx] });
             res.json({ action: 'updated', task: data.tasks[taskIdx] });
         }
         else {
@@ -236,6 +246,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             data.tasks.push(task);
             (0, data_1.logActivity)(data, 'task_created', `Auto-sync: "${task.title}" created in ${column}`, project.id, agent || '', { conversationId });
             (0, data_1.saveData)(data);
+            event_bus_1.eventBus.emitTask({ type: 'task.created', taskId: task.id, projectId: task.projectId, data: task });
             res.status(201).json({ action: 'created', task });
         }
     });
@@ -259,13 +270,14 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         }
         res.json({ removed, remaining: data.tasks.length });
     });
-    app.put('/api/tasks/:id', (req, res) => {
+    app.put('/api/tasks/:id', (0, validate_1.validateBody)(task_schema_1.updateTaskSchema), (req, res) => {
         const data = (0, data_1.loadData)();
         const idx = data.tasks.findIndex(t => t.id === req.params.id);
         if (idx === -1) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: data.tasks[idx].id });
         const { title, description, priority, agent, skill } = req.body;
         if (title !== undefined)
             data.tasks[idx].title = String(title).trim();
@@ -281,6 +293,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         data.tasks[idx].updatedAt = new Date().toISOString();
         (0, data_1.logActivity)(data, 'task_updated', `Task "${data.tasks[idx].title}" updated`, data.tasks[idx].projectId, agent || '');
         (0, data_1.saveData)(data);
+        event_bus_1.eventBus.emitTask({ type: 'task.updated', taskId: data.tasks[idx].id, projectId: data.tasks[idx].projectId, data: data.tasks[idx] });
         res.json(data.tasks[idx]);
     });
     app.put('/api/tasks/:id/move', (req, res) => {
@@ -290,6 +303,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: data.tasks[idx].id });
         const { column, order } = req.body;
         const vc = ['backlog', 'in-progress', 'review', 'done'];
         if (!column || !vc.includes(column)) {
@@ -311,6 +325,12 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         const actType = column === 'done' ? 'task_done' : 'task_moved';
         (0, data_1.logActivity)(data, actType, `Task "${task.title}" moved: ${oldCol} → ${column}`, task.projectId, task.agent, { from: oldCol, to: column });
         (0, data_1.saveData)(data);
+        if (oldCol !== column) {
+            event_bus_1.eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
+        }
+        else {
+            event_bus_1.eventBus.emitTask({ type: 'task.updated', taskId: task.id, projectId: task.projectId, data: task });
+        }
         res.json(task);
     });
     // ─── Valid Transition Map ─────────────────────────────────────────────
@@ -327,6 +347,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: data.tasks[idx].id });
         const { column, reason } = req.body;
         const vc = ['backlog', 'in-progress', 'review', 'done'];
         if (!column || !vc.includes(column)) {
@@ -365,6 +386,8 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             : `Task "${task.title}" transitioned: ${oldCol} → ${column}`;
         (0, data_1.logActivity)(data, actType, msg, task.projectId, task.agent, { from: oldCol, to: column, reason: reason || '' });
         (0, data_1.saveData)(data);
+        event_bus_1.eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
+        event_bus_1.eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto_1.default.randomUUID(), type: actType, message: msg, projectId: task.projectId, taskId: task.id, actorId: task.agent, createdAt: new Date().toISOString() } });
         res.json(task);
     });
     app.post('/api/tasks/bulk-transition', (req, res) => {
@@ -436,10 +459,13 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: data.tasks[idx].id });
         const [removed] = data.tasks.splice(idx, 1);
         data.tasks.filter(t => t.column === removed.column && t.projectId === removed.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
         (0, data_1.logActivity)(data, 'task_deleted', `Task "${removed.title}" deleted`, removed.projectId, removed.agent);
         (0, data_1.saveData)(data);
+        event_bus_1.eventBus.emitTask({ type: 'task.deleted', taskId: removed.id, projectId: removed.projectId, data: {} });
+        event_bus_1.eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto_1.default.randomUUID(), type: 'task_deleted', message: `Task "${removed.title}" deleted`, projectId: removed.projectId, taskId: removed.id, actorId: removed.agent, createdAt: new Date().toISOString() } });
         res.status(204).send();
     });
     // ─── Task Dispatch API ──────────────────────────────────────────────────
@@ -450,6 +476,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: task.id });
         const project = data.projects.find(p => p.id === task.projectId);
         const force = req.query.force === 'true';
         // Validate before dispatch
@@ -905,6 +932,9 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         res.json(chain || { match: false });
     });
     // ─── Fallback ──────────────────────────────────────────────────────────
+    app.use('/api/{*path}', (_req, res) => {
+        res.status(404).json({ error: 'not found' });
+    });
     app.get('/{*path}', (_req, res) => {
         res.sendFile(path_1.default.join(publicDir, 'index.html'));
     });
@@ -924,6 +954,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             console.log(chalk_1.default.gray(`  📊 Dashboard auto-started → http://codymaster.localhost:${port}`));
         }
     });
+    (0, ws_hub_1.initWsHub)(server);
     const cleanup = () => { try {
         fs_1.default.unlinkSync(data_1.PID_FILE);
     }

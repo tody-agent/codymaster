@@ -288,6 +288,13 @@
         if (e.target.closest('.project-delete-btn')) return;
         selectedProjectId = el.dataset.projectId || null;
         await refreshData();
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          if (selectedProjectId) {
+            ws.send(JSON.stringify({ action: 'subscribe', projectId: selectedProjectId }));
+          } else {
+            ws.send(JSON.stringify({ action: 'unsubscribe' }));
+          }
+        }
       });
     });
 
@@ -1258,6 +1265,41 @@
     }
   }
 
+  // ── WebSocket Client ─────────────────────────
+  let ws = null;
+  let wsReconnectTimer = null;
+
+  function connectWs() {
+    const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+    ws = new WebSocket(`${protocol}//${location.host}/ws`);
+
+    ws.onopen = () => {
+      console.log('WS connected');
+      if (selectedProjectId) {
+        ws.send(JSON.stringify({ action: 'subscribe', projectId: selectedProjectId }));
+      }
+    };
+
+    ws.onmessage = (event) => {
+      const msg = JSON.parse(event.data);
+      if (msg.type && msg.type.startsWith('task.')) {
+        refreshData(true);
+      }
+      if (msg.type === 'activity.added') {
+        refreshData(true);
+      }
+    };
+
+    ws.onclose = () => {
+      console.log('WS disconnected, falling back to polling');
+      ws = null;
+    };
+
+    ws.onerror = () => {
+      ws = null;
+    };
+  }
+
   // ── Init ───────────────────────────────────────
   async function init() {
     try {
@@ -1269,6 +1311,7 @@
       updateSyncStatus('synced');
       updateAutoRefreshUI();
       startAutoRefresh();
+      connectWs();
     } catch (err) {
       showToast('error', 'Failed to load: ' + err.message);
       updateSyncStatus('error');

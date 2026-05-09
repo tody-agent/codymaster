@@ -15,9 +15,26 @@ import subprocess
 import threading
 from pathlib import Path
 
-# Add cm-content-factory to sys.path to reuse the dispatcher and state manager
+# Reuse dispatcher and state manager from the content-factory plugin.
+# After the 2026-05-09 plugin split, content-factory lives in a separate plugin.
+# Resolution order: env override → sibling extracted-plugins (dev) → installed plugin paths.
 SKILLS_DIR = Path(__file__).resolve().parent.parent.parent
-CF_SCRIPTS = SKILLS_DIR / "cm-content-factory" / "scripts"
+REPO_ROOT = SKILLS_DIR.parent
+
+def _find_cf_scripts() -> Path:
+    env = os.environ.get("CONTENT_FACTORY_SCRIPTS")
+    if env and Path(env).exists():
+        return Path(env)
+    candidates = [
+        REPO_ROOT / "extracted-plugins" / "content-factory" / "skills" / "content-factory" / "scripts",
+        Path.home() / ".claude" / "plugins" / "cache" / "content-factory" / "skills" / "content-factory" / "scripts",
+    ]
+    for c in candidates:
+        if c.exists():
+            return c
+    return SKILLS_DIR / "cm-content-factory" / "scripts"  # legacy fallback
+
+CF_SCRIPTS = _find_cf_scripts()
 sys.path.append(str(CF_SCRIPTS))
 
 try:

@@ -1,0 +1,62 @@
+{
+  "$schema": "cm-video-factory-render-config",
+  "format": "tiktok",
+  "description": "Vertical 9:16 for TikTok, YouTube Shorts, Instagram Reels",
+  "composition": {
+    "id": "TikTokVideo",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "h264",
+    "imageFormat": "jpeg",
+    "pixelFormat": "yuv420p",
+    "crf": 18,
+    "audioBitrate": "192k",
+    "audioCodec": "aac"
+  },
+  "rendering": {
+    "concurrency": null,
+    "logLevel": "info",
+    "timeoutInMilliseconds": 120000,
+    "chromiumOptions": {
+      "disableWebSecurity": false,
+      "headless": true
+    }
+  },
+  "styling": {
+    "background": "#0A0A0A",
+    "primary_color": "#00F0FF",
+    "secondary_color": "#FF007F",
+    "accent_color": "#8B5CF6",
+    "text_color": "#FFFFFF",
+    "subtitle_font": "Be Vietnam Pro",
+    "code_font": "Fira Code",
+    "ui_font": "Inter"
+  },
+  "subtitle": {
+    "enabled": true,
+    "style": "tiktok_bounce",
+    "position": "bottom",
+    "margin_bottom": 120,
+    "font_size": 42,
+    "font_weight": 800,
+    "stroke_width": 3,
+    "stroke_color": "#000000",
+    "highlight_color": "#00F0FF",
+    "combine_tokens_ms": 800
+  },
+  "platform_rules": {
+    "max_duration_seconds": 180,
+    "recommended_duration": [15, 60],
+    "max_daily_uploads": 3,
+    "cooldown_hours": 4,
+    "hashtag_count": [3, 7],
+    "ai_label_required": true,
+    "safe_zone": {
+      "top": 150,
+      "bottom": 200,
+      "left": 40,
+      "right": 40
+    }
+  }
+}

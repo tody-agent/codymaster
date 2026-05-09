@@ -4,6 +4,171 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+---
+
+## [6.0.0] - 2026-05-10
+
+### 🚀 Major Release — "The Disciplined Brain"
+
+Đây là bản nâng cấp lớn nhất kể từ v4.5. Ba trụ cột thay đổi chính: **kỷ luật hành vi AI** (Karpathy Principles), **hạ tầng Dashboard Managed Agents** hoàn toàn mới, và **chuẩn hóa tài liệu toàn diện**.
+
+---
+
+### 🧘 Karpathy Behavioral Discipline — Nhúng kỷ luật vào từng kỹ năng
+
+Lấy cảm hứng từ [quan sát của Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876) về các lỗi phổ biến khi LLM viết code, CodyMaster nhúng 4 quy tắc hành vi cứng trực tiếp vào 6 kỹ năng cốt lõi — AI tự có kỷ luật mà không cần nhắc nhở.
+
+**4 quy tắc Karpathy được thực thi:**
+
+| Quy tắc | Kỹ năng thực thi |
+|---------|-----------------|
+| **Think Before Coding** — nêu giả định, làm rõ mơ hồ, phản biện trước khi viết | `cm-planning` |
+| **Simplicity First** — code tối thiểu, không trừu tượng hóa suy đoán | `cm-clean-code`, `cm-tdd` |
+| **Surgical Changes** — mọi dòng sửa đều có lý do rõ ràng từ task | `cm-execution`, `cm-code-review` |
+| **Goal-Driven Execution** — tiêu chí thành công có thể xác minh trước khi code | `cm-tdd`, `cm-quality-gate` |
+
+**Files cập nhật:**
+- `skills/cm-planning/SKILL.md` — thêm "Think Before Coding" gate ở bước đầu
+- `skills/cm-tdd/SKILL.md` — nhúng "Simplicity First" + "Goal-Driven" vào quy trình viết test
+- `skills/cm-clean-code/SKILL.md` — thêm "Simplicity First" audit checklist
+- `skills/cm-execution/SKILL.md` — nhúng "Surgical Changes" trước mọi thao tác sửa file
+- `skills/cm-code-review/SKILL.md` — thêm Karpathy Review Layer vào checklist
+- `skills/cm-quality-gate/SKILL.md` — thêm "Goal-Driven" verification gate
+- `AGENTS.md` — ghi rõ 4 nguyên tắc Karpathy làm behavioral contract toàn dự án
+
+---
+
+### 🏗️ Dashboard Managed Agents — Hạ tầng hoàn toàn mới
+
+Nâng cấp kiến trúc toàn diện cho `cm-dashboard`, tách biệt rõ ràng các lớp: Agent, Storage, Realtime.
+
+**Modules mới (`src/`):**
+
+- **`src/agent/`** — Lớp quản lý agent
+  - `backend.ts` — Agent backend abstraction layer
+  - `claude.ts` — Claude Code agent integration
+  - `codex.ts` — OpenAI Codex agent integration
+  - `spawn-helper.ts` — Cross-platform agent process spawner
+
+- **`src/realtime/`** — Lớp realtime
+  - `event-bus.ts` — In-process typed event bus cho agent lifecycle events
+  - `ws-hub.ts` — WebSocket hub để push live updates lên Dashboard UI
+
+- **`src/storage/`** — Lớp lưu trữ chuẩn hóa
+  - `sqlite.ts` — SQLite connection factory + WAL mode
+  - `index.ts` — Unified storage API
+  - `repos/activity-repo.ts` — Activity log CRUD
+  - `repos/message-repo.ts` — Agent message thread storage
+  - `repos/project-repo.ts` — Project metadata repository
+  - `repos/task-repo.ts` — Task lifecycle repository
+  - `services/project-service.ts` — Project business logic
+  - `services/task-service.ts` — Task state machine
+  - `migrations/001_init.sql` — Schema khởi tạo toàn bộ bảng
+
+- **`src/dashboard.ts`**, **`src/data.ts`** — Cập nhật để consume lớp storage mới
+- **`src/cli/commands/dashboard.ts`** — Wired up managed agent lifecycle
+- **`dist/`** — Toàn bộ dist artifact rebuild tương ứng
+
+**OpenSpec kèm theo:**
+- `openspec/changes/upgrade-cm-dashboard-to-managed-agents/design.md`
+- `openspec/changes/upgrade-cm-dashboard-to-managed-agents/specs/dashboard/spec.md`
+- `openspec/changes/upgrade-cm-dashboard-to-managed-agents/tasks.md`
+
+**Test:**
+- `test/dashboard.test.ts` — Test suite đầy đủ cho dashboard managed agents
+
+---
+
+### 📦 Extracted Plugins — Content Factory & Growth Marketing
+
+Tách 2 plugin lớn thành các package độc lập với đầy đủ metadata và migration guide.
+
+**`extracted-plugins/content-factory/`:**
+- `.claude-plugin/marketplace.json` + `plugin.json`
+- `AGENTS.md` — Behavioral contract cho content agent
+- `MIGRATION.md` — Hướng dẫn upgrade từ inline skills
+- Skills: `auto-publisher`, `content-factory`, `notebooklm` (cập nhật đồng bộ)
+
+**`extracted-plugins/growth-marketing/`:**
+- `.claude-plugin/marketplace.json` + `plugin.json`
+- `AGENTS.md` — Behavioral contract cho growth agent
+- `MIGRATION.md` — Hướng dẫn upgrade từ inline skills
+- Skills: `ads-tracker`, `booking-calendar`, `cro-methodology`, `google-form`, `growth-hacking`, `jtbd`, `readit` (cập nhật đồng bộ)
+
+---
+
+### 🗂️ Unified Install Engine — npm-first, 14 nền tảng
+
+Wizard `cm` mới: phát hiện tự động mọi AI tool đang cài, multi-select platform, pick profile, cài một lần.
+
+```bash
+npm install -g codymaster && cm
+```
+
+**CLI mới:**
+```
+cm install <platform>            # cài hoặc refresh một nền tảng
+cm install --all --profile core  # cài vào mọi nền tảng phát hiện được
+cm doctor                        # kiểm tra trạng thái cài đặt
+cm install --list                # liệt kê tất cả platform id
+```
+
+**14 nền tảng hỗ trợ:** Claude Code, Claude Desktop, Cursor, Windsurf, Cline, Aider, Continue, Kiro, Amazon Q, Amp, Copilot, OpenCode, Codex, Antigravity/Gemini CLI.
+
+---
+
+### 📁 Archive & Research — Dọn dẹp repo
+
+- `Archive/` — Di chuyển tất cả file legacy/deprecated vào đây thay vì xóa:
+  - `deprecated-docs/translations/` — Các README ngôn ngữ cũ (hi, ko, ru, zh)
+  - `experiments/gemini/` — Gemini extension thử nghiệm
+  - `legacy-agent-system/` — cm-video-factory, xss-html-injection skills cũ
+  - `legacy-editors/` — codex + opencode INSTALL.md cũ
+  - `legacy-plugins/cursor-plugin/` — cursor plugin cũ
+- `research/` — Tài liệu nghiên cứu nội bộ (`multica.md`, `rtk.md`)
+- `MIGRATION.md` — Hướng dẫn migration tổng thể từ v5.x → v6.0
+
+---
+
+### 📚 Documentation & README — Chuẩn hóa toàn diện
+
+**README.md (English):**
+- Phiên bản v6.0.0
+- Thêm phần **Karpathy Behavioral Discipline** với bảng 4 quy tắc
+- Cập nhật install section: unified `npm install -g codymaster && cm`
+- Cập nhật bảng so sánh, skill arsenal, và CLI commands
+- **Xóa 4 ngôn ngữ thừa** (zh, ru, ko, hi) — chỉ giữ EN + VI
+- Language bar: `[English](README.md) | [Tiếng Việt](README-vi.md)`
+
+**README-vi.md (Vietnamese):**
+- Viết lại hoàn toàn từ đầu, đồng bộ 100% với README.md EN v6.0.0
+- Thêm phần Karpathy, unified install wizard, Growth Hacking Engine
+- Cập nhật version badge → v6.0.0
+- Bảng so sánh cập nhật: "npm i -g codymaster" thay vì "git pull"
+- Cập nhật `.opencode/skills/cm-dashboard/SKILL.md`
+
+---
+
+### 🔧 Skill Profiles
+
+- `skills/profiles/design.txt` — Cập nhật danh sách kỹ năng
+- `skills/profiles/full.txt` — Thêm kỹ năng mới từ extracted plugins
+- `skills/profiles/growth.txt` — Đồng bộ với growth-marketing plugin
+- `skills/profiles/knowledge.txt` — Cập nhật knowledge pack
+- `skills/profiles/top35.json` — Cập nhật metadata và scoring
+
+---
+
+### 📦 Package
+
+- `package.json` — Bump version + dependency updates
+- `package-lock.json` — Lock file cập nhật
+- `.claude-plugin/marketplace.json` + `plugin.json` — Metadata plugin cập nhật
+- `.claude/settings.local.json` — Cập nhật local settings
+- `skills/cm-autopilot/scripts/autopilot.py` — Minor fixes
+
+---
+
 ## [Unreleased]
 
 ### 🚀 Improvements — Zero-Token Skill Discovery

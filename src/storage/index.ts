@@ -1,0 +1,13 @@
+export { getDashboardDb, closeDashboardDb, runMigrations, DASHBOARD_DB_PATH } from './sqlite';
+export { createProjectRepo } from './repos/project-repo';
+export type { DbProject, CreateProjectInput, ProjectRepo } from './repos/project-repo';
+export { createTaskRepo, isValidTransition } from './repos/task-repo';
+export type { DbTask, CreateTaskInput, TaskStatus, AssigneeType, Priority, TaskRepo } from './repos/task-repo';
+export { createActivityRepo } from './repos/activity-repo';
+export type { DbActivity, CreateActivityInput, ActivityRepo } from './repos/activity-repo';
+export { createMessageRepo } from './repos/message-repo';
+export type { DbTaskMessage, CreateMessageInput, MessageRepo } from './repos/message-repo';
+export { createProjectService } from './services/project-service';
+export type { ProjectService, ProjectCreatedEvent, ProjectDeletedEvent } from './services/project-service';
+export { createTaskService } from './services/task-service';
+export type { TaskService, TaskCreatedEvent, TaskTransitionedEvent, TaskUpdatedEvent, TaskDeletedEvent } from './services/task-service';
