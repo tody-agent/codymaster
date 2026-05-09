@@ -396,6 +396,16 @@ Writes to `.cm/handoff/party.json` matching `PartyHandoff` from `src/handoff/con
 | `/cm-status` | Quick terminal progress summary |
 | `/cm-dashboard` | Open browser dashboard |
 
+## Karpathy Discipline — Surgical Changes
+
+Every executor (single agent or subagent fleet) must follow:
+- **Touch only what the task requires.** No "while I'm here" formatting, renames, or refactors.
+- **Match existing style** even if you'd write it differently. Consistency > taste.
+- **Notice unrelated dead code? Mention it, don't delete.** Out-of-scope cleanup → spawn a separate task.
+- **Clean only your own orphans.** If your edit makes an import/var unused, remove it. Pre-existing dead code stays unless explicitly asked.
+
+**Diff test:** Every changed line should trace to the task. If a reviewer asks "why this line?", you must point at the task — not "felt cleaner".
+
 ## The Bottom Line
 
 **Choose your mode. Execute systematically. Review at every checkpoint.**
