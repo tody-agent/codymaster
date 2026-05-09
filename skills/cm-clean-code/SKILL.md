@@ -304,6 +304,17 @@ cm-execution → cm-clean-code → cm-code-review → cm-quality-gate → cm-saf
    (build)      (hygiene)        (review)          (verify)         (ship)
 ```
 
+## Karpathy Discipline — Simplicity First
+
+Combat over-engineering at the source, not after the fact:
+- **No features beyond what was asked.** No "while I'm here" additions.
+- **No abstractions for single-use code.** Three similar lines beats a premature interface.
+- **No flexibility/configurability that wasn't requested.** YAGNI is the default.
+- **No error handling for impossible scenarios.** Trust internal callers; validate at boundaries.
+- **200 lines that should be 50 → rewrite, don't ship.**
+
+**Senior-engineer test:** "Would a senior call this overcomplicated?" If yes, simplify before commit.
+
 ## The Bottom Line
 
 **Clean code = investment. Dirty code = debt. Pay as you go, or pay with interest later.**

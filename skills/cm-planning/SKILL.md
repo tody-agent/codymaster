@@ -85,10 +85,21 @@ Update `.cm/CONTINUITY.md`:
 | Tests first | `cm-tdd` |
 | UI/frontend | `cm-ui-preview` |
 
+## Karpathy Discipline — Think Before Coding
+
+Before writing the plan, surface what's uncertain instead of guessing:
+- **State assumptions explicitly.** List them in the plan; mark each as "verified" or "needs confirmation".
+- **Multiple interpretations?** Present them side-by-side with tradeoffs. Don't pick silently.
+- **Simpler path exists?** Say so. Push back on over-scoped requests.
+- **Confused?** Stop. Name the confusion. Ask. Cheaper than building the wrong thing.
+
+**Self-test:** "Could a reviewer point to anything in this plan I'm guessing about?" If yes, mark it.
+
 ## Anti-Patterns
 - ❌ Coding before plan exists
 - ❌ Skipping handoff JSON (downstream skills lose context)
 - ❌ Vague tasks ("refactor the code")
+- ❌ Hidden assumptions — pick one interpretation without telling the user
 
 ## The Bottom Line
 **Think before you build. Document before you code. Emit handoff so the next skill picks up cold.**

@@ -156,6 +156,17 @@ After processing review feedback, ALWAYS update `.cm/CONTINUITY.md`:
 | `cm-identity-guard` | Before git push |
 | `cm-git-worktrees` | Cleanup worktree after completion |
 
+## Karpathy Discipline — Review Checklist
+
+Block any PR/diff that violates these regardless of green tests:
+- **Scope creep:** changed line that doesn't trace to the task → request removal.
+- **Bloat:** new abstraction with one caller, premature config, error paths for impossible inputs → request simplification.
+- **Side-effect edits:** unrelated formatting, renamed identifiers, "improved" comments not in scope → revert.
+- **Hidden assumptions:** logic that depends on an unstated invariant → require it surfaced (test or doc) or rejected.
+- **Weak goals:** PR description says "make it work" with no verifiable criterion → send back to planning.
+
+**Review heuristic:** if you can't answer "what task forced this line?" for every changed line, the diff is too wide.
+
 ## The Bottom Line
 
 **Review early. Verify feedback. Ship with evidence, not hope.**

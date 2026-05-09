@@ -361,6 +361,16 @@ Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix 
 
 Never fix bugs without a test.
 
+## Karpathy Discipline — Goal-Driven Execution
+
+TDD is the canonical form of goal-driven execution. Reinforce it:
+- **Translate vague tasks into verifiable goals before writing code.**
+  - "Add validation" → "Test invalid inputs fail; valid inputs pass."
+  - "Fix the bug" → "Test reproduces it red; fix turns it green."
+  - "Refactor X" → "Same tests green before and after."
+- **Strong success criteria let you loop independently.** Weak criteria ("make it work") force the user to babysit.
+- **Minimum code to pass.** Don't over-implement to "anticipate" the next test — write that test first.
+
 ## Final Rule
 
 ```
