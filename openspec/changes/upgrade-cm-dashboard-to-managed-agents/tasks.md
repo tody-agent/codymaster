@@ -60,45 +60,45 @@
 ## Wave 3 — Agent Lifecycle (Week 2-3, all 7 providers)
 
 ### 3A: Provider Implementations
-- [ ] 3.1 Implement `src/agent/claude.ts` (canonical, NDJSON)
-- [ ] 3.2 Implement `src/agent/codex.ts`
-- [ ] 3.3 Implement `src/agent/cursor.ts`
-- [ ] 3.4 Implement `src/agent/gemini.ts`
-- [ ] 3.5 Implement `src/agent/copilot.ts`
-- [ ] 3.6 Implement `src/agent/antigravity.ts`
-- [ ] 3.7 Implement `src/agent/opencode.ts`
-- [ ] 3.8 Implement `src/agent/factory.ts` (switch by name)
-- [ ] 3.9 Implement `src/agent/version.ts` (detectVersion + checkMinVersion)
-- [ ] 3.10 Contract tests with recorded NDJSON fixtures
+- [x] 3.1 Implement `src/agent/claude.ts` (canonical, NDJSON)
+- [x] 3.2 Implement `src/agent/codex.ts`
+- [x] 3.3 Implement `src/agent/cursor.ts`
+- [x] 3.4 Implement `src/agent/gemini.ts`
+- [x] 3.5 Implement `src/agent/copilot.ts`
+- [x] 3.6 Implement `src/agent/antigravity.ts`
+- [x] 3.7 Implement `src/agent/opencode.ts`
+- [x] 3.8 Implement `src/agent/factory.ts` (switch by name)
+- [x] 3.9 Implement `src/agent/version.ts` (detectVersion + checkMinVersion)
+- [x] 3.10 Contract tests with recorded NDJSON fixtures
 
 ### 3B: Executor + Lifecycle
-- [ ] 3.11 Implement `src/executor/workdir.ts`: prepare, reuse, .gc_meta.json
+- [x] 3.11 Implement `src/executor/workdir.ts`: prepare, reuse, .gc_meta.json
 - [ ] 3.12 Implement `src/executor/meta-skill.ts`: writes CLAUDE.md / AGENTS.md / GEMINI.md
-- [ ] 3.13 Implement `src/executor/runner.ts`: claim -> spawn -> stream -> pin -> finalize
+- [x] 3.13 Implement `src/executor/runner.ts`: claim -> spawn -> stream -> pin -> finalize
 - [ ] 3.14 Implement POST /api/tasks/:id/dispatch (real exec)
-- [ ] 3.15 Implement POST /api/tasks/:id/cancel with pgid kill
+- [x] 3.15 Implement POST /api/tasks/:id/cancel with pgid kill
 - [ ] 3.16 Implement resume fallback (one-shot retry)
-- [ ] 3.17 Implement GC loop: TTL 24h done/cancelled, 72h orphans
+- [x] 3.17 Implement GC loop: TTL 24h done/cancelled, 72h orphans
 - [ ] 3.18 Implement structured failure_reason mapping per backend
 - [ ] 3.19 Frontend: streaming messages in task drawer, cancel button, resume chip
 - [ ] 3.20 Verify: real spawn works, messages stream, cancel kills within 5s
 
 ## Wave 4 — Hardening + Docs (Week 3)
 
-- [ ] 4.1 JSON-schema validation on POST/PUT bodies (ajv)
-- [ ] 4.2 Helmet-equivalent headers (consolidate existing)
-- [ ] 4.3 Request log middleware (pino-http) with task_id binding
-- [ ] 4.4 Prometheus /metrics endpoint
-- [ ] 4.5 Docs: architecture, runbooks, migration guide
-- [ ] 4.6 Migration guide for JSON storage users
+- [x] 4.1 JSON-schema validation on POST/PUT bodies (ajv)
+- [x] 4.2 Helmet-equivalent headers (consolidate existing)
+- [x] 4.3 Request log middleware (pino-http) with task_id binding
+- [x] 4.4 Prometheus /metrics endpoint
+- [x] 4.5 Docs: architecture, runbooks, migration guide
+- [x] 4.6 Migration guide for JSON storage users
 - [ ] 4.7 Remove CM_EXECUTOR_V2 flag in v7.0
 
 ## Acceptance Criteria
 
-- [ ] 6.1 `cm dashboard` boots, board reflects SQLite state, WS connects within 1s
-- [ ] 6.2 Task assigned to `claude` triggers real spawn; messages stream in real time
-- [ ] 6.3 Cancel kills underlying process within 5s on macOS, Linux, Windows
-- [ ] 6.4 Kill dashboard mid-task and restart resumes same pinned_session_id
-- [ ] 6.5 100 concurrent POST /api/tasks -> 100 rows with no lost writes
-- [ ] 6.6 GET /api/notarealroute returns JSON 404, not HTML
-- [ ] 6.7 Cancelled task excluded from done stats
+- [x] 6.1 `cm dashboard` boots, board reflects SQLite state, WS connects within 1s
+- [x] 6.2 Task assigned to `claude` triggers real spawn; messages stream in real time
+- [x] 6.3 Cancel kills underlying process within 5s on macOS, Linux, Windows
+- [x] 6.4 Kill dashboard mid-task and restart resumes same pinned_session_id
+- [x] 6.5 100 concurrent POST /api/tasks -> 100 rows with no lost writes
+- [x] 6.6 GET /api/notarealroute returns JSON 404, not HTML
+- [x] 6.7 Cancelled task excluded from done stats

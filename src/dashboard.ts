@@ -3,6 +3,8 @@ import chalk from 'chalk';
 import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
+import pino from 'pino';
+import pinoHttp from 'pino-http';
 import { loadData, saveData, logActivity, DATA_FILE, PID_FILE, DEFAULT_PORT } from './data';
 import type { Project, Task, Deployment, ChangelogEntry } from './data';
 import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
@@ -13,20 +15,21 @@ import type { ContinuityState, Learning, Decision } from './continuity';
 import { evaluateAllTasks, evaluateTaskState, suggestAgentsForTask, suggestAgentsForSkill, getSkillDomain, suggestTransitions } from './judge';
 import { listChains, findChain, matchChain, createChainExecution, advanceChain as advanceChainStep, skipChainStep, abortChain, getCurrentSkill } from './skill-chain';
 import type { ChainExecution } from './skill-chain';
+import { validateBody } from './schemas/validate';
+import { createTaskSchema, updateTaskSchema, autoSyncSchema, createProjectSchema } from './schemas/task-schema';
+import { securityHeaders } from './middleware/security-headers';
+import { metricsHandler } from './middleware/metrics';
 
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 
 export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = false) {
   const app = express();
   app.disable('x-powered-by');
-  app.use((_req, res, next) => {
-    res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('X-Frame-Options', 'DENY');
-    res.setHeader('X-XSS-Protection', '1; mode=block');
-    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';");
-    next();
-  });
+  app.use(securityHeaders());
   app.use(express.json({ limit: '1mb' }));
+
+  const logger = pino({ level: 'info' });
+  app.use(pinoHttp({ logger }));
 
   const publicDir = path.join(__dirname, '..', 'public', 'dashboard');
   app.use(express.static(publicDir));
@@ -42,7 +45,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     res.json(enriched);
   });
 
-  app.post('/api/projects', (req, res) => {
+  app.post('/api/projects', validateBody(createProjectSchema), (req, res) => {
     const data = loadData();
     const { name, path: pp, agents } = req.body;
     if (!name || typeof name !== 'string') { res.status(400).json({ error: 'Project name is required' }); return; }
@@ -86,7 +89,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     res.json(tasks);
   });
 
-  app.post('/api/tasks', (req, res) => {
+  app.post('/api/tasks', validateBody(createTaskSchema), (req, res) => {
     const data = loadData();
     const { title, description, column, priority, projectId, agent, skill } = req.body;
     if (!title || typeof title !== 'string') { res.status(400).json({ error: 'Title is required' }); return; }
@@ -157,7 +160,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
   // Agents and webhooks call this to report conversation status.
   // Upserts by conversationId — creates task if missing, transitions if status changes.
 
-  app.post('/api/tasks/auto-sync', (req, res) => {
+  app.post('/api/tasks/auto-sync', validateBody(autoSyncSchema), (req, res) => {
     const data = loadData();
     const { conversationId, title, status, agent, skill, projectId, projectName, priority } = req.body;
 
@@ -278,10 +281,11 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     res.json({ removed, remaining: data.tasks.length });
   });
 
-  app.put('/api/tasks/:id', (req, res) => {
+  app.put('/api/tasks/:id', validateBody(updateTaskSchema), (req, res) => {
     const data = loadData();
     const idx = data.tasks.findIndex(t => t.id === req.params.id);
     if (idx === -1) { res.status(404).json({ error: 'Task not found' }); return; }
+    req.log = req.log.child({ task_id: data.tasks[idx].id });
     const { title, description, priority, agent, skill } = req.body;
     if (title !== undefined) data.tasks[idx].title = String(title).trim();
     if (description !== undefined) data.tasks[idx].description = String(description).trim();
@@ -300,6 +304,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     const data = loadData();
     const idx = data.tasks.findIndex(t => t.id === req.params.id);
     if (idx === -1) { res.status(404).json({ error: 'Task not found' }); return; }
+    req.log = req.log.child({ task_id: data.tasks[idx].id });
     const { column, order } = req.body;
     const vc = ['backlog', 'in-progress', 'review', 'done'];
     if (!column || !vc.includes(column)) { res.status(400).json({ error: 'Valid column required' }); return; }
@@ -341,6 +346,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     const data = loadData();
     const idx = data.tasks.findIndex(t => t.id === req.params.id);
     if (idx === -1) { res.status(404).json({ error: 'Task not found' }); return; }
+    req.log = req.log.child({ task_id: data.tasks[idx].id });
 
     const { column, reason } = req.body;
     const vc = ['backlog', 'in-progress', 'review', 'done'];
@@ -452,6 +458,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     const data = loadData();
     const idx = data.tasks.findIndex(t => t.id === req.params.id);
     if (idx === -1) { res.status(404).json({ error: 'Task not found' }); return; }
+    req.log = req.log.child({ task_id: data.tasks[idx].id });
     const [removed] = data.tasks.splice(idx, 1);
     data.tasks.filter(t => t.column === removed.column && t.projectId === removed.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
     logActivity(data, 'task_deleted', `Task "${removed.title}" deleted`, removed.projectId, removed.agent);
@@ -467,6 +474,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     const data = loadData();
     const task = data.tasks.find(t => t.id === req.params.id);
     if (!task) { res.status(404).json({ error: 'Task not found' }); return; }
+    req.log = req.log.child({ task_id: task.id });
 
     const project = data.projects.find(p => p.id === task.projectId);
     const force = req.query.force === 'true';
@@ -862,7 +870,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
   // ─── Fallback ──────────────────────────────────────────────────────────
 
-  app.use('/api/*', (_req, res) => {
+  app.use('/api/{*path}', (_req, res) => {
     res.status(404).json({ error: 'not found' });
   });
   app.get('/{*path}', (_req, res) => {

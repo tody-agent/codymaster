@@ -9,6 +9,8 @@ const chalk_1 = __importDefault(require("chalk"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const crypto_1 = __importDefault(require("crypto"));
+const pino_1 = __importDefault(require("pino"));
+const pino_http_1 = __importDefault(require("pino-http"));
 const data_1 = require("./data");
 const agent_dispatch_1 = require("./agent-dispatch");
 const event_bus_1 = require("./realtime/event-bus");
@@ -16,18 +18,17 @@ const ws_hub_1 = require("./realtime/ws-hub");
 const continuity_1 = require("./continuity");
 const judge_1 = require("./judge");
 const skill_chain_1 = require("./skill-chain");
+const validate_1 = require("./schemas/validate");
+const task_schema_1 = require("./schemas/task-schema");
+const security_headers_1 = require("./middleware/security-headers");
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     const app = (0, express_1.default)();
     app.disable('x-powered-by');
-    app.use((_req, res, next) => {
-        res.setHeader('X-Content-Type-Options', 'nosniff');
-        res.setHeader('X-Frame-Options', 'DENY');
-        res.setHeader('X-XSS-Protection', '1; mode=block');
-        res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';");
-        next();
-    });
+    app.use((0, security_headers_1.securityHeaders)());
     app.use(express_1.default.json({ limit: '1mb' }));
+    const logger = (0, pino_1.default)({ level: 'info' });
+    app.use((0, pino_http_1.default)({ logger }));
     const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
     app.use(express_1.default.static(publicDir));
     // ─── Project API ────────────────────────────────────────────────────────
@@ -39,7 +40,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         });
         res.json(enriched);
     });
-    app.post('/api/projects', (req, res) => {
+    app.post('/api/projects', (0, validate_1.validateBody)(task_schema_1.createProjectSchema), (req, res) => {
         const data = (0, data_1.loadData)();
         const { name, path: pp, agents } = req.body;
         if (!name || typeof name !== 'string') {
@@ -91,7 +92,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             tasks = tasks.filter(t => t.projectId === req.query.projectId);
         res.json(tasks);
     });
-    app.post('/api/tasks', (req, res) => {
+    app.post('/api/tasks', (0, validate_1.validateBody)(task_schema_1.createTaskSchema), (req, res) => {
         const data = (0, data_1.loadData)();
         const { title, description, column, priority, projectId, agent, skill } = req.body;
         if (!title || typeof title !== 'string') {
@@ -160,7 +161,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     // ─── Auto-Sync (Conversation Lifecycle) ─────────────────────────────
     // Agents and webhooks call this to report conversation status.
     // Upserts by conversationId — creates task if missing, transitions if status changes.
-    app.post('/api/tasks/auto-sync', (req, res) => {
+    app.post('/api/tasks/auto-sync', (0, validate_1.validateBody)(task_schema_1.autoSyncSchema), (req, res) => {
         const data = (0, data_1.loadData)();
         const { conversationId, title, status, agent, skill, projectId, projectName, priority } = req.body;
         if (!conversationId || !title) {
@@ -269,13 +270,14 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         }
         res.json({ removed, remaining: data.tasks.length });
     });
-    app.put('/api/tasks/:id', (req, res) => {
+    app.put('/api/tasks/:id', (0, validate_1.validateBody)(task_schema_1.updateTaskSchema), (req, res) => {
         const data = (0, data_1.loadData)();
         const idx = data.tasks.findIndex(t => t.id === req.params.id);
         if (idx === -1) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: data.tasks[idx].id });
         const { title, description, priority, agent, skill } = req.body;
         if (title !== undefined)
             data.tasks[idx].title = String(title).trim();
@@ -301,6 +303,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: data.tasks[idx].id });
         const { column, order } = req.body;
         const vc = ['backlog', 'in-progress', 'review', 'done'];
         if (!column || !vc.includes(column)) {
@@ -344,6 +347,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: data.tasks[idx].id });
         const { column, reason } = req.body;
         const vc = ['backlog', 'in-progress', 'review', 'done'];
         if (!column || !vc.includes(column)) {
@@ -455,6 +459,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: data.tasks[idx].id });
         const [removed] = data.tasks.splice(idx, 1);
         data.tasks.filter(t => t.column === removed.column && t.projectId === removed.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
         (0, data_1.logActivity)(data, 'task_deleted', `Task "${removed.title}" deleted`, removed.projectId, removed.agent);
@@ -471,6 +476,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             res.status(404).json({ error: 'Task not found' });
             return;
         }
+        req.log = req.log.child({ task_id: task.id });
         const project = data.projects.find(p => p.id === task.projectId);
         const force = req.query.force === 'true';
         // Validate before dispatch
@@ -926,7 +932,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         res.json(chain || { match: false });
     });
     // ─── Fallback ──────────────────────────────────────────────────────────
-    app.use('/api/*', (_req, res) => {
+    app.use('/api/{*path}', (_req, res) => {
         res.status(404).json({ error: 'not found' });
     });
     app.get('/{*path}', (_req, res) => {
