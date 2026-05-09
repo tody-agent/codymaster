@@ -1,4 +1,4 @@
-[English](README.md) | [Tiếng Việt](README-vi.md) | [中文](README-zh.md) | [Русский](README-ru.md) | [한국어](README-ko.md) | [हिन्दी](README-hi.md)
+[English](README.md) | [Tiếng Việt](README-vi.md)
 
 # 🧠 CodyMaster
 
