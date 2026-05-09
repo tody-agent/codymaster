@@ -1,0 +1,19 @@
+{
+  "name": "growth-marketing",
+  "version": "1.0.0",
+  "description": "Growth, CRO, and conversion-tracking skills extracted from CodyMaster: bookings, ad pixels, lead capture, JTBD discovery, and audio engagement.",
+  "author": {
+    "name": "Tody Agent"
+  },
+  "homepage": "https://cody-master-a5q.pages.dev",
+  "repository": "https://github.com/tody-agent/growth-marketing",
+  "keywords": [
+    "growth",
+    "cro",
+    "conversion-tracking",
+    "booking",
+    "ads-pixel",
+    "jtbd",
+    "lead-capture"
+  ]
+}

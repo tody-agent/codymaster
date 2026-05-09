@@ -1,0 +1,218 @@
+[
+  {
+    "id": "data_shock",
+    "name": "Data Shock",
+    "template_vi": "{X}% {đối_tượng} {hành_vi_thất_bại} vì {lý_do_ngắn}.",
+    "template_en": "{X}% of {audience} {fail_action} because of {short_reason}.",
+    "examples_vi": [
+      "99% Dev tốn thanh xuân để debug vì bỏ qua quy tắc này.",
+      "87% dự án thất bại vì không có CI/CD từ ngày đầu.",
+      "95% Junior developer mắc lỗi này trong tuần đầu tiên."
+    ],
+    "examples_en": [
+      "99% of developers waste hours debugging because they skip this one rule.",
+      "87% of projects fail because they don't set up CI/CD from day one.",
+      "95% of junior devs make this mistake in their first week."
+    ],
+    "psychology": "Anchoring + Social Proof — big numbers create urgency",
+    "best_for": ["education", "tools", "productivity"]
+  },
+  {
+    "id": "contrarian",
+    "name": "Contrarian",
+    "template_vi": "Đừng {hành_vi_phổ_biến}. Đây là lý do.",
+    "template_en": "Stop {common_action}. Here's why.",
+    "examples_vi": [
+      "Đừng học React. Đây là lý do.",
+      "Đừng dùng console.log để debug. Có cách tốt hơn 10x.",
+      "Đừng viết unit test. Hãy viết cái này thay thế."
+    ],
+    "examples_en": [
+      "Stop learning React. Here's why.",
+      "Stop using console.log for debugging. There's a 10x better way.",
+      "Stop writing unit tests. Write this instead."
+    ],
+    "psychology": "Pattern interrupt — challenges known beliefs, triggers debate",
+    "best_for": ["hot_takes", "controversy", "engagement"]
+  },
+  {
+    "id": "future_pacing",
+    "name": "Future Pacing",
+    "template_vi": "Trong {thời_gian}, bạn sẽ {kết_quả_ấn_tượng}.",
+    "template_en": "In {timeframe}, you'll be able to {impressive_result}.",
+    "examples_vi": [
+      "Trong 60 giây, bạn sẽ viết code nhanh gấp 10x.",
+      "Trong 2 phút, bạn sẽ biết cách debug như Senior Dev.",
+      "Sau video này, bạn sẽ không bao giờ gặp lỗi merge conflict nữa."
+    ],
+    "examples_en": [
+      "In 60 seconds, you'll write code 10x faster.",
+      "In 2 minutes, you'll debug like a senior developer.",
+      "After this video, you'll never face merge conflicts again."
+    ],
+    "psychology": "Investment framing — promise concrete ROI for watching",
+    "best_for": ["tutorials", "quick_tips", "transformation"]
+  },
+  {
+    "id": "story_open",
+    "name": "Story Open",
+    "template_vi": "{Thời_gian}, tôi {trải_nghiệm_đau_đớn}...",
+    "template_en": "{Timeframe}, I {painful_experience}...",
+    "examples_vi": [
+      "Tháng trước, tôi mất 3 ngày debug một lỗi mà AI fix trong 2 giây.",
+      "Năm ngoái, tôi deploy lên production lúc 11 giờ đêm và...",
+      "Lần đầu tiên tôi review code của junior, tôi shock..."
+    ],
+    "examples_en": [
+      "Last month, I spent 3 days debugging a bug that AI fixed in 2 seconds.",
+      "Last year, I deployed to production at 11 PM and...",
+      "The first time I reviewed a junior's code, I was shocked..."
+    ],
+    "psychology": "Narrative transport — personal story builds trust and curiosity",
+    "best_for": ["personal_brand", "lessons_learned", "authenticity"]
+  },
+  {
+    "id": "authority",
+    "name": "Authority",
+    "template_vi": "Sau {năm_kinh_nghiệm}, đây là {bí_mật/bài_học}.",
+    "template_en": "After {years_experience}, this is the {secret/lesson}.",
+    "examples_vi": [
+      "Sau 10 năm code, đây là bí mật duy nhất tôi ước biết sớm hơn.",
+      "Sau 500 code review, tôi phát hiện pattern này lặp lại mãi.",
+      "Sau 3 startup thất bại, tôi mới hiểu rule này."
+    ],
+    "examples_en": [
+      "After 10 years of coding, this is the one secret I wish I knew earlier.",
+      "After 500 code reviews, I discovered this pattern keeps repeating.",
+      "After 3 failed startups, I finally understand this rule."
+    ],
+    "psychology": "Authority principle — experience-based credibility",
+    "best_for": ["career_advice", "best_practices", "mentoring"]
+  },
+  {
+    "id": "curiosity_gap",
+    "name": "Curiosity Gap",
+    "template_vi": "Có 1 {thứ} mà {nhóm_uy_tín} dùng mà bạn chưa biết.",
+    "template_en": "There's one {thing} that {authority_group} uses that you don't know about.",
+    "examples_vi": [
+      "Có 1 công cụ mà Google engineers dùng mà bạn chưa biết.",
+      "Có 1 shortcut trong VS Code mà chỉ 3% developer biết.",
+      "Có 1 pattern mà mọi Senior Dev dùng nhưng không ai dạy."
+    ],
+    "examples_en": [
+      "There's one tool that Google engineers use that you don't know about.",
+      "There's a VS Code shortcut that only 3% of developers know.",
+      "There's one pattern every senior dev uses but nobody teaches."
+    ],
+    "psychology": "Information gap theory — incomplete knowledge demands closure",
+    "best_for": ["tools", "secrets", "discovery"]
+  },
+  {
+    "id": "fear",
+    "name": "Fear",
+    "template_vi": "{Mối_đe_dọa}? Chỉ nếu bạn không biết điều này.",
+    "template_en": "{Threat}? Only if you don't know this.",
+    "examples_vi": [
+      "AI sẽ thay thế developer? Chỉ nếu bạn không biết điều này.",
+      "Career dev của bạn đang bị đe dọa. Đây là cách phòng thủ.",
+      "Lỗi bảo mật này đang nằm trong code của bạn ngay bây giờ."
+    ],
+    "examples_en": [
+      "Will AI replace developers? Only if you don't know this.",
+      "Your dev career is under threat. Here's how to defend it.",
+      "This security vulnerability is in your code right now."
+    ],
+    "psychology": "Loss aversion — fear of loss > desire for gain",
+    "best_for": ["urgent_topics", "security", "career_threats"]
+  },
+  {
+    "id": "social_proof",
+    "name": "Social Proof",
+    "template_vi": "{Số_lượng}+ {nhóm_người} đã {hành_động/chuyển_đổi}.",
+    "template_en": "{Number}+ {group} have already {action/switch}.",
+    "examples_vi": [
+      "200+ engineers đã chuyển sang workflow này trong tháng này.",
+      "10,000+ developer đang dùng tool này mỗi ngày.",
+      "50 công ty Fortune 500 đã adopt pattern này."
+    ],
+    "examples_en": [
+      "200+ engineers switched to this workflow this month.",
+      "10,000+ developers use this tool every day.",
+      "50 Fortune 500 companies have adopted this pattern."
+    ],
+    "psychology": "Bandwagon effect — others doing it = validation",
+    "best_for": ["tools", "adoption", "trends"]
+  },
+  {
+    "id": "challenge",
+    "name": "Challenge",
+    "template_vi": "Thử {hành_động_cụ_thể} challenge.",
+    "template_en": "Try the {specific_action} challenge.",
+    "examples_vi": [
+      "Thử debug trong 2 giây challenge.",
+      "Thử code một feature trong 5 phút challenge.",
+      "Thử refactor code này dưới 10 dòng challenge."
+    ],
+    "examples_en": [
+      "Try the 2-second debug challenge.",
+      "Try the 5-minute feature challenge.",
+      "Try refactoring this code under 10 lines challenge."
+    ],
+    "psychology": "Competence need — challenges activate ego and competitive drive",
+    "best_for": ["interactive", "engagement", "viral"]
+  },
+  {
+    "id": "comparison",
+    "name": "Comparison",
+    "template_vi": "{A} vs {B}: cùng {tình_huống}, khác nhau {kết_quả}.",
+    "template_en": "{A} vs {B}: same {situation}, {different_result}.",
+    "examples_vi": [
+      "Junior vs Senior: cùng 1 bug, khác nhau 10x tốc độ.",
+      "Với AI vs Không AI: cùng task, 2 giờ vs 2 phút.",
+      "2020 dev vs 2026 dev: cùng project, workflow hoàn toàn khác."
+    ],
+    "examples_en": [
+      "Junior vs Senior: same bug, 10x speed difference.",
+      "With AI vs Without: same task, 2 hours vs 2 minutes.",
+      "2020 dev vs 2026 dev: same project, completely different workflow."
+    ],
+    "psychology": "Contrast principle — side-by-side makes differences visceral",
+    "best_for": ["before_after", "tool_comparison", "evolution"]
+  },
+  {
+    "id": "reveal",
+    "name": "Reveal",
+    "template_vi": "{Thứ_bí_mật} đằng sau {thành_tích_ấn_tượng}.",
+    "template_en": "The {secret_thing} behind {impressive_achievement}.",
+    "examples_vi": [
+      "Công cụ bí mật đằng sau 50 dự án production.",
+      "Workflow ẩn đằng sau developer năng suất nhất team.",
+      "Config bí mật mà 10x engineers không bao giờ chia sẻ."
+    ],
+    "examples_en": [
+      "The secret tool behind 50 production projects.",
+      "The hidden workflow behind the most productive developer on the team.",
+      "The secret config that 10x engineers never share."
+    ],
+    "psychology": "Exclusivity + scarcity — hidden knowledge feels more valuable",
+    "best_for": ["insider_knowledge", "advanced_tips", "premium_content"]
+  },
+  {
+    "id": "empathy",
+    "name": "Empathy",
+    "template_vi": "Mình biết cảm giác {trải_nghiệm_đau_đớn_chung}.",
+    "template_en": "I know exactly how it feels to {shared_painful_experience}.",
+    "examples_vi": [
+      "Mình biết cảm giác code 12 tiếng mà không ra gì.",
+      "Mình biết cảm giác deploy xong rồi cầu nguyện.",
+      "Mình biết cảm giác đọc error message mà không hiểu gì."
+    ],
+    "examples_en": [
+      "I know exactly how it feels to code for 12 hours and get nowhere.",
+      "I know that feeling of deploying and then praying.",
+      "I know how it feels to read an error message and understand nothing."
+    ],
+    "psychology": "Emotional mirroring — shared pain builds instant connection",
+    "best_for": ["community", "personal_brand", "trust_building"]
+  }
+]

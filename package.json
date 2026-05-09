@@ -68,12 +68,14 @@
   },
   "dependencies": {
     "@clack/prompts": "^1.1.0",
+    "async-mutex": "^0.5.0",
     "better-sqlite3": "^12.8.0",
     "chalk": "^5.6.2",
     "chokidar": "^5.0.0",
     "commander": "^14.0.3",
     "express": "^5.2.1",
     "prompts": "^2.4.2",
+    "ws": "^8.20.0",
     "yaml": "^2.8.3"
   },
   "devDependencies": {
@@ -81,6 +83,7 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
     "@types/prompts": "^2.4.9",
+    "@types/ws": "^8.18.1",
     "acorn": "^8.16.0",
     "jsdom": "^29.0.1",
     "playwright": "^1.50.0",

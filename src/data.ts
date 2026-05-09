@@ -2,7 +2,10 @@ import path from 'path';
 import fs from 'fs';
 import os from 'os';
 import crypto from 'crypto';
+import { Mutex } from 'async-mutex';
 import type { ChainExecution } from './skill-chain';
+
+const dataMutex = new Mutex();
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -19,7 +22,7 @@ export interface Task {
   projectId: string;
   title: string;
   description: string;
-  column: 'backlog' | 'in-progress' | 'review' | 'done';
+  column: 'backlog' | 'in-progress' | 'review' | 'done' | 'cancelled';
   order: number;
   priority: 'low' | 'medium' | 'high' | 'urgent';
   agent: string;
@@ -160,6 +163,24 @@ export function loadData(): KanbanData {
 export function saveData(data: KanbanData): void {
   ensureDataDir();
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+}
+
+export async function loadDataSafe(): Promise<KanbanData> {
+  const release = await dataMutex.acquire();
+  try {
+    return loadData();
+  } finally {
+    release();
+  }
+}
+
+export async function saveDataSafe(data: KanbanData): Promise<void> {
+  const release = await dataMutex.acquire();
+  try {
+    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+  } finally {
+    release();
+  }
 }
 
 // ─── Activity Logger ────────────────────────────────────────────────────────

@@ -1,0 +1,21 @@
+{
+  "name": "growth-marketing",
+  "owner": {
+    "name": "Tody Agent",
+    "email": "hello@cody-master-a5q.pages.dev"
+  },
+  "metadata": {
+    "description": "Growth, CRO, and conversion-tracking skills. Companion to CodyMaster (programming) — focused on revenue, funnels, and analytics."
+  },
+  "plugins": [
+    {
+      "name": "growth-marketing",
+      "description": "Growth & CRO toolkit: booking calendars, ad pixels (Meta/TikTok/Google), lead-capture forms, audio engagement, JTBD discovery, and conversion methodology.",
+      "version": "1.0.0",
+      "source": "./",
+      "author": { "name": "Tody Agent" },
+      "category": "marketing",
+      "keywords": ["growth", "cro", "ads-tracker", "booking", "jtbd", "lead-capture"]
+    }
+  ]
+}
