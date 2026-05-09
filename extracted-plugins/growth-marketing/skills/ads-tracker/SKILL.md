@@ -1,5 +1,5 @@
 ---
-name: cm-ads-tracker
+name: ads-tracker
 description: "End-to-end ad conversion tracking: Meta Pixel+CAPI, TikTok Events API, Google Ads Enhanced Conversions, GTM, attribution. Auto-detects industry, maps standard events, outputs a developer-ready implementation doc. Use for pixels, GTM, CAPI, ROAS, or 'set up tracking' requests."
 ---
 

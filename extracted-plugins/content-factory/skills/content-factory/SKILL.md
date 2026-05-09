@@ -1,5 +1,5 @@
 ---
-name: cm-content-factory
+name: content-factory
 description: "Self-learning SEO content pipeline: dashboard, multi-agent queue, token budgets, research → write → audit → publish. StoryBrand/Cialdini/JTBD-style frameworks; config-driven. Use for content factory, batch articles, or scaled publishing."
 ---
 

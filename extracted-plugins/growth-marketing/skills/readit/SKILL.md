@@ -1,5 +1,5 @@
 ---
-name: cm-readit
+name: readit
 description: "[Deprecated] audio/read features merged. Use `cm-content-factory` instead."
 deprecated: true
 merged_into: cm-content-factory

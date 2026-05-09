@@ -1,5 +1,5 @@
 ---
-name: cm-notebooklm
+name: notebooklm
 description: "Sync high-value dev knowledge (skills, decisions, lessons) into Google NotebookLM for cloud recall, podcasts, and flashcards. Pairs with Dockit/deep-search. Use for NotebookLM, nlm, knowledge base, skill sync, or cross-machine AI memory."
 ---
 

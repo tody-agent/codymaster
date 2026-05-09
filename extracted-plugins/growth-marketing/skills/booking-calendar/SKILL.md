@@ -1,5 +1,5 @@
 ---
-name: cm-booking-calendar
+name: booking-calendar
 description: "[Deprecated] growth toolkit merged. Use `cm-growth-hacking` instead."
 deprecated: true
 merged_into: cm-growth-hacking

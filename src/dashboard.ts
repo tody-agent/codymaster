@@ -6,6 +6,8 @@ import crypto from 'crypto';
 import { loadData, saveData, logActivity, DATA_FILE, PID_FILE, DEFAULT_PORT } from './data';
 import type { Project, Task, Deployment, ChangelogEntry } from './data';
 import { dispatchTaskToAgent, validateDispatch } from './agent-dispatch';
+import { eventBus } from './realtime/event-bus';
+import { initWsHub } from './realtime/ws-hub';
 import { ensureCmDir, readContinuityState, writeContinuityMd, getContinuityStatus, addLearning, getLearnings, addDecision, getDecisions, deleteLearning, deleteDecision, hasCmDir } from './continuity';
 import type { ContinuityState, Learning, Decision } from './continuity';
 import { evaluateAllTasks, evaluateTaskState, suggestAgentsForTask, suggestAgentsForSkill, getSkillDomain, suggestTransitions } from './judge';
@@ -115,6 +117,8 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
     logActivity(data, 'task_created', `Task "${task.title}" created`, rpid, agent || '', { taskId: task.id, column: tc });
     saveData(data);
+    eventBus.emitTask({ type: 'task.created', taskId: task.id, projectId: task.projectId, data: task as unknown as Record<string, unknown> });
+    eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto.randomUUID(), type: 'task_created', message: `Task "${task.title}" created`, projectId: rpid, taskId: task.id, actorId: agent || '', createdAt: new Date().toISOString() } });
     res.status(201).json(task);
   });
 
@@ -143,6 +147,9 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
     logActivity(data, 'task_created', `Synced ${created.length} tasks`, project.id, agent || '', { count: created.length });
     saveData(data);
+    for (const t of created) {
+      eventBus.emitTask({ type: 'task.created', taskId: t.id, projectId: t.projectId, data: t as unknown as Record<string, unknown> });
+    }
     res.status(201).json({ project, tasks: created });
   });
 
@@ -171,7 +178,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
       'review': 'review',
       'completed': 'done',
       'done': 'done',
-      'cancelled': 'done',
+      'cancelled': 'cancelled',
     };
     const column = STATUS_TO_COLUMN[status || 'active'] || 'in-progress';
 
@@ -216,8 +223,10 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
         data.tasks.filter(t => t.column === oldCol && t.projectId === task.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
         const actType = column === 'done' ? 'task_done' : 'task_transitioned';
         logActivity(data, actType, `Auto-sync: "${task.title}" ${oldCol} → ${column}`, task.projectId, agent || task.agent, { from: oldCol, to: column, conversationId });
+        eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
       }
       saveData(data);
+      eventBus.emitTask({ type: 'task.updated', taskId: task.id, projectId: task.projectId, data: data.tasks[taskIdx] as unknown as Record<string, unknown> });
       res.json({ action: 'updated', task: data.tasks[taskIdx] });
     } else {
       // Create new task
@@ -240,6 +249,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
       data.tasks.push(task as Task);
       logActivity(data, 'task_created', `Auto-sync: "${task.title}" created in ${column}`, project!.id, agent || '', { conversationId });
       saveData(data);
+      eventBus.emitTask({ type: 'task.created', taskId: task.id, projectId: task.projectId, data: task as unknown as Record<string, unknown> });
       res.status(201).json({ action: 'created', task });
     }
   });
@@ -282,6 +292,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     data.tasks[idx].updatedAt = new Date().toISOString();
     logActivity(data, 'task_updated', `Task "${data.tasks[idx].title}" updated`, data.tasks[idx].projectId, agent || '');
     saveData(data);
+    eventBus.emitTask({ type: 'task.updated', taskId: data.tasks[idx].id, projectId: data.tasks[idx].projectId, data: data.tasks[idx] as unknown as Record<string, unknown> });
     res.json(data.tasks[idx]);
   });
 
@@ -309,6 +320,11 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     const actType = column === 'done' ? 'task_done' : 'task_moved';
     logActivity(data, actType, `Task "${task.title}" moved: ${oldCol} → ${column}`, task.projectId, task.agent, { from: oldCol, to: column });
     saveData(data);
+    if (oldCol !== column) {
+      eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
+    } else {
+      eventBus.emitTask({ type: 'task.updated', taskId: task.id, projectId: task.projectId, data: task as unknown as Record<string, unknown> });
+    }
     res.json(task);
   });
 
@@ -365,6 +381,8 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
       : `Task "${task.title}" transitioned: ${oldCol} → ${column}`;
     logActivity(data, actType, msg, task.projectId, task.agent, { from: oldCol, to: column, reason: reason || '' });
     saveData(data);
+    eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
+    eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto.randomUUID(), type: actType, message: msg, projectId: task.projectId, taskId: task.id, actorId: task.agent, createdAt: new Date().toISOString() } });
     res.json(task);
   });
 
@@ -438,6 +456,8 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     data.tasks.filter(t => t.column === removed.column && t.projectId === removed.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
     logActivity(data, 'task_deleted', `Task "${removed.title}" deleted`, removed.projectId, removed.agent);
     saveData(data);
+    eventBus.emitTask({ type: 'task.deleted', taskId: removed.id, projectId: removed.projectId, data: {} });
+    eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto.randomUUID(), type: 'task_deleted', message: `Task "${removed.title}" deleted`, projectId: removed.projectId, taskId: removed.id, actorId: removed.agent, createdAt: new Date().toISOString() } });
     res.status(204).send();
   });
 
@@ -842,6 +862,9 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
   // ─── Fallback ──────────────────────────────────────────────────────────
 
+  app.use('/api/*', (_req, res) => {
+    res.status(404).json({ error: 'not found' });
+  });
   app.get('/{*path}', (_req, res) => {
     res.sendFile(path.join(publicDir, 'index.html'));
   });
@@ -859,6 +882,8 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
       console.log(chalk.gray(`  📊 Dashboard auto-started → http://codymaster.localhost:${port}`));
     }
   });
+
+  initWsHub(server);
 
   const cleanup = () => { try { fs.unlinkSync(PID_FILE); } catch {} };
   process.on('SIGINT', () => { cleanup(); process.exit(0); });

@@ -1,5 +1,5 @@
 ---
-name: cm-growth-hacking
+name: growth-hacking
 description: "Bottom-sheet and popup growth system: booking CTAs, calendars, lead capture, surveys, re-engagement, with CRO tracking hooks. Zero-deps; works static or dynamic sites. Works with cm-booking-calendar, cm-ads-tracker, cm-google-form, cm-readit, cm-ux-master."
 allowed-tools: Read, Write, Edit, Glob, Grep, Browser
 version: 1.0

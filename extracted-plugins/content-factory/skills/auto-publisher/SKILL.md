@@ -1,5 +1,5 @@
 ---
-name: cm-auto-publisher
+name: auto-publisher
 description: "[Deprecated] content lifecycle merged. Use `cm-content-factory` instead."
 deprecated: true
 merged_into: cm-content-factory

@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -7,6 +16,8 @@ exports.DEFAULT_PORT = exports.PID_FILE = exports.DATA_FILE = exports.DATA_DIR =
 exports.ensureDataDir = ensureDataDir;
 exports.loadData = loadData;
 exports.saveData = saveData;
+exports.loadDataSafe = loadDataSafe;
+exports.saveDataSafe = saveDataSafe;
 exports.logActivity = logActivity;
 exports.findProjectByNameOrId = findProjectByNameOrId;
 exports.findTaskByIdPrefix = findTaskByIdPrefix;
@@ -15,6 +26,8 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const os_1 = __importDefault(require("os"));
 const crypto_1 = __importDefault(require("crypto"));
+const async_mutex_1 = require("async-mutex");
+const dataMutex = new async_mutex_1.Mutex();
 // ─── Constants ──────────────────────────────────────────────────────────────
 exports.DATA_DIR = path_1.default.join(os_1.default.homedir(), '.codymaster');
 exports.DATA_FILE = path_1.default.join(exports.DATA_DIR, 'kanban.json');
@@ -93,6 +106,28 @@ function loadData() {
 function saveData(data) {
     ensureDataDir();
     fs_1.default.writeFileSync(exports.DATA_FILE, JSON.stringify(data, null, 2));
+}
+function loadDataSafe() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const release = yield dataMutex.acquire();
+        try {
+            return loadData();
+        }
+        finally {
+            release();
+        }
+    });
+}
+function saveDataSafe(data) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const release = yield dataMutex.acquire();
+        try {
+            fs_1.default.writeFileSync(exports.DATA_FILE, JSON.stringify(data, null, 2));
+        }
+        finally {
+            release();
+        }
+    });
 }
 // ─── Activity Logger ────────────────────────────────────────────────────────
 function logActivity(data, type, message, projectId = '', agent = '', metadata = {}) {

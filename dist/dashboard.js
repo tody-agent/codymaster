@@ -11,6 +11,8 @@ const fs_1 = __importDefault(require("fs"));
 const crypto_1 = __importDefault(require("crypto"));
 const data_1 = require("./data");
 const agent_dispatch_1 = require("./agent-dispatch");
+const event_bus_1 = require("./realtime/event-bus");
+const ws_hub_1 = require("./realtime/ws-hub");
 const continuity_1 = require("./continuity");
 const judge_1 = require("./judge");
 const skill_chain_1 = require("./skill-chain");
@@ -120,6 +122,8 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         }
         (0, data_1.logActivity)(data, 'task_created', `Task "${task.title}" created`, rpid, agent || '', { taskId: task.id, column: tc });
         (0, data_1.saveData)(data);
+        event_bus_1.eventBus.emitTask({ type: 'task.created', taskId: task.id, projectId: task.projectId, data: task });
+        event_bus_1.eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto_1.default.randomUUID(), type: 'task_created', message: `Task "${task.title}" created`, projectId: rpid, taskId: task.id, actorId: agent || '', createdAt: new Date().toISOString() } });
         res.status(201).json(task);
     });
     app.post('/api/tasks/sync', (req, res) => {
@@ -148,6 +152,9 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         }
         (0, data_1.logActivity)(data, 'task_created', `Synced ${created.length} tasks`, project.id, agent || '', { count: created.length });
         (0, data_1.saveData)(data);
+        for (const t of created) {
+            event_bus_1.eventBus.emitTask({ type: 'task.created', taskId: t.id, projectId: t.projectId, data: t });
+        }
         res.status(201).json({ project, tasks: created });
     });
     // ─── Auto-Sync (Conversation Lifecycle) ─────────────────────────────
@@ -172,7 +179,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             'review': 'review',
             'completed': 'done',
             'done': 'done',
-            'cancelled': 'done',
+            'cancelled': 'cancelled',
         };
         const column = STATUS_TO_COLUMN[status || 'active'] || 'in-progress';
         // Find project — try by ID, then by name, then use first project
@@ -211,8 +218,10 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
                 data.tasks.filter(t => t.column === oldCol && t.projectId === task.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
                 const actType = column === 'done' ? 'task_done' : 'task_transitioned';
                 (0, data_1.logActivity)(data, actType, `Auto-sync: "${task.title}" ${oldCol} → ${column}`, task.projectId, agent || task.agent, { from: oldCol, to: column, conversationId });
+                event_bus_1.eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
             }
             (0, data_1.saveData)(data);
+            event_bus_1.eventBus.emitTask({ type: 'task.updated', taskId: task.id, projectId: task.projectId, data: data.tasks[taskIdx] });
             res.json({ action: 'updated', task: data.tasks[taskIdx] });
         }
         else {
@@ -236,6 +245,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             data.tasks.push(task);
             (0, data_1.logActivity)(data, 'task_created', `Auto-sync: "${task.title}" created in ${column}`, project.id, agent || '', { conversationId });
             (0, data_1.saveData)(data);
+            event_bus_1.eventBus.emitTask({ type: 'task.created', taskId: task.id, projectId: task.projectId, data: task });
             res.status(201).json({ action: 'created', task });
         }
     });
@@ -281,6 +291,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         data.tasks[idx].updatedAt = new Date().toISOString();
         (0, data_1.logActivity)(data, 'task_updated', `Task "${data.tasks[idx].title}" updated`, data.tasks[idx].projectId, agent || '');
         (0, data_1.saveData)(data);
+        event_bus_1.eventBus.emitTask({ type: 'task.updated', taskId: data.tasks[idx].id, projectId: data.tasks[idx].projectId, data: data.tasks[idx] });
         res.json(data.tasks[idx]);
     });
     app.put('/api/tasks/:id/move', (req, res) => {
@@ -311,6 +322,12 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         const actType = column === 'done' ? 'task_done' : 'task_moved';
         (0, data_1.logActivity)(data, actType, `Task "${task.title}" moved: ${oldCol} → ${column}`, task.projectId, task.agent, { from: oldCol, to: column });
         (0, data_1.saveData)(data);
+        if (oldCol !== column) {
+            event_bus_1.eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
+        }
+        else {
+            event_bus_1.eventBus.emitTask({ type: 'task.updated', taskId: task.id, projectId: task.projectId, data: task });
+        }
         res.json(task);
     });
     // ─── Valid Transition Map ─────────────────────────────────────────────
@@ -365,6 +382,8 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             : `Task "${task.title}" transitioned: ${oldCol} → ${column}`;
         (0, data_1.logActivity)(data, actType, msg, task.projectId, task.agent, { from: oldCol, to: column, reason: reason || '' });
         (0, data_1.saveData)(data);
+        event_bus_1.eventBus.emitTask({ type: 'task.transitioned', taskId: task.id, projectId: task.projectId, data: { from: oldCol, to: column } });
+        event_bus_1.eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto_1.default.randomUUID(), type: actType, message: msg, projectId: task.projectId, taskId: task.id, actorId: task.agent, createdAt: new Date().toISOString() } });
         res.json(task);
     });
     app.post('/api/tasks/bulk-transition', (req, res) => {
@@ -440,6 +459,8 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         data.tasks.filter(t => t.column === removed.column && t.projectId === removed.projectId).sort((a, b) => a.order - b.order).forEach((t, i) => { t.order = i; });
         (0, data_1.logActivity)(data, 'task_deleted', `Task "${removed.title}" deleted`, removed.projectId, removed.agent);
         (0, data_1.saveData)(data);
+        event_bus_1.eventBus.emitTask({ type: 'task.deleted', taskId: removed.id, projectId: removed.projectId, data: {} });
+        event_bus_1.eventBus.emitActivity({ type: 'activity.added', activity: { id: crypto_1.default.randomUUID(), type: 'task_deleted', message: `Task "${removed.title}" deleted`, projectId: removed.projectId, taskId: removed.id, actorId: removed.agent, createdAt: new Date().toISOString() } });
         res.status(204).send();
     });
     // ─── Task Dispatch API ──────────────────────────────────────────────────
@@ -905,6 +926,9 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         res.json(chain || { match: false });
     });
     // ─── Fallback ──────────────────────────────────────────────────────────
+    app.use('/api/*', (_req, res) => {
+        res.status(404).json({ error: 'not found' });
+    });
     app.get('/{*path}', (_req, res) => {
         res.sendFile(path_1.default.join(publicDir, 'index.html'));
     });
@@ -924,6 +948,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             console.log(chalk_1.default.gray(`  📊 Dashboard auto-started → http://codymaster.localhost:${port}`));
         }
     });
+    (0, ws_hub_1.initWsHub)(server);
     const cleanup = () => { try {
         fs_1.default.unlinkSync(data_1.PID_FILE);
     }

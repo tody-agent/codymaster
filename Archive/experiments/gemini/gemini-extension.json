@@ -1,0 +1,6 @@
+{
+  "name": "cody-master",
+  "description": "Universal AI agent skills framework: TDD, debugging, deployment, design, i18n, content — 60+ skills",
+  "version": "4.8.0",
+  "contextFileName": "GEMINI.md"
+}
