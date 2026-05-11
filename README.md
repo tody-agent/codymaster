@@ -6,7 +6,7 @@
 
 **50+ skills. One install. Your AI coding agent becomes a full team.**
 
-**v7.0 — Browse Hybrid Bridge:** AI-native browser automation with a11y snapshots, error collection, video recording.
+**v7.0.1 — Browse Hybrid Bridge:** AI-native browser automation with a11y snapshots, error collection, video recording.
 
 ```
     ( . \ --- / . )
@@ -17,6 +17,9 @@
        Meet Cody 🐹
 ```
 
+[![npm version](https://img.shields.io/npm/v/codymaster.svg)](https://www.npmjs.com/package/codymaster)
+[![npm downloads](https://img.shields.io/npm/dm/codymaster.svg)](https://www.npmjs.com/package/codymaster)
+[![license](https://img.shields.io/npm/l/codymaster.svg)](https://github.com/tody-agent/codymaster/blob/main/LICENSE)
 [![Discord](https://img.shields.io/badge/Discord-Join-7289da?logo=discord&logoColor=white)](https://discord.gg/codymaster)
 
 ---
@@ -249,6 +252,14 @@ cm dashboard       # Open the visual dashboard
 bash <(curl -fsSL https://raw.githubusercontent.com/tody-agent/codymaster/main/install.sh) --all --profile core
 ```
 
+### What's in the package
+
+- **50+ skills** — ready-to-use SKILL.md files for every major AI coding agent
+- **CLI (`cm`)** — install wizard, doctor, dashboard, MCP server, browse daemon
+- **Skill profiles** — curated bundles: `core`, `growth`, `full`, `knowledge`
+- **Multi-platform** — installs to Claude Code, Cursor, Gemini, Codex, OpenCode, Windsurf, Cline, Aider, Continue, Kiro, Amazon Q, Amp, Copilot, Claude Desktop
+- **Zero config** — detects your tools, installs skills, you're done
+
 ---
 
 ## The Dashboard
@@ -315,6 +326,71 @@ cm mcp-serve --print-config  # Paste into Goose config
 
 ---
 
+## CLI Commands
+
+| Command | Description |
+|---------|-------------|
+| `cm` | Launch interactive wizard (auto-detect AI tools) |
+| `cm doctor` | Check installation health across all platforms |
+| `cm status` | View current tasks and progress |
+| `cm dashboard` | Open visual mission control |
+| `cm install <platform> --profile <name>` | Install skills to a specific platform |
+| `cm update --full` | Update all skills to latest |
+| `cm upgrade` | Upgrade CodyMaster itself |
+| `cm mcp-serve` | Run as MCP server for Claude Desktop |
+| `cm browse` | Open a URL in the browse daemon |
+| `cm browse screenshot <url>` | Capture a screenshot |
+| `cm browse snapshot <url>` | Get accessibility tree snapshot |
+
+### Skill Profiles
+
+| Profile | Skills | Best For |
+|---------|--------|----------|
+| `core` | 15 | Daily coding — planning, TDD, debug, review, deploy |
+| `growth` | 25 | + design system, i18n, content factory |
+| `full` | 50+ | Everything — full senior team |
+| `knowledge` | 10 | Docs, code intelligence, retros |
+
+```bash
+cm install claude-code --profile core
+cm install cursor --profile growth
+cm install gemini --profile full
+```
+
+---
+
+## Troubleshooting
+
+### `cm: command not found`
+
+```bash
+# Make sure global npm bin is in PATH
+npm config get prefix
+# Add the output bin/ folder to your PATH
+```
+
+### Skills not showing in AI agent
+
+```bash
+cm doctor          # Check what's installed where
+cm install --all   # Re-install to all detected platforms
+```
+
+### Build fails
+
+```bash
+npm run build      # Rebuild TypeScript
+npm run test:gate:kit  # Run full quality gate
+```
+
+### Permission errors (macOS/Linux)
+
+```bash
+sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+```
+
+---
+
 ## Contributing
 
 1. ⭐ **Star the repo** — helps more builders find this
@@ -335,6 +411,8 @@ CI runs `npm run test:gate:kit` on every push and PR.
 | 🎨 Design Pipeline | [docs/design-pipeline.md](docs/design-pipeline.md) |
 | 🛠️ Skills | [skills/](skills/) |
 | 📖 Our Story | [cody.todyle.com/story](https://cody.todyle.com/story) |
+| 📋 Changelog | [CHANGELOG.md](CHANGELOG.md) |
+| 🐛 Issues | [GitHub Issues](https://github.com/tody-agent/codymaster/issues) |
 
 ---
 
