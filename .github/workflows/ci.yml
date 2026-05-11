@@ -4,21 +4,58 @@ on:
   push:
     branches: [main, master]
   pull_request:
+    branches: [main, master]
 
 jobs:
-  build-test:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Validate skills
+        run: npm run validate:skills
+
+      - name: Check skills drift
+        run: npm run check:skills
+
+      - name: Run tests
+        run: npm run test:gate:kit
+
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
           cache: npm
 
-      - name: Install
+      - name: Install dependencies
         run: npm ci
 
-      # build + validate:skills + check:skills + vitest (see test/engineering-kit-gate.test.ts)
-      - name: Kit gate
-        run: npm run test:gate:kit
+      - name: Check secrets hygiene
+        run: npm run gate:secrets
+
+      - name: Check repo hygiene
+        run: npm run gate:hygiene
+
+      - name: Check syntax
+        run: npm run gate:syntax

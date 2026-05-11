@@ -31,9 +31,6 @@ function main() {
         // ─── Registration ──────────────────────────────────────────────────────────
         // Register all modular commands
         (0, command_registry_1.registerAllCommands)(program);
-        // ─── Update Check ──────────────────────────────────────────────────────────
-        // Run update check in background (non-blocking)
-        (0, update_check_1.checkForUpdates)().catch(() => { });
         // ─── Execution ─────────────────────────────────────────────────────────────
         // Parse arguments and execute
         program.parse(process.argv);
@@ -41,6 +38,13 @@ function main() {
         if (process.argv.length <= 2) {
             program.help();
         }
+        // ─── Update Check (after command runs, non-blocking) ───────────────────────
+        // Show update notification in background after command completes
+        (0, update_check_1.checkForUpdates)().then((info) => {
+            if (info) {
+                (0, update_check_1.promptForUpgrade)(info).catch(() => { });
+            }
+        }).catch(() => { });
     });
 }
 // Error handling for uncaught exceptions

@@ -1,6 +1,6 @@
 {
   "name": "codymaster",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge (agent-browser + Playwright), a11y snapshots, structured error collection, video recording. Hybrid browser automation for visual QA and testing.",
   "main": "dist/index.js",
   "repository": {
@@ -43,6 +43,11 @@
     "update:sync": "cm update --sync",
     "update:changelog": "cm update --changelog",
     "upgrade": "cm upgrade",
+    "release": "bash scripts/release.sh",
+    "release:patch": "bash scripts/release.sh patch",
+    "release:minor": "bash scripts/release.sh minor",
+    "release:major": "bash scripts/release.sh major",
+    "install:curl": "curl -fsSL https://raw.githubusercontent.com/todyle/codymaster/main/scripts/install.sh | bash",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
@@ -81,7 +86,7 @@
     "better-sqlite3": "^12.8.0",
     "chalk": "^5.6.2",
     "chokidar": "^5.0.0",
-    "codymaster": "^7.0.0",
+    "codymaster": "^7.0.1",
     "commander": "^14.0.3",
     "express": "^5.2.1",
     "pino": "^10.0.0",

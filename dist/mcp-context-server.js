@@ -55,7 +55,7 @@ const advisory_report_1 = require("./advisory-report");
 const advisory_handoff_1 = require("./advisory-handoff");
 // ─── Config ──────────────────────────────────────────────────────────────────
 const SERVER_NAME = 'cm-context';
-const SERVER_VERSION = '1.0.0';
+const SERVER_VERSION = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'package.json'), 'utf-8')).version;
 function getProjectPath() {
     const args = process.argv.slice(2);
     const idx = args.indexOf('--project');

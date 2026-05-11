@@ -48,7 +48,7 @@ import { buildAdvisoryHandoff, type AdvisoryConsumer } from './advisory-handoff'
 // ─── Config ──────────────────────────────────────────────────────────────────
 
 const SERVER_NAME = 'cm-context';
-const SERVER_VERSION = '1.0.0';
+const SERVER_VERSION = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'package.json'), 'utf-8')).version;
 
 function getProjectPath(): string {
   const args = process.argv.slice(2);
