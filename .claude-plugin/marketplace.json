@@ -5,13 +5,13 @@
     "email": "hello@cody-master-a5q.pages.dev"
   },
   "metadata": {
-    "description": "CodyMaster v2.1 — 50 programming-focused AI agent skills with TL;DR compression, handoff JSON, and per-project learnings"
+    "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge, a11y snapshots, error collection, video recording"
   },
   "plugins": [
     {
       "name": "cm",
-      "description": "CodyMaster v2.1 — 50 programming-focused AI agent skills with TL;DR compression, structured handoff JSON, per-project learnings, and token budgets. Lean, smart, self-improving plugin for vibe coding.",
-      "version": "6.1.0",
+      "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge (agent-browser + Playwright), a11y snapshots, structured error collection, video recording. Hybrid browser automation for visual QA and testing.",
+      "version": "7.0.0",
       "source": "./",
       "author": {
         "name": "Tody Agent"
@@ -26,7 +26,11 @@
         "ux",
         "security",
         "ai-agent",
-        "devops"
+        "devops",
+        "browser-automation",
+        "visual-qa",
+        "a11y",
+        "error-collection"
       ]
     }
   ]

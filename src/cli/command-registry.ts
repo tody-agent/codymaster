@@ -16,6 +16,8 @@ import { registerEvolveCommands } from './commands/evolve';
 import { registerLearnCommands } from './commands/learn';
 import { registerQualityCommands } from './commands/quality';
 import { registerStackCommands } from './commands/stack';
+import { registerParallelCommands } from './commands/parallel';
+import { registerUpdateCommands } from './commands/update';
 
 /**
  * Registers all CLI commands with the provided program instance.
@@ -38,4 +40,6 @@ export function registerAllCommands(program: Command) {
   registerLearnCommands(program);
   registerQualityCommands(program);
   registerStackCommands(program);
+  registerParallelCommands(program);
+  registerUpdateCommands(program);
 }

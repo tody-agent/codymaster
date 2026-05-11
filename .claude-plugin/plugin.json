@@ -1,7 +1,7 @@
 {
   "name": "cm",
-  "version": "6.1.0",
-  "description": "CodyMaster v2.1 — 50 programming-focused AI agent skills with TL;DR compression, structured handoff JSON, per-project learnings, and token budgets. Lean, smart, self-improving plugin for vibe coding. Growth/CRO and content skills extracted to companion plugins.",
+  "version": "7.0.0",
+  "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge (agent-browser + Playwright), a11y snapshots, structured error collection, video recording. Hybrid browser automation for visual QA and testing.",
   "author": {
     "name": "Tody Agent"
   },
@@ -18,6 +18,10 @@
     "brainstorming",
     "skill-orchestration",
     "ai-agent",
-    "devops"
+    "devops",
+    "browser-automation",
+    "visual-qa",
+    "a11y",
+    "error-collection"
   ]
 }

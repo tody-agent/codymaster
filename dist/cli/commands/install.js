@@ -14,8 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerInstallCommands = registerInstallCommands;
 const chalk_1 = __importDefault(require("chalk"));
+const child_process_1 = require("child_process");
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
 const engine_1 = require("../../install/engine");
 const profiles_1 = require("../../install/profiles");
+const repoRoot = path_1.default.join(__dirname, '..', '..', '..');
 function registerInstallCommands(program) {
     program
         .command('install [platform]')
@@ -24,6 +28,7 @@ function registerInstallCommands(program) {
         .option('-s, --scope <scope>', 'Install scope for platforms that support it: user | project', 'user')
         .option('--all', 'Install to every detected platform')
         .option('--list', 'List supported platforms and exit')
+        .option('--sync', 'Sync skills to all platforms after install')
         .option('--dry-run', 'Show what would change without writing any files')
         .action((platform, opts) => __awaiter(this, void 0, void 0, function* () {
         if (opts.list)
@@ -72,20 +77,80 @@ function registerInstallCommands(program) {
             for (const h of r.postInstallHints)
                 console.log(chalk_1.default.cyan(`  ℹ  ${h}`));
         }
+        // Auto-sync if --sync flag or --all flag
+        if ((opts.sync || opts.all) && !opts.dryRun) {
+            console.log(chalk_1.default.bold('\n  Syncing skills to all platforms...'));
+            try {
+                (0, child_process_1.execSync)('node scripts/build-skills.mjs --all-platforms', {
+                    stdio: 'inherit',
+                    cwd: repoRoot,
+                    timeout: 60000,
+                });
+                console.log(chalk_1.default.green('  ✅ Skills synced to all platforms'));
+            }
+            catch (error) {
+                console.log(chalk_1.default.yellow('  ⚠️  Sync failed (run `cm update --sync` manually)'));
+            }
+        }
         console.log('');
     }));
+    // ─── Doctor Command ─────────────────────────────────────────
     program
         .command('doctor')
         .description('Check which AI platforms are installed and which have CodyMaster skills')
-        .action(() => {
+        .option('--sync-check', 'Check skill sync status across platforms')
+        .action((opts) => {
         console.log(chalk_1.default.bold('\nDetected platforms:\n'));
         for (const d of (0, engine_1.detectPlatforms)()) {
             const mark = d.installed ? chalk_1.default.green('●') : chalk_1.default.dim('○');
             const detail = d.detail ? chalk_1.default.dim(`  (${d.detail})`) : '';
             console.log(`  ${mark} ${d.platform.emoji}  ${d.platform.name}${detail}`);
         }
+        // Sync check
+        if (opts.syncCheck) {
+            console.log(chalk_1.default.bold('\n  Sync Status:\n'));
+            checkSyncStatus();
+        }
         console.log('');
     });
+}
+function checkSyncStatus() {
+    const platforms = [
+        { name: 'claude-code', dir: '.claude/skills' },
+        { name: 'claude-desktop', dir: '.claude-desktop/skills' },
+        { name: 'cursor', dir: '.cursor-plugin/skills' },
+        { name: 'windsurf', dir: '.windsurf/skills' },
+        { name: 'antigravity', dir: '.gemini/skills' },
+        { name: 'codex', dir: '.codex/skills' },
+        { name: 'opencode', dir: '.opencode/skills' },
+        { name: 'cline', dir: '.cline/skills' },
+        { name: 'kiro', dir: '.kiro/skills' },
+        { name: 'copilot', dir: '.copilot/skills' },
+        { name: 'aider', dir: '.aider/skills' },
+        { name: 'continue', dir: '.continue/skills' },
+        { name: 'amazon-q', dir: '.amazonq/skills' },
+        { name: 'amp', dir: '.amp/skills' },
+    ];
+    let synced = 0;
+    let missing = 0;
+    for (const p of platforms) {
+        const fullPath = path_1.default.join(repoRoot, p.dir);
+        const hasShared = fs_1.default.existsSync(path_1.default.join(fullPath, '_shared', 'helpers.md'));
+        if (hasShared) {
+            synced++;
+        }
+        else {
+            missing++;
+            console.log(chalk_1.default.yellow(`    ⚠ ${p.name}: _shared/helpers.md missing`));
+        }
+    }
+    if (missing === 0) {
+        console.log(chalk_1.default.green(`    ✅ All ${synced} platforms synced`));
+    }
+    else {
+        console.log(chalk_1.default.dim(`    ${synced} synced, ${missing} missing`));
+        console.log(chalk_1.default.dim('    Run `cm update --sync` to fix.'));
+    }
 }
 function printPlatforms() {
     console.log(chalk_1.default.bold('\nSupported platforms:\n'));

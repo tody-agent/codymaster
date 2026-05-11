@@ -179,6 +179,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
       'started': 'in-progress',
       'active': 'in-progress',
       'in-progress': 'in-progress',
+      'in_progress': 'in-progress',
       'idle': 'in-progress',
       'review': 'review',
       'completed': 'done',

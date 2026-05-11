@@ -18,6 +18,8 @@ const evolve_1 = require("./commands/evolve");
 const learn_1 = require("./commands/learn");
 const quality_1 = require("./commands/quality");
 const stack_1 = require("./commands/stack");
+const parallel_1 = require("./commands/parallel");
+const update_1 = require("./commands/update");
 /**
  * Registers all CLI commands with the provided program instance.
  */
@@ -39,4 +41,6 @@ function registerAllCommands(program) {
     (0, learn_1.registerLearnCommands)(program);
     (0, quality_1.registerQualityCommands)(program);
     (0, stack_1.registerStackCommands)(program);
+    (0, parallel_1.registerParallelCommands)(program);
+    (0, update_1.registerUpdateCommands)(program);
 }

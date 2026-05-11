@@ -1,7 +1,7 @@
 {
   "name": "codymaster",
-  "version": "6.1.0",
-  "description": "CodyMaster v2.0 — 39 focused skills with token budgets, handoff JSON, per-project learnings. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
+  "version": "7.0.0",
+  "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge (agent-browser + Playwright), a11y snapshots, structured error collection, video recording. Hybrid browser automation for visual QA and testing.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -35,6 +35,14 @@
     "check:skills": "node scripts/build-skills.mjs --check",
     "build:platforms": "node scripts/build-skills.mjs --platforms cursor,codex,opencode",
     "check:platforms": "node scripts/build-skills.mjs --platforms cursor,codex,opencode --check",
+    "sync:all": "node scripts/build-skills.mjs --all-platforms",
+    "sync:all:check": "node scripts/build-skills.mjs --all-platforms --check",
+    "changelog": "bash scripts/update-changelog.sh",
+    "changelog:dry": "bash scripts/update-changelog.sh --dry-run",
+    "update": "cm update --full",
+    "update:sync": "cm update --sync",
+    "update:changelog": "cm update --changelog",
+    "upgrade": "cm upgrade",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"

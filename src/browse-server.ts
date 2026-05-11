@@ -1,43 +1,29 @@
 /**
- * Local HTTP browse daemon (Playwright + Express). Bearer auth.
- * Refs: POST /refs/refresh tags interactive elements with data-cm-ref.
+ * Local HTTP browse daemon (Hybrid Bridge). Bearer auth.
+ * Supports both Playwright and agent-browser via adapter pattern.
+ * All existing endpoints are backward compatible.
  */
 
 import express, { Request, Response, NextFunction } from 'express';
-import type { Browser, BrowserContext, Page } from 'playwright';
+import type { BrowserAdapter } from './browse/adapters/types';
+import { createAdapter, type EngineName } from './browse/adapter-factory';
+import { EventLog } from './browse/event-log';
 
 export interface BrowseServerOptions {
   host?: string;
   port?: number;
   token: string;
   headless?: boolean;
-}
-
-export interface RingBuffer<T> {
-  push(item: T): void;
-  snapshot(): T[];
-}
-
-function createRing<T>(max: number): RingBuffer<T> {
-  const buf: T[] = [];
-  return {
-    push(item: T) {
-      buf.push(item);
-      while (buf.length > max) buf.shift();
-    },
-    snapshot: () => [...buf],
-  };
+  engine?: EngineName;
 }
 
 export class BrowseDaemon {
   private app = express();
   private httpServer: import('http').Server | null = null;
-  private browser: Browser | null = null;
-  private context: BrowserContext | null = null;
-  private page: Page | null = null;
-  private consoleBuf = createRing<{ type: string; text: string; ts: string }>(200);
-  private networkBuf = createRing<{ url: string; method: string; status?: number; ts: string }>(200);
-  private refMap: Record<string, string> = {};
+  private adapter: BrowserAdapter | null = null;
+  private eventLog = new EventLog({ maxSize: 1000 });
+  private engineName = 'unknown';
+  private sessionActive = false;
 
   constructor(private opts: BrowseServerOptions) {
     this.app.disable('x-powered-by');
@@ -65,119 +51,133 @@ export class BrowseDaemon {
   }
 
   private routes(): void {
+    // ── Health (no auth) ───────────────────────────────────────────────────
     this.app.get('/health', (_req, res) => {
-      res.json({ ok: true, hasPage: !!this.page });
+      res.json({ ok: true, session: this.sessionActive, engine: this.engineName });
     });
 
+    // ── Session start ─────────────────────────────────────────────────────
     this.app.post('/session/start', async (req, res) => {
       try {
         const headless = req.body?.headless ?? this.opts.headless ?? true;
-        const pw = await import('playwright');
-        this.browser = await pw.chromium.launch({ headless });
-        this.context = await this.browser.newContext();
-        this.page = await this.context.newPage();
-        this.page.on('console', (msg) => {
-          this.consoleBuf.push({
-            type: msg.type(),
-            text: msg.text(),
-            ts: new Date().toISOString(),
-          });
+        const engine = (req.body?.engine as EngineName) ?? this.opts.engine ?? 'auto';
+
+        const result = await createAdapter(engine);
+        this.adapter = result.adapter;
+        this.engineName = result.engine;
+
+        await this.adapter.startSession({ headless });
+        this.sessionActive = true;
+
+        this.eventLog.push({
+          category: 'session',
+          type: 'start',
+          message: `Session started with ${result.engine}${result.fallback ? ' (fallback)' : ''}`,
         });
-        this.context.on('response', (response) => {
-          try {
-            this.networkBuf.push({
-              url: response.url(),
-              method: response.request().method(),
-              status: response.status(),
-              ts: new Date().toISOString(),
-            });
-          } catch {
-            /* ignore */
-          }
-        });
-        res.json({ ok: true });
+
+        res.json({ ok: true, engine: result.engine, fallback: result.fallback });
       } catch (e) {
         res.status(500).json({ error: (e as Error).message });
       }
     });
 
+    // ── Navigate ──────────────────────────────────────────────────────────
     this.app.post('/navigate', async (req, res) => {
       try {
         const url = req.body?.url as string;
-        if (!url || !this.page) {
+        if (!url || !this.adapter) {
           res.status(400).json({ error: 'url required and session must be started' });
           return;
         }
-        await this.page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60_000 });
-        res.json({ ok: true, url: this.page.url() });
+        await this.adapter.navigate(url);
+
+        this.eventLog.push({
+          category: 'session',
+          type: 'navigate',
+          message: url,
+          source: url,
+        });
+
+        res.json({ ok: true, url });
       } catch (e) {
         res.status(500).json({ error: (e as Error).message });
       }
     });
 
+    // ── Refs refresh (backward compat — still tags data-cm-ref) ───────────
     this.app.post('/refs/refresh', async (_req, res) => {
       try {
-        if (!this.page) {
+        if (!this.adapter) {
           res.status(400).json({ error: 'no session' });
           return;
         }
-        const mapping = await this.page.evaluate(() => {
-          const sel =
-            'a[href],button,input,textarea,select,[role="button"],[onclick]';
-          const nodes = Array.from(document.querySelectorAll(sel));
-          const out: Record<string, string> = {};
-          nodes.forEach((el, i) => {
-            const id = `e${i + 1}`;
-            (el as HTMLElement).setAttribute('data-cm-ref', id);
-            const tag = el.tagName.toLowerCase();
-            const txt = (el.textContent || '').trim().slice(0, 80);
-            out[id] = `${tag}${txt ? `: ${txt}` : ''}`;
-          });
-          return out;
+        const snapshot = await this.adapter.getSnapshot();
+
+        this.eventLog.push({
+          category: 'interaction',
+          type: 'refs/refresh',
+          message: `Refreshed refs: ${Object.keys(snapshot.refs).length} elements`,
         });
-        this.refMap = mapping;
-        res.json({ ok: true, refs: mapping });
+
+        res.json({ ok: true, refs: snapshot.refs });
       } catch (e) {
         res.status(500).json({ error: (e as Error).message });
       }
     });
 
+    // ── Click ─────────────────────────────────────────────────────────────
     this.app.post('/click', async (req, res) => {
       try {
-        const ref = (req.body?.ref as string)?.replace(/^@/, '');
-        if (!ref || !this.page) {
+        const ref = req.body?.ref as string;
+        if (!ref || !this.adapter) {
           res.status(400).json({ error: 'ref required' });
           return;
         }
-        await this.page.click(`[data-cm-ref="${ref}"]`, { timeout: 15_000 });
+        await this.adapter.click(ref);
+
+        this.eventLog.push({
+          category: 'interaction',
+          type: 'click',
+          message: ref,
+        });
+
         res.json({ ok: true });
       } catch (e) {
         res.status(500).json({ error: (e as Error).message });
       }
     });
 
+    // ── Fill ──────────────────────────────────────────────────────────────
     this.app.post('/fill', async (req, res) => {
       try {
-        const ref = (req.body?.ref as string)?.replace(/^@/, '');
+        const ref = req.body?.ref as string;
         const value = req.body?.value as string;
-        if (!ref || value === undefined || !this.page) {
+        if (!ref || value === undefined || !this.adapter) {
           res.status(400).json({ error: 'ref and value required' });
           return;
         }
-        await this.page.fill(`[data-cm-ref="${ref}"]`, value, { timeout: 15_000 });
+        await this.adapter.fill(ref, value);
+
+        this.eventLog.push({
+          category: 'interaction',
+          type: 'fill',
+          message: `${ref} = "${value.slice(0, 50)}"`,
+        });
+
         res.json({ ok: true });
       } catch (e) {
         res.status(500).json({ error: (e as Error).message });
       }
     });
 
+    // ── Screenshot ────────────────────────────────────────────────────────
     this.app.get('/screenshot', async (_req, res) => {
       try {
-        if (!this.page) {
+        if (!this.adapter) {
           res.status(400).json({ error: 'no session' });
           return;
         }
-        const buf = await this.page.screenshot({ type: 'png' });
+        const buf = await this.adapter.screenshot();
         res.setHeader('Content-Type', 'image/png');
         res.send(buf);
       } catch (e) {
@@ -185,12 +185,133 @@ export class BrowseDaemon {
       }
     });
 
-    this.app.get('/console', (_req, res) => {
-      res.json({ entries: this.consoleBuf.snapshot() });
+    // ── Console (backward compat) ─────────────────────────────────────────
+    this.app.get('/console', async (_req, res) => {
+      try {
+        if (!this.adapter) {
+          res.json({ entries: [] });
+          return;
+        }
+        const entries = await this.adapter.getConsole();
+        res.json({ entries });
+      } catch (e) {
+        res.status(500).json({ error: (e as Error).message });
+      }
     });
 
-    this.app.get('/network', (_req, res) => {
-      res.json({ entries: this.networkBuf.snapshot() });
+    // ── Network (backward compat) ─────────────────────────────────────────
+    this.app.get('/network', async (_req, res) => {
+      try {
+        if (!this.adapter) {
+          res.json({ entries: [] });
+          return;
+        }
+        const entries = await this.adapter.getNetwork();
+        res.json({ entries });
+      } catch (e) {
+        res.status(500).json({ error: (e as Error).message });
+      }
+    });
+
+    // ── NEW: Errors ───────────────────────────────────────────────────────
+    this.app.get('/errors', async (req, res) => {
+      try {
+        if (!this.adapter) {
+          res.json({ errors: [] });
+          return;
+        }
+        const filter: Record<string, string> = {};
+        if (req.query.type) filter.type = req.query.type as string;
+        if (req.query.severity) filter.severity = req.query.severity as string;
+
+        const errors = await this.adapter.getErrors();
+        let filtered = errors;
+        if (filter.type) filtered = filtered.filter(e => e.type === filter.type);
+        if (filter.severity) filtered = filtered.filter(e => e.severity === filter.severity);
+
+        res.json({ errors: filtered, total: errors.length });
+      } catch (e) {
+        res.status(500).json({ error: (e as Error).message });
+      }
+    });
+
+    // ── NEW: A11y Snapshot ────────────────────────────────────────────────
+    this.app.get('/a11y-snapshot', async (_req, res) => {
+      try {
+        if (!this.adapter) {
+          res.status(400).json({ error: 'no session' });
+          return;
+        }
+        const snapshot = await this.adapter.getSnapshot();
+        res.json(snapshot);
+      } catch (e) {
+        res.status(500).json({ error: (e as Error).message });
+      }
+    });
+
+    // ── NEW: Record start ─────────────────────────────────────────────────
+    this.app.post('/record/start', async (_req, res) => {
+      try {
+        if (!this.adapter) {
+          res.status(400).json({ error: 'no session' });
+          return;
+        }
+        await this.adapter.startRecording();
+
+        this.eventLog.push({
+          category: 'session',
+          type: 'record/start',
+          message: 'Video recording started',
+        });
+
+        res.json({ ok: true });
+      } catch (e) {
+        res.status(500).json({ error: (e as Error).message });
+      }
+    });
+
+    // ── NEW: Record stop ──────────────────────────────────────────────────
+    this.app.post('/record/stop', async (_req, res) => {
+      try {
+        if (!this.adapter) {
+          res.status(400).json({ error: 'no session' });
+          return;
+        }
+        const path = await this.adapter.stopRecording();
+
+        this.eventLog.push({
+          category: 'session',
+          type: 'record/stop',
+          message: `Video saved: ${path}`,
+        });
+
+        res.json({ ok: true, path });
+      } catch (e) {
+        res.status(500).json({ error: (e as Error).message });
+      }
+    });
+
+    // ── NEW: Engine info ──────────────────────────────────────────────────
+    this.app.get('/engine', (_req, res) => {
+      if (!this.adapter) {
+        res.json({ name: this.engineName, active: false });
+        return;
+      }
+      const info = this.adapter.getEngineInfo();
+      res.json({ ...info, active: this.sessionActive });
+    });
+
+    // ── NEW: Event log ────────────────────────────────────────────────────
+    this.app.get('/events', (req, res) => {
+      const filter: Record<string, string> = {};
+      if (req.query.category) filter.category = req.query.category as string;
+      if (req.query.limit) filter.limit = req.query.limit as string;
+
+      const entries = this.eventLog.query({
+        category: filter.category as any,
+        limit: filter.limit ? parseInt(filter.limit, 10) : undefined,
+      });
+      res.json({ entries, total: this.eventLog.size });
     });
   }
 
@@ -204,12 +325,12 @@ export class BrowseDaemon {
   }
 
   async close(): Promise<void> {
-    if (this.page) await this.page.close().catch(() => {});
-    if (this.context) await this.context.close().catch(() => {});
-    if (this.browser) await this.browser.close().catch(() => {});
-    this.page = null;
-    this.context = null;
-    this.browser = null;
+    if (this.adapter) {
+      await this.adapter.closeSession().catch(() => {});
+      this.adapter = null;
+    }
+    this.sessionActive = false;
+    this.eventLog.clear();
     if (this.httpServer) {
       await new Promise<void>((r) => this.httpServer!.close(() => r()));
       this.httpServer = null;

@@ -226,6 +226,15 @@ Modes:
 
 The default mode follows the project tier from `cm tier classify`.
 
+## Karpathy Discipline — Loop Until Verified
+
+The gate is where "goal-driven execution" actually closes the loop:
+- **No claim without evidence.** "Tests pass" → paste the run. "Build green" → paste the hash. "Feature works" → paste the screenshot or HTTP response.
+- **Loop independently while verifiable.** If the success criterion is concrete (test green, status 200, screenshot diff < threshold), keep iterating without asking. If criterion is vague, stop and ask — don't burn cycles on guesses.
+- **Verify don't trust.** A subagent's summary says what it intended, not what it did. Re-run the gate yourself.
+
+**Gate principle:** weak criteria fail here, not in production. Reject "make it work" handoffs back to planning.
+
 ## The Bottom Line
 
 **Test before deploy. Scan before release. Evidence before claims. Safety before shipping. Non-negotiable.**

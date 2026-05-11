@@ -6,6 +6,117 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ---
 
+## [7.0.0] - 2026-05-11
+
+### 🚀 Improvements — Browse Hybrid Bridge
+
+Major browser automation upgrade. Combines agent-browser (Rust/CDP) with Playwright via adapter pattern for AI-native browser control, a11y snapshots, structured error collection, and video recording.
+
+**Browse Hybrid Bridge:**
+- New `src/browse/adapters/types.ts` — BrowserAdapter interface + types (A11ySnapshot, BrowserError, EngineInfo)
+- New `src/browse/adapters/playwright-adapter.ts` — Playwright implementation with a11y tree support
+- New `src/browse/adapters/agent-browser-adapter.ts` — agent-browser CLI wrapper (Rust/CDP)
+- New `src/browse/adapter-factory.ts` — Auto-detect engine + fallback chain (agent-browser → Playwright)
+- New `src/browse/error-collector.ts` — Structured error classification (js-error, network-fail, console-error, crash, timeout)
+- New `src/browse/event-log.ts` — Upgraded ring buffer with filtering, export, 1000 max entries
+- New `src/browse/index.ts` — Barrel export for browse module
+
+**Refactored BrowseDaemon:**
+- Refactored `src/browse-server.ts` — Adapter pattern, new endpoints, backward compatible
+- New endpoints: `GET /errors`, `GET /a11y-snapshot`, `GET /engine`, `GET /events`, `POST /record/start`, `POST /record/stop`
+- EventLog replaces RingBuffer for structured event tracking
+
+**New CLI Commands:**
+- `cm browse start --engine <auto|agent-browser|playwright>` — Engine selection
+- `cm browse doctor` — Check engine availability
+- `cm browse errors [--type <t>] [--severity <s>]` — List collected errors
+- `cm browse snapshot` — A11y tree with `@eN` refs
+- `cm browse engine` — Current engine info + capabilities
+- `cm browse record start|stop` — Video recording control
+
+**Skill Integration:**
+- Updated `cm-browse` SKILL.md — Hybrid Bridge documentation
+- Updated `cm-skill-index` — Added cm-browse to Engineering Swarm
+- Updated `cm-quality-gate` — Added cm-browse integration
+- Updated `cm-debugging` — Added cm-browse for error collection
+- Updated `cm-safe-deploy` — Added cm-browse for post-deploy smoke
+- Updated `cm-mcp-engineering` — Updated cm_qa tool description
+- Updated `AGENTS.md` — Added browse module to Authority table
+
+**Files Created:**
+- `src/browse/adapters/types.ts`
+- `src/browse/adapters/playwright-adapter.ts`
+- `src/browse/adapters/agent-browser-adapter.ts`
+- `src/browse/adapter-factory.ts`
+- `src/browse/error-collector.ts`
+- `src/browse/event-log.ts`
+- `src/browse/index.ts`
+
+**Files Modified:**
+- `src/browse-server.ts` — Adapter pattern refactor
+- `src/cli/commands/engineering.ts` — New browse commands + --engine flag
+
+---
+
+## [6.1.0] - 2026-05-11
+
+### 🚀 Improvements — Workflow Pipeline Fix + Unified CLI
+
+Fix broken skill pipeline across all 14 AI coding platforms. Restore seamless start → brainstorm → planning → execution → QA → deploy workflow. Add unified CLI commands for easier management.
+
+**Multi-Platform Skill Sync:**
+- Updated `scripts/build-skills.mjs` to sync ALL 50 `cm-*` skills + `_shared/` to ALL 14 platforms
+- Platforms: Claude Code, Claude Desktop, Cursor, Windsurf, Antigravity, Codex, OpenCode, Cline, Kiro, Copilot, Aider, Continue, Amazon Q, Amp
+- Added `npm run sync:all` command for one-click sync
+- `_shared/helpers.md` now accessible from all platforms
+
+**TDD Enforcement Gate:**
+- New `src/execution/tdd-gate.ts` — blocks execution without tests
+- Enforces RED phase: test must fail before implementation
+- Added `test/tdd-gate.test.ts` — 10 tests pass
+- Updated `cm-execution` and `cm-tdd` SKILL.md with enforcement docs
+
+**Changelog Automation:**
+- New `scripts/update-changelog.sh` — auto-update from git commits
+- Follows conventional commits format (feat, fix, security, improve)
+- Added `npm run changelog` and `npm run changelog:dry` commands
+
+**Gemini CLI Integration:**
+- New `src/cli/commands/parallel.ts` — `cm parallel` command
+- Execute tasks in parallel using Gemini CLI
+- Supports `--count`, `--context`, `--model` options
+- Graceful fallback when Gemini CLI not installed
+
+**Unified CLI Commands:**
+- New `cm update` — unified update command
+  - `cm update --sync` — sync skills to all platforms
+  - `cm update --changelog` — update changelog
+  - `cm update --check` — check for available updates
+  - `cm update --full` — full update (sync + changelog)
+- New `cm upgrade` — upgrade CodyMaster package + sync
+- Enhanced `cm install --sync` — auto-sync after install
+- Enhanced `cm doctor --sync-check` — check sync status
+- Added npm scripts: `update`, `update:sync`, `update:changelog`, `upgrade`
+
+**Files Created:**
+- `src/execution/tdd-gate.ts`
+- `test/tdd-gate.test.ts`
+- `scripts/update-changelog.sh`
+- `src/cli/commands/parallel.ts`
+- `src/cli/commands/update.ts`
+
+**Files Modified:**
+- `scripts/build-skills.mjs` — 14 platforms + _shared/ sync
+- `src/cli/command-registry.ts` — Register parallel + update commands
+- `src/cli/commands/install.ts` — Add --sync flag, enhance doctor
+- `package.json` — Add sync:all, changelog, update, upgrade scripts
+- `.opencode/skills/cm-execution/SKILL.md` — Document TDD gate
+- `.opencode/skills/cm-tdd/SKILL.md` — Reference TDD gate
+
+**Test Results:** 49 files, 406 tests pass
+
+---
+
 ## [6.0.0] - 2026-05-10
 
 ### 🚀 Major Release — "The Disciplined Brain"

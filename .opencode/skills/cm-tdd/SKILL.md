@@ -361,6 +361,36 @@ Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix 
 
 Never fix bugs without a test.
 
+## Karpathy Discipline — Goal-Driven Execution
+
+TDD is the canonical form of goal-driven execution. Reinforce it:
+- **Translate vague tasks into verifiable goals before writing code.**
+  - "Add validation" → "Test invalid inputs fail; valid inputs pass."
+  - "Fix the bug" → "Test reproduces it red; fix turns it green."
+  - "Refactor X" → "Same tests green before and after."
+- **Strong success criteria let you loop independently.** Weak criteria ("make it work") force the user to babysit.
+- **Minimum code to pass.** Don't over-implement to "anticipate" the next test — write that test first.
+
+## Enforcement — TDD Gate
+
+**Automated enforcement** via `src/execution/tdd-gate.ts`:
+
+| Check | Behavior |
+|-------|----------|
+| Test file missing | BLOCK execution — "Write test first: test/foo.test.ts" |
+| All tests pass | BLOCK execution — "Write failing test first (RED phase)" |
+| Tests fail | PASS — RED phase verified, proceed to GREEN |
+
+**Integration:**
+- `cm-execution` pre-flight calls `enforceTDD(targetFiles)` before every task
+- `cm sprint complete build` checks TDD compliance
+- Override: `--no-tdd-gate` (emergencies only)
+
+**Why strict?**
+- TRIZ Principle #10 (Prior Action): Prevent problems before they happen
+- Karpathy Discipline: "No production code without a failing test first"
+- March 2026 incident: 572 tests passed but app.js had syntax errors
+
 ## Final Rule
 
 ```

@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.launchDashboard = launchDashboard;
+/// <reference types="pino-http" />
 const express_1 = __importDefault(require("express"));
 const chalk_1 = __importDefault(require("chalk"));
 const path_1 = __importDefault(require("path"));
@@ -28,7 +29,8 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     app.use((0, security_headers_1.securityHeaders)());
     app.use(express_1.default.json({ limit: '1mb' }));
     const logger = (0, pino_1.default)({ level: 'info' });
-    app.use((0, pino_http_1.default)({ logger }));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    app.use((0, pino_http_1.default)({ logger: logger }));
     const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
     app.use(express_1.default.static(publicDir));
     // ─── Project API ────────────────────────────────────────────────────────
@@ -176,6 +178,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             'started': 'in-progress',
             'active': 'in-progress',
             'in-progress': 'in-progress',
+            'in_progress': 'in-progress',
             'idle': 'in-progress',
             'review': 'review',
             'completed': 'done',

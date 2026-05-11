@@ -89,7 +89,7 @@ async function cmSyncTodos({ todos, projectName, sessionId }) {
       dashboardRequest('POST', '/api/tasks/auto-sync', {
         conversationId: `${sid}:${todo.id}`,
         title: todo.content,
-        status: STATUS_TO_COLUMN[todo.status] || 'backlog',
+        status: todo.status || 'pending',  // Send original status, not mapped column
         agent: 'claude-code',
         priority: todo.priority || 'medium',
         projectName: project,
@@ -124,7 +124,7 @@ async function cmUpdateTask({ conversationId, status, title, projectName }) {
   const result = await dashboardRequest('POST', '/api/tasks/auto-sync', {
     conversationId: conversationId || `mcp-${Date.now()}:manual`,
     title: title || conversationId,
-    status: STATUS_TO_COLUMN[status] || 'in-progress',
+    status: status || 'in_progress',  // Send original status, not mapped column
     agent: 'claude-code',
     projectName: projectName || 'Claude Desktop',
   });

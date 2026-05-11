@@ -58,6 +58,28 @@ Before choosing execution mode, scan plan tasks for technology keywords:
 7. Only proceed to Mode Selection after all gaps resolved
 ```
 
+### Pre-flight: TDD Enforcement Gate
+
+**MANDATORY** — Before executing ANY task, verify TDD compliance:
+
+```
+1. For each target file in the task:
+   → Check if test file exists: src/foo.ts → test/foo.test.ts
+   → If NO test file → BLOCK execution, error: "Write test first: test/foo.test.ts"
+   → If test file exists → run tests
+   → If all tests pass → BLOCK execution, error: "Write failing test first (RED phase)"
+   → If tests fail → PASS (RED phase verified, can proceed to GREEN)
+
+2. Override flag: --no-tdd-gate (for emergencies only)
+```
+
+**Implementation:** See `src/execution/tdd-gate.ts` for enforcement logic.
+
+**Why strict?**
+- TRIZ Principle #10 (Prior Action): Prevent problems before they happen
+- Karpathy Discipline: "No production code without a failing test first"
+- March 2026 incident: 572 tests passed but app.js had syntax errors
+
 ---
 
 ## Mode Selection
@@ -395,6 +417,16 @@ Writes to `.cm/handoff/party.json` matching `PartyHandoff` from `src/handoff/con
 | `/cm-start` | Create tasks + launch RARV + open dashboard |
 | `/cm-status` | Quick terminal progress summary |
 | `/cm-dashboard` | Open browser dashboard |
+
+## Karpathy Discipline — Surgical Changes
+
+Every executor (single agent or subagent fleet) must follow:
+- **Touch only what the task requires.** No "while I'm here" formatting, renames, or refactors.
+- **Match existing style** even if you'd write it differently. Consistency > taste.
+- **Notice unrelated dead code? Mention it, don't delete.** Out-of-scope cleanup → spawn a separate task.
+- **Clean only your own orphans.** If your edit makes an import/var unused, remove it. Pre-existing dead code stays unless explicitly asked.
+
+**Diff test:** Every changed line should trace to the task. If a reviewer asks "why this line?", you must point at the task — not "felt cleaner".
 
 ## The Bottom Line
 

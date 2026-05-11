@@ -11,6 +11,7 @@ Short orientation for AI coding agents and human maintainers working in **this**
 | Shared project config | `.cm/config.example.yaml` → copy to `.cm/config.yaml`; loader `src/cm-config.ts` |
 | MCP tools | `src/mcp-context-server.ts` |
 | Browse HTTP API | `src/browse-server.ts` |
+| Browse Hybrid Bridge (adapters, error collector, event log) | `src/browse/` |
 | Sprint state | `src/sprint-pipeline.ts`, `.cm/sprint/` |
 | Skill Indexing | `src/indexer/skills.ts` |
 
