@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import type { KanbanData, Task, Project } from '../src/data';
+import { getProjectActiveAgents } from '../src/dashboard-project-summary';
 
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cm-dash-'));
 const tmpDataFile = path.join(tmpDir, 'kanban.json');
@@ -124,5 +125,99 @@ describe('Cancelled tasks excluded from done stats', () => {
     const statuses = ['backlog', 'active', 'review', 'completed', 'cancelled'];
     const columns = statuses.map(s => STATUS_TO_COLUMN[s] || 'in-progress');
     expect(columns).toEqual(['backlog', 'in-progress', 'review', 'done', 'cancelled']);
+  });
+});
+
+describe('Project agent summaries', () => {
+  it('includes registered project agents even when they have no current tasks', () => {
+    const project: Project = {
+      id: 'p3',
+      name: 'Codex Project',
+      path: '',
+      agents: ['codex', 'claude-code'],
+      createdAt: new Date().toISOString(),
+    };
+    const now = new Date().toISOString();
+    const tasks: Task[] = [
+      {
+        id: 't-review',
+        projectId: 'p3',
+        title: 'Review PR',
+        description: '',
+        column: 'in-progress',
+        order: 0,
+        priority: 'medium',
+        agent: 'claude-code',
+        skill: '',
+        createdAt: now,
+        updatedAt: now,
+      },
+    ];
+
+    expect(getProjectActiveAgents(project, tasks)).toEqual(['codex', 'claude-code']);
+  });
+
+  it('adds task agents that are not yet registered on the project', () => {
+    const project: Project = {
+      id: 'p4',
+      name: 'Mixed Project',
+      path: '',
+      agents: ['codex'],
+      createdAt: new Date().toISOString(),
+    };
+    const now = new Date().toISOString();
+    const tasks: Task[] = [
+      {
+        id: 't-debug',
+        projectId: 'p4',
+        title: 'Debug issue',
+        description: '',
+        column: 'in-progress',
+        order: 0,
+        priority: 'high',
+        agent: 'antigravity',
+        skill: '',
+        createdAt: now,
+        updatedAt: now,
+      },
+    ];
+
+    expect(getProjectActiveAgents(project, tasks)).toEqual(['codex', 'antigravity']);
+  });
+
+  it('keeps opencode visible when registered on the project without an open task', () => {
+    const project: Project = {
+      id: 'p5',
+      name: 'OpenCode Project',
+      path: '',
+      agents: ['opencode'],
+      createdAt: new Date().toISOString(),
+    };
+
+    expect(getProjectActiveAgents(project, [])).toEqual(['opencode']);
+  });
+
+  it('keeps cursor visible when registered on the project without an open task', () => {
+    const project: Project = {
+      id: 'p6',
+      name: 'Cursor Project',
+      path: '',
+      agents: ['cursor'],
+      createdAt: new Date().toISOString(),
+    };
+
+    expect(getProjectActiveAgents(project, [])).toEqual(['cursor']);
+  });
+
+  it('keeps gemini-cli visible when registered on the project without an open task', () => {
+    const project: Project = {
+      id: 'p7',
+      name: 'Gemini Project',
+      path: '',
+      agents: ['gemini-cli'],
+      createdAt: new Date().toISOString(),
+    };
+
+    expect(getProjectActiveAgents(project, [])).toEqual(['gemini-cli']);
   });
 });

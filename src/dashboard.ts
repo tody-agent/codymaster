@@ -20,6 +20,7 @@ import { validateBody } from './schemas/validate';
 import { createTaskSchema, updateTaskSchema, autoSyncSchema, createProjectSchema } from './schemas/task-schema';
 import { securityHeaders } from './middleware/security-headers';
 import { metricsHandler } from './middleware/metrics';
+import { getProjectActiveAgents } from './dashboard-project-summary';
 
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 
@@ -29,7 +30,8 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
   app.use(securityHeaders());
   app.use(express.json({ limit: '1mb' }));
 
-  const logger = pino({ level: 'info' });
+  // Default to 'warn' to keep CLI clean; opt-in verbose via CM_LOG_LEVEL=info|debug|trace
+  const logger = pino({ level: process.env.CM_LOG_LEVEL || 'warn' });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   app.use(pinoHttp({ logger: logger as any }));
 
@@ -42,7 +44,12 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     const data = loadData();
     const enriched = data.projects.map(p => {
       const pt = data.tasks.filter(t => t.projectId === p.id);
-      return { ...p, taskCount: pt.length, doneCount: pt.filter(t => t.column === 'done').length, activeAgents: [...new Set(pt.map(t => t.agent).filter(Boolean))] };
+      return {
+        ...p,
+        taskCount: pt.length,
+        doneCount: pt.filter(t => t.column === 'done').length,
+        activeAgents: getProjectActiveAgents(p, pt),
+      };
     });
     res.json(enriched);
   });
@@ -877,7 +884,11 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
     res.status(404).json({ error: 'not found' });
   });
   app.get('/{*path}', (_req, res) => {
-    res.sendFile(path.join(publicDir, 'index.html'));
+    res.sendFile(path.join(publicDir, 'index.html'), (err) => {
+      if (err && !res.headersSent) {
+        res.status(500).send('Internal Server Error');
+      }
+    });
   });
 
   // ─── Start Server ─────────────────────────────────────────────────────
@@ -885,12 +896,12 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
   const server = app.listen(port, '127.0.0.1', () => {
     try { fs.writeFileSync(PID_FILE, String(process.pid)); } catch {}
     if (!silent) {
-      console.log(chalk.cyan(`\n🚀 Mission Control at http://codymaster.localhost:${port}`));
+      console.log(chalk.cyan(`\n🚀 Mission Control at http://localhost:${port}`));
       console.log(chalk.gray(`   Data: ${DATA_FILE}`));
       console.log(chalk.gray(`   Press Ctrl+C to stop.\n`));
     } else {
       // Silent auto-start: just a subtle hint
-      console.log(chalk.gray(`  📊 Dashboard auto-started → http://codymaster.localhost:${port}`));
+      console.log(chalk.gray(`  📊 Dashboard auto-started → http://localhost:${port}`));
     }
   });
 

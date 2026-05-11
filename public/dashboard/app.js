@@ -1,4 +1,4 @@
-/* CodyMaster Mission Control v4 — Multi-Project, History, Deploy, Changelog, Auto-Sync */
+/* opencode Mission Control v4 — Multi-Project, History, Deploy, Changelog, Auto-Sync */
 
 (function () {
   'use strict';
@@ -34,14 +34,14 @@
   });
   const API = '/api';
   const AGENT_COLORS = {
-    'antigravity': '#3fb950', 'claude-code': '#bc8cff', 'cursor': '#58a6ff',
-    'gemini-cli': '#d29922', 'windsurf': '#f97316', 'cline': '#a1887f',
-    'copilot': '#8b949e', 'manual': '#e6edf3',
+    'antigravity': '#3fb950', 'claude-code': '#bc8cff', 'codex': '#10a37f',
+    'cursor': '#58a6ff', 'gemini-cli': '#d29922', 'opencode': '#ff6b6b', 'windsurf': '#f97316',
+    'cline': '#a1887f', 'copilot': '#8b949e', 'manual': '#e6edf3',
   };
   const AGENT_LABELS = {
-    'antigravity': 'Antigravity', 'claude-code': 'Claude Code', 'cursor': 'Cursor',
-    'gemini-cli': 'Gemini CLI', 'windsurf': 'Windsurf', 'cline': 'Cline',
-    'copilot': 'Copilot', 'manual': 'Manual',
+    'antigravity': 'Antigravity', 'claude-code': 'Claude Code', 'codex': 'Codex',
+    'cursor': 'Cursor', 'gemini-cli': 'Gemini CLI', 'opencode': 'OpenCode', 'windsurf': 'Windsurf',
+    'cline': 'Cline', 'copilot': 'Copilot', 'manual': 'Manual',
   };
   const ACTIVITY_ICONS = {
     'task_created': '✨', 'task_moved': '↔️', 'task_done': '✅', 'task_deleted': '🗑️', 'task_updated': '✏️',
@@ -314,12 +314,11 @@
     });
 
     // Agents
-    const allAgents = {};
-    tasks.forEach(t => { if (t.agent) allAgents[t.agent] = (allAgents[t.agent] || 0) + 1; });
-    if (Object.keys(allAgents).length === 0) {
+    const visibleAgents = getVisibleAgents();
+    if (visibleAgents.length === 0) {
       agentListEl.innerHTML = '<div class="agent-empty">No active agents</div>';
     } else {
-      agentListEl.innerHTML = Object.entries(allAgents).sort((a, b) => b[1] - a[1]).map(([agent, count]) => {
+      agentListEl.innerHTML = visibleAgents.map(({ agent, count }) => {
         const color = AGENT_COLORS[agent] || '#8b949e';
         return `<div class="agent-badge"><span class="agent-dot" style="background:${color}"></span><span>${esc(AGENT_LABELS[agent] || agent)}</span><span class="agent-task-count">${count}</span></div>`;
       }).join('');
@@ -329,6 +328,34 @@
   }
 
   function countAllTasks() { return projects.reduce((s, p) => s + (p.taskCount || 0), 0); }
+
+  function getVisibleAgents() {
+    const taskCounts = {};
+    tasks.forEach(t => {
+      if (t.agent) taskCounts[t.agent] = (taskCounts[t.agent] || 0) + 1;
+    });
+
+    const visibleAgents = new Set();
+    const sourceProjects = selectedProjectId
+      ? projects.filter(p => p.id === selectedProjectId)
+      : projects;
+
+    sourceProjects.forEach(project => {
+      (project.activeAgents || project.agents || []).forEach(agent => {
+        if (agent) visibleAgents.add(agent);
+      });
+    });
+
+    Object.keys(taskCounts).forEach(agent => visibleAgents.add(agent));
+
+    return Array.from(visibleAgents)
+      .sort((a, b) => {
+        const countDiff = (taskCounts[b] || 0) - (taskCounts[a] || 0);
+        if (countDiff !== 0) return countDiff;
+        return String(AGENT_LABELS[a] || a).localeCompare(String(AGENT_LABELS[b] || b));
+      })
+      .map(agent => ({ agent, count: taskCounts[agent] || 0 }));
+  }
 
   // ── Board Rendering ────────────────────────
   function renderBoard() {
@@ -469,7 +496,7 @@
   function renderDeploys() {
     const container = document.getElementById('deploy-list');
     if (deployments.length === 0) {
-      container.innerHTML = '<div class="deploy-empty">No deployments yet. Deploy from CLI with: <code>codymaster deploy staging</code></div>';
+      container.innerHTML = '<div class="deploy-empty">No deployments yet. Deploy from CLI with: <code>opencode deploy staging</code></div>';
       return;
     }
 
@@ -515,7 +542,7 @@
   function renderChangelog() {
     const container = document.getElementById('changelog-list');
     if (changelog.length === 0) {
-      container.innerHTML = '<div class="changelog-empty">No changelog entries yet. Add one with the button above or CLI: <code>codymaster changelog add</code></div>';
+      container.innerHTML = '<div class="changelog-empty">No changelog entries yet. Add one with the button above or CLI: <code>opencode changelog add</code></div>';
       return;
     }
 

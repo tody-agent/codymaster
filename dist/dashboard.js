@@ -22,13 +22,15 @@ const skill_chain_1 = require("./skill-chain");
 const validate_1 = require("./schemas/validate");
 const task_schema_1 = require("./schemas/task-schema");
 const security_headers_1 = require("./middleware/security-headers");
+const dashboard_project_summary_1 = require("./dashboard-project-summary");
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     const app = (0, express_1.default)();
     app.disable('x-powered-by');
     app.use((0, security_headers_1.securityHeaders)());
     app.use(express_1.default.json({ limit: '1mb' }));
-    const logger = (0, pino_1.default)({ level: 'info' });
+    // Default to 'warn' to keep CLI clean; opt-in verbose via CM_LOG_LEVEL=info|debug|trace
+    const logger = (0, pino_1.default)({ level: process.env.CM_LOG_LEVEL || 'warn' });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     app.use((0, pino_http_1.default)({ logger: logger }));
     const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
@@ -38,7 +40,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         const data = (0, data_1.loadData)();
         const enriched = data.projects.map(p => {
             const pt = data.tasks.filter(t => t.projectId === p.id);
-            return Object.assign(Object.assign({}, p), { taskCount: pt.length, doneCount: pt.filter(t => t.column === 'done').length, activeAgents: [...new Set(pt.map(t => t.agent).filter(Boolean))] });
+            return Object.assign(Object.assign({}, p), { taskCount: pt.length, doneCount: pt.filter(t => t.column === 'done').length, activeAgents: (0, dashboard_project_summary_1.getProjectActiveAgents)(p, pt) });
         });
         res.json(enriched);
     });
@@ -939,7 +941,11 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         res.status(404).json({ error: 'not found' });
     });
     app.get('/{*path}', (_req, res) => {
-        res.sendFile(path_1.default.join(publicDir, 'index.html'));
+        res.sendFile(path_1.default.join(publicDir, 'index.html'), (err) => {
+            if (err && !res.headersSent) {
+                res.status(500).send('Internal Server Error');
+            }
+        });
     });
     // ─── Start Server ─────────────────────────────────────────────────────
     const server = app.listen(port, '127.0.0.1', () => {
@@ -948,13 +954,13 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
         }
         catch (_a) { }
         if (!silent) {
-            console.log(chalk_1.default.cyan(`\n🚀 Mission Control at http://codymaster.localhost:${port}`));
+            console.log(chalk_1.default.cyan(`\n🚀 Mission Control at http://localhost:${port}`));
             console.log(chalk_1.default.gray(`   Data: ${data_1.DATA_FILE}`));
             console.log(chalk_1.default.gray(`   Press Ctrl+C to stop.\n`));
         }
         else {
             // Silent auto-start: just a subtle hint
-            console.log(chalk_1.default.gray(`  📊 Dashboard auto-started → http://codymaster.localhost:${port}`));
+            console.log(chalk_1.default.gray(`  📊 Dashboard auto-started → http://localhost:${port}`));
         }
     });
     (0, ws_hub_1.initWsHub)(server);

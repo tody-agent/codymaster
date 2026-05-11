@@ -17,8 +17,6 @@
        Gặp Cody 🐹
 ```
 
-[![Discord](https://img.shields.io/badge/Discord-Join-7289da?logo=discord&logoColor=white)](https://discord.gg/codymaster)
-
 ---
 
 ## Vấn đề
@@ -242,6 +240,25 @@ cm doctor          # Kiểm tra đã cài gì
 cm status          # Xem task và tiến độ
 cm dashboard       # Mở bảng điều khiển trực quan
 ```
+
+### Dành cho người dùng Codex
+
+Cách nhanh nhất:
+
+```bash
+git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
+cd ~/.cody-master
+npm ci
+npm run build:platforms
+```
+
+Sau đó nói với Codex:
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
+
+Hoặc dùng trực tiếp cây skill Codex tại `.codex/skills/`.
 
 ### Không có Node.js?
 

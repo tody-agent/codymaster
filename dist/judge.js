@@ -37,21 +37,23 @@ const SKILL_DOMAIN = {
 };
 // ─── Agent Affinity ─────────────────────────────────────────────────────────
 const AGENT_AFFINITY = {
-    engineering: ['claude-code', 'cursor', 'antigravity'],
-    operations: ['claude-code', 'antigravity', 'cursor'],
-    product: ['antigravity', 'claude-code', 'cursor'],
-    growth: ['antigravity', 'claude-code', 'cursor'],
-    orchestration: ['antigravity', 'claude-code', 'cursor'],
-    specialized: ['antigravity', 'claude-code', 'cursor'],
-    debugging: ['claude-code', 'cursor', 'antigravity'],
-    review: ['antigravity', 'claude-code'],
-    documentation: ['antigravity', 'claude-code'],
-    design: ['cursor', 'antigravity'],
+    engineering: ['claude-code', 'codex', 'opencode', 'cursor', 'antigravity'],
+    operations: ['claude-code', 'codex', 'opencode', 'antigravity', 'cursor'],
+    product: ['antigravity', 'claude-code', 'cursor', 'gemini-cli'],
+    growth: ['antigravity', 'gemini-cli', 'claude-code', 'cursor'],
+    orchestration: ['antigravity', 'claude-code', 'cursor', 'gemini-cli'],
+    specialized: ['antigravity', 'claude-code', 'codex', 'opencode', 'cursor'],
+    debugging: ['claude-code', 'codex', 'opencode', 'cursor', 'antigravity'],
+    review: ['antigravity', 'claude-code', 'codex', 'opencode'],
+    documentation: ['antigravity', 'claude-code', 'gemini-cli'],
+    design: ['cursor', 'antigravity', 'gemini-cli'],
 };
 // ─── Agent Display ──────────────────────────────────────────────────────────
 const AGENT_DISPLAY = {
     'antigravity': 'Google Antigravity',
     'claude-code': 'Claude Code',
+    'codex': 'OpenAI Codex',
+    'opencode': 'OpenCode',
     'cursor': 'Cursor',
     'gemini-cli': 'Gemini CLI',
     'windsurf': 'Windsurf',

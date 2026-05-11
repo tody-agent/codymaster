@@ -562,11 +562,19 @@ const TOOLS = [
         },
     },
 ];
-// ─── MCP stdio protocol (JSON-RPC 2.0, Content-Length framing) ───────────────
+// ─── MCP stdio protocol (JSON-RPC 2.0, auto-detect framing) ─────────────────
+// Supports both NDJSON (MCP spec) and Content-Length framing (LSP-style).
+// Auto-detects based on the first message received from the client.
+let useContentLengthFraming = false;
 function sendMessage(msg) {
     const json = JSON.stringify(msg);
-    const header = `Content-Length: ${Buffer.byteLength(json)}\r\n\r\n`;
-    process.stdout.write(header + json);
+    if (useContentLengthFraming) {
+        const header = `Content-Length: ${Buffer.byteLength(json)}\r\n\r\n`;
+        process.stdout.write(header + json);
+    }
+    else {
+        process.stdout.write(json + '\n');
+    }
 }
 function respond(id, result) {
     sendMessage({ jsonrpc: '2.0', id, result });
@@ -576,10 +584,11 @@ function respondError(id, code, message) {
 }
 function handleRequest(msg) {
     return __awaiter(this, void 0, void 0, function* () {
+        var _a;
         const { id, method, params } = msg;
         if (method === 'initialize') {
             respond(id, {
-                protocolVersion: '2024-11-05',
+                protocolVersion: (_a = params === null || params === void 0 ? void 0 : params.protocolVersion) !== null && _a !== void 0 ? _a : '2024-11-05',
                 capabilities: { tools: {} },
                 serverInfo: { name: SERVER_NAME, version: SERVER_VERSION },
             });
@@ -651,31 +660,44 @@ function handleRequest(msg) {
         }
     });
 }
-// ─── Stdin reader (Content-Length framed) ────────────────────────────────────
-let buffer = Buffer.alloc(0);
+// ─── Stdin reader (supports both NDJSON and Content-Length framing) ─────────
+let stdinBuffer = '';
+process.stdin.setEncoding('utf8');
 process.stdin.on('data', (chunk) => __awaiter(void 0, void 0, void 0, function* () {
-    buffer = Buffer.concat([buffer, chunk]);
-    while (true) {
-        const sep = buffer.indexOf('\r\n\r\n');
-        if (sep === -1)
-            break;
-        const header = buffer.slice(0, sep).toString();
-        const match = header.match(/Content-Length:\s*(\d+)/i);
-        if (!match) {
-            buffer = buffer.slice(sep + 4);
-            break;
+    stdinBuffer += chunk;
+    while (stdinBuffer.length > 0) {
+        // Check for Content-Length framing (LSP-style)
+        const clMatch = stdinBuffer.match(/^Content-Length:\s*(\d+)\r\n\r\n/i);
+        if (clMatch) {
+            useContentLengthFraming = true;
+            const contentLength = parseInt(clMatch[1], 10);
+            const headerEnd = clMatch[0].length;
+            if (stdinBuffer.length < headerEnd + contentLength)
+                break; // wait for more data
+            const body = stdinBuffer.slice(headerEnd, headerEnd + contentLength);
+            stdinBuffer = stdinBuffer.slice(headerEnd + contentLength);
+            try {
+                const msg = JSON.parse(body);
+                yield handleRequest(msg);
+            }
+            catch (_a) {
+                // ignore malformed messages
+            }
+            continue;
         }
-        const contentLength = parseInt(match[1], 10);
-        const bodyStart = sep + 4;
-        if (buffer.length < bodyStart + contentLength)
+        // NDJSON: newline-delimited JSON
+        const nl = stdinBuffer.indexOf('\n');
+        if (nl === -1)
             break;
-        const body = buffer.slice(bodyStart, bodyStart + contentLength).toString('utf8');
-        buffer = buffer.slice(bodyStart + contentLength);
+        const line = stdinBuffer.slice(0, nl).trim();
+        stdinBuffer = stdinBuffer.slice(nl + 1);
+        if (!line)
+            continue;
         try {
-            const msg = JSON.parse(body);
+            const msg = JSON.parse(line);
             yield handleRequest(msg);
         }
-        catch (_a) {
+        catch (_b) {
             // ignore malformed messages
         }
     }

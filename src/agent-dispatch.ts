@@ -18,6 +18,8 @@ export interface DispatchResult {
 const AGENT_SKILL_PREFIX: Record<string, string> = {
   'antigravity': '@[/',
   'claude-code': '/',
+  'codex': '/',
+  'opencode': '/',
   'cursor': '@',
   'gemini-cli': '@[/',
   'windsurf': '@',
@@ -28,6 +30,8 @@ const AGENT_SKILL_PREFIX: Record<string, string> = {
 const AGENT_DISPLAY: Record<string, string> = {
   'antigravity': 'Google Antigravity',
   'claude-code': 'Claude Code',
+  'codex': 'OpenAI Codex',
+  'opencode': 'OpenCode',
   'cursor': 'Cursor',
   'gemini-cli': 'Gemini CLI',
   'windsurf': 'Windsurf',
@@ -183,7 +187,15 @@ export function dispatchTaskToAgent(task: Task, project: Project, force: boolean
 
   // Generate CLI command
   const relativePath = path.relative(project.path, filePath);
-  const cliCommand = `gemini run --task "${relativePath}"`;
+  const AGENT_CLI: Record<string, string> = {
+    'antigravity': `antigravity -p "$(cat \\"${relativePath}\\")"`,
+    'codex': `codex --task "${relativePath}"`,
+    'opencode': `opencode --task "${relativePath}"`,
+    'cursor': `cursor --task "${relativePath}"`,
+    'gemini-cli': `gemini run --task "${relativePath}"`,
+    'claude-code': `claude --task "${relativePath}"`,
+  };
+  const cliCommand = AGENT_CLI[task.agent] || `# Open and run: ${relativePath}`;
 
   return { success: true, filePath, prompt: content, cliCommand };
 }

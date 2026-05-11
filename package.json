@@ -37,6 +37,7 @@
     "check:platforms": "node scripts/build-skills.mjs --platforms cursor,codex,opencode --check",
     "sync:all": "node scripts/build-skills.mjs --all-platforms",
     "sync:all:check": "node scripts/build-skills.mjs --all-platforms --check",
+    "pack:plugin": "node scripts/pack-plugin.mjs",
     "changelog": "bash scripts/update-changelog.sh",
     "changelog:dry": "bash scripts/update-changelog.sh --dry-run",
     "update": "cm update --full",

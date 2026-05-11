@@ -11,6 +11,8 @@ const path_1 = __importDefault(require("path"));
 const AGENT_SKILL_PREFIX = {
     'antigravity': '@[/',
     'claude-code': '/',
+    'codex': '/',
+    'opencode': '/',
     'cursor': '@',
     'gemini-cli': '@[/',
     'windsurf': '@',
@@ -20,6 +22,8 @@ const AGENT_SKILL_PREFIX = {
 const AGENT_DISPLAY = {
     'antigravity': 'Google Antigravity',
     'claude-code': 'Claude Code',
+    'codex': 'OpenAI Codex',
+    'opencode': 'OpenCode',
     'cursor': 'Cursor',
     'gemini-cli': 'Gemini CLI',
     'windsurf': 'Windsurf',
@@ -156,6 +160,14 @@ function dispatchTaskToAgent(task, project, force = false) {
     }
     // Generate CLI command
     const relativePath = path_1.default.relative(project.path, filePath);
-    const cliCommand = `gemini run --task "${relativePath}"`;
+    const AGENT_CLI = {
+        'antigravity': `antigravity -p "$(cat \\"${relativePath}\\")"`,
+        'codex': `codex --task "${relativePath}"`,
+        'opencode': `opencode --task "${relativePath}"`,
+        'cursor': `cursor --task "${relativePath}"`,
+        'gemini-cli': `gemini run --task "${relativePath}"`,
+        'claude-code': `claude --task "${relativePath}"`,
+    };
+    const cliCommand = AGENT_CLI[task.agent] || `# Open and run: ${relativePath}`;
     return { success: true, filePath, prompt: content, cliCommand };
 }

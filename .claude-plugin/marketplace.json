@@ -5,13 +5,13 @@
     "email": "hello@cody-master-a5q.pages.dev"
   },
   "metadata": {
-    "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge, a11y snapshots, error collection, video recording"
+    "description": "CodyMaster v7.0 — 50 token-optimized AI agent skills, slash commands, sub-agents, cm-context MCP server, Browse Hybrid Bridge"
   },
   "plugins": [
     {
       "name": "cm",
-      "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge (agent-browser + Playwright), a11y snapshots, structured error collection, video recording. Hybrid browser automation for visual QA and testing.",
-      "version": "7.0.0",
+      "description": "CodyMaster v7.0 — 50 token-optimized AI agent skills (progressive disclosure, ~100 tok index → SKILL.md on demand) + 11 slash commands + 5 sub-agents + cm-context MCP server. Browse Hybrid Bridge, a11y snapshots, structured error collection, video recording.",
+      "version": "7.0.2",
       "source": "./",
       "author": {
         "name": "Tody Agent"

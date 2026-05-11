@@ -20,7 +20,6 @@
 [![npm version](https://img.shields.io/npm/v/codymaster.svg)](https://www.npmjs.com/package/codymaster)
 [![npm downloads](https://img.shields.io/npm/dm/codymaster.svg)](https://www.npmjs.com/package/codymaster)
 [![license](https://img.shields.io/npm/l/codymaster.svg)](https://github.com/tody-agent/codymaster/blob/main/LICENSE)
-[![Discord](https://img.shields.io/badge/Discord-Join-7289da?logo=discord&logoColor=white)](https://discord.gg/codymaster)
 
 ---
 
@@ -245,6 +244,25 @@ cm doctor          # Check what's installed
 cm status          # See your tasks and progress
 cm dashboard       # Open the visual dashboard
 ```
+
+### For Codex users
+
+Fastest path:
+
+```bash
+git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
+cd ~/.cody-master
+npm ci
+npm run build:platforms
+```
+
+Then tell Codex:
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/tody-agent/codymaster/main/.codex/INSTALL.md
+```
+
+Or use the local Codex skill tree directly at `.codex/skills/`.
 
 ### No Node.js?
 

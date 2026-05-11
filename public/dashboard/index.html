@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cody — Mission Control</title>
+  <title>opencode — Mission Control</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
     <div class="sidebar-header" style="justify-content: space-between;">
       <div style="display: flex; align-items: center; gap: 8px;">
         <span class="logo">🧠</span>
-        <h1 class="sidebar-title">Cody <span class="sidebar-subtitle">Mission Control</span></h1>
+        <h1 class="sidebar-title">opencode <span class="sidebar-subtitle">Mission Control</span></h1>
       </div>
       <button class="sidebar-close" id="sidebar-close" title="Close sidebar">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -60,7 +60,7 @@
     </div>
 
     <div class="sidebar-footer">
-      <span class="sidebar-version">v3.0 — port 6969</span>
+      <span class="sidebar-version">opencode — port 6969</span>
     </div>
   </aside>
 
@@ -95,6 +95,10 @@
             </button>
             <button class="btn-icon auto-refresh-toggle" id="btn-auto-refresh" title="Toggle auto-refresh">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </button>
+            <button class="btn btn-primary" id="btn-add-task" title="New task (Ctrl+N)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>New Task</span>
             </button>
           </div>
         </div>
@@ -140,8 +144,9 @@
     <!-- ── Tab: Deploys ───────────────────────────────────── -->
     <div class="tab-panel" id="panel-deploys">
       <div class="deploys-container">
-        <div class="deploys-header">
+        <div class="deploys-header" style="display:flex;justify-content:space-between;align-items:center;">
           <h3>Deployment History</h3>
+          <button class="btn btn-primary" id="btn-new-deploy">+ New Deploy</button>
         </div>
         <div class="deploy-list" id="deploy-list"></div>
       </div>
@@ -150,8 +155,9 @@
     <!-- ── Tab: Changelog ─────────────────────────────────── -->
     <div class="tab-panel" id="panel-changelog">
       <div class="changelog-container">
-        <div class="changelog-header">
+        <div class="changelog-header" style="display:flex;justify-content:space-between;align-items:center;">
           <h3>Changelog</h3>
+          <button class="btn btn-primary" id="btn-new-changelog">+ New Entry</button>
         </div>
         <div class="changelog-list" id="changelog-list"></div>
       </div>
@@ -208,6 +214,185 @@
   </div>
 
 
+
+  <!-- ── Task Modal ─────────────────────────────────────── -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">New Task</h3>
+        <button class="modal-close" id="modal-close" type="button">&times;</button>
+      </div>
+      <form id="task-form">
+        <input type="hidden" id="form-id" />
+        <div class="form-group">
+          <label for="form-title">Title</label>
+          <input type="text" id="form-title" required maxlength="200" placeholder="What needs doing?" />
+        </div>
+        <div class="form-group">
+          <label for="form-description">Description</label>
+          <textarea id="form-description" rows="3" placeholder="Optional details, acceptance criteria…"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-priority">Priority</label>
+            <select id="form-priority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-column">Column</label>
+            <select id="form-column">
+              <option value="backlog" selected>Backlog</option>
+              <option value="in-progress">In Progress</option>
+              <option value="review">Review</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-agent">Agent</label>
+            <select id="form-agent">
+              <option value="">— Unassigned —</option>
+              <option value="codex">Codex</option>
+              <option value="antigravity">Google Antigravity</option>
+              <option value="cursor">Cursor</option>
+              <option value="gemini-cli">Gemini CLI</option>
+              <option value="opencode">OpenCode</option>
+              <option value="claude-code">Claude Code</option>
+              <option value="windsurf">Windsurf</option>
+              <option value="cline">Cline</option>
+              <option value="copilot">Copilot</option>
+              <option value="manual">Manual</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-skill">Skill</label>
+            <input type="text" id="form-skill" placeholder="e.g. cm-tdd" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn" id="btn-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit">Create Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Deploy Modal ───────────────────────────────────── -->
+  <div class="modal-overlay" id="deploy-modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Record Deployment</h3>
+        <button class="modal-close" id="deploy-modal-close" type="button">&times;</button>
+      </div>
+      <form id="deploy-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deploy-env">Environment</label>
+            <select id="deploy-env">
+              <option value="staging">Staging</option>
+              <option value="production">Production</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="deploy-branch">Branch</label>
+            <input type="text" id="deploy-branch" value="main" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="deploy-commit">Commit (sha)</label>
+          <input type="text" id="deploy-commit" placeholder="abcdef0" />
+        </div>
+        <div class="form-group">
+          <label for="deploy-message">Message</label>
+          <input type="text" id="deploy-message" placeholder="Deploy summary" />
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn" id="deploy-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Changelog Modal ────────────────────────────────── -->
+  <div class="modal-overlay" id="changelog-modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">New Changelog Entry</h3>
+        <button class="modal-close" id="cl-modal-close" type="button">&times;</button>
+      </div>
+      <form id="changelog-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cl-version">Version</label>
+            <input type="text" id="cl-version" placeholder="v1.2.0" required />
+          </div>
+          <div class="form-group">
+            <label for="cl-title">Title</label>
+            <input type="text" id="cl-title" placeholder="Release name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cl-changes">Changes (one per line)</label>
+          <textarea id="cl-changes" rows="5" placeholder="- Added X&#10;- Fixed Y"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn" id="cl-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Entry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Delete Modal ───────────────────────────────────── -->
+  <div class="modal-overlay" id="delete-overlay">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title">Delete Task</h3>
+        <button class="modal-close" id="delete-close" type="button">&times;</button>
+      </div>
+      <p class="delete-message">Delete <strong id="delete-task-name"></strong>? This cannot be undone.</p>
+      <div class="form-actions">
+        <button type="button" class="btn" id="delete-cancel">Cancel</button>
+        <button type="button" class="btn btn-danger" id="delete-confirm">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Dispatch Modal ─────────────────────────────────── -->
+  <div class="modal-overlay" id="dispatch-overlay">
+    <div class="modal" style="width:640px;max-width:95vw;">
+      <div class="modal-header">
+        <h3 class="modal-title">🚀 Dispatch Task to Agent</h3>
+        <button class="modal-close" id="dispatch-close" type="button">&times;</button>
+      </div>
+      <div class="dispatch-content">
+        <p class="dispatch-intro">Copy the prompt into your agent, or run the CLI command directly.</p>
+        <div class="dispatch-section">
+          <div class="dispatch-section-header">
+            <label>Agent Prompt</label>
+            <button class="btn" id="copy-prompt" type="button">Copy</button>
+          </div>
+          <pre class="dispatch-code-block" id="dispatch-prompt"></pre>
+        </div>
+        <div class="dispatch-section">
+          <div class="dispatch-section-header">
+            <label>CLI Command</label>
+            <button class="btn" id="copy-command" type="button">Copy</button>
+          </div>
+          <pre class="dispatch-cli-block" id="dispatch-command"></pre>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-primary" id="dispatch-done-btn">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Toast Notification ─────────────────────────────── -->
   <div class="toast-container" id="toast-container"></div>
