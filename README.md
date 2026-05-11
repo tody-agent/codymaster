@@ -6,7 +6,7 @@
 
 **50+ skills. One install. Your AI coding agent becomes a full team.**
 
-**v7.0.1 — Browse Hybrid Bridge:** AI-native browser automation with a11y snapshots, error collection, video recording.
+**v7.0.2 — Browse Hybrid Bridge:** AI-native browser automation with a11y snapshots, error collection, video recording.
 
 ```
     ( . \ --- / . )
