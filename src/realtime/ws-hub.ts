@@ -40,7 +40,14 @@ export function broadcastAll(event: DomainEvent): void {
 export function initWsHub(server: Server): void {
   const wss = new WebSocketServer({ server, path: '/ws' });
 
-  wss.on('connection', (ws: WebSocket) => {
+  wss.on('connection', (ws: WebSocket, req) => {
+    const tokenParams = new URL(`http://localhost${req.url}`).searchParams;
+    const token = tokenParams.get('token');
+    if (process.env.CM_DASHBOARD_TOKEN && token !== process.env.CM_DASHBOARD_TOKEN) {
+      ws.close(1008, 'Unauthorized');
+      return;
+    }
+
     const client: Client = { ws, buffer: [], alive: true };
     clients.add(client);
 

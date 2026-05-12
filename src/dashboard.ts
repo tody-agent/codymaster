@@ -35,8 +35,23 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   app.use(pinoHttp({ logger: logger as any }));
 
+  const dashboardToken = process.env.CM_DASHBOARD_TOKEN || crypto.randomBytes(16).toString('hex');
+  process.env.CM_DASHBOARD_TOKEN = dashboardToken;
+  if (!silent) {
+    console.log(chalk.yellow(`\n  [Security] Dashboard API Token: ${dashboardToken}`));
+  }
+
   const publicDir = path.join(__dirname, '..', 'public', 'dashboard');
   app.use(express.static(publicDir));
+
+  app.use('/api', (req, res, next) => {
+    const provided = req.headers.authorization?.replace(/^Bearer\s+/i, '') || req.query.token;
+    if (provided !== dashboardToken) {
+      res.status(401).json({ error: 'unauthorized' });
+      return;
+    }
+    next();
+  });
 
   // ─── Project API ────────────────────────────────────────────────────────
 

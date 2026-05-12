@@ -136,6 +136,14 @@
 
   // ── API Helpers ────────────────────────────
   async function fetchJSON(url, opts) {
+    opts = opts || {};
+    opts.headers = opts.headers || {};
+    const tokenParams = new URLSearchParams(window.location.search);
+    const token = tokenParams.get('token') || localStorage.getItem('cm-dashboard-token') || '';
+    if (token) {
+      opts.headers['Authorization'] = 'Bearer ' + token;
+      localStorage.setItem('cm-dashboard-token', token);
+    }
     const res = await fetch(url, opts);
     if (res.status === 204) return null;
     if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.error || 'Request failed'); }
