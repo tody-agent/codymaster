@@ -1,0 +1,147 @@
+{
+    "niche": "saas-software",
+    "brand": {
+        "name": "SaaS Growth Lab",
+        "slogan": "Scale Smarter with Software Reviews & Guides",
+        "tone": "technical-conversational",
+        "language": "en",
+        "colors": {
+            "primary": "#6366F1",
+            "secondary": "#A78BFA",
+            "accent": "#F8FAFC"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "software-review",
+                "title_template": "{topic_name} Review 2025: Pricing, Features, Pros & Cons",
+                "category": "reviews",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "review",
+                    "software",
+                    "pricing"
+                ]
+            },
+            {
+                "id": "comparison",
+                "title_template": "{topic_name}: Head-to-Head Comparison & Which to Choose",
+                "category": "comparisons",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "comparison",
+                    "vs",
+                    "alternative"
+                ]
+            },
+            {
+                "id": "tutorial",
+                "title_template": "How to Use {topic_name}: Complete Setup & Tutorial Guide",
+                "category": "tutorials",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "tutorial",
+                    "setup",
+                    "guide"
+                ]
+            },
+            {
+                "id": "alternatives",
+                "title_template": "10 Best {topic_name} Alternatives (Free & Paid) in 2025",
+                "category": "alternatives",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "alternatives",
+                    "best",
+                    "tools"
+                ]
+            },
+            {
+                "id": "use-case",
+                "title_template": "{topic_name} for Small Business: Real Use Cases & Results",
+                "category": "use-cases",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "use case",
+                    "small business",
+                    "results"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "rating",
+                "affiliateLink"
+            ]
+        },
+        "word_count": {
+            "min": 1500,
+            "max": 3500
+        },
+        "language": "en"
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 2,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 5,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": false
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

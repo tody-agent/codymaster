@@ -1,0 +1,147 @@
+{
+    "niche": "travel-hospitality",
+    "brand": {
+        "name": "WanderSmart",
+        "slogan": "Travel Better, Spend Smarter",
+        "tone": "adventurous-practical",
+        "language": "en",
+        "colors": {
+            "primary": "#0D9488",
+            "secondary": "#F97316",
+            "accent": "#F0FDFA"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "destination-guide",
+                "title_template": "{topic_name} Travel Guide 2025: Best Time, Budget & Itinerary",
+                "category": "destinations",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "travel guide",
+                    "destination",
+                    "itinerary"
+                ]
+            },
+            {
+                "id": "hotel-review",
+                "title_template": "Best Hotels in {topic_name}: Reviews, Prices & Booking Tips",
+                "category": "hotels",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "hotels",
+                    "review",
+                    "booking"
+                ]
+            },
+            {
+                "id": "budget-article",
+                "title_template": "{topic_name} on a Budget: How to Save Without Missing Out",
+                "category": "budget",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "budget travel",
+                    "savings",
+                    "tips"
+                ]
+            },
+            {
+                "id": "experience-article",
+                "title_template": "Top Things to Do in {topic_name}: Local Secrets & Hidden Gems",
+                "category": "experiences",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "activities",
+                    "experiences",
+                    "hidden gems"
+                ]
+            },
+            {
+                "id": "travel-hack",
+                "title_template": "{topic_name} Travel Hacks: Points, Miles & Insider Deals",
+                "category": "hacks",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "travel hacks",
+                    "miles",
+                    "deals"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "region",
+                "budget"
+            ]
+        },
+        "word_count": {
+            "min": 1200,
+            "max": 3000
+        },
+        "language": "en"
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": false
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

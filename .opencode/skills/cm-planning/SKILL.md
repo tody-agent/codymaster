@@ -27,7 +27,7 @@ deprecated: false
 1. **Intent** — Ask clarifying questions. Don't assume scope. Surface hidden requirements.
 2. **Options** — List 2-3 approaches with pros/cons. Recommend one with reasoning.
 3. **Scope** — Must-have vs nice-to-have; edges to handle vs explicitly skip.
-4. **Design** — Data flow, component boundaries, API contracts. UI work → `cm-ui-preview`.
+4. **Design** — Data flow, component boundaries, API contracts. UI work → `cm-design-system`.
 
 **Red flags (STOP)**: code before brainstorm; assuming intent; skipping scope; "it's simple."
 
@@ -80,10 +80,10 @@ Update `.cm/CONTINUITY.md`:
 | After planning... | Use skill |
 |---|---|
 | Complex initiative | `cm-brainstorm-idea` (run BEFORE) |
-| Need isolated workspace | `cm-git-worktrees` |
+| Need isolated workspace | `cm-execution` |
 | Execute the plan | `cm-execution` |
 | Tests first | `cm-tdd` |
-| UI/frontend | `cm-ui-preview` |
+| UI/frontend | `cm-design-system` |
 
 ## Karpathy Discipline — Think Before Coding
 

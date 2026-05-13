@@ -1,0 +1,147 @@
+{
+    "niche": "solar-energy",
+    "brand": {
+        "name": "SolarSmart Hub",
+        "slogan": "Go Solar, Save Thousands",
+        "tone": "eco-conscious-practical",
+        "language": "en",
+        "colors": {
+            "primary": "#15803D",
+            "secondary": "#FACC15",
+            "accent": "#F0FDF4"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "solar-guide",
+                "title_template": "{topic_name} Solar Guide: Cost, Savings & Is It Worth It?",
+                "category": "guides",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "solar",
+                    "cost",
+                    "savings"
+                ]
+            },
+            {
+                "id": "installer-review",
+                "title_template": "Best {topic_name} Solar Companies 2025: Reviews, Pricing & Warranty",
+                "category": "installers",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "solar companies",
+                    "installers",
+                    "reviews"
+                ]
+            },
+            {
+                "id": "product-comparison",
+                "title_template": "{topic_name} Solar Panels: Efficiency Comparison & Best Picks",
+                "category": "products",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "solar panels",
+                    "efficiency",
+                    "comparison"
+                ]
+            },
+            {
+                "id": "incentive-guide",
+                "title_template": "{topic_name} Solar Incentives: Tax Credits, Rebates & State Programs",
+                "category": "incentives",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "tax credit",
+                    "rebates",
+                    "incentives"
+                ]
+            },
+            {
+                "id": "roi-calculator",
+                "title_template": "{topic_name} Solar ROI: How Long Until You Break Even?",
+                "category": "roi",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "ROI",
+                    "payback",
+                    "break even"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "state",
+                "systemSize"
+            ]
+        },
+        "word_count": {
+            "min": 1200,
+            "max": 3000
+        },
+        "language": "en"
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": false
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

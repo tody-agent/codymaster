@@ -30,32 +30,79 @@ var __asyncGenerator = (this && this.__asyncGenerator) || function (thisArg, _ar
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CodexBackend = void 0;
+exports.buildCodexPrompt = buildCodexPrompt;
+exports.buildCodexArgs = buildCodexArgs;
 const spawn_helper_1 = require("./spawn-helper");
+function buildCodexPrompt(prompt, opts) {
+    var _a;
+    if (!((_a = opts.systemPrompt) === null || _a === void 0 ? void 0 : _a.trim()))
+        return prompt;
+    return [
+        '<system_prompt>',
+        opts.systemPrompt.trim(),
+        '</system_prompt>',
+        '',
+        prompt,
+    ].join('\n');
+}
+function buildCodexArgs(prompt, opts) {
+    const baseArgs = ['--json', '--skip-git-repo-check'];
+    if (opts.model)
+        baseArgs.push('--model', opts.model);
+    if (opts.customArgs)
+        baseArgs.push(...opts.customArgs);
+    const finalPrompt = buildCodexPrompt(prompt, opts);
+    if (opts.resumeSessionId) {
+        return ['exec', 'resume', ...baseArgs, opts.resumeSessionId, finalPrompt];
+    }
+    return ['exec', ...baseArgs, finalPrompt];
+}
 class AgentMessageTransformer {
     constructor() {
         this.output = [];
     }
     transform(msg) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v;
-        const t = msg.type;
-        if (t === 'message' || t === 'text' || t === 'assistant') {
-            const content = (_b = (_a = msg.content) !== null && _a !== void 0 ? _a : msg.text) !== null && _b !== void 0 ? _b : '';
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0;
+        const codexEvent = msg;
+        if (codexEvent.thread_id) {
+            this.lastThreadId = codexEvent.thread_id;
+        }
+        if (codexEvent.type === 'item.completed' && ((_a = codexEvent.item) === null || _a === void 0 ? void 0 : _a.type) === 'agent_message') {
+            const content = (_b = codexEvent.item.text) !== null && _b !== void 0 ? _b : '';
             if (content) {
                 this.output.push(content);
-                return [{ type: 'text', content }];
+                return [{ type: 'text', content, sessionId: this.lastThreadId }];
+            }
+        }
+        if (codexEvent.type === 'turn.completed' && codexEvent.usage) {
+            this.usage = {
+                codex: {
+                    input: (_c = codexEvent.usage.input_tokens) !== null && _c !== void 0 ? _c : 0,
+                    output: (_d = codexEvent.usage.output_tokens) !== null && _d !== void 0 ? _d : 0,
+                    cacheRead: (_e = codexEvent.usage.cached_input_tokens) !== null && _e !== void 0 ? _e : 0,
+                },
+            };
+            return [];
+        }
+        const t = msg.type;
+        if (t === 'message' || t === 'text' || t === 'assistant') {
+            const content = (_g = (_f = msg.content) !== null && _f !== void 0 ? _f : msg.text) !== null && _g !== void 0 ? _g : '';
+            if (content) {
+                this.output.push(content);
+                return [{ type: 'text', content, sessionId: this.lastThreadId }];
             }
         }
         if (t === 'thinking') {
-            return [{ type: 'thinking', content: (_c = msg.content) !== null && _c !== void 0 ? _c : '' }];
+            return [{ type: 'thinking', content: (_h = msg.content) !== null && _h !== void 0 ? _h : '' }];
         }
         if (t === 'tool_use' || t === 'tool-use') {
             return [
                 {
                     type: 'tool-use',
-                    tool: (_e = (_d = msg.tool) !== null && _d !== void 0 ? _d : msg.name) !== null && _e !== void 0 ? _e : 'unknown',
-                    callId: (_g = (_f = msg.callId) !== null && _f !== void 0 ? _f : msg.id) !== null && _g !== void 0 ? _g : '',
-                    input: (_j = (_h = msg.input) !== null && _h !== void 0 ? _h : msg.arguments) !== null && _j !== void 0 ? _j : {},
-                    attempt: (_k = msg.attempt) !== null && _k !== void 0 ? _k : 1,
+                    tool: (_k = (_j = msg.tool) !== null && _j !== void 0 ? _j : msg.name) !== null && _k !== void 0 ? _k : 'unknown',
+                    callId: (_m = (_l = msg.callId) !== null && _l !== void 0 ? _l : msg.id) !== null && _m !== void 0 ? _m : '',
+                    input: (_p = (_o = msg.input) !== null && _o !== void 0 ? _o : msg.arguments) !== null && _p !== void 0 ? _p : {},
+                    attempt: (_q = msg.attempt) !== null && _q !== void 0 ? _q : 1,
                     parentCallId: msg.parentCallId,
                 },
             ];
@@ -64,32 +111,38 @@ class AgentMessageTransformer {
             return [
                 {
                     type: 'tool-result',
-                    callId: (_m = (_l = msg.callId) !== null && _l !== void 0 ? _l : msg.id) !== null && _m !== void 0 ? _m : '',
-                    output: (_p = (_o = msg.output) !== null && _o !== void 0 ? _o : msg.content) !== null && _p !== void 0 ? _p : '',
-                    isError: (_q = msg.isError) !== null && _q !== void 0 ? _q : false,
+                    callId: (_s = (_r = msg.callId) !== null && _r !== void 0 ? _r : msg.id) !== null && _s !== void 0 ? _s : '',
+                    output: (_u = (_t = msg.output) !== null && _t !== void 0 ? _t : msg.content) !== null && _u !== void 0 ? _u : '',
+                    isError: (_v = msg.isError) !== null && _v !== void 0 ? _v : false,
                 },
             ];
         }
         if (t === 'status') {
-            return [{ type: 'status', status: (_r = msg.status) !== null && _r !== void 0 ? _r : '' }];
+            return [{ type: 'status', status: (_w = msg.status) !== null && _w !== void 0 ? _w : '' }];
         }
         if (t === 'log') {
             return [
                 {
                     type: 'log',
-                    level: (_s = msg.level) !== null && _s !== void 0 ? _s : 'info',
-                    content: (_t = msg.content) !== null && _t !== void 0 ? _t : '',
+                    level: (_x = msg.level) !== null && _x !== void 0 ? _x : 'info',
+                    content: (_y = msg.content) !== null && _y !== void 0 ? _y : '',
                 },
             ];
         }
         if (t === 'error') {
-            return [{ type: 'error', content: (_v = (_u = msg.content) !== null && _u !== void 0 ? _u : msg.message) !== null && _v !== void 0 ? _v : '' }];
+            return [{ type: 'error', content: (_0 = (_z = msg.content) !== null && _z !== void 0 ? _z : msg.message) !== null && _0 !== void 0 ? _0 : '' }];
         }
         // Unknown message types are surfaced as status
         return [{ type: 'status', status: JSON.stringify(msg) }];
     }
     getOutput() {
         return this.output.join('');
+    }
+    getSessionId() {
+        return this.lastThreadId;
+    }
+    getUsage() {
+        return this.usage;
     }
 }
 function transformMessages(raw, transformer) {
@@ -134,6 +187,8 @@ function collectResult(proc, transformer, startTime) {
                 output: transformer.getOutput(),
                 durationMs,
                 failureReason,
+                sessionId: transformer.getSessionId(),
+                usage: transformer.getUsage(),
             });
         });
         proc.child.on('error', (err) => {
@@ -144,6 +199,8 @@ function collectResult(proc, transformer, startTime) {
                 error: err instanceof Error ? err.message : String(err),
                 failureReason: 'agent_crash',
                 durationMs,
+                sessionId: transformer.getSessionId(),
+                usage: transformer.getUsage(),
             });
         });
     });
@@ -177,12 +234,7 @@ class CodexBackend {
     }
     execute(prompt, opts) {
         return __awaiter(this, void 0, void 0, function* () {
-            const args = ['--full-auto'];
-            if (opts.model)
-                args.push('--model', opts.model);
-            if (opts.customArgs)
-                args.push(...opts.customArgs);
-            args.push(prompt);
+            const args = buildCodexArgs(prompt, opts);
             const proc = (0, spawn_helper_1.spawnProcess)({
                 command: 'codex',
                 args,

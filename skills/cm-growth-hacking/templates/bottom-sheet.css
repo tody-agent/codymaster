@@ -1,0 +1,528 @@
+/* ==========================================================================
+   CM Growth Hacking — Bottom Sheet CSS
+   Universal responsive bottom sheet component.
+   3 sizes: compact | standard | full
+   Zero dependencies. Mobile-first.
+   ========================================================================== */
+
+/* ---------- BACKDROP ---------- */
+.eng-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1099;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.eng-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- SHEET CORE ---------- */
+.eng-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  pointer-events: none;
+  /* Safe area for notched devices */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.eng-sheet.active {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.eng-sheet.dragging {
+  transition: none; /* Disable transition during drag for instant feedback */
+}
+
+/* ---------- SHEET INNER ---------- */
+.eng-sheet__inner {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- DRAG HANDLE ---------- */
+.eng-sheet__handle {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 4px;
+  cursor: grab;
+  touch-action: none;
+}
+
+.eng-sheet__handle:active {
+  cursor: grabbing;
+}
+
+.eng-sheet__handle-bar {
+  width: 36px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+/* ---------- CLOSE BUTTON ---------- */
+.eng-sheet__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+  z-index: 1;
+}
+
+.eng-sheet__close:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- CONTENT AREA ---------- */
+.eng-sheet__content {
+  padding: 8px 20px 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- SIZE VARIANTS ---------- */
+
+/* Compact: ~120px — CTA buttons, simple message */
+.eng-sheet--compact .eng-sheet__content {
+  max-height: 120px;
+  padding: 8px 20px 16px;
+}
+
+/* Standard: ~320px — forms, calendar CTA (default) */
+.eng-sheet--standard .eng-sheet__content {
+  max-height: 400px;
+}
+
+/* Full: ~80vh — surveys, multi-step forms */
+.eng-sheet--full .eng-sheet__content {
+  max-height: 80vh;
+}
+
+/* ---------- CONTENT PATTERNS ---------- */
+
+/* Icon (emoji or image) */
+.eng-content__icon {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+/* Title */
+.eng-content__title {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 8px;
+  color: #1a1a1a;
+}
+
+/* Subtitle */
+.eng-content__subtitle {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+/* Benefit text (post-CTA) */
+.eng-content__benefit {
+  font-size: 13px;
+  color: #2d5016;
+  text-align: center;
+  margin: 12px 0 0;
+  opacity: 0.8;
+}
+
+/* ---------- BUTTONS ---------- */
+.eng-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  line-height: 1.4;
+  min-height: 48px; /* Touch target ≥ 48px */
+}
+
+.eng-btn--primary {
+  background: #2d5016;
+  color: #fff;
+}
+
+.eng-btn--primary:hover {
+  background: #1e3a0f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+}
+
+.eng-btn--primary:active {
+  transform: translateY(0);
+}
+
+.eng-btn--outline {
+  background: transparent;
+  color: #2d5016;
+  border: 1.5px solid #2d5016;
+}
+
+.eng-btn--outline:hover {
+  background: rgba(45, 80, 22, 0.06);
+}
+
+.eng-btn--full {
+  width: 100%;
+}
+
+/* Calendar buttons */
+.eng-btn--gcal {
+  background: #1a73e8;
+  color: #fff;
+}
+
+.eng-btn--gcal:hover {
+  background: #1557b0;
+}
+
+.eng-btn--ics {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.eng-btn--ics:hover {
+  background: #e8e8e8;
+}
+
+/* Chat channel buttons */
+.eng-btn--zalo {
+  background: #0068ff;
+  color: #fff;
+}
+
+.eng-btn--phone {
+  background: #34c759;
+  color: #fff;
+}
+
+.eng-btn--messenger {
+  background: #0084ff;
+  color: #fff;
+}
+
+/* Button group */
+.eng-calendar-buttons,
+.eng-chat-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.eng-calendar-buttons .eng-btn,
+.eng-chat-buttons .eng-btn {
+  flex: 1;
+  min-width: 140px;
+  max-width: 200px;
+}
+
+/* ---------- FORM ELEMENTS ---------- */
+.eng-sheet input[type="text"],
+.eng-sheet input[type="tel"],
+.eng-sheet input[type="email"],
+.eng-sheet select,
+.eng-sheet textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  font-size: 15px;
+  margin-bottom: 12px;
+  background: #fff;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.eng-sheet input:focus,
+.eng-sheet select:focus,
+.eng-sheet textarea:focus {
+  outline: none;
+  border-color: #2d5016;
+  box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
+}
+
+.eng-sheet textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* ---------- DATE & TIME CHIPS ---------- */
+.eng-date-chips,
+.eng-time-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.eng-chip {
+  padding: 10px 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background: #fff;
+  min-height: 44px; /* Touch target */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eng-chip:hover {
+  border-color: #2d5016;
+  background: rgba(45, 80, 22, 0.04);
+}
+
+.eng-chip.active {
+  background: #2d5016;
+  color: #fff;
+  border-color: #2d5016;
+}
+
+/* ---------- RATING STARS ---------- */
+.eng-rating {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.eng-rating button {
+  font-size: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  padding: 4px;
+}
+
+.eng-rating button:hover,
+.eng-rating button.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* ---------- COUNTDOWN ---------- */
+.eng-countdown {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.eng-countdown__unit {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 56px;
+  text-align: center;
+}
+
+/* ---------- TOAST NOTIFICATIONS ---------- */
+.eng-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  z-index: 1200;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  max-width: 90%;
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.eng-toast.active {
+  transform: translateX(-50%) translateY(0);
+}
+
+.eng-toast--success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.eng-toast--error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.eng-toast--info {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+/* ---------- DARK MODE ---------- */
+@media (prefers-color-scheme: dark) {
+  .eng-sheet__inner {
+    background: rgba(30, 30, 30, 0.96);
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .eng-sheet__handle-bar {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .eng-sheet__close {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .eng-content__title { color: #f5f5f5; }
+  .eng-content__subtitle { color: #aaa; }
+  .eng-content__benefit { color: #86efac; }
+
+  .eng-sheet input,
+  .eng-sheet select,
+  .eng-sheet textarea {
+    background: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #f5f5f5;
+  }
+
+  .eng-chip {
+    background: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f5f5f5;
+  }
+
+  .eng-chip.active {
+    background: #4ade80;
+    color: #1a1a1a;
+    border-color: #4ade80;
+  }
+
+  .eng-btn--ics {
+    background: #333;
+    color: #f5f5f5;
+  }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .eng-sheet__inner {
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .eng-sheet__content {
+    padding: 8px 16px 20px;
+  }
+
+  .eng-content__title {
+    font-size: 16px;
+  }
+
+  .eng-content__icon {
+    font-size: 32px;
+  }
+
+  .eng-calendar-buttons,
+  .eng-chat-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .eng-calendar-buttons .eng-btn,
+  .eng-chat-buttons .eng-btn {
+    max-width: none;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Desktop: optional right-aligned positioning */
+  .eng-sheet--desktop-right {
+    left: auto;
+    right: 24px;
+    bottom: 24px;
+    max-width: 400px;
+  }
+
+  .eng-sheet--desktop-right .eng-sheet__inner {
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .eng-sheet--desktop-right.active {
+    transform: translateY(0);
+  }
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .eng-sheet,
+  .eng-backdrop,
+  .eng-toast,
+  .eng-btn,
+  .eng-chip {
+    transition: none !important;
+  }
+}
+
+/* ---------- PRINT ---------- */
+@media print {
+  .eng-sheet,
+  .eng-backdrop,
+  .eng-toast {
+    display: none !important;
+  }
+}

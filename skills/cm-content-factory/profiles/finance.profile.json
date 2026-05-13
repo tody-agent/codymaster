@@ -1,0 +1,278 @@
+{
+    "id": "finance",
+    "name": "Finance & Investment — Regulated Content Writing",
+    "version": "1.0",
+    "domain": "finance",
+    "description": "Professional financial content writing protocol with regulatory citations, risk disclaimers, data source requirements, and anti-misleading rules. For fintech, investment advisory, banking, and insurance content.",
+    "evidence_system": {
+        "enabled": true,
+        "levels": [
+            {
+                "level": "I",
+                "label": "Quy định NHNN / Luật chứng khoán / SEC",
+                "marker": "[Regulation]"
+            },
+            {
+                "level": "II",
+                "label": "Báo cáo chính thức (NHNN, SSC, GSO)",
+                "marker": "[Report]"
+            },
+            {
+                "level": "III",
+                "label": "Thống kê thị trường (Bloomberg, Reuters)",
+                "marker": "[Data]"
+            },
+            {
+                "level": "IV",
+                "label": "Phân tích từ tổ chức uy tín (IMF, World Bank)",
+                "marker": "[Analysis]"
+            },
+            {
+                "level": "V",
+                "label": "Ý kiến chuyên gia / Bình luận",
+                "marker": "[Expert]"
+            }
+        ],
+        "marker_pattern": "\\[(Regulation|Report|Data|Analysis|Expert)\\]|\\[LoE:\\s*[IViv]+",
+        "min_per_tier": {
+            "T1": 1,
+            "T2": 2,
+            "T3": 1
+        }
+    },
+    "citation_standard": {
+        "sources": [
+            {
+                "priority": "P0",
+                "org": "NHNN",
+                "label": "Ngân hàng Nhà nước Việt Nam",
+                "example": "[NHNN — Thông tư 39/2016/TT-NHNN]"
+            },
+            {
+                "priority": "P0",
+                "org": "SSC",
+                "label": "Ủy ban Chứng khoán Nhà nước",
+                "example": "[SSC — Luật Chứng khoán 2019]"
+            },
+            {
+                "priority": "P1",
+                "org": "GSO",
+                "label": "Tổng cục Thống kê",
+                "example": "[GSO — Báo cáo Q4/2024]"
+            },
+            {
+                "priority": "P1",
+                "org": "MoF",
+                "label": "Bộ Tài chính",
+                "example": "[MoF — Thông tư 200/2014/TT-BTC]"
+            },
+            {
+                "priority": "P2",
+                "org": "IMF",
+                "label": "Quỹ Tiền tệ Quốc tế",
+                "example": "[IMF World Economic Outlook 2024]"
+            },
+            {
+                "priority": "P2",
+                "org": "World Bank",
+                "label": "Ngân hàng Thế giới",
+                "example": "[World Bank — Vietnam Economic Update 2024]"
+            },
+            {
+                "priority": "P3",
+                "org": "Bloomberg",
+                "label": "Bloomberg / Reuters",
+                "example": "[Bloomberg Terminal Data, 2024]"
+            }
+        ],
+        "recognized_orgs": [
+            "NHNN",
+            "SSC",
+            "GSO",
+            "MoF",
+            "IMF",
+            "World Bank",
+            "ADB",
+            "Bloomberg",
+            "Reuters",
+            "SEC",
+            "FED",
+            "ECB",
+            "BIS"
+        ],
+        "min_citations": {
+            "T1": 2,
+            "T2": 3,
+            "T3": 2
+        },
+        "reference_section_patterns": [
+            "##\\s*\\d*\\.?\\s*NGUỒN DỮ LIỆU",
+            "##\\s*\\d*\\.?\\s*TÀI LIỆU THAM KHẢO",
+            "##\\s*\\d*\\.?\\s*REFERENCES",
+            "##\\s*\\d*\\.?\\s*DATA SOURCES"
+        ],
+        "require_inline": true,
+        "banned_phrases": [
+            "Chắc chắn sinh lời",
+            "Đảm bảo lợi nhuận",
+            "Không có rủi ro",
+            "Lợi nhuận cam kết"
+        ]
+    },
+    "safety_markers": [
+        {
+            "id": "risk_warning",
+            "icon": "⚠️",
+            "label": "CẢNH BÁO RỦI RO",
+            "pattern": "CẢNH BÁO RỦI RO|RISK WARNING|rủi ro",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "data_source",
+            "icon": "📊",
+            "label": "NGUỒN DỮ LIỆU",
+            "pattern": "NGUỒN DỮ LIỆU|DATA SOURCE|Nguồn",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "reference",
+            "icon": "📚",
+            "label": "THAM KHẢO",
+            "pattern": "THAM KHẢO|REFERENCES|NGUỒN DỮ LIỆU",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        },
+        {
+            "id": "disclaimer",
+            "icon": "💰",
+            "label": "DISCLAIMER",
+            "pattern": "DISCLAIMER|không phải lời khuyên đầu tư|investment advice|tài chính cá nhân",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        }
+    ],
+    "anti_hallucination": {
+        "rules": [
+            "Không bịa số liệu tài chính — chỉ ghi data có nguồn",
+            "Không bịa lãi suất — chỉ ghi mức lãi suất chính thức",
+            "Không bịa dự báo — chỉ trích dẫn dự báo từ tổ chức uy tín",
+            "Không hứa hẹn lợi nhuận — mọi con số phải có disclaimer",
+            "Khi không chắc → ghi rõ khoảng dao động và nguồn"
+        ],
+        "safe_phrases": [
+            "Theo số liệu từ NHNN/GSO tại thời điểm...",
+            "Lãi suất có thể thay đổi tùy thời điểm và chính sách ngân hàng",
+            "Đầu tư luôn đi kèm rủi ro, quá khứ không đảm bảo tương lai",
+            "Cần tham khảo ý kiến cố vấn tài chính trước khi quyết định"
+        ],
+        "suspicious_patterns": [
+            "lợi nhuận \\d{2,3}%",
+            "sinh lời.*chắc chắn"
+        ]
+    },
+    "content_tiers": {
+        "T1": {
+            "name": "Kiến thức tài chính (Foundation)",
+            "min_words": 1200
+        },
+        "T2": {
+            "name": "Phân tích thị trường (Analysis)",
+            "min_words": 1500
+        },
+        "T3": {
+            "name": "Hướng dẫn thực hành (How-to)",
+            "min_words": 1000
+        }
+    },
+    "tier_detection": {
+        "prefix_map": {},
+        "default_tier": "T2"
+    },
+    "cross_reference": {
+        "require_icd10_tiers": [],
+        "icd10_pattern": "",
+        "min_cross_links": 2,
+        "cross_link_patterns": [
+            "Xem thêm",
+            "Tham khảo",
+            "→\\s*Xem",
+            "Related",
+            "Bài liên quan"
+        ],
+        "code_format": "→ Xem thêm: [{code}] {title}"
+    },
+    "prompt_injection": {
+        "T1": "FINANCIAL WRITING REQUIREMENTS:\n1. Mỗi khái niệm tài chính phải trích dẫn quy định (NHNN/Luật CK)\n2. Số liệu phải ghi nguồn + thời điểm\n3. Cuối bài có \"## NGUỒN DỮ LIỆU\"\n4. Cuối bài có DISCLAIMER tài chính\n5. KHÔNG hứa hẹn lợi nhuận hoặc cam kết sinh lời",
+        "T2": "FINANCIAL WRITING REQUIREMENTS:\n1. Mỗi phân tích phải trích dẫn ≥ 3 nguồn dữ liệu\n2. Biểu đồ/bảng số liệu phải ghi nguồn + ngày cập nhật\n3. Section \"⚠️ CẢNH BÁO RỦI RO\" bắt buộc\n4. Cuối bài có \"## NGUỒN DỮ LIỆU\" và DISCLAIMER\n5. KHÔNG bịa số liệu — dùng khoảng ước tính khi thiếu data\n6. KHÔNG dùng từ \"chắc chắn\", \"đảm bảo\" cho dự báo",
+        "T3": "FINANCIAL WRITING REQUIREMENTS:\n1. Mỗi bước hướng dẫn ghi rõ căn cứ quy định\n2. Phí/lệ phí phải ghi nguồn + thời điểm\n3. Cuối bài có \"## NGUỒN DỮ LIỆU\" ≥ 2 sources\n4. Cuối bài có DISCLAIMER tài chính"
+    },
+    "scoring": {
+        "dimensions": [
+            {
+                "name": "Data Accuracy",
+                "weight": 10,
+                "check": "loe_count",
+                "description": "Số liệu có nguồn"
+            },
+            {
+                "name": "Source Credibility",
+                "weight": 10,
+                "check": "citation_count",
+                "description": "Nguồn uy tín (NHNN, IMF...)"
+            },
+            {
+                "name": "Regulatory Compliance",
+                "weight": 10,
+                "check": "no_errors",
+                "description": "Không vi phạm quy định quảng cáo"
+            },
+            {
+                "name": "Structure",
+                "weight": 10,
+                "check": "structure_complete",
+                "description": "Đúng template"
+            },
+            {
+                "name": "Risk Disclosure",
+                "weight": 10,
+                "check": "risk_warning",
+                "description": "Cảnh báo rủi ro đầy đủ"
+            },
+            {
+                "name": "Safety Markers",
+                "weight": 10,
+                "check": "safety_markers",
+                "description": "Disclaimer, risk warnings"
+            },
+            {
+                "name": "Cross-References",
+                "weight": 10,
+                "check": "cross_links",
+                "description": "Liên kết liên quan"
+            },
+            {
+                "name": "Word Count",
+                "weight": 10,
+                "check": "word_count",
+                "description": "Đủ độ dài"
+            }
+        ],
+        "max_score": 80,
+        "thresholds": {
+            "excellent": 72,
+            "good": 56,
+            "average": 40
+        }
+    },
+    "disclaimer_text": "💰 **DISCLAIMER:** Nội dung bài viết chỉ mang tính chất tham khảo, **không phải lời khuyên đầu tư**.\nMọi quyết định tài chính **cần tham vấn cố vấn tài chính chuyên nghiệp**.\nĐầu tư luôn đi kèm rủi ro, kết quả trong quá khứ không đảm bảo cho tương lai."
+}

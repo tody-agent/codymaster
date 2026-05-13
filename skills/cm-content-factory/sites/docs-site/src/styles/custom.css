@@ -1,0 +1,575 @@
+/*
+ * Content Factory — MCP-Inspired Premium Theme
+ * Design Reference: modelcontextprotocol.io
+ * UX Laws: Hick's Law (progressive disclosure), Miller's Law (chunking),
+ *          Doherty Threshold (perceived performance)
+ */
+
+/* ============================================
+   FONTS
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============================================
+   ROOT — LIGHT MODE (MCP-inspired)
+   ============================================ */
+:root {
+    /* Core palette */
+    --sl-color-white: #fafafa;
+    --sl-color-gray-1: #f5f5f5;
+    --sl-color-gray-2: #e5e5e5;
+    --sl-color-gray-3: #a1a1aa;
+    --sl-color-gray-4: #71717a;
+    --sl-color-gray-5: #3f3f46;
+    --sl-color-gray-6: #27272a;
+    --sl-color-black: #09090b;
+
+    /* Accent — Teal/Emerald for Content Factory brand */
+    --sl-color-accent-low: #ecfdf5;
+    --sl-color-accent: #10b981;
+    --sl-color-accent-high: #059669;
+
+    /* Typography */
+    --sl-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --sl-font-system-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+
+    /* Sizing */
+    --sl-text-h1: 2rem;
+    --sl-text-h2: 1.375rem;
+    --sl-text-h3: 1.125rem;
+    --sl-text-body: 0.9375rem;
+    --sl-text-sm: 0.8125rem;
+    --sl-text-xs: 0.75rem;
+
+    /* Layout */
+    --sl-content-width: 48rem;
+    --sl-sidebar-width: 17.5rem;
+    --content-pad-x: 2.5rem;
+}
+
+/* ============================================
+   LIGHT MODE
+   ============================================ */
+:root[data-theme='light'],
+:root:not([data-theme='dark']) {
+    --sl-color-bg: #ffffff;
+    --sl-color-bg-sidebar: #fafafa;
+    --sl-color-bg-nav: rgba(255, 255, 255, 0.85);
+    --sl-color-text: #18181b;
+    --sl-color-text-accent: #059669;
+    --sl-color-hairline: #e5e7eb;
+    --sl-color-hairline-light: #f3f4f6;
+    --sidebar-active-bg: #f0fdf4;
+    --sidebar-active-text: #059669;
+    --sidebar-active-border: #10b981;
+    --code-bg: #f8fafc;
+    --code-border: #e2e8f0;
+    --callout-bg: #f0fdf4;
+    --callout-border: #86efac;
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+:root[data-theme='dark'] {
+    --sl-color-bg: #09090b;
+    --sl-color-bg-sidebar: #0c0c0e;
+    --sl-color-bg-nav: rgba(9, 9, 11, 0.85);
+    --sl-color-text: #fafafa;
+    --sl-color-text-accent: #34d399;
+    --sl-color-hairline: #27272a;
+    --sl-color-hairline-light: #1c1c1e;
+    --sidebar-active-bg: rgba(16, 185, 129, 0.08);
+    --sidebar-active-text: #34d399;
+    --sidebar-active-border: #10b981;
+    --code-bg: #18181b;
+    --code-border: #27272a;
+    --callout-bg: rgba(16, 185, 129, 0.06);
+    --callout-border: rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================
+   GLOBAL
+   ============================================ */
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: var(--sl-font);
+    font-size: var(--sl-text-body);
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+    color: var(--sl-color-text);
+}
+
+/* ============================================
+   HEADER (MCP-style clean nav)
+   ============================================ */
+header.header {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background: var(--sl-color-bg-nav) !important;
+    border-bottom: 1px solid var(--sl-color-hairline) !important;
+}
+
+/* Site title styling */
+.site-title {
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    letter-spacing: -0.02em;
+}
+
+/* ============================================
+   SIDEBAR (MCP-style clean sidebar)
+   ============================================ */
+
+/* Sidebar group labels — uppercase section headers like MCP */
+.sidebar-content .top-level>li>details>summary,
+.sidebar-content .top-level>li>a {
+    font-size: var(--sl-text-sm) !important;
+    font-weight: 600 !important;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--sl-color-text) !important;
+    padding: 0.3rem 0;
+}
+
+/* Sub-items */
+.sidebar-content a {
+    font-size: var(--sl-text-sm);
+    font-weight: 400;
+    color: var(--sl-color-gray-4);
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease;
+    text-decoration: none !important;
+}
+
+.sidebar-content a:hover {
+    color: var(--sl-color-text);
+    background: var(--sl-color-gray-1);
+}
+
+/* Active sidebar item — MCP style with accent bg + text */
+.sidebar-content a[aria-current="page"],
+.sidebar-content a[data-current="true"] {
+    background: var(--sidebar-active-bg) !important;
+    color: var(--sidebar-active-text) !important;
+    font-weight: 500 !important;
+    border-radius: 0.625rem;
+}
+
+/* ============================================
+   CONTENT AREA
+   ============================================ */
+.sl-markdown-content {
+    max-width: var(--sl-content-width);
+    font-size: var(--sl-text-body);
+    line-height: 1.7;
+}
+
+/* Headings — MCP style: tight letter-spacing, heavy weight */
+.sl-markdown-content h1 {
+    font-size: var(--sl-text-h1);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--sl-color-text);
+    border: none;
+    padding: 0;
+}
+
+.sl-markdown-content h2 {
+    font-size: var(--sl-text-h2);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--sl-color-hairline);
+    color: var(--sl-color-text);
+}
+
+.sl-markdown-content h3 {
+    font-size: var(--sl-text-h3);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--sl-color-text);
+}
+
+/* Paragraphs */
+.sl-markdown-content p {
+    margin-bottom: 1rem;
+    color: var(--sl-color-gray-5);
+}
+
+:root[data-theme='dark'] .sl-markdown-content p {
+    color: var(--sl-color-gray-3);
+}
+
+/* Links — MCP style, subtle underline */
+.sl-markdown-content a:not(.starlight-aside a) {
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+}
+
+.sl-markdown-content a:not(.starlight-aside a):hover {
+    border-bottom-color: var(--sl-color-text-accent);
+}
+
+/* ============================================
+   TABLES — MCP-style minimal
+   ============================================ */
+.sl-markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: var(--sl-text-sm);
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.sl-markdown-content thead {
+    background: var(--sl-color-gray-1);
+}
+
+:root[data-theme='dark'] .sl-markdown-content thead {
+    background: var(--sl-color-gray-6);
+}
+
+.sl-markdown-content th {
+    font-weight: 600;
+    text-align: left;
+    padding: 0.625rem 1rem;
+    color: var(--sl-color-text);
+    font-size: var(--sl-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.sl-markdown-content td {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--sl-color-hairline-light);
+    vertical-align: top;
+}
+
+.sl-markdown-content tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.sl-markdown-content tbody tr:hover td {
+    background: var(--callout-bg);
+}
+
+/* ============================================
+   CODE BLOCKS — MCP-style rounded
+   ============================================ */
+.sl-markdown-content pre {
+    background: var(--code-bg) !important;
+    border: 1px solid var(--code-border);
+    border-radius: 0.75rem !important;
+    padding: 1rem 1.25rem !important;
+    font-size: var(--sl-text-sm);
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.sl-markdown-content code:not(pre code) {
+    background: var(--sl-color-gray-1);
+    padding: 0.15em 0.35em;
+    border-radius: 0.375rem;
+    font-size: 0.875em;
+    font-weight: 500;
+}
+
+:root[data-theme='dark'] .sl-markdown-content code:not(pre code) {
+    background: var(--sl-color-gray-6);
+}
+
+/* ============================================
+   BLOCKQUOTES — Quick Reference Card (MCP-style)
+   ============================================ */
+.sl-markdown-content blockquote {
+    background: var(--callout-bg);
+    border: 1px solid var(--callout-border);
+    border-left: 3px solid var(--sl-color-accent);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: var(--sl-text-sm);
+}
+
+.sl-markdown-content blockquote p {
+    margin-bottom: 0.375rem;
+}
+
+.sl-markdown-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   DETAILS/SUMMARY — MCP-style accordion
+   ============================================ */
+.sl-markdown-content details {
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 0.75rem;
+    padding: 0;
+    margin: 0.625rem 0;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.sl-markdown-content details:hover {
+    border-color: var(--sl-color-gray-3);
+}
+
+.sl-markdown-content details summary {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    font-size: var(--sl-text-sm);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.15s ease;
+}
+
+.sl-markdown-content details summary:hover {
+    background: var(--sl-color-gray-1);
+}
+
+:root[data-theme='dark'] .sl-markdown-content details summary:hover {
+    background: var(--sl-color-gray-6);
+}
+
+.sl-markdown-content details summary::before {
+    content: '▸';
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+    color: var(--sl-color-gray-3);
+}
+
+.sl-markdown-content details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.sl-markdown-content details[open] summary {
+    border-bottom: 1px solid var(--sl-color-hairline-light);
+}
+
+.sl-markdown-content details>*:not(summary) {
+    padding: 0 1rem;
+}
+
+/* ============================================
+   STARLIGHT ASIDES (NOTE/TIP/CAUTION/DANGER)
+   ============================================ */
+.starlight-aside {
+    border-radius: 0.75rem !important;
+    border-width: 1px !important;
+    padding: 0.875rem 1rem !important;
+    font-size: var(--sl-text-sm);
+}
+
+.starlight-aside--tip {
+    border-color: var(--callout-border) !important;
+    background: var(--callout-bg) !important;
+}
+
+.starlight-aside--caution {
+    border-color: #fbbf24 !important;
+    background: rgba(251, 191, 36, 0.06) !important;
+}
+
+.starlight-aside--danger {
+    border-color: #f87171 !important;
+    background: rgba(248, 113, 113, 0.06) !important;
+}
+
+.starlight-aside--note {
+    border-color: #60a5fa !important;
+    background: rgba(96, 165, 250, 0.06) !important;
+}
+
+/* ============================================
+   LIST STYLES
+   ============================================ */
+.sl-markdown-content ul,
+.sl-markdown-content ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.sl-markdown-content li {
+    margin-bottom: 0.25rem;
+    line-height: 1.6;
+}
+
+.sl-markdown-content li::marker {
+    color: var(--sl-color-gray-3);
+}
+
+/* ============================================
+   HORIZONTAL RULE
+   ============================================ */
+.sl-markdown-content hr {
+    border: none;
+    border-top: 1px solid var(--sl-color-hairline);
+    margin: 2rem 0;
+}
+
+/* ============================================
+   IMAGES
+   ============================================ */
+.sl-markdown-content img {
+    border-radius: 0.75rem;
+    border: 1px solid var(--sl-color-hairline);
+    max-width: 100%;
+}
+
+/* ============================================
+   MERMAID DIAGRAMS
+   ============================================ */
+.sl-markdown-content .mermaid {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* ============================================
+   TABLE OF CONTENTS (right sidebar)
+   ============================================ */
+starlight-toc a {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-4);
+    transition: color 0.15s ease;
+}
+
+starlight-toc a:hover {
+    color: var(--sl-color-text);
+}
+
+starlight-toc a[aria-current="true"] {
+    color: var(--sl-color-text-accent) !important;
+    font-weight: 500;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+.pagination-links a {
+    border: 1px solid var(--sl-color-hairline) !important;
+    border-radius: 0.75rem !important;
+    padding: 1rem 1.25rem !important;
+    transition: all 0.15s ease !important;
+}
+
+.pagination-links a:hover {
+    border-color: var(--sl-color-accent) !important;
+    background: var(--callout-bg) !important;
+}
+
+/* ============================================
+   SEARCH
+   ============================================ */
+button[data-open-modal] {
+    border-radius: 0.625rem !important;
+    border: 1px solid var(--sl-color-hairline) !important;
+    background: var(--sl-color-bg) !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 72rem) {
+    :root {
+        --content-pad-x: 1.5rem;
+        --sl-text-h1: 1.75rem;
+        --sl-text-h2: 1.25rem;
+    }
+}
+
+@media (max-width: 50rem) {
+    :root {
+        --content-pad-x: 1rem;
+        --sl-text-h1: 1.5rem;
+        --sl-text-h2: 1.125rem;
+        --sl-text-body: 0.875rem;
+    }
+
+    .sl-markdown-content table {
+        font-size: var(--sl-text-xs);
+    }
+}
+
+/* ============================================
+   TRANSITIONS & PERFORMANCE
+   UX: Doherty Threshold — instant feedback
+   ============================================ */
+a,
+button,
+details,
+summary {
+    transition: all 0.15s ease;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+
+    .sidebar-pane,
+    header.header,
+    .right-sidebar {
+        display: none !important;
+    }
+
+    .sl-markdown-content {
+        max-width: 100%;
+        padding: 0;
+    }
+}
+
+/* ============================================
+   LAYOUT FIXES
+   ============================================ */
+
+/* Prevent text wrapping in sidebar and handle long text with ellipsis */
+.sidebar-content a,
+.sidebar-content summary,
+.sidebar-content .large {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
+}

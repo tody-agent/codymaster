@@ -40,9 +40,9 @@ cm advisory metrics --project .
 cm advisory handoff --project . --for cm-skill-health
 ```
 
-Then hand the structured note to:
+Then use the structured note with:
 
-- `cm-skill-health` for diagnosis
+- the legacy `cm-skill-health` advisory consumer id for diagnosis payloads
 - `cm-skill-evolution` for `FIX`, `DERIVED`, or `CAPTURED`
 
 ## Risk Reduction

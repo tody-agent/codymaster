@@ -41,7 +41,7 @@ describe('CodyMaster Code Hygiene', () => {
   });
 
   it('no secret false positives in documentation', () => {
-    const shieldDocPath = path.join(rootDir, 'skills', 'cm-secret-shield', 'SKILL.md');
+    const shieldDocPath = path.join(rootDir, 'skills', 'cm-safe-deploy', 'SKILL.md');
     const content = fs.readFileSync(shieldDocPath, 'utf-8');
     
     // Common pattern used in security scanner (DB_PASSWORD = "...")

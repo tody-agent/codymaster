@@ -280,13 +280,12 @@ function runOnboarding(version) {
                     ] },
                 { domain: '🚀 Operations', skills: [
                         { name: 'cm-safe-deploy', desc: 'Multi-gate deploy' },
-                        { name: 'cm-secret-shield', desc: 'Secret scanning' },
-                        { name: 'cm-git-worktrees', desc: 'Isolated branches' },
+                        { name: 'cm-execution', desc: 'Parallel execution + isolation' },
                         { name: 'cm-identity-guard', desc: 'Account & project safety' },
                     ] },
                 { domain: '🎨 Product & Design', skills: [
                         { name: 'cm-planning', desc: 'Plan before you code' },
-                        { name: 'cm-ui-preview', desc: 'AI-powered UI design' },
+                        { name: 'cm-design-system', desc: 'AI-powered design generation' },
                         { name: 'cm-ux-master', desc: '48 UX Laws + design system' },
                         { name: 'cm-design-system', desc: 'Design token intelligence' },
                     ] },
@@ -300,7 +299,7 @@ function runOnboarding(version) {
                         { name: 'cm-execution', desc: 'Parallel agent dispatch' },
                         { name: 'cm-skill-chain', desc: 'Multi-skill pipelines' },
                         { name: 'cm-continuity', desc: 'Working memory protocol' },
-                        { name: 'cm-skill-mastery', desc: 'Meta-skill kit discipline' },
+                        { name: 'cm-skill-index', desc: 'Meta-skill discovery discipline' },
                     ] },
                 { domain: '🔧 Workflow', skills: [
                         { name: 'cm-start', desc: 'Idea → production code' },

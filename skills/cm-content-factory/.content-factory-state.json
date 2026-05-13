@@ -1,0 +1,132 @@
+{
+  "version": "2.0",
+  "started_at": "2026-03-03T02:45:17.451741",
+  "updated_at": "2026-03-03T02:45:17.455271",
+  "status": "running",
+  "pipeline": {
+    "current_phase": "write",
+    "phases": {
+      "extract": {
+        "status": "done",
+        "progress": 1.0,
+        "started_at": null,
+        "finished_at": "2026-03-03T02:45:17.452336"
+      },
+      "plan": {
+        "status": "done",
+        "progress": 1.0,
+        "started_at": null,
+        "finished_at": "2026-03-03T02:45:17.452685"
+      },
+      "write": {
+        "status": "running",
+        "progress": 0.6,
+        "started_at": "2026-03-03T02:45:17.452944",
+        "finished_at": null
+      },
+      "audit": {
+        "status": "pending",
+        "progress": 0,
+        "started_at": null,
+        "finished_at": null
+      },
+      "seo": {
+        "status": "pending",
+        "progress": 0,
+        "started_at": null,
+        "finished_at": null
+      },
+      "publish": {
+        "status": "pending",
+        "progress": 0,
+        "started_at": null,
+        "finished_at": null
+      }
+    }
+  },
+  "tasks": [
+    {
+      "id": "write-seo-tips",
+      "status": "running",
+      "created_at": "2026-03-03T02:45:17.453172",
+      "updated_at": "2026-03-03T02:45:17.453172",
+      "meta": {
+        "topic": "SEO Tips 2025"
+      }
+    },
+    {
+      "id": "write-content-strategy",
+      "status": "done",
+      "created_at": "2026-03-03T02:45:17.453373",
+      "updated_at": "2026-03-03T02:45:17.453373",
+      "meta": {
+        "topic": "Content Strategy"
+      }
+    },
+    {
+      "id": "write-ai-marketing",
+      "status": "queued",
+      "created_at": "2026-03-03T02:45:17.453562",
+      "updated_at": "2026-03-03T02:45:17.453562",
+      "meta": {
+        "topic": "AI Marketing"
+      }
+    },
+    {
+      "id": "write-social-media",
+      "status": "failed",
+      "created_at": "2026-03-03T02:45:17.453769",
+      "updated_at": "2026-03-03T02:45:17.453769",
+      "meta": {
+        "topic": "Social Media"
+      }
+    }
+  ],
+  "tokens": {
+    "total_input": 57000,
+    "total_output": 30000,
+    "total_cost_usd": 0.1759,
+    "budget_limit_usd": 5.0,
+    "providers": {
+      "gemini": {
+        "input": 45000,
+        "output": 22000,
+        "cost_usd": 0.0199,
+        "requests": 1
+      },
+      "claude-sonnet": {
+        "input": 12000,
+        "output": 8000,
+        "cost_usd": 0.156,
+        "requests": 1
+      }
+    }
+  },
+  "errors": [
+    {
+      "source": "write",
+      "message": "API rate limit exceeded on request #45",
+      "timestamp": "2026-03-03T02:45:17.455270"
+    }
+  ],
+  "stats": {
+    "articles_total": 50,
+    "articles_written": 32,
+    "articles_passed_audit": 28,
+    "articles_failed": 2
+  },
+  "agents": [
+    {
+      "id": "gemini-cli-1",
+      "type": "gemini",
+      "registered_at": "2026-03-03T02:45:17.454842",
+      "last_seen": "2026-03-03T02:45:17.454842"
+    },
+    {
+      "id": "claude-1",
+      "type": "claude",
+      "registered_at": "2026-03-03T02:45:17.455059",
+      "last_seen": "2026-03-03T02:45:17.455059"
+    }
+  ]
+}

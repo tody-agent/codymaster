@@ -1,7 +1,17 @@
 ---
 name: cm-execution
-description: "Use when executing implementation plans — choose mode: batch execution with checkpoints, subagent-per-task, or parallel dispatch for independent problems."
+description: Use when executing approved implementation plans. Routes to 1 of 6 execution modes (batch/subagent/parallel/RARV/TRIZ/party) based on task shape. Loads detail refs on-demand.
 token_budget: 1800
+token_core: 450
+token_refs:
+  mode-a-batch: 280
+  mode-b-subagent: 380
+  mode-c-parallel: 240
+  mode-d-rarv: 520
+  mode-e-triz-parallel: 460
+  mode-f-party: 420
+  persona-dispatch: 180
+  security-rules: 540
 compressed: true
 deprecated: false
 ---
@@ -9,393 +19,75 @@ deprecated: false
 # Execution — Execute Plans at Scale
 
 ## TL;DR
-- **Use when** running an approved plan from cm-planning
-- **Modes**: A=batch, B=subagent-per-task, C=parallel, D=RARV, E=TRIZ-parallel
-- **Reads**: handoff/plan.json — **Writes**: handoff/exec.json
-- **Always**: tests pass before reporting done
-- **Next**: cm-code-review
+- **Use when** running an approved plan from `cm-planning`
+- **Reads** `handoff/plan.json` or `openspec/changes/[name]/tasks.md`
+- **Writes** `handoff/exec.json`
+- **Always** verify before reporting done
+- **Next** `cm-code-review`
 
-> **Role: Lead Developer** — You execute implementation plans systematically with quality gates at every checkpoint.
-
-> **Three modes, one skill.** Choose based on task structure.
-
-## Persona Dispatch (Phase 2)
-
-In Mode B (subagent-per-task) and Mode E (TRIZ-parallel), dispatch the right persona from `agents/` based on the task type:
-
-| Task signal | Persona | File |
-|-------------|---------|------|
-| "design", "architecture", "trade-off" | architect | `agents/architect.md` |
-| "implement", "fix", "refactor" | engineer | `agents/engineer.md` |
-| "review", "audit", "verify" | reviewer | `agents/reviewer.md` |
-| "secret", "auth", "input validation", "deploy" | security | `agents/security.md` |
-| "scope", "intent", "user story" | pm | `agents/pm.md` |
-
-When dispatching a subagent, pass `subagent_type: <persona>` (Claude Code agents) or load the persona file as the system prompt for the inner call.
+> **Role: Lead Developer.** You execute plans systematically with quality gates at every checkpoint.
 
 ## Step 0: Load Working Memory (MANDATORY)
+Per `_shared/helpers.md#Load-Working-Memory`. After EACH completed task: `_shared/helpers.md#Update-Continuity`.
 
-Per `_shared/helpers.md#Load-Working-Memory`
+## Step 1: Pre-flight Skill Coverage Audit
+Scan plan tasks for tech keywords, cross-reference `cm-skill-index`, check installed skills, and use `npx skills find` when the plan reaches beyond current coverage. If `codegraph` or `cm-codeintell` context is available, inject it into agent prompts so execution skips redundant repo searching.
 
-After EACH completed task: Per `_shared/helpers.md#Update-Continuity`
-
-### Pre-flight: Skill Coverage Audit
-
-Before choosing execution mode, scan plan tasks for technology keywords:
-
-```
-1. Extract technologies/frameworks/tools from ALL task descriptions
-2. Cross-reference with cm-skill-index Layer 1 triggers
-3. Check installed external skills: npx skills list
-4. If gap found → trigger Discovery Loop (cm-skill-mastery Part C)
-   → npx skills find "{keyword}" → review → ask user → install
-5. Log any installations to .cm-skills-log.json
-6. Code Intelligence Context (cm-codeintell):
-   → IF codegraph available: codegraph_context(task) for each task
-   → IF modifying shared code: codegraph_impact(symbol, depth=2)
-   → IF impact > 10 files: WARN "High impact change"
-   → Inject context into agent prompts → agents skip grep/glob
-7. Only proceed to Mode Selection after all gaps resolved
-```
-
----
-
-## Mode Selection
+## Step 2: Choose Mode
 
 ```
 Have a plan with independent tasks?
-├── Need SPEED + QUALITY on 3+ tasks?
-│   └── YES → Mode E: TRIZ-Parallel ⚡ (recommended)
-├── Stay in this session?
-│   ├── YES → Mode B: Subagent-Driven
-│   └── NO → Mode A: Batch Execution
-└── Multiple independent failures/problems?
-    └── YES → Mode C: Parallel Dispatch
+├─ Need SPEED + QUALITY on 3+ tasks?
+│   └─ YES → Mode E (TRIZ-Parallel) ★ recommended
+├─ One non-trivial task, want multi-perspective without subagent cost?
+│   └─ YES → Mode F (Party, persona rotation)
+├─ Multiple independent failures across subsystems?
+│   └─ YES → Mode C (Parallel Dispatch)
+├─ Autonomous loop with backlog (`/cm-start` flow)?
+│   └─ YES → Mode D (RARV)
+├─ Plan has independent tasks, stay in this session?
+│   └─ YES → Mode B (Subagent-Driven)
+└─ Otherwise
+    └─ Mode A (Batch Execution)
 ```
 
-| Mode | When | Strategy |
-|------|------|----------|
-| **A: Batch** | Plan with checkpoints | Execute 3 tasks → report → feedback → next batch |
-| **B: Subagent** | Plan with independent tasks, same session | Fresh subagent per task + 2-stage review |
-| **C: Parallel** | 2+ independent problems | One agent per problem domain |
-| **E: TRIZ-Parallel** ⚡ | 3+ independent tasks, need speed + quality | Dependency-aware parallel dispatch with per-agent quality gates |
-| **F: Party** | One non-trivial task, want multi-perspective without subagent cost | Single agent rotates Architect → Engineer → Reviewer (→ Security), append-only `.cm/handoff/party.json` |
-
----
-
-## Mode A: Batch Execution
-
-### Process
-1. **Load plan** from Fission-AI OpenSpec (`openspec/changes/[initiative-name]/tasks.md` and `design.md`) → review critically → raise concerns
-2. **Execute batch** (default: 3 tasks)
-   - Mark in_progress → follow steps → verify → mark complete
-3. **Report** → show what was done + verification output
-4. **Continue** → apply feedback → next batch
-5. **Complete** → use `cm-code-review` to finish
-6. **Archive** → After all tasks complete, manually move the OpenSpec folder to `openspec/changes/archive/[date]-[name]/`
-
-### Rules
-- Follow plan steps exactly
-- Don't skip verifications
-- Between batches: report and wait
-- Stop when blocked, don't guess
-
----
-
-## Mode B: Subagent-Driven Development
-
-### Process
-1. **Read plan** from `openspec/changes/[initiative-name]/tasks.md` → extract ALL tasks with full text
-2. **Per task:**
-   - Dispatch implementer subagent with full task text
-   - Answer subagent questions if any
-   - Subagent implements, tests, commits, self-reviews
-   - Dispatch spec reviewer → confirm matches spec
-   - Dispatch code quality reviewer → confirm quality
-   - If issues → implementer fixes → re-review → repeat
-3. **After all tasks** → final code review → `cm-code-review`
-
-### Prompt Template (Implementer)
-```markdown
-Implement [TASK_NAME]:
-
-[Full task text from plan]
-
-Context: [Where this fits in the project]
-
-Rules:
-- Follow TDD (cm-tdd)
-- Commit when done
-- Self-review before reporting
-- Ask questions if unclear
-
-Return: Summary of what you did + test results
-```
-
-### Red Flags
-- Never start on main/master without consent
-- Never skip reviews (spec OR quality)
-- Never dispatch parallel implementers (conflicts)
-- Never accept "close enough" on spec compliance
-
----
-
-## Mode C: Parallel Dispatch
-
-### When
-- 3+ test files failing with different root causes
-- Multiple subsystems broken independently
-- Each problem doesn't need context from others
-
-### Process
-1. **Group failures** by independent domain
-2. **Create focused agent prompt** per domain:
-   - Specific scope (one file/subsystem)
-   - Clear goal
-   - Constraints (don't change other code)
-   - Expected output format
-3. **Dispatch in parallel**
-4. **Review + integrate** → verify no conflicts → run full suite
-
-### Common Mistakes
-- ❌ Too broad: "Fix all the tests"
-- ✅ Specific: "Fix agent-tool-abort.test.ts"
-- ❌ No context: "Fix the race condition"
-- ✅ Context: Paste error messages + test names
-
----
-
-## Mode D: Autonomous RARV
-
-> **Self-driving execution.** Tasks flow through Reason → Act → Reflect → Verify automatically.
-
-### When
-- User runs `/cm-start` with a goal
-- `cm-tasks.json` exists with backlog items
-- You want continuous autonomous execution
-
-### Process (RARV Cycle)
-
-```
-LOOP until backlog empty or user interrupts:
-  1. REASON  → Read cm-tasks.json → pick highest-priority backlog task
-                Update task status to "in_progress"
-                Log: { phase: "REASON", message: "Selected: <title>" }
-
-  2. ACT     → Execute using the task's assigned CM skill
-                (cm-tdd, cm-debugging, cm-safe-deploy, etc.)
-                Log: { phase: "ACT", message: "<what was done>" }
-
-  3. REFLECT → Update cm-tasks.json with results
-                Log: { phase: "REFLECT", message: "<outcome summary>" }
-
-  4. VERIFY  → Run tests/checks (cm-quality-gate)
-                If PASS → status = "done", completed_at = now()
-                If FAIL → rarv_cycles++, log error, retry from REASON
-                If rarv_cycles >= 2 → attempt Skill Discovery Fallback:
-                  → npx skills find "{task keywords}"
-                  → If skill found + user approves → install, reset rarv_cycles = 0, retry
-                  → If NOT found → rarv_cycles >= 3 → status = "blocked"
-                Log: { phase: "VERIFY", message: "✅ passed" or "❌ <error>" }
-
-  5. NEXT    → Recalculate stats, pick next task
-```
-
-### cm-tasks.json Update Protocol
-
-After EVERY phase, you MUST:
-1. Read current `cm-tasks.json`
-2. Sync state from `openspec/changes/[initiative-name]/tasks.md` (Keep both human-readable MD and AI-executable JSON in parallel sync)
-2. Find the active task by `id`
-3. Update `status`, `logs[]`, timestamps
-4. Recalculate `stats` object:
-   ```
-   stats.total = tasks.length
-   stats.done = tasks.filter(t => t.status === 'done').length
-   stats.in_progress = tasks.filter(t => t.status === 'in_progress').length
-   stats.blocked = tasks.filter(t => t.status === 'blocked').length
-   stats.backlog = tasks.filter(t => t.status === 'backlog').length
-   stats.rarv_cycles_total = tasks.reduce((sum, t) => sum + (t.rarv_cycles || 0), 0)
-   ```
-5. Set `updated` to current ISO timestamp
-6. Write back to `cm-tasks.json`
-
-### Rules
-- **Max 3 retries** per task before marking "blocked"
-- **Always log** — the dashboard reads logs in real-time
-- **Don't batch-skip** — execute one task at a time through full RARV
-- **Respect interrupts** — if user sends a message, pause and respond
-
----
-
-## Mode E: TRIZ-Parallel ⚡
-
-> **Speed AND quality.** 6 TRIZ principles resolve the contradiction.
-
-### When
-- 3+ tasks that can potentially run in parallel
-- Speed is important but quality cannot be sacrificed
-- Tasks are well-defined with clear file scope
-- You need to maximize throughput without merge conflicts
-
-### TRIZ Principles Applied
-
-| # | Principle | How Applied |
-|---|-----------|-------------|
-| **#1** | Segmentation | Tasks split by file-dependency graph → only truly independent tasks run together |
-| **#3** | Local Quality | Each agent runs its own mini quality gate (syntax + tests) before reporting |
-| **#10** | Prior Action | Pre-flight check scans for file overlaps BEFORE dispatch |
-| **#15** | Dynamicity | Batch size adapts: starts at 2, scales up after clean runs, down after conflicts |
-| **#18** | Feedback | Real-time conflict detection via shared ledger of modified files |
-| **#40** | Composite | Each agent = implementer + tester + reviewer (3 roles in 1) |
-
-### Process
-
-```
-1. ANALYZE    → Extract file dependencies from task descriptions
-2. GRAPH      → Build dependency graph, group into independent batches
-3. ADAPT      → Read parallel history, compute optimal batch size
-4. PRE-FLIGHT → Check conflict ledger for overlaps with running agents
-5. DISPATCH   → Send batch to agents with quality contracts
-6. MONITOR    → Each agent reports modified files → detect conflicts
-7. VERIFY     → Each agent runs mini quality gate before reporting done
-8. RECORD     → Update parallel history for future batch sizing
-```
-
-### Rules
-- **Never dispatch conflicting tasks** — pre-flight must pass
-- **Each agent must self-validate** — no "trust me it works"
-- **Adaptive sizing is mandatory** — don't hardcode batch sizes
-- **File scope is enforced** — agents must not modify files outside their scope
-- **Conflict = halt** — stop further dispatch until conflict is resolved
-
-### Common Mistakes
-- ❌ "All tasks are independent" → Always run dependency analysis first
-- ❌ "Skip pre-flight, save time" → Pre-flight prevents wasted agent work
-- ❌ "Batch size 5 for everything" → Start at 2, let the system adapt
-- ❌ "One task failed, continue anyway" → Fix before next batch
-
----
-
-## Mode F: Party (Persona Rotation, single agent)
-
-> **One agent, three voices.** Cheaper than Mode B, deeper than Mode A.
-
-### When
-- Task is non-trivial but small enough for one session
-- You want multi-perspective scrutiny without paying for N subagents
-- Quality matters more than raw speed
-
-### Process
-
-```
-1. ARCHITECT  → Load agents/architect.md as voice → propose design / approach
-                → Append round to .cm/handoff/party.json
-2. ENGINEER   → Load agents/engineer.md as voice → implement against the design
-                → Append round
-3. REVIEWER   → Load agents/reviewer.md as voice → critique implementation
-                → verdict: "pass" | "revise" | "block"
-                → Append round
-4. (optional) SECURITY → Load agents/security.md when task touches auth/files/subprocess
-                → Append round
-5. SYNTHESIZE → Write `final` summary; mark handoff emitted_at
-```
-
-### Stop Conditions
-- Reviewer verdict `pass` → done, write `final`
-- Reviewer verdict `revise` → loop back to ENGINEER (max 2 revisions)
-- Reviewer verdict `block` or 3rd revision → escalate to user, do not ship
-
-### Output Contract
-
-Writes to `.cm/handoff/party.json` matching `PartyHandoff` from `src/handoff/contracts.ts`:
-
-```json
-{
-  "schema": "party@1",
-  "emitted_at": "<ISO>",
-  "emitted_by": "cm-execution",
-  "data": {
-    "topic": "<task title>",
-    "rounds": [
-      {"persona":"architect","output":"...","ts":"<ISO>"},
-      {"persona":"engineer","output":"...","ts":"<ISO>"},
-      {"persona":"reviewer","output":"...","verdict":"pass","ts":"<ISO>"}
-    ],
-    "final": "<one-paragraph synthesis>"
-  }
-}
-```
-
-### Rules
-- **Never skip the reviewer round** — that defeats the point of party mode
-- **Never edit a previous round** — append-only, like a journal
-- **One agent the whole way** — do NOT dispatch subagents inside party mode (use Mode B for that)
-- **Persona files are the source of truth** — load them as system context, don't paraphrase
-
-### Common Mistakes
-- ❌ Running architect + engineer in same voice → missed trade-offs
-- ❌ Skipping security persona on auth/file-touching tasks → see Security Rules below
-- ❌ Letting reviewer revise > 2× → that's a planning problem, escalate
-
----
-
-## Security Rules (Learned: March 2026)
-
-> **Code that touches files, subprocesses, or the DOM MUST follow these rules. No exceptions.**
-
-### Frontend — DOM Safety
-
-| Pattern | Risk | Fix |
-|---------|------|-----|
-| `innerHTML = \`...\${data}...\`` | DOM XSS | `innerHTML = \`...\${esc(data)}...\`` |
-| `innerHTML = variable` | DOM XSS | `textContent = variable` |
-| `eval(input)` / `new Function(input)` | Code injection | Avoid entirely |
-| `document.write(data)` | DOM XSS | Use DOM API |
-| `el.setAttribute('on*', data)` | Event injection | `el.addEventListener()` |
-
-**Always:** Escape before innerHTML, prefer `textContent`, validate URLs via allowlist.
-
-### Backend — Python
-
-| Pattern | Risk | Fix |
-|---------|------|-----|
-| `Path(user_input) / "file"` | Path Traversal | `safe_resolve(base, user_input)` |
-| `subprocess.run(f"cmd {arg}", shell=True)` | Command Injection | `subprocess.run(["cmd", arg])` |
-| `open(config["path"])` | Path Traversal | `safe_open(base, config["path"])` |
-| `json.load()` → paths unvalidated | Path Traversal | Validate ALL paths from config via `safe_resolve()` |
-
-**Always:** Import `safe_path`, validate EVERY path from CLI/config/API against a base directory.
-
-### Backend — Express/Node
-
-| Pattern | Risk | Fix |
-|---------|------|-----|
-| Missing `app.disable('x-powered-by')` | Info leak | Add after `express()` |
-| No body size limit | DoS | `express.json({ limit: '1mb' })` |
-| `path.resolve(userInput)` without validation | Path Traversal | Check null bytes + `relative_to(baseDir)` |
-| `Object.assign(config, userInput)` | Prototype Pollution | Filter `__proto__`, `constructor` keys |
-
-
+| Mode | One-line summary | Load |
+|---|---|---|
+| A | Batch 3 tasks, report, then continue | `references/mode-a-batch.md` |
+| B | Fresh subagent per task + 2-stage review | `references/mode-b-subagent.md` |
+| C | One agent per independent problem domain | `references/mode-c-parallel.md` |
+| D | Reason → Act → Reflect → Verify loop | `references/mode-d-rarv.md` |
+| E | Dependency-aware parallel + per-agent quality gate | `references/mode-e-triz-parallel.md` |
+| F | Single agent rotates Architect → Engineer → Reviewer | `references/mode-f-party.md` |
+
+**Action:** Pick exactly one mode, read only that reference, and execute from there.
+
+## Conditional References
+- **Mode B / E / F** → also read `references/persona-dispatch.md`
+- **Task touches auth, files, subprocess, DOM, config paths, or user input** → MUST read `references/security-rules.md` before writing code
+
+## Karpathy Discipline — Surgical Changes
+- Touch only what the task requires. No "while I'm here" refactors.
+- Match existing style even if you would write it differently.
+- Notice unrelated dead code? Mention it, do not delete it.
+- Clean only your own orphans. Pre-existing dead code stays unless asked.
+- **Diff test:** every changed line must trace to the task.
 
 ## Integration
-
 | Skill | When |
-|-------|------|
-| `cm-git-worktrees` | REQUIRED: isolated workspace before starting |
-| `cm-planning` | Creates the plan this skill executes |
-| `cm-code-review` | Complete development after all tasks |
-| `cm-tdd` | Subagents follow TDD for each task |
-| `cm-quality-gate` | VERIFY phase uses this for validation |
-| `cm-ui-preview` | RECOMMENDED: Preview UI on Google Stitch before implementing frontend tasks |
+|---|---|
+| `cm-planning` | Produces the plan this skill consumes |
+| `cm-tdd` | Use per task when implementing or fixing |
+| `cm-quality-gate` | VERIFY phase / pre-report validation |
+| `cm-code-review` | Final review after all tasks are done |
+| `cm-design-system` | Recommended before frontend-heavy tasks |
 
-### Workflows
+## Workflows
 | Command | Purpose |
-|---------|---------|
+|---|---|
 | `/cm-start` | Create tasks + launch RARV + open dashboard |
 | `/cm-status` | Quick terminal progress summary |
 | `/cm-dashboard` | Open browser dashboard |
 
 ## The Bottom Line
-
-**Choose your mode. Execute systematically. Review at every checkpoint.**
+**Choose your mode → load that one reference → execute systematically → review at every checkpoint.**

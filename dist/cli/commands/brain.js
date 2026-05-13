@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerBrainCommands = registerBrainCommands;
 const smart_brain_router_1 = require("../../smart-brain-router");
 const skill_execution_cache_1 = require("../../skill-execution-cache");
+const skill_token_report_1 = require("../../skill-token-report");
 const token_budget_1 = require("../../token-budget");
 // ─── Brain & Token CLI Commands ──────────────────────────────────────────────
 function registerBrainCommands(program) {
@@ -27,6 +28,23 @@ function registerBrainCommands(program) {
     const token = program
         .command('token')
         .description('Token usage analysis and savings tracking');
+    token
+        .command('skill <skillName>')
+        .description('Show token footprint for a skill SKILL.md and direct references/')
+        .option('-p, --project <path>', 'Project path', process.cwd())
+        .option('--json', 'Emit stable JSON output', false)
+        .option('--baseline <file>', 'Compare against a legacy monolithic file')
+        .action((skillName, opts) => {
+        const report = (0, skill_token_report_1.analyzeSkillTokenFootprint)(skillName, {
+            projectPath: opts.project,
+            baselinePath: opts.baseline,
+        });
+        if (opts.json) {
+            console.log(JSON.stringify(report, null, 2));
+            return;
+        }
+        console.log((0, skill_token_report_1.formatSkillTokenReport)(report));
+    });
     token
         .command('report')
         .description('Show current token budget allocation')

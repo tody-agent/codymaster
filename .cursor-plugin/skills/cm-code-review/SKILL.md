@@ -118,7 +118,7 @@ When implementation is complete and all tests pass.
 3. **Execute chosen option**
 
 4. **Cleanup:**
-   - Remove worktree if using `cm-git-worktrees`
+   - Remove the isolated worktree/workspace if your execution flow created one
    - Delete feature branch if merged
    - Update task tracking
 
@@ -154,7 +154,18 @@ After processing review feedback, ALWAYS update `.cm/CONTINUITY.md`:
 | `cm-execution` | Reviews after each task in execution |
 | `cm-quality-gate` | Tests must pass before finishing branch |
 | `cm-identity-guard` | Before git push |
-| `cm-git-worktrees` | Cleanup worktree after completion |
+| `cm-execution` | Cleanup isolated workspace after completion |
+
+## Karpathy Discipline — Review Checklist
+
+Block any PR/diff that violates these regardless of green tests:
+- **Scope creep:** changed line that doesn't trace to the task → request removal.
+- **Bloat:** new abstraction with one caller, premature config, error paths for impossible inputs → request simplification.
+- **Side-effect edits:** unrelated formatting, renamed identifiers, "improved" comments not in scope → revert.
+- **Hidden assumptions:** logic that depends on an unstated invariant → require it surfaced (test or doc) or rejected.
+- **Weak goals:** PR description says "make it work" with no verifiable criterion → send back to planning.
+
+**Review heuristic:** if you can't answer "what task forced this line?" for every changed line, the diff is too wide.
 
 ## The Bottom Line
 

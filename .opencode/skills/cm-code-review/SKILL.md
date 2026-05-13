@@ -118,7 +118,7 @@ When implementation is complete and all tests pass.
 3. **Execute chosen option**
 
 4. **Cleanup:**
-   - Remove worktree if using `cm-git-worktrees`
+   - Remove the isolated worktree/workspace if your execution flow created one
    - Delete feature branch if merged
    - Update task tracking
 
@@ -154,7 +154,7 @@ After processing review feedback, ALWAYS update `.cm/CONTINUITY.md`:
 | `cm-execution` | Reviews after each task in execution |
 | `cm-quality-gate` | Tests must pass before finishing branch |
 | `cm-identity-guard` | Before git push |
-| `cm-git-worktrees` | Cleanup worktree after completion |
+| `cm-execution` | Cleanup isolated workspace after completion |
 
 ## Karpathy Discipline — Review Checklist
 

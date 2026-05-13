@@ -1,10 +1,10 @@
 # Marketing, CRO, ads tracking, content — use with core or standalone
-ads-tracker
-cro-methodology
-growth-hacking
-booking-calendar
-content-factory
-auto-publisher
-google-form
-readit
-cm-dashboard
+cm-ads-tracker
+cm-cro-methodology
+cm-growth-hacking
+cm-booking-calendar
+cm-content-factory
+cm-auto-publisher
+cm-google-form
+cm-readit
+cm-status

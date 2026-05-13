@@ -303,7 +303,7 @@ Check available MCP tools:
 **Stitch path** (fast concept generation):
 - Best for: Quick visual validation, non-technical stakeholders
 - Auto-creates project, generates screens from the recommended option
-- Uses `cm-ui-preview` Step 3 prompt enhancement pipeline
+- Uses the `cm-design-system` prompt enhancement pipeline
 
 **Pencil path** (developer control):
 - Best for: Devs who want pixel-level control, design system alignment
@@ -316,9 +316,9 @@ Check available MCP tools:
 User says "Yes" (Yes to preview):
   1. Detect available tools (Stitch / Pencil / both)
   2. If both → ask preference or auto-select based on context
-  3. Delegate to cm-ui-preview with brainstorm context:
+  3. Delegate to `cm-design-system` with brainstorm context:
      - Pass: qualified problem, recommended option, design constraints
-     - cm-ui-preview creates concept screens
+     - `cm-design-system` creates concept screens
   4. User reviews preview:
      → ✅ Confirm → Proceed to Phase 5 (Handoff) with visual reference
      → ✏️ Edit → Iterate on preview
@@ -328,7 +328,7 @@ User says "No" (Skip preview):
   → Proceed directly to Phase 5 (Handoff)
 ```
 
-#### Context Passed to cm-ui-preview
+#### Context Passed to cm-design-system
 
 ```markdown
 ## Brainstorm Context for UI Preview
@@ -404,7 +404,7 @@ Date: [date]
 |-------|-------------|
 | `cm-project-bootstrap` | UPSTREAM: Product must exist before brainstorming improvements |
 | `cm-codeintell` | USED IN Phase 1a: Instant structural overview + architecture diagram + CodeGraph |
-| `cm-ui-preview` | USED IN Phase 4.5: Visual preview with Stitch or Pencil (auto-detected) |
+| `cm-design-system` | USED IN Phase 4.5: Visual preview with Stitch or Pencil (auto-detected) |
 | `cm-deep-search` | TRIGGERED IN Phase 1a: Suggests qmd when project corpus exceeds thresholds |
 | `cm-planning` | DOWNSTREAM: Receives qualified output, writes implementation plan |
 | `cm-execution` | DOWNSTREAM: Executes the plan that originated from this analysis |

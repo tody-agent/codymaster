@@ -12,12 +12,9 @@ cm-debugging
 cm-code-review
 cm-clean-code
 cm-quality-gate
-cm-test-gate
 cm-safe-deploy
-cm-secret-shield
 cm-identity-guard
-cm-security-gate
 cm-safe-i18n
 cm-skill-chain
-cm-git-worktrees
+cm-codeintell
 cm-terminal

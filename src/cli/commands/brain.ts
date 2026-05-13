@@ -2,6 +2,10 @@ import { Command } from 'commander';
 import { routeTask, formatBrainPlan, estimateSavings } from '../../smart-brain-router';
 import { SkillExecutionCache, formatCacheStats } from '../../skill-execution-cache';
 import {
+  analyzeSkillTokenFootprint,
+  formatSkillTokenReport,
+} from '../../skill-token-report';
+import {
   loadBudget,
   generateBudgetReport,
   getDefaultTierBudgets,
@@ -37,6 +41,24 @@ export function registerBrainCommands(program: Command) {
   const token = program
     .command('token')
     .description('Token usage analysis and savings tracking');
+
+  token
+    .command('skill <skillName>')
+    .description('Show token footprint for a skill SKILL.md and direct references/')
+    .option('-p, --project <path>', 'Project path', process.cwd())
+    .option('--json', 'Emit stable JSON output', false)
+    .option('--baseline <file>', 'Compare against a legacy monolithic file')
+    .action((skillName: string, opts: { project: string; json?: boolean; baseline?: string }) => {
+      const report = analyzeSkillTokenFootprint(skillName, {
+        projectPath: opts.project,
+        baselinePath: opts.baseline,
+      });
+      if (opts.json) {
+        console.log(JSON.stringify(report, null, 2));
+        return;
+      }
+      console.log(formatSkillTokenReport(report));
+    });
 
   token
     .command('report')

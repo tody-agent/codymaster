@@ -1,0 +1,20 @@
+{
+  "name": "codymaster",
+  "interface": {
+    "displayName": "CodyMaster for Codex"
+  },
+  "plugins": [
+    {
+      "name": "cm",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cm"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

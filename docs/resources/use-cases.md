@@ -184,9 +184,9 @@ npm run deploy:dry                # verify deploy config before applying
 ```
 
 **Skills for security-sensitive work:**
-- `cm-secret-shield` — credential detection, rotation workflows
+- `cm-safe-deploy` — credential detection, rotation workflows
 - `cm-identity-guard` — auth/authz review
-- `cm-security-gate` — pre-merge OWASP audit
+- `cm-safe-deploy` — pre-merge security audit
 
 **Execution security rules (enforced by cm-execution):**
 - Frontend: escape before innerHTML, no eval, use textContent

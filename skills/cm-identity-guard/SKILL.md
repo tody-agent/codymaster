@@ -295,7 +295,7 @@ git config user.email "dev@workdomain.com"
 ## Phase 5: Token Lifecycle Management 🔄
 
 > **NEW — Secrets don't just need to be hidden. They need to be ROTATED.**
-> **Full rotation playbooks in `cm-secret-shield` Layer 5.**
+> **Full rotation playbooks now live in `cm-safe-deploy`.**
 
 ### Rotation Schedule
 
@@ -321,7 +321,7 @@ npm run deploy:staging
 # 4. Verify: test staging URL
 ```
 
-> For emergency rotation (leaked secret), see `cm-secret-shield` Emergency Rotation Playbook.
+> For emergency rotation (leaked secret), see the emergency rotation guidance in `cm-safe-deploy`.
 
 ---
 
@@ -397,8 +397,8 @@ npm run deploy
 |-------|------|
 | `cm-project-bootstrap` | Identity lock is Phase 0 of every new project |
 | `cm-safe-deploy` | Gate 0 secret hygiene checks wrangler.jsonc |
-| `cm-test-gate` | Phase 4 secret hygiene in test gate setup |
-| `cm-secret-shield` | Layer 5 token lifecycle extends identity management |
+| `cm-quality-gate` | Phase 4 verification and secret hygiene checks |
+| `cm-safe-deploy` | Token lifecycle and release safety extend identity management |
 
 ## The Bottom Line
 

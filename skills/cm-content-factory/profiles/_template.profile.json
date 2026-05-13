@@ -1,0 +1,231 @@
+{
+    "id": "my-domain",
+    "name": "My Domain — Custom Content Profile",
+    "version": "1.0",
+    "domain": "custom",
+    "description": "Template profile for creating custom domain-specific content writing rules. Copy this file and customize for your industry.",
+    "evidence_system": {
+        "enabled": false,
+        "levels": [
+            {
+                "level": "I",
+                "label": "Highest authority source",
+                "marker": "[Source I]"
+            },
+            {
+                "level": "II",
+                "label": "Strong evidence",
+                "marker": "[Source II]"
+            },
+            {
+                "level": "III",
+                "label": "Moderate evidence",
+                "marker": "[Source III]"
+            },
+            {
+                "level": "IV",
+                "label": "Limited evidence",
+                "marker": "[Source IV]"
+            },
+            {
+                "level": "V",
+                "label": "Expert opinion",
+                "marker": "[Expert]"
+            }
+        ],
+        "marker_pattern": "\\[Source [IViv]+\\]",
+        "min_per_tier": {
+            "T1": 0,
+            "T2": 0,
+            "T3": 0
+        }
+    },
+    "citation_standard": {
+        "sources": [
+            {
+                "priority": "P0",
+                "org": "Primary Authority",
+                "label": "Official government/regulatory body",
+                "example": "[Authority Name, Year]"
+            },
+            {
+                "priority": "P1",
+                "org": "Industry Body",
+                "label": "Industry standards organization",
+                "example": "[ISO 12345:2024]"
+            },
+            {
+                "priority": "P2",
+                "org": "Research",
+                "label": "Peer-reviewed research",
+                "example": "[Author et al., 2024]"
+            },
+            {
+                "priority": "P3",
+                "org": "Other",
+                "label": "Other credible sources",
+                "example": "[Source Name, Year]"
+            }
+        ],
+        "recognized_orgs": [],
+        "min_citations": {
+            "T1": 1,
+            "T2": 2,
+            "T3": 1
+        },
+        "reference_section_patterns": [
+            "##\\s*\\d*\\.?\\s*TÀI LIỆU THAM KHẢO",
+            "##\\s*\\d*\\.?\\s*REFERENCES"
+        ],
+        "require_inline": false,
+        "banned_phrases": []
+    },
+    "safety_markers": [
+        {
+            "id": "important_note",
+            "icon": "💡",
+            "label": "GHI CHÚ QUAN TRỌNG",
+            "pattern": "GHI CHÚ QUAN TRỌNG|IMPORTANT NOTE",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "warning",
+            "icon": "⚠️",
+            "label": "CẢNH BÁO",
+            "pattern": "CẢNH BÁO|WARNING",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "reference",
+            "icon": "📚",
+            "label": "THAM KHẢO",
+            "pattern": "THAM KHẢO|REFERENCES",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        },
+        {
+            "id": "disclaimer",
+            "icon": "ℹ️",
+            "label": "DISCLAIMER",
+            "pattern": "DISCLAIMER",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        }
+    ],
+    "anti_hallucination": {
+        "rules": [
+            "Do not fabricate statistics or data",
+            "Do not invent sources or citations",
+            "When uncertain, use ranges or estimates with clear attribution"
+        ],
+        "safe_phrases": [
+            "Estimates vary depending on source...",
+            "Data is limited, but available research suggests...",
+            "Further verification is recommended"
+        ],
+        "suspicious_patterns": []
+    },
+    "content_tiers": {
+        "T1": {
+            "name": "Foundation",
+            "min_words": 1000
+        },
+        "T2": {
+            "name": "In-depth",
+            "min_words": 1500
+        },
+        "T3": {
+            "name": "Practical",
+            "min_words": 800
+        }
+    },
+    "tier_detection": {
+        "prefix_map": {},
+        "default_tier": "T2"
+    },
+    "cross_reference": {
+        "require_icd10_tiers": [],
+        "icd10_pattern": "",
+        "min_cross_links": 1,
+        "cross_link_patterns": [
+            "Xem thêm",
+            "See also",
+            "Related"
+        ],
+        "code_format": "→ See also: [{code}] {title}"
+    },
+    "prompt_injection": {
+        "T1": "DOMAIN REQUIREMENTS:\n1. Cite authoritative sources for key claims\n2. Include references section at end\n3. Add appropriate disclaimer",
+        "T2": "DOMAIN REQUIREMENTS:\n1. Cite ≥ 2 authoritative sources\n2. Include detailed analysis with evidence\n3. Add warning/caution markers where needed\n4. Include references section at end\n5. Add appropriate disclaimer",
+        "T3": "DOMAIN REQUIREMENTS:\n1. Cite sources for procedures/steps\n2. Include references section at end\n3. Add appropriate disclaimer"
+    },
+    "scoring": {
+        "dimensions": [
+            {
+                "name": "Evidence Quality",
+                "weight": 10,
+                "check": "loe_count",
+                "description": "Source citations"
+            },
+            {
+                "name": "Citation Depth",
+                "weight": 10,
+                "check": "citation_count",
+                "description": "Number of citations"
+            },
+            {
+                "name": "Accuracy",
+                "weight": 10,
+                "check": "no_errors",
+                "description": "No factual errors"
+            },
+            {
+                "name": "Structure",
+                "weight": 10,
+                "check": "structure_complete",
+                "description": "Template compliance"
+            },
+            {
+                "name": "Domain-specific",
+                "weight": 10,
+                "check": "domain_specific",
+                "description": "Domain requirements met"
+            },
+            {
+                "name": "Safety Markers",
+                "weight": 10,
+                "check": "safety_markers",
+                "description": "Warnings and disclaimers"
+            },
+            {
+                "name": "Cross-References",
+                "weight": 10,
+                "check": "cross_links",
+                "description": "Related links"
+            },
+            {
+                "name": "Word Count",
+                "weight": 10,
+                "check": "word_count",
+                "description": "Minimum word count"
+            }
+        ],
+        "max_score": 80,
+        "thresholds": {
+            "excellent": 72,
+            "good": 56,
+            "average": 40
+        }
+    },
+    "disclaimer_text": "ℹ️ **DISCLAIMER:** This content is for informational purposes only.\nConsult a qualified professional for specific advice.\nInformation may change over time."
+}

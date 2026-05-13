@@ -1,0 +1,147 @@
+{
+    "niche": "crypto-defi",
+    "brand": {
+        "name": "CryptoVault Insights",
+        "slogan": "Navigate Crypto with Confidence",
+        "tone": "analytical-accessible",
+        "language": "en",
+        "colors": {
+            "primary": "#F7931A",
+            "secondary": "#1A1A2E",
+            "accent": "#FFF9E6"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "coin-analysis",
+                "title_template": "{topic_name}: Price Prediction, Analysis & Is It Worth Buying?",
+                "category": "analysis",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "crypto",
+                    "price prediction",
+                    "analysis"
+                ]
+            },
+            {
+                "id": "how-to-guide",
+                "title_template": "How to Buy {topic_name}: Step-by-Step Guide for Beginners",
+                "category": "guides",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "how to buy",
+                    "exchange",
+                    "wallet"
+                ]
+            },
+            {
+                "id": "defi-protocol",
+                "title_template": "{topic_name} DeFi Guide: Yield, Staking & Risk Assessment",
+                "category": "defi",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "DeFi",
+                    "yield",
+                    "staking"
+                ]
+            },
+            {
+                "id": "exchange-review",
+                "title_template": "{topic_name} Exchange Review 2025: Fees, Security & Features",
+                "category": "reviews",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "exchange",
+                    "review",
+                    "fees"
+                ]
+            },
+            {
+                "id": "tax-guide",
+                "title_template": "{topic_name} Crypto Tax Guide: Reporting, Rates & Tools",
+                "category": "tax",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "crypto tax",
+                    "reporting",
+                    "IRS"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "ticker"
+            ]
+        },
+        "word_count": {
+            "min": 1200,
+            "max": 3000
+        },
+        "language": "en",
+        "disclaimer": "Cryptocurrency investments carry significant risk. This is not financial advice. Do your own research."
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 2,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": true
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

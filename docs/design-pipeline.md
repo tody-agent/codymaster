@@ -259,7 +259,7 @@ The design pipeline converts Open Design tokens to a standard format:
 | `cm-open-design` | Source: 129 design systems, extraction, MCP bridge |
 | `cm-design-system` | Core: token management, STITCH_TOKENS format, enforcement |
 | `cm-ux-master` | Validation: 48 UX laws, 37 design tests, WCAG AA |
-| `cm-ui-preview` | Rendering: HTML/CSS generation, device frames |
+| `cm-design-system` | Rendering: HTML/CSS generation, device frames |
 | `cm-execution` | Output: builds actual pages with tokens applied |
 | `cm-quality-gate` | QA: visual regression, performance, accessibility |
 | `cm-planning` | Discovery: includes design in feature planning phase |
@@ -371,7 +371,7 @@ Open Design provides pixel-accurate device frames for prototypes:
 - **MacBook** — desktop previews
 - **Browser Chrome** — web app mockups
 
-Use these with `cm-ui-preview` to show designs in realistic context.
+Use these with `cm-design-system` to show designs in realistic context.
 
 ---
 

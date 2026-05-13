@@ -50,6 +50,7 @@ Always-on rules for any agent editing code in this repo. Each maps to a skill th
 2. **Simplicity first** — minimum code that solves the problem, no speculative abstractions or error paths. → `cm-clean-code`, `cm-tdd`
 3. **Surgical changes** — every changed line must trace to the task; match existing style; mention out-of-scope dead code, don't delete. → `cm-execution`, `cm-code-review`
 4. **Goal-driven execution** — translate tasks into verifiable success criteria; loop until green; evidence over claims. → `cm-tdd`, `cm-quality-gate`
+5. **Leverage free resources** — utilize free premium models for cross-validation, reasoning, or image generation when needed.
 
 Source: derived from Andrej Karpathy's notes on LLM coding pitfalls.
 

@@ -6,6 +6,70 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ---
 
+## [7.0.3] - 2026-05-13
+
+### 🚀 Improvements — Codex Runtime + Token-Efficient Handoffs
+
+Focused compatibility and cleanup release. Align CodyMaster with the current Codex CLI, reduce agent handoff noise, and remove dead references to deprecated skills across docs, profiles, and runtime hints.
+
+### 🚀 Improvements — Skill Token Auditing + Progressive Disclosure
+
+Added first-class skill token footprint auditing and used it to refactor the heaviest always-on skills into lazy-loaded `references/` packs.
+
+**Skill Token Auditing:**
+- Added `cm token skill <skillName>` under the existing `cm token` namespace
+- New `--project`, `--json`, and `--baseline` options for repo-scoped reports, machine-readable output, and before/after comparisons
+- New `src/skill-token-report.ts` analyzer for `SKILL.md`, direct `references/`, `progressive_min`, `progressive_max`, and baseline deltas
+- Added `test/skill-token-report.test.ts` and `test/brain-token-skill.test.ts`
+
+**Progressive Disclosure Refactors:**
+- Split `skills/cm-execution/` into a short router `SKILL.md` plus mode-specific references
+- Split `skills/cm-codeintell/` by intelligence layer: skeleton, codegraph, architecture, context builder, integration workflows
+- Split `skills/cm-safe-deploy/` by deploy path: individual gates, setup, and rollback
+- Split `skills/cm-continuity/` by concern: session protocol, template, memory model, MCP bridge, URI scheme, storage, audit
+- Split `skills/cm-tdd/` by workflow/support: red-green-refactor, test quality, rationalizations, bugfix example, stuck/debugging
+- Preserved existing skill names, compressed frontmatter style, and distribution compatibility with flat `references/`
+
+**Measured Token Wins (`progressive_min`):**
+- `cm-execution`: `3990 → 963` tokens
+- `cm-codeintell`: `4981 → 685` tokens
+- `cm-safe-deploy`: `4268 → 780` tokens
+- `cm-continuity`: `4157 → 652` tokens
+- `cm-tdd`: `2953 → 554` tokens
+
+**Codex Compatibility:**
+- Updated `src/agent/codex.ts` to use `codex exec --json`
+- Added proper `codex exec resume` support for resumed sessions
+- Parse real Codex JSONL events (`thread.started`, `item.completed`, `turn.completed`)
+- Preserve `sessionId` and token `usage` from Codex runtime output
+
+**Token Efficiency + Runtime Reuse:**
+- Refactored `src/agent-dispatch.ts` to emit compact structured JSON task envelopes instead of verbose Markdown task files
+- Fixed generated CLI handoff commands for Codex and Claude Code to match current CLIs
+- Wired `SkillExecutionCache` into `src/skill-chain.ts` for real cached skill-chain reuse during execution
+- Wired successful execution write-back into `src/execution-analyzer.ts`
+- Added `compressMaybe()` helper in `src/utils/output-compress.ts` for safer runtime log compression
+
+**Docs, Profiles, and Naming Cleanup:**
+- Synced skill install manifests in `skills/profiles/{core,design,growth,full}.txt` and `skills/profiles/top35.json`
+- Updated skill library docs under `docs/skills/` to remove broken links to deleted/deprecated skill folders
+- Cleaned workflow and operations docs to point at current skills like `cm-safe-deploy`, `cm-design-system`, `cm-quality-gate`, `cm-execution`, and `cm-skill-index`
+- Reduced deprecation-heavy copywriting in user-facing docs so new users see the current path first
+- Kept migration-specific references only where they still serve version-upgrade guidance (`docs/migration-v2.md`) or advisory protocol compatibility
+
+**Tests Added:**
+- `test/codex-backend.test.ts`
+- `test/agent-dispatch.test.ts`
+- `test/skill-chain-cache.test.ts`
+- `test/skill-token-report.test.ts`
+- `test/brain-token-skill.test.ts`
+
+**Verification:**
+- `npm run test:gate:kit`
+- Result: 54 test files passed, 422 tests passed
+
+---
+
 ## [7.0.0] - 2026-05-11
 
 ### 🚀 Improvements — Browse Hybrid Bridge

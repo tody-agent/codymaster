@@ -17,13 +17,13 @@ Establish a robust, stable, and consistent UI Design System by either extracting
    - Extract semantic colors (Primary, Secondary, Success, Warning, Danger), neutral ramps (50-900), typography scales, spacing tokens, and border radii.
 3. **Pre-built UI Kits (Default Mode)**:
    - If the user wants a beautiful design quickly, DO NOT try to generate tokens manually.
-   - Instead, copy one of the pre-built design systems from `skills/cm-design-system/resources/` into the project's `.stitch/DESIGN.md` or pass directly to `cm-ui-preview`:
+   - Instead, copy one of the pre-built design systems from `skills/cm-design-system/resources/` into the project's `.stitch/DESIGN.md` or continue directly in `cm-design-system`:
      - `shadcn-default.md` (Use this as the absolute DEFAULT if no style is specified)
      - `halo-modern.md` (Premium dark mode, glowing accents)
      - `lunaris-advanced.md` (Tech-focused, monospaced fonts)
      - `nitro-enterprise.md` (High-contrast, data-dense enterprise)
 4. **Pencil.dev & Google Stitch MCP**:
-   - **Stitch path:** Use `DESIGN.md` with `<!-- STITCH_TOKENS_START -->` JSON block to feed design tokens into Google Stitch's AI generator via `cm-ui-preview`.
+   - **Stitch path:** Use `DESIGN.md` with `<!-- STITCH_TOKENS_START -->` JSON block to feed design tokens into Google Stitch's AI generator via `cm-design-system`.
    - **Pencil path:** Use the Pencil MCP tools to create and manage `.pen` design files directly:
 
    **Pencil.dev Workflow:**
@@ -55,7 +55,7 @@ Establish a robust, stable, and consistent UI Design System by either extracting
    })
    ```
 
-   - For UI component rendering against these tokens, you MUST hand off to `cm-ui-preview`.
+   - For UI component rendering against these tokens, continue through `cm-design-system`.
    - **IMPORTANT:** Never use `view_file` or `grep_search` on `.pen` files. Always use `mcp_pencil_batch_get`.
 5. **Export Custom `DESIGN.md` (Extraction Mode)**:
    - If extracting from a site visually, create the `DESIGN.md` document.
@@ -68,7 +68,7 @@ Establish a robust, stable, and consistent UI Design System by either extracting
 **Action:**
 1. Extract semantic colors: Primary (Blurple), surface colors, typography (Inter), rounded corners.
 2. Build the `DESIGN.md` including the Stitch STITCH_TOKENS JSON block with these tokens.
-3. Tell the user: "Extraction complete. I've saved the tokens in `DESIGN.md`. Would you like me to hand this off to `cm-ui-preview` to generate components?"
+3. Tell the user: "Extraction complete. I've saved the tokens in `DESIGN.md`. Would you like me to continue the `cm-design-system` flow to generate components?"
 
 ## Example 2: Scaffold a new robust design system
 **Input:** "Create a modern dark-mode design system using Halo UI kit."
@@ -90,9 +90,8 @@ Establish a robust, stable, and consistent UI Design System by either extracting
 7. Tell the user: "Design system created in `design-system.pen`. Would you like me to build screens using these components?"
 
 # Constraints
-- 🚫 **DO NOT** generate or build React/Vue UI components directly in this skill. Handoff UI generation to `cm-ui-preview`.
+- 🚫 **DO NOT** generate or build React/Vue UI components outside the `cm-design-system` flow.
 - 🚫 **DO NOT** skip the `<!-- STITCH_TOKENS_START -->` wrapper in `DESIGN.md`. It is critical for Stitch MCP parsing.
 - 🚫 **DO NOT** guess accessibility constraints — ensure text-on-background contrast aligns with WCAG AA (handled via `cm-ux-master` heuristics).
 - 🚫 **DO NOT** use `view_file` or `grep_search` on `.pen` files. Always use Pencil MCP tools (`batch_get`, `batch_design`, etc.).
 - ✅ **ALWAYS** define a complete neutral scale (50-900) even if the source site only uses a few grays.
-

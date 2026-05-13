@@ -140,7 +140,7 @@ After creating `.project-identity.json`, update `~/.cm-identity-history.json`:
 ## Phase 0.5: Security Foundation 🛡️
 
 > **NEW — Defense-in-depth from day 0. Secrets leak at project start when security is "later."**
-> **Calls `cm-secret-shield` for setup.**
+> **Calls `cm-safe-deploy` for setup.**
 
 ### Step 1: Create `.gitleaks.toml`
 
@@ -208,7 +208,7 @@ Add to `package.json`:
 ```json
 {
   "scripts": {
-    "security:scan": "node scripts/security-scan.js || echo 'Create scripts/security-scan.js from cm-secret-shield'"
+    "security:scan": "node scripts/security-scan.js || echo 'Create scripts/security-scan.js from cm-safe-deploy guidance'"
   }
 }
 ```

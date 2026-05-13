@@ -6,7 +6,7 @@
  *
  * Storage: `.cm/design-taste.json` (JSON, not JSONL — small file, full rewrite).
  *
- * Consumed by cm-design-system and cm-ui-preview to bias token / prompt
+ * Consumed by cm-design-system to bias token / prompt
  * generation toward what the user has already approved.
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {

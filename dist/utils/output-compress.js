@@ -11,6 +11,7 @@ exports.compressNpmTest = compressNpmTest;
 exports.collapseRepeatedLines = collapseRepeatedLines;
 exports.summarizeBuildLog = summarizeBuildLog;
 exports.compressFor = compressFor;
+exports.compressMaybe = compressMaybe;
 const STATUS_LINE = /^(?:\s*)([MADRCU?!]{1,2}|\?\?)\s+(.+)$/;
 function compressGitStatus(stdout) {
     const lines = stdout.split('\n');
@@ -140,4 +141,11 @@ function compressFor(command, stdout) {
             return exports.COMPRESSORS[key](stdout);
     }
     return collapseRepeatedLines(stdout, 3);
+}
+function compressMaybe(command, stdout, maxLines = 50) {
+    const lines = stdout.split('\n');
+    if (lines.length <= maxLines && stdout.length <= 4000) {
+        return stdout;
+    }
+    return compressFor(command, stdout);
 }

@@ -43,7 +43,7 @@ Implement the chosen variant using existing design system tokens. …
 
 const README = `# .cm/design-studio
 
-Local artifact folder for **cm-design-studio**: variants, checklist, handoff.
+Local artifact folder for the **design-studio** flow: variants, checklist, handoff.
 
 Happy path:
 

@@ -56,6 +56,39 @@ function render(tmpl, vars) {
   return tmpl.replace(/\{\{(\w+)\}\}/g, (_, k) => (vars[k] != null ? String(vars[k]) : `{{${k}}}`));
 }
 
+function parseFrontmatter(text) {
+  const m = text.match(/^---\n([\s\S]*?)\n---\n?/);
+  if (!m) return null;
+  const out = {};
+  for (const line of m[1].split('\n')) {
+    const mm = line.match(/^([A-Za-z_][A-Za-z0-9_-]*)\s*:\s*(.*)$/);
+    if (!mm) continue;
+    let v = mm[2].trim();
+    if (v.startsWith('"') && v.endsWith('"')) v = v.slice(1, -1);
+    if (v === 'true') v = true;
+    else if (v === 'false') v = false;
+    else if (/^-?\d+$/.test(v)) v = parseInt(v, 10);
+    out[mm[1]] = v;
+  }
+  return out;
+}
+
+function assertSkillIdentity(skillFile, expectedName) {
+  const text = fs.readFileSync(skillFile, 'utf8');
+  const fm = parseFrontmatter(text);
+  if (!fm) {
+    throw new Error(`skill '${expectedName}' missing YAML frontmatter in ${skillFile}`);
+  }
+  if (!fm.name) {
+    throw new Error(`skill '${expectedName}' missing frontmatter.name in ${skillFile}`);
+  }
+  if (fm.name !== expectedName) {
+    throw new Error(
+      `skill '${expectedName}' has frontmatter.name='${fm.name}' in ${skillFile}; sync aborted to prevent propagating a corrupted skill`
+    );
+  }
+}
+
 function sha256(buf) {
   return crypto.createHash('sha256').update(buf).digest('hex');
 }
@@ -76,13 +109,14 @@ function copyFileIdempotent(src, dst) {
   return 'synced';
 }
 
-function copyDirShallow(srcDir, dstDir) {
+function copyDirShallow(srcDir, dstDir, expectedName = null) {
   const result = { synced: 0, skipped: 0, drift: 0 };
   if (!fs.existsSync(srcDir)) return result;
   ensureDir(dstDir);
 
   const skillFile = path.join(srcDir, 'SKILL.md');
   if (fs.existsSync(skillFile)) {
+    assertSkillIdentity(skillFile, expectedName || path.basename(srcDir));
     result[copyFileIdempotent(skillFile, path.join(dstDir, 'SKILL.md'))]++;
   }
 
@@ -196,7 +230,7 @@ if (platforms.length > 0) {
         console.warn(`  ! ${platform}: skill '${name}' not found in skills/`);
         continue;
       }
-      const r = copyDirShallow(srcDir, path.join(dst, name));
+      const r = copyDirShallow(srcDir, path.join(dst, name), name);
       synced += r.synced; skipped += r.skipped; drift += r.drift;
     }
     

@@ -1,0 +1,146 @@
+{
+    "niche": "insurance",
+    "brand": {
+        "name": "InsureWise",
+        "slogan": "Smart Coverage for Every Stage of Life",
+        "tone": "reassuring-expert",
+        "language": "en",
+        "colors": {
+            "primary": "#003459",
+            "secondary": "#007EA7",
+            "accent": "#F0F4F8"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "insurance-guide",
+                "title_template": "{topic_name} Insurance: What It Covers, Costs & How to Choose",
+                "category": "guides",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "insurance",
+                    "coverage",
+                    "policy"
+                ]
+            },
+            {
+                "id": "comparison",
+                "title_template": "Best {topic_name} Insurance Companies 2025: Rates & Reviews",
+                "category": "comparisons",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "best",
+                    "companies",
+                    "rates"
+                ]
+            },
+            {
+                "id": "cost-guide",
+                "title_template": "{topic_name} Insurance Cost: Average Premiums & How to Save",
+                "category": "costs",
+                "seo_intent": "transactional",
+                "tags_base": [
+                    "cost",
+                    "premiums",
+                    "savings"
+                ]
+            },
+            {
+                "id": "claims-guide",
+                "title_template": "How to File a {topic_name} Insurance Claim: Complete Process",
+                "category": "claims",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "claims",
+                    "process",
+                    "filing"
+                ]
+            },
+            {
+                "id": "faq-article",
+                "title_template": "{topic_name} Insurance FAQ: Expert Answers to Common Questions",
+                "category": "faq",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "FAQ",
+                    "insurance",
+                    "questions"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image"
+            ]
+        },
+        "word_count": {
+            "min": 1200,
+            "max": 2500
+        },
+        "language": "en",
+        "disclaimer": "Insurance information is for educational purposes. Always compare quotes from licensed agents."
+    },
+    "sources": {
+        "type": "markdown",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": true,
+        "require_cta": true,
+        "require_disclaimer": true
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}

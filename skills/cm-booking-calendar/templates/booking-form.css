@@ -1,0 +1,626 @@
+/**
+ * Booking Form CSS v1.0
+ * Styles for booking-form.html templates
+ * 
+ * Requires CSS custom properties from host design system:
+ *   --primary, --primary-rgb, --accent
+ *   --text-primary, --text-secondary, --text-muted
+ *   --border-light, --surface-alt
+ *   --radius-sm, --radius-md, --radius-lg
+ *   --font-body
+ */
+
+/* ============================================================ */
+/* BOOKING BOTTOM SHEET                                          */
+/* ============================================================ */
+
+.booking-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.booking-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.booking-sheet {
+    position: fixed;
+    z-index: 10001;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.18);
+    max-height: 90vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.booking-sheet.is-open {
+    transform: translateY(0);
+}
+
+/* Handle */
+.booking-handle {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 4px;
+    cursor: grab;
+}
+
+.booking-handle span {
+    width: 40px;
+    height: 4px;
+    background: #d1d5db;
+    border-radius: 2px;
+}
+
+/* Header */
+.booking-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.25rem 0.75rem;
+}
+
+.booking-header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.booking-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+.booking-header-info h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary, #1a1a2e);
+    margin: 0;
+}
+
+.booking-header-info p {
+    font-size: 0.8125rem;
+    color: var(--text-muted, #94a3b8);
+    margin: 2px 0 0;
+}
+
+.booking-close {
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: var(--radius-sm, 6px);
+    color: var(--text-muted, #94a3b8);
+    transition: all 0.15s;
+}
+
+.booking-close:hover {
+    background: var(--surface-alt, #f1f5f9);
+    color: var(--text-primary, #1a1a2e);
+}
+
+
+/* ============================================================ */
+/* FORM FIELDS                                                   */
+/* ============================================================ */
+
+.booking-form {
+    padding: 0 1.25rem 1.5rem;
+}
+
+.booking-field {
+    margin-bottom: 1rem;
+}
+
+.booking-field label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary, #475569);
+    margin-bottom: 0.375rem;
+}
+
+.booking-field .optional {
+    font-weight: 400;
+    color: var(--text-muted, #94a3b8);
+}
+
+.required-mark {
+    color: var(--accent, #e74c3c);
+    font-weight: 700;
+}
+
+.booking-field input[type="text"],
+.booking-field input[type="tel"],
+.booking-field input[type="email"],
+.booking-field input[type="date"],
+.booking-field select,
+.booking-field textarea {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border: 1.5px solid var(--border-light, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    font-size: 0.9375rem;
+    font-family: var(--font-body, system-ui, sans-serif);
+    color: var(--text-primary, #1a1a2e);
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.booking-field input:focus,
+.booking-field select:focus,
+.booking-field textarea:focus {
+    border-color: var(--primary, #2563eb);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb, 37, 99, 235), 0.1);
+}
+
+.booking-field textarea {
+    resize: vertical;
+    min-height: 56px;
+}
+
+
+/* ============================================================ */
+/* DATE CHIPS — Grid layout, Fitts's Law (≥ 44px touch targets) */
+/* ============================================================ */
+
+.booking-date-chips {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.date-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.5rem 0.375rem;
+    border: 1.5px solid var(--border-light, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    background: #fff;
+    font-family: var(--font-body, system-ui, sans-serif);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-align: center;
+    color: var(--text-secondary, #475569);
+    line-height: 1.3;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.date-chip.is-recommended {
+    border-color: var(--primary, #2563eb);
+    background: rgba(var(--primary-rgb, 37, 99, 235), 0.04);
+}
+
+.date-chip:hover {
+    border-color: var(--primary, #2563eb);
+    color: var(--primary, #2563eb);
+    box-shadow: 0 1px 4px rgba(var(--primary-rgb, 37, 99, 235), 0.1);
+}
+
+.date-chip:active {
+    transform: scale(0.97);
+}
+
+.date-chip.is-active {
+    background: var(--primary, #2563eb);
+    border-color: var(--primary, #2563eb);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(var(--primary-rgb, 37, 99, 235), 0.25);
+}
+
+.date-chip .date-chip-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.date-chip .date-chip-sub {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    opacity: 0.6;
+    margin-top: 2px;
+    line-height: 1.2;
+}
+
+.date-chip.is-active .date-chip-sub {
+    opacity: 0.85;
+}
+
+.date-chip.is-recommended .date-chip-label {
+    color: var(--primary, #2563eb);
+}
+
+.date-chip.is-active .date-chip-label {
+    color: #fff;
+}
+
+/* Custom date chip */
+.date-chip--custom {
+    flex-direction: row;
+    gap: 0.375rem;
+}
+
+.date-chip--custom svg {
+    flex-shrink: 0;
+}
+
+.booking-date-custom {
+    margin-top: 0.5rem;
+}
+
+
+/* ============================================================ */
+/* TIME CHIPS                                                    */
+/* ============================================================ */
+
+.booking-time-chips {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.time-chip {
+    flex: 1;
+    padding: 0.5rem 0.25rem;
+    border: 1.5px solid var(--border-light, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    background: #fff;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    font-family: var(--font-body, system-ui, sans-serif);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    color: var(--text-secondary, #475569);
+}
+
+.time-chip:hover {
+    border-color: var(--primary, #2563eb);
+    color: var(--primary, #2563eb);
+}
+
+.time-chip.is-active {
+    background: var(--primary, #2563eb);
+    border-color: var(--primary, #2563eb);
+    color: #fff;
+}
+
+
+/* ============================================================ */
+/* GOOGLE MAPS LINK                                              */
+/* ============================================================ */
+
+.booking-maps-link {
+    margin-bottom: 1rem;
+}
+
+.booking-maps-link[hidden] {
+    display: none;
+}
+
+.booking-maps-link a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: var(--radius-md, 10px);
+    color: #0369a1;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.booking-maps-link a:hover {
+    background: #e0f2fe;
+}
+
+
+/* ============================================================ */
+/* SUBMIT BUTTON                                                 */
+/* ============================================================ */
+
+.booking-submit {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem;
+    background: var(--accent, #e74c3c);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md, 10px);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: var(--font-body, system-ui, sans-serif);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.25rem;
+}
+
+.booking-submit:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+.booking-submit:active {
+    transform: translateY(0);
+}
+
+.booking-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.booking-privacy {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    color: var(--text-muted, #94a3b8);
+    margin-top: 0.75rem;
+    justify-content: center;
+}
+
+
+/* ============================================================ */
+/* CALENDAR CTA (Post-submit — celebration feel!)                */
+/* ============================================================ */
+
+.booking-calendar-cta {
+    padding: 1.5rem 1.25rem 2rem;
+    text-align: center;
+}
+
+.booking-calendar-cta[hidden] {
+    display: none;
+}
+
+.cta-success-icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    animation: cta-bounce 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes cta-bounce {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.cta-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary, #1a1a2e);
+    margin: 0 0 0.25rem;
+}
+
+.cta-subtitle {
+    font-size: 0.9375rem;
+    color: var(--text-secondary, #475569);
+    margin: 0 0 1.25rem;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.booking-cal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.25rem;
+    border: 2px solid;
+    border-radius: var(--radius-md, 10px);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    font-family: var(--font-body, system-ui, sans-serif);
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Google Calendar button — blue/white */
+.booking-cal-btn--gcal {
+    background: #4285f4;
+    border-color: #4285f4;
+    color: #fff;
+}
+
+.booking-cal-btn--gcal:hover {
+    background: #3367d6;
+    border-color: #3367d6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+/* ICS download button — outlined */
+.booking-cal-btn--ics {
+    background: #fff;
+    border-color: var(--border-light, #e2e8f0);
+    color: var(--text-primary, #1a1a2e);
+}
+
+.booking-cal-btn--ics:hover {
+    border-color: var(--text-primary, #1a1a2e);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cta-benefit {
+    font-size: 0.8125rem;
+    color: #15803d;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: var(--radius-md, 10px);
+    padding: 0.625rem 0.875rem;
+    margin: 1rem 0 0;
+    line-height: 1.5;
+}
+
+
+/* ============================================================ */
+/* TOAST (shared with google-forms-sheet)                         */
+/* ============================================================ */
+
+.form-toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 10010;
+    background: #1a1a2e;
+    color: #fff;
+    border-radius: var(--radius-lg, 14px);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    max-width: calc(100vw - 2rem);
+    width: max-content;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.form-toast:not([hidden]) {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.form-toast--success {
+    border-left: 4px solid #22c55e;
+}
+
+.form-toast--error {
+    border-left: 4px solid #ef4444;
+}
+
+.form-toast--retrying {
+    border-left: 4px solid #f59e0b;
+}
+
+.form-toast-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.form-toast-icon {
+    font-size: 1.125rem;
+}
+
+.form-toast-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    line-height: 1;
+}
+
+.form-toast-close:hover {
+    color: #fff;
+}
+
+
+/* ============================================================ */
+/* INLINE VARIANT                                                */
+/* ============================================================ */
+
+.booking-inline {
+    background: #fff;
+    border: 1px solid var(--border-light, #e2e8f0);
+    border-radius: var(--radius-lg, 14px);
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.booking-inline-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light, #e2e8f0);
+}
+
+
+/* ============================================================ */
+/* RESPONSIVE                                                    */
+/* ============================================================ */
+
+/* Desktop: center sheet */
+@media (min-width: 640px) {
+    .booking-sheet {
+        max-width: 480px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) translateY(100%);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .booking-sheet.is-open {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .cta-buttons {
+        flex-direction: row;
+    }
+
+    .booking-cal-btn {
+        flex: 1;
+    }
+}
+
+/* iOS Safe Area */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .booking-form {
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+
+    .booking-calendar-cta {
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+    }
+}

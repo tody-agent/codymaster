@@ -30,7 +30,7 @@ When this workflow is called, the AI Assistant should execute the following acti
 0.5. **Skill Coverage Check (Adaptive Discovery):**
     - Scan the objective for technologies, frameworks, or patterns mentioned
     - Cross-reference with `cm-skill-index` Layer 1 triggers
-    - If gap detected → trigger Discovery Loop from `cm-skill-mastery` Part C:
+    - If gap detected → trigger Discovery Loop from `cm-skill-index`:
       `npx skills find "{keyword}"` → review → ask user → install if approved
     - Log any discovered skills to `.cm-skills-log.json`
 

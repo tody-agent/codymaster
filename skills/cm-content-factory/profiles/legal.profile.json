@@ -1,0 +1,263 @@
+{
+    "id": "legal",
+    "name": "Legal & Compliance — Evidence-Based Legal Writing",
+    "version": "1.0",
+    "domain": "legal",
+    "description": "Professional legal content writing protocol with statutory citations, case law references, regulatory compliance markers, and legal disclaimers. Suitable for law firms, legal blogs, and compliance documentation.",
+    "evidence_system": {
+        "enabled": true,
+        "levels": [
+            {
+                "level": "I",
+                "label": "Luật / Bộ luật (Primary legislation)",
+                "marker": "[Luật]"
+            },
+            {
+                "level": "II",
+                "label": "Nghị định / Thông tư (Secondary legislation)",
+                "marker": "[NĐ/TT]"
+            },
+            {
+                "level": "III",
+                "label": "Án lệ / Bản án (Case law / Precedent)",
+                "marker": "[Án lệ]"
+            },
+            {
+                "level": "IV",
+                "label": "Công văn / Hướng dẫn (Administrative guidance)",
+                "marker": "[CV/HD]"
+            },
+            {
+                "level": "V",
+                "label": "Ý kiến chuyên gia / Bình luận pháp lý",
+                "marker": "[BLPL]"
+            }
+        ],
+        "marker_pattern": "\\[(Luật|NĐ/TT|Án lệ|CV/HD|BLPL)\\]|\\[LoE:\\s*[IViv]+",
+        "min_per_tier": {
+            "T1": 1,
+            "T2": 2,
+            "T3": 2
+        }
+    },
+    "citation_standard": {
+        "sources": [
+            {
+                "priority": "P0",
+                "org": "Quốc hội",
+                "label": "Luật / Bộ luật Việt Nam",
+                "example": "[Luật Doanh nghiệp 2020, Điều 45]"
+            },
+            {
+                "priority": "P0",
+                "org": "Chính phủ",
+                "label": "Nghị định",
+                "example": "[NĐ 01/2021/NĐ-CP, Điều 12]"
+            },
+            {
+                "priority": "P1",
+                "org": "Bộ ngành",
+                "label": "Thông tư",
+                "example": "[TT 01/2021/TT-BTP]"
+            },
+            {
+                "priority": "P1",
+                "org": "TANDTC",
+                "label": "Án lệ Tòa án Tối cao",
+                "example": "[Án lệ số 52/2022/AL]"
+            },
+            {
+                "priority": "P2",
+                "org": "Cơ quan thuế",
+                "label": "Công văn hướng dẫn",
+                "example": "[CV 1234/TCT-CS ngày 01/01/2024]"
+            },
+            {
+                "priority": "P3",
+                "org": "International",
+                "label": "Tham khảo quốc tế",
+                "example": "[UNCITRAL Model Law 2006]"
+            }
+        ],
+        "recognized_orgs": [
+            "Quốc hội",
+            "Chính phủ",
+            "TANDTC",
+            "Bộ Tư pháp",
+            "Bộ Tài chính",
+            "Tổng cục Thuế",
+            "UNCITRAL",
+            "ICC",
+            "WTO"
+        ],
+        "min_citations": {
+            "T1": 2,
+            "T2": 3,
+            "T3": 2
+        },
+        "reference_section_patterns": [
+            "##\\s*\\d*\\.?\\s*CĂN CỨ PHÁP LÝ",
+            "##\\s*\\d*\\.?\\s*TÀI LIỆU THAM KHẢO",
+            "##\\s*\\d*\\.?\\s*REFERENCES",
+            "##\\s*\\d*\\.?\\s*VĂN BẢN PHÁP LUẬT"
+        ],
+        "require_inline": true,
+        "banned_phrases": [
+            "Theo quy định pháp luật",
+            "Luật quy định rằng",
+            "Pháp luật cho phép"
+        ]
+    },
+    "safety_markers": [
+        {
+            "id": "legal_note",
+            "icon": "⚖️",
+            "label": "LƯU Ý PHÁP LÝ",
+            "pattern": "LƯU Ý PHÁP LÝ|LEGAL NOTE",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "deadline_warning",
+            "icon": "⏰",
+            "label": "THỜI HẠN QUAN TRỌNG",
+            "pattern": "THỜI HẠN|DEADLINE|thời hiệu",
+            "required_tiers": [
+                "T2"
+            ]
+        },
+        {
+            "id": "reference",
+            "icon": "📚",
+            "label": "CĂN CỨ PHÁP LÝ",
+            "pattern": "CĂN CỨ PHÁP LÝ|VĂN BẢN PHÁP LUẬT|THAM KHẢO",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        },
+        {
+            "id": "disclaimer",
+            "icon": "⚖️",
+            "label": "DISCLAIMER",
+            "pattern": "DISCLAIMER|không thay thế tư vấn pháp lý|luật sư chuyên môn",
+            "required_tiers": [
+                "T1",
+                "T2",
+                "T3"
+            ]
+        }
+    ],
+    "anti_hallucination": {
+        "rules": [
+            "Không bịa số điều luật — chỉ trích dẫn điều luật có thật",
+            "Không bịa số nghị định/thông tư — chỉ ghi văn bản có thật",
+            "Không bịa án lệ — chỉ trích dẫn bản án/án lệ có thật",
+            "Không bịa mức phạt — chỉ ghi mức phạt đúng theo quy định",
+            "Khi không chắc → ghi rõ thời điểm áp dụng và phạm vi"
+        ],
+        "safe_phrases": [
+            "Theo quy định tại Điều X, Luật Y năm Z...",
+            "Mức phạt có thể thay đổi theo từng thời kỳ, cần tra cứu văn bản mới nhất",
+            "Tùy thuộc vào từng trường hợp cụ thể, mức xử phạt dao động...",
+            "Cần tham khảo ý kiến luật sư để xác nhận"
+        ],
+        "suspicious_patterns": []
+    },
+    "content_tiers": {
+        "T1": {
+            "name": "Nền tảng pháp lý (Foundation)",
+            "min_words": 1500
+        },
+        "T2": {
+            "name": "Phân tích pháp lý (Analysis)",
+            "min_words": 2000
+        },
+        "T3": {
+            "name": "Thủ tục / Quy trình (Procedure)",
+            "min_words": 1200
+        }
+    },
+    "tier_detection": {
+        "prefix_map": {},
+        "default_tier": "T2"
+    },
+    "cross_reference": {
+        "require_icd10_tiers": [],
+        "icd10_pattern": "",
+        "min_cross_links": 2,
+        "cross_link_patterns": [
+            "Xem thêm",
+            "Tham khảo",
+            "→\\s*Xem",
+            "Bài liên quan"
+        ],
+        "code_format": "→ Xem thêm: [{code}] {title}"
+    },
+    "prompt_injection": {
+        "T1": "LEGAL WRITING REQUIREMENTS:\n1. Mỗi khái niệm pháp lý phải trích dẫn điều luật cụ thể\n2. Ghi rõ số văn bản pháp luật (Luật/NĐ/TT) + năm ban hành\n3. Cuối bài có \"## CĂN CỨ PHÁP LÝ\"\n4. Cuối bài có DISCLAIMER pháp lý\n5. KHÔNG bịa số điều luật, nghị định — tra cứu chính xác",
+        "T2": "LEGAL WRITING REQUIREMENTS:\n1. Mỗi phân tích phải trích dẫn ≥ 3 văn bản pháp luật cụ thể\n2. Ghi rõ Điều, Khoản, Điểm của từng quy định\n3. So sánh giữa các quy định nếu có mâu thuẫn\n4. Section \"THỜI HẠN\" nếu có thời hiệu áp dụng\n5. Cuối bài có \"## CĂN CỨ PHÁP LÝ\" và DISCLAIMER\n6. KHÔNG bịa mức phạt, số điều luật",
+        "T3": "LEGAL WRITING REQUIREMENTS:\n1. Mỗi bước thủ tục ghi rõ căn cứ pháp lý (Luật/NĐ/TT)\n2. Liệt kê hồ sơ cần thiết + thời hạn xử lý\n3. Ghi rõ cơ quan thụ lý + phí/lệ phí\n4. Cuối bài có \"## CĂN CỨ PHÁP LÝ\" ≥ 2 văn bản\n5. Cuối bài có DISCLAIMER pháp lý"
+    },
+    "scoring": {
+        "dimensions": [
+            {
+                "name": "Legal Accuracy",
+                "weight": 10,
+                "check": "loe_count",
+                "description": "Trích dẫn điều luật cụ thể"
+            },
+            {
+                "name": "Citation Depth",
+                "weight": 10,
+                "check": "citation_count",
+                "description": "Số lượng văn bản pháp luật trích dẫn"
+            },
+            {
+                "name": "Regulatory Compliance",
+                "weight": 10,
+                "check": "no_errors",
+                "description": "Không có sai sót pháp lý"
+            },
+            {
+                "name": "Structure",
+                "weight": 10,
+                "check": "structure_complete",
+                "description": "Đúng template, đủ section"
+            },
+            {
+                "name": "Timeliness",
+                "weight": 10,
+                "check": "timeliness",
+                "description": "Văn bản còn hiệu lực"
+            },
+            {
+                "name": "Safety Markers",
+                "weight": 10,
+                "check": "safety_markers",
+                "description": "Disclaimer, lưu ý pháp lý"
+            },
+            {
+                "name": "Cross-References",
+                "weight": 10,
+                "check": "cross_links",
+                "description": "Liên kết bài liên quan"
+            },
+            {
+                "name": "Word Count",
+                "weight": 10,
+                "check": "word_count",
+                "description": "Đủ độ dài tối thiểu"
+            }
+        ],
+        "max_score": 80,
+        "thresholds": {
+            "excellent": 72,
+            "good": 56,
+            "average": 40
+        }
+    },
+    "disclaimer_text": "⚖️ **DISCLAIMER:** Nội dung bài viết chỉ mang tính chất tham khảo pháp lý.\nMọi quyết định pháp lý **cần tư vấn của luật sư chuyên môn**.\nVăn bản pháp luật có thể thay đổi, vui lòng tra cứu phiên bản mới nhất."
+}

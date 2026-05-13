@@ -52,13 +52,13 @@ export function suggestFromContext(projectPath: string): Suggestion[] {
     out.push({ skill: 'cm-dockit', reason: 'Markdown/docs paths changed.' });
   }
   if (/(package\.json|package-lock\.json|pnpm-lock|yarn\.lock)/m.test(joined)) {
-    out.push({ skill: 'cm-test-gate', reason: 'Dependency lockfiles changed; run the test gate.' });
+    out.push({ skill: 'cm-quality-gate', reason: 'Dependency lockfiles changed; run the verification gate.' });
   }
   if (/(\.github\/workflows\/|Dockerfile|fly\.toml|wrangler)/m.test(joined)) {
     out.push({ skill: 'cm-safe-deploy', reason: 'CI or deploy config changed.' });
   }
   if (lines.length > 8) {
-    out.push({ skill: 'cm-git-worktrees', reason: 'Many working-tree changes; consider an isolated worktree.' });
+    out.push({ skill: 'cm-execution', reason: 'Many working-tree changes; consider isolated execution or a clean workspace.' });
   }
 
   const sprint = readSprintState(root);
@@ -73,7 +73,7 @@ export function suggestFromContext(projectPath: string): Suggestion[] {
 
   if (fs.existsSync(path.join(root, '.cm', 'config.yaml'))) {
     out.push({
-      skill: 'cm-engineering-meta',
+      skill: 'cm-mcp-engineering',
       reason: '`.cm/config.yaml` present; engineering commands honor shared config.',
     });
   }

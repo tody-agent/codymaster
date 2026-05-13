@@ -58,7 +58,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `cm-tdd` | test, TDD, red-green-refactor | Red-Green-Refactor cycle before any implementation |
 | `cm-debugging` | bug, error, fix, debug, broken | Root cause analysis before fixing. 5-phase investigation |
 | `cm-quality-gate` | deploy, ship, verify, quality, gate | 6-gate verification: static analysis → blind review → ship |
-| `cm-test-gate` | test setup, CI, test infrastructure | Setup 4-layer test gate for any project type |
+| `cm-quality-gate` | test setup, CI, verification | Test + verification gate before claiming completion |
 | `cm-code-review` | review, PR, feedback, branch | Request reviews, handle feedback, complete branches |
 | `cm-codeintell` | understand codebase, call graph, impact, architecture, what calls X, what breaks | AST knowledge graph + architecture diagrams + smart context (30% fewer tokens) |
 | `cm-reactor` | rewrite, pivot, migrate, direction change, architecture wrong, restructure | TRIZ-powered strategic codebase re-direction — 5-phase incremental migration |
@@ -70,14 +70,14 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 |-------|----------|---------|
 | `cm-safe-deploy` | deploy, staging, production, release | Multi-gate deploy pipeline with rollback strategy |
 | `cm-identity-guard` | git push, deploy, Cloudflare, Supabase, account | Verify identity before any push/deploy to prevent wrong-account |
-| `cm-git-worktrees` | branch, isolate, worktree, parallel | Isolated git worktrees for feature work |
+| `cm-execution` | branch, isolate, worktree, parallel | Execution modes including isolated workspaces and parallel batches |
 | `cm-terminal` | command, terminal, run, execute | Safe terminal execution with progress logging |
 
 ### Security Swarm 🔒
 
 | Skill | Triggers | Summary |
 |-------|----------|---------|
-| `cm-secret-shield` | secret, token, leak, security, scan, pre-commit, gitleaks, rotate | Defense-in-depth: pre-commit hooks, repo scanning, token lifecycle |
+| `cm-safe-deploy` | secret, token, leak, security, scan, pre-commit, gitleaks, rotate | Defense-in-depth: repo scanning, token lifecycle, and release safety |
 
 ### Product Swarm 🎨
 
@@ -86,7 +86,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | `cm-brainstorm-idea` | analyze, enhance, improve, initiative, evaluate, review product | Strategic analysis gate: 9 Windows + Double Diamond → 2-3 qualified options |
 | `cm-planning` | plan, design, brainstorm, feature | Brainstorm intent → write implementation plan → then code |
 | `cm-ux-master` | UI, UX, design, interface, usability | 48 UX Laws + 37 Design Tests + Figma/Stitch integration |
-| `cm-ui-preview` | preview, visual, mockup, render UI, wireframe | Live UI concept generation via Google Stitch or Pencil MCP |
+| `cm-design-system` | preview, visual, mockup, render UI, wireframe | Live UI concept generation via design-token and Stitch/Open Design workflows |
 | `cm-dockit` | docs, documentation, knowledge base, SOP | Generate complete knowledge base from codebase |
 | `cm-project-bootstrap` | new project, init, bootstrap, setup | Full project setup: design system → staging → CI → deploy |
 | `cm-jtbd` | customer discovery, JTBD, jobs to be done, product-market fit, why users churn | JTBD canvas: Switch Interview → Outcome Metrics → Opportunity Scoring |
@@ -105,11 +105,10 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 |-------|----------|---------|
 | `cm-execution` | execute, implement, plan, RARV, batch | Execute plans: batch mode, subagent-driven, parallel, or RARV |
 | `cm-continuity` | memory, context, CONTINUITY, learnings | Working memory protocol: read at start, update at end |
-| `cm-skill-mastery` | which skill, skill list, discover, help | Meta-skill: when to invoke skills, how to create new ones |
+| `cm-skill-index` | which skill, skill list, discover, help | Meta-skill: when to invoke skills and how to discover the right one |
 | `cm-skill-health` | skill broken, skill drift, missing skill, stale skill, health | Audit a skill using docs drift, retro notes, validation, and gates |
 | `cm-skill-evolution` | repair skill, evolve skill, fix skill, derive skill | Recover a degraded skill with FIX, DERIVED, or CAPTURED mode |
-| `cm-skill-search` | find skill, lookup skill, which skill, search skill | Find the right skill through indexes, suggestions, and repo search |
-| `cm-skill-share` | export skill, import skill, share skill, move skill | Package and transfer skill folders safely across repos and machines |
+| `cm-skill-evolution` | repair skill, evolve skill, capture skill | Repair, derive, or capture skills from execution feedback |
 | `cm-safe-i18n` | translate, i18n, language, localize | Safe translation with multi-pass batching and audit gates |
 | `cm-skill-chain` | chain, pipeline, workflow, multi-step, full process | Compose skills into automated multi-step pipelines |
 | `cm-deep-search` | semantic search, find docs, large codebase, qmd | Optional power-up for semantic search across large projects |
@@ -121,8 +120,9 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 | Skill | Triggers | Summary |
 |-------|----------|---------|
 | `cm-start` | /cm-start, start workflow, begin objective, new task | Orchestrate full cm-* workflow from objective to production code |
-| `cm-dashboard` | /cm-dashboard, kanban, task board, show tasks, status board | Render Kanban board from OpenSpec `tasks.md` and `cm-tasks.json` — visual task overview |
 | `cm-status` | /cm-status, quick status, progress, what's next, blocked | Ultra-concise progress summary: done / next / blocked |
+| `cm-status` | /cm-status, quick status, progress, what's next, blocked | Ultra-concise progress summary: done / next / blocked |
+
 
 ### Planned (not yet implemented) 🧪
 
@@ -259,7 +259,7 @@ Traditional approach: Load every SKILL.md to decide which skill to use.
 
 **Discovery Protocol:**
 ```
-1. Check THIS index first (59 skills above)
+1. Check THIS index first (62 skills above)
    → Match found? → npx skills add {source} --skill {name} -a antigravity
 2. No match? → npx skills find "{keyword}" on skills.sh
 3. Still nothing? → Proceed without skill, note gap in .cm-skills-log.json
@@ -322,13 +322,13 @@ view_file /path/to/skills/cm-tdd/SKILL.md
 For dynamic agent selection (Phase 3), skills map to domains:
 
 ```yaml
-engineering: [cm-tdd, cm-debugging, cm-quality-gate, cm-test-gate, cm-code-review, cm-codeintell, cm-reactor, cm-clean-code]
-operations: [cm-safe-deploy, cm-identity-guard, cm-git-worktrees, cm-terminal, cm-safe-i18n]
-security: [cm-secret-shield]
-product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-ui-preview, cm-dockit, cm-project-bootstrap, cm-jtbd]
+engineering: [cm-tdd, cm-debugging, cm-quality-gate, cm-code-review, cm-codeintell, cm-reactor, cm-clean-code]
+operations: [cm-safe-deploy, cm-identity-guard, cm-terminal, cm-safe-i18n]
+security: [cm-safe-deploy]
+product: [cm-brainstorm-idea, cm-planning, cm-ux-master, cm-design-system, cm-dockit, cm-project-bootstrap, cm-jtbd]
 growth: [cm-content-factory, cm-ads-tracker, cm-cro-methodology]
-orchestration: [cm-execution, cm-continuity, cm-skill-mastery, cm-skill-health, cm-skill-evolution, cm-skill-search, cm-skill-share, cm-skill-chain, cm-deep-search, cm-readit, cm-how-it-work]
-commands: [cm-start, cm-dashboard, cm-status]
+orchestration: [cm-execution, cm-continuity, cm-skill-index, cm-skill-health, cm-skill-evolution, cm-skill-chain, cm-deep-search, cm-readit, cm-how-it-work]
+commands: [cm-start, cm-status]
 # planned (no SKILL.md yet): mom-test, release-it, medical-research, tailwind-mastery, pandasai-analytics, cm-google-form
 ```
 

@@ -245,6 +245,25 @@ cm status          # See your tasks and progress
 cm dashboard       # Open the visual dashboard
 ```
 
+### For OpenCode users
+
+OpenCode supports both skills and plugins:
+
+```bash
+git clone https://github.com/tody-agent/codymaster.git ~/.cody-master
+
+# Skills (auto-load)
+ln -s ~/.cody-master/.opencode/skills ~/.opencode/skills
+
+# Plugins (optional — adds custom tools)
+mkdir -p ~/.opencode/plugins
+ln -s ~/.cody-master/.opencode/plugins/cm-brainstorm-idea.ts ~/.opencode/plugins/
+```
+
+Restart OpenCode to activate. The `cm-brainstorm-idea` plugin adds a strategic analysis tool with auto-detection for brainstorm keywords.
+
+📖 [Full OpenCode installation guide →](.opencode/INSTALL.md)
+
 ### For Codex users
 
 Fastest path:

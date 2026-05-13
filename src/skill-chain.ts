@@ -3,6 +3,7 @@ import { getBuiltinChains, getChainById } from './chains/builtin';
 import { initBus, updateBusStep } from './context-bus';
 import { qualityWeight } from './execution-analyzer';
 import { getBackend, type DbSkillMetric } from './storage-backend';
+import { SkillExecutionCache } from './skill-execution-cache';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -55,6 +56,7 @@ export interface ChainExecution {
   startedAt: string;
   updatedAt: string;
   completedAt?: string;
+  cacheHit?: boolean;
 }
 
 // ─── Chain Matching ─────────────────────────────────────────────────────────
@@ -178,14 +180,33 @@ export function createChainExecution(
 ): ChainExecution {
   const now = new Date().toISOString();
   const backend = projectPath ? getBackend(projectPath) : undefined;
+  const cache = projectPath ? new SkillExecutionCache(projectPath) : undefined;
   let selectedSteps: ChainStep[];
+  let cacheHit = false;
   backend?.initialize();
+  cache?.initialize();
   try {
-    selectedSteps = selectTopSkills(taskTitle, chain, 3, {
-      getSkillMetric: backend ? (skill) => backend.getSkillMetric(skill) : undefined,
-    });
+    const cachedChain = cache?.findCachedChain(taskTitle);
+    if (cachedChain?.skillChain.length) {
+      const selectedSkills = new Set(cachedChain.skillChain);
+      const cachedSteps = chain.steps.filter(step => selectedSkills.has(step.skill));
+      if (cachedSteps.length > 0) {
+        selectedSteps = cachedSteps;
+        cache?.recordHit(cachedChain.taskPattern);
+        cacheHit = true;
+      } else {
+        selectedSteps = selectTopSkills(taskTitle, chain, 3, {
+          getSkillMetric: backend ? (skill) => backend.getSkillMetric(skill) : undefined,
+        });
+      }
+    } else {
+      selectedSteps = selectTopSkills(taskTitle, chain, 3, {
+        getSkillMetric: backend ? (skill) => backend.getSkillMetric(skill) : undefined,
+      });
+    }
   } finally {
     backend?.close();
+    cache?.close();
   }
   const steps: ChainStepExecution[] = selectedSteps.map((step, index) => ({
     index,
@@ -214,6 +235,7 @@ export function createChainExecution(
     steps,
     startedAt: now,
     updatedAt: now,
+    cacheHit,
   };
 
   // Init context bus for this chain execution

@@ -139,3 +139,11 @@ export function compressFor(command: string, stdout: string): string {
   }
   return collapseRepeatedLines(stdout, 3);
 }
+
+export function compressMaybe(command: string, stdout: string, maxLines = 50): string {
+  const lines = stdout.split('\n');
+  if (lines.length <= maxLines && stdout.length <= 4000) {
+    return stdout;
+  }
+  return compressFor(command, stdout);
+}

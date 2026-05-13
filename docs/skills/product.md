@@ -1,7 +1,7 @@
 ---
 title: Product Skills
-description: CodyMaster skills for UX, planning, JTBD, CRO, design systems, and UI preview workflows.
-keywords: product skills, ux master, planning, jtbd, ui preview
+description: CodyMaster skills for UX, planning, JTBD, CRO, and design system workflows.
+keywords: product skills, ux master, planning, jtbd, design system
 robots: index, follow
 ---
 
@@ -17,8 +17,9 @@ robots: index, follow
 | cm-jtbd | `skills/cm-jtbd/SKILL.md` |
 | cm-planning | `skills/cm-planning/SKILL.md` |
 | cm-readit | `skills/cm-readit/SKILL.md` |
-| cm-ui-preview | `skills/cm-ui-preview/SKILL.md` |
 | cm-ux-master | `skills/cm-ux-master/SKILL.md` |
+
+`cm-design-system` covers the design preview and generation workflow.
 
 ## See also
 

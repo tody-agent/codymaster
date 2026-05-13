@@ -14,7 +14,7 @@ describe('distro-validate', () => {
   });
 
   it('passes skill folder with SKILL.md only', () => {
-    const r = validateSkillPackDir(path.join(__dirname, '..', 'skills', 'cm-design-studio'));
+    const r = validateSkillPackDir(path.join(__dirname, '..', 'skills', 'cm-design-system'));
     expect(r.ok).toBe(true);
   });
 

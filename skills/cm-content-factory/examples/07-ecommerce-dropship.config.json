@@ -1,0 +1,146 @@
+{
+    "niche": "ecommerce-dropship",
+    "brand": {
+        "name": "DropShip Empire",
+        "slogan": "Build Your Online Business From Scratch",
+        "tone": "motivational-practical",
+        "language": "en",
+        "colors": {
+            "primary": "#FF6B00",
+            "secondary": "#2D2D2D",
+            "accent": "#FFF8F0"
+        }
+    },
+    "content": {
+        "article_types": [
+            {
+                "id": "product-niche",
+                "title_template": "Best {topic_name} Products to Sell Online in 2025 (High Margin)",
+                "category": "products",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "products",
+                    "trending",
+                    "profitable"
+                ]
+            },
+            {
+                "id": "how-to-guide",
+                "title_template": "How to Start a {topic_name} Store: Complete Beginner Guide",
+                "category": "guides",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "how to",
+                    "ecommerce",
+                    "start"
+                ]
+            },
+            {
+                "id": "supplier-review",
+                "title_template": "Top {topic_name} Suppliers: Verified Reviews & Contact Info",
+                "category": "suppliers",
+                "seo_intent": "commercial",
+                "tags_base": [
+                    "suppliers",
+                    "review",
+                    "wholesale"
+                ]
+            },
+            {
+                "id": "marketing-strategy",
+                "title_template": "{topic_name} Marketing: Proven Strategies to 10x Your Sales",
+                "category": "marketing",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "marketing",
+                    "ads",
+                    "sales"
+                ]
+            },
+            {
+                "id": "case-study",
+                "title_template": "{topic_name} Success Story: From $0 to $10K/Month",
+                "category": "case-studies",
+                "seo_intent": "informational",
+                "tags_base": [
+                    "case study",
+                    "income",
+                    "results"
+                ]
+            }
+        ],
+        "frontmatter_schema": {
+            "required": [
+                "title",
+                "slug",
+                "description",
+                "category"
+            ],
+            "optional": [
+                "date",
+                "author",
+                "tags",
+                "image",
+                "revenue"
+            ]
+        },
+        "word_count": {
+            "min": 1200,
+            "max": 3000
+        },
+        "language": "en"
+    },
+    "sources": {
+        "type": "manual",
+        "path": "knowledge/"
+    },
+    "output": {
+        "content_dir": "content/blog/",
+        "knowledge_dir": "knowledge/",
+        "queue_dir": "topics-queue/"
+    },
+    "pipeline": {
+        "concurrency": 3,
+        "ai_provider": "gemini-cli",
+        "auto_validate": true,
+        "auto_publish": false,
+        "git_branch": "main"
+    },
+    "audit": {
+        "error_patterns": [
+            "I cannot",
+            "Please provide",
+            "As an AI"
+        ],
+        "min_headings": 4,
+        "require_faq": false,
+        "require_cta": true,
+        "require_disclaimer": false
+    },
+    "memory": {
+        "enabled": true,
+        "memory_dir": "memory/",
+        "auto_learn": true,
+        "max_episodic_days": 90
+    },
+    "research": {
+        "auto_research": true,
+        "search_provider": "browser",
+        "competitor_urls": [],
+        "max_sources_per_topic": 10
+    },
+    "scoring": {
+        "reward_praise": 10,
+        "reward_engagement": 5,
+        "reward_first_pass": 3,
+        "penalty_edit": -5,
+        "penalty_delete": -10,
+        "penalty_audit_fail": -3
+    },
+    "extensions": {
+        "openclaw": {
+            "enabled": false
+        },
+        "hooks": {}
+    }
+}
