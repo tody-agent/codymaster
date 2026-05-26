@@ -9,3 +9,9 @@
 **Vulnerability:** Similar to the previous issue in the Express server, the Python HTTP servers (`skills/cm-content-factory/scripts/dashboard_server.py`) and MCP servers (`skills/cm-ux-master/mcp/server.py`) defaulted to binding to `0.0.0.0` or had `0.0.0.0` hardcoded in config files (`skills/cm-ux-master/mcp/mcp-config.json`). This exposed the unauthenticated dashboards and internal design tool intelligence to the entire local network.
 **Learning:** The risk of `0.0.0.0` bindings extends beyond core services to embedded scripts, dashboard utilities, and peripheral MCP skills. If standard frameworks (like `http.server.HTTPServer` or `uvicorn`) are used without explicit `127.0.0.1` binding, they default to exposing the API/UI globally.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations (`os.getenv("HOST", "127.0.0.1")`), CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks. Regularly audit configurations (e.g., `mcp-config.json`) and source code for `0.0.0.0` literals.
+
+## 2026-05-27 - [CRITICAL] Command Injection Vulnerability in CLI tools
+
+**Vulnerability:** The application used `execSync` with string interpolation for executing `npx vitest run ${testFile}` in `src/execution/tdd-gate.ts`. This was vulnerable to command injection if `testFile` contained shell metacharacters like semicolons, backticks, or `$(...)`.
+**Learning:** Using `execSync` combined with untrusted inputs inside shell commands introduces severe security risks. String interpolation in shell execution bypasses application-level security and enables arbitrary code execution.
+**Prevention:** Avoid `execSync(string)`. Always use `child_process.execFileSync(binary, [args])` or `spawnSync` when building dynamic commands. This bypasses shell interpretation entirely, preventing malicious argument injection.
