@@ -9,3 +9,8 @@
 **Vulnerability:** Similar to the previous issue in the Express server, the Python HTTP servers (`skills/cm-content-factory/scripts/dashboard_server.py`) and MCP servers (`skills/cm-ux-master/mcp/server.py`) defaulted to binding to `0.0.0.0` or had `0.0.0.0` hardcoded in config files (`skills/cm-ux-master/mcp/mcp-config.json`). This exposed the unauthenticated dashboards and internal design tool intelligence to the entire local network.
 **Learning:** The risk of `0.0.0.0` bindings extends beyond core services to embedded scripts, dashboard utilities, and peripheral MCP skills. If standard frameworks (like `http.server.HTTPServer` or `uvicorn`) are used without explicit `127.0.0.1` binding, they default to exposing the API/UI globally.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations (`os.getenv("HOST", "127.0.0.1")`), CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks. Regularly audit configurations (e.g., `mcp-config.json`) and source code for `0.0.0.0` literals.
+
+## 2024-05-24 - Fix Command Injection in tdd-gate.ts
+**Vulnerability:** `execSync` used with string interpolation for `npx vitest run ${testFile}` in `src/execution/tdd-gate.ts`, creating a critical command injection risk if `testFile` contains shell metacharacters.
+**Learning:** Using `execSync` to run shell commands where inputs are dynamically concatenated is a high-risk pattern.
+**Prevention:** Use `execFileSync` with an arguments array to bypass shell interpretation and dynamically set the binary based on OS to maintain cross-platform execution capability.
