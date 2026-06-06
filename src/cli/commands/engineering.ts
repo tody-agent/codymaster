@@ -4,6 +4,27 @@ import path from 'path';
 import { execFileSync } from 'child_process';
 import http from 'http';
 import chalk from 'chalk';
+import crypto from 'crypto';
+
+function getFallbackToken(): string {
+  const tokenPath = path.join(process.cwd(), '.cm', 'browse_token');
+  try {
+    if (fs.existsSync(tokenPath)) {
+      return fs.readFileSync(tokenPath, 'utf8').trim();
+    }
+  } catch (e) {
+    // ignore
+  }
+  const token = crypto.randomBytes(16).toString('hex');
+  try {
+    const cmDir = path.join(process.cwd(), '.cm');
+    if (!fs.existsSync(cmDir)) fs.mkdirSync(cmDir, { recursive: true });
+    fs.writeFileSync(tokenPath, token, { mode: 0o600 });
+  } catch (e) {
+    // ignore
+  }
+  return token;
+}
 import { BrowseDaemon } from '../../browse-server';
 import { checkShellCommand, isPathUnderRoots, normalizeRoots, appendGuardianLog } from '../../guardian-core';
 import { loadCmConfig } from '../../cm-config';
@@ -53,7 +74,7 @@ export function registerEngineeringCommands(program: Command): void {
         opts.token ||
         process.env.CM_BROWSE_TOKEN ||
         cfg.browse?.token ||
-        'dev-token-change-me';
+        getFallbackToken();
       const daemon = new BrowseDaemon({
         host,
         port,
@@ -102,7 +123,7 @@ export function registerEngineeringCommands(program: Command): void {
     .option('--severity <s>', 'filter by severity: critical, error, warning, info')
     .action(async (opts) => {
       const cfg = loadCmConfig(process.cwd());
-      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || getFallbackToken();
       const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
       const auth = `Bearer ${token}`;
       try {
@@ -135,7 +156,7 @@ export function registerEngineeringCommands(program: Command): void {
     .option('--token <t>', 'or env CM_BROWSE_TOKEN or config')
     .action(async (opts) => {
       const cfg = loadCmConfig(process.cwd());
-      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || getFallbackToken();
       const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
       const auth = `Bearer ${token}`;
       try {
@@ -160,7 +181,7 @@ export function registerEngineeringCommands(program: Command): void {
     .option('--token <t>', 'or env CM_BROWSE_TOKEN or config')
     .action(async (opts) => {
       const cfg = loadCmConfig(process.cwd());
-      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || getFallbackToken();
       const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
       const auth = `Bearer ${token}`;
       try {
@@ -189,7 +210,7 @@ export function registerEngineeringCommands(program: Command): void {
     .option('--token <t>', 'or env CM_BROWSE_TOKEN or config')
     .action(async (action: string, opts) => {
       const cfg = loadCmConfig(process.cwd());
-      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || getFallbackToken();
       const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
       const auth = `Bearer ${token}`;
       try {
@@ -486,7 +507,7 @@ export function registerEngineeringCommands(program: Command): void {
     .action(async (opts) => {
       const cfg = loadCmConfig(process.cwd());
       const token =
-        opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+        opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || getFallbackToken();
       const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
       const auth = `Bearer ${token}`;
       await browseRequest(port, '/session/start', 'POST', auth, { headless: true });
@@ -578,7 +599,7 @@ export function registerEngineeringCommands(program: Command): void {
           process.env.CM_BROWSE_TOKEN ||
           cfg.canary?.token ||
           cfg.browse?.token ||
-          'dev-token-change-me';
+          getFallbackToken();
         const raw = await browseRaw(parseInt(browsePort, 10), '/console', `Bearer ${token}`);
         console.log(chalk.dim('Browse console (last messages):'), raw.slice(0, 500));
       }
