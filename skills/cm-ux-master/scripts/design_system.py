@@ -441,6 +441,16 @@ def format_markdown(design_system: dict) -> str:
     lines.append(f"## Design System: {project}")
     lines.append("")
 
+    # Design Dials & Style Mode (functional baseline; raise for marketing/expressive)
+    lines.append("### Design Dials & Style Mode")
+    lines.append("- **Style Mode:** functional (default) | minimalist-editorial | brutalist | soft-premium | marketing-expressive")
+    lines.append("- **DESIGN_VARIANCE:** 4 / 10  (symmetric baseline; raise for expressive layouts)")
+    lines.append("- **MOTION_INTENSITY:** 3 / 10  (static baseline; >3 requires reduced-motion gating)")
+    lines.append("- **VISUAL_DENSITY:** 6 / 10  (dashboard-leaning baseline)")
+    lines.append("")
+    lines.append("*Marketing/expressive output is opt-in: switch Style Mode and raise dials only when the brief asks. All modes inherit the Anti-Slop rules below.*")
+    lines.append("")
+
     # Pattern section
     lines.append("### Pattern")
     lines.append(f"- **Name:** {pattern.get('name', '')}")
@@ -548,6 +558,9 @@ def format_markdown(design_system: dict) -> str:
     lines.append("- [ ] Focus states visible for keyboard nav")
     lines.append("- [ ] prefers-reduced-motion respected")
     lines.append("- [ ] Responsive: 375px, 768px, 1024px, 1440px")
+    lines.append("- [ ] Anti-Slop: zero em-dashes, no AI purple glow, no pure #000000, one accent < 80% sat")
+    lines.append("- [ ] Anti-Slop: no generic names/fake numbers/startup-slop verbs; no 3 equal-column cards or >1 marquee")
+    lines.append("- [ ] Run `python3 scripts/search.py \"<concern>\" --domain anti-slop` when unsure")
     lines.append("")
 
     return "\n".join(lines)

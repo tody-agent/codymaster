@@ -4,6 +4,13 @@
 - **Personality:** [e.g. Professional and trustworthy, Playful and vibrant]
 - **Density:** [e.g. High density for data-rich dashboards, Spacious for consumer apps]
 
+## Design Dials & Style Mode
+- **Style Mode:** [functional | minimalist-editorial | brutalist | soft-premium | marketing-expressive] (default: functional)
+- **DESIGN_VARIANCE:** [1-10] (functional baseline 4)
+- **MOTION_INTENSITY:** [1-10] (functional baseline 3; >3 requires reduced-motion gating)
+- **VISUAL_DENSITY:** [1-10] (functional baseline 6)
+*Note: One Style Mode per project. Raising dials never overrides the Anti-Slop rules below.*
+
 ## Colors
 - **Primary:** [Hex]
 - **Secondary:** [Hex]
@@ -32,9 +39,22 @@
 - Do: [Action to encourage]
 - Don't: [Action to avoid]
 
+### Anti-Slop Rules (every mode, zero tolerance)
+- Don't: use em-dashes in any copy (use periods, commas, line breaks, hyphens)
+- Don't: use AI purple glow, pure black `#000000`, neon outer glow, or gradient text on large headers
+- Don't: ship generic names (John Doe/Acme), fake-precise numbers (99.99%), or startup-slop verbs (Elevate/Seamless/Revolutionize)
+- Don't: use three equal-column feature cards, section-number eyebrows, scroll cues, fake `<div>` screenshots, or more than one marquee
+- Do: keep one accent (< 80% saturation), `min-h-[100dvh]` not `h-screen`, and gate motion above intensity 3 with `prefers-reduced-motion`
+
 <!-- STITCH_TOKENS_START -->
 {
   "version": "1",
+  "styleMode": "functional",
+  "dials": {
+    "variance": 4,
+    "motion": 3,
+    "density": 6
+  },
   "colors": {
     "primary": "",
     "secondary": "",

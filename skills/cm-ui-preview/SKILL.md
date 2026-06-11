@@ -87,11 +87,20 @@ Structure your prompt exactly like this:
 ```markdown
 [Overall vibe, mood, and purpose of the page: e.g., "A modern fintech dashboard for B2B users. Professional, trustworthy, high data density, light mode."]
 
+**STYLE MODE & DIALS (REQUIRED):**
+- Style Mode: functional (or minimalist-editorial / brutalist / soft-premium / marketing-expressive if user asked)
+- Dials: DESIGN_VARIANCE=4, MOTION_INTENSITY=3, VISUAL_DENSITY=6 (pull from DESIGN.md if present)
+
 **DESIGN SYSTEM (REQUIRED):**
 - Platform: Web Desktop-first
-- Palette: Primary Blue (#0F62FE), Secondary Gray (#F4F4F4), Danger Red (#DA1E28)
+- Palette: Primary Blue (#0F62FE), Secondary Gray (#F4F4F4), Danger Red (#DA1E28) — one accent only, < 80% saturation
 - Typography: Inter for UI, Roboto Mono for numbers
 - Styles: 4px border radius, subtle drop shadows on cards
+
+**ANTI-SLOP CONSTRAINTS (REQUIRED, every mode):**
+- No em-dashes in copy. No AI purple glow, pure black #000000, neon glow, or gradient text on large headers.
+- No generic names (John Doe/Acme), fake-precise numbers (99.99%), or startup-slop verbs (Elevate/Seamless/Revolutionize).
+- No three equal-column cards, section-number eyebrows, scroll cues, fake screenshots, or more than one marquee.
 
 **PAGE STRUCTURE & FUNCTION:**
 ### 1. Dashboard Home
@@ -148,6 +157,7 @@ Structure your prompt exactly like this:
 - ⛔ **NO FAKE SUCCESS:** If the MCP tool fails or isn't connected, do not hallucinate a success message or URL.
 - ⛔ **NO CODING (Yet):** This phase is purely for DESIGN PREVIEW. Do not write React/Vue code until the user clicks "Confirm" or "Skip".
 - ⛔ **NO APP SCAFFOLDING:** Do not initialize project codebases in this workflow.
+- ⛔ **NO AI SLOP:** Every prompt must carry the Anti-Slop Constraints above. Never let Stitch ship em-dashes, AI purple glow, generic names, or template-default layouts. When unsure, query `cm-ux-master` `--domain anti-slop`.
 
 ## Future: Pencil.dev Support
 *Pencil MCP tools are available and will be integrated as an alternative execution engine in future updates (`batch_design`, `get_editor_state`).*

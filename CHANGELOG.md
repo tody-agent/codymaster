@@ -6,6 +6,15 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ## [Unreleased]
 
+### 🚀 Improvements — Anti-Slop Design Layer (taste-skill inspired)
+- Added `anti-slop` BM25 domain to `cm-ux-master` (`data/anti-slop.csv`, ~36 AI-tell rules: em-dash ban, AI purple glow, generic names, fake-precise numbers, startup-slop verbs, three equal-column cards, fake `<div>` screenshots, and more). Searchable via `python3 scripts/search.py "<concern>" --domain anti-slop`.
+- Introduced **Design Dials** (`DESIGN_VARIANCE` / `MOTION_INTENSITY` / `VISUAL_DENSITY`, 1-10) with a functional baseline `4/3/6`, surfaced in `generate_design_system()` output and the `DESIGN.md` template.
+- Added **Style Mode** selector (`functional` default + `minimalist-editorial`, `brutalist`, `soft-premium`, `marketing-expressive`); marketing/expressive aesthetics are now opt-in instead of refused, while still enforcing the anti-slop layer.
+- Added **Brief Inference** (Step 0 "read the room") to the cm-ux-master execution workflow.
+- Added canonical **motion patterns** to `data/animation.csv` (GSAP sticky-stack, horizontal-pan, scroll-listener ban, reduced-motion gating, "motion claimed = motion shown").
+- Added programmatic `AntiSlopTest` (DT-SLP-001) to `validation_engine.py` that scans rendered source for AI tells.
+- Propagated dials + anti-slop constraints into `cm-ui-preview` (Stitch prompt blueprint) and the shared `DESIGN_STANDARD_TEMPLATE.md`.
+
 ### 🚀 Improvements — Zero-Token Skill Discovery
 - Removed LLM token waste on skill search by porting deterministic tech-stack parsing natively into `src/indexer/skills.ts`.
 - Introduced `cm index skills` CLI command to compile `.cm/project-skills.md` locally.

@@ -1,6 +1,6 @@
 ---
 name: cm-ux-master
-description: "Ultimate UI/UX design intelligence: 161 industry color palettes in a shadcn-aligned semantic token schema, 48 UX Laws, 37 Design Tests, UX Heuristics (Nielsen + Krug), Harvester extraction, Figma & Google Stitch integration, MCP server, Component Generator, and BM25 search across 16 domains + 19 framework stacks. One command = complete design system. Use when designing or reviewing UI/UX, choosing colors/typography, or building Web App / SaaS / Mobile screens."
+description: "Ultimate UI/UX design intelligence: an Anti-Slop layer that kills AI tells (em-dash, AI purple glow, generic names, template layouts), tunable Design Dials (variance/motion/density) and Style Modes (functional, minimalist, brutalist, soft-premium, marketing), 161 industry color palettes in a shadcn-aligned semantic token schema, 48 UX Laws, 37 Design Tests, UX Heuristics (Nielsen + Krug), Harvester extraction, Figma & Google Stitch integration, MCP server, Component Generator, and BM25 search across 17 domains + 19 framework stacks. One command = complete design system. Use when designing or reviewing UI/UX, choosing colors/typography, fixing generic AI-looking designs, or building Web App / SaaS / Mobile screens."
 ---
 
 # 🚀 CM UX Master — Ultimate Design Intelligence Platform
@@ -13,7 +13,9 @@ description: "Ultimate UI/UX design intelligence: 161 industry color palettes in
 - 📐 **48 UX Laws** — Behavioral psychology-based design rules
 - ✅ **37 Design Tests** — TDD for design validation
 - 💻 **Component Generator** — React/Vue/Semi Design components
-- 🔍 **BM25 Search** — 1200+ design patterns across 16 domains + 19 stacks
+- 🔍 **BM25 Search** — 1200+ design patterns across 17 domains + 19 stacks
+- 🚫 **Anti-Slop Layer** — kills AI tells (em-dash, AI purple glow, generic names, template layouts)
+- 🎛️ **Design Dials + Style Modes** — tune variance/motion/density; functional default, marketing opt-in
 - 🎨 **161 Industry Palettes** — shadcn-aligned 19-token semantic color schema
 
 **One command = Complete design system. 10x productivity. Zero manual work.**
@@ -361,10 +363,11 @@ Available: `html-tailwind`, `react`, `nextjs`, `astro`, `vue`, `nuxtjs`, `nuxt-u
 
 ---
 
-## Available Domains (16)
+## Available Domains (17)
 
 | Domain | Entries | Description |
 |--------|---------|-------------|
+| `anti-slop` | **36** | **Anti-"AI tell" rules — em-dash ban, AI purple glow, generic names, template layouts** |
 | `product` | 167 | Product type recommendations (SaaS, e-commerce, healthcare, emerging tech...) |
 | `style` | 67 | UI styles + AI prompts + CSS keywords |
 | `color` | 173 | Color palettes by product type — **19-token shadcn semantic schema** (Primary/Foreground/Card/Muted/Border/Destructive/Ring + on-colors) |
