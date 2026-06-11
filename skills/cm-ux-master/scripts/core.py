@@ -23,7 +23,7 @@ CSV_CONFIG = {
     "color": {
         "file": "colors.csv",
         "search_cols": ["Product Type", "Notes"],
-        "output_cols": ["Product Type", "Primary (Hex)", "Secondary (Hex)", "CTA (Hex)", "Background (Hex)", "Text (Hex)", "Notes"]
+        "output_cols": ["Product Type", "Primary", "On Primary", "Secondary", "On Secondary", "Accent", "On Accent", "Background", "Foreground", "Card", "Card Foreground", "Muted", "Muted Foreground", "Border", "Destructive", "On Destructive", "Ring", "Notes"]
     },
     "chart": {
         "file": "charts.csv",
@@ -98,6 +98,11 @@ CSV_CONFIG = {
         "file": "devices.csv",
         "search_cols": ["Device", "Category", "UX_Priority", "Guidelines"],
         "output_cols": ["Device", "Category", "Width_Min", "Width_Max", "Height", "Aspect_Ratio", "Touch", "Pixel_Density", "UX_Priority", "Guidelines"]
+    },
+    "anti-slop": {
+        "file": "anti-slop.csv",
+        "search_cols": ["Category", "AI_Tell", "Why_It_Reads_AI", "Fix", "Applies_To"],
+        "output_cols": ["ID", "Category", "AI_Tell", "Why_It_Reads_AI", "Fix", "Severity", "Applies_To", "Detection"]
     }
 }
 
@@ -118,7 +123,9 @@ STACK_CONFIG = {
     "angular": {"file": "stacks/angular.csv"},
     "htmx": {"file": "stacks/htmx.csv"},
     "electron": {"file": "stacks/electron.csv"},
-    "tauri": {"file": "stacks/tauri.csv"}
+    "tauri": {"file": "stacks/tauri.csv"},
+    "laravel": {"file": "stacks/laravel.csv"},
+    "threejs": {"file": "stacks/threejs.csv"}
 }
 
 # Common columns for all stacks
@@ -253,7 +260,11 @@ def detect_domain(query):
                           "screen reader", "contrast", "reduced motion", "skip link",
                           "aria-live", "2.4.7", "2.5.8", "1.4.3"],
         "devices": ["device", "watch", "wearable", "foldable", "tv", "carplay",
-                    "smart tv", "ar", "vr", "spatial", "tablet", "ipad"]
+                    "smart tv", "ar", "vr", "spatial", "tablet", "ipad"],
+        "anti-slop": ["anti-slop", "antislop", "ai tell", "ai-tell", "slop", "generic",
+                      "em-dash", "emdash", "purple glow", "ai purple", "gradient text",
+                      "neon glow", "fake screenshot", "startup verb", "placeholder name",
+                      "cliche", "template look", "boring ui", "default look"]
     }
 
     scores = {domain: sum(1 for kw in keywords if kw in query_lower) for domain, keywords in domain_keywords.items()}

@@ -228,12 +228,27 @@ class DesignSystemGenerator:
                 "accessibility": best_style.get("Accessibility", "")
             },
             "colors": {
-                "primary": best_color.get("Primary (Hex)", "#2563EB"),
-                "secondary": best_color.get("Secondary (Hex)", "#3B82F6"),
-                "cta": best_color.get("CTA (Hex)", "#F97316"),
-                "background": best_color.get("Background (Hex)", "#F8FAFC"),
-                "text": best_color.get("Text (Hex)", "#1E293B"),
-                "notes": best_color.get("Notes", "")
+                # Shadcn-aligned semantic token schema (19-col colors.csv)
+                "primary": best_color.get("Primary", "#2563EB"),
+                "on_primary": best_color.get("On Primary", "#FFFFFF"),
+                "secondary": best_color.get("Secondary", "#3B82F6"),
+                "on_secondary": best_color.get("On Secondary", "#FFFFFF"),
+                "accent": best_color.get("Accent", "#F97316"),
+                "on_accent": best_color.get("On Accent", "#FFFFFF"),
+                "background": best_color.get("Background", "#F8FAFC"),
+                "foreground": best_color.get("Foreground", "#1E293B"),
+                "card": best_color.get("Card", "#FFFFFF"),
+                "card_foreground": best_color.get("Card Foreground", "#1E293B"),
+                "muted": best_color.get("Muted", "#F1F5F9"),
+                "muted_foreground": best_color.get("Muted Foreground", "#64748B"),
+                "border": best_color.get("Border", "#E2E8F0"),
+                "destructive": best_color.get("Destructive", "#EF4444"),
+                "on_destructive": best_color.get("On Destructive", "#FFFFFF"),
+                "ring": best_color.get("Ring", best_color.get("Primary", "#2563EB")),
+                "notes": best_color.get("Notes", ""),
+                # Back-compat aliases (legacy keys kept so older render paths never KeyError)
+                "cta": best_color.get("Accent", "#F97316"),
+                "text": best_color.get("Foreground", "#1E293B"),
             },
             "typography": {
                 "heading": best_typography.get("Heading Font", "Inter"),
@@ -320,13 +335,15 @@ def format_ascii_box(design_system: dict) -> str:
         lines.append(f"|     {perf_a11y}".ljust(BOX_WIDTH) + "|")
     lines.append("|" + " " * BOX_WIDTH + "|")
 
-    # Colors section
+    # Colors section (shadcn-aligned semantic tokens)
     lines.append("|  COLORS:".ljust(BOX_WIDTH) + "|")
-    lines.append(f"|     Primary:    {colors.get('primary', '')}".ljust(BOX_WIDTH) + "|")
-    lines.append(f"|     Secondary:  {colors.get('secondary', '')}".ljust(BOX_WIDTH) + "|")
-    lines.append(f"|     CTA:        {colors.get('cta', '')}".ljust(BOX_WIDTH) + "|")
-    lines.append(f"|     Background: {colors.get('background', '')}".ljust(BOX_WIDTH) + "|")
-    lines.append(f"|     Text:       {colors.get('text', '')}".ljust(BOX_WIDTH) + "|")
+    lines.append(f"|     Primary:     {colors.get('primary', '')}  (on: {colors.get('on_primary', '')})".ljust(BOX_WIDTH) + "|")
+    lines.append(f"|     Secondary:   {colors.get('secondary', '')}".ljust(BOX_WIDTH) + "|")
+    lines.append(f"|     Accent/CTA:  {colors.get('accent', '')}".ljust(BOX_WIDTH) + "|")
+    lines.append(f"|     Background:  {colors.get('background', '')}  Foreground: {colors.get('foreground', '')}".ljust(BOX_WIDTH) + "|")
+    lines.append(f"|     Card:        {colors.get('card', '')}  Muted: {colors.get('muted', '')}".ljust(BOX_WIDTH) + "|")
+    lines.append(f"|     Border:      {colors.get('border', '')}  Ring: {colors.get('ring', '')}".ljust(BOX_WIDTH) + "|")
+    lines.append(f"|     Destructive: {colors.get('destructive', '')}".ljust(BOX_WIDTH) + "|")
     if colors.get("notes"):
         for line in wrap_text(f"Notes: {colors.get('notes', '')}", "|     ", BOX_WIDTH):
             lines.append(line.ljust(BOX_WIDTH) + "|")
@@ -447,15 +464,19 @@ def format_markdown(design_system: dict) -> str:
         lines.append(f"- **Performance:** {style.get('performance', '')} | **Accessibility:** {style.get('accessibility', '')}")
     lines.append("")
 
-    # Colors section
+    # Colors section (shadcn-aligned semantic tokens)
     lines.append("### Colors")
-    lines.append(f"| Role | Hex |")
-    lines.append(f"|------|-----|")
-    lines.append(f"| Primary | {colors.get('primary', '')} |")
-    lines.append(f"| Secondary | {colors.get('secondary', '')} |")
-    lines.append(f"| CTA | {colors.get('cta', '')} |")
-    lines.append(f"| Background | {colors.get('background', '')} |")
-    lines.append(f"| Text | {colors.get('text', '')} |")
+    lines.append(f"| Role | Hex | On (Foreground) |")
+    lines.append(f"|------|-----|-----------------|")
+    lines.append(f"| Primary | {colors.get('primary', '')} | {colors.get('on_primary', '')} |")
+    lines.append(f"| Secondary | {colors.get('secondary', '')} | {colors.get('on_secondary', '')} |")
+    lines.append(f"| Accent / CTA | {colors.get('accent', '')} | {colors.get('on_accent', '')} |")
+    lines.append(f"| Background | {colors.get('background', '')} | {colors.get('foreground', '')} |")
+    lines.append(f"| Card | {colors.get('card', '')} | {colors.get('card_foreground', '')} |")
+    lines.append(f"| Muted | {colors.get('muted', '')} | {colors.get('muted_foreground', '')} |")
+    lines.append(f"| Border | {colors.get('border', '')} | — |")
+    lines.append(f"| Destructive | {colors.get('destructive', '')} | {colors.get('on_destructive', '')} |")
+    lines.append(f"| Ring (focus) | {colors.get('ring', '')} | — |")
     if colors.get("notes"):
         lines.append(f"\n*Notes: {colors.get('notes', '')}*")
     lines.append("")
@@ -650,13 +671,20 @@ def format_master_md(design_system: dict) -> str:
     # Color Palette
     lines.append("### Color Palette")
     lines.append("")
-    lines.append("| Role | Hex | CSS Variable |")
-    lines.append("|------|-----|--------------|")
-    lines.append(f"| Primary | `{colors.get('primary', '#2563EB')}` | `--color-primary` |")
-    lines.append(f"| Secondary | `{colors.get('secondary', '#3B82F6')}` | `--color-secondary` |")
-    lines.append(f"| CTA/Accent | `{colors.get('cta', '#F97316')}` | `--color-cta` |")
-    lines.append(f"| Background | `{colors.get('background', '#F8FAFC')}` | `--color-background` |")
-    lines.append(f"| Text | `{colors.get('text', '#1E293B')}` | `--color-text` |")
+    lines.append("| Role | Hex | CSS Variable (shadcn) |")
+    lines.append("|------|-----|-----------------------|")
+    lines.append(f"| Primary | `{colors.get('primary', '#2563EB')}` | `--primary` |")
+    lines.append(f"| Primary Foreground | `{colors.get('on_primary', '#FFFFFF')}` | `--primary-foreground` |")
+    lines.append(f"| Secondary | `{colors.get('secondary', '#3B82F6')}` | `--secondary` |")
+    lines.append(f"| Accent / CTA | `{colors.get('accent', '#F97316')}` | `--accent` |")
+    lines.append(f"| Background | `{colors.get('background', '#F8FAFC')}` | `--background` |")
+    lines.append(f"| Foreground | `{colors.get('foreground', '#1E293B')}` | `--foreground` |")
+    lines.append(f"| Card | `{colors.get('card', '#FFFFFF')}` | `--card` |")
+    lines.append(f"| Muted | `{colors.get('muted', '#F1F5F9')}` | `--muted` |")
+    lines.append(f"| Muted Foreground | `{colors.get('muted_foreground', '#64748B')}` | `--muted-foreground` |")
+    lines.append(f"| Border | `{colors.get('border', '#E2E8F0')}` | `--border` |")
+    lines.append(f"| Destructive | `{colors.get('destructive', '#EF4444')}` | `--destructive` |")
+    lines.append(f"| Ring (focus) | `{colors.get('ring', '#2563EB')}` | `--ring` |")
     lines.append("")
     if colors.get("notes"):
         lines.append(f"**Color Notes:** {colors.get('notes', '')}")
@@ -749,7 +777,9 @@ def format_master_md(design_system: dict) -> str:
     lines.append("")
     lines.append("```css")
     lines.append(".card {")
-    lines.append(f"  background: {colors.get('background', '#FFFFFF')};")
+    lines.append(f"  background: {colors.get('card', '#FFFFFF')};")
+    lines.append(f"  color: {colors.get('card_foreground', '#1E293B')};")
+    lines.append(f"  border: 1px solid {colors.get('border', '#E2E8F0')};")
     lines.append("  border-radius: 12px;")
     lines.append("  padding: 24px;")
     lines.append("  box-shadow: var(--shadow-md);")
