@@ -27,7 +27,6 @@
     "a11y",
     "error-collection"
   ],
-  "hooks": "./hooks/hooks.json",
   "experimental": {
     "monitors": "./monitors/monitors.json"
   },
