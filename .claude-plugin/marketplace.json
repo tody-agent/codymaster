@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "CodyMaster — Full-stack AI skill kit for vibe coding. 60+ skills, 3 agents, smart hooks. Ship 10x faster.",
-    "version": "6.0.0"
+    "version": "7.5.0"
   },
   "plugins": [
     {
       "name": "cm",
       "description": "Full CodyMaster kit: 60+ skills, 3 preset agents (vibe-coder, content-pro, ux-designer), smart hooks, quality monitors. Everything you need to ship.",
-      "version": "6.0.0",
+      "version": "7.5.0",
       "source": "./",
       "author": { "name": "Tody Agent" },
       "category": "software-development",
@@ -21,7 +21,7 @@
     {
       "name": "cm-vibe-starter",
       "description": "Beginner-friendly starter pack: project bootstrap, autopilot, status tracking. Perfect first install for non-tech users.",
-      "version": "6.0.0",
+      "version": "7.5.0",
       "source": "./",
       "strict": false,
       "author": { "name": "Tody Agent" },
@@ -39,7 +39,7 @@
     {
       "name": "cm-fullstack",
       "description": "Full-stack development skills: TDD, debugging, code review, quality gates, safe deploy, deep search, and more.",
-      "version": "6.0.0",
+      "version": "7.5.0",
       "source": "./",
       "strict": false,
       "author": { "name": "Tody Agent" },
@@ -67,7 +67,7 @@
     {
       "name": "cm-design-kit",
       "description": "UI/UX design skills: design studio with variants, design system tokens, UX master framework, visual QA.",
-      "version": "6.0.0",
+      "version": "7.5.0",
       "source": "./",
       "strict": false,
       "author": { "name": "Tody Agent" },
@@ -85,7 +85,7 @@
     {
       "name": "cm-content-kit",
       "description": "Content creation skills: SEO content factory, NotebookLM-style research, documentation, growth hacking, auto-publishing.",
-      "version": "6.0.0",
+      "version": "7.5.0",
       "source": "./",
       "strict": false,
       "author": { "name": "Tody Agent" },
@@ -104,7 +104,7 @@
     {
       "name": "cm-ops-kit",
       "description": "DevOps & security skills: safe deploy, guardian runtime, secret scanning, security gates, canary deploys, sprint bus.",
-      "version": "6.0.0",
+      "version": "7.5.0",
       "source": "./",
       "strict": false,
       "author": { "name": "Tody Agent" },

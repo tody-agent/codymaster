@@ -6,6 +6,10 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ## [Unreleased]
 
+## [7.5.0] - 2026-06-12
+
+> Consolidated release: ships the Anti-Slop Design Layer, Zero-Token Skill Discovery, the v6.0 "Self-Evolving Brain" architecture, OpenViking de-scope, and the Advisory Loop productization under a single version. Supersedes the unreleased 6.0 line.
+
 ### 🚀 Improvements — Anti-Slop Design Layer (taste-skill inspired)
 - Added `anti-slop` BM25 domain to `cm-ux-master` (`data/anti-slop.csv`, ~36 AI-tell rules: em-dash ban, AI purple glow, generic names, fake-precise numbers, startup-slop verbs, three equal-column cards, fake `<div>` screenshots, and more). Searchable via `python3 scripts/search.py "<concern>" --domain anti-slop`.
 - Introduced **Design Dials** (`DESIGN_VARIANCE` / `MOTION_INTENSITY` / `VISUAL_DENSITY`, 1-10) with a functional baseline `4/3/6`, surfaced in `generate_design_system()` output and the `DESIGN.md` template.
