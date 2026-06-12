@@ -18,11 +18,7 @@ robots: index, follow
 | cm-safe-deploy | `skills/cm-safe-deploy/SKILL.md` |
 | cm-skill-chain | `skills/cm-skill-chain/SKILL.md` |
 | cm-skill-evolution | `skills/cm-skill-evolution/SKILL.md` |
-| cm-skill-health | `skills/cm-skill-health/SKILL.md` |
 | cm-skill-index | `skills/cm-skill-index/SKILL.md` |
-| cm-skill-mastery | `skills/cm-skill-mastery/SKILL.md` |
-| cm-skill-search | `skills/cm-skill-search/SKILL.md` |
-| cm-skill-share | `skills/cm-skill-share/SKILL.md` |
 | cm-start | `skills/cm-start/SKILL.md` |
 
 ## Self-healing loop
@@ -37,8 +33,10 @@ cm advisory handoff --project . --for cm-skill-health
 
 Then continue with:
 
-- `cm-skill-health` to confirm whether a skill is healthy, degraded, or broken
+- `cm advisory handoff --for cm-skill-health` to build the diagnosis payload
 - `cm-skill-evolution` to act in `FIX`, `DERIVED`, or `CAPTURED` mode
+
+Use `cm-skill-index` for skill discovery and selection.
 
 ## See also
 

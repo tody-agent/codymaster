@@ -4,11 +4,15 @@ All notable changes to this project will be documented in this file.
 
 Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
+---
+
 ## [Unreleased]
+
+---
 
 ## [7.5.0] - 2026-06-12
 
-> Consolidated release: ships the Anti-Slop Design Layer, Zero-Token Skill Discovery, the v6.0 "Self-Evolving Brain" architecture, OpenViking de-scope, and the Advisory Loop productization under a single version. Supersedes the unreleased 6.0 line.
+> Builds on top of 7.0.3. Adds the Anti-Slop Design Layer, Zero-Token Skill Discovery, the Self-Evolving Brain hooks/monitors, OpenViking de-scope, the Advisory Loop, and a host-native-browser-first browse strategy.
 
 ### 🚀 Improvements — Anti-Slop Design Layer (taste-skill inspired)
 - Added `anti-slop` BM25 domain to `cm-ux-master` (`data/anti-slop.csv`, ~36 AI-tell rules: em-dash ban, AI purple glow, generic names, fake-precise numbers, startup-slop verbs, three equal-column cards, fake `<div>` screenshots, and more). Searchable via `python3 scripts/search.py "<concern>" --domain anti-slop`.
@@ -17,36 +21,365 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 - Added **Brief Inference** (Step 0 "read the room") to the cm-ux-master execution workflow.
 - Added canonical **motion patterns** to `data/animation.csv` (GSAP sticky-stack, horizontal-pan, scroll-listener ban, reduced-motion gating, "motion claimed = motion shown").
 - Added programmatic `AntiSlopTest` (DT-SLP-001) to `validation_engine.py` that scans rendered source for AI tells.
-- Propagated dials + anti-slop constraints into `cm-ui-preview` (Stitch prompt blueprint) and the shared `DESIGN_STANDARD_TEMPLATE.md`.
+- Propagated dials + anti-slop constraints into the shared `DESIGN_STANDARD_TEMPLATE.md`.
+
+### 🚀 Improvements — Host-Native Browser First
+- `cm-browse` now prefers the host-native browser and demotes the `cm-browse` Playwright daemon to a fallback; added `skills/_shared/browser-strategy.md` documenting the engine selection chain.
 
 ### 🚀 Improvements — Zero-Token Skill Discovery
 - Removed LLM token waste on skill search by porting deterministic tech-stack parsing natively into `src/indexer/skills.ts`.
 - Introduced `cm index skills` CLI command to compile `.cm/project-skills.md` locally.
 - Updated Fission framework (`cm-project-bootstrap`, `cm-skill-index`, `AGENTS.md`) to prioritize zero-token local indexes over massive community directory sweeps.
 
-### 🚀 Improvements — CodyMaster v6.0 "Self-Evolving Brain"
-
-- **Smart Brain Router** — `src/smart-brain-router.ts` adds a zero-cost keyword-based classifier that dynamically selects the optimal memory tiers for incoming tasks, reducing token waste by up to 60-80% for simple tasks.
-- **Skill Execution Cache** — `src/skill-execution-cache.ts` introduces an FTS5-backed warm cache for successful execution chains (effectiveness >= 0.70), skipping BM25 and LLM selection entirely for recurring task patterns.
-- **Per-Tier Adaptive Token Budgeting** — Enhanced `src/token-budget.ts` controls budgets natively per memory tier and visually outputs budget and savings reports.
-- **Evolution Engine (Skill Evolver)** — `src/skill-evolver.ts` brings true autonomy. CodyMaster now auto-repairs and auto-generates `SKILL.md` files locally with three modes: `FIX` (adds warnings to broken skills), `DERIVED` (clones highly successful fallback paths), and `CAPTURED` (creates new skills completely autonomously when a task completes without predefined skills). Ships with anti-loop protection and automatic `.md` backups.
-- **Learning Promoter** — `src/learning-promoter.ts` scans working memory for recurring failures or patterns (reinforced >= 3 times) and automatically promotes them into permanent `cm-learned-*` skills.
-- **New CLI Tools** — `cm smart plan/tiers`, `cm token report/savings`, and a full `cm evolve` lifecycle toolkit (`status`, `run`, `history`, `rollback`, `candidates`, `promote`).
-- **Comprehensive Testing** — Extensively covered the new architectures with 62 new testing scenarios (system currently sits at 302 passed tests natively).
+### 🚀 Improvements — Self-Evolving Brain hooks & monitors
+- Added plugin `hooks/hooks.json` (working-memory load, secret guard, continuity save) and `monitors/monitors.json` (quality monitor), backed by `bin/cm-guard-secrets`, `bin/cm-save-continuity`, and `bin/cm-quality-monitor`, registered in `plugin.json`.
+- Smart Brain Router, Skill Execution Cache, per-tier adaptive token budgeting, the Evolution Engine (Skill Evolver), and the Learning Promoter for autonomous skill repair/derivation/capture.
 
 ### 🚀 Improvements — OpenViking De-scope
-
-- Removed OpenViking auto-installation from `install.sh` and `scripts/postinstall.js`; CodyMaster now keeps the normal install path focused on the supported Node-first stack.
-- Updated runtime/config/docs guidance so `storage.backend: viking` is treated as a deprecated experimental path instead of a default-facing feature.
-- Removed the remaining OpenViking runtime backend, demo script, and dedicated tests; legacy `storage.backend: viking` configs now warn and fall back to SQLite.
+- Removed OpenViking auto-installation and the remaining runtime backend; legacy `storage.backend: viking` configs now warn and fall back to SQLite.
 
 ### 🚀 Improvements — Advisory Loop Productization
+- Added `cm advisory report`, `cm advisory metrics`, and `cm advisory handoff`, plus the matching `cm_advisory_*` MCP tools, so operators can inspect execution analyses and generate structured recovery notes for `cm-skill-health` / `cm-skill-evolution`.
 
-- Added `cm advisory report`, `cm advisory metrics`, and `cm advisory handoff` so operators can inspect execution analyses, review per-skill quality, and generate structured recovery notes for `cm-skill-health` / `cm-skill-evolution`.
-- `selectTopSkills()` now uses recorded `skill_metrics` as a quality-weighted boost for optional step ranking, while mandatory `always` steps remain unchanged.
-- Added `src/advisory-handoff.ts` as the shared contract between analyzer output and self-healing workflows; the handoff can be emitted as Markdown or JSON.
-- Exposed the advisory loop to MCP clients via `cm_advisory_report`, `cm_advisory_metrics`, and `cm_advisory_handoff` in `src/mcp-context-server.ts`.
-- Added workflow and API docs for the advisory loop under `docs/workflows/advisory-loop.md` and `docs/api/api-reference.md`.
+---
+
+## [7.0.3] - 2026-05-13
+
+### 🚀 Improvements — Codex Runtime + Token-Efficient Handoffs
+
+Focused compatibility and cleanup release. Align CodyMaster with the current Codex CLI, reduce agent handoff noise, and remove dead references to deprecated skills across docs, profiles, and runtime hints.
+
+### 🚀 Improvements — Skill Token Auditing + Progressive Disclosure
+
+Added first-class skill token footprint auditing and used it to refactor the heaviest always-on skills into lazy-loaded `references/` packs.
+
+**Skill Token Auditing:**
+- Added `cm token skill <skillName>` under the existing `cm token` namespace
+- New `--project`, `--json`, and `--baseline` options for repo-scoped reports, machine-readable output, and before/after comparisons
+- New `src/skill-token-report.ts` analyzer for `SKILL.md`, direct `references/`, `progressive_min`, `progressive_max`, and baseline deltas
+- Added `test/skill-token-report.test.ts` and `test/brain-token-skill.test.ts`
+
+**Progressive Disclosure Refactors:**
+- Split `skills/cm-execution/` into a short router `SKILL.md` plus mode-specific references
+- Split `skills/cm-codeintell/` by intelligence layer: skeleton, codegraph, architecture, context builder, integration workflows
+- Split `skills/cm-safe-deploy/` by deploy path: individual gates, setup, and rollback
+- Split `skills/cm-continuity/` by concern: session protocol, template, memory model, MCP bridge, URI scheme, storage, audit
+- Split `skills/cm-tdd/` by workflow/support: red-green-refactor, test quality, rationalizations, bugfix example, stuck/debugging
+- Preserved existing skill names, compressed frontmatter style, and distribution compatibility with flat `references/`
+
+**Measured Token Wins (`progressive_min`):**
+- `cm-execution`: `3990 → 963` tokens
+- `cm-codeintell`: `4981 → 685` tokens
+- `cm-safe-deploy`: `4268 → 780` tokens
+- `cm-continuity`: `4157 → 652` tokens
+- `cm-tdd`: `2953 → 554` tokens
+
+**Codex Compatibility:**
+- Updated `src/agent/codex.ts` to use `codex exec --json`
+- Added proper `codex exec resume` support for resumed sessions
+- Parse real Codex JSONL events (`thread.started`, `item.completed`, `turn.completed`)
+- Preserve `sessionId` and token `usage` from Codex runtime output
+
+**Token Efficiency + Runtime Reuse:**
+- Refactored `src/agent-dispatch.ts` to emit compact structured JSON task envelopes instead of verbose Markdown task files
+- Fixed generated CLI handoff commands for Codex and Claude Code to match current CLIs
+- Wired `SkillExecutionCache` into `src/skill-chain.ts` for real cached skill-chain reuse during execution
+- Wired successful execution write-back into `src/execution-analyzer.ts`
+- Added `compressMaybe()` helper in `src/utils/output-compress.ts` for safer runtime log compression
+
+**Docs, Profiles, and Naming Cleanup:**
+- Synced skill install manifests in `skills/profiles/{core,design,growth,full}.txt` and `skills/profiles/top35.json`
+- Updated skill library docs under `docs/skills/` to remove broken links to deleted/deprecated skill folders
+- Cleaned workflow and operations docs to point at current skills like `cm-safe-deploy`, `cm-design-system`, `cm-quality-gate`, `cm-execution`, and `cm-skill-index`
+- Reduced deprecation-heavy copywriting in user-facing docs so new users see the current path first
+- Kept migration-specific references only where they still serve version-upgrade guidance (`docs/migration-v2.md`) or advisory protocol compatibility
+
+**Tests Added:**
+- `test/codex-backend.test.ts`
+- `test/agent-dispatch.test.ts`
+- `test/skill-chain-cache.test.ts`
+- `test/skill-token-report.test.ts`
+- `test/brain-token-skill.test.ts`
+
+**Verification:**
+- `npm run test:gate:kit`
+- Result: 54 test files passed, 422 tests passed
+
+---
+
+## [7.0.0] - 2026-05-11
+
+### 🚀 Improvements — Browse Hybrid Bridge
+
+Major browser automation upgrade. Combines agent-browser (Rust/CDP) with Playwright via adapter pattern for AI-native browser control, a11y snapshots, structured error collection, and video recording.
+
+**Browse Hybrid Bridge:**
+- New `src/browse/adapters/types.ts` — BrowserAdapter interface + types (A11ySnapshot, BrowserError, EngineInfo)
+- New `src/browse/adapters/playwright-adapter.ts` — Playwright implementation with a11y tree support
+- New `src/browse/adapters/agent-browser-adapter.ts` — agent-browser CLI wrapper (Rust/CDP)
+- New `src/browse/adapter-factory.ts` — Auto-detect engine + fallback chain (agent-browser → Playwright)
+- New `src/browse/error-collector.ts` — Structured error classification (js-error, network-fail, console-error, crash, timeout)
+- New `src/browse/event-log.ts` — Upgraded ring buffer with filtering, export, 1000 max entries
+- New `src/browse/index.ts` — Barrel export for browse module
+
+**Refactored BrowseDaemon:**
+- Refactored `src/browse-server.ts` — Adapter pattern, new endpoints, backward compatible
+- New endpoints: `GET /errors`, `GET /a11y-snapshot`, `GET /engine`, `GET /events`, `POST /record/start`, `POST /record/stop`
+- EventLog replaces RingBuffer for structured event tracking
+
+**New CLI Commands:**
+- `cm browse start --engine <auto|agent-browser|playwright>` — Engine selection
+- `cm browse doctor` — Check engine availability
+- `cm browse errors [--type <t>] [--severity <s>]` — List collected errors
+- `cm browse snapshot` — A11y tree with `@eN` refs
+- `cm browse engine` — Current engine info + capabilities
+- `cm browse record start|stop` — Video recording control
+
+**Skill Integration:**
+- Updated `cm-browse` SKILL.md — Hybrid Bridge documentation
+- Updated `cm-skill-index` — Added cm-browse to Engineering Swarm
+- Updated `cm-quality-gate` — Added cm-browse integration
+- Updated `cm-debugging` — Added cm-browse for error collection
+- Updated `cm-safe-deploy` — Added cm-browse for post-deploy smoke
+- Updated `cm-mcp-engineering` — Updated cm_qa tool description
+- Updated `AGENTS.md` — Added browse module to Authority table
+
+**Files Created:**
+- `src/browse/adapters/types.ts`
+- `src/browse/adapters/playwright-adapter.ts`
+- `src/browse/adapters/agent-browser-adapter.ts`
+- `src/browse/adapter-factory.ts`
+- `src/browse/error-collector.ts`
+- `src/browse/event-log.ts`
+- `src/browse/index.ts`
+
+**Files Modified:**
+- `src/browse-server.ts` — Adapter pattern refactor
+- `src/cli/commands/engineering.ts` — New browse commands + --engine flag
+
+---
+
+## [6.1.0] - 2026-05-11
+
+### 🚀 Improvements — Workflow Pipeline Fix + Unified CLI
+
+Fix broken skill pipeline across all 14 AI coding platforms. Restore seamless start → brainstorm → planning → execution → QA → deploy workflow. Add unified CLI commands for easier management.
+
+**Multi-Platform Skill Sync:**
+- Updated `scripts/build-skills.mjs` to sync ALL 50 `cm-*` skills + `_shared/` to ALL 14 platforms
+- Platforms: Claude Code, Claude Desktop, Cursor, Windsurf, Antigravity, Codex, OpenCode, Cline, Kiro, Copilot, Aider, Continue, Amazon Q, Amp
+- Added `npm run sync:all` command for one-click sync
+- `_shared/helpers.md` now accessible from all platforms
+
+**TDD Enforcement Gate:**
+- New `src/execution/tdd-gate.ts` — blocks execution without tests
+- Enforces RED phase: test must fail before implementation
+- Added `test/tdd-gate.test.ts` — 10 tests pass
+- Updated `cm-execution` and `cm-tdd` SKILL.md with enforcement docs
+
+**Changelog Automation:**
+- New `scripts/update-changelog.sh` — auto-update from git commits
+- Follows conventional commits format (feat, fix, security, improve)
+- Added `npm run changelog` and `npm run changelog:dry` commands
+
+**Gemini CLI Integration:**
+- New `src/cli/commands/parallel.ts` — `cm parallel` command
+- Execute tasks in parallel using Gemini CLI
+- Supports `--count`, `--context`, `--model` options
+- Graceful fallback when Gemini CLI not installed
+
+**Unified CLI Commands:**
+- New `cm update` — unified update command
+  - `cm update --sync` — sync skills to all platforms
+  - `cm update --changelog` — update changelog
+  - `cm update --check` — check for available updates
+  - `cm update --full` — full update (sync + changelog)
+- New `cm upgrade` — upgrade CodyMaster package + sync
+- Enhanced `cm install --sync` — auto-sync after install
+- Enhanced `cm doctor --sync-check` — check sync status
+- Added npm scripts: `update`, `update:sync`, `update:changelog`, `upgrade`
+
+**Files Created:**
+- `src/execution/tdd-gate.ts`
+- `test/tdd-gate.test.ts`
+- `scripts/update-changelog.sh`
+- `src/cli/commands/parallel.ts`
+- `src/cli/commands/update.ts`
+
+**Files Modified:**
+- `scripts/build-skills.mjs` — 14 platforms + _shared/ sync
+- `src/cli/command-registry.ts` — Register parallel + update commands
+- `src/cli/commands/install.ts` — Add --sync flag, enhance doctor
+- `package.json` — Add sync:all, changelog, update, upgrade scripts
+- `.opencode/skills/cm-execution/SKILL.md` — Document TDD gate
+- `.opencode/skills/cm-tdd/SKILL.md` — Reference TDD gate
+
+**Test Results:** 49 files, 406 tests pass
+
+---
+
+## [6.0.0] - 2026-05-10
+
+### 🚀 Major Release — "The Disciplined Brain"
+
+Đây là bản nâng cấp lớn nhất kể từ v4.5. Ba trụ cột thay đổi chính: **kỷ luật hành vi AI** (Karpathy Principles), **hạ tầng Dashboard Managed Agents** hoàn toàn mới, và **chuẩn hóa tài liệu toàn diện**.
+
+---
+
+### 🧘 Karpathy Behavioral Discipline — Nhúng kỷ luật vào từng kỹ năng
+
+Lấy cảm hứng từ [quan sát của Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876) về các lỗi phổ biến khi LLM viết code, CodyMaster nhúng 4 quy tắc hành vi cứng trực tiếp vào 6 kỹ năng cốt lõi — AI tự có kỷ luật mà không cần nhắc nhở.
+
+**4 quy tắc Karpathy được thực thi:**
+
+| Quy tắc | Kỹ năng thực thi |
+|---------|-----------------|
+| **Think Before Coding** — nêu giả định, làm rõ mơ hồ, phản biện trước khi viết | `cm-planning` |
+| **Simplicity First** — code tối thiểu, không trừu tượng hóa suy đoán | `cm-clean-code`, `cm-tdd` |
+| **Surgical Changes** — mọi dòng sửa đều có lý do rõ ràng từ task | `cm-execution`, `cm-code-review` |
+| **Goal-Driven Execution** — tiêu chí thành công có thể xác minh trước khi code | `cm-tdd`, `cm-quality-gate` |
+
+**Files cập nhật:**
+- `skills/cm-planning/SKILL.md` — thêm "Think Before Coding" gate ở bước đầu
+- `skills/cm-tdd/SKILL.md` — nhúng "Simplicity First" + "Goal-Driven" vào quy trình viết test
+- `skills/cm-clean-code/SKILL.md` — thêm "Simplicity First" audit checklist
+- `skills/cm-execution/SKILL.md` — nhúng "Surgical Changes" trước mọi thao tác sửa file
+- `skills/cm-code-review/SKILL.md` — thêm Karpathy Review Layer vào checklist
+- `skills/cm-quality-gate/SKILL.md` — thêm "Goal-Driven" verification gate
+- `AGENTS.md` — ghi rõ 4 nguyên tắc Karpathy làm behavioral contract toàn dự án
+
+---
+
+### 🏗️ Dashboard Managed Agents — Hạ tầng hoàn toàn mới
+
+Nâng cấp kiến trúc toàn diện cho `cm-dashboard`, tách biệt rõ ràng các lớp: Agent, Storage, Realtime.
+
+**Modules mới (`src/`):**
+
+- **`src/agent/`** — Lớp quản lý agent
+  - `backend.ts` — Agent backend abstraction layer
+  - `claude.ts` — Claude Code agent integration
+  - `codex.ts` — OpenAI Codex agent integration
+  - `spawn-helper.ts` — Cross-platform agent process spawner
+
+- **`src/realtime/`** — Lớp realtime
+  - `event-bus.ts` — In-process typed event bus cho agent lifecycle events
+  - `ws-hub.ts` — WebSocket hub để push live updates lên Dashboard UI
+
+- **`src/storage/`** — Lớp lưu trữ chuẩn hóa
+  - `sqlite.ts` — SQLite connection factory + WAL mode
+  - `index.ts` — Unified storage API
+  - `repos/activity-repo.ts` — Activity log CRUD
+  - `repos/message-repo.ts` — Agent message thread storage
+  - `repos/project-repo.ts` — Project metadata repository
+  - `repos/task-repo.ts` — Task lifecycle repository
+  - `services/project-service.ts` — Project business logic
+  - `services/task-service.ts` — Task state machine
+  - `migrations/001_init.sql` — Schema khởi tạo toàn bộ bảng
+
+- **`src/dashboard.ts`**, **`src/data.ts`** — Cập nhật để consume lớp storage mới
+- **`src/cli/commands/dashboard.ts`** — Wired up managed agent lifecycle
+- **`dist/`** — Toàn bộ dist artifact rebuild tương ứng
+
+**OpenSpec kèm theo:**
+- `openspec/changes/upgrade-cm-dashboard-to-managed-agents/design.md`
+- `openspec/changes/upgrade-cm-dashboard-to-managed-agents/specs/dashboard/spec.md`
+- `openspec/changes/upgrade-cm-dashboard-to-managed-agents/tasks.md`
+
+**Test:**
+- `test/dashboard.test.ts` — Test suite đầy đủ cho dashboard managed agents
+
+---
+
+### 📦 Extracted Plugins — Content Factory & Growth Marketing
+
+Tách 2 plugin lớn thành các package độc lập với đầy đủ metadata và migration guide.
+
+**`extracted-plugins/content-factory/`:**
+- `.claude-plugin/marketplace.json` + `plugin.json`
+- `AGENTS.md` — Behavioral contract cho content agent
+- `MIGRATION.md` — Hướng dẫn upgrade từ inline skills
+- Skills: `auto-publisher`, `content-factory`, `notebooklm` (cập nhật đồng bộ)
+
+**`extracted-plugins/growth-marketing/`:**
+- `.claude-plugin/marketplace.json` + `plugin.json`
+- `AGENTS.md` — Behavioral contract cho growth agent
+- `MIGRATION.md` — Hướng dẫn upgrade từ inline skills
+- Skills: `ads-tracker`, `booking-calendar`, `cro-methodology`, `google-form`, `growth-hacking`, `jtbd`, `readit` (cập nhật đồng bộ)
+
+---
+
+### 🗂️ Unified Install Engine — npm-first, 14 nền tảng
+
+Wizard `cm` mới: phát hiện tự động mọi AI tool đang cài, multi-select platform, pick profile, cài một lần.
+
+```bash
+npm install -g codymaster && cm
+```
+
+**CLI mới:**
+```
+cm install <platform>            # cài hoặc refresh một nền tảng
+cm install --all --profile core  # cài vào mọi nền tảng phát hiện được
+cm doctor                        # kiểm tra trạng thái cài đặt
+cm install --list                # liệt kê tất cả platform id
+```
+
+**14 nền tảng hỗ trợ:** Claude Code, Claude Desktop, Cursor, Windsurf, Cline, Aider, Continue, Kiro, Amazon Q, Amp, Copilot, OpenCode, Codex, Antigravity/Gemini CLI.
+
+---
+
+### 📁 Archive & Research — Dọn dẹp repo
+
+- `Archive/` — Di chuyển tất cả file legacy/deprecated vào đây thay vì xóa:
+  - `deprecated-docs/translations/` — Các README ngôn ngữ cũ (hi, ko, ru, zh)
+  - `experiments/gemini/` — Gemini extension thử nghiệm
+  - `legacy-agent-system/` — cm-video-factory, xss-html-injection skills cũ
+  - `legacy-editors/` — codex + opencode INSTALL.md cũ
+  - `legacy-plugins/cursor-plugin/` — cursor plugin cũ
+- `research/` — Tài liệu nghiên cứu nội bộ (`multica.md`, `rtk.md`)
+- `MIGRATION.md` — Hướng dẫn migration tổng thể từ v5.x → v6.0
+
+---
+
+### 📚 Documentation & README — Chuẩn hóa toàn diện
+
+**README.md (English):**
+- Phiên bản v6.0.0
+- Thêm phần **Karpathy Behavioral Discipline** với bảng 4 quy tắc
+- Cập nhật install section: unified `npm install -g codymaster && cm`
+- Cập nhật bảng so sánh, skill arsenal, và CLI commands
+- **Xóa 4 ngôn ngữ thừa** (zh, ru, ko, hi) — chỉ giữ EN + VI
+- Language bar: `[English](README.md) | [Tiếng Việt](README-vi.md)`
+
+**README-vi.md (Vietnamese):**
+- Viết lại hoàn toàn từ đầu, đồng bộ 100% với README.md EN v6.0.0
+- Thêm phần Karpathy, unified install wizard, Growth Hacking Engine
+- Cập nhật version badge → v6.0.0
+- Bảng so sánh cập nhật: "npm i -g codymaster" thay vì "git pull"
+- Cập nhật `.opencode/skills/cm-dashboard/SKILL.md`
+
+---
+
+### 🔧 Skill Profiles
+
+- `skills/profiles/design.txt` — Cập nhật danh sách kỹ năng
+- `skills/profiles/full.txt` — Thêm kỹ năng mới từ extracted plugins
+- `skills/profiles/growth.txt` — Đồng bộ với growth-marketing plugin
+- `skills/profiles/knowledge.txt` — Cập nhật knowledge pack
+- `skills/profiles/top35.json` — Cập nhật metadata và scoring
+
+---
+
+### 📦 Package
+
+- `package.json` — Bump version + dependency updates
+- `package-lock.json` — Lock file cập nhật
+- `.claude-plugin/marketplace.json` + `plugin.json` — Metadata plugin cập nhật
+- `.claude/settings.local.json` — Cập nhật local settings
+- `skills/cm-autopilot/scripts/autopilot.py` — Minor fixes
+
+---
 
 ## [5.1.0] - 2026-04-11
 

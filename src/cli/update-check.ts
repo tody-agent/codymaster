@@ -4,15 +4,19 @@ import os from 'os';
 import https from 'https';
 
 const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', '..', 'package.json'), 'utf-8'));
-const VERSION = pkg.version;
+export const VERSION = pkg.version;
 
-export let _updateMessage = '';
+export interface UpdateInfo {
+  currentVersion: string;
+  latestVersion: string;
+}
 
 /**
  * Checks for updates to CodyMaster on the npm registry.
  * Caches results for 24 hours to avoid frequent network calls.
+ * Returns UpdateInfo if a newer version is available, null otherwise.
  */
-export async function checkForUpdates(): Promise<void> {
+export async function checkForUpdates(): Promise<UpdateInfo | null> {
   try {
     const cacheDir = path.join(os.homedir(), '.codymaster');
     const cacheFile = path.join(cacheDir, '.update-check');
@@ -30,9 +34,11 @@ export async function checkForUpdates(): Promise<void> {
         if (age < 24 * 60 * 60 * 1000) {
           const cached = fs.readFileSync(cacheFile, 'utf-8').trim();
           if (cached && cached !== VERSION) {
-            _updateMessage = cached;
+            return { currentVersion: VERSION, latestVersion: cached };
           }
-          return;
+          if (!cached || cached === VERSION) {
+            return null; // up to date
+          }
         }
       }
     } catch { /* ignore cache errors */ }
@@ -55,12 +61,99 @@ export async function checkForUpdates(): Promise<void> {
 
     // Cache result
     if (latestVersion && latestVersion !== VERSION) {
-      _updateMessage = latestVersion;
       fs.writeFileSync(cacheFile, latestVersion);
+      return { currentVersion: VERSION, latestVersion };
     } else {
       fs.writeFileSync(cacheFile, '');
+      return null;
     }
   } catch (e) {
     // Silent failure for update checks
+    return null;
   }
+}
+
+/**
+ * Display update notification with upgrade prompt.
+ * Shows a colored banner and optionally prompts for upgrade.
+ */
+export function showUpdateNotification(info: UpdateInfo): void {
+  const chalk = require('chalk');
+  console.log('');
+  console.log(chalk.yellow('  ┌──────────────────────────────────────────────┐'));
+  console.log(chalk.yellow('  │ ') + chalk.bold('Update available!') + `  v${info.currentVersion} → v${info.latestVersion}` + chalk.yellow('  │'));
+  console.log(chalk.yellow('  │ ') + chalk.dim('Run `cm upgrade` to update') + chalk.yellow('                      │'));
+  console.log(chalk.yellow('  └──────────────────────────────────────────────┘'));
+  console.log('');
+}
+
+/**
+ * Show update notification and optionally prompt for upgrade.
+ * Respects CM_NO_UPDATE_CHECK env var to skip entirely.
+ * Only prompts in TTY environments (not pipes/CI).
+ */
+export async function promptForUpgrade(info: UpdateInfo): Promise<void> {
+  // Skip if user disabled it
+  if (process.env.CM_NO_UPDATE_CHECK === '1' || process.env.CM_NO_UPDATE_CHECK === 'true') {
+    return;
+  }
+
+  // Skip if not a TTY (piped, CI, etc.)
+  if (!process.stdin.isTTY) {
+    showUpdateNotification(info);
+    return;
+  }
+
+  // Only prompt for interactive commands (not help, version, or help subcommands)
+  const args = process.argv.slice(2);
+  const skipPrompts = args.includes('--help') || args.includes('-h') || args.includes('--version') || args.includes('-V');
+  if (skipPrompts) {
+    return;
+  }
+
+  const chalk = require('chalk');
+  const readline = require('readline');
+
+  console.log('');
+  console.log(chalk.yellow('  ┌──────────────────────────────────────────────┐'));
+  console.log(chalk.yellow('  │ ') + chalk.bold('Update available!') + `  v${info.currentVersion} → v${info.latestVersion}` + chalk.yellow('  │'));
+  console.log(chalk.yellow('  └──────────────────────────────────────────────┘'));
+  console.log('');
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(chalk.bold('  Upgrade now?') + chalk.dim(' (y/N) '), (answer: string) => {
+      rl.close();
+      const choice = (answer || '').trim().toLowerCase();
+
+      if (choice === 'y' || choice === 'yes') {
+        console.log('');
+        console.log(chalk.dim('  Running cm upgrade...'));
+        console.log('');
+
+        const { execSync } = require('child_process');
+        try {
+          execSync('npm update -g codymaster', { stdio: 'inherit', timeout: 60000 });
+          console.log('');
+          console.log(chalk.green('  ✅ Upgrade complete! Restart your shell or run:'));
+          console.log(chalk.dim('    hash -r'));
+          console.log('');
+        } catch (err) {
+          console.log('');
+          console.log(chalk.red('  ❌ Upgrade failed. Try manually:'));
+          console.log(chalk.dim('    npm install -g codymaster@latest'));
+          console.log('');
+        }
+      } else {
+        console.log(chalk.dim('  Skipped. Run `cm upgrade` when ready.'));
+        console.log('');
+      }
+
+      resolve();
+    });
+  });
 }

@@ -1,7 +1,7 @@
 {
   "name": "codymaster",
   "version": "7.5.0",
-  "description": "68+ Skills. Ship 10x faster. AI-powered coding skill kit for Claude, Cursor, Gemini & more.",
+  "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge (agent-browser + Playwright), a11y snapshots, structured error collection, video recording. Hybrid browser automation for visual QA and testing.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -33,6 +33,22 @@
     "validate:skills": "node scripts/validate-skills.mjs",
     "build:skills": "node scripts/build-skills.mjs",
     "check:skills": "node scripts/build-skills.mjs --check",
+    "build:platforms": "node scripts/build-skills.mjs --platforms cursor,codex,opencode",
+    "check:platforms": "node scripts/build-skills.mjs --platforms cursor,codex,opencode --check",
+    "sync:all": "node scripts/build-skills.mjs --all-platforms",
+    "sync:all:check": "node scripts/build-skills.mjs --all-platforms --check",
+    "pack:plugin": "node scripts/pack-plugin.mjs",
+    "changelog": "bash scripts/update-changelog.sh",
+    "changelog:dry": "bash scripts/update-changelog.sh --dry-run",
+    "update": "cm update --full",
+    "update:sync": "cm update --sync",
+    "update:changelog": "cm update --changelog",
+    "upgrade": "cm upgrade",
+    "release": "bash scripts/release.sh",
+    "release:patch": "bash scripts/release.sh patch",
+    "release:minor": "bash scripts/release.sh minor",
+    "release:major": "bash scripts/release.sh major",
+    "install:curl": "curl -fsSL https://raw.githubusercontent.com/todyle/codymaster/main/scripts/install.sh | bash",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
@@ -56,7 +72,6 @@
     "dist/",
     "scripts/",
     "skills/",
-    "adapters/",
     "commands/",
     "public/",
     "README.md",
@@ -67,12 +82,18 @@
   },
   "dependencies": {
     "@clack/prompts": "^1.1.0",
+    "ajv": "^8.20.0",
+    "async-mutex": "^0.5.0",
     "better-sqlite3": "^12.8.0",
     "chalk": "^5.6.2",
     "chokidar": "^5.0.0",
+    "codymaster": "^7.0.2",
     "commander": "^14.0.3",
     "express": "^5.2.1",
+    "pino": "^10.0.0",
+    "pino-http": "^11.0.0",
     "prompts": "^2.4.2",
+    "ws": "^8.20.0",
     "yaml": "^2.8.3"
   },
   "devDependencies": {
@@ -80,6 +101,7 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
     "@types/prompts": "^2.4.9",
+    "@types/ws": "^8.18.1",
     "acorn": "^8.16.0",
     "jsdom": "^29.0.1",
     "playwright": "^1.50.0",
@@ -89,6 +111,8 @@
     "vitest": "^4.1.0"
   },
   "overrides": {
-    "path-to-regexp": "^8.4.0"
+    "path-to-regexp": "^8.4.0",
+    "esbuild": "^0.25.0",
+    "vite": "^8.0.0"
   }
 }

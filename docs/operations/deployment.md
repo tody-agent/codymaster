@@ -33,7 +33,7 @@ npm run test:gate:kit
 
 - `cm-safe-deploy` — multi-gate deploy mindset and checklists (`skills/cm-safe-deploy/SKILL.md`)
 - `cm-quality-gate` — completion claims require evidence (`skills/cm-quality-gate/SKILL.md`)
-- `cm-post-deploy-canary` — post-release verification patterns (`skills/cm-post-deploy-canary/SKILL.md`)
+- `cm-quality-gate` also covers post-release verification and canary checks
 
 ## Practical checklist before shipping
 
@@ -47,4 +47,3 @@ npm run test:gate:kit
 - [Testing and release gates](../quality/testing-and-release.md)  
 - [Security overview](./security-overview.md)  
 - [Engineering pipeline](../workflows/engineering-pipeline.md)
-

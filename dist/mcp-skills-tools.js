@@ -49,8 +49,8 @@ function cmReviewTool(projectPath) {
 function cmQaTool(projectPath) {
     return {
         browse_daemon: 'Run: cm browse start --token <secret> then POST /session/start',
-        visual: 'cm qa-visual --url http://localhost:3000',
-        gates: ['cm-quality-gate', 'cm-test-gate'],
+        visual: 'Use the cm-browse workflow against http://localhost:3000 for visual QA',
+        gates: ['cm-quality-gate'],
     };
 }
 function cmDeployTool(projectPath) {

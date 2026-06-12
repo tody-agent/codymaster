@@ -7,7 +7,7 @@ Here are the optimal scenarios where the Founders Edition architecture outperfor
 ## 1. Full-Stack Monolithic Refactoring
 *The Challenge*: Changing an authentication provider or modifying deeply nested CSS logic across a massive 500,000-line React/Node.js monolith usually incites dozens of cascading regressions.
 *The Spine Solution*:
-- **Smart Spine memory** maps where the legacy authentication logic touches every API router through indexes and searchable project memory.
+- **OpenViking** maps exactly where the legacy authentication logic touches every API router.
 - **OpenSpace** attempts the refactor in an isolated branch and continuously runs the test suite.
 - The outcome is a tightly controlled refactoring PR that didn't miss a single edge case.
 
@@ -22,5 +22,5 @@ Here are the optimal scenarios where the Founders Edition architecture outperfor
 *The Challenge*: Teams accrue dead code, unused imports, and unoptimized queries over years of product pivots.
 *The Spine Solution*:
 - An agent equipped with the `cm-clean-code` skill natively runs over the codebase at midnight via cron job.
-- OpenSpace runs AST-aware checks against CodyMaster's indexed project context to guarantee no unused code is actually being referenced dynamically.
+- OpenSpace runs AST (Abstract Syntax Tree) evaluations against OpenViking indexing to guarantee no unused code is actually being referenced dynamically.
 - The agent creates a PR each morning with a detailed breakdown of the removed complexity and the token savings achieved.

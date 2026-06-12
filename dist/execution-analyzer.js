@@ -10,6 +10,7 @@ const path_1 = __importDefault(require("path"));
 const context_bus_1 = require("./context-bus");
 const storage_backend_1 = require("./storage-backend");
 const retro_summary_1 = require("./retro-summary");
+const skill_execution_cache_1 = require("./skill-execution-cache");
 function bucketLatency(latencyMs) {
     if (latencyMs === undefined || latencyMs < 0)
         return undefined;
@@ -106,9 +107,11 @@ class ExecutionAnalyzer {
         this.projectPath = projectPath;
         this.backend = backend !== null && backend !== void 0 ? backend : (0, storage_backend_1.getBackend)(projectPath);
         this.backend.initialize();
+        this.cache = new skill_execution_cache_1.SkillExecutionCache(projectPath);
+        this.cache.initialize();
     }
     analyzeExecution(input) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d, _e, _f, _g;
         const judgments = normalizeJudgments(input);
         const bus = (0, context_bus_1.readBus)(this.projectPath);
         const retroSummary = buildRetroSummary(this.projectPath);
@@ -132,6 +135,11 @@ class ExecutionAnalyzer {
             created_at: new Date().toISOString(),
         };
         this.backend.recordExecutionAnalysis(analysis);
+        if (input.taskStatus === 'completed' && ((_e = (_d = input.selectedSkills) === null || _d === void 0 ? void 0 : _d.length) !== null && _e !== void 0 ? _e : 0) > 0) {
+            const effectiveSkills = (_f = input.selectedSkills) !== null && _f !== void 0 ? _f : [];
+            const effectiveness = effectiveSkills.length > 0 ? 0.9 : 0;
+            this.cache.cacheExecution(input.taskTitle, effectiveSkills, effectiveness, (_g = input.tokenEstimate) !== null && _g !== void 0 ? _g : 0);
+        }
         return analysis;
     }
 }

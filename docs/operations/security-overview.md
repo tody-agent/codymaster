@@ -26,13 +26,12 @@ npm run gate:check
 
 | Skill               | Focus                                                          |
 | ------------------- | -------------------------------------------------------------- |
-| `cm-secret-shield`  | Secret lifecycle + agent safety rules                          |
-| `cm-security-gate`  | Security checkpoints alongside quality/deploy                  |
+| `cm-safe-deploy`    | Secrets, release safety, rollback, and deployment checkpoints  |
 | `cm-identity-guard` | Wrong-account prevention for git/deploy                        |
 | `cm-safe-i18n`      | Mass string changes without breaking HTML/security assumptions |
 
 
-Paths: `skills/cm-secret-shield/SKILL.md`, etc.
+Paths: `skills/cm-safe-deploy/SKILL.md`, `skills/cm-identity-guard/SKILL.md`, `skills/cm-safe-i18n/SKILL.md`.
 
 ## Engineering safety
 
@@ -43,4 +42,3 @@ Paths: `skills/cm-secret-shield/SKILL.md`, etc.
 - [Vulnerability management](./vulnerability-management.md)  
 - [Deployment](./deployment.md)  
 - [Changelog](../resources/changelog.md) — security sections per release
-

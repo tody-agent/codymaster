@@ -1,7 +1,7 @@
 ---
 title: Advisory Loop
-description: How to inspect execution analyses, review skill metrics, and hand off structured recovery notes into cm-skill-health and cm-skill-evolution.
-keywords: codymaster advisory, skill metrics, skill health, skill evolution, advisory handoff
+description: How to inspect execution analyses, review skill metrics, and hand off structured recovery notes into the advisory health consumer and cm-skill-evolution.
+keywords: codymaster advisory, skill metrics, skill evolution, advisory handoff
 robots: index, follow
 ---
 
@@ -13,7 +13,7 @@ The advisory loop turns CodyMaster's execution telemetry into an operator-facing
 
 - `execution_analyses` in `.cm/context.db` for recent task outcomes
 - `skill_metrics` in `.cm/context.db` for per-skill quality signals
-- `cm-skill-health` for diagnosis
+- the legacy `cm-skill-health` advisory consumer id for diagnosis payloads
 - `cm-skill-evolution` for FIX / DERIVED / CAPTURED follow-through
 
 ## Commands
@@ -68,7 +68,7 @@ cm advisory handoff --project . --for cm-skill-evolution --analysis EA-123abc --
 
 What it includes:
 
-- consumer (`cm-skill-health` or `cm-skill-evolution`)
+- consumer (`cm-skill-health` legacy handoff id or `cm-skill-evolution`)
 - recommendation (`FIX`, `DERIVED`, `CAPTURED`, or `NONE`)
 - confidence
 - source analysis metadata

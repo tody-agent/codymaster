@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import http from 'http';
 import chalk from 'chalk';
 import { BrowseDaemon } from '../../browse-server';
@@ -36,13 +36,14 @@ function projectPath(opt: string | undefined): string {
 }
 
 export function registerEngineeringCommands(program: Command): void {
-  const browse = program.command('browse').description('Playwright browse daemon (local QA / screenshots)');
+  const browse = program.command('browse').description('Browse daemon (Hybrid Bridge: agent-browser + Playwright)');
   browse
     .command('start')
     .option('-p, --port <n>', 'port (default: .cm/config.yaml browse.port or 17395)')
     .option('-H, --host <h>', 'bind host (default: config or 127.0.0.1)')
     .option('--token <t>', 'bearer token (or env CM_BROWSE_TOKEN or config browse.token)')
     .option('--headed', 'headed browser', false)
+    .option('--engine <e>', 'browser engine: auto (default), agent-browser, playwright', 'auto')
     .action(async (opts) => {
       const root = process.cwd();
       const cfg = loadCmConfig(root);
@@ -58,15 +59,156 @@ export function registerEngineeringCommands(program: Command): void {
         port,
         token,
         headless: !opts.headed,
+        engine: opts.engine,
       });
       await daemon.listen();
       console.log(chalk.green(`cm-browse listening http://${host}:${port}`));
       console.log(chalk.dim(`Authorization: Bearer ${token.slice(0, 8)}…`));
-      console.log(chalk.dim('POST /session/start, /navigate, /refs/refresh, /click, /fill, GET /screenshot'));
+      console.log(chalk.dim(`Engine: ${opts.engine}`));
+      console.log(chalk.dim('Endpoints: POST /session/start, /navigate, /refs/refresh, /click, /fill'));
+      console.log(chalk.dim('           GET /screenshot, /console, /network, /errors, /a11y-snapshot, /engine'));
+      console.log(chalk.dim('           POST /record/start, /record/stop'));
       process.on('SIGINT', async () => {
         await daemon.close();
         process.exit(0);
       });
+    });
+
+  browse
+    .command('doctor')
+    .description('Check browser engine availability')
+    .action(async () => {
+      const { checkEngines } = await import('../../browse/adapter-factory');
+      const engines = await checkEngines();
+      console.log(chalk.bold('Browser engine status:'));
+      console.log(`  agent-browser: ${engines['agent-browser'] ? chalk.green('available') : chalk.red('not found')}`);
+      console.log(`  playwright:    ${engines.playwright ? chalk.green('available') : chalk.red('not found')}`);
+      if (!engines['agent-browser'] && !engines.playwright) {
+        console.log(chalk.yellow('\nInstall one:'));
+        console.log('  npm i -g agent-browser && agent-browser install');
+        console.log('  npx playwright install chromium');
+      } else if (!engines['agent-browser']) {
+        console.log(chalk.dim('\nTip: Install agent-browser for better performance + a11y tree:'));
+        console.log('  npm i -g agent-browser && agent-browser install');
+      }
+    });
+
+  browse
+    .command('errors')
+    .description('List collected browser errors')
+    .option('--port <n>', 'browse daemon port (default: config or 17395)')
+    .option('--token <t>', 'or env CM_BROWSE_TOKEN or config browse.token')
+    .option('--type <t>', 'filter by type: js-error, network-fail, console-error, timeout, crash')
+    .option('--severity <s>', 'filter by severity: critical, error, warning, info')
+    .action(async (opts) => {
+      const cfg = loadCmConfig(process.cwd());
+      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+      const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
+      const auth = `Bearer ${token}`;
+      try {
+        let path = '/errors';
+        const params = new URLSearchParams();
+        if (opts.type) params.set('type', opts.type);
+        if (opts.severity) params.set('severity', opts.severity);
+        if (params.toString()) path += `?${params.toString()}`;
+        const raw = await browseRaw(port, path, auth);
+        const data = JSON.parse(raw);
+        if (data.errors.length === 0) {
+          console.log(chalk.green('No errors collected'));
+        } else {
+          console.log(chalk.bold(`Found ${data.errors.length} errors (total: ${data.total}):`));
+          for (const e of data.errors) {
+            const icon = e.severity === 'critical' ? '🔴' : e.severity === 'error' ? '🟠' : '🟡';
+            console.log(`  ${icon} [${e.type}] ${e.message.slice(0, 120)}`);
+          }
+        }
+      } catch (e) {
+        console.error(chalk.red((e as Error).message));
+        process.exit(1);
+      }
+    });
+
+  browse
+    .command('snapshot')
+    .description('Get a11y tree snapshot with @eN refs')
+    .option('--port <n>', 'browse daemon port')
+    .option('--token <t>', 'or env CM_BROWSE_TOKEN or config')
+    .action(async (opts) => {
+      const cfg = loadCmConfig(process.cwd());
+      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+      const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
+      const auth = `Bearer ${token}`;
+      try {
+        const raw = await browseRaw(port, '/a11y-snapshot', auth);
+        const snap = JSON.parse(raw);
+        console.log(chalk.bold('A11y Snapshot:'));
+        console.log(chalk.dim(`  Timestamp: ${snap.timestamp}`));
+        console.log(chalk.dim(`  Refs: ${Object.keys(snap.refs).length} elements`));
+        for (const [ref, desc] of Object.entries(snap.refs)) {
+          console.log(`  @${ref}: ${desc}`);
+        }
+      } catch (e) {
+        console.error(chalk.red((e as Error).message));
+        process.exit(1);
+      }
+    });
+
+  browse
+    .command('engine')
+    .description('Show current browser engine info')
+    .option('--port <n>', 'browse daemon port')
+    .option('--token <t>', 'or env CM_BROWSE_TOKEN or config')
+    .action(async (opts) => {
+      const cfg = loadCmConfig(process.cwd());
+      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+      const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
+      const auth = `Bearer ${token}`;
+      try {
+        const raw = await browseRaw(port, '/engine', auth);
+        const info = JSON.parse(raw);
+        console.log(chalk.bold('Engine:'), info.name);
+        console.log(chalk.dim(`  Version: ${info.version}`));
+        console.log(chalk.dim(`  Active: ${info.active}`));
+        if (info.capabilities) {
+          console.log(chalk.dim('  Capabilities:'));
+          for (const [k, v] of Object.entries(info.capabilities)) {
+            console.log(`    ${k}: ${v ? '✅' : '❌'}`);
+          }
+        }
+      } catch (e) {
+        console.error(chalk.red((e as Error).message));
+        process.exit(1);
+      }
+    });
+
+  browse
+    .command('record')
+    .description('Video recording control')
+    .argument('<action>', 'start or stop')
+    .option('--port <n>', 'browse daemon port')
+    .option('--token <t>', 'or env CM_BROWSE_TOKEN or config')
+    .action(async (action: string, opts) => {
+      const cfg = loadCmConfig(process.cwd());
+      const token = opts.token || process.env.CM_BROWSE_TOKEN || cfg.browse?.token || 'dev-token-change-me';
+      const port = parseInt(String(opts.port ?? cfg.browse?.port ?? 17395), 10);
+      const auth = `Bearer ${token}`;
+      try {
+        if (action === 'start') {
+          await browseRequest(port, '/record/start', 'POST', auth, {});
+          console.log(chalk.green('Recording started'));
+        } else if (action === 'stop') {
+          const raw = await browseRequestRaw(port, '/record/stop', 'POST', auth);
+          const data = JSON.parse(raw);
+          console.log(chalk.green('Recording stopped'));
+          if (data.path) console.log(chalk.dim(`  Video: ${data.path}`));
+        } else {
+          console.error(chalk.red('Usage: cm browse record <start|stop>'));
+          process.exit(1);
+        }
+      } catch (e) {
+        console.error(chalk.red((e as Error).message));
+        process.exit(1);
+      }
     });
 
   const guardian = program.command('guardian').description('Runtime safety: destructive command patterns + path freeze');
@@ -449,14 +591,14 @@ export function registerEngineeringCommands(program: Command): void {
     .requiredOption('--branch <b>', 'branch name')
     .option('--base <b>', 'start from branch', 'main')
     .action((opts) => {
-      execSync(`git worktree add -b ${opts.branch} ${opts.at} ${opts.base}`, {
+      execFileSync('git', ['worktree', 'add', '-b', opts.branch, opts.at, opts.base], {
         stdio: 'inherit',
         cwd: process.cwd(),
       });
       console.log(chalk.green('Worktree created'));
     });
   conductor.command('list').action(() => {
-    execSync('git worktree list', { stdio: 'inherit', cwd: process.cwd() });
+    execFileSync('git', ['worktree', 'list'], { stdio: 'inherit', cwd: process.cwd() });
   });
 
   const retro = program
@@ -642,6 +784,42 @@ function browseRaw(port: number, pathname: string, auth: string): Promise<string
         });
       }
     ).on('error', reject);
+  });
+}
+
+function browseRequestRaw(
+  port: number,
+  pathname: string,
+  method: string,
+  auth: string,
+  body: object = {}
+): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const data = Buffer.from(JSON.stringify(body));
+    const req = http.request(
+      {
+        hostname: '127.0.0.1',
+        port,
+        path: pathname,
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': data.length,
+          Authorization: auth,
+        },
+      },
+      (res) => {
+        let s = '';
+        res.on('data', (c) => (s += c));
+        res.on('end', () => {
+          if (res.statusCode && res.statusCode >= 400) reject(new Error(`HTTP ${res.statusCode}: ${s}`));
+          else resolve(s);
+        });
+      }
+    );
+    req.on('error', reject);
+    req.write(data);
+    req.end();
   });
 }
 

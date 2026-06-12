@@ -1,7 +1,7 @@
 ---
 title: Security Skills
-description: CodyMaster skills for secret hygiene, security gates, identity verification, and safe internationalization refactors.
-keywords: security skills, secret shield, identity guard, safe i18n
+description: CodyMaster skills for deploy safety, identity verification, and safe internationalization refactors.
+keywords: security skills, safe deploy, identity guard, safe i18n
 robots: index, follow
 ---
 
@@ -10,8 +10,7 @@ robots: index, follow
 | Skill | Open |
 |-------|------|
 | cm-identity-guard | `skills/cm-identity-guard/SKILL.md` |
-| cm-secret-shield | `skills/cm-secret-shield/SKILL.md` |
-| cm-security-gate | `skills/cm-security-gate/SKILL.md` |
+| cm-safe-deploy | `skills/cm-safe-deploy/SKILL.md` |
 | cm-safe-i18n | `skills/cm-safe-i18n/SKILL.md` |
 
 ## See also

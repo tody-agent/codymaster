@@ -3,7 +3,7 @@
 import { Command } from 'commander';
 import fs from 'fs';
 import path from 'path';
-import { checkForUpdates } from './cli/update-check';
+import { checkForUpdates, promptForUpgrade } from './cli/update-check';
 import { registerAllCommands } from './cli/command-registry';
 
 // Load version from package.json
@@ -23,11 +23,6 @@ async function main() {
   // Register all modular commands
   registerAllCommands(program);
 
-  // ─── Update Check ──────────────────────────────────────────────────────────
-  
-  // Run update check in background (non-blocking)
-  checkForUpdates().catch(() => {});
-
   // ─── Execution ─────────────────────────────────────────────────────────────
   
   // Parse arguments and execute
@@ -37,6 +32,15 @@ async function main() {
   if (process.argv.length <= 2) {
     program.help();
   }
+
+  // ─── Update Check (after command runs, non-blocking) ───────────────────────
+  
+  // Show update notification in background after command completes
+  checkForUpdates().then((info) => {
+    if (info) {
+      promptForUpgrade(info).catch(() => {});
+    }
+  }).catch(() => {});
 }
 
 // Error handling for uncaught exceptions

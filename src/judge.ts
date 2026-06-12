@@ -25,11 +25,10 @@ const SKILL_DOMAIN: Record<string, string> = {
   'cm-tdd': 'engineering',
   'cm-debugging': 'engineering',
   'cm-quality-gate': 'engineering',
-  'cm-test-gate': 'engineering',
   'cm-code-review': 'engineering',
   'cm-safe-deploy': 'operations',
   'cm-identity-guard': 'operations',
-  'cm-git-worktrees': 'operations',
+  'cm-codeintell': 'operations',
   'cm-terminal': 'operations',
   'cm-planning': 'product',
   'cm-ux-master': 'product',
@@ -37,27 +36,27 @@ const SKILL_DOMAIN: Record<string, string> = {
   'cm-project-bootstrap': 'product',
   'cm-content-factory': 'growth',
   'cm-ads-tracker': 'growth',
-  'cro-methodology': 'growth',
-  'booking-calendar': 'growth',
+  'cm-cro-methodology': 'growth',
+  'cm-booking-calendar': 'growth',
   'cm-execution': 'orchestration',
   'cm-continuity': 'orchestration',
-  'cm-skill-mastery': 'orchestration',
+  'cm-skill-index': 'orchestration',
   'cm-safe-i18n': 'orchestration',
 };
 
 // ─── Agent Affinity ─────────────────────────────────────────────────────────
 
 const AGENT_AFFINITY: Record<string, string[]> = {
-  engineering:    ['claude-code', 'cursor', 'antigravity'],
-  operations:     ['claude-code', 'antigravity', 'cursor'],
-  product:        ['antigravity', 'claude-code', 'cursor'],
-  growth:         ['antigravity', 'claude-code', 'cursor'],
-  orchestration:  ['antigravity', 'claude-code', 'cursor'],
-  specialized:    ['antigravity', 'claude-code', 'cursor'],
-  debugging:      ['claude-code', 'cursor', 'antigravity'],
-  review:         ['antigravity', 'claude-code'],
-  documentation:  ['antigravity', 'claude-code'],
-  design:         ['cursor', 'antigravity'],
+  engineering:    ['claude-code', 'codex', 'opencode', 'cursor', 'antigravity'],
+  operations:     ['claude-code', 'codex', 'opencode', 'antigravity', 'cursor'],
+  product:        ['antigravity', 'claude-code', 'cursor', 'gemini-cli'],
+  growth:         ['antigravity', 'gemini-cli', 'claude-code', 'cursor'],
+  orchestration:  ['antigravity', 'claude-code', 'cursor', 'gemini-cli'],
+  specialized:    ['antigravity', 'claude-code', 'codex', 'opencode', 'cursor'],
+  debugging:      ['claude-code', 'codex', 'opencode', 'cursor', 'antigravity'],
+  review:         ['antigravity', 'claude-code', 'codex', 'opencode'],
+  documentation:  ['antigravity', 'claude-code', 'gemini-cli'],
+  design:         ['cursor', 'antigravity', 'gemini-cli'],
 };
 
 // ─── Agent Display ──────────────────────────────────────────────────────────
@@ -65,6 +64,8 @@ const AGENT_AFFINITY: Record<string, string[]> = {
 const AGENT_DISPLAY: Record<string, string> = {
   'antigravity': 'Google Antigravity',
   'claude-code': 'Claude Code',
+  'codex': 'OpenAI Codex',
+  'opencode': 'OpenCode',
   'cursor': 'Cursor',
   'gemini-cli': 'Gemini CLI',
   'windsurf': 'Windsurf',
@@ -307,4 +308,3 @@ export function suggestTransitions(tasks: Task[]): TransitionSuggestion[] {
 export function suggestChain(taskTitle: string): ChainDefinition | undefined {
   return matchChain(taskTitle);
 }
-

@@ -3,6 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { generateLearningsIndex, refreshAllIndexes } from './l0-indexer';
 import { getDefaultBudget } from './token-budget';
+import { renderLearningsForContinuity } from './learnings';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -286,7 +287,8 @@ ${state.workingContext || '[No additional context]'}
 ${state.filesModified.length > 0
     ? state.filesModified.map(f => `- ${f.path}: ${f.change}`).join('\n')
     : '- [No files being modified]'}
-`;
+
+${renderLearningsForContinuity(projectPath, 10)}`;
 
   fs.writeFileSync(filePath, content, 'utf-8');
 }

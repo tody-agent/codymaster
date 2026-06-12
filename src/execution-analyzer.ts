@@ -4,6 +4,7 @@ import path from 'path';
 import { readBus } from './context-bus';
 import { getBackend, type DbExecutionAnalysis, type DbEvolutionRecommendation, type DbSkillJudgment, type DbSkillMetric, type StorageBackend } from './storage-backend';
 import { loadRetroEntries } from './retro-summary';
+import { SkillExecutionCache } from './skill-execution-cache';
 
 export interface SkillObservation {
   skill: string;
@@ -137,10 +138,13 @@ function buildAdvisory(
 
 export class ExecutionAnalyzer {
   private readonly backend: StorageBackend;
+  private readonly cache: SkillExecutionCache;
 
   constructor(private readonly projectPath: string, backend?: StorageBackend) {
     this.backend = backend ?? getBackend(projectPath);
     this.backend.initialize();
+    this.cache = new SkillExecutionCache(projectPath);
+    this.cache.initialize();
   }
 
   analyzeExecution(input: AnalyzeExecutionInput): DbExecutionAnalysis {
@@ -169,6 +173,16 @@ export class ExecutionAnalyzer {
     };
 
     this.backend.recordExecutionAnalysis(analysis);
+    if (input.taskStatus === 'completed' && (input.selectedSkills?.length ?? 0) > 0) {
+      const effectiveSkills = input.selectedSkills ?? [];
+      const effectiveness = effectiveSkills.length > 0 ? 0.9 : 0;
+      this.cache.cacheExecution(
+        input.taskTitle,
+        effectiveSkills,
+        effectiveness,
+        input.tokenEstimate ?? 0,
+      );
+    }
     return analysis;
   }
 }

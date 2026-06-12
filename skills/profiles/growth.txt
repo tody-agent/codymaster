@@ -7,4 +7,4 @@ cm-content-factory
 cm-auto-publisher
 cm-google-form
 cm-readit
-cm-dashboard
+cm-status

@@ -73,7 +73,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
     - `cm-tdd`: Red-Green-Refactor cycle. No production code without a failing test first.
     - `cm-execution`: Execute plans intelligently (Manual, Parallel, or Subagent mode).
     - `cm-project-bootstrap`: For new projects — setup repo, i18n, SEO, and deploy pipeline from Day 0.
-    - `cm-git-worktrees`: Isolate different work items to avoid state mixing.
+    - `cm-execution`: Isolate different work items to avoid state mixing.
 
 ---
 
@@ -105,7 +105,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 | `cm-tdd` | Strict Red-Green-Refactor TDD — no code without failing test first. |
 | `cm-debugging` | Systematic 5-phase error investigation (root cause first). |
 | `cm-quality-gate` | 6-gate verification: static analysis → blind review → ship. |
-| `cm-test-gate` | Setup 4-layer test infrastructure (unit → integration → e2e → security). |
+| `cm-quality-gate` | Setup and enforce the verification gate before claiming "done". |
 | `cm-code-review` | Manage PR lifecycle: request → receive feedback → complete branch. |
 | `cm-codeintell` | AST knowledge graph + architecture diagrams + smart context (30% fewer tokens). |
 
@@ -114,9 +114,9 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 |-------|-----------------|
 | `cm-safe-deploy` | Multi-gate deploy pipeline with rollback strategy. |
 | `cm-identity-guard` | Verify account before push/deploy to prevent wrong-project incidents. |
-| `cm-git-worktrees` | Isolate feature work in separate worktrees — no state mixing. |
+| `cm-execution` | Isolate feature work in separate workspaces/batches — no state mixing. |
 | `cm-terminal` | Safe terminal execution with progress logging and error capture. |
-| `cm-secret-shield` | Defense-in-depth: pre-commit hooks, repo scanning, token lifecycle. |
+| `cm-safe-deploy` | Defense-in-depth: pre-commit hooks, repo scanning, token lifecycle. |
 | `cm-safe-i18n` | Safe multi-language management with multi-pass batching and 8-gate audit. |
 
 ### 🎨 Product
@@ -126,7 +126,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 | `cm-brainstorm-idea` | Strategic analysis gate: 9 Windows + Double Diamond → 2-3 qualified options. |
 | `cm-planning` | Brainstorm intent → write implementation plan → coordinate execution. |
 | `cm-ux-master` | 48 UX Laws + 37 Design Tests + Figma/Stitch + BM25 semantic design search. |
-| `cm-ui-preview` | Live UI concept generation via Google Stitch or Pencil MCP. |
+| `cm-design-system` | Live UI concept generation via design-token and Stitch/Open Design workflows. |
 | `cm-dockit` | Generate complete knowledge bases, SOPs, and API docs from codebase. |
 | `cm-readit` | Web audio engine: TTS reader, MP3 audio player, Voice CRO trigger system. |
 | `cm-jtbd` | JTBD customer discovery: Switch Interview → Canvas → Opportunity Scoring. |
@@ -143,7 +143,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 |-------|-----------------|
 | `cm-execution` | Execute plans: Manual / Parallel / Subagent / RARV batch modes. |
 | `cm-continuity` | Working memory protocol: read at session start, update at session end. |
-| `cm-skill-mastery` | Meta-skill: when to invoke which skill, how to create new skills. |
+| `cm-skill-index` | Meta-skill: when to invoke which skill and how to discover the right one. |
 | `cm-skill-chain` | Compose skills into automated multi-step pipelines (5 built-in chains). |
 | `cm-skill-index` | Progressive disclosure index — 90% token savings on skill discovery. |
 | `cm-deep-search` | Semantic search via qmd for large codebases (>200 src / >50 docs files). |
@@ -154,8 +154,7 @@ The **CodyMaster (CM)** kit transforms ideas into production code through 13 spe
 | Skill | Primary Function |
 |-------|-----------------|
 | `cm-start` | Orchestrate full workflow from objective to production code. |
-| `cm-dashboard` | Render Kanban board from cm-tasks.json — visual status overview. |
-| `cm-status` | Ultra-concise 1-2 sentence progress summary (what's done, what's next). |
+| `cm-status` | Ultra-concise 1-2 sentence progress summary; pair with `cm dashboard` for visuals. |
 
 ## 🚀 Autonomous Workflow System
 
@@ -201,6 +200,6 @@ There are 2 ways to use CodyMaster: **Fully autonomous (Via Workflows)** or **Ma
 4. **Test Before Code:** RED → GREEN → REFACTOR. No exceptions (`cm-tdd`).
 5. **Evidence Over Claims:** Only trust terminal/test results output, not AI "saying" it's done.
 6. **Deploy via Gates:** 8 gates must pass sequentially. Any gate fails = STOP (`cm-safe-deploy`).
-7. **Safe Secrets:** Never commit secrets. Pre-commit hooks protect every push (`cm-secret-shield`).
+7. **Safe Secrets:** Never commit secrets. Pre-commit hooks protect every push (`cm-safe-deploy`).
 8. **Parallel Power:** Use parallel execution for i18n or multi-bug fixes (`cm-execution`).
 9. **Working Memory:** Read CONTINUITY.md at session start, update at session end (`cm-continuity`).

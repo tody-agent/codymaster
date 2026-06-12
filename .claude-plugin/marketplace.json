@@ -2,123 +2,35 @@
   "name": "codymaster",
   "owner": {
     "name": "Tody Agent",
-    "email": "aitodyle@gmail.com"
+    "email": "hello@cody-master-a5q.pages.dev"
   },
   "metadata": {
-    "description": "CodyMaster — Full-stack AI skill kit for vibe coding. 60+ skills, 3 agents, smart hooks. Ship 10x faster.",
-    "version": "7.5.0"
+    "description": "CodyMaster v7.0 — 50 token-optimized AI agent skills, slash commands, sub-agents, cm-context MCP server, Browse Hybrid Bridge"
   },
   "plugins": [
     {
       "name": "cm",
-      "description": "Full CodyMaster kit: 60+ skills, 3 preset agents (vibe-coder, content-pro, ux-designer), smart hooks, quality monitors. Everything you need to ship.",
+      "description": "CodyMaster v7.0 — 50 token-optimized AI agent skills (progressive disclosure, ~100 tok index → SKILL.md on demand) + 11 slash commands + 5 sub-agents + cm-context MCP server. Browse Hybrid Bridge, a11y snapshots, structured error collection, video recording.",
       "version": "7.5.0",
       "source": "./",
-      "author": { "name": "Tody Agent" },
+      "author": {
+        "name": "Tody Agent"
+      },
       "category": "software-development",
-      "keywords": ["vibe-coding", "fullstack", "non-tech", "ai-agent", "tdd", "ux", "content", "safe-deploy"]
-    },
-    {
-      "name": "cm-vibe-starter",
-      "description": "Beginner-friendly starter pack: project bootstrap, autopilot, status tracking. Perfect first install for non-tech users.",
-      "version": "7.5.0",
-      "source": "./",
-      "strict": false,
-      "author": { "name": "Tody Agent" },
-      "category": "getting-started",
-      "keywords": ["beginner", "vibe-coding", "non-tech", "starter"],
-      "skills": [
-        "./skills/cm-start",
-        "./skills/cm-autopilot",
-        "./skills/cm-project-bootstrap",
-        "./skills/cm-status",
-        "./skills/cm-how-it-work"
-      ],
-      "agents": ["./agents/vibe-coder.md"]
-    },
-    {
-      "name": "cm-fullstack",
-      "description": "Full-stack development skills: TDD, debugging, code review, quality gates, safe deploy, deep search, and more.",
-      "version": "7.5.0",
-      "source": "./",
-      "strict": false,
-      "author": { "name": "Tody Agent" },
-      "category": "software-development",
-      "keywords": ["tdd", "debugging", "code-review", "quality", "deploy", "fullstack"],
-      "skills": [
-        "./skills/cm-tdd",
-        "./skills/cm-execution",
-        "./skills/cm-debugging",
-        "./skills/cm-quality-gate",
-        "./skills/cm-test-gate",
-        "./skills/cm-safe-deploy",
-        "./skills/cm-code-review",
-        "./skills/cm-clean-code",
-        "./skills/cm-codeintell",
-        "./skills/cm-deep-search",
-        "./skills/cm-reactor",
-        "./skills/cm-git-worktrees",
-        "./skills/cm-terminal",
-        "./skills/cm-safe-i18n",
-        "./skills/cm-mcp-engineering"
-      ],
-      "agents": ["./agents/vibe-coder.md"]
-    },
-    {
-      "name": "cm-design-kit",
-      "description": "UI/UX design skills: design studio with variants, design system tokens, UX master framework, visual QA.",
-      "version": "7.5.0",
-      "source": "./",
-      "strict": false,
-      "author": { "name": "Tody Agent" },
-      "category": "design",
-      "keywords": ["ui", "ux", "design-system", "visual-qa", "responsive"],
-      "skills": [
-        "./skills/cm-design-studio",
-        "./skills/cm-design-system",
-        "./skills/cm-ux-master",
-        "./skills/cm-ui-preview",
-        "./skills/cm-qa-visual-cli"
-      ],
-      "agents": ["./agents/ux-designer.md"]
-    },
-    {
-      "name": "cm-content-kit",
-      "description": "Content creation skills: SEO content factory, NotebookLM-style research, documentation, growth hacking, auto-publishing.",
-      "version": "7.5.0",
-      "source": "./",
-      "strict": false,
-      "author": { "name": "Tody Agent" },
-      "category": "content",
-      "keywords": ["content", "seo", "marketing", "growth", "publishing", "documentation"],
-      "skills": [
-        "./skills/cm-content-factory",
-        "./skills/cm-notebooklm",
-        "./skills/cm-dockit",
-        "./skills/cm-growth-hacking",
-        "./skills/cm-auto-publisher",
-        "./skills/cm-readit"
-      ],
-      "agents": ["./agents/content-pro.md"]
-    },
-    {
-      "name": "cm-ops-kit",
-      "description": "DevOps & security skills: safe deploy, guardian runtime, secret scanning, security gates, canary deploys, sprint bus.",
-      "version": "7.5.0",
-      "source": "./",
-      "strict": false,
-      "author": { "name": "Tody Agent" },
-      "category": "devops",
-      "keywords": ["devops", "security", "deploy", "monitoring", "secrets", "canary"],
-      "skills": [
-        "./skills/cm-safe-deploy",
-        "./skills/cm-guardian-runtime",
-        "./skills/cm-secret-shield",
-        "./skills/cm-security-gate",
-        "./skills/cm-identity-guard",
-        "./skills/cm-post-deploy-canary",
-        "./skills/cm-retro-cli",
-        "./skills/cm-sprint-bus"
+      "keywords": [
+        "tdd",
+        "debugging",
+        "quality-gates",
+        "deployment",
+        "design-system",
+        "ux",
+        "security",
+        "ai-agent",
+        "devops",
+        "browser-automation",
+        "visual-qa",
+        "a11y",
+        "error-collection"
       ]
     }
   ]

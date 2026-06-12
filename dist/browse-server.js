@@ -1,41 +1,9 @@
 "use strict";
 /**
- * Local HTTP browse daemon (Playwright + Express). Bearer auth.
- * Refs: POST /refs/refresh tags interactive elements with data-cm-ref.
+ * Local HTTP browse daemon (Hybrid Bridge). Bearer auth.
+ * Supports both Playwright and agent-browser via adapter pattern.
+ * All existing endpoints are backward compatible.
  */
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -51,28 +19,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BrowseDaemon = void 0;
 const express_1 = __importDefault(require("express"));
-function createRing(max) {
-    const buf = [];
-    return {
-        push(item) {
-            buf.push(item);
-            while (buf.length > max)
-                buf.shift();
-        },
-        snapshot: () => [...buf],
-    };
-}
+const adapter_factory_1 = require("./browse/adapter-factory");
+const event_log_1 = require("./browse/event-log");
 class BrowseDaemon {
     constructor(opts) {
         this.opts = opts;
         this.app = (0, express_1.default)();
         this.httpServer = null;
-        this.browser = null;
-        this.context = null;
-        this.page = null;
-        this.consoleBuf = createRing(200);
-        this.networkBuf = createRing(200);
-        this.refMap = {};
+        this.adapter = null;
+        this.eventLog = new event_log_1.EventLog({ maxSize: 1000 });
+        this.engineName = 'unknown';
+        this.sessionActive = false;
+        this.app.disable('x-powered-by');
+        this.app.use((_req, res, next) => {
+            res.setHeader('X-Content-Type-Options', 'nosniff');
+            res.setHeader('X-Frame-Options', 'DENY');
+            res.setHeader('X-XSS-Protection', '1; mode=block');
+            res.setHeader('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none';");
+            next();
+        });
         this.app.use(express_1.default.json({ limit: '2mb' }));
         this.app.use(this.authMiddleware.bind(this));
         this.routes();
@@ -89,122 +54,124 @@ class BrowseDaemon {
         next();
     }
     routes() {
+        // ── Health (no auth) ───────────────────────────────────────────────────
         this.app.get('/health', (_req, res) => {
-            res.json({ ok: true, hasPage: !!this.page });
+            res.json({ ok: true, session: this.sessionActive, engine: this.engineName });
         });
+        // ── Session start ─────────────────────────────────────────────────────
         this.app.post('/session/start', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            var _a, _b, _c;
+            var _a, _b, _c, _d, _e, _f;
             try {
                 const headless = (_c = (_b = (_a = req.body) === null || _a === void 0 ? void 0 : _a.headless) !== null && _b !== void 0 ? _b : this.opts.headless) !== null && _c !== void 0 ? _c : true;
-                const pw = yield Promise.resolve().then(() => __importStar(require('playwright')));
-                this.browser = yield pw.chromium.launch({ headless });
-                this.context = yield this.browser.newContext();
-                this.page = yield this.context.newPage();
-                this.page.on('console', (msg) => {
-                    this.consoleBuf.push({
-                        type: msg.type(),
-                        text: msg.text(),
-                        ts: new Date().toISOString(),
-                    });
+                const engine = (_f = (_e = (_d = req.body) === null || _d === void 0 ? void 0 : _d.engine) !== null && _e !== void 0 ? _e : this.opts.engine) !== null && _f !== void 0 ? _f : 'auto';
+                const result = yield (0, adapter_factory_1.createAdapter)(engine);
+                this.adapter = result.adapter;
+                this.engineName = result.engine;
+                yield this.adapter.startSession({ headless });
+                this.sessionActive = true;
+                this.eventLog.push({
+                    category: 'session',
+                    type: 'start',
+                    message: `Session started with ${result.engine}${result.fallback ? ' (fallback)' : ''}`,
                 });
-                this.context.on('response', (response) => {
-                    try {
-                        this.networkBuf.push({
-                            url: response.url(),
-                            method: response.request().method(),
-                            status: response.status(),
-                            ts: new Date().toISOString(),
-                        });
-                    }
-                    catch (_a) {
-                        /* ignore */
-                    }
-                });
-                res.json({ ok: true });
+                res.json({ ok: true, engine: result.engine, fallback: result.fallback });
             }
             catch (e) {
                 res.status(500).json({ error: e.message });
             }
         }));
+        // ── Navigate ──────────────────────────────────────────────────────────
         this.app.post('/navigate', (req, res) => __awaiter(this, void 0, void 0, function* () {
             var _a;
             try {
                 const url = (_a = req.body) === null || _a === void 0 ? void 0 : _a.url;
-                if (!url || !this.page) {
+                if (!url || !this.adapter) {
                     res.status(400).json({ error: 'url required and session must be started' });
                     return;
                 }
-                yield this.page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-                res.json({ ok: true, url: this.page.url() });
+                yield this.adapter.navigate(url);
+                this.eventLog.push({
+                    category: 'session',
+                    type: 'navigate',
+                    message: url,
+                    source: url,
+                });
+                res.json({ ok: true, url });
             }
             catch (e) {
                 res.status(500).json({ error: e.message });
             }
         }));
+        // ── Refs refresh (backward compat — still tags data-cm-ref) ───────────
         this.app.post('/refs/refresh', (_req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                if (!this.page) {
+                if (!this.adapter) {
                     res.status(400).json({ error: 'no session' });
                     return;
                 }
-                const mapping = yield this.page.evaluate(() => {
-                    const sel = 'a[href],button,input,textarea,select,[role="button"],[onclick]';
-                    const nodes = Array.from(document.querySelectorAll(sel));
-                    const out = {};
-                    nodes.forEach((el, i) => {
-                        const id = `e${i + 1}`;
-                        el.setAttribute('data-cm-ref', id);
-                        const tag = el.tagName.toLowerCase();
-                        const txt = (el.textContent || '').trim().slice(0, 80);
-                        out[id] = `${tag}${txt ? `: ${txt}` : ''}`;
-                    });
-                    return out;
+                const snapshot = yield this.adapter.getSnapshot();
+                this.eventLog.push({
+                    category: 'interaction',
+                    type: 'refs/refresh',
+                    message: `Refreshed refs: ${Object.keys(snapshot.refs).length} elements`,
                 });
-                this.refMap = mapping;
-                res.json({ ok: true, refs: mapping });
+                res.json({ ok: true, refs: snapshot.refs });
             }
             catch (e) {
                 res.status(500).json({ error: e.message });
             }
         }));
+        // ── Click ─────────────────────────────────────────────────────────────
         this.app.post('/click', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            var _a, _b;
+            var _a;
             try {
-                const ref = (_b = (_a = req.body) === null || _a === void 0 ? void 0 : _a.ref) === null || _b === void 0 ? void 0 : _b.replace(/^@/, '');
-                if (!ref || !this.page) {
+                const ref = (_a = req.body) === null || _a === void 0 ? void 0 : _a.ref;
+                if (!ref || !this.adapter) {
                     res.status(400).json({ error: 'ref required' });
                     return;
                 }
-                yield this.page.click(`[data-cm-ref="${ref}"]`, { timeout: 15000 });
+                yield this.adapter.click(ref);
+                this.eventLog.push({
+                    category: 'interaction',
+                    type: 'click',
+                    message: ref,
+                });
                 res.json({ ok: true });
             }
             catch (e) {
                 res.status(500).json({ error: e.message });
             }
         }));
+        // ── Fill ──────────────────────────────────────────────────────────────
         this.app.post('/fill', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            var _a, _b, _c;
+            var _a, _b;
             try {
-                const ref = (_b = (_a = req.body) === null || _a === void 0 ? void 0 : _a.ref) === null || _b === void 0 ? void 0 : _b.replace(/^@/, '');
-                const value = (_c = req.body) === null || _c === void 0 ? void 0 : _c.value;
-                if (!ref || value === undefined || !this.page) {
+                const ref = (_a = req.body) === null || _a === void 0 ? void 0 : _a.ref;
+                const value = (_b = req.body) === null || _b === void 0 ? void 0 : _b.value;
+                if (!ref || value === undefined || !this.adapter) {
                     res.status(400).json({ error: 'ref and value required' });
                     return;
                 }
-                yield this.page.fill(`[data-cm-ref="${ref}"]`, value, { timeout: 15000 });
+                yield this.adapter.fill(ref, value);
+                this.eventLog.push({
+                    category: 'interaction',
+                    type: 'fill',
+                    message: `${ref} = "${value.slice(0, 50)}"`,
+                });
                 res.json({ ok: true });
             }
             catch (e) {
                 res.status(500).json({ error: e.message });
             }
         }));
+        // ── Screenshot ────────────────────────────────────────────────────────
         this.app.get('/screenshot', (_req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                if (!this.page) {
+                if (!this.adapter) {
                     res.status(400).json({ error: 'no session' });
                     return;
                 }
-                const buf = yield this.page.screenshot({ type: 'png' });
+                const buf = yield this.adapter.screenshot();
                 res.setHeader('Content-Type', 'image/png');
                 res.send(buf);
             }
@@ -212,11 +179,131 @@ class BrowseDaemon {
                 res.status(500).json({ error: e.message });
             }
         }));
-        this.app.get('/console', (_req, res) => {
-            res.json({ entries: this.consoleBuf.snapshot() });
+        // ── Console (backward compat) ─────────────────────────────────────────
+        this.app.get('/console', (_req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!this.adapter) {
+                    res.json({ entries: [] });
+                    return;
+                }
+                const entries = yield this.adapter.getConsole();
+                res.json({ entries });
+            }
+            catch (e) {
+                res.status(500).json({ error: e.message });
+            }
+        }));
+        // ── Network (backward compat) ─────────────────────────────────────────
+        this.app.get('/network', (_req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!this.adapter) {
+                    res.json({ entries: [] });
+                    return;
+                }
+                const entries = yield this.adapter.getNetwork();
+                res.json({ entries });
+            }
+            catch (e) {
+                res.status(500).json({ error: e.message });
+            }
+        }));
+        // ── NEW: Errors ───────────────────────────────────────────────────────
+        this.app.get('/errors', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!this.adapter) {
+                    res.json({ errors: [] });
+                    return;
+                }
+                const filter = {};
+                if (req.query.type)
+                    filter.type = req.query.type;
+                if (req.query.severity)
+                    filter.severity = req.query.severity;
+                const errors = yield this.adapter.getErrors();
+                let filtered = errors;
+                if (filter.type)
+                    filtered = filtered.filter(e => e.type === filter.type);
+                if (filter.severity)
+                    filtered = filtered.filter(e => e.severity === filter.severity);
+                res.json({ errors: filtered, total: errors.length });
+            }
+            catch (e) {
+                res.status(500).json({ error: e.message });
+            }
+        }));
+        // ── NEW: A11y Snapshot ────────────────────────────────────────────────
+        this.app.get('/a11y-snapshot', (_req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!this.adapter) {
+                    res.status(400).json({ error: 'no session' });
+                    return;
+                }
+                const snapshot = yield this.adapter.getSnapshot();
+                res.json(snapshot);
+            }
+            catch (e) {
+                res.status(500).json({ error: e.message });
+            }
+        }));
+        // ── NEW: Record start ─────────────────────────────────────────────────
+        this.app.post('/record/start', (_req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!this.adapter) {
+                    res.status(400).json({ error: 'no session' });
+                    return;
+                }
+                yield this.adapter.startRecording();
+                this.eventLog.push({
+                    category: 'session',
+                    type: 'record/start',
+                    message: 'Video recording started',
+                });
+                res.json({ ok: true });
+            }
+            catch (e) {
+                res.status(500).json({ error: e.message });
+            }
+        }));
+        // ── NEW: Record stop ──────────────────────────────────────────────────
+        this.app.post('/record/stop', (_req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!this.adapter) {
+                    res.status(400).json({ error: 'no session' });
+                    return;
+                }
+                const path = yield this.adapter.stopRecording();
+                this.eventLog.push({
+                    category: 'session',
+                    type: 'record/stop',
+                    message: `Video saved: ${path}`,
+                });
+                res.json({ ok: true, path });
+            }
+            catch (e) {
+                res.status(500).json({ error: e.message });
+            }
+        }));
+        // ── NEW: Engine info ──────────────────────────────────────────────────
+        this.app.get('/engine', (_req, res) => {
+            if (!this.adapter) {
+                res.json({ name: this.engineName, active: false });
+                return;
+            }
+            const info = this.adapter.getEngineInfo();
+            res.json(Object.assign(Object.assign({}, info), { active: this.sessionActive }));
         });
-        this.app.get('/network', (_req, res) => {
-            res.json({ entries: this.networkBuf.snapshot() });
+        // ── NEW: Event log ────────────────────────────────────────────────────
+        this.app.get('/events', (req, res) => {
+            const filter = {};
+            if (req.query.category)
+                filter.category = req.query.category;
+            if (req.query.limit)
+                filter.limit = req.query.limit;
+            const entries = this.eventLog.query({
+                category: filter.category,
+                limit: filter.limit ? parseInt(filter.limit, 10) : undefined,
+            });
+            res.json({ entries, total: this.eventLog.size });
         });
     }
     listen() {
@@ -232,15 +319,12 @@ class BrowseDaemon {
     }
     close() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.page)
-                yield this.page.close().catch(() => { });
-            if (this.context)
-                yield this.context.close().catch(() => { });
-            if (this.browser)
-                yield this.browser.close().catch(() => { });
-            this.page = null;
-            this.context = null;
-            this.browser = null;
+            if (this.adapter) {
+                yield this.adapter.closeSession().catch(() => { });
+                this.adapter = null;
+            }
+            this.sessionActive = false;
+            this.eventLog.clear();
             if (this.httpServer) {
                 yield new Promise((r) => this.httpServer.close(() => r()));
                 this.httpServer = null;

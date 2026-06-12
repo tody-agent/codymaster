@@ -18,6 +18,8 @@ export interface DispatchResult {
 const AGENT_SKILL_PREFIX: Record<string, string> = {
   'antigravity': '@[/',
   'claude-code': '/',
+  'codex': '/',
+  'opencode': '/',
   'cursor': '@',
   'gemini-cli': '@[/',
   'windsurf': '@',
@@ -28,6 +30,8 @@ const AGENT_SKILL_PREFIX: Record<string, string> = {
 const AGENT_DISPLAY: Record<string, string> = {
   'antigravity': 'Google Antigravity',
   'claude-code': 'Claude Code',
+  'codex': 'OpenAI Codex',
+  'opencode': 'OpenCode',
   'cursor': 'Cursor',
   'gemini-cli': 'Gemini CLI',
   'windsurf': 'Windsurf',
@@ -74,63 +78,62 @@ export function validateDispatch(task: Task, project: Project | undefined, force
 
 // ─── Task File Generation ───────────────────────────────────────────────────
 
-function generateTaskFileContent(task: Task, project: Project, dashboardPort: number = 6969): string {
+function buildDoneCriteria(task: Task): string[] {
+  const criteria = [
+    'Complete the requested scope only.',
+    'Preserve unrelated existing changes.',
+    'Report verification evidence before claiming completion.',
+  ];
+  if (task.skill) {
+    criteria.unshift(`Follow the workflow guidance from skill "${task.skill}" when it applies.`);
+  }
+  return criteria;
+}
+
+export function generateTaskEnvelope(task: Task, project: Project, dashboardPort: number = 6969): Record<string, unknown> {
   const agentName = AGENT_DISPLAY[task.agent] || task.agent;
   const skillPrefix = AGENT_SKILL_PREFIX[task.agent] || '';
   const skillSuffix = task.agent === 'antigravity' || task.agent === 'gemini-cli' ? ']' : '';
   const skillRef = task.skill ? `${skillPrefix}${task.skill}${skillSuffix}` : 'None';
-  const now = new Date().toISOString();
-
-  const priorityEmoji: Record<string, string> = {
-    'low': '🟢', 'medium': '🟡', 'high': '🟠', 'urgent': '🔴',
+  return {
+    schema: 'codymaster-task@2',
+    task: {
+      id: task.id,
+      title: task.title,
+      description: task.description || '',
+      priority: task.priority,
+      createdAt: task.createdAt,
+      dispatchedAt: new Date().toISOString(),
+    },
+    execution: {
+      agent: agentName,
+      workspace: project.path,
+      skill: task.skill || null,
+      skillInvocation: task.skill ? skillRef : null,
+      doneCriteria: buildDoneCriteria(task),
+    },
+    project: {
+      id: project.id,
+      name: project.name,
+    },
+    progressReporting: {
+      baseUrl: `http://localhost:${dashboardPort}`,
+      inProgress: {
+        method: 'PUT',
+        path: `/api/tasks/${task.id}/move`,
+        body: { column: 'in-progress' },
+      },
+      done: {
+        method: 'PUT',
+        path: `/api/tasks/${task.id}/move`,
+        body: { column: 'done' },
+      },
+    },
   };
+}
 
-  let content = `# Task: ${task.title}
-
-| Field | Value |
-|-------|-------|
-| Agent | ${agentName} |
-| Skill | ${skillRef} |
-| Priority | ${priorityEmoji[task.priority] || '🟡'} ${task.priority} |
-| Project | ${project.name} |
-| Created | ${task.createdAt} |
-| Dispatched | ${now} |
-| Task ID | ${task.id} |
-
-## Description
-
-${task.description || 'No additional description provided.'}
-
-## Instructions
-
-Execute this task in the project workspace at: \`${project.path}\`
-`;
-
-  if (task.skill) {
-    content += `
-Use the skill \`${task.skill}\` to guide execution. Invoke it with: ${skillRef}
-`;
-  }
-
-  content += `
-## Progress Reporting
-
-After completing the task, update the status via CodyMaster API:
-
-\`\`\`bash
-# Mark as in-progress
-curl -s -X PUT http://localhost:${dashboardPort}/api/tasks/${task.id}/move \\
-  -H "Content-Type: application/json" \\
-  -d '{"column": "in-progress"}'
-
-# Mark as done when complete
-curl -s -X PUT http://localhost:${dashboardPort}/api/tasks/${task.id}/move \\
-  -H "Content-Type: application/json" \\
-  -d '{"column": "done"}'
-\`\`\`
-`;
-
-  return content;
+function generateTaskFileContent(task: Task, project: Project, dashboardPort: number = 6969): string {
+  return JSON.stringify(generateTaskEnvelope(task, project, dashboardPort), null, 2);
 }
 
 // ─── Dispatcher ─────────────────────────────────────────────────────────────
@@ -183,7 +186,15 @@ export function dispatchTaskToAgent(task: Task, project: Project, force: boolean
 
   // Generate CLI command
   const relativePath = path.relative(project.path, filePath);
-  const cliCommand = `gemini run --task "${relativePath}"`;
+  const AGENT_CLI: Record<string, string> = {
+    'antigravity': `antigravity -p "$(cat \\"${relativePath}\\")"`,
+    'codex': `codex exec "$(cat \\"${relativePath}\\")"`,
+    'opencode': `opencode --task "${relativePath}"`,
+    'cursor': `cursor --task "${relativePath}"`,
+    'gemini-cli': `gemini run --task "${relativePath}"`,
+    'claude-code': `claude -p "$(cat \\"${relativePath}\\")"`,
+  };
+  const cliCommand = AGENT_CLI[task.agent] || `# Open and run: ${relativePath}`;
 
   return { success: true, filePath, prompt: content, cliCommand };
 }

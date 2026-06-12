@@ -1,0 +1,50 @@
+{
+  "name": "cm",
+  "version": "7.0.2",
+  "description": "CodyMaster v7.0 — 50 token-optimized AI agent skills (progressive disclosure, ~100 tok index → SKILL.md on demand) + 11 slash commands + 5 sub-agents + cm-context MCP server. Browse Hybrid Bridge, a11y snapshots, structured error collection, video recording.",
+  "author": {
+    "name": "Tody Agent"
+  },
+  "homepage": "https://cody-master-a5q.pages.dev",
+  "repository": "https://github.com/tody-agent/codymaster",
+  "license": "ISC",
+  "keywords": [
+    "tdd",
+    "debugging",
+    "quality-gates",
+    "deployment",
+    "design-system",
+    "ux",
+    "security",
+    "brainstorming",
+    "skill-orchestration",
+    "ai-agent",
+    "devops",
+    "browser-automation",
+    "visual-qa",
+    "a11y",
+    "error-collection"
+  ],
+  "skills": "../../../skills/",
+  "mcpServers": "../../../.mcp.json",
+  "interface": {
+    "displayName": "CodyMaster for Codex",
+    "shortDescription": "Token-efficient multi-skill workspace for Codex.",
+    "longDescription": "CodyMaster packaged as a Codex plugin wrapper, exposing the repo's shared skills, commands, and MCP context without changing the Claude or Cursor layouts.",
+    "developerName": "Tody Agent",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://cody-master-a5q.pages.dev",
+    "privacyPolicyURL": "https://github.com/tody-agent/codymaster",
+    "termsOfServiceURL": "https://github.com/tody-agent/codymaster",
+    "defaultPrompt": [
+      "Plan and execute a coding task with CodyMaster.",
+      "Review my repo and suggest the safest next step.",
+      "Sync the right skills for this Codex session."
+    ],
+    "brandColor": "#111827"
+  }
+}

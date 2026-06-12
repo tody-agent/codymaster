@@ -21,6 +21,7 @@ const builtin_1 = require("./chains/builtin");
 const context_bus_1 = require("./context-bus");
 const execution_analyzer_1 = require("./execution-analyzer");
 const storage_backend_1 = require("./storage-backend");
+const skill_execution_cache_1 = require("./skill-execution-cache");
 // ─── Chain Matching ─────────────────────────────────────────────────────────
 // TRIZ #10: Preliminary Action — analyze task BEFORE dispatching
 /**
@@ -114,15 +115,36 @@ function findChain(chainId) {
 function createChainExecution(chain, projectId, taskTitle, agent, projectPath) {
     const now = new Date().toISOString();
     const backend = projectPath ? (0, storage_backend_1.getBackend)(projectPath) : undefined;
+    const cache = projectPath ? new skill_execution_cache_1.SkillExecutionCache(projectPath) : undefined;
     let selectedSteps;
+    let cacheHit = false;
     backend === null || backend === void 0 ? void 0 : backend.initialize();
+    cache === null || cache === void 0 ? void 0 : cache.initialize();
     try {
-        selectedSteps = selectTopSkills(taskTitle, chain, 3, {
-            getSkillMetric: backend ? (skill) => backend.getSkillMetric(skill) : undefined,
-        });
+        const cachedChain = cache === null || cache === void 0 ? void 0 : cache.findCachedChain(taskTitle);
+        if (cachedChain === null || cachedChain === void 0 ? void 0 : cachedChain.skillChain.length) {
+            const selectedSkills = new Set(cachedChain.skillChain);
+            const cachedSteps = chain.steps.filter(step => selectedSkills.has(step.skill));
+            if (cachedSteps.length > 0) {
+                selectedSteps = cachedSteps;
+                cache === null || cache === void 0 ? void 0 : cache.recordHit(cachedChain.taskPattern);
+                cacheHit = true;
+            }
+            else {
+                selectedSteps = selectTopSkills(taskTitle, chain, 3, {
+                    getSkillMetric: backend ? (skill) => backend.getSkillMetric(skill) : undefined,
+                });
+            }
+        }
+        else {
+            selectedSteps = selectTopSkills(taskTitle, chain, 3, {
+                getSkillMetric: backend ? (skill) => backend.getSkillMetric(skill) : undefined,
+            });
+        }
     }
     finally {
         backend === null || backend === void 0 ? void 0 : backend.close();
+        cache === null || cache === void 0 ? void 0 : cache.close();
     }
     const steps = selectedSteps.map((step, index) => ({
         index,
@@ -149,6 +171,7 @@ function createChainExecution(chain, projectId, taskTitle, agent, projectPath) {
         steps,
         startedAt: now,
         updatedAt: now,
+        cacheHit,
     };
     // Init context bus for this chain execution
     if (projectPath) {
