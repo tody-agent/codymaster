@@ -127,10 +127,7 @@
       "Read(//Users/todyle/.claude/plugins/marketplaces/**)",
       "Read(//Users/todyle/.claude/plugins/marketplaces/claude-plugins-official/**)",
       "Bash(ls /Volumes/Data/Coder/codymaster/Cody_Master_unified-install/src /Volumes/Data/Coder/codymaster/Cody_Master_unified-install/adapters 2>&1 | head -30)",
-      "Bash(find ~/.claude/plugins/ -name \"plugin.json\" 2>/dev/null | head -10 && find ~/.claude/plugins/ -name \"*.json\" | grep -v \"node_modules\" | head -20)",
-      "Bash(mkdir -p /tmp/cm-plugin-extract)",
-      "Bash(unzip -q /Volumes/Data/Skills/codymaster/codymaster_plugin/cm.plugin)",
-      "Read(//private/tmp/cm-plugin-extract/.claude-plugin/**)"
+      "Bash(find ~/.claude/plugins/ -name \"plugin.json\" 2>/dev/null | head -10 && find ~/.claude/plugins/ -name \"*.json\" | grep -v \"node_modules\" | head -20)"
     ]
   },
   "enabledPlugins": {},
