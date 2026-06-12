@@ -1,8 +1,10 @@
+import path from 'path';
 import { Command } from 'commander';
 import { SkillEvolver, formatEvolutionResult, formatEvolutionHistory } from '../../skill-evolver';
 import { LearningPromoter, formatPromotionCandidates } from '../../learning-promoter';
 import { buildAdvisoryHandoff } from '../../advisory-handoff';
 import { getBackend } from '../../storage-backend';
+import { scanSkillIntegrity, formatIntegrityReport } from '../../skill-integrity';
 import type { EvolutionMode } from '../../skill-evolver';
 
 // ─── Evolution CLI Commands ─────────────────────────────────────────────────
@@ -93,6 +95,18 @@ export function registerEvolveCommands(program: Command) {
       const evolver = new SkillEvolver(opts.project);
       const result = evolver.rollback(skill);
       console.log(formatEvolutionResult(result));
+    });
+
+  evolve
+    .command('integrity')
+    .alias('check')
+    .description('Scan skills for integrity issues (folder/name mismatch, missing name, duplicate body)')
+    .option('-p, --project <path>', 'Project path', process.cwd())
+    .action((opts: { project: string }) => {
+      const skillsDir = path.join(opts.project, 'skills');
+      const issues = scanSkillIntegrity(skillsDir);
+      console.log(formatIntegrityReport(issues));
+      if (issues.length > 0) process.exit(1);
     });
 
   // ─── Learning Promotion ─────────────────────────────────────────────────

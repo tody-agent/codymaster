@@ -1,0 +1,35 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f .cm/CONTINUITY.md ]; then echo '[cm] Working memory loaded from .cm/CONTINUITY.md'; head -30 .cm/CONTINUITY.md; else echo '[cm] No .cm/CONTINUITY.md found. Run /cm:cm-start to initialize.'; fi"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/cm-guard-secrets"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/cm-save-continuity"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -10,7 +10,7 @@ The same binary as memory MCP (`dist/mcp-context-server.js`) now exposes **engin
 |------|---------|
 | `cm_plan` | Sprint state + artifact paths + next skill hint |
 | `cm_review` | Preview `.cm/sprint/artifacts/review.md` |
-| `cm_qa` | Pointers to browse daemon + `cm qa-visual` |
+| `cm_qa` | QA pointers — host browser mode first (see `_shared/browser-strategy.md`); `cm browse` daemon only as CLI fallback |
 | `cm_deploy` | Hints for safe deploy + canary |
 | `cm_search` | Learnings + decisions search |
 | `cm_memory_query` | Same backing store, alias-style |

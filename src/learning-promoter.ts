@@ -2,6 +2,7 @@ import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { getBackend, type StorageBackend, type DbLearning } from './storage-backend';
+import { safeWriteSkillMd, SkillIntegrityError } from './skill-integrity';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -127,10 +128,16 @@ export class LearningPromoter {
     // Generate the SKILL.md content
     const skillContent = this.generateSkillContent(learning, skillName);
 
-    // Create the skill
-    fs.mkdirSync(skillDir, { recursive: true });
+    // Create the skill (guarded: frontmatter name must match the folder name)
     const skillPath = path.join(skillDir, 'SKILL.md');
-    fs.writeFileSync(skillPath, skillContent, 'utf-8');
+    try {
+      safeWriteSkillMd(skillPath, skillContent, { expectedName: skillName });
+    } catch (err) {
+      if (err instanceof SkillIntegrityError) {
+        return { promoted: false, skillName, skillPath: skillDir, learningId, reason: err.message };
+      }
+      throw err;
+    }
 
     // Log the promotion
     this.logPromotion(learningId, skillName, skillPath);

@@ -1111,6 +1111,71 @@ class HoverDelayTest(DesignTest):
 
 
 # =============================================================================
+# ANTI-SLOP TEST (taste-skill inspired AI-tell detection)
+# =============================================================================
+
+class AntiSlopTest(DesignTest):
+    """DT-SLP-001: Source must not exhibit AI-default 'tells'.
+
+    Scans rendered source when available (data['source'] / data['rawHtml'] /
+    data['html'] / data['code']). When no source is present, the test is
+    informational (passes) rather than a false failure.
+    """
+
+    # (label, compiled regex) tuples for mechanical tells
+    _PATTERNS = [
+        ("Em-dash in copy", re.compile(r"—")),
+        ("Pure black #000000", re.compile(r"#000000\b|#000\b|rgb\(\s*0\s*,\s*0\s*,\s*0\s*\)", re.I)),
+        ("Manual scroll listener", re.compile(r"addEventListener\(\s*['\"]scroll['\"]")),
+        ("h-screen (use min-h-[100dvh])", re.compile(r"\bh-screen\b")),
+        ("Startup-slop verb", re.compile(r"\b(Elevate|Seamless|Revolutionize|Unleash|Empower)\b", re.I)),
+        ("Generic placeholder name", re.compile(r"\b(John Doe|Jane Doe|Acme Inc|Lorem ipsum)\b", re.I)),
+        ("Scroll cue", re.compile(r"Scroll (to explore|down)", re.I)),
+        ("Gradient text on header", re.compile(r"bg-clip-text")),
+    ]
+
+    def __init__(self):
+        super().__init__()
+        self.test_id = "DT-SLP-001"
+        self.name = "Anti-Slop (AI-Tell) Scan"
+        self.category = TestCategory.TYPOGRAPHY
+        self.severity = TestSeverity.HIGH
+        self.ux_law = "Anti-Slop"
+
+    def run(self, data: Dict[str, Any]) -> TestResult:
+        source = ""
+        for key in ("source", "rawHtml", "html", "code"):
+            val = data.get(key)
+            if isinstance(val, str):
+                source += "\n" + val
+
+        if not source.strip():
+            return TestResult(
+                test_id=self.test_id, name=self.name, category=self.category,
+                severity=self.severity, passed=True,
+                message="No source provided; anti-slop scan skipped (informational)",
+                details={"scanned": False},
+                suggestion="Pass rendered source as data['source'] to enable AI-tell scanning",
+                ux_law=self.ux_law,
+            )
+
+        hits = [label for label, pat in self._PATTERNS if pat.search(source)]
+        # Marquee count tell (more than one)
+        if len(re.findall(r"marquee|animate-marquee", source, re.I)) > 1:
+            hits.append("More than one marquee")
+
+        passed = len(hits) == 0
+        return TestResult(
+            test_id=self.test_id, name=self.name, category=self.category,
+            severity=self.severity, passed=passed,
+            message="No AI tells detected" if passed else f"AI tells detected: {', '.join(hits)}",
+            details={"scanned": True, "tells": hits},
+            suggestion="Remove flagged tells; search the 'anti-slop' domain for fixes",
+            ux_law=self.ux_law,
+        )
+
+
+# =============================================================================
 # VALIDATION ENGINE
 # =============================================================================
 
@@ -1180,6 +1245,9 @@ class ValidationEngine:
         self._register(AnimationPerformanceTest())
         self._register(TransitionTimingTest())
         self._register(HoverDelayTest())
+
+        # Anti-Slop Test (1) — AI-tell detection
+        self._register(AntiSlopTest())
         
         # Additional tests to reach 37...
         # Adding more comprehensive tests

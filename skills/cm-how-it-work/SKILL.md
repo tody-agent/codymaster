@@ -1,6 +1,7 @@
 ---
 name: cm-how-it-work
-description: "Complete guide to vibe coding with the CodyMaster skill kit — from idea to deploy. Covers the full workflow, skills used at each phase, and common use cases. Read this first if you are new; reference it whenever you're unsure which skill to invoke."
+description: "Complete guide to vibe coding with CodyMaster — from idea to deploy. Read this first if you are new."
+disable-model-invocation: true
 ---
 
 # CodyMaster Kit — The Ultimate Vibe Coding Guide

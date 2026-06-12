@@ -9,7 +9,9 @@ robots: index, follow
 
 ## Status
 
-Accepted
+Accepted — **amended 2026-06 (host-native first)**.
+
+> **Amendment (2026-06): host-native browser first.** Where the host platform provides a browser mode/agent (Claude Code's Claude in Chrome / Preview / Chrome DevTools MCP; Antigravity / Cursor / Codex browser mode), use it instead of this daemon. The daemon remains the **fallback for bare CLI hosts with no browser mode** and must never be auto-started — surface the one-liner and let the user opt in. See [browser strategy](../../skills/_shared/browser-strategy.md).
 
 ## Context
 

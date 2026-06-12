@@ -1,12 +1,15 @@
 {
   "name": "cm",
-  "version": "7.0.2",
-  "description": "CodyMaster v7.0 — 50 token-optimized AI agent skills (progressive disclosure, ~100 tok index → SKILL.md on demand) + 11 slash commands + 5 sub-agents + cm-context MCP server. Browse Hybrid Bridge, a11y snapshots, structured error collection, video recording.",
+  "version": "7.5.0",
+  "description": "CodyMaster v7.5 — token-optimized AI agent skills (progressive disclosure, ~100 tok index → SKILL.md on demand) + slash commands + sub-agents + cm-context MCP server. Browse Hybrid Bridge, a11y snapshots, structured error collection, video recording, anti-slop design layer, and self-evolving skill hooks/monitors.",
   "author": {
-    "name": "Tody Agent"
+    "name": "Tody Agent",
+    "email": "aitodyle@gmail.com",
+    "url": "https://github.com/tody-agent"
   },
   "homepage": "https://cody-master-a5q.pages.dev",
   "repository": "https://github.com/tody-agent/codymaster",
+  "license": "MIT",
   "keywords": [
     "tdd",
     "debugging",
@@ -23,5 +26,14 @@
     "visual-qa",
     "a11y",
     "error-collection"
-  ]
+  ],
+  "agents": "./agents/",
+  "hooks": "./hooks/hooks.json",
+  "monitors": "./monitors/monitors.json",
+  "userConfig": {
+    "project_type": {
+      "description": "Project type: webapp, api, mobile, content, landing",
+      "sensitive": false
+    }
+  }
 }

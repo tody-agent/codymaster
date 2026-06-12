@@ -1,15 +1,22 @@
 ---
 name: cm-browse
-description: "Use when you need visual QA, screenshots, or post-deploy smoke testing through a real browser with Playwright."
+description: "Fallback local Playwright daemon for real-browser visual QA / screenshots / smoke. Use ONLY when the host platform has no native browser mode — prefer the host browser first."
 ---
-# cm-browse — local Playwright daemon
+# cm-browse — local Playwright daemon (fallback)
 
+> **Prefer the host browser.** Per [_shared/browser-strategy.md](../_shared/browser-strategy.md):
+> on Claude Code / Antigravity / Cursor / Codex, drive the platform's **native browser mode**
+> (Claude in Chrome, Claude Preview, Chrome DevTools / Playwright MCP). This daemon is the
+> **fallback for bare CLI hosts with no browser mode**, and is **never auto-started** — suggest
+> it to the user and let them opt in.
+>
 > **Full runbook:** [docs/browse-daemon.md](../../docs/browse-daemon.md) (install Chromium, token, troubleshooting).
 
 ## When to use
 
-- Visual QA, screenshots, post-deploy smoke through a **real browser** (not only Stitch/Pencil).
-- Before claiming “UI works”, drive `cm browse` + `cm qa-visual`.
+- **Only** when no host browser mode is available (bare CLI) and you genuinely need a real
+  browser for visual QA, screenshots, or post-deploy smoke. Otherwise use the host browser.
+- HTTP-only checks (status code, `curl`) need no browser — do those first.
 
 ## CLI
 

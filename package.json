@@ -1,6 +1,6 @@
 {
   "name": "codymaster",
-  "version": "7.0.3",
+  "version": "7.5.0",
   "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge (agent-browser + Playwright), a11y snapshots, structured error collection, video recording. Hybrid browser automation for visual QA and testing.",
   "main": "dist/index.js",
   "repository": {

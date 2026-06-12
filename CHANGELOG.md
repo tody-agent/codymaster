@@ -6,6 +6,43 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ---
 
+## [Unreleased]
+
+---
+
+## [7.5.0] - 2026-06-12
+
+> Builds on top of 7.0.3. Adds the Anti-Slop Design Layer, Zero-Token Skill Discovery, the Self-Evolving Brain hooks/monitors, OpenViking de-scope, the Advisory Loop, and a host-native-browser-first browse strategy.
+
+### 🚀 Improvements — Anti-Slop Design Layer (taste-skill inspired)
+- Added `anti-slop` BM25 domain to `cm-ux-master` (`data/anti-slop.csv`, ~36 AI-tell rules: em-dash ban, AI purple glow, generic names, fake-precise numbers, startup-slop verbs, three equal-column cards, fake `<div>` screenshots, and more). Searchable via `python3 scripts/search.py "<concern>" --domain anti-slop`.
+- Introduced **Design Dials** (`DESIGN_VARIANCE` / `MOTION_INTENSITY` / `VISUAL_DENSITY`, 1-10) with a functional baseline `4/3/6`, surfaced in `generate_design_system()` output and the `DESIGN.md` template.
+- Added **Style Mode** selector (`functional` default + `minimalist-editorial`, `brutalist`, `soft-premium`, `marketing-expressive`); marketing/expressive aesthetics are now opt-in instead of refused, while still enforcing the anti-slop layer.
+- Added **Brief Inference** (Step 0 "read the room") to the cm-ux-master execution workflow.
+- Added canonical **motion patterns** to `data/animation.csv` (GSAP sticky-stack, horizontal-pan, scroll-listener ban, reduced-motion gating, "motion claimed = motion shown").
+- Added programmatic `AntiSlopTest` (DT-SLP-001) to `validation_engine.py` that scans rendered source for AI tells.
+- Propagated dials + anti-slop constraints into the shared `DESIGN_STANDARD_TEMPLATE.md`.
+
+### 🚀 Improvements — Host-Native Browser First
+- `cm-browse` now prefers the host-native browser and demotes the `cm-browse` Playwright daemon to a fallback; added `skills/_shared/browser-strategy.md` documenting the engine selection chain.
+
+### 🚀 Improvements — Zero-Token Skill Discovery
+- Removed LLM token waste on skill search by porting deterministic tech-stack parsing natively into `src/indexer/skills.ts`.
+- Introduced `cm index skills` CLI command to compile `.cm/project-skills.md` locally.
+- Updated Fission framework (`cm-project-bootstrap`, `cm-skill-index`, `AGENTS.md`) to prioritize zero-token local indexes over massive community directory sweeps.
+
+### 🚀 Improvements — Self-Evolving Brain hooks & monitors
+- Added plugin `hooks/hooks.json` (working-memory load, secret guard, continuity save) and `monitors/monitors.json` (quality monitor), backed by `bin/cm-guard-secrets`, `bin/cm-save-continuity`, and `bin/cm-quality-monitor`, registered in `plugin.json`.
+- Smart Brain Router, Skill Execution Cache, per-tier adaptive token budgeting, the Evolution Engine (Skill Evolver), and the Learning Promoter for autonomous skill repair/derivation/capture.
+
+### 🚀 Improvements — OpenViking De-scope
+- Removed OpenViking auto-installation and the remaining runtime backend; legacy `storage.backend: viking` configs now warn and fall back to SQLite.
+
+### 🚀 Improvements — Advisory Loop Productization
+- Added `cm advisory report`, `cm advisory metrics`, and `cm advisory handoff`, plus the matching `cm_advisory_*` MCP tools, so operators can inspect execution analyses and generate structured recovery notes for `cm-skill-health` / `cm-skill-evolution`.
+
+---
+
 ## [7.0.3] - 2026-05-13
 
 ### 🚀 Improvements — Codex Runtime + Token-Efficient Handoffs
@@ -343,37 +380,6 @@ cm install --list                # liệt kê tất cả platform id
 - `skills/cm-autopilot/scripts/autopilot.py` — Minor fixes
 
 ---
-
-## [Unreleased]
-
-### 🚀 Improvements — Zero-Token Skill Discovery
-- Removed LLM token waste on skill search by porting deterministic tech-stack parsing natively into `src/indexer/skills.ts`.
-- Introduced `cm index skills` CLI command to compile `.cm/project-skills.md` locally.
-- Updated Fission framework (`cm-project-bootstrap`, `cm-skill-index`, `AGENTS.md`) to prioritize zero-token local indexes over massive community directory sweeps.
-
-### 🚀 Improvements — CodyMaster v6.0 "Self-Evolving Brain"
-
-- **Smart Brain Router** — `src/smart-brain-router.ts` adds a zero-cost keyword-based classifier that dynamically selects the optimal memory tiers for incoming tasks, reducing token waste by up to 60-80% for simple tasks.
-- **Skill Execution Cache** — `src/skill-execution-cache.ts` introduces an FTS5-backed warm cache for successful execution chains (effectiveness >= 0.70), skipping BM25 and LLM selection entirely for recurring task patterns.
-- **Per-Tier Adaptive Token Budgeting** — Enhanced `src/token-budget.ts` controls budgets natively per memory tier and visually outputs budget and savings reports.
-- **Evolution Engine (Skill Evolver)** — `src/skill-evolver.ts` brings true autonomy. CodyMaster now auto-repairs and auto-generates `SKILL.md` files locally with three modes: `FIX` (adds warnings to broken skills), `DERIVED` (clones highly successful fallback paths), and `CAPTURED` (creates new skills completely autonomously when a task completes without predefined skills). Ships with anti-loop protection and automatic `.md` backups.
-- **Learning Promoter** — `src/learning-promoter.ts` scans working memory for recurring failures or patterns (reinforced >= 3 times) and automatically promotes them into permanent `cm-learned-*` skills.
-- **New CLI Tools** — `cm smart plan/tiers`, `cm token report/savings`, and a full `cm evolve` lifecycle toolkit (`status`, `run`, `history`, `rollback`, `candidates`, `promote`).
-- **Comprehensive Testing** — Extensively covered the new architectures with 62 new testing scenarios (system currently sits at 302 passed tests natively).
-
-### 🚀 Improvements — OpenViking De-scope
-
-- Removed OpenViking auto-installation from `install.sh` and `scripts/postinstall.js`; CodyMaster now keeps the normal install path focused on the supported Node-first stack.
-- Updated runtime/config/docs guidance so `storage.backend: viking` is treated as a deprecated experimental path instead of a default-facing feature.
-- Removed the remaining OpenViking runtime backend, demo script, and dedicated tests; legacy `storage.backend: viking` configs now warn and fall back to SQLite.
-
-### 🚀 Improvements — Advisory Loop Productization
-
-- Added `cm advisory report`, `cm advisory metrics`, and `cm advisory handoff` so operators can inspect execution analyses, review per-skill quality, and generate structured recovery notes for `cm-skill-health` / `cm-skill-evolution`.
-- `selectTopSkills()` now uses recorded `skill_metrics` as a quality-weighted boost for optional step ranking, while mandatory `always` steps remain unchanged.
-- Added `src/advisory-handoff.ts` as the shared contract between analyzer output and self-healing workflows; the handoff can be emitted as Markdown or JSON.
-- Exposed the advisory loop to MCP clients via `cm_advisory_report`, `cm_advisory_metrics`, and `cm_advisory_handoff` in `src/mcp-context-server.ts`.
-- Added workflow and API docs for the advisory loop under `docs/workflows/advisory-loop.md` and `docs/api/api-reference.md`.
 
 ## [5.1.0] - 2026-04-11
 

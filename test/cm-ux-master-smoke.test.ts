@@ -10,7 +10,7 @@ describe('cm-ux-master smoke', () => {
   it('has the correct skill identity and core positioning', () => {
     const text = fs.readFileSync(SKILL_MD, 'utf8');
     expect(text).toContain('name: cm-ux-master');
-    expect(text).toContain('# 🚀 CM UX Master v4');
+    expect(text).toContain('# 🚀 CM UX Master');
     expect(text).toContain('48 UX Laws');
     expect(text).toContain('37 Design Tests');
     expect(text).toContain('scripts/search.py');

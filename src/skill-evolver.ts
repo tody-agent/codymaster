@@ -4,6 +4,7 @@ import path from 'path';
 import { getBackend, type StorageBackend, type DbExecutionAnalysis, type DbEvolutionRecommendation, type DbSkillMetric } from './storage-backend';
 import { qualityWeight } from './execution-analyzer';
 import type { AdvisoryHandoff } from './advisory-handoff';
+import { safeWriteSkillMd, setFrontmatterName, SkillIntegrityError } from './skill-integrity';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -213,9 +214,17 @@ export class SkillEvolver {
     const fixPatch = this.buildFixPatch(skill, relevantAnalysis);
     const beforeHash = this.hashContent(content);
 
-    // Apply the fix (append learnings section)
+    // Apply the fix (append learnings section) — guarded so a corrupt skill
+    // (frontmatter name != folder) is refused rather than silently re-mutated.
     const updatedContent = content + '\n' + fixPatch;
-    fs.writeFileSync(skillPath, updatedContent, 'utf-8');
+    try {
+      safeWriteSkillMd(skillPath, updatedContent, { expectedName: skill });
+    } catch (err) {
+      if (err instanceof SkillIntegrityError) {
+        return { success: false, mode: 'FIX', skill, backupPath, error: err.message };
+      }
+      throw err;
+    }
 
     const afterHash = this.hashContent(updatedContent);
 
@@ -263,13 +272,21 @@ export class SkillEvolver {
       ? `\n\n## Derived Specialization (gen ${gen})\n\n> Auto-derived from ${skill} based on execution analysis.\n> Analysis: ${analysis.summary}\n> Fallback patterns addressed: ${analysis.skill_judgments.filter(j => j.fallback_used).map(j => j.note || j.skill).join(', ') || 'N/A'}\n`
       : `\n\n## Derived Specialization (gen ${gen})\n\n> Auto-derived from ${skill}.\n`;
 
-    const derivedContent = content + specialization;
+    // Rewrite frontmatter name to the derived folder name so folder == name
+    // (otherwise the derived skill would inherit the parent's name and fail the guard).
+    const derivedContent = setFrontmatterName(content, derivedName) + specialization;
     const beforeHash = this.hashContent(content);
     const afterHash = this.hashContent(derivedContent);
 
-    // Create derived skill directory and file
-    fs.mkdirSync(derivedDir, { recursive: true });
-    fs.writeFileSync(path.join(derivedDir, 'SKILL.md'), derivedContent, 'utf-8');
+    // Create derived skill directory and file (guarded: name must match folder)
+    try {
+      safeWriteSkillMd(path.join(derivedDir, 'SKILL.md'), derivedContent, { expectedName: derivedName });
+    } catch (err) {
+      if (err instanceof SkillIntegrityError) {
+        return { success: false, mode: 'DERIVED', skill, error: err.message };
+      }
+      throw err;
+    }
 
     // Record evolution
     this.recordEvolution(derivedName, 'DERIVED', sourceAnalysisId, beforeHash, afterHash,
@@ -330,8 +347,14 @@ export class SkillEvolver {
 
     const afterHash = this.hashContent(skillContent);
 
-    fs.mkdirSync(capturedDir, { recursive: true });
-    fs.writeFileSync(path.join(capturedDir, 'SKILL.md'), skillContent, 'utf-8');
+    try {
+      safeWriteSkillMd(path.join(capturedDir, 'SKILL.md'), skillContent, { expectedName: capturedName });
+    } catch (err) {
+      if (err instanceof SkillIntegrityError) {
+        return { success: false, mode: 'CAPTURED', skill, error: err.message };
+      }
+      throw err;
+    }
 
     this.recordEvolution(capturedName, 'CAPTURED', sourceAnalysisId, '', afterHash,
       `Captured from: ${analysis.task_title}`, confidence);

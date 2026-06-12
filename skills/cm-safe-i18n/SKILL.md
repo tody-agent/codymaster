@@ -1,6 +1,6 @@
 ---
 name: cm-safe-i18n
-description: Use when translating, extracting, or mass-converting hardcoded strings to i18n t() calls. Enforces multi-pass batching, parallel-per-language dispatch, 8 audit gates, and HTML integrity checks. Battle-tested through 21+ batches and 12 bug categories from the March 2026 incidents.
+description: "Safe i18n: multi-pass batching, parallel-per-language dispatch, 8 audit gates, HTML integrity. Use for translating or mass-converting hardcoded strings to t() calls."
 ---
 
 # Safe i18n Translation v2.0
