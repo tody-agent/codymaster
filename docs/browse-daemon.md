@@ -9,6 +9,8 @@ robots: index, follow
 
 This page is the **operator runbook** for the local HTTP browse server. Architecture rationale: [ADR 001 — Playwright browse daemon](./adr/001-playwright-browse-daemon.md).
 
+> **Host-native first.** This daemon is a **fallback**. On Claude Code / Antigravity / Cursor / Codex, use the platform's native browser mode (Claude in Chrome, Claude Preview, Chrome DevTools / Playwright MCP) instead — see [browser strategy](../skills/_shared/browser-strategy.md). Reach for this daemon only on a bare CLI host with no browser mode, and never auto-start it — suggest it to the user first.
+
 ## Goal
 
 From a clean machine, you can run **`cm browse start`** and then **`cm qa-visual`** (or your own HTTP client) against a **Bearer-protected** API.

@@ -65,7 +65,7 @@ Infer stage from files touched and git state:
 | Phrase (approx.) | Skill / command |
 |------------------|-----------------|
 | “Run a security check” | cm-secret-shield / cm-security-gate |
-| “Test the website” | cm browse + cm qa-visual |
+| “Test the website” | host browser mode first (Claude in Chrome / Preview / DevTools); `cm browse` only as CLI fallback — see [_shared/browser-strategy.md](../_shared/browser-strategy.md) |
 | “Code review this” | cm-code-review |
 | “Deploy safely” | cm-safe-deploy |
 | “Log what went wrong” | `cm retro --note "…"` |

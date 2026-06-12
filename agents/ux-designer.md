@@ -45,4 +45,4 @@ When user wants a UI:
 
 - Always present options — never force a single design.
 - Check contrast ratios for text on colored backgrounds.
-- Use cm-qa-visual-cli to verify the implementation matches the design.
+- Verify the implementation matches the design using the **host browser mode** (Claude in Chrome / Preview / DevTools); fall back to the local `cm browse` daemon only on bare CLI hosts. See `skills/_shared/browser-strategy.md`.
