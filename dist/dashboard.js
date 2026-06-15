@@ -22,11 +22,17 @@ const skill_chain_1 = require("./skill-chain");
 const validate_1 = require("./schemas/validate");
 const task_schema_1 = require("./schemas/task-schema");
 const security_headers_1 = require("./middleware/security-headers");
+const dashboard_auth_1 = require("./middleware/dashboard-auth");
 const dashboard_project_summary_1 = require("./dashboard-project-summary");
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     const app = (0, express_1.default)();
+    // Per-launch bearer token guarding the API + WebSocket. Reuse an explicit
+    // env token if provided (e.g. for embedding), otherwise generate a random one.
+    const dashboardToken = process.env.CM_DASHBOARD_TOKEN || crypto_1.default.randomBytes(24).toString('hex');
+    process.env.CM_DASHBOARD_TOKEN = dashboardToken;
     app.disable('x-powered-by');
+    app.use((0, dashboard_auth_1.hostGuard)());
     app.use((0, security_headers_1.securityHeaders)());
     app.use(express_1.default.json({ limit: '1mb' }));
     // Default to 'warn' to keep CLI clean; opt-in verbose via CM_LOG_LEVEL=info|debug|trace
@@ -35,6 +41,9 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     app.use((0, pino_http_1.default)({ logger: logger }));
     const publicDir = path_1.default.join(__dirname, '..', 'public', 'dashboard');
     app.use(express_1.default.static(publicDir));
+    // Everything under /api requires the bearer token. Static assets above and
+    // the index shell below stay public so the page can boot and read its token.
+    app.use('/api', (0, dashboard_auth_1.requireDashboardToken)(dashboardToken));
     // ─── Project API ────────────────────────────────────────────────────────
     app.get('/api/projects', (_req, res) => {
         const data = (0, data_1.loadData)();
@@ -953,17 +962,19 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
             fs_1.default.writeFileSync(data_1.PID_FILE, String(process.pid));
         }
         catch (_a) { }
+        const url = `http://localhost:${port}/?token=${dashboardToken}`;
         if (!silent) {
-            console.log(chalk_1.default.cyan(`\n🚀 Mission Control at http://localhost:${port}`));
+            console.log(chalk_1.default.cyan(`\n🚀 Mission Control at ${url}`));
+            console.log(chalk_1.default.gray(`   Open the URL above (it carries the access token).`));
             console.log(chalk_1.default.gray(`   Data: ${data_1.DATA_FILE}`));
             console.log(chalk_1.default.gray(`   Press Ctrl+C to stop.\n`));
         }
         else {
-            // Silent auto-start: just a subtle hint
-            console.log(chalk_1.default.gray(`  📊 Dashboard auto-started → http://localhost:${port}`));
+            // Silent auto-start: just a subtle hint (token-bearing URL)
+            console.log(chalk_1.default.gray(`  📊 Dashboard auto-started → ${url}`));
         }
     });
-    (0, ws_hub_1.initWsHub)(server);
+    (0, ws_hub_1.initWsHub)(server, dashboardToken);
     const cleanup = () => { try {
         fs_1.default.unlinkSync(data_1.PID_FILE);
     }

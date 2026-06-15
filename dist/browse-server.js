@@ -43,6 +43,13 @@ class BrowseDaemon {
         this.routes();
     }
     authMiddleware(req, res, next) {
+        // Defeat DNS-rebinding: a rebound attacker page still carries its original
+        // hostname in the Host header, so only accept loopback Host values.
+        const host = String(req.headers.host || '').split(':')[0].toLowerCase();
+        if (!BrowseDaemon.LOOPBACK_HOSTS.has(host)) {
+            res.status(403).json({ error: 'forbidden host' });
+            return;
+        }
         if (req.path === '/health')
             return next();
         const h = req.headers.authorization || '';
@@ -333,3 +340,4 @@ class BrowseDaemon {
     }
 }
 exports.BrowseDaemon = BrowseDaemon;
+BrowseDaemon.LOOPBACK_HOSTS = new Set(['127.0.0.1', 'localhost', '::1', '[::1]']);

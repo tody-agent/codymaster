@@ -1,5 +1,5 @@
 import { WebSocketServer, WebSocket } from 'ws';
-import type { Server } from 'http';
+import type { Server, IncomingMessage } from 'http';
 import { eventBus, type DomainEvent } from './event-bus';
 
 const HEARTBEAT_INTERVAL = 15_000;
@@ -37,10 +37,23 @@ export function broadcastAll(event: DomainEvent): void {
   }
 }
 
-export function initWsHub(server: Server): void {
+export function initWsHub(server: Server, token?: string): void {
   const wss = new WebSocketServer({ server, path: '/ws' });
 
-  wss.on('connection', (ws: WebSocket) => {
+  wss.on('connection', (ws: WebSocket, request: IncomingMessage) => {
+    // Fail-closed: when a token is configured, every WS client must present a
+    // matching ?token=… query param or the connection is rejected.
+    if (token) {
+      let provided = '';
+      try {
+        provided = new URL(request.url || '', 'http://localhost').searchParams.get('token') || '';
+      } catch { /* malformed URL → provided stays empty → rejected below */ }
+      if (provided !== token) {
+        ws.close(1008, 'unauthorized');
+        return;
+      }
+    }
+
     const client: Client = { ws, buffer: [], alive: true };
     clients.add(client);
 
