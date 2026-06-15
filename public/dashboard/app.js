@@ -926,19 +926,7 @@
   }
 
   // ── Utilities ──────────────────────────────
-  function esc(str) {
-    if (typeof str !== 'string') return str;
-    return str.replace(/[&<>"']/g, function(m) {
-      switch (m) {
-        case '&': return '&amp;';
-        case '<': return '&lt;';
-        case '>': return '&gt;';
-        case '"': return '&quot;';
-        case "'": return '&#39;';
-        default: return m;
-      }
-    });
-  }
+  function esc(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
   function formatTimeAgo(dateStr) {
     const ms = Date.now() - new Date(dateStr).getTime();
     const m = Math.floor(ms / 60000), h = Math.floor(ms / 3600000), d = Math.floor(ms / 86400000);
