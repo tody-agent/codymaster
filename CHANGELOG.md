@@ -10,6 +10,20 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ---
 
+## [7.5.1] - 2026-06-15
+
+> Security patch. Fixes the verified high-confidence findings from the Sentinel/Jules review and adds defense-in-depth. No behavior change for normal use.
+
+### 🔒 Security
+- **Dashboard DOM XSS** — escape `phase`, `phaseClass`, `projectName`, and learning/decision `agent` fields before `innerHTML` interpolation (`public/dashboard/app.js`); validate `Current Phase` against the known enum in `src/continuity.ts` so untrusted `CONTINUITY.md` content cannot smuggle markup.
+- **Unauthenticated dashboard API + WebSocket** — add a per-launch bearer token (`src/middleware/dashboard-auth.ts`), require it on `/api/*`, fail-closed on the WS handshake (`src/realtime/ws-hub.ts`), and enforce a loopback Host-header allowlist to defeat DNS-rebinding. The dashboard now opens with a token-bearing URL; the frontend attaches it and scrubs it from the visible URL.
+- **Hardcoded default browse token** — replace the `dev-token-change-me` fallback with `getBrowseToken()`, which resolves explicit/env/config tokens or generates and persists a random token to `.cm/browse_token` (mode 0600), shared by the daemon and client subcommands (`src/cli/commands/engineering.ts`). Added a bind-aware loopback Host guard to the browse daemon (`src/browse-server.ts`).
+
+### 🧪 Tests
+- Added `test/security-hardening.test.ts` (host guard, token auth, phase coercion) and `test/skill-chain.test.ts` (`abortChain` coverage). Full gate: 456 passed / 0 failed.
+
+---
+
 ## [7.5.0] - 2026-06-12
 
 > Builds on top of 7.0.3. Adds the Anti-Slop Design Layer, Zero-Token Skill Discovery, the Self-Evolving Brain hooks/monitors, OpenViking de-scope, the Advisory Loop, and a host-native-browser-first browse strategy.
