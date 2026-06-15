@@ -19,6 +19,7 @@ import type { ChainExecution } from './skill-chain';
 import { validateBody } from './schemas/validate';
 import { createTaskSchema, updateTaskSchema, autoSyncSchema, createProjectSchema } from './schemas/task-schema';
 import { securityHeaders } from './middleware/security-headers';
+import { hostGuard, requireDashboardToken } from './middleware/dashboard-auth';
 import { metricsHandler } from './middleware/metrics';
 import { getProjectActiveAgents } from './dashboard-project-summary';
 
@@ -26,7 +27,14 @@ import { getProjectActiveAgents } from './dashboard-project-summary';
 
 export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = false) {
   const app = express();
+
+  // Per-launch bearer token guarding the API + WebSocket. Reuse an explicit
+  // env token if provided (e.g. for embedding), otherwise generate a random one.
+  const dashboardToken = process.env.CM_DASHBOARD_TOKEN || crypto.randomBytes(24).toString('hex');
+  process.env.CM_DASHBOARD_TOKEN = dashboardToken;
+
   app.disable('x-powered-by');
+  app.use(hostGuard());
   app.use(securityHeaders());
   app.use(express.json({ limit: '1mb' }));
 
@@ -37,6 +45,10 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
   const publicDir = path.join(__dirname, '..', 'public', 'dashboard');
   app.use(express.static(publicDir));
+
+  // Everything under /api requires the bearer token. Static assets above and
+  // the index shell below stay public so the page can boot and read its token.
+  app.use('/api', requireDashboardToken(dashboardToken));
 
   // ─── Project API ────────────────────────────────────────────────────────
 
@@ -895,17 +907,19 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
   const server = app.listen(port, '127.0.0.1', () => {
     try { fs.writeFileSync(PID_FILE, String(process.pid)); } catch {}
+    const url = `http://localhost:${port}/?token=${dashboardToken}`;
     if (!silent) {
-      console.log(chalk.cyan(`\n🚀 Mission Control at http://localhost:${port}`));
+      console.log(chalk.cyan(`\n🚀 Mission Control at ${url}`));
+      console.log(chalk.gray(`   Open the URL above (it carries the access token).`));
       console.log(chalk.gray(`   Data: ${DATA_FILE}`));
       console.log(chalk.gray(`   Press Ctrl+C to stop.\n`));
     } else {
-      // Silent auto-start: just a subtle hint
-      console.log(chalk.gray(`  📊 Dashboard auto-started → http://localhost:${port}`));
+      // Silent auto-start: just a subtle hint (token-bearing URL)
+      console.log(chalk.gray(`  📊 Dashboard auto-started → ${url}`));
     }
   });
 
-  initWsHub(server);
+  initWsHub(server, dashboardToken);
 
   const cleanup = () => { try { fs.unlinkSync(PID_FILE); } catch {} };
   process.on('SIGINT', () => { cleanup(); process.exit(0); });

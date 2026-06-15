@@ -176,9 +176,19 @@ function parseContinuityMd(content: string): ContinuityState {
   const updatedMatch = content.match(/Last Updated:\s*(.+)/);
   if (updatedMatch) state.lastUpdated = updatedMatch[1].trim();
 
-  // Parse Current Phase
+  // Parse Current Phase — validate against the known enum so untrusted
+  // CONTINUITY.md content (written by agents, travels in cloned repos) cannot
+  // smuggle arbitrary strings downstream into the dashboard UI.
   const phaseMatch = content.match(/Current Phase:\s*(.+)/);
-  if (phaseMatch) state.currentPhase = phaseMatch[1].trim() as ContinuityState['currentPhase'];
+  if (phaseMatch) {
+    const raw = phaseMatch[1].trim();
+    const validPhases: ReadonlyArray<ContinuityState['currentPhase']> = [
+      'planning', 'executing', 'testing', 'deploying', 'reviewing', 'idle',
+    ];
+    state.currentPhase = (validPhases as readonly string[]).includes(raw)
+      ? (raw as ContinuityState['currentPhase'])
+      : 'idle';
+  }
 
   // Parse Current Iteration
   const iterMatch = content.match(/Current Iteration:\s*(\d+)/);

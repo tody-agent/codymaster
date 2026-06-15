@@ -1,10 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerEvolveCommands = registerEvolveCommands;
+const path_1 = __importDefault(require("path"));
 const skill_evolver_1 = require("../../skill-evolver");
 const learning_promoter_1 = require("../../learning-promoter");
 const advisory_handoff_1 = require("../../advisory-handoff");
 const storage_backend_1 = require("../../storage-backend");
+const skill_integrity_1 = require("../../skill-integrity");
 // ─── Evolution CLI Commands ─────────────────────────────────────────────────
 function registerEvolveCommands(program) {
     const evolve = program
@@ -81,6 +86,18 @@ function registerEvolveCommands(program) {
         const evolver = new skill_evolver_1.SkillEvolver(opts.project);
         const result = evolver.rollback(skill);
         console.log((0, skill_evolver_1.formatEvolutionResult)(result));
+    });
+    evolve
+        .command('integrity')
+        .alias('check')
+        .description('Scan skills for integrity issues (folder/name mismatch, missing name, duplicate body)')
+        .option('-p, --project <path>', 'Project path', process.cwd())
+        .action((opts) => {
+        const skillsDir = path_1.default.join(opts.project, 'skills');
+        const issues = (0, skill_integrity_1.scanSkillIntegrity)(skillsDir);
+        console.log((0, skill_integrity_1.formatIntegrityReport)(issues));
+        if (issues.length > 0)
+            process.exit(1);
     });
     // ─── Learning Promotion ─────────────────────────────────────────────────
     evolve

@@ -27,11 +27,13 @@
     "a11y",
     "error-collection"
   ],
-  "agents": "./agents/",
-  "hooks": "./hooks/hooks.json",
-  "monitors": "./monitors/monitors.json",
+  "experimental": {
+    "monitors": "./monitors/monitors.json"
+  },
   "userConfig": {
     "project_type": {
+      "type": "string",
+      "title": "Project Type",
       "description": "Project type: webapp, api, mobile, content, landing",
       "sensitive": false
     }

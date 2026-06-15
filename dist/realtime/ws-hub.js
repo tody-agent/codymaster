@@ -29,9 +29,22 @@ function broadcastAll(event) {
         send(client, event);
     }
 }
-function initWsHub(server) {
+function initWsHub(server, token) {
     const wss = new ws_1.WebSocketServer({ server, path: '/ws' });
-    wss.on('connection', (ws) => {
+    wss.on('connection', (ws, request) => {
+        // Fail-closed: when a token is configured, every WS client must present a
+        // matching ?token=… query param or the connection is rejected.
+        if (token) {
+            let provided = '';
+            try {
+                provided = new URL(request.url || '', 'http://localhost').searchParams.get('token') || '';
+            }
+            catch ( /* malformed URL → provided stays empty → rejected below */_a) { /* malformed URL → provided stays empty → rejected below */ }
+            if (provided !== token) {
+                ws.close(1008, 'unauthorized');
+                return;
+            }
+        }
         const client = { ws, buffer: [], alive: true };
         clients.add(client);
         ws.on('message', (raw) => {

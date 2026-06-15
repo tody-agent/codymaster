@@ -10,6 +10,7 @@ const crypto_1 = __importDefault(require("crypto"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const storage_backend_1 = require("./storage-backend");
+const skill_integrity_1 = require("./skill-integrity");
 // ─── Constants ──────────────────────────────────────────────────────────────
 const BACKUP_DIR = '.cm/skill-backups';
 const MAX_EVOLUTION_DEPTH = 5; // Anti-loop: max generations
@@ -152,9 +153,18 @@ class SkillEvolver {
         }
         const fixPatch = this.buildFixPatch(skill, relevantAnalysis);
         const beforeHash = this.hashContent(content);
-        // Apply the fix (append learnings section)
+        // Apply the fix (append learnings section) — guarded so a corrupt skill
+        // (frontmatter name != folder) is refused rather than silently re-mutated.
         const updatedContent = content + '\n' + fixPatch;
-        fs_1.default.writeFileSync(skillPath, updatedContent, 'utf-8');
+        try {
+            (0, skill_integrity_1.safeWriteSkillMd)(skillPath, updatedContent, { expectedName: skill });
+        }
+        catch (err) {
+            if (err instanceof skill_integrity_1.SkillIntegrityError) {
+                return { success: false, mode: 'FIX', skill, backupPath, error: err.message };
+            }
+            throw err;
+        }
         const afterHash = this.hashContent(updatedContent);
         // Record evolution
         this.recordEvolution(skill, 'FIX', sourceAnalysisId, beforeHash, afterHash, fixPatch, confidence);
@@ -194,12 +204,21 @@ class SkillEvolver {
         const specialization = analysis
             ? `\n\n## Derived Specialization (gen ${gen})\n\n> Auto-derived from ${skill} based on execution analysis.\n> Analysis: ${analysis.summary}\n> Fallback patterns addressed: ${analysis.skill_judgments.filter(j => j.fallback_used).map(j => j.note || j.skill).join(', ') || 'N/A'}\n`
             : `\n\n## Derived Specialization (gen ${gen})\n\n> Auto-derived from ${skill}.\n`;
-        const derivedContent = content + specialization;
+        // Rewrite frontmatter name to the derived folder name so folder == name
+        // (otherwise the derived skill would inherit the parent's name and fail the guard).
+        const derivedContent = (0, skill_integrity_1.setFrontmatterName)(content, derivedName) + specialization;
         const beforeHash = this.hashContent(content);
         const afterHash = this.hashContent(derivedContent);
-        // Create derived skill directory and file
-        fs_1.default.mkdirSync(derivedDir, { recursive: true });
-        fs_1.default.writeFileSync(path_1.default.join(derivedDir, 'SKILL.md'), derivedContent, 'utf-8');
+        // Create derived skill directory and file (guarded: name must match folder)
+        try {
+            (0, skill_integrity_1.safeWriteSkillMd)(path_1.default.join(derivedDir, 'SKILL.md'), derivedContent, { expectedName: derivedName });
+        }
+        catch (err) {
+            if (err instanceof skill_integrity_1.SkillIntegrityError) {
+                return { success: false, mode: 'DERIVED', skill, error: err.message };
+            }
+            throw err;
+        }
         // Record evolution
         this.recordEvolution(derivedName, 'DERIVED', sourceAnalysisId, beforeHash, afterHash, `Derived from ${skill} (gen ${gen})`, confidence);
         this.upsertSkillRecord(derivedName, 'derived', skill, gen);
@@ -252,8 +271,15 @@ class SkillEvolver {
             '',
         ].join('\n');
         const afterHash = this.hashContent(skillContent);
-        fs_1.default.mkdirSync(capturedDir, { recursive: true });
-        fs_1.default.writeFileSync(path_1.default.join(capturedDir, 'SKILL.md'), skillContent, 'utf-8');
+        try {
+            (0, skill_integrity_1.safeWriteSkillMd)(path_1.default.join(capturedDir, 'SKILL.md'), skillContent, { expectedName: capturedName });
+        }
+        catch (err) {
+            if (err instanceof skill_integrity_1.SkillIntegrityError) {
+                return { success: false, mode: 'CAPTURED', skill, error: err.message };
+            }
+            throw err;
+        }
         this.recordEvolution(capturedName, 'CAPTURED', sourceAnalysisId, '', afterHash, `Captured from: ${analysis.task_title}`, confidence);
         this.upsertSkillRecord(capturedName, 'captured', undefined, 0);
         return { success: true, mode: 'CAPTURED', skill: capturedName, patchApplied: `Captured from task: ${analysis.task_title}` };

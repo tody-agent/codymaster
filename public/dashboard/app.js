@@ -33,6 +33,35 @@
     }
   });
   const API = '/api';
+
+  // ── Auth token (dashboard API + WebSocket) ──
+  // The server generates a per-launch bearer token and opens the dashboard with
+  // ?token=… in the URL. Capture it, persist it, then scrub it from the visible
+  // URL so it doesn't linger in history/screenshots.
+  const TOKEN_KEY = 'cm-dashboard-token';
+  const AUTH_TOKEN = (function () {
+    try {
+      const url = new URL(location.href);
+      const fromUrl = url.searchParams.get('token');
+      if (fromUrl) {
+        try { sessionStorage.setItem(TOKEN_KEY, fromUrl); } catch {}
+        url.searchParams.delete('token');
+        history.replaceState(null, '', url.pathname + url.search + url.hash);
+        return fromUrl;
+      }
+      return sessionStorage.getItem(TOKEN_KEY) || '';
+    } catch { return ''; }
+  })();
+
+  function withAuth(opts) {
+    const o = opts ? { ...opts } : {};
+    if (AUTH_TOKEN) o.headers = { ...(o.headers || {}), Authorization: `Bearer ${AUTH_TOKEN}` };
+    return o;
+  }
+  function authFetch(url, opts) {
+    return fetch(url, withAuth(opts));
+  }
+
   const AGENT_COLORS = {
     'antigravity': '#3fb950', 'claude-code': '#bc8cff', 'codex': '#10a37f',
     'cursor': '#58a6ff', 'gemini-cli': '#d29922', 'opencode': '#ff6b6b', 'windsurf': '#f97316',
@@ -136,7 +165,7 @@
 
   // ── API Helpers ────────────────────────────
   async function fetchJSON(url, opts) {
-    const res = await fetch(url, opts);
+    const res = await fetch(url, withAuth(opts));
     if (res.status === 204) return null;
     if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.error || 'Request failed'); }
     return res.json();
@@ -1156,7 +1185,7 @@
       if (initBtn) {
         initBtn.addEventListener('click', async () => {
           try {
-            await fetch(`${API}/continuity/${projectId}/init`, { method: 'POST' });
+            await authFetch(`${API}/continuity/${projectId}/init`, { method: 'POST' });
             showToast('success', '✅ Memory initialized!');
             renderBrain();
           } catch { showToast('error', 'Failed to initialize memory'); }
@@ -1181,8 +1210,8 @@
       </div>
       <div class="brain-stat-card stat-phase">
         <div class="brain-stat-label">Phase</div>
-        <div class="brain-stat-value ${phaseClass}" style="font-size:20px">${phase.charAt(0).toUpperCase() + phase.slice(1)}</div>
-        <div class="brain-stat-detail">${projectName || 'No project'}</div>
+        <div class="brain-stat-value ${esc(phaseClass)}" style="font-size:20px">${esc(phase.charAt(0).toUpperCase() + phase.slice(1))}</div>
+        <div class="brain-stat-detail">${esc(projectName || 'No project')}</div>
       </div>
       <div class="brain-stat-card stat-updated">
         <div class="brain-stat-label">Last Updated</div>
@@ -1220,7 +1249,7 @@
             <div class="brain-learning-why">${esc(l.whyFailed || '')}</div>
             <div class="brain-learning-fix">${esc(l.howToPrevent || '')}</div>
             <div class="brain-learning-meta">
-              <span>${l.agent || 'unknown agent'}</span>
+              <span>${esc(l.agent || 'unknown agent')}</span>
               <span>${l.timestamp ? formatTimeAgo(l.timestamp) : ''}</span>
               ${l.module ? `<span>📦 ${esc(l.module)}</span>` : ''}
             </div>
@@ -1240,7 +1269,7 @@
           </div>
           <div class="brain-decision-rationale">${esc(d.rationale || '')}</div>
           <div class="brain-decision-meta">
-            <span>${d.agent || 'unknown'}</span>
+            <span>${esc(d.agent || 'unknown')}</span>
             <span>${d.timestamp ? formatTimeAgo(d.timestamp) : ''}</span>
           </div>
         </div>`).join('');
@@ -1261,7 +1290,7 @@
         const lid = btn.dataset.deleteLearning;
         if (!confirm('Delete this learning?')) return;
         try {
-          await fetch(`${API}/learnings/${brainData.projectId}/${lid}`, { method: 'DELETE' });
+          await authFetch(`${API}/learnings/${brainData.projectId}/${lid}`, { method: 'DELETE' });
           showToast('success', '🧹 Learning deleted');
           renderBrain();
         } catch { showToast('error', 'Failed to delete learning'); }
@@ -1275,7 +1304,7 @@
         const did = btn.dataset.deleteDecision;
         if (!confirm('Delete this decision?')) return;
         try {
-          await fetch(`${API}/decisions/${brainData.projectId}/${did}`, { method: 'DELETE' });
+          await authFetch(`${API}/decisions/${brainData.projectId}/${did}`, { method: 'DELETE' });
           showToast('success', '🧹 Decision deleted');
           renderBrain();
         } catch { showToast('error', 'Failed to delete decision'); }
@@ -1298,7 +1327,8 @@
 
   function connectWs() {
     const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-    ws = new WebSocket(`${protocol}//${location.host}/ws`);
+    const wsQuery = AUTH_TOKEN ? `?token=${encodeURIComponent(AUTH_TOKEN)}` : '';
+    ws = new WebSocket(`${protocol}//${location.host}/ws${wsQuery}`);
 
     ws.onopen = () => {
       console.log('WS connected');

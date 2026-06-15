@@ -8,6 +8,7 @@ exports.formatPromotionCandidates = formatPromotionCandidates;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const storage_backend_1 = require("./storage-backend");
+const skill_integrity_1 = require("./skill-integrity");
 // ─── Constants ──────────────────────────────────────────────────────────────
 const MIN_REINFORCEMENT = 3; // Minimum times a learning must be reinforced
 const MIN_PROMOTION_SCORE = 0.50; // Minimum score to qualify for promotion
@@ -97,10 +98,17 @@ class LearningPromoter {
         }
         // Generate the SKILL.md content
         const skillContent = this.generateSkillContent(learning, skillName);
-        // Create the skill
-        fs_1.default.mkdirSync(skillDir, { recursive: true });
+        // Create the skill (guarded: frontmatter name must match the folder name)
         const skillPath = path_1.default.join(skillDir, 'SKILL.md');
-        fs_1.default.writeFileSync(skillPath, skillContent, 'utf-8');
+        try {
+            (0, skill_integrity_1.safeWriteSkillMd)(skillPath, skillContent, { expectedName: skillName });
+        }
+        catch (err) {
+            if (err instanceof skill_integrity_1.SkillIntegrityError) {
+                return { promoted: false, skillName, skillPath: skillDir, learningId, reason: err.message };
+            }
+            throw err;
+        }
         // Log the promotion
         this.logPromotion(learningId, skillName, skillPath);
         return {
