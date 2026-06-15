@@ -45,8 +45,7 @@ function suggestTestFile(sourceFile) {
  */
 function runTests(testFile) {
     try {
-        const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-        const output = (0, child_process_1.execFileSync)(npxCmd, ['vitest', 'run', testFile, '--reporter=verbose'], {
+        const output = (0, child_process_1.execSync)(`npx vitest run ${testFile} --reporter=verbose`, {
             encoding: 'utf-8',
             timeout: 30000,
             stdio: ['pipe', 'pipe', 'pipe'],

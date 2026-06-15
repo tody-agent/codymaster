@@ -3,6 +3,7 @@ import path from 'path';
 import os from 'os';
 import { execFile } from 'child_process';
 import chalk from 'chalk';
+import crypto from 'crypto';
 
 /**
  * Pads a string on the right with spaces.
@@ -64,5 +65,31 @@ export function isDashboardRunning(pidFile: string): boolean {
     return true;
   } catch {
     return false;
+  }
+}
+
+/**
+ * Returns a cryptographically secure fallback token.
+ * Persists it to .cm/browse_token with 0o600 permissions so it can be reused across processes.
+ */
+export async function getFallbackToken(repoRoot: string): Promise<string> {
+  const cmDir = path.join(repoRoot, '.cm');
+  const tokenFile = path.join(cmDir, 'browse_token');
+
+  try {
+    await fs.promises.mkdir(cmDir, { recursive: true });
+    try {
+      const existing = await fs.promises.readFile(tokenFile, 'utf-8');
+      if (existing.trim()) return existing.trim();
+    } catch (e: any) {
+      if (e.code !== 'ENOENT') throw e;
+    }
+
+    const token = crypto.randomBytes(16).toString('hex');
+    await fs.promises.writeFile(tokenFile, token, { mode: 0o600, encoding: 'utf-8' });
+    return token;
+  } catch (err: any) {
+    // If fs fails (e.g. read-only filesystem), fallback to in-memory generation
+    return crypto.randomBytes(16).toString('hex');
   }
 }
