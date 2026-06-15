@@ -1306,7 +1306,10 @@
 
   function connectWs() {
     const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-    ws = new WebSocket(`${protocol}//${location.host}/ws`);
+    const tokenParams = new URLSearchParams(window.location.search);
+    const token = tokenParams.get('token') || localStorage.getItem('cm-dashboard-token') || '';
+    const wsUrl = `${protocol}//${location.host}/ws` + (token ? `?token=${token}` : '');
+    ws = new WebSocket(wsUrl);
 
     ws.onopen = () => {
       console.log('WS connected');
