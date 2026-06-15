@@ -1,6 +1,6 @@
 {
   "name": "cm",
-  "version": "7.5.0",
+  "version": "7.5.1",
   "description": "CodyMaster v7.5 — token-optimized AI agent skills (progressive disclosure, ~100 tok index → SKILL.md on demand) + slash commands + sub-agents + cm-context MCP server. Browse Hybrid Bridge, a11y snapshots, structured error collection, video recording, anti-slop design layer, and self-evolving skill hooks/monitors.",
   "author": {
     "name": "Tody Agent",
