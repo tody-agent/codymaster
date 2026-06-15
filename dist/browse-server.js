@@ -30,6 +30,15 @@ class BrowseDaemon {
         this.eventLog = new event_log_1.EventLog({ maxSize: 1000 });
         this.engineName = 'unknown';
         this.sessionActive = false;
+        /**
+         * Host-header allowlist. Only enforced when the daemon is bound to a loopback
+         * address — that is the only case where browser DNS-rebinding applies. If the
+         * operator explicitly binds to a non-loopback host (--host), they have opted
+         * into network exposure and the bearer token is the protection, so we don't
+         * second-guess the Host header (which a remote client legitimately varies).
+         */
+        this.hostGuardEnabled = true;
+        this.hostGuardEnabled = BrowseDaemon.LOOPBACK_HOSTS.has(String(this.opts.host || '127.0.0.1').toLowerCase());
         this.app.disable('x-powered-by');
         this.app.use((_req, res, next) => {
             res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -43,12 +52,14 @@ class BrowseDaemon {
         this.routes();
     }
     authMiddleware(req, res, next) {
-        // Defeat DNS-rebinding: a rebound attacker page still carries its original
-        // hostname in the Host header, so only accept loopback Host values.
-        const host = String(req.headers.host || '').split(':')[0].toLowerCase();
-        if (!BrowseDaemon.LOOPBACK_HOSTS.has(host)) {
-            res.status(403).json({ error: 'forbidden host' });
-            return;
+        // Defeat DNS-rebinding on loopback binds: a rebound attacker page still
+        // carries its original hostname in the Host header, so only accept loopback.
+        if (this.hostGuardEnabled) {
+            const host = String(req.headers.host || '').split(':')[0].toLowerCase();
+            if (!BrowseDaemon.LOOPBACK_HOSTS.has(host)) {
+                res.status(403).json({ error: 'forbidden host' });
+                return;
+            }
         }
         if (req.path === '/health')
             return next();
