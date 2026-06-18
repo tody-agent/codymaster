@@ -9,3 +9,8 @@
 **Vulnerability:** Similar to the previous issue in the Express server, the Python HTTP servers (`skills/cm-content-factory/scripts/dashboard_server.py`) and MCP servers (`skills/cm-ux-master/mcp/server.py`) defaulted to binding to `0.0.0.0` or had `0.0.0.0` hardcoded in config files (`skills/cm-ux-master/mcp/mcp-config.json`). This exposed the unauthenticated dashboards and internal design tool intelligence to the entire local network.
 **Learning:** The risk of `0.0.0.0` bindings extends beyond core services to embedded scripts, dashboard utilities, and peripheral MCP skills. If standard frameworks (like `http.server.HTTPServer` or `uvicorn`) are used without explicit `127.0.0.1` binding, they default to exposing the API/UI globally.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations (`os.getenv("HOST", "127.0.0.1")`), CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks. Regularly audit configurations (e.g., `mcp-config.json`) and source code for `0.0.0.0` literals.
+
+## 2026-06-18 - [Critical] Unauthenticated Local Network Exposure in Python Servers
+**Vulnerability:** Python scripts and MCP servers in projects/cm-ux-master and projects/cm-content-factory were binding to 0.0.0.0 instead of 127.0.0.1, exposing their unauthenticated dashboards and APIs to the entire local network.
+**Learning:** Just like Express apps, Python HTTP servers (HTTPServer) and uvicorn servers must explicitly be bound to 127.0.0.1. Using 0.0.0.0 defaults exposes the server globally.
+**Prevention:** Always default to 127.0.0.1 in configuration files, scripts, and environment variable fallbacks (os.getenv('HOST', '127.0.0.1')).
