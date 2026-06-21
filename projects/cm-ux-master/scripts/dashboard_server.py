@@ -197,7 +197,7 @@ def main():
     watcher.start()
 
     # Create server
-    server = HTTPServer(("0.0.0.0", args.port), DashboardHandler)
+    server = HTTPServer(("127.0.0.1", args.port), DashboardHandler)
     url = f"http://localhost:{args.port}"
 
     def shutdown(sig, frame):
