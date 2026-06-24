@@ -23,6 +23,7 @@ const validate_1 = require("./schemas/validate");
 const task_schema_1 = require("./schemas/task-schema");
 const security_headers_1 = require("./middleware/security-headers");
 const dashboard_auth_1 = require("./middleware/dashboard-auth");
+const rate_limiter_1 = require("./middleware/rate-limiter");
 const dashboard_project_summary_1 = require("./dashboard-project-summary");
 // ─── Dashboard Server ───────────────────────────────────────────────────────
 function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
@@ -43,7 +44,7 @@ function launchDashboard(port = data_1.DEFAULT_PORT, silent = false) {
     app.use(express_1.default.static(publicDir));
     // Everything under /api requires the bearer token. Static assets above and
     // the index shell below stay public so the page can boot and read its token.
-    app.use('/api', (0, dashboard_auth_1.requireDashboardToken)(dashboardToken));
+    app.use('/api', rate_limiter_1.apiLimiter, (0, dashboard_auth_1.requireDashboardToken)(dashboardToken));
     // ─── Project API ────────────────────────────────────────────────────────
     app.get('/api/projects', (_req, res) => {
         const data = (0, data_1.loadData)();

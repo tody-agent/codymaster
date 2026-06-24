@@ -9,3 +9,8 @@
 **Vulnerability:** Similar to the previous issue in the Express server, the Python HTTP servers (`skills/cm-content-factory/scripts/dashboard_server.py`) and MCP servers (`skills/cm-ux-master/mcp/server.py`) defaulted to binding to `0.0.0.0` or had `0.0.0.0` hardcoded in config files (`skills/cm-ux-master/mcp/mcp-config.json`). This exposed the unauthenticated dashboards and internal design tool intelligence to the entire local network.
 **Learning:** The risk of `0.0.0.0` bindings extends beyond core services to embedded scripts, dashboard utilities, and peripheral MCP skills. If standard frameworks (like `http.server.HTTPServer` or `uvicorn`) are used without explicit `127.0.0.1` binding, they default to exposing the API/UI globally.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations (`os.getenv("HOST", "127.0.0.1")`), CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks. Regularly audit configurations (e.g., `mcp-config.json`) and source code for `0.0.0.0` literals.
+
+## 2024-06-24 - Rate Limiter for Dashboard API
+**Vulnerability:** The local dashboard API lacked rate limiting on sensitive API endpoints, allowing potential local DoS attacks.
+**Learning:** Even local APIs must be guarded against high-volume attacks, specially if they hold sensitive data or operations. Use established libraries like `express-rate-limit`. Do not add `@types/*` for libraries that already ship with types to avoid technical debt.
+**Prevention:** Always add rate limits for APIs handling actions, and check for built-in type definitions for new dependencies.

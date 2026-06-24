@@ -21,6 +21,7 @@ import { createTaskSchema, updateTaskSchema, autoSyncSchema, createProjectSchema
 import { securityHeaders } from './middleware/security-headers';
 import { hostGuard, requireDashboardToken } from './middleware/dashboard-auth';
 import { metricsHandler } from './middleware/metrics';
+import { apiLimiter } from './middleware/rate-limiter';
 import { getProjectActiveAgents } from './dashboard-project-summary';
 
 // ─── Dashboard Server ───────────────────────────────────────────────────────
@@ -48,7 +49,7 @@ export function launchDashboard(port: number = DEFAULT_PORT, silent: boolean = f
 
   // Everything under /api requires the bearer token. Static assets above and
   // the index shell below stay public so the page can boot and read its token.
-  app.use('/api', requireDashboardToken(dashboardToken));
+  app.use('/api', apiLimiter, requireDashboardToken(dashboardToken));
 
   // ─── Project API ────────────────────────────────────────────────────────
 
