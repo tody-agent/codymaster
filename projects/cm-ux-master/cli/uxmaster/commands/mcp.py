@@ -26,7 +26,7 @@ def mcp():
 
 @mcp.command()
 @click.option('--port', '-p', default=3000, help='Server port')
-@click.option('--host', '-h', default='0.0.0.0', help='Server host')
+@click.option('--host', '-h', default='127.0.0.1', help='Server host')
 @click.option('--detach', '-d', is_flag=True, help='Run in background')
 def start(port: int, host: str, detach: bool):
     """Start the MCP server.
