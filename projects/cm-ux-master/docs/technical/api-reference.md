@@ -232,7 +232,7 @@ uxm mcp start [options]
 | Option            | Description     | Default     |
 | ----------------- | --------------- | ----------- |
 | `--port, -p`    | Server port     | `3000`    |
-| `--host, -h`    | Server host     | `0.0.0.0` |
+| `--host, -h`    | Server host     | `127.0.0.1` |
 | `--figma-token` | Figma API token | -           |
 
 **Example:**
