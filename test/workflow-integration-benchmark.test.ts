@@ -197,4 +197,28 @@ describe('workflow integration benchmark', () => {
       expect(modeE, platformRoot).not.toMatch(/Use when: 3\+ tasks/i);
     }
   });
+
+  it('guards the shared autonomy policy across every platform distribution', () => {
+    const canonical = fs.readFileSync(
+      path.join(REPO_ROOT, 'skills/_shared/autonomy-policy.md'),
+      'utf8',
+    );
+    const platformRoots = [
+      '.aider', '.amazonq', '.amp', '.claude-desktop', '.claude', '.cline', '.codex',
+      '.continue', '.copilot', '.cursor-plugin', '.gemini', '.kiro', '.opencode', '.windsurf',
+    ];
+
+    for (const platformRoot of platformRoots) {
+      const policy = fs.readFileSync(
+        path.join(REPO_ROOT, platformRoot, 'skills/_shared/autonomy-policy.md'),
+        'utf8',
+      );
+      const execution = fs.readFileSync(
+        path.join(REPO_ROOT, platformRoot, 'skills/cm-execution/SKILL.md'),
+        'utf8',
+      );
+      expect(policy, platformRoot).toBe(canonical);
+      expect(execution, platformRoot).toMatch(/\.\.\/_shared\/autonomy-policy\.md/);
+    }
+  });
 });

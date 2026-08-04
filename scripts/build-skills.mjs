@@ -13,6 +13,7 @@
  *   node scripts/build-skills.mjs --check                         # template + (when --platforms) drift check
  *   node scripts/build-skills.mjs --platforms cursor,codex,opencode
  *   node scripts/build-skills.mjs --all-platforms
+ *   node scripts/build-skills.mjs --all-platforms --shared-only autonomy-policy.md
  */
 import fs from 'fs';
 import path from 'path';
@@ -33,6 +34,7 @@ function getFlag(name) {
 
 const platformsArg = getFlag('platforms');
 const allPlatforms = args.includes('--all-platforms');
+const sharedOnlyArg = getFlag('shared-only');
 
 // All 14 supported platforms
 const PLATFORM_DIRS = {
@@ -203,9 +205,14 @@ else if (platformsArg) {
 }
 
 if (platforms.length > 0) {
+  const sharedOnly = sharedOnlyArg
+    ? sharedOnlyArg.split(',').map(s => s.trim()).filter(Boolean)
+    : [];
   // Get ALL cm-* skills (not just top 35)
-  const list = getAllCmSkills();
-  console.log(`build-skills: found ${list.length} cm-* skills to sync`);
+  const list = sharedOnly.length > 0 ? [] : getAllCmSkills();
+  console.log(sharedOnly.length > 0
+    ? `build-skills: syncing ${sharedOnly.length} shared asset(s) only`
+    : `build-skills: found ${list.length} cm-* skills to sync`);
 
   for (const platform of platforms) {
     const dst = PLATFORM_DIRS[platform];
@@ -216,8 +223,18 @@ if (platforms.length > 0) {
     
     let synced = 0, skipped = 0, drift = 0, missing = 0;
     
-    // Sync _shared/ helpers
-    const sharedResult = copySharedHelpers(skillsRoot, dst);
+    // Sync either selected shared assets or every shared helper.
+    const sharedResult = sharedOnly.length > 0
+      ? sharedOnly.reduce((result, name) => {
+        const src = path.join(skillsRoot, '_shared', name);
+        if (!fs.existsSync(src) || !fs.statSync(src).isFile()) {
+          console.error(`build-skills: missing shared asset 'skills/_shared/${name}'`);
+          process.exit(2);
+        }
+        result[copyFileIdempotent(src, path.join(dst, '_shared', name))]++;
+        return result;
+      }, { synced: 0, skipped: 0, drift: 0 })
+      : copySharedHelpers(skillsRoot, dst);
     synced += sharedResult.synced;
     skipped += sharedResult.skipped;
     drift += sharedResult.drift;
@@ -239,6 +256,7 @@ if (platforms.length > 0) {
       process.exit(2);
     }
     const tag = check ? 'check' : 'sync';
-    console.log(`build-skills[${platform}] ${tag}: synced=${synced} skipped=${skipped} drift=${drift} missing=${missing} total=${list.length + 1}`);
+    const total = sharedOnly.length > 0 ? sharedOnly.length : list.length + 1;
+    console.log(`build-skills[${platform}] ${tag}: synced=${synced} skipped=${skipped} drift=${drift} missing=${missing} total=${total}`);
   }
 }

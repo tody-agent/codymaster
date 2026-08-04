@@ -42,6 +42,8 @@
     "check:platforms": "node scripts/build-skills.mjs --platforms cursor,codex,opencode --check",
     "sync:all": "node scripts/build-skills.mjs --all-platforms",
     "sync:all:check": "node scripts/build-skills.mjs --all-platforms --check",
+    "sync:autonomy-policy": "node scripts/build-skills.mjs --all-platforms --shared-only autonomy-policy.md",
+    "check:autonomy-policy": "node scripts/build-skills.mjs --all-platforms --shared-only autonomy-policy.md --check",
     "pack:plugin": "node scripts/pack-plugin.mjs",
     "changelog": "bash scripts/update-changelog.sh",
     "changelog:dry": "bash scripts/update-changelog.sh --dry-run",

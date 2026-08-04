@@ -60,6 +60,25 @@ export function evaluateWorkflowContractArtifacts(
   const modeE = contents.get('skills/cm-execution/references/mode-e-triz-parallel.md')!;
   const planCommand = contents.get('commands/plan.md')!;
   const buildCommand = contents.get('commands/build.md')!;
+  const policyDistributionAligned = PLATFORM_ROOTS.every(platformRoot => {
+    const platformPolicyPath = path.join(
+      projectPath,
+      platformRoot,
+      'skills/_shared/autonomy-policy.md',
+    );
+    const executionPath = path.join(
+      projectPath,
+      platformRoot,
+      'skills/cm-execution/SKILL.md',
+    );
+    if (!fs.existsSync(platformPolicyPath) || !fs.existsSync(executionPath)) return false;
+    const platformPolicy = fs.readFileSync(platformPolicyPath, 'utf8');
+    const platformExecution = fs.readFileSync(executionPath, 'utf8');
+    return (
+      platformPolicy === policy
+      && /\.\.\/_shared\/autonomy-policy\.md/i.test(platformExecution)
+    );
+  });
   const distributionAligned = PLATFORM_ROOTS.every(platformRoot => {
     const skill = fs.readFileSync(
       path.join(projectPath, platformRoot, 'skills/cm-execution/SKILL.md'),
@@ -105,6 +124,11 @@ export function evaluateWorkflowContractArtifacts(
         && /(?:without|do not request) per-step or per-batch re-approval/i.test(execution)
       ),
       message: 'one scoped plan approval through review is not consistently defined',
+    },
+    {
+      id: 'distributed-autonomy-policy',
+      passed: policyDistributionAligned,
+      message: 'shared autonomy policy is missing, unlinked, or drifted in a platform distribution',
     },
     {
       id: 'ambiguity',

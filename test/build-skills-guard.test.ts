@@ -71,4 +71,37 @@ describe('build-skills sync guard', () => {
     expect(fs.existsSync(mirrored)).toBe(true);
     expect(fs.readFileSync(mirrored, 'utf8')).toContain('name: cm-ux-master');
   });
+
+  it('syncs one shared asset without rewriting platform skills', () => {
+    const tmp = makeTempRepo();
+    temps.push(tmp);
+
+    writeFile(
+      path.join(tmp, 'skills', '_shared', 'autonomy-policy.md'),
+      '# Canonical autonomy policy\n'
+    );
+    writeFile(
+      path.join(tmp, 'skills', 'cm-existing', 'SKILL.md'),
+      '---\nname: cm-existing\ndescription: "canonical"\n---\n\n# Canonical\n'
+    );
+    writeFile(
+      path.join(tmp, '.codex', 'skills', 'cm-existing', 'SKILL.md'),
+      '# Keep this platform-specific file\n'
+    );
+
+    execFileSync(
+      process.execPath,
+      ['scripts/build-skills.mjs', '--platforms', 'codex', '--shared-only', 'autonomy-policy.md'],
+      { cwd: tmp, encoding: 'utf8', stdio: 'pipe' },
+    );
+
+    expect(fs.readFileSync(
+      path.join(tmp, '.codex', 'skills', '_shared', 'autonomy-policy.md'),
+      'utf8',
+    )).toBe('# Canonical autonomy policy\n');
+    expect(fs.readFileSync(
+      path.join(tmp, '.codex', 'skills', 'cm-existing', 'SKILL.md'),
+      'utf8',
+    )).toBe('# Keep this platform-specific file\n');
+  });
 });
