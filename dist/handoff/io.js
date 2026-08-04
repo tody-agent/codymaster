@@ -48,6 +48,119 @@ const DATA_KEYS = {
     'retro@1': ['sprint_id', 'learnings'],
     'party@1': ['topic', 'personas'],
 };
+const PLAN_TASK_KEYS = [
+    'id',
+    'goal',
+    'deliverable',
+    'files',
+    'dependencies',
+    'interfaces',
+    'acceptance_criteria',
+    'steps',
+    'verification',
+    'commit_boundary',
+];
+const PLACEHOLDER_PATTERN = /\b(?:TODO|TBD|implement later|fill in details|add tests|handle edge cases|appropriate error handling|write tests for the above|similar to task)\b/i;
+function requireObject(value, location) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+        throw new HandoffError(`${location} must be an object`);
+    }
+    return value;
+}
+function requireString(value, location) {
+    if (typeof value !== 'string' || value.trim() === '') {
+        throw new HandoffError(`${location} must be a non-empty string`);
+    }
+    return value;
+}
+function requireStringArray(value, location, allowEmpty = true) {
+    if (!Array.isArray(value) || (!allowEmpty && value.length === 0)) {
+        throw new HandoffError(`${location} must be ${allowEmpty ? 'an' : 'a non-empty'} array`);
+    }
+    return value.map((item, index) => requireString(item, `${location}[${index}]`));
+}
+function rejectPlaceholders(value, location) {
+    if (typeof value === 'string' && PLACEHOLDER_PATTERN.test(value)) {
+        throw new HandoffError(`${location} contains placeholder text`);
+    }
+    if (Array.isArray(value)) {
+        value.forEach((item, index) => rejectPlaceholders(item, `${location}[${index}]`));
+    }
+    else if (value && typeof value === 'object') {
+        for (const [key, item] of Object.entries(value)) {
+            rejectPlaceholders(item, `${location}.${key}`);
+        }
+    }
+}
+function validatePlanTaskSpecs(data) {
+    if (!('task_specs' in data))
+        return;
+    if (!Array.isArray(data.task_specs) || data.task_specs.length === 0) {
+        throw new HandoffError('handoff[plan@1].data.task_specs must be a non-empty array');
+    }
+    const taskIds = new Set();
+    data.task_specs.forEach((value, taskIndex) => {
+        const location = `handoff[plan@1].data.task_specs[${taskIndex}]`;
+        const task = requireObject(value, location);
+        for (const key of PLAN_TASK_KEYS) {
+            if (!(key in task))
+                throw new HandoffError(`${location} missing key: ${key}`);
+        }
+        const id = requireString(task.id, `${location}.id`);
+        if (taskIds.has(id))
+            throw new HandoffError(`${location}.id must be unique: ${id}`);
+        taskIds.add(id);
+        requireString(task.goal, `${location}.goal`);
+        requireString(task.deliverable, `${location}.deliverable`);
+        requireString(task.commit_boundary, `${location}.commit_boundary`);
+        requireStringArray(task.dependencies, `${location}.dependencies`);
+        requireStringArray(task.acceptance_criteria, `${location}.acceptance_criteria`, false);
+        if (!Array.isArray(task.files) || task.files.length === 0) {
+            throw new HandoffError(`${location}.files must be a non-empty array`);
+        }
+        task.files.forEach((fileValue, fileIndex) => {
+            const fileLocation = `${location}.files[${fileIndex}]`;
+            const file = requireObject(fileValue, fileLocation);
+            requireString(file.path, `${fileLocation}.path`);
+            if (!['create', 'modify', 'delete'].includes(String(file.action))) {
+                throw new HandoffError(`${fileLocation}.action must be create, modify, or delete`);
+            }
+        });
+        const interfaces = requireObject(task.interfaces, `${location}.interfaces`);
+        requireStringArray(interfaces.consumes, `${location}.interfaces.consumes`);
+        requireStringArray(interfaces.produces, `${location}.interfaces.produces`);
+        if (!Array.isArray(task.steps) || task.steps.length === 0) {
+            throw new HandoffError(`${location}.steps must be a non-empty array`);
+        }
+        const stepIds = new Set();
+        task.steps.forEach((stepValue, stepIndex) => {
+            const stepLocation = `${location}.steps[${stepIndex}]`;
+            const step = requireObject(stepValue, stepLocation);
+            const stepId = requireString(step.id, `${stepLocation}.id`);
+            if (stepIds.has(stepId)) {
+                throw new HandoffError(`${stepLocation}.id must be unique: ${stepId}`);
+            }
+            stepIds.add(stepId);
+            requireString(step.action, `${stepLocation}.action`);
+            requireStringArray(step.files, `${stepLocation}.files`, false);
+            const cycle = requireObject(step.test_cycle, `${stepLocation}.test_cycle`);
+            if (!['red', 'green', 'refactor', 'verify'].includes(String(cycle.phase))) {
+                throw new HandoffError(`${stepLocation}.test_cycle.phase is invalid`);
+            }
+            requireString(cycle.command, `${stepLocation}.test_cycle.command`);
+            requireString(cycle.expected_result, `${stepLocation}.test_cycle.expected_result`);
+        });
+        const verification = requireObject(task.verification, `${location}.verification`);
+        requireString(verification.command, `${location}.verification.command`);
+        requireString(verification.expected_result, `${location}.verification.expected_result`);
+        rejectPlaceholders(task, location);
+    });
+    for (const firstTask of requireStringArray(data.first_tasks, 'handoff[plan@1].data.first_tasks')) {
+        if (!taskIds.has(firstTask)) {
+            throw new HandoffError(`handoff[plan@1].data.first_tasks references missing task_specs id: ${firstTask}`);
+        }
+    }
+}
 function validateHandoff(obj) {
     if (!obj || typeof obj !== 'object') {
         throw new HandoffError('handoff must be an object');
@@ -70,6 +183,9 @@ function validateHandoff(obj) {
         if (!(k in data)) {
             throw new HandoffError(`handoff[${schema}].data missing key: ${k}`);
         }
+    }
+    if (schema === 'plan@1') {
+        validatePlanTaskSpecs(data);
     }
 }
 function writeHandoff(projectPath, handoff) {

@@ -10,6 +10,9 @@ import {
   formatIntegrityReport,
   SkillIntegrityError,
 } from '../src/skill-integrity';
+import { validateHandoff } from '../src/handoff';
+
+const REPO_ROOT = path.resolve(__dirname, '..');
 
 let tmpDir: string;
 
@@ -144,5 +147,21 @@ describe('scanSkillIntegrity', () => {
     writeSkill(tmpDir, 'cm-a', skillMd('cm-a'));
     const issues = scanSkillIntegrity(path.join(tmpDir, 'skills'));
     expect(issues).toHaveLength(0);
+  });
+});
+
+describe('cm-planning contract integrity', () => {
+  it('ships a plan handoff example accepted by the runtime validator', () => {
+    const skill = fs.readFileSync(
+      path.join(REPO_ROOT, 'skills', 'cm-planning', 'SKILL.md'),
+      'utf8'
+    );
+    const example = skill.match(
+      /Write `\.cm\/handoff\/plan\.json`:[\s\S]*?```json\n([\s\S]*?)\n```/
+    );
+
+    expect(example, 'cm-planning must include a plan.json example').not.toBeNull();
+    const handoff = JSON.parse(example![1]);
+    expect(() => validateHandoff(handoff)).not.toThrow();
   });
 });
