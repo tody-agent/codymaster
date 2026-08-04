@@ -1,46 +1,52 @@
 # Mode B — Subagent-Driven Development
 
-> Use when: plan has independent tasks, you want to stay in this session, quality matters more than raw speed.
+> Use when an approved execution-ready plan has ordered or dependent tasks and the harness can create isolated subagent sessions.
 
-## Process
-1. **Read plan** from `openspec/changes/[initiative-name]/tasks.md` and extract all tasks with full text.
-2. **Per task:**
-   - Dispatch an **implementer** subagent with full task text.
-   - Answer subagent questions if any.
-   - Subagent implements, tests, self-reviews, and reports back.
-   - Dispatch **spec reviewer** to confirm spec match.
-   - Dispatch **code quality reviewer** to confirm quality.
-   - If issues appear: implementer fixes → re-review → repeat, max 2 cycles.
-3. **After all tasks** → final review via `cm-code-review`.
+## Capability pre-flight
 
-## Prompt Template (Implementer)
-```markdown
-Implement [TASK_NAME]:
+Confirm that the harness can start a fresh session, resume the same implementer for fixes, and start independent reviewer sessions. Codex uses a new `codex exec` session for each initial role and resumes only the implementer session for fixes. Never emulate an independent review by asking the implementer to change persona.
 
-[Full task text from plan]
+If isolated subagents are unavailable, use Mode F for sequential persona rotation and disclose that review independence is reduced. If the harness cannot preserve even sequential role boundaries, use Mode A with coordinator-owned verification. Do not label either fallback Mode B.
 
-Context: [Where this fits in the project]
+## Input contract
 
-Rules:
-- Follow TDD (cm-tdd)
-- Self-review before reporting
-- Ask questions if unclear
+Read `PlanHandoff.data.task_specs` from `.cm/handoff/plan.json`. Process tasks serially. Each initial implementer receives a `codymaster-subagent-task@1` envelope containing only:
 
-Return: Summary of what you did + test results
-```
+- the complete `PlanTaskSpec`;
+- global constraints and repository instructions;
+- the task's consumed and produced interfaces;
+- relevant upstream outputs;
+- allowed files, verification requirements, role, and parent coordination ID.
 
-## Persona
-Read `references/persona-dispatch.md` to choose engineer / reviewer / security / architect voices.
+Do not paste the full conversation, unrelated plan tasks, or another agent's summary into fresh context. A fix resumes the same implementer and adds only the current review findings.
 
-## Red Flags
-- Never start on `main` or `master` without consent.
-- Never skip spec review or quality review.
-- Never dispatch parallel implementers in Mode B. Use Mode E for that.
-- Never accept "close enough" on spec compliance.
+## Required lifecycle
 
-## Common Mistakes
-| Mistake | Fix |
-|---|---|
-| Implementer also reviews own code | Always dispatch separate reviewer |
-| Prompt is vague | Paste the full task text and context |
-| Re-review loop exceeds 2 cycles | Escalate: that is a planning problem |
+For each task, call the package entry point `codymaster/mode-b` (implemented by `src/mode-b-orchestrator.ts`):
+
+1. Start a fresh implementer. It implements, tests, self-reviews, and returns the structured report.
+2. The coordinator inspects actual changed files against `PlanTaskSpec.files`.
+3. Start an independent spec reviewer. It checks literal acceptance criteria and interfaces before any quality review.
+4. Only after spec approval, start an independent quality reviewer.
+5. Return findings to the same implementer. After every fix, run spec review before quality review again.
+6. Allow at most two fix/re-review cycles. A further rejection is a planning defect/blocker for the coordinator, not permission for an unbounded loop.
+7. Run coordinator-owned verification from `task.verification`. Subagent summaries and self-reported tests are evidence to inspect, never completion proof.
+
+The coordinator owns the final decision and processes one task at a time. Mode B never dispatches parallel implementers; use Mode E for independent tasks after its conflict pre-flight.
+
+## Questions and authorization
+
+Answer questions from the approved plan, repository instructions, interfaces, and relevant upstream output without interrupting the user. Resume the asking session with that answer. Ask the user only when the answer changes scope or authorization; follow `_shared/autonomy-policy.md` for destructive or sensitive actions.
+
+## Report requirements
+
+Every subagent returns JSON with `verdict`, `summary`, `modifiedFiles`, `findings`, and `selfReview`. Implementers must include a non-empty self-review. Reviewers must not modify files and must be independent from the implementer. Treat malformed reports, unauthorized actual file changes, backend failures, and failed fresh verification as blockers.
+
+## Red flags
+
+- Starting on `main` or `master` without consent.
+- Running quality review before spec approval.
+- Sending a finding to a new implementer instead of the original implementer.
+- Trusting reported file lists without coordinator inspection.
+- Exceeding two re-review cycles.
+- Running Mode B tasks in parallel.

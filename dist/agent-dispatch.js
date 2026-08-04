@@ -5,6 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateDispatch = validateDispatch;
 exports.generateTaskEnvelope = generateTaskEnvelope;
+exports.generateModeBTaskEnvelope = generateModeBTaskEnvelope;
+exports.buildAgentTaskCliCommand = buildAgentTaskCliCommand;
 exports.dispatchTaskToAgent = dispatchTaskToAgent;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
@@ -113,8 +115,67 @@ function generateTaskEnvelope(task, project, dashboardPort = 6969) {
         },
     };
 }
+function normalizeRepoRelativePath(filePath) {
+    if (!filePath
+        || filePath.includes('\0')
+        || path_1.default.posix.isAbsolute(filePath)
+        || path_1.default.win32.isAbsolute(filePath)) {
+        throw new Error(`Unsafe repository-relative path: ${filePath}`);
+    }
+    const normalized = path_1.default.posix.normalize(filePath.replace(/\\/g, '/')).replace(/^\.\//, '');
+    if (normalized === '..' || normalized.startsWith('../')) {
+        throw new Error(`Unsafe repository-relative path: ${filePath}`);
+    }
+    return normalized;
+}
+function generateModeBTaskEnvelope(task, project, options) {
+    const allowedFiles = task.files.map(file => normalizeRepoRelativePath(file.path));
+    return {
+        schema: 'codymaster-subagent-task@1',
+        coordination: Object.assign({ parentId: options.coordinationId, taskId: task.id, attempt: options.attempt }, (options.targetAgentId ? { targetAgentId: options.targetAgentId } : {})),
+        assignment: {
+            role: options.role,
+            task,
+            allowedFiles,
+            priorReviewFeedback: options.priorReviewFeedback,
+        },
+        context: {
+            globalConstraints: options.globalConstraints,
+            interfaces: task.interfaces,
+            repoInstructions: options.repoInstructions,
+            upstreamOutputs: options.upstreamOutputs,
+        },
+        execution: {
+            workspace: project.path,
+            freshContext: !options.targetAgentId,
+            serial: true,
+            selfReviewRequired: options.role === 'implementer',
+        },
+        verification: task.verification,
+        responseContract: {
+            format: 'json',
+            required: ['verdict', 'summary', 'modifiedFiles', 'findings', 'selfReview'],
+            verdicts: ['pass', 'changes_requested', 'question', 'block'],
+        },
+    };
+}
 function generateTaskFileContent(task, project, dashboardPort = 6969) {
     return JSON.stringify(generateTaskEnvelope(task, project, dashboardPort), null, 2);
+}
+function buildAgentTaskCliCommand(agent, relativePath) {
+    if (!/^[a-zA-Z0-9._/-]+$/.test(relativePath) || relativePath.split('/').includes('..')) {
+        throw new Error(`Unsafe agent task path: ${relativePath}`);
+    }
+    const quotedPath = `"${relativePath}"`;
+    const commands = {
+        'antigravity': `antigravity -p < ${quotedPath}`,
+        'codex': `codex exec - < ${quotedPath}`,
+        'opencode': `opencode --task ${quotedPath}`,
+        'cursor': `cursor --task ${quotedPath}`,
+        'gemini-cli': `gemini run --task ${quotedPath}`,
+        'claude-code': `claude -p < ${quotedPath}`,
+    };
+    return commands[agent] || `# Open and run: ${relativePath}`;
 }
 // ─── Dispatcher ─────────────────────────────────────────────────────────────
 function dispatchTaskToAgent(task, project, force = false) {
@@ -163,14 +224,6 @@ function dispatchTaskToAgent(task, project, force = false) {
     }
     // Generate CLI command
     const relativePath = path_1.default.relative(project.path, filePath);
-    const AGENT_CLI = {
-        'antigravity': `antigravity -p "$(cat \\"${relativePath}\\")"`,
-        'codex': `codex exec "$(cat \\"${relativePath}\\")"`,
-        'opencode': `opencode --task "${relativePath}"`,
-        'cursor': `cursor --task "${relativePath}"`,
-        'gemini-cli': `gemini run --task "${relativePath}"`,
-        'claude-code': `claude -p "$(cat \\"${relativePath}\\")"`,
-    };
-    const cliCommand = AGENT_CLI[task.agent] || `# Open and run: ${relativePath}`;
+    const cliCommand = buildAgentTaskCliCommand(task.agent, relativePath);
     return { success: true, filePath, prompt: content, cliCommand };
 }

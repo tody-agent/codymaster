@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import type { Task, Project } from './data';
+import type { PlanTaskInterfaces, PlanTaskSpec } from './handoff/contracts';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -11,6 +12,69 @@ export interface DispatchResult {
   cliCommand?: string;
   error?: string;
   errorCode?: 'NO_AGENT' | 'MANUAL_AGENT' | 'NO_PROJECT_PATH' | 'PATH_NOT_FOUND' | 'ALREADY_DISPATCHED' | 'WRITE_ERROR' | 'TASK_NOT_FOUND' | 'PROJECT_NOT_FOUND';
+}
+
+export type ModeBAgentRole = 'implementer' | 'spec-reviewer' | 'quality-reviewer';
+
+export interface ModeBFinding {
+  severity: 'info' | 'warn' | 'error' | 'critical';
+  message: string;
+  file?: string;
+  line?: number;
+}
+
+export interface ModeBReviewFeedback extends ModeBFinding {
+  source: ModeBAgentRole | 'coordinator';
+}
+
+export interface ModeBUpstreamOutput {
+  taskId: string;
+  output: string;
+}
+
+export interface ModeBEnvelopeOptions {
+  coordinationId: string;
+  role: ModeBAgentRole;
+  attempt: number;
+  globalConstraints: string[];
+  repoInstructions: string[];
+  upstreamOutputs: ModeBUpstreamOutput[];
+  priorReviewFeedback: ModeBReviewFeedback[];
+  targetAgentId?: string;
+}
+
+export interface ModeBTaskEnvelope {
+  schema: 'codymaster-subagent-task@1';
+  coordination: {
+    parentId: string;
+    taskId: string;
+    attempt: number;
+    targetAgentId?: string;
+  };
+  assignment: {
+    role: ModeBAgentRole;
+    task: PlanTaskSpec;
+    allowedFiles: string[];
+    priorReviewFeedback: ModeBReviewFeedback[];
+  };
+  context: {
+    globalConstraints: string[];
+    interfaces: PlanTaskInterfaces;
+    repoInstructions: string[];
+    upstreamOutputs: ModeBUpstreamOutput[];
+  };
+  execution: {
+    workspace: string;
+    freshContext: boolean;
+    serial: true;
+    selfReviewRequired: boolean;
+  };
+  verification: PlanTaskSpec['verification'];
+  responseContract: {
+    format: 'json';
+    required: string[];
+    verdicts: string[];
+  };
 }
 
 // ─── Agent Display Names ────────────────────────────────────────────────────
@@ -132,8 +196,81 @@ export function generateTaskEnvelope(task: Task, project: Project, dashboardPort
   };
 }
 
+function normalizeRepoRelativePath(filePath: string): string {
+  if (
+    !filePath
+    || filePath.includes('\0')
+    || path.posix.isAbsolute(filePath)
+    || path.win32.isAbsolute(filePath)
+  ) {
+    throw new Error(`Unsafe repository-relative path: ${filePath}`);
+  }
+  const normalized = path.posix.normalize(filePath.replace(/\\/g, '/')).replace(/^\.\//, '');
+  if (normalized === '..' || normalized.startsWith('../')) {
+    throw new Error(`Unsafe repository-relative path: ${filePath}`);
+  }
+  return normalized;
+}
+
+export function generateModeBTaskEnvelope(
+  task: PlanTaskSpec,
+  project: Project,
+  options: ModeBEnvelopeOptions,
+): ModeBTaskEnvelope {
+  const allowedFiles = task.files.map(file => normalizeRepoRelativePath(file.path));
+  return {
+    schema: 'codymaster-subagent-task@1',
+    coordination: {
+      parentId: options.coordinationId,
+      taskId: task.id,
+      attempt: options.attempt,
+      ...(options.targetAgentId ? { targetAgentId: options.targetAgentId } : {}),
+    },
+    assignment: {
+      role: options.role,
+      task,
+      allowedFiles,
+      priorReviewFeedback: options.priorReviewFeedback,
+    },
+    context: {
+      globalConstraints: options.globalConstraints,
+      interfaces: task.interfaces,
+      repoInstructions: options.repoInstructions,
+      upstreamOutputs: options.upstreamOutputs,
+    },
+    execution: {
+      workspace: project.path,
+      freshContext: !options.targetAgentId,
+      serial: true,
+      selfReviewRequired: options.role === 'implementer',
+    },
+    verification: task.verification,
+    responseContract: {
+      format: 'json',
+      required: ['verdict', 'summary', 'modifiedFiles', 'findings', 'selfReview'],
+      verdicts: ['pass', 'changes_requested', 'question', 'block'],
+    },
+  };
+}
+
 function generateTaskFileContent(task: Task, project: Project, dashboardPort: number = 6969): string {
   return JSON.stringify(generateTaskEnvelope(task, project, dashboardPort), null, 2);
+}
+
+export function buildAgentTaskCliCommand(agent: string, relativePath: string): string {
+  if (!/^[a-zA-Z0-9._/-]+$/.test(relativePath) || relativePath.split('/').includes('..')) {
+    throw new Error(`Unsafe agent task path: ${relativePath}`);
+  }
+  const quotedPath = `"${relativePath}"`;
+  const commands: Record<string, string> = {
+    'antigravity': `antigravity -p < ${quotedPath}`,
+    'codex': `codex exec - < ${quotedPath}`,
+    'opencode': `opencode --task ${quotedPath}`,
+    'cursor': `cursor --task ${quotedPath}`,
+    'gemini-cli': `gemini run --task ${quotedPath}`,
+    'claude-code': `claude -p < ${quotedPath}`,
+  };
+  return commands[agent] || `# Open and run: ${relativePath}`;
 }
 
 // ─── Dispatcher ─────────────────────────────────────────────────────────────
@@ -186,15 +323,7 @@ export function dispatchTaskToAgent(task: Task, project: Project, force: boolean
 
   // Generate CLI command
   const relativePath = path.relative(project.path, filePath);
-  const AGENT_CLI: Record<string, string> = {
-    'antigravity': `antigravity -p "$(cat \\"${relativePath}\\")"`,
-    'codex': `codex exec "$(cat \\"${relativePath}\\")"`,
-    'opencode': `opencode --task "${relativePath}"`,
-    'cursor': `cursor --task "${relativePath}"`,
-    'gemini-cli': `gemini run --task "${relativePath}"`,
-    'claude-code': `claude -p "$(cat \\"${relativePath}\\")"`,
-  };
-  const cliCommand = AGENT_CLI[task.agent] || `# Open and run: ${relativePath}`;
+  const cliCommand = buildAgentTaskCliCommand(task.agent, relativePath);
 
   return { success: true, filePath, prompt: content, cliCommand };
 }

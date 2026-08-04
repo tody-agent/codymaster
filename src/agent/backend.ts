@@ -17,6 +17,11 @@ export interface AgentSession {
   cancel(reason?: string): Promise<void>;
 }
 
+export interface AgentBackendCapabilities {
+  isolatedSessions: boolean;
+  resumableSessions: boolean;
+}
+
 export type AgentMessage =
   | { type: 'text';        content: string;   sessionId?: string }
   | { type: 'thinking';    content: string }
@@ -53,6 +58,7 @@ export type FailureReason =
 
 export interface AgentBackend {
   name: string;
+  capabilities?: AgentBackendCapabilities;
   detectVersion(): Promise<string>;
   execute(prompt: string, opts: ExecOptions): Promise<AgentSession>;
 }
