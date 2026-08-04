@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
 import type { BenchConfig } from '../../codybench/types';
+import { createDefaultBenchConfig } from '../../codybench/config';
 import { tddRegressionSuite }   from '../../codybench/suites/tdd-regression';
 import { tokenEfficiencySuite } from '../../codybench/suites/token-efficiency';
 import { memoryRetentionSuite } from '../../codybench/suites/memory-retention';
@@ -17,6 +18,16 @@ const SUITES = [
   workflowIntegrationSuite,
 ];
 
+function loadConfig(outputRoot: string): BenchConfig {
+  const configPath = path.join(outputRoot, 'codybench', 'config.json');
+  if (!fs.existsSync(configPath)) return createDefaultBenchConfig();
+  try {
+    return JSON.parse(fs.readFileSync(configPath, 'utf8')) as BenchConfig;
+  } catch {
+    throw new Error(`Invalid CodyBench config: ${configPath}`);
+  }
+}
+
 export function registerBenchCommands(program: Command): void {
   program
     .command('bench')
@@ -25,15 +36,15 @@ export function registerBenchCommands(program: Command): void {
     .option('--runs <n>', 'Override repeat count per suite', parseInt)
     .option('--output <path>', 'Output JSON file path')
     .action(async (opts: { suite?: string; runs?: number; output?: string }) => {
-      const projectPath = process.cwd();
-      const configPath = path.join(projectPath, 'codybench', 'config.json');
-
+      const outputRoot = process.cwd();
+      const artifactRoot = path.resolve(__dirname, '../../..');
       let config: BenchConfig;
       try {
-        config = JSON.parse(fs.readFileSync(configPath, 'utf-8')) as BenchConfig;
-      } catch {
-        console.error(chalk.red('Error: codybench/config.json not found. Run from project root.'));
+        config = loadConfig(outputRoot);
+      } catch (error) {
+        console.error(chalk.red(error instanceof Error ? error.message : String(error)));
         process.exit(1);
+        return;
       }
 
       // Override repeat if --runs provided
@@ -53,7 +64,7 @@ export function registerBenchCommands(program: Command): void {
       const allResults = [];
       for (const suite of suitesToRun) {
         process.stdout.write(chalk.dim(`  Running ${suite.name}...`));
-        const results = await runSuite(suite, config, projectPath);
+        const results = await runSuite(suite, config, artifactRoot);
         allResults.push(...results);
         console.log(chalk.green(' done'));
       }
@@ -62,7 +73,8 @@ export function registerBenchCommands(program: Command): void {
       console.log('\n' + formatLeaderboard(aggregates) + '\n');
 
       const outputPath = opts.output
-        ?? path.join(projectPath, config.output_dir, `results-${Date.now()}.json`);
+        ? path.resolve(outputRoot, opts.output)
+        : path.join(outputRoot, config.output_dir, `results-${Date.now()}.json`);
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
       fs.writeFileSync(outputPath, JSON.stringify({ config, results: allResults, aggregates }, null, 2));
       console.log(chalk.dim(`Results saved to: ${outputPath}`));
