@@ -46,8 +46,8 @@ export function suggestTestFile(sourceFile: string): string {
  */
 export function runTests(testFile: string): { failures: number; output: string } {
   try {
-    const npxCommand = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-    const output = execFileSync(npxCommand, ['vitest', 'run', testFile, '--reporter=verbose'], {
+    const vitestPath = path.join(process.cwd(), 'node_modules', 'vitest', 'vitest.mjs');
+    const output = execFileSync(process.execPath, [vitestPath, 'run', testFile, '--reporter=verbose'], {
       encoding: 'utf-8',
       timeout: 30000,
       stdio: ['pipe', 'pipe', 'pipe'],
