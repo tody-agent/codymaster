@@ -108,6 +108,7 @@ describe('workflow integration benchmark', () => {
       passed: false,
       tasksCompleted: 1,
       distinctImplementers: 1,
+      distinctAgentSessions: 2,
       lifecycleCoveragePct: 50,
       coordinatorVerificationCoveragePct: 50,
       dispatchRoles: [],
@@ -145,6 +146,7 @@ describe('workflow integration benchmark', () => {
     expect(probe.passed).toBe(true);
     expect(probe.tasksCompleted).toBe(2);
     expect(probe.distinctImplementers).toBe(2);
+    expect(probe.distinctAgentSessions).toBe(6);
     expect(probe.lifecycleCoveragePct).toBe(100);
     expect(probe.coordinatorVerificationCoveragePct).toBe(100);
     expect(probe.dispatchRoles).toEqual([
@@ -155,6 +157,24 @@ describe('workflow integration benchmark', () => {
       'feature.2:spec-reviewer',
       'feature.2:quality-reviewer',
     ]);
+  });
+
+  it('rejects plan tasks with out-of-scope steps or broken RED to GREEN cycles', () => {
+    const baseTask = workflowIntegrationFixtures.find(
+      fixture => fixture.id === 'multi-step-feature',
+    )!.current.planTasks![0];
+    const outsideScope = JSON.parse(JSON.stringify(baseTask));
+    outsideScope.steps[0].files = ['docs/outside-scope.md'];
+    const orphanRed = JSON.parse(JSON.stringify(baseTask));
+    orphanRed.steps = orphanRed.steps.filter(
+      (step: { test_cycle: { phase: string } }) => step.test_cycle.phase !== 'green',
+    );
+    const greenBeforeRed = JSON.parse(JSON.stringify(baseTask));
+    greenBeforeRed.steps.reverse();
+
+    expect(isCompletePlanTask(outsideScope)).toBe(false);
+    expect(isCompletePlanTask(orphanRed)).toBe(false);
+    expect(isCompletePlanTask(greenBeforeRed)).toBe(false);
   });
 
   it('keeps the two-independent-task Mode E route synchronized for Codex', () => {
@@ -195,6 +215,30 @@ describe('workflow integration benchmark', () => {
       expect(skill, platformRoot).not.toMatch(/SPEED \+ QUALITY on 3\+ tasks/i);
       expect(modeE, platformRoot).toMatch(/2\+ independent tasks/i);
       expect(modeE, platformRoot).not.toMatch(/Use when: 3\+ tasks/i);
+    }
+  });
+
+  it('guards the shared autonomy policy across every platform distribution', () => {
+    const canonical = fs.readFileSync(
+      path.join(REPO_ROOT, 'skills/_shared/autonomy-policy.md'),
+      'utf8',
+    );
+    const platformRoots = [
+      '.aider', '.amazonq', '.amp', '.claude-desktop', '.claude', '.cline', '.codex',
+      '.continue', '.copilot', '.cursor-plugin', '.gemini', '.kiro', '.opencode', '.windsurf',
+    ];
+
+    for (const platformRoot of platformRoots) {
+      const policy = fs.readFileSync(
+        path.join(REPO_ROOT, platformRoot, 'skills/_shared/autonomy-policy.md'),
+        'utf8',
+      );
+      const execution = fs.readFileSync(
+        path.join(REPO_ROOT, platformRoot, 'skills/cm-execution/SKILL.md'),
+        'utf8',
+      );
+      expect(policy, platformRoot).toBe(canonical);
+      expect(execution, platformRoot).toMatch(/\.\.\/_shared\/autonomy-policy\.md/);
     }
   });
 });

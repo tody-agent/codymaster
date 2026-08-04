@@ -15,6 +15,10 @@ const ENTRY_POINTS = [
   'commands/plan.md',
   'commands/build.md',
 ];
+const PLATFORM_ROOTS = [
+  '.aider', '.amazonq', '.amp', '.claude-desktop', '.claude', '.cline', '.codex',
+  '.continue', '.copilot', '.cursor-plugin', '.gemini', '.kiro', '.opencode', '.windsurf',
+];
 
 const errors = [];
 
@@ -100,10 +104,31 @@ for (const [relativePath, text] of entryContents) {
   }
 }
 
+for (const platformRoot of PLATFORM_ROOTS) {
+  const platformPolicyPath = `${platformRoot}/skills/_shared/autonomy-policy.md`;
+  const platformPolicy = read(platformPolicyPath);
+  if (platformPolicy && platformPolicy !== policy) {
+    errors.push(`${platformPolicyPath}: content drifted from ${POLICY}`);
+  }
+
+  const executionPath = `${platformRoot}/skills/cm-execution/SKILL.md`;
+  const execution = read(executionPath);
+  const link = execution.match(/\]\(([^)\s]*autonomy-policy\.md)\)/i)?.[1];
+  if (!link) {
+    errors.push(`${executionPath}: must link to the distributed autonomy policy`);
+    continue;
+  }
+  const resolvedLink = path.resolve(path.dirname(path.join(root, executionPath)), link);
+  const expectedPolicy = path.resolve(root, platformPolicyPath);
+  if (resolvedLink !== expectedPolicy) {
+    errors.push(`${executionPath}: autonomy policy link must resolve to ${platformPolicyPath}`);
+  }
+}
+
 if (errors.length > 0) {
   for (const error of errors) console.error(`✗ ${error}`);
   console.error(`autonomy-policy: ${errors.length} error(s)`);
   process.exit(1);
 }
 
-console.log(`autonomy-policy: OK (${ENTRY_POINTS.length} entry points)`);
+console.log(`autonomy-policy: OK (${ENTRY_POINTS.length} entry points, ${PLATFORM_ROOTS.length} platforms)`);

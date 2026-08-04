@@ -6,6 +6,10 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 const VALIDATOR = path.join(REPO_ROOT, 'scripts', 'validate-autonomy-policy.mjs');
+const PLATFORM_ROOTS = [
+  '.aider', '.amazonq', '.amp', '.claude-desktop', '.claude', '.cline', '.codex',
+  '.continue', '.copilot', '.cursor-plugin', '.gemini', '.kiro', '.opencode', '.windsurf',
+];
 
 const validFiles: Record<string, string> = {
   'skills/_shared/autonomy-policy.md': `# Autonomy and confirmation policy
@@ -63,6 +67,18 @@ function makeFixture(): string {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
     fs.writeFileSync(filePath, content, 'utf8');
   }
+  for (const platformRoot of PLATFORM_ROOTS) {
+    const policyPath = path.join(platformRoot, 'skills', '_shared', 'autonomy-policy.md');
+    const skillPath = path.join(platformRoot, 'skills', 'cm-execution', 'SKILL.md');
+    for (const [relativePath, content] of [
+      [policyPath, validFiles['skills/_shared/autonomy-policy.md']],
+      [skillPath, 'Follow [the shared autonomy policy](../_shared/autonomy-policy.md).\n'],
+    ]) {
+      const filePath = path.join(root, relativePath);
+      fs.mkdirSync(path.dirname(filePath), { recursive: true });
+      fs.writeFileSync(filePath, content, 'utf8');
+    }
+  }
   return root;
 }
 
@@ -106,5 +122,37 @@ describe('autonomy policy validator', () => {
     fs.writeFileSync(path.join(root, 'commands/build.md'), '# Build\n\nImplement the feature.\n', 'utf8');
 
     expect(() => validate(root)).toThrowError(/commands\/build\.md.*shared autonomy policy/i);
+  });
+
+  it('rejects a platform with a missing shared policy copy', () => {
+    const root = makeFixture();
+    fixtures.push(root);
+    fs.rmSync(path.join(root, '.codex/skills/_shared/autonomy-policy.md'));
+
+    expect(() => validate(root)).toThrowError(/\.codex\/skills\/_shared\/autonomy-policy\.md.*missing/i);
+  });
+
+  it('rejects platform policy content drift', () => {
+    const root = makeFixture();
+    fixtures.push(root);
+    fs.appendFileSync(
+      path.join(root, '.codex/skills/_shared/autonomy-policy.md'),
+      '\nPlatform-only drift.\n',
+      'utf8',
+    );
+
+    expect(() => validate(root)).toThrowError(/\.codex\/skills\/_shared\/autonomy-policy\.md.*drift/i);
+  });
+
+  it('rejects a broken platform policy link', () => {
+    const root = makeFixture();
+    fixtures.push(root);
+    fs.writeFileSync(
+      path.join(root, '.codex/skills/cm-execution/SKILL.md'),
+      'Follow [the shared autonomy policy](../../missing/autonomy-policy.md).\n',
+      'utf8',
+    );
+
+    expect(() => validate(root)).toThrowError(/\.codex\/skills\/cm-execution\/SKILL\.md.*resolve/i);
   });
 });

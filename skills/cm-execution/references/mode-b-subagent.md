@@ -4,7 +4,7 @@
 
 ## Capability pre-flight
 
-Confirm that the harness can start a fresh session, resume the same implementer for fixes, and start independent reviewer sessions. Codex uses a new `codex exec` session for each initial role and resumes only the implementer session for fixes. Never emulate an independent review by asking the implementer to change persona.
+Confirm that the harness can start a fresh session, resume the same implementer for fixes, and start independent reviewer sessions. Each task must have three distinct session IDs: implementer, spec reviewer, and quality reviewer. Codex uses a new `codex exec` session for each initial role and resumes only the implementer session for fixes. Never emulate an independent review by asking the implementer to change persona.
 
 If isolated subagents are unavailable, use Mode F for sequential persona rotation and disclose that review independence is reduced. If the harness cannot preserve even sequential role boundaries, use Mode A with coordinator-owned verification. Do not label either fallback Mode B.
 

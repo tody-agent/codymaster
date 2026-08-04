@@ -13,7 +13,7 @@ The `workflow-integration` CodyBench suite is a deterministic regression benchma
 cm bench --suite workflow-integration --runs 1
 ```
 
-It evaluates typed baseline and current observations without network access or model credentials. Current scoring is independently grounded in the shipped planning skill, autonomy policy, `/plan` and `/build` commands, execution-mode references, and all 14 platform copies. For Mode B, it also executes `orchestrateModeB` with two dependent rich-plan tasks and a deterministic harness, proving the real coordinator orders fresh implementers, spec review, quality review, and final verification. The baseline is a deliberately encoded representation of pre-upgrade behavior patterns, not an aggregate of historical production transcripts.
+It evaluates typed baseline and current observations without network access or model credentials. Current scoring is independently grounded in the shipped planning skill, autonomy policy, `/plan` and `/build` commands, execution-mode references, and all 14 platform copies. For Mode B, it also executes `orchestrateModeB` with two dependent rich-plan tasks and a deterministic harness, proving the real coordinator uses three distinct agent sessions per task and orders fresh implementation, spec review, quality review, and final verification. The baseline is a deliberately encoded representation of pre-upgrade behavior patterns, not an aggregate of historical production transcripts.
 
 ## Scenario results
 
@@ -27,11 +27,11 @@ It evaluates typed baseline and current observations without network access or m
 | Dependent tasks | 2 | 0 | Serial Mode B with fresh implementers and two review gates |
 | **Total** | **9** | **3** | Normal multi-step flow never exceeds one confirmation |
 
-The current fixture also requires every rich plan task to include exact file actions, named consumed/produced interfaces, literal acceptance criteria, step-level test commands and expected results, coordinator verification, and a commit boundary. Placeholder language makes the benchmark fail.
+The current fixture also requires every rich plan task to include exact file actions, named consumed/produced interfaces, literal acceptance criteria, step-level test commands and expected results, coordinator verification, and a commit boundary. Step files must be a subset of task files, and any TDD cycle must start with RED and finish with GREEN. Placeholder language makes the benchmark fail.
 
-For Mode B, each task must record a fresh implementer, implementer self-review, spec review before quality review, a maximum of two fix/re-review cycles, and coordinator-owned verification evidence. Distinct task IDs must use distinct initial implementer sessions.
+For Mode B, each task must record a fresh implementer, implementer self-review, spec review before quality review, a maximum of two fix/re-review cycles, and coordinator-owned verification evidence. The implementer, spec reviewer, and quality reviewer must use three distinct session IDs, and distinct task IDs must use distinct initial implementer sessions.
 
-The executable Mode B probe additionally reports `actual_mode_b_tasks_completed`, `actual_mode_b_distinct_implementers`, `actual_mode_b_lifecycle_coverage_pct`, and `actual_mode_b_coordinator_verification_pct`. A probe or artifact-contract failure enters the combined violations and lowers `deterministic_checks_passed_pct` and the top-level score even if the static fixture is internally consistent.
+The executable Mode B probe additionally reports `actual_mode_b_tasks_completed`, `actual_mode_b_distinct_implementers`, `actual_mode_b_distinct_agent_sessions`, `actual_mode_b_lifecycle_coverage_pct`, and `actual_mode_b_coordinator_verification_pct`. A probe or artifact-contract failure enters the combined violations and lowers `deterministic_checks_passed_pct` and the top-level score even if the static fixture is internally consistent.
 
 ## Metrics
 

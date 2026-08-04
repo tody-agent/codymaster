@@ -142,6 +142,47 @@ describe('orchestrateModeB', () => {
     expect(result.tasks[0].verification?.evidence).toBe('1 test passed');
   });
 
+  it('blocks a spec reviewer that reuses the implementer session', async () => {
+    const result = await run(new FakeHarness([
+      implementation('same-session'),
+      review('same-session'),
+    ]));
+
+    expect(result.status).toBe('blocked');
+    expect(result.tasks[0].blocker).toEqual({
+      code: 'independence-violation',
+      message: 'Spec reviewer must be independent from implementer same-session.',
+    });
+  });
+
+  it('blocks a quality reviewer that reuses the spec reviewer session', async () => {
+    const result = await run(new FakeHarness([
+      implementation(),
+      review('shared-reviewer'),
+      review('shared-reviewer'),
+    ]));
+
+    expect(result.status).toBe('blocked');
+    expect(result.tasks[0].blocker).toEqual({
+      code: 'independence-violation',
+      message: 'Quality reviewer must be independent from spec reviewer shared-reviewer.',
+    });
+  });
+
+  it('blocks a quality reviewer that reuses the implementer session', async () => {
+    const result = await run(new FakeHarness([
+      implementation('implementer-session'),
+      review('spec-reviewer-session'),
+      review('implementer-session'),
+    ]));
+
+    expect(result.status).toBe('blocked');
+    expect(result.tasks[0].blocker).toEqual({
+      code: 'independence-violation',
+      message: 'Quality reviewer must be independent from implementer implementer-session.',
+    });
+  });
+
   it('returns spec findings to the same implementer before re-review', async () => {
     const harness = new FakeHarness([
       implementation(),

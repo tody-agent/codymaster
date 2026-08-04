@@ -77,6 +77,18 @@ Xong. Không file cấu hình. Không nghi thức setup. Chỉ cần mô tả đ
 
 ---
 
+## Quy trình thực thi có kỷ luật mặc định
+
+CodyMaster giờ duy trì một contract xuyên suốt từ lập kế hoạch đến kiểm chứng:
+
+- Plan chi tiết nêu chính xác file của từng task và giới hạn mọi step trong phạm vi đó; công việc TDD phải ghi nhận RED trước GREEN.
+- Một plan được duyệt tạo quyền thực thi có phạm vi, vì vậy công việc đúng scope tiếp tục mà không hỏi xác nhận lặp lại.
+- Mode B dùng ba session riêng biệt cho mỗi task: implementer mới, spec reviewer, rồi quality reviewer.
+- Autonomy policy dùng chung được kiểm tra và đồng bộ trên cả 14 bản phân phối platform.
+- `cm bench --suite workflow-integration --runs 1` chạy từ bất kỳ thư mục project nào, kể cả package npm đã cài, và ghi kết quả tại project đó.
+
+---
+
 ## Xem nó hoạt động
 
 Đây là cuộc trò chuyện thật — một người không biết code xây dựng trang đặt lịch:

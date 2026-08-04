@@ -81,6 +81,18 @@ That's it. No config files. No setup ritual. Just describe what you want.
 
 ---
 
+## Disciplined Delivery by Default
+
+CodyMaster now carries one execution contract from planning through verification:
+
+- Rich plans name exact task files and keep every step inside that task scope; TDD work must record RED before GREEN.
+- One approved plan grants scoped execution authorization, so in-scope work continues without repeated confirmation loops.
+- Mode B uses three distinct sessions per task: a fresh implementer, a spec reviewer, and then a quality reviewer.
+- The shared autonomy policy is validated and synchronized across all 14 supported platform distributions.
+- `cm bench --suite workflow-integration --runs 1` runs from any project directory, including an installed npm package, and writes results locally.
+
+---
+
 ## See It Work
 
 Here's a real conversation — a non-technical founder building a booking site:

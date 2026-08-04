@@ -8,6 +8,14 @@ Categories: 🚀 **Improvements** | 🐛 **Bug Fixes** | 🔒 **Security**
 
 ## [Unreleased]
 
+### 🚀 Improvements
+- **Disciplined plan-to-verification workflow** — rich plan steps must stay inside their task file scope and preserve RED → GREEN order; Mode B now requires distinct implementer, spec-reviewer, and quality-reviewer sessions.
+- **Portable workflow benchmark** — `cm bench --suite workflow-integration --runs 1` now uses packaged artifacts and a compiled default config while keeping reports in the caller's project directory.
+- **Cross-platform autonomy policy** — the canonical policy is distributed to all 14 supported platforms through a focused sync/check command that does not rewrite unrelated skill artifacts.
+
+### 🧪 Tests
+- Added regressions for out-of-scope plan steps, incomplete/reversed TDD cycles, reviewer-session reuse, missing/drifted policy copies, and packed-package benchmark execution.
+
 ---
 
 ## [7.5.1] - 2026-06-15
