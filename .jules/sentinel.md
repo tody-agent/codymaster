@@ -14,3 +14,9 @@
 **Vulnerability:** Python HTTP servers and MCP servers in the `projects/` directory were found to be binding to `0.0.0.0` (or having it as a default), exposing them to the local network.
 **Learning:** Similar to the previous issue in the `skills/` directory, the risk of `0.0.0.0` bindings also extended to the `projects/` directory.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations, CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks, regardless of whether they are in the `skills/` or `projects/` directory.
+
+## 2024-08-04 - [Critical] Command Injection via `execSync` with String Interpolation
+
+**Vulnerability:** Found a command injection vulnerability in `src/execution/tdd-gate.ts`. The `runTests` function used `execSync` with a string template that directly interpolated a variable (`testFile`), e.g., ``execSync(`npx vitest run ${testFile} --reporter=verbose`, ...)``. This implicitly launched a shell, meaning if `testFile` was ever maliciously constructed (e.g. `file.ts; echo pwned`), arbitrary shell commands could be executed.
+**Learning:** Using `execSync` or `exec` with dynamically constructed strings is dangerous, especially in environments executing automated tests or scripts, where filenames might not be sanitized properly. This is particularly problematic on Windows where batch files implicitly launch a vulnerable shell (`cmd.exe`).
+**Prevention:** Never use `execSync` or `exec` with unsanitized user-provided input or dynamic path variables string interpolation. Always use `execFileSync` or `spawnSync` instead, and pass all dynamic arguments as an array so they are safely passed to the executable without shell parsing. Additionally, avoid running batch files (like `npx.cmd`) directly and instead execute the JS entry point via `process.execPath`.
