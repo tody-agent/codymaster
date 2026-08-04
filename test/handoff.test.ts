@@ -47,6 +47,144 @@ describe('handoff', () => {
     expect(back!.data.first_tasks).toHaveLength(3);
   });
 
+  it('round-trips execution-ready plan task specs', () => {
+    const plan: PlanHandoff = {
+      schema: 'plan@1',
+      emitted_at: nowIso(),
+      emitted_by: 'cm-planning',
+      data: {
+        goal: 'Validate rich planning handoffs',
+        decisions: ['keep task_specs optional for plan@1 compatibility'],
+        first_tasks: ['1.1'],
+        task_specs: [
+          {
+            id: '1.1',
+            goal: 'Round-trip a complete task specification',
+            deliverable: 'A validated plan handoff that preserves every task field',
+            files: [
+              { path: 'test/handoff.test.ts', action: 'modify' },
+              { path: 'src/handoff/contracts.ts', action: 'modify' },
+            ],
+            dependencies: ['PlanHandoff from src/handoff/contracts.ts'],
+            interfaces: {
+              consumes: ['writeHandoff(projectPath, handoff: AnyHandoff): string'],
+              produces: ['PlanHandoff.data.task_specs?: PlanTaskSpec[]'],
+            },
+            acceptance_criteria: [
+              'readHandoff returns the same task specification written by writeHandoff',
+            ],
+            steps: [
+              {
+                id: '1.1.1',
+                action: 'Add a failing round-trip test with a literal rich task fixture',
+                files: ['test/handoff.test.ts'],
+                test_cycle: {
+                  phase: 'red',
+                  command: 'npx vitest run test/handoff.test.ts',
+                  expected_result: 'FAIL because PlanHandoff has no task_specs field',
+                },
+              },
+              {
+                id: '1.1.2',
+                action: 'Add the task specification interfaces to the plan handoff contract',
+                files: ['src/handoff/contracts.ts'],
+                test_cycle: {
+                  phase: 'green',
+                  command: 'npx vitest run test/handoff.test.ts',
+                  expected_result: 'PASS with the rich task fixture unchanged after reading',
+                },
+              },
+            ],
+            verification: {
+              command: 'npx vitest run test/handoff.test.ts',
+              expected_result: 'All handoff tests pass with zero failures',
+            },
+            commit_boundary: 'Commit the contract, validator, and handoff tests together',
+          },
+        ],
+      },
+    };
+
+    writeHandoff(tmp, plan);
+    const back = readHandoff<PlanHandoff>(tmp, 'plan@1');
+
+    expect(back!.data.task_specs).toEqual(plan.data.task_specs);
+  });
+
+  it('accepts legacy plan handoffs without task specs', () => {
+    expect(() =>
+      validateHandoff({
+        schema: 'plan@1',
+        emitted_at: nowIso(),
+        emitted_by: 'cm-planning',
+        data: {
+          goal: 'Keep existing handoffs readable',
+          decisions: [],
+          first_tasks: ['1.1'],
+        },
+      })
+    ).not.toThrow();
+  });
+
+  it('rejects incomplete rich plan task specs', () => {
+    expect(() =>
+      validateHandoff({
+        schema: 'plan@1',
+        emitted_at: nowIso(),
+        emitted_by: 'cm-planning',
+        data: {
+          goal: 'Reject task specs that cannot be executed cold',
+          decisions: [],
+          first_tasks: ['1.1'],
+          task_specs: [{ id: '1.1', goal: 'Missing execution details' }],
+        },
+      })
+    ).toThrow(/task_specs\[0\].*missing key: deliverable/);
+  });
+
+  it('rejects placeholder text in rich plan task specs', () => {
+    expect(() =>
+      validateHandoff({
+        schema: 'plan@1',
+        emitted_at: nowIso(),
+        emitted_by: 'cm-planning',
+        data: {
+          goal: 'Reject vague execution instructions',
+          decisions: [],
+          first_tasks: ['1.1'],
+          task_specs: [
+            {
+              id: '1.1',
+              goal: 'Validate task detail',
+              deliverable: 'A concrete validator',
+              files: [{ path: 'src/handoff/io.ts', action: 'modify' }],
+              dependencies: [],
+              interfaces: { consumes: [], produces: [] },
+              acceptance_criteria: ['TODO: add tests'],
+              steps: [
+                {
+                  id: '1.1.1',
+                  action: 'Implement the validator',
+                  files: ['src/handoff/io.ts'],
+                  test_cycle: {
+                    phase: 'green',
+                    command: 'npx vitest run test/handoff.test.ts',
+                    expected_result: 'All handoff tests pass',
+                  },
+                },
+              ],
+              verification: {
+                command: 'npx vitest run test/handoff.test.ts',
+                expected_result: 'All handoff tests pass',
+              },
+              commit_boundary: 'Commit validator and tests',
+            },
+          ],
+        },
+      })
+    ).toThrow(/placeholder/);
+  });
+
   it('rejects missing required envelope keys', () => {
     expect(() => validateHandoff({ schema: 'plan@1' })).toThrow(HandoffError);
   });

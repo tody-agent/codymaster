@@ -38,6 +38,47 @@ export interface IntentHandoff {
   };
 }
 
+export interface PlanFileSpec {
+  path: string;
+  action: 'create' | 'modify' | 'delete';
+}
+
+export interface PlanTaskInterfaces {
+  consumes: string[];
+  produces: string[];
+}
+
+export interface PlanStepTestCycle {
+  phase: 'red' | 'green' | 'refactor' | 'verify';
+  command: string;
+  expected_result: string;
+}
+
+export interface PlanTaskStep {
+  id: string;
+  /** One concrete action sized for roughly 2–5 minutes. */
+  action: string;
+  files: string[];
+  test_cycle: PlanStepTestCycle;
+}
+
+/** A self-contained deliverable that can pass or fail review independently. */
+export interface PlanTaskSpec {
+  id: string;
+  goal: string;
+  deliverable: string;
+  files: PlanFileSpec[];
+  dependencies: string[];
+  interfaces: PlanTaskInterfaces;
+  acceptance_criteria: string[];
+  steps: PlanTaskStep[];
+  verification: {
+    command: string;
+    expected_result: string;
+  };
+  commit_boundary: string;
+}
+
 export interface PlanHandoff {
   schema: 'plan@1';
   emitted_at: string;
@@ -46,6 +87,11 @@ export interface PlanHandoff {
     goal: string;
     decisions: string[];
     first_tasks: string[]; // task IDs e.g. ["1.1", "1.2", "1.3"]
+    /**
+     * Execution-ready task payload. Optional so existing plan@1 handoffs that
+     * only contain `first_tasks` remain readable.
+     */
+    task_specs?: PlanTaskSpec[];
     openspec_path?: string;
     risks?: string[];
   };
