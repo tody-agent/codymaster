@@ -209,6 +209,7 @@ function collectResult(
 
 export class CodexBackend implements AgentBackend {
   name = 'codex';
+  capabilities = { isolatedSessions: true, resumableSessions: true };
 
   async detectVersion(): Promise<string> {
     const proc = spawnProcess({

@@ -3,6 +3,10 @@
   "version": "7.5.1",
   "description": "CodyMaster v7.0 — 50+ AI agent skills with Browse Hybrid Bridge (agent-browser + Playwright), a11y snapshots, structured error collection, video recording. Hybrid browser automation for visual QA and testing.",
   "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./mode-b": "./dist/mode-b-orchestrator.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/tody-agent/codymaster.git"

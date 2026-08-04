@@ -172,6 +172,10 @@ function spawnProcess(opts) {
     }
     child.on('exit', () => {
         clearTimers();
+    });
+    // Wait for stdio to close so final stdout chunks are emitted before readers
+    // observe the end of the message stream.
+    child.on('close', () => {
         messageIterable.close();
     });
     child.on('error', () => {

@@ -45,17 +45,18 @@ Confirm the authorization state from the handoff, not by asking the user again:
 ## Step 2: Choose Mode
 
 ```
-Have a plan with independent tasks?
+Have an approved plan?
 ├─ Need SPEED + QUALITY on 3+ tasks?
-│   └─ YES → Mode E (TRIZ-Parallel) ★ recommended
+│   ├─ Tasks are independent and conflict pre-flight passes?
+│   │   └─ YES → Mode E (TRIZ-Parallel) ★ recommended
+│   └─ Tasks are ordered/dependent and isolated subagents are available?
+│       └─ YES → Mode B (Subagent-Driven)
 ├─ One non-trivial task, want multi-perspective without subagent cost?
 │   └─ YES → Mode F (Party, persona rotation)
 ├─ Multiple independent failures across subsystems?
 │   └─ YES → Mode C (Parallel Dispatch)
 ├─ Autonomous loop with backlog (`/cm-start` flow)?
 │   └─ YES → Mode D (RARV)
-├─ Plan has independent tasks, stay in this session?
-│   └─ YES → Mode B (Subagent-Driven)
 └─ Otherwise
     └─ Mode A (Batch Execution)
 ```
@@ -70,6 +71,8 @@ Have a plan with independent tasks?
 | F | Single agent rotates Architect → Engineer → Reviewer | `references/mode-f-party.md` |
 
 **Action:** Pick exactly one mode, read only that reference, and execute from there.
+
+Before selecting Mode B, verify the harness supports fresh and resumable isolated sessions. If it does not, route to Mode F (reduced review independence) or Mode A; never silently simulate independent reviewers in one context. Mode B is serial. Mode E remains the only mode for independent parallel tasks and always retains conflict pre-flight.
 
 ## Conditional References
 - **Mode B / E / F** → also read `references/persona-dispatch.md`

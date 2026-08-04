@@ -208,6 +208,7 @@ function collectResult(proc, transformer, startTime) {
 class CodexBackend {
     constructor() {
         this.name = 'codex';
+        this.capabilities = { isolatedSessions: true, resumableSessions: true };
     }
     detectVersion() {
         return __awaiter(this, void 0, void 0, function* () {
