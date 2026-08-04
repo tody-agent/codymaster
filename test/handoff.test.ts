@@ -15,6 +15,56 @@ import {
   type QualityHandoff,
 } from '../src/handoff';
 
+function executablePlanWithSteps(
+  steps: PlanHandoff['data']['task_specs'][number]['steps'],
+): PlanHandoff {
+  return {
+    schema: 'plan@1',
+    emitted_at: nowIso(),
+    emitted_by: 'cm-planning',
+    data: {
+      goal: 'Validate executable task boundaries',
+      decisions: [],
+      first_tasks: ['1.1'],
+      task_specs: [{
+        id: '1.1',
+        goal: 'Implement one scoped change',
+        deliverable: 'A verified scoped change',
+        files: [
+          { path: 'src/feature.ts', action: 'modify' },
+          { path: 'test/feature.test.ts', action: 'modify' },
+        ],
+        dependencies: [],
+        interfaces: { consumes: [], produces: [] },
+        acceptance_criteria: ['The focused regression test passes'],
+        steps,
+        verification: {
+          command: 'npx vitest run test/feature.test.ts',
+          expected_result: 'The focused test passes',
+        },
+        commit_boundary: 'Commit the feature and regression test together',
+      }],
+    },
+  };
+}
+
+function planStep(
+  id: string,
+  phase: 'red' | 'green' | 'refactor' | 'verify',
+  files: string[],
+) {
+  return {
+    id,
+    action: `${phase} step`,
+    files,
+    test_cycle: {
+      phase,
+      command: 'npx vitest run test/feature.test.ts',
+      expected_result: `${phase} result`,
+    },
+  };
+}
+
 describe('handoff', () => {
   let tmp: string;
 
@@ -126,6 +176,39 @@ describe('handoff', () => {
     ).not.toThrow();
   });
 
+  it('rejects a plan step that touches a file outside its task scope', () => {
+    const plan = executablePlanWithSteps([
+      planStep('1.1.1', 'verify', ['docs/outside-scope.md']),
+    ]);
+
+    expect(() => validateHandoff(plan)).toThrow(/steps\[0\]\.files\[0\].*task scope/i);
+  });
+
+  it('rejects a RED step without a later GREEN step', () => {
+    const plan = executablePlanWithSteps([
+      planStep('1.1.1', 'red', ['test/feature.test.ts']),
+    ]);
+
+    expect(() => validateHandoff(plan)).toThrow(/RED and GREEN/i);
+  });
+
+  it('rejects a GREEN step that appears before RED', () => {
+    const plan = executablePlanWithSteps([
+      planStep('1.1.1', 'green', ['src/feature.ts']),
+      planStep('1.1.2', 'red', ['test/feature.test.ts']),
+    ]);
+
+    expect(() => validateHandoff(plan)).toThrow(/RED.*before.*GREEN/i);
+  });
+
+  it('accepts a documentation task with verify-only steps', () => {
+    const plan = executablePlanWithSteps([
+      planStep('1.1.1', 'verify', ['src/feature.ts']),
+    ]);
+
+    expect(() => validateHandoff(plan)).not.toThrow();
+  });
+
   it('rejects incomplete rich plan task specs', () => {
     expect(() =>
       validateHandoff({
@@ -167,7 +250,7 @@ describe('handoff', () => {
                   action: 'Implement the validator',
                   files: ['src/handoff/io.ts'],
                   test_cycle: {
-                    phase: 'green',
+                    phase: 'verify',
                     command: 'npx vitest run test/handoff.test.ts',
                     expected_result: 'All handoff tests pass',
                   },
