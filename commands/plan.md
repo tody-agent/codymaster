@@ -5,7 +5,9 @@ argument-hint: "<feature idea or problem statement>"
 
 # /plan — Feature Planning
 
-Structured planning workflow: understand intent → explore alternatives → create implementation plan → get approval before coding.
+Structured planning workflow: understand intent → explore alternatives → create implementation plan → establish scoped execution authorization.
+
+Follow [the shared autonomy policy](../skills/_shared/autonomy-policy.md). Use its decision table and wording for every confirmation decision.
 
 ## Invocation
 
@@ -33,10 +35,14 @@ Apply the **cm-planning** skill:
 
 ### Step 3: Review
 
-Present the plan to the user for approval. Wait for sign-off before proceeding.
+For a meaningful implementation, request one approval at the plan-to-execution boundary:
+
+> Approve this plan to authorize implementation through verification within the stated scope.
+
+That approval grants scoped execution authorization to `/build` and `cm-execution`; they continue without per-step or per-batch re-approval. If the user requested planning only, deliver the plan without treating delivery as authorization. A clear, reversible micro task may skip `/plan` and proceed with zero approval.
 
 ### Step 4: Suggest Next
 
-- "Plan approved? → `/build`"
+- "Approve this plan → implementation continues through verification within scope"
 - "Need UI mockup? → `/ux`"
 - "Want to set up git worktree? → Use **cm-git-worktrees**"

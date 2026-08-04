@@ -11,9 +11,12 @@ deprecated: false
 ## TL;DR
 - **Use to** kick off a CM session — entry point
 - **Detects**: stack (Phase 2), suggests skills, reads continuity + learnings
+- **Autonomy**: selects project level from evidence; clear objectives do not need level confirmation
 - **Next**: cm-brainstorm-idea or cm-planning
 
 > **Role: Workflow Orchestrator** — You assess complexity, select the right workflow depth, and drive execution from objective to production code.
+
+Follow [`_shared/autonomy-policy.md`](../_shared/autonomy-policy.md). Its decision table controls confirmations across this workflow.
 
 When this workflow is called, the AI Assistant should execute the following action sequence in the spirit of the **CodyMaster Kit**:
 
@@ -54,28 +57,32 @@ When this workflow is called, the AI Assistant should execute the following acti
 
 1. **Understand Requirements (Planning & JTBD):**
     - Read the objective provided in the `/cm-start` command.
-    - Analyze requirements, ask clarifying questions if needed (apply `cm-planning`).
+    - Analyze requirements. Ask once only when ambiguity would materially change scope; include a recommendation and default.
     - Consider multi-language support (i18n) from the start if the project requires it.
 
 2. **Detect Project Level:**
     Per `_shared/helpers.md#Project-Level-Detection`
-    - Analyze the objective to determine L0/L1/L2/L3 complexity
-    - Present detected level and recommended skill chain to the user
-    - Let user confirm or override the level
+    - Select the L0/L1/L2/L3 project level from objective and repository evidence
+    - State the detected level and recommended skill chain, then continue without confirmation when the objective is clear
+    - Allow the user to override the level at any time; an override applies from the next safe boundary
+    - Do not treat level selection as the plan-to-execution approval boundary
 
 3. **Execute Based on Level:**
 
     **L0 (Micro):** Code + Test only
-    - Skip planning. Apply `cm-tdd` directly → `cm-quality-gate`
+    - Skip planning. A clear, reversible micro task may proceed with zero approval.
+    - Apply `cm-tdd` directly → `cm-quality-gate`
 
     **L1 (Small):** Planning lite → Code → Deploy
     - Apply `cm-planning` (lightweight implementation plan)
+    - For meaningful code changes, request one plan approval that grants scoped execution authorization
     - Apply `cm-tdd` + `cm-execution` → `cm-quality-gate`
 
     **L2 (Medium):** Full analysis flow
     - Init OpenSpec (create `openspec/changes/[initiative-name]/` folder and artifacts manually)
     - Apply `cm-brainstorm-idea` if problem is ambiguous
     - Apply `cm-planning` (full implementation plan with OpenSpec `tasks.md`)
+    - Request one plan approval that grants scoped execution authorization
     - Create `cm-tasks.json` from `tasks.md` → launch RARV autonomous execution
     - Apply `cm-quality-gate` → `cm-safe-deploy`
 
@@ -83,6 +90,7 @@ When this workflow is called, the AI Assistant should execute the following acti
     - Init OpenSpec (create `openspec/changes/[initiative-name]/` folder and artifacts manually)
     - Apply `cm-brainstorm-idea` (mandatory)
     - Apply `cm-planning` with FR/NFR requirement tracing
+    - Request one plan approval that grants scoped execution authorization
     - Sprint planning → `openspec/changes/[objective]/tasks.md` sync with `cm-tasks.json`
     - Apply `cm-execution` (Mode E: TRIZ-Parallel for speed)
     - Apply `cm-quality-gate` → `cm-safe-deploy`

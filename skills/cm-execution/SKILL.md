@@ -22,16 +22,25 @@ deprecated: false
 - **Use when** running an approved plan from `cm-planning`
 - **Reads** `handoff/plan.json` or `openspec/changes/[name]/tasks.md`
 - **Writes** `handoff/exec.json`
+- **Autonomy**: one scoped authorization, no step/batch re-approval
 - **Always** verify before reporting done
 - **Next** `cm-code-review`
 
-> **Role: Lead Developer.** You execute plans systematically with quality gates at every checkpoint.
+> **Role: Lead Developer.** You execute plans systematically with continuous verification and non-blocking status updates.
+
+Follow [`_shared/autonomy-policy.md`](../_shared/autonomy-policy.md). Treat an approved plan as scoped execution authorization through verification. Do not request per-step or per-batch re-approval inside that scope.
 
 ## Step 0: Load Working Memory (MANDATORY)
 Per `_shared/helpers.md#Load-Working-Memory`. After EACH completed task: `_shared/helpers.md#Update-Continuity`.
 
 ## Step 1: Pre-flight Skill Coverage Audit
 Scan plan tasks for tech keywords, cross-reference `cm-skill-index`, check installed skills, and use `npx skills find` when the plan reaches beyond current coverage. If `codegraph` or `cm-codeintell` context is available, inject it into agent prompts so execution skips redundant repo searching.
+
+Confirm the authorization state from the handoff, not by asking the user again:
+- Approved plan → execute its stated scope through verification.
+- Clear, reversible micro task directly requested by the user → proceed with zero approval.
+- Meaningful change without an approved plan → present a concise plan and request one approval at the plan-to-execution boundary.
+- Material scope change or sensitive action → pause under the shared policy; execution-mode selection itself never needs approval.
 
 ## Step 2: Choose Mode
 
@@ -72,6 +81,7 @@ Have a plan with independent tasks?
 - Notice unrelated dead code? Mention it, do not delete it.
 - Clean only your own orphans. Pre-existing dead code stays unless asked.
 - **Diff test:** every changed line must trace to the task.
+- After a task or batch, send a non-blocking status update and continue while scoped execution authorization remains valid.
 
 ## Integration
 | Skill | When |
@@ -90,4 +100,4 @@ Have a plan with independent tasks?
 | `/cm-dashboard` | Open browser dashboard |
 
 ## The Bottom Line
-**Choose your mode → load that one reference → execute systematically → review at every checkpoint.**
+**Choose your mode → load that one reference → execute the authorized scope → verify → review.**
