@@ -46,8 +46,8 @@ Confirm the authorization state from the handoff, not by asking the user again:
 
 ```
 Have an approved plan?
-├─ Need SPEED + QUALITY on 3+ tasks?
-│   ├─ Tasks are independent and conflict pre-flight passes?
+├─ Have 2+ independent tasks where parallel execution helps?
+│   ├─ File/dependency analysis and conflict pre-flight pass?
 │   │   └─ YES → Mode E (TRIZ-Parallel) ★ recommended
 │   └─ Tasks are ordered/dependent and isolated subagents are available?
 │       └─ YES → Mode B (Subagent-Driven)

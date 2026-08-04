@@ -38,6 +38,15 @@ Then continue with:
 
 Use `cm-skill-index` for skill discovery and selection.
 
+## Execution routing and review gates
+
+- Use Mode E for two or more independent tasks after file/dependency analysis and conflict pre-flight. Each parallel task owns a scoped quality contract.
+- Use Mode B for ordered or dependent tasks when the harness supports isolated resumable sessions. Every task receives a fresh implementer, then independent spec and quality reviewers, with coordinator verification last.
+- Use Mode F or Mode A when the harness cannot preserve Mode B session independence; disclose the reduced independence instead of labeling the fallback Mode B.
+- Reuse scoped execution authorization after plan approval. Do not add per-step or per-batch confirmation prompts unless scope or authorization changes.
+
+The [workflow integration benchmark](../benchmarks/workflow-integration.md) guards these routes alongside planning completeness, confirmation count, and sensitive-action approvals.
+
 ## See also
 
 - [How it works](../getting-started/how-it-works.md)  

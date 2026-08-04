@@ -24,11 +24,16 @@ Sprint-related runtime state is managed in `.cm/sprint` and linked by utilities 
 
 ## Recommended Flow
 
-1. Prepare context and sprint state.
-2. Run implementation tasks and validations.
-3. Run QA (including visual QA where needed).
-4. Review and canary before broader rollout.
-5. When a run degrades or a skill looks weak, use the advisory loop before changing skill behavior.
+1. Clarify only scope-changing ambiguity, grouping it into one question with a recommendation and default.
+2. Write an execution-ready plan with exact files, interfaces, commands, expected results, and independently reviewable tasks.
+3. Approve meaningful plans once at the plan-to-execution boundary; reuse that scoped authorization through review.
+4. Route two or more independent tasks to Mode E after dependency/file conflict pre-flight. Route ordered or dependent tasks to serial Mode B when isolated subagents are available.
+5. Run QA (including visual QA where needed), review, and canary before broader rollout.
+6. When a run degrades or a skill looks weak, use the advisory loop before changing skill behavior.
+
+Clear reversible micro fixes may proceed with zero approval and inline TDD. Destructive actions, production deployments, secret/payment operations, and external communication still require explicit approval for the specific action.
+
+Mode B uses a fresh implementer per task, spec review before quality review, at most two fix/re-review cycles, and coordinator-owned verification. See the [workflow integration benchmark](../benchmarks/workflow-integration.md) for deterministic regression evidence.
 
 ## Advisory Workflow
 
