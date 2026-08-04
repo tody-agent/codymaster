@@ -1,5 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { findTestFile, suggestTestFile, hasTestFile } from '../src/execution/tdd-gate';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { findTestFile, suggestTestFile, hasTestFile, runTests } from '../src/execution/tdd-gate';
+import child_process from 'child_process';
+import path from 'path';
 
 // Mock fs module
 vi.mock('fs', async () => {
@@ -67,4 +69,42 @@ describe('TDD Gate', () => {
       expect(hasTestFile(['README.md', 'package.json'])).toBe(true);
     });
   });
+
+  describe('runTests (integration)', () => {
+    it('uses process.execPath and resolves vitest.mjs to avoid batch file issues', () => {
+      // This test is designed to verify the fix for command injection via testRunner
+      // We will spy on child_process to ensure it's called with the expected array format
+      const child_process = require('child_process');
+      const execFileSyncSpy = vi.spyOn(child_process, 'execFileSync').mockReturnValue('mock output');
+
+      runTests('test/dummy.test.ts');
+
+      expect(execFileSyncSpy).toHaveBeenCalled();
+      const [cmd, args] = execFileSyncSpy.mock.calls[0];
+
+      expect(cmd).toBe(process.execPath); // Uses node directly
+      expect(args[0]).toContain('vitest.mjs'); // Points to JS entrypoint
+      expect(args[1]).toBe('run');
+      expect(args[2]).toBe('test/dummy.test.ts');
+      expect(args[3]).toBe('--reporter=verbose');
+
+      execFileSyncSpy.mockRestore();
+    });
+
+    it('returns failures when vitest exits with an error code', () => {
+      const child_process = require('child_process');
+      const execFileSyncSpy = vi.spyOn(child_process, 'execFileSync').mockImplementation(() => {
+        const err = new Error('Command failed') as any;
+        err.stdout = 'Tests failed\n2 failed\n1 passed';
+        throw err;
+      });
+
+      const result = runTests('test/fail.test.ts');
+      expect(result.failures).toBe(2);
+      expect(result.output).toContain('2 failed');
+
+      execFileSyncSpy.mockRestore();
+    });
+  });
+
 });

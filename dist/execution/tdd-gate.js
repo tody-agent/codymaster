@@ -18,6 +18,7 @@ exports.runTests = runTests;
 exports.enforceTDD = enforceTDD;
 exports.hasTestFile = hasTestFile;
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const child_process_1 = require("child_process");
 /**
  * Find test file for a given source file.
@@ -45,8 +46,10 @@ function suggestTestFile(sourceFile) {
  */
 function runTests(testFile) {
     try {
-        const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-        const output = (0, child_process_1.execFileSync)(npxCmd, ['vitest', 'run', testFile, '--reporter=verbose'], {
+        // Avoid npx/batch files on Windows by running node with vitest's CLI entrypoint directly.
+        const vitestPkgPath = require.resolve('vitest/package.json');
+        const vitestCliPath = path_1.default.join(path_1.default.dirname(vitestPkgPath), 'vitest.mjs');
+        const output = (0, child_process_1.execFileSync)(process.execPath, [vitestCliPath, 'run', testFile, '--reporter=verbose'], {
             encoding: 'utf-8',
             timeout: 30000,
             stdio: ['pipe', 'pipe', 'pipe'],

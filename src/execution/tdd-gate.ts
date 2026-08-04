@@ -46,8 +46,11 @@ export function suggestTestFile(sourceFile: string): string {
  */
 export function runTests(testFile: string): { failures: number; output: string } {
   try {
-    const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-    const output = execFileSync(npxCmd, ['vitest', 'run', testFile, '--reporter=verbose'], {
+    // Avoid npx/batch files on Windows by running node with vitest's CLI entrypoint directly.
+    const vitestPkgPath = require.resolve('vitest/package.json');
+    const vitestCliPath = path.join(path.dirname(vitestPkgPath), 'vitest.mjs');
+
+    const output = execFileSync(process.execPath, [vitestCliPath, 'run', testFile, '--reporter=verbose'], {
       encoding: 'utf-8',
       timeout: 30000,
       stdio: ['pipe', 'pipe', 'pipe'],
