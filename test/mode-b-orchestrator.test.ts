@@ -169,6 +169,20 @@ describe('orchestrateModeB', () => {
     });
   });
 
+  it('blocks a quality reviewer that reuses the implementer session', async () => {
+    const result = await run(new FakeHarness([
+      implementation('implementer-session'),
+      review('spec-reviewer-session'),
+      review('implementer-session'),
+    ]));
+
+    expect(result.status).toBe('blocked');
+    expect(result.tasks[0].blocker).toEqual({
+      code: 'independence-violation',
+      message: 'Quality reviewer must be independent from implementer implementer-session.',
+    });
+  });
+
   it('returns spec findings to the same implementer before re-review', async () => {
     const harness = new FakeHarness([
       implementation(),

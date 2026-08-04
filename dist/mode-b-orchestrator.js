@@ -297,6 +297,7 @@ function runTask(options, task, usedImplementerIds) {
                 return blockedTask(task.id, reviewCycles, trace, specResult.blocker, implementerId);
             }
             const specReview = specResult.report;
+            const specReviewerId = specReview.agentId;
             if (specReview.agentId === implementerId) {
                 return blockedTask(task.id, reviewCycles, trace, {
                     code: 'independence-violation',
@@ -336,6 +337,12 @@ function runTask(options, task, usedImplementerIds) {
                 return blockedTask(task.id, reviewCycles, trace, {
                     code: 'independence-violation',
                     message: `Quality reviewer must be independent from implementer ${implementerId}.`,
+                }, implementerId);
+            }
+            if (qualityReview.agentId === specReviewerId) {
+                return blockedTask(task.id, reviewCycles, trace, {
+                    code: 'independence-violation',
+                    message: `Quality reviewer must be independent from spec reviewer ${specReviewerId}.`,
                 }, implementerId);
             }
             const qualityMutation = yield ensureReviewerDidNotModifyWorkspace(options, task, workspaceState, 'Quality reviewer', qualityReview.agentId);

@@ -32,6 +32,7 @@ export interface ModeBIntegrationProbeResult {
   passed: boolean;
   tasksCompleted: number;
   distinctImplementers: number;
+  distinctAgentSessions: number;
   lifecycleCoveragePct: number;
   coordinatorVerificationCoveragePct: number;
   dispatchRoles: string[];
@@ -57,6 +58,14 @@ function hasText(value: string): boolean {
 }
 
 export function isCompletePlanTask(task: PlanTaskSpec): boolean {
+  const taskFiles = new Set(task.files.map(file => file.path));
+  const tddPhases = task.steps
+    .map(step => step.test_cycle.phase)
+    .filter(phase => phase === 'red' || phase === 'green');
+  const validTddCycle = (
+    tddPhases.length === 0
+    || (tddPhases[0] === 'red' && tddPhases[tddPhases.length - 1] === 'green')
+  );
   return (
     hasText(task.goal)
     && hasText(task.deliverable)
@@ -73,10 +82,11 @@ export function isCompletePlanTask(task: PlanTaskSpec): boolean {
       hasText(step.id)
       && hasText(step.action)
       && step.files.length > 0
-      && step.files.every(hasText)
+      && step.files.every(file => hasText(file) && taskFiles.has(file))
       && hasText(step.test_cycle.command)
       && hasText(step.test_cycle.expected_result)
     ))
+    && validTddCycle
     && hasText(task.verification.command)
     && hasText(task.verification.expected_result)
     && hasText(task.commit_boundary)
@@ -293,6 +303,7 @@ export function combineCurrentWorkflowEvidence(
       artifact_contract_checks_passed_pct: percentage(artifacts.passedChecks, artifacts.totalChecks),
       actual_mode_b_tasks_completed: probe.tasksCompleted,
       actual_mode_b_distinct_implementers: probe.distinctImplementers,
+      actual_mode_b_distinct_agent_sessions: probe.distinctAgentSessions,
       actual_mode_b_lifecycle_coverage_pct: probe.lifecycleCoveragePct,
       actual_mode_b_coordinator_verification_pct: probe.coordinatorVerificationCoveragePct,
       deterministic_checks_passed_pct: score,
@@ -305,6 +316,7 @@ export async function runModeBIntegrationProbe(projectPath: string): Promise<Mod
   const tasks = workflowIntegrationFixtures.find(fixture => fixture.id === 'multi-step-feature')!
     .current.planTasks!;
   const dispatchRoles: string[] = [];
+  const agentSessions: string[] = [];
   const project: Project = {
     id: 'workflow-benchmark',
     name: 'Workflow benchmark fixture',
@@ -317,8 +329,10 @@ export async function runModeBIntegrationProbe(projectPath: string): Promise<Mod
       const { role } = envelope.assignment;
       const { taskId } = envelope.coordination;
       dispatchRoles.push(`${taskId}:${role}`);
+      const agentId = role === 'implementer' ? `implementer-${taskId}` : `${role}-${taskId}`;
+      agentSessions.push(agentId);
       return {
-        agentId: role === 'implementer' ? `implementer-${taskId}` : `${role}-${taskId}`,
+        agentId,
         verdict: 'pass',
         summary: `${role} passed ${taskId}`,
         modifiedFiles: role === 'implementer'
@@ -360,17 +374,20 @@ export async function runModeBIntegrationProbe(projectPath: string): Promise<Mod
   )).length;
   const verified = result.tasks.filter(task => task.verification?.passed && task.verification.evidence).length;
   const distinctImplementers = new Set(implementers).size;
+  const distinctAgentSessions = new Set(agentSessions).size;
   const passed = (
     result.status === 'completed'
     && result.tasks.length === tasks.length
     && lifecyclePassing === tasks.length
     && verified === tasks.length
     && distinctImplementers === tasks.length
+    && distinctAgentSessions === tasks.length * 3
   );
   return {
     passed,
     tasksCompleted: result.tasks.filter(task => task.status === 'completed').length,
     distinctImplementers,
+    distinctAgentSessions,
     lifecycleCoveragePct: percentage(lifecyclePassing, tasks.length),
     coordinatorVerificationCoveragePct: percentage(verified, tasks.length),
     dispatchRoles,

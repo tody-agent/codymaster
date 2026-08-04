@@ -16,6 +16,7 @@ exports.registerBenchCommands = registerBenchCommands;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
+const config_1 = require("../../codybench/config");
 const tdd_regression_1 = require("../../codybench/suites/tdd-regression");
 const token_efficiency_1 = require("../../codybench/suites/token-efficiency");
 const memory_retention_1 = require("../../codybench/suites/memory-retention");
@@ -28,6 +29,17 @@ const SUITES = [
     memory_retention_1.memoryRetentionSuite,
     workflow_integration_1.workflowIntegrationSuite,
 ];
+function loadConfig(outputRoot) {
+    const configPath = path_1.default.join(outputRoot, 'codybench', 'config.json');
+    if (!fs_1.default.existsSync(configPath))
+        return (0, config_1.createDefaultBenchConfig)();
+    try {
+        return JSON.parse(fs_1.default.readFileSync(configPath, 'utf8'));
+    }
+    catch (_a) {
+        throw new Error(`Invalid CodyBench config: ${configPath}`);
+    }
+}
 function registerBenchCommands(program) {
     program
         .command('bench')
@@ -36,16 +48,16 @@ function registerBenchCommands(program) {
         .option('--runs <n>', 'Override repeat count per suite', parseInt)
         .option('--output <path>', 'Output JSON file path')
         .action((opts) => __awaiter(this, void 0, void 0, function* () {
-        var _a;
-        const projectPath = process.cwd();
-        const configPath = path_1.default.join(projectPath, 'codybench', 'config.json');
+        const outputRoot = process.cwd();
+        const artifactRoot = path_1.default.resolve(__dirname, '../../..');
         let config;
         try {
-            config = JSON.parse(fs_1.default.readFileSync(configPath, 'utf-8'));
+            config = loadConfig(outputRoot);
         }
-        catch (_b) {
-            console.error(chalk_1.default.red('Error: codybench/config.json not found. Run from project root.'));
+        catch (error) {
+            console.error(chalk_1.default.red(error instanceof Error ? error.message : String(error)));
             process.exit(1);
+            return;
         }
         // Override repeat if --runs provided
         if (opts.runs)
@@ -61,13 +73,15 @@ function registerBenchCommands(program) {
         const allResults = [];
         for (const suite of suitesToRun) {
             process.stdout.write(chalk_1.default.dim(`  Running ${suite.name}...`));
-            const results = yield (0, claude_code_1.runSuite)(suite, config, projectPath);
+            const results = yield (0, claude_code_1.runSuite)(suite, config, artifactRoot);
             allResults.push(...results);
             console.log(chalk_1.default.green(' done'));
         }
         const aggregates = (0, automated_1.aggregateResults)(allResults);
         console.log('\n' + (0, automated_1.formatLeaderboard)(aggregates) + '\n');
-        const outputPath = (_a = opts.output) !== null && _a !== void 0 ? _a : path_1.default.join(projectPath, config.output_dir, `results-${Date.now()}.json`);
+        const outputPath = opts.output
+            ? path_1.default.resolve(outputRoot, opts.output)
+            : path_1.default.join(outputRoot, config.output_dir, `results-${Date.now()}.json`);
         fs_1.default.mkdirSync(path_1.default.dirname(outputPath), { recursive: true });
         fs_1.default.writeFileSync(outputPath, JSON.stringify({ config, results: allResults, aggregates }, null, 2));
         console.log(chalk_1.default.dim(`Results saved to: ${outputPath}`));

@@ -35,6 +35,16 @@ function evaluateWorkflowContractArtifacts(projectPath, overrides = {}) {
     const modeE = contents.get('skills/cm-execution/references/mode-e-triz-parallel.md');
     const planCommand = contents.get('commands/plan.md');
     const buildCommand = contents.get('commands/build.md');
+    const policyDistributionAligned = PLATFORM_ROOTS.every(platformRoot => {
+        const platformPolicyPath = path_1.default.join(projectPath, platformRoot, 'skills/_shared/autonomy-policy.md');
+        const executionPath = path_1.default.join(projectPath, platformRoot, 'skills/cm-execution/SKILL.md');
+        if (!fs_1.default.existsSync(platformPolicyPath) || !fs_1.default.existsSync(executionPath))
+            return false;
+        const platformPolicy = fs_1.default.readFileSync(platformPolicyPath, 'utf8');
+        const platformExecution = fs_1.default.readFileSync(executionPath, 'utf8');
+        return (platformPolicy === policy
+            && /\.\.\/_shared\/autonomy-policy\.md/i.test(platformExecution));
+    });
     const distributionAligned = PLATFORM_ROOTS.every(platformRoot => {
         const skill = fs_1.default.readFileSync(path_1.default.join(projectPath, platformRoot, 'skills/cm-execution/SKILL.md'), 'utf8');
         const reference = fs_1.default.readFileSync(path_1.default.join(projectPath, platformRoot, 'skills/cm-execution/references/mode-e-triz-parallel.md'), 'utf8');
@@ -68,6 +78,11 @@ function evaluateWorkflowContractArtifacts(projectPath, overrides = {}) {
                 && /scoped execution authorization/i.test(planCommand)
                 && /(?:without|do not request) per-step or per-batch re-approval/i.test(execution)),
             message: 'one scoped plan approval through review is not consistently defined',
+        },
+        {
+            id: 'distributed-autonomy-policy',
+            passed: policyDistributionAligned,
+            message: 'shared autonomy policy is missing, unlinked, or drifted in a platform distribution',
         },
         {
             id: 'ambiguity',

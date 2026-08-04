@@ -108,6 +108,7 @@ describe('workflow integration benchmark', () => {
       passed: false,
       tasksCompleted: 1,
       distinctImplementers: 1,
+      distinctAgentSessions: 2,
       lifecycleCoveragePct: 50,
       coordinatorVerificationCoveragePct: 50,
       dispatchRoles: [],
@@ -145,6 +146,7 @@ describe('workflow integration benchmark', () => {
     expect(probe.passed).toBe(true);
     expect(probe.tasksCompleted).toBe(2);
     expect(probe.distinctImplementers).toBe(2);
+    expect(probe.distinctAgentSessions).toBe(6);
     expect(probe.lifecycleCoveragePct).toBe(100);
     expect(probe.coordinatorVerificationCoveragePct).toBe(100);
     expect(probe.dispatchRoles).toEqual([
@@ -155,6 +157,24 @@ describe('workflow integration benchmark', () => {
       'feature.2:spec-reviewer',
       'feature.2:quality-reviewer',
     ]);
+  });
+
+  it('rejects plan tasks with out-of-scope steps or broken RED to GREEN cycles', () => {
+    const baseTask = workflowIntegrationFixtures.find(
+      fixture => fixture.id === 'multi-step-feature',
+    )!.current.planTasks![0];
+    const outsideScope = JSON.parse(JSON.stringify(baseTask));
+    outsideScope.steps[0].files = ['docs/outside-scope.md'];
+    const orphanRed = JSON.parse(JSON.stringify(baseTask));
+    orphanRed.steps = orphanRed.steps.filter(
+      (step: { test_cycle: { phase: string } }) => step.test_cycle.phase !== 'green',
+    );
+    const greenBeforeRed = JSON.parse(JSON.stringify(baseTask));
+    greenBeforeRed.steps.reverse();
+
+    expect(isCompletePlanTask(outsideScope)).toBe(false);
+    expect(isCompletePlanTask(orphanRed)).toBe(false);
+    expect(isCompletePlanTask(greenBeforeRed)).toBe(false);
   });
 
   it('keeps the two-independent-task Mode E route synchronized for Codex', () => {

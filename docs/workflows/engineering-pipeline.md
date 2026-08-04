@@ -33,7 +33,7 @@ Sprint-related runtime state is managed in `.cm/sprint` and linked by utilities 
 
 Clear reversible micro fixes may proceed with zero approval and inline TDD. Destructive actions, production deployments, secret/payment operations, and external communication still require explicit approval for the specific action.
 
-Mode B uses a fresh implementer per task, spec review before quality review, at most two fix/re-review cycles, and coordinator-owned verification. See the [workflow integration benchmark](../benchmarks/workflow-integration.md) for deterministic regression evidence.
+Mode B uses three distinct sessions per task: a fresh implementer, a spec reviewer, and a quality reviewer. Reviews stay ordered, fixes return to the implementer for at most two re-review cycles, and verification remains coordinator-owned. See the [workflow integration benchmark](../benchmarks/workflow-integration.md) for deterministic regression evidence.
 
 ## Advisory Workflow
 

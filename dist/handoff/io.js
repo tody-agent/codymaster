@@ -118,10 +118,11 @@ function validatePlanTaskSpecs(data) {
         if (!Array.isArray(task.files) || task.files.length === 0) {
             throw new HandoffError(`${location}.files must be a non-empty array`);
         }
+        const taskFiles = new Set();
         task.files.forEach((fileValue, fileIndex) => {
             const fileLocation = `${location}.files[${fileIndex}]`;
             const file = requireObject(fileValue, fileLocation);
-            requireString(file.path, `${fileLocation}.path`);
+            taskFiles.add(requireString(file.path, `${fileLocation}.path`));
             if (!['create', 'modify', 'delete'].includes(String(file.action))) {
                 throw new HandoffError(`${fileLocation}.action must be create, modify, or delete`);
             }
@@ -133,6 +134,7 @@ function validatePlanTaskSpecs(data) {
             throw new HandoffError(`${location}.steps must be a non-empty array`);
         }
         const stepIds = new Set();
+        const tddPhases = [];
         task.steps.forEach((stepValue, stepIndex) => {
             const stepLocation = `${location}.steps[${stepIndex}]`;
             const step = requireObject(stepValue, stepLocation);
@@ -142,14 +144,29 @@ function validatePlanTaskSpecs(data) {
             }
             stepIds.add(stepId);
             requireString(step.action, `${stepLocation}.action`);
-            requireStringArray(step.files, `${stepLocation}.files`, false);
+            const stepFiles = requireStringArray(step.files, `${stepLocation}.files`, false);
+            stepFiles.forEach((stepFile, fileIndex) => {
+                if (!taskFiles.has(stepFile)) {
+                    throw new HandoffError(`${stepLocation}.files[${fileIndex}] must be within the task scope`);
+                }
+            });
             const cycle = requireObject(step.test_cycle, `${stepLocation}.test_cycle`);
             if (!['red', 'green', 'refactor', 'verify'].includes(String(cycle.phase))) {
                 throw new HandoffError(`${stepLocation}.test_cycle.phase is invalid`);
             }
+            if (cycle.phase === 'red' || cycle.phase === 'green') {
+                tddPhases.push(cycle.phase);
+            }
             requireString(cycle.command, `${stepLocation}.test_cycle.command`);
             requireString(cycle.expected_result, `${stepLocation}.test_cycle.expected_result`);
         });
+        if (tddPhases.length > 0 && (!tddPhases.includes('red') || !tddPhases.includes('green'))) {
+            throw new HandoffError(`${location}.steps using TDD must include both RED and GREEN phases`);
+        }
+        if (tddPhases.length > 0
+            && (tddPhases[0] !== 'red' || tddPhases[tddPhases.length - 1] !== 'green')) {
+            throw new HandoffError(`${location}.steps must put RED before GREEN`);
+        }
         const verification = requireObject(task.verification, `${location}.verification`);
         requireString(verification.command, `${location}.verification.command`);
         requireString(verification.expected_result, `${location}.verification.expected_result`);
