@@ -6,15 +6,21 @@ import type { BenchConfig } from '../../codybench/types';
 import { tddRegressionSuite }   from '../../codybench/suites/tdd-regression';
 import { tokenEfficiencySuite } from '../../codybench/suites/token-efficiency';
 import { memoryRetentionSuite } from '../../codybench/suites/memory-retention';
+import { workflowIntegrationSuite } from '../../codybench/suites/workflow-integration';
 import { runSuite }             from '../../codybench/runners/claude-code';
 import { aggregateResults, formatLeaderboard } from '../../codybench/judges/automated';
 
-const SUITES = [tddRegressionSuite, tokenEfficiencySuite, memoryRetentionSuite];
+const SUITES = [
+  tddRegressionSuite,
+  tokenEfficiencySuite,
+  memoryRetentionSuite,
+  workflowIntegrationSuite,
+];
 
 export function registerBenchCommands(program: Command): void {
   program
     .command('bench')
-    .description('Run CodyBench evaluation suites (v0.1)')
+    .description('Run CodyBench evaluation suites')
     .option('--suite <id>', 'Run specific suite (default: all enabled)')
     .option('--runs <n>', 'Override repeat count per suite', parseInt)
     .option('--output <path>', 'Output JSON file path')

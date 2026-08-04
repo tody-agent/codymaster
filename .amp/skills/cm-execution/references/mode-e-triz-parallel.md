@@ -1,6 +1,6 @@
 # Mode E — TRIZ-Parallel ★
 
-> Use when: 3+ tasks can run in parallel, speed matters, and quality cannot be sacrificed.
+> Use when: 2+ independent tasks can run in parallel, speed matters, and quality cannot be sacrificed.
 
 ## TRIZ Principles Applied
 

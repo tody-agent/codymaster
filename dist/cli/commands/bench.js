@@ -19,13 +19,19 @@ const chalk_1 = __importDefault(require("chalk"));
 const tdd_regression_1 = require("../../codybench/suites/tdd-regression");
 const token_efficiency_1 = require("../../codybench/suites/token-efficiency");
 const memory_retention_1 = require("../../codybench/suites/memory-retention");
+const workflow_integration_1 = require("../../codybench/suites/workflow-integration");
 const claude_code_1 = require("../../codybench/runners/claude-code");
 const automated_1 = require("../../codybench/judges/automated");
-const SUITES = [tdd_regression_1.tddRegressionSuite, token_efficiency_1.tokenEfficiencySuite, memory_retention_1.memoryRetentionSuite];
+const SUITES = [
+    tdd_regression_1.tddRegressionSuite,
+    token_efficiency_1.tokenEfficiencySuite,
+    memory_retention_1.memoryRetentionSuite,
+    workflow_integration_1.workflowIntegrationSuite,
+];
 function registerBenchCommands(program) {
     program
         .command('bench')
-        .description('Run CodyBench evaluation suites (v0.1)')
+        .description('Run CodyBench evaluation suites')
         .option('--suite <id>', 'Run specific suite (default: all enabled)')
         .option('--runs <n>', 'Override repeat count per suite', parseInt)
         .option('--output <path>', 'Output JSON file path')
