@@ -11,9 +11,6 @@
 import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
 
 export interface TDDGateResult {
   passed: boolean;
@@ -51,9 +48,16 @@ export function runTests(testFile: string): { failures: number; output: string }
   try {
     let vitestBin;
     try {
-      const pkgPath = require.resolve('vitest/package.json', { paths: [process.cwd()] });
-      const pkg = require(pkgPath);
-      vitestBin = path.join(path.dirname(pkgPath), typeof pkg.bin === 'string' ? pkg.bin : pkg.bin.vitest);
+      // In a CommonJS build, require.resolve is globally available.
+      // We use a dynamic lookup to avoid webpack/bundler static analysis if applicable.
+      const resolver = typeof require !== 'undefined' ? require.resolve : null;
+      if (resolver) {
+        const pkgPath = resolver('vitest/package.json', { paths: [process.cwd()] });
+        const pkg = require(pkgPath);
+        vitestBin = path.join(path.dirname(pkgPath), typeof pkg.bin === 'string' ? pkg.bin : pkg.bin.vitest);
+      } else {
+        throw new Error('require.resolve is unavailable');
+      }
     } catch (e) {
       // Fallback path
       vitestBin = path.join(process.cwd(), 'node_modules/vitest/vitest.mjs');
