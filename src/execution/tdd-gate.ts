@@ -10,7 +10,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 
 export interface TDDGateResult {
   passed: boolean;
@@ -46,7 +46,24 @@ export function suggestTestFile(sourceFile: string): string {
  */
 export function runTests(testFile: string): { failures: number; output: string } {
   try {
-    const output = execSync(`npx vitest run ${testFile} --reporter=verbose`, {
+    let vitestBin;
+    try {
+      // In a CommonJS build, require.resolve is globally available.
+      // We use a dynamic lookup to avoid webpack/bundler static analysis if applicable.
+      const resolver = typeof require !== 'undefined' ? require.resolve : null;
+      if (resolver) {
+        const pkgPath = resolver('vitest/package.json', { paths: [process.cwd()] });
+        const pkg = require(pkgPath);
+        vitestBin = path.join(path.dirname(pkgPath), typeof pkg.bin === 'string' ? pkg.bin : pkg.bin.vitest);
+      } else {
+        throw new Error('require.resolve is unavailable');
+      }
+    } catch (e) {
+      // Fallback path
+      vitestBin = path.join(process.cwd(), 'node_modules/vitest/vitest.mjs');
+    }
+
+    const output = execFileSync(process.execPath, [vitestBin, 'run', testFile, '--reporter=verbose'], {
       encoding: 'utf-8',
       timeout: 30000,
       stdio: ['pipe', 'pipe', 'pipe'],

@@ -18,6 +18,7 @@ exports.runTests = runTests;
 exports.enforceTDD = enforceTDD;
 exports.hasTestFile = hasTestFile;
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const child_process_1 = require("child_process");
 /**
  * Find test file for a given source file.
@@ -45,7 +46,25 @@ function suggestTestFile(sourceFile) {
  */
 function runTests(testFile) {
     try {
-        const output = (0, child_process_1.execSync)(`npx vitest run ${testFile} --reporter=verbose`, {
+        let vitestBin;
+        try {
+            // In a CommonJS build, require.resolve is globally available.
+            // We use a dynamic lookup to avoid webpack/bundler static analysis if applicable.
+            const resolver = typeof require !== 'undefined' ? require.resolve : null;
+            if (resolver) {
+                const pkgPath = resolver('vitest/package.json', { paths: [process.cwd()] });
+                const pkg = require(pkgPath);
+                vitestBin = path_1.default.join(path_1.default.dirname(pkgPath), typeof pkg.bin === 'string' ? pkg.bin : pkg.bin.vitest);
+            }
+            else {
+                throw new Error('require.resolve is unavailable');
+            }
+        }
+        catch (e) {
+            // Fallback path
+            vitestBin = path_1.default.join(process.cwd(), 'node_modules/vitest/vitest.mjs');
+        }
+        const output = (0, child_process_1.execFileSync)(process.execPath, [vitestBin, 'run', testFile, '--reporter=verbose'], {
             encoding: 'utf-8',
             timeout: 30000,
             stdio: ['pipe', 'pipe', 'pipe'],
