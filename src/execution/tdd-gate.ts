@@ -10,7 +10,10 @@
 
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 export interface TDDGateResult {
   passed: boolean;
@@ -46,7 +49,17 @@ export function suggestTestFile(sourceFile: string): string {
  */
 export function runTests(testFile: string): { failures: number; output: string } {
   try {
-    const output = execSync(`npx vitest run ${testFile} --reporter=verbose`, {
+    let vitestBin;
+    try {
+      const pkgPath = require.resolve('vitest/package.json', { paths: [process.cwd()] });
+      const pkg = require(pkgPath);
+      vitestBin = path.join(path.dirname(pkgPath), typeof pkg.bin === 'string' ? pkg.bin : pkg.bin.vitest);
+    } catch (e) {
+      // Fallback path
+      vitestBin = path.join(process.cwd(), 'node_modules/vitest/vitest.mjs');
+    }
+
+    const output = execFileSync(process.execPath, [vitestBin, 'run', testFile, '--reporter=verbose'], {
       encoding: 'utf-8',
       timeout: 30000,
       stdio: ['pipe', 'pipe', 'pipe'],
