@@ -18,6 +18,7 @@ exports.runTests = runTests;
 exports.enforceTDD = enforceTDD;
 exports.hasTestFile = hasTestFile;
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const child_process_1 = require("child_process");
 /**
  * Find test file for a given source file.
@@ -45,7 +46,12 @@ function suggestTestFile(sourceFile) {
  */
 function runTests(testFile) {
     try {
-        const output = (0, child_process_1.execSync)(`npx vitest run ${testFile} --reporter=verbose`, {
+        const vitestPkgPath = require.resolve('vitest/package.json', { paths: [process.cwd()] });
+        const vitestDir = path_1.default.dirname(vitestPkgPath);
+        const vitestPkg = JSON.parse(fs_1.default.readFileSync(vitestPkgPath, 'utf-8'));
+        const binPath = typeof vitestPkg.bin === 'string' ? vitestPkg.bin : vitestPkg.bin.vitest;
+        const vitestBin = path_1.default.resolve(vitestDir, binPath);
+        const output = (0, child_process_1.execFileSync)(process.execPath, [vitestBin, 'run', testFile, '--reporter=verbose'], {
             encoding: 'utf-8',
             timeout: 30000,
             stdio: ['pipe', 'pipe', 'pipe'],
