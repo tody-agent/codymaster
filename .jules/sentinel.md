@@ -14,3 +14,9 @@
 **Vulnerability:** Python HTTP servers and MCP servers in the `projects/` directory were found to be binding to `0.0.0.0` (or having it as a default), exposing them to the local network.
 **Learning:** Similar to the previous issue in the `skills/` directory, the risk of `0.0.0.0` bindings also extended to the `projects/` directory.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations, CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks, regardless of whether they are in the `skills/` or `projects/` directory.
+
+## 2025-10-24 - [Critical] Command Injection via execSync with Interpolation
+
+**Vulnerability:** The `src/execution/tdd-gate.ts` file used `execSync(\`npx vitest run \${testFile} --reporter=verbose\`)`, which interpolated user-controlled input (`testFile`) directly into a shell command. While `child_process.execSync` automatically spawns a shell, this allows for arbitrary command execution if the file path contains shell metacharacters or command substitution sequences.
+**Learning:** Using `execSync` with string interpolation for executing command-line utilities (like test runners) with user-provided arguments creates a severe risk of command injection. Relying on shell parsing when passing dynamic arguments should always be avoided.
+**Prevention:** Avoid `execSync` when executing processes with dynamic arguments. Instead, use `child_process.execFileSync` or `spawnSync` and pass arguments as an array (`[args]`). Furthermore, securely resolve the entry point of Node.js modules using `require.resolve` and execute them via `process.execPath` (the Node binary) rather than executing potentially vulnerable wrapper scripts (like `.cmd` files on Windows) directly.
