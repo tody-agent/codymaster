@@ -14,3 +14,8 @@
 **Vulnerability:** Python HTTP servers and MCP servers in the `projects/` directory were found to be binding to `0.0.0.0` (or having it as a default), exposing them to the local network.
 **Learning:** Similar to the previous issue in the `skills/` directory, the risk of `0.0.0.0` bindings also extended to the `projects/` directory.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations, CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks, regardless of whether they are in the `skills/` or `projects/` directory.
+
+## 2024-08-11 - [Command Injection / Shell Execution Fix] Avoid Using \`execSync\` with `.cmd`/`npx` Wrappers
+**Vulnerability:** The TDD test gate (`src/execution/tdd-gate.ts`) used `execSync(\`npx vitest ...\`)`. On Windows, `npx` wrappers (like `npx.cmd` or `.bat`) implicitly spawn the vulnerable shell (`cmd.exe`). This breaks the `execFileSync` / shell-less execution rule, making it susceptible to injection or environment-based path poisoning.
+**Learning:** Using `child_process.execSync` with `npx` is inherently insecure on cross-platform Node.js implementations, as Windows will execute batch wrappers which spawn `cmd.exe`.
+**Prevention:** Always use `child_process.execFileSync` calling `process.execPath` (the current Node executable) and resolve the JavaScript entrypoint of the package manually using `require.resolve('pkg-name/package.json')` combined with the package's `bin` path.
