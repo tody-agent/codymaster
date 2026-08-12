@@ -14,3 +14,7 @@
 **Vulnerability:** Python HTTP servers and MCP servers in the `projects/` directory were found to be binding to `0.0.0.0` (or having it as a default), exposing them to the local network.
 **Learning:** Similar to the previous issue in the `skills/` directory, the risk of `0.0.0.0` bindings also extended to the `projects/` directory.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations, CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks, regardless of whether they are in the `skills/` or `projects/` directory.
+## 2024-08-12 - [Buffer length TypeError in crypto.timingSafeEqual]
+**Vulnerability:** Checking string length `given.length !== want.length` before calling `crypto.timingSafeEqual` with Buffers leaves the application vulnerable to synchronous `TypeError` crashes if a user provides multi-byte characters, bypassing the string length check but causing a buffer byte-length mismatch.
+**Learning:** `crypto.timingSafeEqual` strictly requires matching byte lengths, not character lengths.
+**Prevention:** Always convert inputs to Buffers *first*, and check `givenBuf.length !== wantBuf.length` before passing them to `timingSafeEqual`.
