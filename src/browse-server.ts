@@ -5,6 +5,7 @@
  */
 
 import express, { Request, Response, NextFunction } from 'express';
+import crypto from 'crypto';
 import type { BrowserAdapter } from './browse/adapters/types';
 import { createAdapter, type EngineName } from './browse/adapter-factory';
 import { EventLog } from './browse/event-log';
@@ -65,8 +66,9 @@ export class BrowseDaemon {
     }
     if (req.path === '/health') return next();
     const h = req.headers.authorization || '';
-    const want = `Bearer ${this.opts.token}`;
-    if (h !== want) {
+    const got = Buffer.from(h);
+    const want = Buffer.from(`Bearer ${this.opts.token}`);
+    if (got.length !== want.length || !crypto.timingSafeEqual(got, want)) {
       res.status(401).json({ error: 'unauthorized' });
       return;
     }
