@@ -14,3 +14,8 @@
 **Vulnerability:** Python HTTP servers and MCP servers in the `projects/` directory were found to be binding to `0.0.0.0` (or having it as a default), exposing them to the local network.
 **Learning:** Similar to the previous issue in the `skills/` directory, the risk of `0.0.0.0` bindings also extended to the `projects/` directory.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations, CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks, regardless of whether they are in the `skills/` or `projects/` directory.
+
+## 2024-08-16 - Prevent Command Injection via execSync and .cmd
+**Vulnerability:** Use of `execSync` with string interpolation for executing user-provided paths/commands, which can allow shell injection. Executing `.cmd` or `.bat` on Windows using `execFileSync` also implicitly spawns `cmd.exe`, inheriting the same vulnerability.
+**Learning:** Shell execution should be avoided entirely for local scripts, replacing `execSync` with `execFileSync` with argument arrays.
+**Prevention:** Always use `child_process.execFileSync` or `spawnSync` with explicitly defined argument arrays. If executing a Node tool like vitest on Windows, resolve the main JS entrypoint dynamically via `require.resolve('pkg/package.json')` and execute it directly via `process.execPath` (the current node executable) instead of executing the wrapping script.

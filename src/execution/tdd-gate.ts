@@ -10,7 +10,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 
 export interface TDDGateResult {
   passed: boolean;
@@ -46,11 +46,20 @@ export function suggestTestFile(sourceFile: string): string {
  */
 export function runTests(testFile: string): { failures: number; output: string } {
   try {
-    const output = execSync(`npx vitest run ${testFile} --reporter=verbose`, {
-      encoding: 'utf-8',
-      timeout: 30000,
-      stdio: ['pipe', 'pipe', 'pipe'],
-    });
+    const vitestPkg = require.resolve('vitest/package.json');
+    const pkgContent = JSON.parse(fs.readFileSync(vitestPkg, 'utf-8'));
+    const binFile = typeof pkgContent.bin === 'string' ? pkgContent.bin : pkgContent.bin.vitest;
+    const vitestPath = path.join(path.dirname(vitestPkg), binFile);
+
+    const output = execFileSync(
+      process.execPath,
+      [vitestPath, 'run', testFile, '--reporter=verbose'],
+      {
+        encoding: 'utf-8',
+        timeout: 30000,
+        stdio: ['pipe', 'pipe', 'pipe'],
+      }
+    );
     return { failures: 0, output };
   } catch (error: any) {
     // vitest exits with non-zero code when tests fail
