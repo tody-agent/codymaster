@@ -14,3 +14,7 @@
 **Vulnerability:** Python HTTP servers and MCP servers in the `projects/` directory were found to be binding to `0.0.0.0` (or having it as a default), exposing them to the local network.
 **Learning:** Similar to the previous issue in the `skills/` directory, the risk of `0.0.0.0` bindings also extended to the `projects/` directory.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations, CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks, regardless of whether they are in the `skills/` or `projects/` directory.
+## 2024-08-18 - Timing attack vulnerabilities in token comparison
+**Vulnerability:** String equality (`!==` or `===`) operators were used to compare security tokens. This allows timing attacks where an attacker can determine the token character by character by measuring the time it takes for the comparison to fail.
+**Learning:** Node.js's `crypto.timingSafeEqual` should be used instead of regular string comparison operators for verifying tokens, signatures, or passwords to prevent timing attacks. However, it requires inputs to be buffers of the same length.
+**Prevention:** Always convert strings to Buffers using `Buffer.from()` and perform a length check (`buf1.length !== buf2.length`) before calling `crypto.timingSafeEqual()`. If lengths differ, the token is invalid and we should reject the request immediately to avoid `TypeError` exceptions from `timingSafeEqual`.

@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+import crypto from 'crypto';
 
 /**
  * Reject any request whose Host header is not a loopback address.
@@ -33,7 +34,10 @@ export function hostGuard() {
 export function requireDashboardToken(token: string) {
   const want = `Bearer ${token}`;
   return (req: Request, res: Response, next: NextFunction) => {
-    if ((req.headers.authorization || '') !== want) {
+    const provided = req.headers.authorization || '';
+    const providedBuf = Buffer.from(provided);
+    const wantBuf = Buffer.from(want);
+    if (providedBuf.length !== wantBuf.length || !crypto.timingSafeEqual(providedBuf, wantBuf)) {
       res.status(401).json({ error: 'unauthorized' });
       return;
     }

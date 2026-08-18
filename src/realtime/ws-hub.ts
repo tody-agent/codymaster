@@ -1,5 +1,6 @@
 import { WebSocketServer, WebSocket } from 'ws';
 import type { Server, IncomingMessage } from 'http';
+import crypto from 'crypto';
 import { eventBus, type DomainEvent } from './event-bus';
 
 const HEARTBEAT_INTERVAL = 15_000;
@@ -48,7 +49,9 @@ export function initWsHub(server: Server, token?: string): void {
       try {
         provided = new URL(request.url || '', 'http://localhost').searchParams.get('token') || '';
       } catch { /* malformed URL → provided stays empty → rejected below */ }
-      if (provided !== token) {
+      const providedBuf = Buffer.from(provided);
+      const tokenBuf = Buffer.from(token || '');
+      if (providedBuf.length !== tokenBuf.length || !crypto.timingSafeEqual(providedBuf, tokenBuf)) {
         ws.close(1008, 'unauthorized');
         return;
       }
