@@ -14,3 +14,7 @@
 **Vulnerability:** Python HTTP servers and MCP servers in the `projects/` directory were found to be binding to `0.0.0.0` (or having it as a default), exposing them to the local network.
 **Learning:** Similar to the previous issue in the `skills/` directory, the risk of `0.0.0.0` bindings also extended to the `projects/` directory.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations, CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks, regardless of whether they are in the `skills/` or `projects/` directory.
+## 2025-02-27 - Command Injection in Test Executor
+**Vulnerability:** Found `execSync` used with dynamically injected strings (e.g., ``npx vitest run ${testFile}``) in `src/execution/tdd-gate.ts`, exposing the system to command injection and implicit vulnerable shell execution (via `cmd.exe`) on Windows.
+**Learning:** Testing or internal CLI automation scripts frequently misuse `execSync` for convenience, inadvertently leaving security holes, especially when combining string templates with tool launchers like `npx`.
+**Prevention:** Always use `execFileSync` or `spawnSync` with explicitly defined argument arrays and execute node module entry points directly via `process.execPath` after resolving them with `require.resolve`, bypassing `npx` and shell execution entirely.
