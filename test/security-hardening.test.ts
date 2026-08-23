@@ -61,6 +61,19 @@ describe('dashboard-auth: requireDashboardToken', () => {
     expect(nextCalled).toBe(false);
     expect(res.statusCode).toBe(401);
   });
+
+  it('rejects an empty or falsy configured token (fail-closed)', () => {
+    // If the server initializes with an empty token by mistake, it should fail immediately
+    expect(() => requireDashboardToken('')).toThrow('requireDashboardToken must be initialized with a valid token');
+  });
+
+  it('safely handles timing-safe equality checks of differing lengths', () => {
+    // The previous token was 'a'.repeat(48). We pass a token of different length to ensure
+    // it doesn't throw a length mismatch exception from crypto.timingSafeEqual.
+    const { res, nextCalled } = run(mw, { authorization: `Bearer ${'a'.repeat(47)}` });
+    expect(nextCalled).toBe(false);
+    expect(res.statusCode).toBe(401);
+  });
 });
 
 describe('continuity: phase enum validation (XSS hardening)', () => {

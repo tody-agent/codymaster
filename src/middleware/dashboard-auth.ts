@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+import crypto from 'crypto';
 
 /**
  * Reject any request whose Host header is not a loopback address.
@@ -31,9 +32,19 @@ export function hostGuard() {
  * driving the state-changing API.
  */
 export function requireDashboardToken(token: string) {
+  // If no token was provided, we must fail closed immediately instead of waiting for a request
+  if (!token) {
+    throw new Error('requireDashboardToken must be initialized with a valid token');
+  }
+
   const want = `Bearer ${token}`;
+  const hashWant = crypto.createHash('sha256').update(want).digest();
+
   return (req: Request, res: Response, next: NextFunction) => {
-    if ((req.headers.authorization || '') !== want) {
+    const provided = req.headers.authorization || '';
+    const hashProvided = crypto.createHash('sha256').update(provided).digest();
+
+    if (!crypto.timingSafeEqual(hashWant, hashProvided)) {
       res.status(401).json({ error: 'unauthorized' });
       return;
     }

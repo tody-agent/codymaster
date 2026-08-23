@@ -1,6 +1,7 @@
 import { WebSocketServer, WebSocket } from 'ws';
 import type { Server, IncomingMessage } from 'http';
 import { eventBus, type DomainEvent } from './event-bus';
+import crypto from 'crypto';
 
 const HEARTBEAT_INTERVAL = 15_000;
 const MAX_BUFFER = 100;
@@ -38,17 +39,26 @@ export function broadcastAll(event: DomainEvent): void {
 }
 
 export function initWsHub(server: Server, token?: string): void {
+  // If the environment dictates we should have a token but it's falsy, we should fail closed.
+  // However, `token` is historically optional (e.g., local dev). If it IS configured, we must compare securely.
+
+  // To avoid recomputing the expected hash on every connection, compute it once.
+  const hashWant = token ? crypto.createHash('sha256').update(token).digest() : null;
+
   const wss = new WebSocketServer({ server, path: '/ws' });
 
   wss.on('connection', (ws: WebSocket, request: IncomingMessage) => {
     // Fail-closed: when a token is configured, every WS client must present a
     // matching ?token=… query param or the connection is rejected.
-    if (token) {
+    if (hashWant) {
       let provided = '';
       try {
         provided = new URL(request.url || '', 'http://localhost').searchParams.get('token') || '';
       } catch { /* malformed URL → provided stays empty → rejected below */ }
-      if (provided !== token) {
+
+      const hashProvided = crypto.createHash('sha256').update(provided).digest();
+
+      if (!crypto.timingSafeEqual(hashWant, hashProvided)) {
         ws.close(1008, 'unauthorized');
         return;
       }
