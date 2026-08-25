@@ -1,7 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hostGuard = hostGuard;
 exports.requireDashboardToken = requireDashboardToken;
+const crypto_1 = __importDefault(require("crypto"));
 /**
  * Reject any request whose Host header is not a loopback address.
  *
@@ -32,9 +36,16 @@ function hostGuard() {
  * driving the state-changing API.
  */
 function requireDashboardToken(token) {
-    const want = `Bearer ${token}`;
+    if (!token) {
+        return (_req, res) => {
+            res.status(401).json({ error: 'unauthorized' });
+        };
+    }
+    const expectedHash = crypto_1.default.createHash('sha256').update(`Bearer ${token}`).digest();
     return (req, res, next) => {
-        if ((req.headers.authorization || '') !== want) {
+        const providedAuth = req.headers.authorization || '';
+        const providedHash = crypto_1.default.createHash('sha256').update(providedAuth).digest();
+        if (!crypto_1.default.timingSafeEqual(expectedHash, providedHash)) {
             res.status(401).json({ error: 'unauthorized' });
             return;
         }
