@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+import crypto from 'crypto';
 
 /**
  * Reject any request whose Host header is not a loopback address.
@@ -30,10 +31,20 @@ export function hostGuard() {
  * This prevents other local processes and cross-origin (CSRF) requests from
  * driving the state-changing API.
  */
-export function requireDashboardToken(token: string) {
-  const want = `Bearer ${token}`;
+export function requireDashboardToken(token?: string) {
+  if (!token) {
+    return (_req: Request, res: Response) => {
+      res.status(401).json({ error: 'unauthorized' });
+    };
+  }
+
+  const expectedHash = crypto.createHash('sha256').update(`Bearer ${token}`).digest();
+
   return (req: Request, res: Response, next: NextFunction) => {
-    if ((req.headers.authorization || '') !== want) {
+    const providedAuth = req.headers.authorization || '';
+    const providedHash = crypto.createHash('sha256').update(providedAuth).digest();
+
+    if (!crypto.timingSafeEqual(expectedHash, providedHash)) {
       res.status(401).json({ error: 'unauthorized' });
       return;
     }

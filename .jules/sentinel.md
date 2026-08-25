@@ -14,3 +14,8 @@
 **Vulnerability:** Python HTTP servers and MCP servers in the `projects/` directory were found to be binding to `0.0.0.0` (or having it as a default), exposing them to the local network.
 **Learning:** Similar to the previous issue in the `skills/` directory, the risk of `0.0.0.0` bindings also extended to the `projects/` directory.
 **Prevention:** Always default to `127.0.0.1` in environment variable configurations, CLI parameter defaults, and hardcoded socket definitions across all languages and frameworks, regardless of whether they are in the `skills/` or `projects/` directory.
+
+## 2025-05-15 - [High] Timing Attack in Dashboard Authentication
+**Vulnerability:** The dashboard authentication token validation used standard string comparison `(req.headers.authorization || '') !== want`. String comparisons in Node.js short-circuit on the first mismatch, allowing attackers to theoretically brute force tokens by measuring response time (timing attack).
+**Learning:** Security token comparison should never use standard equality operators (`==`, `===`, `!=`, `!==`). `crypto.timingSafeEqual` must be used. However, `timingSafeEqual` will throw an error if the two buffers are different lengths, which itself could cause a Denial of Service or reveal token length. Therefore, hashing both the expected and provided values (e.g. `SHA-256`) guarantees uniform length before passing to `timingSafeEqual`.
+**Prevention:** Always use `crypto.timingSafeEqual` for comparing secrets, and hash both inputs before comparison to ensure identical buffer lengths and prevent runtime length errors.
